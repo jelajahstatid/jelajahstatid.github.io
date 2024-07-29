@@ -1,5 +1,6 @@
 ---
-title: "jelajahstatid.github.io"
+title: "Blog"
+subtitle: "Berpetualang ke dunia Statistika dan Ilmu Data"
 listing:
   contents: posts
   sort: "date desc"

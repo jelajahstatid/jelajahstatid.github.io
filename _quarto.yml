@@ -1,10 +1,12 @@
 project:
   type: website
+  output-dir: docs
 
 website:
-  title: "jelajahstatid.github.io"
+  title: "Jelajah Statistika dan Ilmu Data"
   navbar:
     right:
+      - index.qmd
       - about.qmd
       - icon: github
         href: https://github.com/
@@ -13,6 +15,7 @@ website:
 format:
   html:
     theme: cosmo
+    code-fold: true
     css: styles.css
 
 editor: visual
