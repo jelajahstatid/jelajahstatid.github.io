@@ -5,10 +5,6 @@ author: "Yosep Dwi Kristanto"
 date: 2024-07-29
 categories: [pendidikan, PISA]
 image: "literasi-matematika.png"
-execute: 
-  echo: true
-  warning: false
-  freeze: auto
 editor_options: 
   chunk_output_type: console
 ---
