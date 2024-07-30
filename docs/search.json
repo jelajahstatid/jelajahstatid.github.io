@@ -1,0 +1,72 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Blog",
+    "section": "",
+    "text": "Literasi Matematika dan Indeks Sosial Budaya dalam PISA 2022\n\n\nBagaimana hubungan antara literasi matematika dan indeks sosial budaya berdasarkan data PISA 2022?\n\n\n\npendidikan\n\n\nPISA\n\n\n\nSkor literasi matematika peserta didik berhubungan dengan status sosial ekonominya. Bagaimana hubungan tersebut? Apakah hubungan tersebut sama untuk setiap negara atau ekonomi yang berpartisipasi dalam PISA 2022? \n\n\n\n\n\nJul 30, 2024\n\n\nYosep Dwi Kristanto\n\n\n\n\n\n\nTidak ada item yang cocok"
+  },
+  {
+    "objectID": "posts/post-with-code/index.html",
+    "href": "posts/post-with-code/index.html",
+    "title": "Post With Code",
+    "section": "",
+    "text": "This is a post with executable code.\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Tentang",
+    "section": "",
+    "text": "About this blog"
+  },
+  {
+    "objectID": "posts/welcome/index.html",
+    "href": "posts/welcome/index.html",
+    "title": "Welcome To My Blog",
+    "section": "",
+    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
+  },
+  {
+    "objectID": "posts/2024-07-literasi-matematika-sosial-budaya/index.html",
+    "href": "posts/2024-07-literasi-matematika-sosial-budaya/index.html",
+    "title": "Literasi Matematika dan Indeks Sosial Budaya dalam PISA 2022",
+    "section": "",
+    "text": "Code\nlibrary(tidyverse)\n\n\nMasuk akal memang status sosial ekonomi peserta didik berbanding lurus dengan hasil belajarnya. Semakin tinggi status sosial ekonomi seorang peserta didik, hasil belajarnya juga cenderung semakin tinggi. Misalnya saja, peserta didik yang memiliki kamar sendiri, komputer yang ditunjang dengan berbagai macam perangkat lunak pembelajaran, buku, dan orang tua yang berpendidikan tinggi memiliki kesempatan yang lebih besar untuk mendapatkan pendidikan yang berkualitas. Alhasil, hasil belajarnya relatif tinggi.\nUntuk mengkonfirmasinya, mari kita analisis data PISA 2022. Dalam PISA, status sosial ekonomi diukur dengan indeks status ekonomi, sosial, dan budaya (ESCS). Hasil belajarnya ada tiga, yaitu skor literasi matematika, membaca, dan sains. Pertama, kita lihat hubungan antara ESCS dan skor membaca dan sains.\n\n\nCode\n# Impor dan olah data\nhasil_belajar_escs &lt;- read_csv(\"https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/main/posts/2024-07-literasi-matematika-sosial-budaya/data/hasil_belajar_escs_csv\")\nhb_escs_ms &lt;- hasil_belajar_escs |&gt; \n  select(negara, membaca, sains, escs) |&gt; \n  drop_na() |&gt; \n  pivot_longer(\n    cols = c(\"membaca\", \"sains\"),\n    names_to = \"literasi\",\n    values_to = \"rerata_skor\"\n  ) |&gt; \n  mutate(\n    literasi = str_to_title(literasi)\n  )\n\n# Visualisasi data\nhb_escs_ms |&gt; \n  ggplot(aes(x = escs, y = rerata_skor)) + \n  geom_point() + \n  geom_smooth(\n    method = \"lm\",\n    formula = y ~ x\n  ) + \n  facet_grid(~literasi) + \n  theme_minimal() + \n  labs(\n    x = \"ESCS\",\n    y = \"Rerata skor\"\n  )"
+  },
+  {
+    "objectID": "ihwal.html",
+    "href": "ihwal.html",
+    "title": "Ihwal",
+    "section": "",
+    "text": "Jelajah Statistika dan Ilmu Data ini bertujuan untuk berbagi pengalaman dan pengetahuan tentang Statistika dan Ilmu Data, khususnya yang terkait dengan pemrograman."
+  },
+  {
+    "objectID": "pos/2024-07-literasi-matematika-sosial-budaya/index.html",
+    "href": "pos/2024-07-literasi-matematika-sosial-budaya/index.html",
+    "title": "Literasi Matematika dan Indeks Sosial Budaya dalam PISA 2022",
+    "section": "",
+    "text": "Kode\nlibrary(tidyverse)\nlibrary(ggrepel)\nMasuk akal memang status sosial ekonomi peserta didik berbanding lurus dengan hasil belajarnya. Semakin tinggi status sosial ekonomi seorang peserta didik, hasil belajarnya juga cenderung semakin tinggi. Misalnya saja, peserta didik yang memiliki kamar sendiri, komputer yang ditunjang dengan berbagai macam perangkat lunak pembelajaran, buku, dan orang tua yang berpendidikan tinggi memiliki kesempatan yang lebih besar untuk mendapatkan pendidikan yang berkualitas. Alhasil, hasil belajarnya relatif tinggi.\nUntuk mengkonfirmasinya, mari kita analisis data PISA 2022. Dalam PISA, status sosial ekonomi diukur dengan indeks status ekonomi, sosial, dan budaya (ESCS). Hasil belajarnya ada tiga, yaitu skor literasi Matematika, Membaca, dan Sains. Pertama, kita lihat hubungan antara rerata ESCS dan rerata skor Membaca dan Sains antarnegara pada Gambar 1.\nKode\n# Impor dan olah data\nhasil_belajar_escs &lt;- read_csv(\"https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/main/pos/2024-07-literasi-matematika-sosial-budaya/data/hasil_belajar_escs_csv\")\nhb_escs_ms &lt;- hasil_belajar_escs |&gt; \n  select(negara, membaca, sains, escs) |&gt; \n  drop_na() |&gt; \n  pivot_longer(\n    cols = c(\"membaca\", \"sains\"),\n    names_to = \"literasi\",\n    values_to = \"rerata_skor\"\n  ) |&gt; \n  mutate(\n    literasi = str_to_title(literasi)\n  )\n\n# Visualisasi data\nhb_escs_ms |&gt; \n  ggplot(aes(x = escs, y = rerata_skor)) + \n  geom_point(\n    aes(color = literasi),\n    size = 2\n  ) + \n  geom_smooth(\n    method = \"lm\",\n    formula = y ~ x,\n    color = \"black\",\n    alpha = .1\n  ) + \n  facet_grid(~literasi) + \n  scale_color_manual(\n    name = \"Literasi\",\n    values = c(\n      \"Membaca\" = \"#427D9D\",\n      \"Sains\" = \"#9BBEC8\"\n    )\n  ) + \n  theme_minimal() + \n  theme(legend.position = \"none\") + \n  labs(\n    x = \"Rerata ESCS\",\n    y = \"Rerata skor\"\n  )\n\n\n\n\n\n\n\n\nGambar 1: Hubungan status sosial ekonomi (ESCS) dengan skor membaca dan sains antarnegara."
+  },
+  {
+    "objectID": "pos/2024-07-literasi-matematika-sosial-budaya/index.html#status-sosial-ekonomi-dan-literasi-matematika",
+    "href": "pos/2024-07-literasi-matematika-sosial-budaya/index.html#status-sosial-ekonomi-dan-literasi-matematika",
+    "title": "Literasi Matematika dan Indeks Sosial Budaya dalam PISA 2022",
+    "section": "Status Sosial Ekonomi dan Literasi Matematika",
+    "text": "Status Sosial Ekonomi dan Literasi Matematika\nBerdasarkan Gambar 1, kita melihat bahwa ESCS berbanding lurus dengan skor Membaca maupun Sains. Apakah hubungan seperti ini juga berlaku untuk skor matematika? Mari kita perhatikan Gambar 2.\n\n\nKode\n# Olah data\nhb_escs_mat &lt;- hasil_belajar_escs |&gt; \n  select(negara, escs, matematika) |&gt; \n  drop_na()\n# Visualisasi data\nhb_escs_mat |&gt; \n  ggplot(aes(x = escs, y = matematika)) + \n  geom_point(\n    color = \"#164863\",\n    size = 2\n  ) + \n  geom_smooth(\n    method = \"lm\",\n    formula = y ~ x,\n    color = \"black\",\n    alpha = .1\n  ) + \n  theme_minimal() + \n  labs(\n    x = \"ESCS\",\n    y = \"Rerata skor Matematika\"\n  )\n\n\n\n\n\n\n\n\nGambar 2: Hubungan antara status sosial ekonomi (ESCS) dan skor matematika antarnegara.\n\n\n\n\n\nTernyata hubungan yang serupa kita temukan antara rerata indeks status sosial ekonomi dan rerata skor literasi matematika antar negara. Semakin tinggi rerata status sosial ekonomi sebuah negara, semakin tinggi juga rerata skor Matematika negara tersebut."
+  },
+  {
+    "objectID": "pos/2024-07-literasi-matematika-sosial-budaya/index.html#melihat-lebih-dalam",
+    "href": "pos/2024-07-literasi-matematika-sosial-budaya/index.html#melihat-lebih-dalam",
+    "title": "Literasi Matematika dan Indeks Sosial Budaya dalam PISA 2022",
+    "section": "Melihat Lebih Dalam",
+    "text": "Melihat Lebih Dalam\nApabila kita perhatikan kembali Gambar 2 dengan saksama, kita melihat ada beberapa titik (yang merepresentasikan beberapa negara) yang terpisah dengan sebagian besar titik lainnya. Titik-titik yang disebut pencilan tersebut terletak di bagian atas.\nKita deteksi pencilan tersebut dengan menggunakan model linear dan jarak Cook. Jarak Cook ini biasanya digunakan untuk mengestimasi pengaruh sebuah titik pada analisis regresi linear. Dengan menganggap pencilan sebagai titik-titik yang jarak Cook-nya lebih dari tiga kali rata-ratanya, kita mendapatkan titik-titik pencilan seperti yang ditunjukkan pada Gambar 3.\n\n\nKode\n# Membuat model linear\nmodel &lt;- lm(matematika ~ escs, hb_escs_mat)\n\n# Menentukan jarak Cook untuk setiap titik data\nhb_escs_mat_pencilan &lt;- hb_escs_mat |&gt; \n  mutate(\n    jarak_cook = cooks.distance(model)\n  )\n\n# Menentukan titik-titik pencilan\nrerata_jarak_cook &lt;- mean(hb_escs_mat_pencilan$jarak_cook)\nhb_escs_mat_pencilan &lt;- hb_escs_mat_pencilan |&gt; \n  mutate(\n    kelompok = ifelse(\n      jarak_cook &gt; 3 * rerata_jarak_cook,\n      \"pencilan\", \"bukan pencilan\"\n    ),\n    negara_pencilan = ifelse(\n      kelompok == \"pencilan\",\n      negara, NA\n    )\n  )\n\n# Memvisualisasikan pencilan\nhb_escs_mat_pencilan |&gt; \n  ggplot(aes(x = escs, y = matematika, color = kelompok)) + \n  geom_point(size = 2) + \n  geom_smooth(\n    method = \"lm\",\n    formula = y ~ x,\n    alpha = .1\n  ) + \n  geom_text_repel(aes(label = negara_pencilan)) + \n  scale_color_manual(\n    values = c(\n      \"bukan pencilan\" = \"#9BBEC8\",\n      \"pencilan\" = \"#164863\"\n    )\n  ) + \n  theme_minimal() + \n  theme(legend.position = \"none\") + \n  labs(\n    x = \"Rerata ESCS\",\n    y = \"Rerata skor Matematika\"\n  )\n\n\n\n\n\n\n\n\nGambar 3: Hubungan antara status sosial ekonomi (ESCS) dan skor matematika antarnegara.\n\n\n\n\n\nBerdasarkan Gambar 3, titik-titik pencilannya adalah Vietnam, Turki, Hongkong, Makau, Tionghoa Taipei, dan Singapura. Negara-negara dalam kelompok ini cenderung memiliki rerata skor Matematika yang lebih tinggi dibandingkan dengan negara-negara lain yang rerata indeks status sosial ekonominya sama. Berapakah perbedaan rerata skor Matematinya? Mari kita gunakan model linear untuk menyelidikinya!\n\n\nKode\nmodel_kelompok &lt;- lm(\n  matematika ~ kelompok + escs,\n  hb_escs_mat_pencilan\n)\n\nprint(model_kelompok)\n\n\n\nCall:\nlm(formula = matematika ~ kelompok + escs, data = hb_escs_mat_pencilan)\n\nCoefficients:\n     (Intercept)  kelompokpencilan              escs  \n          458.00            106.59             76.89  \n\n\nDari model tersebut, kita dapat melihat bahwa koefisien dari kelompok adalah sekitar 106,59. Artinya, negara-negara dalam kelompok pencilan tersebut secara rata-rata skor Matematika peserta didiknya lebih tinggi sebesar 106,59 dibandingkan dengan negara-negara lain yang rerata status sosial ekonominya sama."
+  },
+  {
+    "objectID": "pos/2024-07-literasi-matematika-sosial-budaya/index.html#catatan-akhir",
+    "href": "pos/2024-07-literasi-matematika-sosial-budaya/index.html#catatan-akhir",
+    "title": "Literasi Matematika dan Indeks Sosial Budaya dalam PISA 2022",
+    "section": "Catatan Akhir",
+    "text": "Catatan Akhir\nKita telah melihat bahwa status sosial ekonomi berbanding lurus dengan literasi Matematika. Secara lebih detail, kita melihat ada beberapa negara yang rerata skor Matematikanya lebih besar daripada negara-negara lain dengan rerata indeks sosial ekonomi yang sama. Negara-negara tersebut adalah Vietnam, Turki, Hongkong, Makau, Tionghoa Taipei, dan Singapura. Sebagai bahan perenungan, baik jika pembaca bertanya-tanya mengapa negara-negara tersebut memiliki rerata skor Matematika yang lebih tinggi."
+  }
+]
