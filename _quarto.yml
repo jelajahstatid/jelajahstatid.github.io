@@ -7,6 +7,7 @@ website:
   google-analytics: G-WTEJLB3562
   open-graph: true
   twitter-card: true
+  site-url: https://jelajahstatid.github.io
   repo-url: https://github.com/jelajahstatid/jelajahstatid.github.io
   repo-actions: [edit, issue]
   page-navigation: true
