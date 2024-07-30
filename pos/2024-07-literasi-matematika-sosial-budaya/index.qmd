@@ -1,8 +1,7 @@
 ---
 title: "Literasi Matematika dan Indeks Sosial Budaya dalam PISA 2022"
-subtitle: "Bagaimana hubungan antara literasi matematika dan indeks sosial budaya berdasarkan data PISA 2022?"
 description: |
-  Skor literasi matematika peserta didik berhubungan dengan status sosial ekonominya. Bagaimana hubungan tersebut? Apakah hubungan tersebut sama untuk setiap negara atau ekonomi yang berpartisipasi dalam PISA 2022?
+  Bagaimana hubungan antara literasi matematika dan indeks sosial budaya berdasarkan data PISA 2022? Apakah hubungan tersebut sama untuk setiap negara atau ekonomi yang berpartisipasi dalam PISA 2022? Artikel ini menunjukkan beberapa negara yang memiliki rerata skor Matematika lebih tinggi dibandingkan dengan negara-negara lain yang indeks status sosial ekonominya sama. Apa saja negara tersebut?
 author:
   - name: Yosep Dwi Kristanto
     url: https://people.usd.ac.id/~ydkristanto/
