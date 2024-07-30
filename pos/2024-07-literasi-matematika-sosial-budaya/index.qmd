@@ -2,7 +2,7 @@
 title: "Literasi Matematika dan Indeks Sosial Budaya dalam PISA 2022"
 subtitle: "Bagaimana hubungan antara literasi matematika dan indeks sosial budaya berdasarkan data PISA 2022?"
 author: "Yosep Dwi Kristanto"
-date: 2024-07-29
+date: 2024-07-30
 categories: [pendidikan, PISA]
 image: "literasi-matematika.png"
 editor_options: 
@@ -13,11 +13,12 @@ editor_options:
 #| message: false
 
 library(tidyverse)
+library(ggrepel)
 ```
 
 Masuk akal memang status sosial ekonomi peserta didik berbanding lurus dengan hasil belajarnya. Semakin tinggi status sosial ekonomi seorang peserta didik, hasil belajarnya juga cenderung semakin tinggi. Misalnya saja, peserta didik yang memiliki kamar sendiri, komputer yang ditunjang dengan berbagai macam perangkat lunak pembelajaran, buku, dan orang tua yang berpendidikan tinggi memiliki kesempatan yang lebih besar untuk mendapatkan pendidikan yang berkualitas. Alhasil, hasil belajarnya relatif tinggi.
 
-Untuk mengkonfirmasinya, mari kita analisis data PISA 2022. Dalam PISA, status sosial ekonomi diukur dengan indeks status ekonomi, sosial, dan budaya (ESCS). Hasil belajarnya ada tiga, yaitu skor literasi matematika, membaca, dan sains. Pertama, kita lihat hubungan antara ESCS dan skor membaca dan sains antarnegara pada @fig-hb-escs-ms.
+Untuk mengkonfirmasinya, mari kita analisis data PISA 2022. Dalam PISA, status sosial ekonomi diukur dengan indeks status ekonomi, sosial, dan budaya (ESCS). Hasil belajarnya ada tiga, yaitu skor literasi Matematika, Membaca, dan Sains. Pertama, kita lihat hubungan antara rerata ESCS dan rerata skor Membaca dan Sains antarnegara pada @fig-hb-escs-ms.
 
 ```{r}
 #| echo: true
@@ -28,7 +29,7 @@ Untuk mengkonfirmasinya, mari kita analisis data PISA 2022. Dalam PISA, status s
 #| fig-align: center
 
 # Impor dan olah data
-hasil_belajar_escs <- read_csv("https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/main/posts/2024-07-literasi-matematika-sosial-budaya/data/hasil_belajar_escs_csv")
+hasil_belajar_escs <- read_csv("https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/main/pos/2024-07-literasi-matematika-sosial-budaya/data/hasil_belajar_escs_csv")
 hb_escs_ms <- hasil_belajar_escs |> 
   select(negara, membaca, sains, escs) |> 
   drop_na() |> 
@@ -63,14 +64,17 @@ hb_escs_ms |>
     )
   ) + 
   theme_minimal() + 
+  theme(legend.position = "none") + 
   labs(
-    x = "ESCS",
+    x = "Rerata ESCS",
     y = "Rerata skor"
   )
 
 ```
 
-Berdasarkan @fig-hb-escs-ms, kita melihat bahwa ESCS berbanding lurus dengan skor membaca maupun sains. Apakah hubungan seperti ini juga berlaku untuk skor matematika. Mari kita perhatikan @fig-hb-escs-mat.
+## Status Sosial Ekonomi dan Literasi Matematika
+
+Berdasarkan @fig-hb-escs-ms, kita melihat bahwa ESCS berbanding lurus dengan skor Membaca maupun Sains. Apakah hubungan seperti ini juga berlaku untuk skor matematika? Mari kita perhatikan @fig-hb-escs-mat.
 
 ```{r}
 #| echo: true
@@ -105,10 +109,86 @@ hb_escs_mat |>
 
 ```
 
-Apabila kita perhatikan @fig-hb-escs-mat dengan saksama, kita melihat ada beberapa titik (yang merepresentasikan beberapa negara) yang terpisah dengan sebagian besar titik lainnya. Titik-titik yang disebut pencilan tersebut terletak di bagian atas.
+Ternyata hubungan yang serupa kita temukan antara rerata indeks status sosial ekonomi dan rerata skor literasi matematika antar negara. Semakin tinggi rerata status sosial ekonomi sebuah negara, semakin tinggi juga rerata skor Matematika negara tersebut.
 
-Kita deteksi pencilan tersebut dengan menggunakan model linear dan jarak Cook. Jarak Cook ini biasanya digunakan untuk mengestimasi pengaruh sebuah titik pada analisis regresi linear.
+## Melihat Lebih Dalam
+
+Apabila kita perhatikan kembali @fig-hb-escs-mat dengan saksama, kita melihat ada beberapa titik (yang merepresentasikan beberapa negara) yang terpisah dengan sebagian besar titik lainnya. Titik-titik yang disebut pencilan tersebut terletak di bagian atas.
+
+Kita deteksi pencilan tersebut dengan menggunakan model linear dan jarak Cook. Jarak Cook ini biasanya digunakan untuk mengestimasi pengaruh sebuah titik pada analisis regresi linear. Dengan menganggap pencilan sebagai titik-titik yang jarak Cook-nya lebih dari tiga kali rata-ratanya, kita mendapatkan titik-titik pencilan seperti yang ditunjukkan pada @fig-hb-escs-mat-pencilan.
 
 ```{r}
+#| echo: true
+#| message: false
+#| warning: false
+#| label: fig-hb-escs-mat-pencilan
+#| fig-cap: Hubungan antara status sosial ekonomi (ESCS) dan skor matematika antarnegara.
+#| fig-align: center
+
+# Membuat model linear
+model <- lm(matematika ~ escs, hb_escs_mat)
+
+# Menentukan jarak Cook untuk setiap titik data
+hb_escs_mat_pencilan <- hb_escs_mat |> 
+  mutate(
+    jarak_cook = cooks.distance(model)
+  )
+
+# Menentukan titik-titik pencilan
+rerata_jarak_cook <- mean(hb_escs_mat_pencilan$jarak_cook)
+hb_escs_mat_pencilan <- hb_escs_mat_pencilan |> 
+  mutate(
+    kelompok = ifelse(
+      jarak_cook > 3 * rerata_jarak_cook,
+      "pencilan", "bukan pencilan"
+    ),
+    negara_pencilan = ifelse(
+      kelompok == "pencilan",
+      negara, NA
+    )
+  )
+
+# Memvisualisasikan pencilan
+hb_escs_mat_pencilan |> 
+  ggplot(aes(x = escs, y = matematika, color = kelompok)) + 
+  geom_point(size = 2) + 
+  geom_smooth(
+    method = "lm",
+    formula = y ~ x,
+    alpha = .1
+  ) + 
+  geom_text_repel(aes(label = negara_pencilan)) + 
+  scale_color_manual(
+    values = c(
+      "bukan pencilan" = "#9BBEC8",
+      "pencilan" = "#164863"
+    )
+  ) + 
+  theme_minimal() + 
+  theme(legend.position = "none") + 
+  labs(
+    x = "Rerata ESCS",
+    y = "Rerata skor Matematika"
+  )
 
 ```
+
+Berdasarkan @fig-hb-escs-mat-pencilan, titik-titik pencilannya adalah Vietnam, Turki, Hongkong, Makau, Tionghoa Taipei, dan Singapura. Negara-negara dalam kelompok ini cenderung memiliki rerata skor Matematika yang lebih tinggi dibandingkan dengan negara-negara lain yang rerata indeks status sosial ekonominya sama. Berapakah perbedaan rerata skor Matematinya? Mari kita gunakan model linear untuk menyelidikinya!
+
+```{r}
+#| echo: true
+
+model_kelompok <- lm(
+  matematika ~ kelompok + escs,
+  hb_escs_mat_pencilan
+)
+
+print(model_kelompok)
+
+```
+
+Dari model tersebut, kita dapat melihat bahwa koefisien dari `kelompok` adalah sekitar 106,59. Artinya, negara-negara dalam kelompok pencilan tersebut secara rata-rata skor Matematika peserta didiknya lebih tinggi sebesar 106,59 dibandingkan dengan negara-negara lain yang rerata status sosial ekonominya sama.
+
+## Catatan Akhir
+
+Kita telah melihat bahwa status sosial ekonomi berbanding lurus dengan literasi Matematika. Secara lebih detail, kita melihat ada beberapa negara yang rerata skor Matematikanya lebih besar daripada negara-negara lain dengan rerata indeks sosial ekonomi yang sama. Negara-negara tersebut adalah Vietnam, Turki, Hongkong, Makau, Tionghoa Taipei, dan Singapura. Sebagai bahan perenungan, baik jika pembaca bertanya-tanya mengapa negara-negara tersebut memiliki rerata skor Matematika yang lebih tinggi.
