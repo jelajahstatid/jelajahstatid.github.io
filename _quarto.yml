@@ -11,6 +11,7 @@ website:
   repo-url: https://github.com/jelajahstatid/jelajahstatid.github.io
   repo-actions: [edit, issue]
   page-navigation: true
+  bread-crumbs: true
   navbar:
     right:
       - index.qmd
