@@ -1,0 +1,230 @@
+---
+title: "Tren Suhu Planet Bumi"
+description: |
+  Bagaimana tren suhu planet bumi dari tahun ke tahun? Artikel ini mendemonstrasikan bagaimana mengimpor data tentang perubahan iklim dari sebuah situs web, mengolahnya, dan memvisualisasikannya ke dalam diagram garis. Proses seperti ini dapat diterapkan dalam menyusun desain pembelajaran Matematika yang ramah akan peserta didik dan relevan terhadap isu-isu penting planet bumi.
+author:
+  - name: Yosep Dwi Kristanto
+    url: https://people.usd.ac.id/~ydkristanto/
+    affiliation: Pendidikan Matematika, Universitas Sanata Dharma, Yogyakarta
+    affiliation-url: https://www.usd.ac.id/s1pmat
+    orcid: 0000-0003-1446-0422
+date: 2024-07-31
+categories:
+  - matematika membumi
+  - pendidikan
+  - perubahan iklim
+  - tutorial
+image: "anomali-suhu.png"
+google-scholar: true
+editor_options: 
+  chunk_output_type: console
+---
+
+Beberapa waktu lalu aku mendiskusikan ide Matematika Membumi. Diskusi dalam [webinar YPMIPA](https://www.instagram.com/p/C8848fQSZzw/) tersebut membahas sebuah desain pembelajaran yang menggunakan data riil, yaitu data tren suhu global planet bumi dari tahun ke tahun.
+
+Ide seperti itu sebenarnya sudah aku pikirkan dan implementasikan kurang lebih pada tahun 2019. Pada tahun itu, aku mencoba mengajak para mahasiswa calon pendidik matematika tak hanya untuk bermatematika saja, tetapi juga memiliki kesadaran akan pembangunan berkelanjutan. Keseruannya dapat dilihat pada pos media sosial berikut.
+
+```{=html}
+<p align="center">
+<iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FYosepDwiK%2Fposts%2Fpfbid02LvJ8WGjnXLe6SWTiBLNnTECkNXNAD6YtihSev81SbP8YfXdwd1mmSBoem2g1hVZ5l&show_text=true&width=500" width="500" height="601" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+</p>
+```
+Di artikel ini, kita tidak akan membahas desain pembelajaran tersebut. Melainkan, kita akan mengetahui bagaimana mendapatkan data tren suhu planet bumi tersebut, mengolahnya, dan memvisualisasikannya. Seluruh proses ini akan kita lakukan dengan menggunakan [R](https://www.R-project.org/).
+
+## Data Tren Suhu Global {#sec-impor-data}
+
+Banyak situs web yang menyediakan data tren suhu global. Salah satunya adalah [GISTEMP](https://data.giss.nasa.gov/gistemp/). Dari situs web itu, kita memilih data gabungan antara anomali suhu udara daratan dan anomali suhu air lautan. Apa itu anomali suhu? [Anomali suhu](https://www.ncei.noaa.gov/access/monitoring/dyk/anomalies-vs-temperature/) merupakan selisih terhadap suhu rata-rata atau garis dasar. Di situs GISTEMP, garis dasar yang digunakan adalah rata-rata suhu pada periode 1951 - 1980.
+
+Langkah awal sebelum kita melakukan proses berikutnya adalah memanggil paket [{tidyverse}](https://doi.org/10.32614/CRAN.package.tidyverse). Paket tersebut menyediakan berbagai macam fungsi yang akan kita gunakan untuk mencapai tujuan kita.
+
+```{r}
+#| message: false
+#| code-fold: false
+
+library(tidyverse)
+
+```
+
+Tak perlu berlama-lama, mari kita impor data tersebut dengan fungsi `read_csv()` dari paket {tidyverse}. Alamat fail yang akan kita impor adalah `https://data.giss.nasa.gov/gistemp/tabledata_v4/GLB.Ts+dSST.csv`. Baris pertama dalam fail tersebut merupakan keterangan "*Land-Ocean: Global Means*". Dengan demikian, kita perlu menambahkan argumen `skip = 1` dalam fungsi `read_csv()` agar data kita tidak memuat baris tersebut. Fail tersebut juga menggunakan simbol \*\*\* sebagai penanda NA. Untuk itu, kita juga perlu menambahkan argumen `na = "***"` ke dalam fungsi tersebut. Kita namai data kita tersebut dengan `tren_suhu_global`.
+
+```{r}
+#| echo: true
+#| message: false
+#| code-fold: false
+
+tren_suhu_global <- read_csv(
+  "https://data.giss.nasa.gov/gistemp/tabledata_v4/GLB.Ts+dSST.csv",
+  skip = 1,
+  na = "***"
+)
+```
+
+Sekarang kita memiliki data `tren_suhu_global`. Untuk melihat beberapa baris awal data tersebut, kita dapat menggunakan fungsi `head()`.
+
+```{r}
+#| echo: true
+#| code-fold: false
+
+head(tren_suhu_global)
+```
+
+Kita juga dapat menggunakan fungsi `glimpse()` dari {tidyverse} untuk melihat gambaran umum dari data tersebut.
+
+```{r}
+#| echo: true
+#| code-fold: false
+
+glimpse(tren_suhu_global)
+
+```
+
+Dari luaran fungsi tersebut, kita dapat melihat bahwa data kita memuat 145 baris dan 19 kolom. Informasi ini berguna untuk proses berikutnya.
+
+## Bergulat dengan Data {#sec-gulat-data}
+
+Gulat tidak hanya dilombakan di olimpiade [#Paris2024](https://twitter.com/hashtag/Paris2024), tetapi juga umum dilakukan terhadap data. Sekarang kita akan bergulat dengan data. Seperti olahraga gulat yang menantang, bergulat dengan data juga tak kalah menantang. Akan tetapi, tantangan itu akan menghasilkan data yang rapi. Kita lakukan pergulatan ini setahap demi setahap.
+
+Ketika kita menggunakan fungsi `glimpse()` sebelumnya, kita tahu bahwa data kita memuat 19 kolom. Kolom yang akan kita olah di sini adalah 13 kolom pertama. Untuk itu, pada tahap pertama, kita gunakan fungsi `select()` dari {tidyverse} untuk memilih ketigabelas kolom tersebut. Kita juga dapat mengganti nama kolom pertama yang awalnya `Year` menjadi `tahun` dengan menggunakan `rename()` dari {tidyverse}. Untuk melihat hasilnya kita dapat menggunakan fungsi `head()` lagi.
+
+```{r}
+#| echo: true
+#| code-fold: false
+
+tren_suhu_global <- tren_suhu_global |> 
+  select(1:13) |> 
+  rename(tahun = Year)
+
+head(tren_suhu_global)
+
+```
+
+Sekarang kita mendapatkan data yang memuat 13 kolom. Kolom pertama merupakan tahun, kolom kedua sampai ketiga belas merupakan bulan Januari sampai Desember. Isi sel kolom kedua sampai ketigabelas merupakan anomali suhu.
+
+Sampai di sini, aku teringat terhadap salah satu adegan di sebuah serial TV yang berjudul [Friends](https://www.imdb.com/title/tt0108778/). Dalam episode yang berjudul "*The One with the Cop*", Ross meminta Chandler untuk mem-*pivot* sofa yang mereka angkat.
+
+```{=html}
+<p align="center">
+<iframe src="https://giphy.com/embed/2OP9jbHFlFPW" width="480" height="307" style="" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+</p>
+```
+Perintah Ross tersebut juga dapat diterapkan terhadap data kita. Kita dapat mem-*pivot* (memutar) data kita dengan menggunakan fungsi `pivot_longer()`. Dengan fungsi tersebut, data kita yang awalnya melebar akan berubah bentuknya menjadi data yang memanjang. Oleh karena itu, di tahap kedua, kita perlu memutar data kita agar menjadi data yang memanjang.
+
+```{r}
+#| echo: true
+#| code-fold: false
+
+tren_suhu_global <- tren_suhu_global |> 
+  pivot_longer(
+    cols = 2:13,
+    names_to = "bulan",
+    values_to = "anomali_suhu"
+  )
+
+head(tren_suhu_global)
+
+```
+
+Mengapa kita memerlukan data yang memanjang? Data memanjang tersebut akan memudahkan kita untuk mengolahnya pada tahapan berikutnya.
+
+Tahap ketiga, kita perlu menggabungkan nilai sel dalam kolom pertama dan kedua untuk membuat sebuah kolom baru, yaitu `tanggal`, yang formatnya *Date*.
+
+```{r}
+#| echo: true
+#| code-fold: false
+
+pemetaan_bulan <- c(
+  "Jan" = "01",
+  "Feb" = "02",
+  "Mar" = "03",
+  "Apr" = "04",
+  "May" = "05",
+  "Jun" = "06",
+  "Jul" = "07",
+  "Aug" = "08",
+  "Sep" = "09",
+  "Oct" = "10",
+  "Nov" = "11",
+  "Dec" = "12"
+)
+
+tren_suhu_global <- tren_suhu_global |> 
+  mutate(
+    tanggal = as.Date(
+      paste(tahun, pemetaan_bulan[bulan], "01", sep = "-")
+    )
+  )
+
+head(tren_suhu_global)
+
+```
+
+Karena kolom `tahun` dan `bulan` sudah diwakili oleh kolom `tanggal`, kita dapat mengabaikan kedua kolom tersebut.
+
+```{r}
+#| echo: true
+#| code-fold: false
+
+tren_suhu_global <- tren_suhu_global |> 
+  select(tanggal, anomali_suhu)
+
+head(tren_suhu_global)
+
+```
+
+*Nah*, sekarang kita mendapatkan data yang rapi. Data kita sekarang hanya memuat dua variabel, yaitu `tanggal` dan `anomali_suhu`. Selanjutnya kita akan memvisualisasikan `anomali_suhu` setiap `tanggal`-nya.
+
+## Visualisasi Data {#sec-visualisasi-data}
+
+Data yang rapi yang sudah di tangan. Selanjutnya, kita visualisasikan data tersebut ke dalam diagram garis untuk melihat tren `anomali_suhu` setiap `tanggal`-nya. Untuk melakukannya, kita dapat menggunakan fungsi `ggplot()` dan peranakannya. Hasilnya disajikan pada @fig-diagram-garis-v1.
+
+```{r}
+#| echo: true
+#| code-fold: false
+#| label: fig-diagram-garis-v1
+#| fig-cap: Tren `anomali_suhu` setiap `tanggal`-nya.
+#| fig-align: center
+#| fig-asp: 0.5625
+#| warning: false
+
+diagram_garis <- tren_suhu_global |> 
+  ggplot(aes(x = tanggal, y = anomali_suhu)) + 
+  geom_line()
+
+print(diagram_garis)
+
+```
+
+Diagram pada @fig-diagram-garis-v1 dapat kita modifikasi. Misalnya, kita dapat mengubah judul sumbu-*x* dan *y* pada diagram tersebut. Kita juga dapat mengubah warna garis serta memberikan judul, anak judul, dan takarir pada diagram tersebut. Sentuhan terakhir, kita dapat memilih tema `theme_minimal()` dan menambahkan pola tren tersebut dengan `geom_smooth()`. Hasilnya ditunjukkan pada @fig-diagram-garis-v2.
+
+```{r}
+#| echo: true
+#| code-fold: false
+#| label: fig-diagram-garis-v2
+#| fig-cap: Tren `anomali_suhu` setiap `tanggal`-nya yang sudah diperbaiki.
+#| fig-align: center
+#| fig-asp: 0.5625
+#| warning: false
+
+diagram_garis + 
+  geom_line(color = "#427D9D") + 
+  geom_smooth(
+    method = "gam",
+    formula = y ~ s(x, bs = "cs"),
+    color = "#164863"
+  ) + 
+  theme_minimal() + 
+  labs(
+    title = "Tren Anomali Suhu Setiap Waktunya",
+    subtitle = "Anomali suhu relatif terhadap rerata suhu pada 1951 - 1980",
+    x = "Waktu",
+    y = "Anomali Suhu (°C)",
+    caption = "Data: GISTEMP"
+  )
+
+```
+
+## Catatan Akhir
+
+Kita telah memvisualisasikan tren suhu planet bumi dari tahun ke tahun, yaitu mulai 1880 sampai 2024. Untuk mendapatkan visualisasi pada @fig-diagram-garis-v2, pertama kita impor data dari situs web GISTEMP. Hal ini telah dipaparkan pada @sec-impor-data. Kedua, kita telah bergulat dengan data tersebut pada @sec-gulat-data untuk mendapatkan data yang rapi. Ketiga, data yang rapi tersebut selanjutnya kita gunakan untuk memvisualisasikan tren suhu planet bumi setiap waktunya pada @sec-visualisasi-data.
+
+Proses yang didemonstrasikan pada artikel ini dapat digunakan untuk menyusun desain pembelajaran Matematika yang menggunakan data riil, khususnya data tentang tema perubahan iklim. Penggunaan data perubahan iklim tersebut tidak hanya dapat memupuk kesadaran peserta didik akan isu planet bumi yang ditinggalinya, tetapi juga memudahkan mereka untuk bermatematika menggunakan konteks di sekitarnya.

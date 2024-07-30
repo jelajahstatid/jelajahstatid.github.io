@@ -120,7 +120,7 @@ hb_escs_mat |>
 
 Ternyata hubungan yang serupa kita temukan antara rerata indeks status sosial ekonomi dan rerata skor literasi matematika antarnegara. Semakin tinggi rerata status sosial ekonomi sebuah negara, semakin tinggi juga rerata skor Matematika negara tersebut.
 
-## Melihat Lebih Dalam
+## Menjelajah Lebih Dalam
 
 Apabila kita perhatikan kembali @fig-hb-escs-mat dengan saksama, kita melihat ada beberapa titik (yang merepresentasikan beberapa negara) yang terpisah dengan sebagian besar titik lainnya. Titik-titik yang disebut pencilan tersebut terletak di bagian atas.
 
