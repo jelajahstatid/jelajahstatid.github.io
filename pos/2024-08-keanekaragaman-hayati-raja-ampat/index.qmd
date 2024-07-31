@@ -1,0 +1,64 @@
+---
+title: "Pemodelan Keanekaragaman Hayati di Kepulauan Raja Ampat"
+draft: true
+description: |
+  Bagaimana model keanekaragaman tanaman berpohon di Kepulauan Raja Ampat?
+author:
+  - name: Yosep Dwi Kristanto
+    url: https://people.usd.ac.id/~ydkristanto/
+    affiliation: Pendidikan Matematika, Universitas Sanata Dharma, Yogyakarta
+    affiliation-url: https://www.usd.ac.id/s1pmat
+    orcid: 0000-0003-1446-0422
+date: 2024-08-03
+categories:
+  - Biostatistika
+  - matematika membumi
+  - pendidikan
+  - tutorial
+image: "keanekaragaman-hayati.png"
+image-alt: |
+  Hubungan antara banyaknya spesies tanaman berpohon dan luas pulau-pulau kecil di Kepulauan Raja Ampat.
+keywords: 
+  - Biostatistika
+  - pemodelan
+  - Tujuan Pembangunan Berkelanjutan
+copyright: "© 2024 Yosep Dwi Kristanto"
+license: "CC BY"
+google-scholar: true
+editor_options: 
+  chunk_output_type: console
+---
+
+Pada tahun 2024, aku dan tiga kolega dari University of Auckland, Universitas Pendidikan Indonesia, dan SMA Negeri 7 Yogyakarta merevisi buku teks kami, baik [buku siswa](https://buku.kemdikbud.go.id/katalog/matematika-tingkat-lanjut-untuk-sma-kelas-xi) maupun [buku panduan guru](https://buku.kemdikbud.go.id/katalog/buku-panduan-guru-matematika-tingkat-lanjut-untuk-sma-kelas-xi). Dalam edisi revisi buku-buku tersebut, kami mencoba untuk mempromosikan tema tujuan pembangunan berkelanjutan.
+
+Salah satu aktivitas pembelajaran dalam edisi revisi tersebut adalah pemodelan keanekaragaman spesies tanaman berpohon di Kepulauan Raja Ampat. Dengan aktivitas pembelajaran ini, peserta didik diharapkan dapat menggunakan berbagai macam fungsi matematika dalam pemodelan serta menginterpretasi dan mengevaluasi model-model yang mereka hasilkan. Tak hanya itu, mereka juga diharapkan menyadari betapa kayanya bumi Kepulauan Raja Ampat.
+
+Di artikel ini, aku akan bercerita tentang bagaimana menemukan data keanekaragaman hayati di Kepulauan Raja Ampat. Selain itu, aku juga akan mendemonstrasikan bagaimana mengolah data tersebut hingga menjadi bahan ajar.
+
+## Petulangan Menemukan Data
+
+Salah satu hobiku adalah membaca. Meskipun bidang pekerjaanku adalah Pendidikan Matematika, tak jarang aku "tersesat" dan membaca berbagai bahan bacaan di luar bidang itu. Suatu ketika, aku menemukan [sebuah artikel](https://doi.org/10.1111/ecog.04512) menarik di [*Ecography*](https://nsojournals.onlinelibrary.wiley.com/journal/16000587). Artikel yang dikarang oleh tim peneliti dari University of Göttingen, Universitas Papua, dan University of South Australia tersebut membahas tentang dampak perbedaan pengambilan sampel terhadap hubungan antara keanekaragaman spesies tanaman berkayu dan luas pulau-pulau kecil di Kepulauan Raja Ampat.
+
+Menurutku artikel tersebut menarik. Akan tetapi, artikel tersebut tidak melampirkan data mentah yang digunakan. Oleh karena itu, aku langsung berkirim surel ke salah satu pengarangnya untuk meminta data mentahnya dan sekalian meminta izin untuk menggunakannya sebagai bahan ajar ke dalam buku-buku kami. Dengan ramah pengarang tersebut menunjukkan [sebuah artikel](https://doi.org/10.3897/BDJ.8.e55275) yang memuat data mentah tersebut. Ia juga dengan senang memberikan izin penggunaan data tersebut asalkan dibarengi dengan pemberian atribusi yang tepat.
+
+Data mentah yang aku perlukan letaknya ada di bagian lampiran artikel tersebut. Agar pembahasannya nanti sederhana, kita akan menggunakan data dalam bagian [Suppl. material 1: Island Data](https://doi.org/10.3897/BDJ.8.e55275.suppl1) saja. Kita nanti hanya akan mengolah data yang terkait dengan variabel luas pulau dan banyaknya spesies tanaman berkayu dalam pulau tersebut untuk memodelkan hubungan antara kedua variabel tersebut.
+
+::: callout-note
+## Catatan
+
+Selain hubungan antara luas pulau dan banyaknya spesies, data dalam artikel tersebut juga memungkin untuk dilakukan analisis sampai level transek dan substransek. Analisis tentang transek dan subtransek tersebut pada umumnya digunakan untuk mengidentifikasi kepadatan spesies dalam pulau-pulau yang ada. Analisis pada level transek dan subtransek tersebut tidak dilakukan dalam artikel ini. Jika pembaca ingin mengetahui analisis semacam itu, silakan kunjungi [aplikasi Shiny](https://people.usd.ac.id/~ydkristanto/app/jelajah-raja-ampat/) yang telah aku kembangkan.
+:::
+
+## Menjelajah Data
+
+Petualangan kita lanjutkan. Karena data sudah ada, sekarang kita siap untuk mengeksplorasinya dengan R. Pertama-tama, kita panggil paket yang diperlukan.
+
+```{r}
+#| message: false
+#| code-fold: false
+
+library(tidyverse)
+
+```
+
+Kita impor dat
