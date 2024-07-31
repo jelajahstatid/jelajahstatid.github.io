@@ -61,4 +61,4 @@ library(tidyverse)
 
 ```
 
-Kita impor dat
+Agar datanya nanti mudah kita impor, aku unduh fail data tersebut dan aku hapus bagian yang tidak kita perlukan (seperti keterangan fail dan deskripsi variabelnya). Fail data yang baru tersebut dapat diakses di tautan ini.
