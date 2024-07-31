@@ -15,6 +15,16 @@ categories:
 image: "literasi-matematika.png"
 image-alt: |
   Model linear untuk hubungan antara status sosial ekonomi dan literasi matematika antarnegara yang mengikuti PISA 2022. Modelnya digambarkan sebagai dua garis lurus yang kurang lebih sejajar.
+keywords: 
+  - literasi matematika
+  - PISA
+  - status sosial ekonomi
+  - Sains
+  - Membaca
+  - regresi linear
+  - jarak Cook
+copyright: "© 2024 Yosep Dwi Kristanto"
+license: "CC BY"
 google-scholar: true
 editor_options: 
   chunk_output_type: console

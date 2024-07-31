@@ -17,6 +17,16 @@ categories:
 image: "anomali-suhu.png"
 image-alt: |
   Tren anomali suhu planet bumi dari 1880 sampai 2024. Anomali suhu tersebut dihitung dengan garis dasar (baseline) rerata suhu pada periode 1951 - 1980. Secara umum, tren anomali suhu tersebut naik dari tahun ke tahun.
+keywords: 
+  - anomali suhu
+  - perubahan iklim
+  - pemanasan global
+  - tidyverse
+  - visualisasi data
+  - diagram garis
+  - Tujuan Pembangunan Berkelanjutan
+copyright: "© 2024 Yosep Dwi Kristanto"
+license: "CC BY"
 google-scholar: true
 editor_options: 
   chunk_output_type: console
