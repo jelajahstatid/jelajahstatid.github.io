@@ -195,7 +195,6 @@ Berdasarkan pemodelan linear tersebut, kita mendapatkan persamaan dengan konstan
 ```{r}
 #| echo: true
 #| message: false
-#| code-fold: false
 #| label: fig-model-linear
 #| fig-cap: Model linear untuk hubungan antara `luas_wilayah` dan `banyak_spesies`.
 #| fig-asp: 0.5625
@@ -217,7 +216,7 @@ diagram_pencar +
 
 ```
 
-## Pemodelan Nonlinear
+## Pemodelan Nonlinear {#sec-model-nonlinear}
 
 Pada @sec-model-linear, kita telah memodelkan hubungan antara `luas_pulau` dan `banyak_spesies` dengan model linear. Sekarang, kita akan memodelkan hubungan kedua variabel tersebut dengan model nonlinear. Model nonlinear pertama kita adalah fungsi pangkat. Persamaan umum untuk fungsi pangkat ditunjukkan pada @eq-model-pangkat.
 
@@ -246,7 +245,6 @@ Dengan demikian, kita mendapatkan $a\approx\text{0,9239}$ dan $z\approx\text{0,3
 ```{r}
 #| echo: true
 #| message: false
-#| code-fold: false
 #| label: fig-model-pangkat
 #| fig-cap: Model fungsi pangkat untuk hubungan antara `luas_wilayah` dan `banyak_spesies`.
 #| fig-asp: 0.5625
@@ -277,8 +275,223 @@ $$ {#eq-model-log}
 
 Kita menggunakan metode yang serupa dengan sebelumnya. Kita memanfaatkan fungsi `nls()` dengan nilai-nilai awal $c=1$ dan $z=1$.
 
-Model Weibull
+```{r}
+#| echo: true
+#| code-fold: false
+
+model_log <- nls(
+  formula = banyak_spesies ~ c + z * log10(luas_pulau),
+  data = data_pulau,
+  start = c(c = 1, z = 1)
+)
+
+print(model_log)
+
+```
+
+Berdasarkan pemodelan tersebut, kita mendapatkan $c\approx\text{-5,347}$ dan $z\approx\text{6,228}$. Untuk melihat visualisasi model ini, silakan perhatikan @fig-model-log!
+
+```{r}
+#| echo: true
+#| message: false
+#| label: fig-model-log
+#| fig-cap: Model fungsi logaritma untuk hubungan antara `luas_wilayah` dan `banyak_spesies`.
+#| fig-asp: 0.5625
+
+c_log <- coef(model_log)["c"]
+z_log <- coef(model_log)["z"]
+
+diagram_pencar + 
+  geom_function(
+    fun = function(x) c_log + z_log * log10(x),
+    color = "#164863",
+    linewidth = 1
+  ) + 
+  geom_richtext(
+    x = 12000,
+    y = 24,
+    label = "*y* = -5,347 + 6,228 log(*x*)",
+    hjust = 1
+  )
+
+```
+
+Sekarang kita melakukan pemodelan yang terakhir. Model yang kita gunakan adalah fungsi Weibull kumulatif. Persamaan fungsi ini ditunjukkan pada @eq-model-weibull.
 
 $$
 y = d \left( 1 - e^{-z x^f} \right)
-$$
+$$ {#eq-model-weibull}
+
+Untuk menggunakan `nls()`, kita gunakan nilai-nilai awal $d=1$, $z = 1$, dan $f = 1$.
+
+``` r
+model_weibull <- nls(
+  formula = banyak_spesies ~ d * (1 - exp(-z * luas_pulau^f)),
+  data = data_pulau,
+  start = c(d = 1, z = 1, f = 1)
+)
+
+print(model_weibull)
+```
+
+Uh oh! Kita mendapatkan pesan *error* setelah menjalankan perintah-perintah di atas. Apa yang salah? Kesalahannya terletak pada nilai-nilai awal $d$, $z$, dan $f$ yang kita berikan.
+
+Salah satu seni dalam menggunakan fungsi `nls()` adalah penentukan nilai-nilai awalnya. Nilai-nilai awal tersebut sebaiknya dipilih agar mendekati nilai-nilai yang sebenarnya. Untuk melakukannya, kita dapat memanfaatkan alat lain, misalnya kalkulator grafik Desmos.
+
+Dengan menginputkan data yang kita punya, yaitu `data_pulau`, ke dalam kalkulator grafik Desmos, kita dapat memodelkannya. Tangkapan layar hasil pemodelan tersebut ditunjukkan pada @fig-model-weibull-Desmos.
+
+![Pemodelan dengan fungsi Weibull dengan kalkulator grafik Desmos.](model-Weibull-Desmos.png){#fig-model-weibull-Desmos fig-alt="Diagram pencar yang menunjukkan hubungan antara luas pulau dan banyak spesies, disertai dengan model fungsi Weibull." fig-align="center"}
+
+Pemodelan dengan kalkulator grafik Desmos tersebut menghasilkan $d\approx\text{21,9586}$, $z\approx\text{0,0125515}$, dan $f\approx\text{0,608648}$. (Pemodelan tersebut dapat diakses melalui [tautan ini](https://www.desmos.com/calculator/ngfsx3dlfu).) Kita gunakan nilai-nilai tersebut sebagai nilai-nilai awal untuk `nls()`.
+
+```{r}
+#| echo: true
+#| code-fold: false
+
+model_weibull <- nls(
+  formula = banyak_spesies ~ d * (1 - exp(-z * luas_pulau^f)),
+  data = data_pulau,
+  start = c(d = 21.9586, z = 0.0125515, f = 0.608648)
+)
+
+print(model_weibull)
+
+```
+
+Untuk melihat visualisasi hasil pemodelan dengan fungsi Weibull tersebut, silakan perhatikan @fig-model-weibull.
+
+```{r}
+#| echo: true
+#| message: false
+#| label: fig-model-weibull
+#| fig-cap: Model fungsi Weibull untuk hubungan antara `luas_wilayah` dan `banyak_spesies`.
+#| fig-asp: 0.5625
+
+d_weibull <- coef(model_weibull)["d"]
+z_weibull <- coef(model_weibull)["z"]
+f_weibull <- coef(model_weibull)["f"]
+
+diagram_pencar + 
+  geom_function(
+    fun = function(x) d_weibull * (1 - exp(-z_weibull * x^f_weibull)),
+    color = "#164863",
+    linewidth = 1
+  ) + 
+  geom_richtext(
+    x = 12000,
+    y = 24,
+    label = "*y* = 21,95860(1 - *e*<sup>-0,01255*x*<sup>0,60865</sup></sup>)",
+    hjust = 1
+  )
+
+```
+
+## Mengevaluasi Model
+
+Pada @sec-model-linear dan @sec-model-nonlinear, kita telah mendapatkan empat model untuk memodelkan hubungan antara `luas_pulau` dan `banyak_spesies`. Keempat model tersebut diringkas pada @tbl-ringkasan-model.
+
+| Model     | Persamaan                                                             |
+|---------------|---------------------------------------------------------|
+| Linear    | $y = \text{3,662650} + \text{0,002549}x$                              |
+| Pangkat   | $y = \text{0,9239}x^\text{0,3574}$                                    |
+| Logaritma | $y = -\text{5,347} + \text{6,228} \log{x}$                            |
+| Weibull   | $\text{21,95860}\left(1 - e^{-\text{0,01255}x^\text{0,60865}}\right)$ |
+
+: Model-model untuk `luas_pulau` vs. `banyak_spesies`. {#tbl-ringkasan-model .striped .hover}
+
+Dari keempat model tersebut, manakah yang paling baik untuk memodelkan hubungan antara `luas_pulau` dan `banyak_spesies`? Untuk menjawab ini, kita dapat menggunakan akar kuadrat dari rerata galat kuadrat (*root mean square error*, RMSE).
+
+Untuk memahami RMSE tersebut, kita perlu mengetahui apa itu galat dari sebuah model. Galat merupakan selisih antara nilai sebenarnya dengan nilai hasil estimasi dari model. Untuk model linear pada @tbl-ringkasan-model, galat-galatnya direpresentasikan sebagai panjang ruas-ruas garis vertikal pada @fig-model-linear-galat. Galatnya positif jika titik datanya berada di atas modelnya. Sebaliknya, galatnya negatif jika titik datanya berada di bawah modelnya.
+
+```{r}
+#| echo: true
+#| message: false
+#| label: fig-model-linear-galat
+#| fig-cap: Galat-galat yang direpresentasikan sebagai panjang ruas-ruas garis vertikal.
+#| fig-asp: 0.5625
+
+est_spesies <- fitted.values(model_linear)
+galat_linear <- resid(model_linear)
+
+data_pulau_linear <- data_pulau |> 
+  mutate(
+    est_spesies = est_spesies,
+    galat = galat_linear
+  )
+
+diagram_pencar + 
+  geom_segment(
+    data = data_pulau_linear,
+    aes(x = luas_pulau, y = banyak_spesies, yend = est_spesies),
+    color = "#9BBEC8"
+  ) + 
+  geom_smooth(
+    method = "lm",
+    formula = y ~ x,
+    se = FALSE,
+    color = "#164863"
+  ) + 
+  geom_richtext(
+    x = 9000,
+    y = 30,
+    label = "*y* = 3,662650 + 0,002549*x*",
+    hjust = 1,
+    color = "#164863"
+  )
+
+```
+
+Untuk mendapatkan galat-galat dari sebuah model, kita dapat menggunakan fungsi `resid()` atau `residuals()`. Dengan demikian, RMSE dari keempat model dalam @tbl-ringkasan-model dapat ditentukan seperti berikut.
+
+```{r}
+#| echo: true
+#| code-fold: false
+
+RMSE_linear <- sqrt(mean(resid(model_linear)^2))
+RMSE_pangkat <- sqrt(mean(resid(model_pangkat)^2))
+RMSE_log <- sqrt(mean(resid(model_log)^2))
+RMSE_weibull <- sqrt(mean(resid(model_weibull)^2))
+
+print(RMSE_linear)
+print(RMSE_pangkat)
+print(RMSE_log)
+print(RMSE_weibull)
+
+```
+
+Untuk lebih mudah dalam membandingkan RMSE keempat model tersebut, kita visualisasikan nilai-nilai RMSE tersebut. Perhatikan @fig-rmse!
+
+```{r}
+#| echo: true
+#| message: false
+#| label: fig-rmse
+#| fig-cap: Nilai RMSE keempat model.
+#| fig-asp: 0.5625
+
+rmse <- c(RMSE_linear, RMSE_pangkat, RMSE_log, RMSE_weibull)
+nama_model <- c("Linear", "Pangkat", "Logaritma", "Weibull")
+
+data_rmse <- data.frame(
+  model = nama_model,
+  rmse = rmse
+)
+
+data_rmse |> 
+  mutate(
+    model = fct_reorder(model, -rmse)
+  ) |> 
+  ggplot(aes(x = model, y = rmse)) + 
+  geom_col(
+    aes(fill = rmse),
+    show.legend = FALSE
+  ) + 
+  scale_fill_gradient(low = "#9BBEC8", high = "#164863") + 
+  theme_minimal() + 
+  labs(
+    x = "Model",
+    y = "RMSE"
+  )
+
+```
+
+Model yang baik memiliki galat yang lebih kecil. Dengan demikian, semakin kecil RMSE sebuah model, semakin baik model tersebut. Berdasarkan @fig-rmse, kita dapat melihat bahwa model Weibull merupakan model yang paling baik dibandingkan ketiga model lainnya.
