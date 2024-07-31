@@ -58,7 +58,227 @@ Petualangan kita lanjutkan. Karena data sudah ada, sekarang kita siap untuk meng
 #| code-fold: false
 
 library(tidyverse)
+library(ggtext)
 
 ```
 
-Agar datanya nanti mudah kita impor, aku unduh fail data tersebut dan aku hapus bagian yang tidak kita perlukan (seperti keterangan fail dan deskripsi variabelnya). Fail data yang baru tersebut dapat diakses di tautan ini.
+Agar datanya nanti mudah kita impor, aku unduh fail data tersebut, kemudian aku hapus bagian yang tidak kita perlukan (seperti keterangan fail dan deskripsi variabelnya) dan aku simpan kembali menjadi fail csv. Fail data yang baru tersebut dapat diakses di [tautan ini](https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/main/pos/2024-08-keanekaragaman-hayati-raja-ampat/data/oo_444807.csv).
+
+Kita impor data tersebut dengan fungsi `read_csv()`. Untuk melihat gambaran umum data tersebut, kita dapat menggunakan fungsi `glimpse()`.
+
+```{r}
+#| echo: true
+#| message: false
+#| code-fold: false
+
+data_pulau <- read_csv("https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/main/pos/2024-08-keanekaragaman-hayati-raja-ampat/data/oo_444807.csv")
+
+glimpse(data_pulau)
+
+```
+
+Data tersebut memuat 60 baris dan 12 kolom. Dari keduabelas kolom tersebut, kita hanya akan menganalisis dua di antaranya, yaitu `island_area` (luas pulau dalam m^2^) dan `species_number` (banyaknya spesies). Untuk itu, kita pilih kedua variabel tersebut dengan fungsi `select()` dan kita ganti nama variabel-variabel tersebut dengan `rename()`.
+
+```{r}
+#| echo: true
+#| code-fold: false
+
+data_pulau <- data_pulau |> 
+  select(island_area, species_number) |> 
+  rename(
+    luas_pulau = island_area,
+    banyak_spesies = species_number
+  )
+
+head(data_pulau)
+
+```
+
+Sekarang kita mendapatkan `data_pulau` yang lebih sederhana dan rapi. Data tersebut memiliki dua variabel, yaitu `luas_pulau` dan `banyak_spesies`. Kita lihat distribusi `luas_pulau`-nya seperti apa. Perhatikan @fig-dist-luas.
+
+```{r}
+#| echo: true
+#| message: false
+#| code-fold: false
+#| label: fig-dist-luas
+#| fig-cap: Distribusi `luas_pulau`.
+#| fig-asp: 0.5625
+
+data_pulau |> 
+  ggplot(aes(x = luas_pulau)) + 
+  geom_histogram(
+    fill = "#427D9D",
+    color = "white"
+  ) + 
+  theme_minimal() + 
+  labs(
+    x = "Luas pulau (m^2)",
+    y = "Frekuensi"
+  )
+
+```
+
+Bagaimana dengan distribusi `banyak_spesies`-nya? Silakan cermati @fig-dist-spesies.
+
+```{r}
+#| echo: true
+#| message: false
+#| code-fold: false
+#| label: fig-dist-spesies
+#| fig-cap: Distribusi `banyak_spesies`.
+#| fig-asp: 0.5625
+
+data_pulau |> 
+  ggplot(aes(x = banyak_spesies)) + 
+  geom_histogram(
+    fill = "#9BBEC8",
+    color = "white"
+  ) + 
+  theme_minimal() + 
+  labs(
+    x = "Banyak spesies",
+    y = "Frekuensi"
+  )
+```
+
+Apakah terdapat hubungan antara luas sebuah pulau dengan banyaknya spesies yang tinggal di pulau tersebut? Untuk mengetahuinya, kita buat diagram pencar yang merepresentasikan hubungan antara `luas_pulau` dan `banyak_spesies`.
+
+```{r}
+#| echo: true
+#| message: false
+#| code-fold: false
+#| label: fig-relasi-luas-spesies
+#| fig-cap: Hubungan antara `luas_wilayah` dan `banyak_spesies`.
+#| fig-asp: 0.5625
+
+diagram_pencar <- data_pulau |> 
+  ggplot(
+    aes(x = luas_pulau, y = banyak_spesies)
+  ) + 
+  geom_point(
+    color = "#427D9D",
+    size = 3
+  ) + 
+  theme_minimal() + 
+  labs(
+    x = "Luas pulau (m^2)",
+    y = "Banyak spesies"
+  )
+
+print(diagram_pencar)
+
+```
+
+@fig-relasi-luas-spesies menunjukkan adanya hubungan antara `luas_pulau` dan `banyak_spesies`. Semakin luas sebuah pulau, semakin banyak spesies yang tinggal di pulau tersebut. Lalu, bagaimana hubungan tersebut? Pertanyaan ini akan dijawab dengan melakukan pemodelan. Model yang akan kita pakai adalah fungsi linear, pangkat, logaritma, dan Weibull kumulatif. Keempat model tersebut masuk ke dalam dua kategori, yaitu model linear dan nonlinear.
+
+Mengapa model linear digunakan di sini? Padahal titik-titik data pada @fig-relasi-luas-spesies jelas-jelas tidak mengikuti pola linear. Model linear dimasukkan di sini untuk memberikan contoh pemodelan yang paling sederhana.
+
+## Pemodelan Linear {#sec-model-linear}
+
+Model linear merupakan model yang sederhana dan mudah dilakukan. Untuk melakukan pemodelan linear, kita menggunakan fungsi `lm()`.
+
+```{r}
+#| echo: true
+#| code-fold: false
+
+model_linear <- lm(
+  formula = banyak_spesies ~ luas_pulau,
+  data = data_pulau
+)
+
+print(model_linear)
+
+```
+
+Berdasarkan pemodelan linear tersebut, kita mendapatkan persamaan dengan konstanta 3,662650 dan koefisien variabel `luas_pulau` sebesar 0,002549. Perhatikan @fig-model-linear!
+
+```{r}
+#| echo: true
+#| message: false
+#| code-fold: false
+#| label: fig-model-linear
+#| fig-cap: Model linear untuk hubungan antara `luas_wilayah` dan `banyak_spesies`.
+#| fig-asp: 0.5625
+
+diagram_pencar + 
+  geom_smooth(
+    method = "lm",
+    formula = y ~ x,
+    se = FALSE,
+    color = "#164863"
+  ) + 
+  geom_richtext(
+    x = 9000,
+    y = 30,
+    label = "*y* = 3,662650 + 0,002549*x*",
+    hjust = 1,
+    color = "#164863"
+  )
+
+```
+
+## Pemodelan Nonlinear
+
+Pada @sec-model-linear, kita telah memodelkan hubungan antara `luas_pulau` dan `banyak_spesies` dengan model linear. Sekarang, kita akan memodelkan hubungan kedua variabel tersebut dengan model nonlinear. Model nonlinear pertama kita adalah fungsi pangkat. Persamaan umum untuk fungsi pangkat ditunjukkan pada @eq-model-pangkat.
+
+$$
+y = c x^z
+$$ {#eq-model-pangkat}
+
+Untuk melakukan pemodelan nonlinear, kita dapat menggunakan fungsi `nls()`. Fungsi ini membutuhkan nilai awal untuk $c$ dan $z$ pada @eq-model-pangkat. Agar sederhana, kita pilih nilai-nilai awalnya $a = 1$ dan $z = 1$.
+
+```{r}
+#| echo: true
+#| code-fold: false
+
+model_pangkat <- nls(
+  formula = banyak_spesies ~ a * luas_pulau^z,
+  data = data_pulau,
+  start = c(a = 1, z = 1)
+)
+
+print(model_pangkat)
+
+```
+
+Dengan demikian, kita mendapatkan $a\approx\text{0,9239}$ dan $z\approx\text{0,3574}$. Perhatikan
+
+```{r}
+#| echo: true
+#| message: false
+#| code-fold: false
+#| label: fig-model-pangkat
+#| fig-cap: Model fungsi pangkat untuk hubungan antara `luas_wilayah` dan `banyak_spesies`.
+#| fig-asp: 0.5625
+
+a_pangkat <- coef(model_pangkat)["a"]
+z_pangkat <- coef(model_pangkat)["z"]
+
+diagram_pencar + 
+  geom_function(
+    fun = function(x) a_pangkat * x^z_pangkat,
+    color = "#164863",
+    linewidth = 1
+  ) + 
+  geom_richtext(
+    x = 8000,
+    y = 26,
+    label = "*y* = 0,9239*x*<sup>0,3574</sup>",
+    hjust = .5
+  )
+
+```
+
+Kita lanjutkan pemodelannya dengan menggunakan model logaritma. Persamaan fungsi logaritma yang kita gunakan ditunjukkan pada @eq-model-log.
+
+$$
+y = c + z\log{x}
+$$ {#eq-model-log}
+
+Kita menggunakan metode yang serupa dengan sebelumnya. Kita memanfaatkan fungsi `nls()` dengan nilai-nilai awal $c=1$ dan $z=1$.
+
+Model Weibull
+
+$$
+y = d \left( 1 - e^{-z x^f} \right)
+$$
