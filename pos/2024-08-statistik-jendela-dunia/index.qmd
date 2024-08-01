@@ -1,0 +1,35 @@
+---
+title: "Statistik Adalah Jendela Dunia"
+draft: true
+description: |
+  Kepulauan Raja Ampat kaya akan keanekaragaman hayatinya. Bagaimana kita dapat mengetahui keanekaragaman tersebut? Apakah kita dapat memodelkannya?
+author:
+  - name: Yosep Dwi Kristanto
+    url: https://people.usd.ac.id/~ydkristanto/
+    affiliation: Pendidikan Matematika, Universitas Sanata Dharma, Yogyakarta
+    affiliation-url: https://www.usd.ac.id/s1pmat
+    orcid: 0000-0003-1446-0422
+date: 2024-08-03
+categories:
+  - Biostatistika
+  - matematika membumi
+  - pendidikan
+  - tutorial
+image: "keanekaragaman-hayati.png"
+image-alt: |
+  Model linear dan nonlinear terhadap hubungan antara banyaknya spesies tanaman berpohon dan luas pulau-pulau kecil di Kepulauan Raja Ampat.
+keywords: 
+  - Biostatistika
+  - keanekaragaman hayati
+  - Raja Ampat
+  - pemodelan
+  - model linear
+  - model nonlinear
+  - Tujuan Pembangunan Berkelanjutan
+copyright: "© 2024 Yosep Dwi Kristanto"
+license: "CC BY"
+google-scholar: true
+editor_options: 
+  chunk_output_type: console
+code-annotations: select
+---

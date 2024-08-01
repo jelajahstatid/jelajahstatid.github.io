@@ -6,8 +6,12 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Yosep Dwi Kristanto">
+<meta name="dcterms.date" content="2024-08-03">
+<meta name="keywords" content="Biostatistika, keanekaragaman hayati, Raja Ampat, pemodelan, model linear, model nonlinear, Tujuan Pembangunan Berkelanjutan">
+<meta name="description" content="Kepulauan Raja Ampat kaya akan keanekaragaman hayatinya. Bagaimana kita dapat mengetahui keanekaragaman tersebut? Apakah kita dapat memodelkannya?">
 
-<title>Jelajah Statistika dan Ilmu Data - Blog</title>
+<title>Jelajah Statistika dan Ilmu Data - Menyingkap Cerita Soal Cerita dengan Statistik</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,24 +27,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,35 +70,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Cari"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-WTEJLB3562"></script>
 
 <script type="text/javascript">
@@ -113,53 +86,39 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
       }
 </style>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.css">
-<meta property="og:title" content="Jelajah Statistika dan Ilmu Data - Blog">
-<meta property="og:description" content="Berpetualang ke dunia Statistika dan Ilmu Data">
+<link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="Jelajah Statistika dan Ilmu Data - Menyingkap Cerita Soal Cerita dengan Statistik">
+<meta property="og:description" content="Kepulauan Raja Ampat kaya akan keanekaragaman hayatinya. Bagaimana kita dapat mengetahui keanekaragaman tersebut? Apakah kita dapat memodelkannya?">
+<meta property="og:image" content="https://jelajahstatid.github.io/pos/2024-08-statistik-soal-cerita/keanekaragaman-hayati.png">
 <meta property="og:site_name" content="Jelajah Statistika dan Ilmu Data">
-<meta name="twitter:title" content="Jelajah Statistika dan Ilmu Data - Blog">
-<meta name="twitter:description" content="Berpetualang ke dunia Statistika dan Ilmu Data">
-<meta name="twitter:card" content="summary">
+<meta property="og:image:alt" content="Model linear dan nonlinear terhadap hubungan antara banyaknya spesies tanaman berpohon dan luas pulau-pulau kecil di Kepulauan Raja Ampat.
+">
+<meta name="twitter:title" content="Jelajah Statistika dan Ilmu Data - Menyingkap Cerita Soal Cerita dengan Statistik">
+<meta name="twitter:description" content="Kepulauan Raja Ampat kaya akan keanekaragaman hayatinya. Bagaimana kita dapat mengetahui keanekaragaman tersebut? Apakah kita dapat memodelkannya?">
+<meta name="twitter:image" content="https://jelajahstatid.github.io/pos/2024-08-statistik-soal-cerita/keanekaragaman-hayati.png">
+<meta name="twitter:image:alt" content="Model linear dan nonlinear terhadap hubungan antara banyaknya spesies tanaman berpohon dan luas pulau-pulau kecil di Kepulauan Raja Ampat.
+">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="citation_title" content="Menyingkap Cerita Soal Cerita dengan Statistik">
+<meta name="citation_keywords" content="Biostatistika,keanekaragaman hayati,Raja Ampat,pemodelan,model linear,model nonlinear,Tujuan Pembangunan Berkelanjutan">
+<meta name="citation_author" content="Yosep Dwi Kristanto">
+<meta name="citation_publication_date" content="2024-08-03">
+<meta name="citation_cover_date" content="2024-08-03">
+<meta name="citation_year" content="2024">
+<meta name="citation_online_date" content="2024-08-03">
+<meta name="citation_fulltext_html_url" content="https://jelajahstatid.github.io/pos/2024-08-statistik-soal-cerita">
+<meta name="citation_language" content="en">
 </head>
 
-<body class="nav-fixed">
+<body class="floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Jelajah Statistika dan Ilmu Data</span>
     </a>
   </div>
@@ -170,11 +129,11 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./ihwal.html"> 
+    <a class="nav-link" href="../../ihwal.html"> 
 <span class="menu-text">Ihwal</span></a>
   </li>  
   <li class="nav-item compact">
@@ -195,152 +154,82 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+<header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-left">
-      <h1 class="title">Blog</h1>
-            <p class="subtitle lead">Berpetualang ke dunia Statistika dan Ilmu Data</p>
-                      </div>
+    <div class="quarto-title column-body">
+      <h1 class="title">Menyingkap Cerita Soal Cerita dengan Statistik</h1>
+                  <div>
+        <div class="description">
+          <p>Kepulauan Raja Ampat kaya akan keanekaragaman hayatinya. Bagaimana kita dapat mengetahui keanekaragaman tersebut? Apakah kita dapat memodelkannya?</p>
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Biostatistika</div>
+                <div class="quarto-category">matematika membumi</div>
+                <div class="quarto-category">pendidikan</div>
+                <div class="quarto-category">tutorial</div>
+              </div>
+                  </div>
   </div>
     
-  
-  <div class="quarto-title-meta column-page-left">
+  <div class="quarto-title-meta-author">
+    <div class="quarto-title-meta-heading">Pengarang</div>
+    <div class="quarto-title-meta-heading">Afiliasi</div>
+    
+      <div class="quarto-title-meta-contents">
+      <p class="author"><a href="https://people.usd.ac.id/~ydkristanto/">Yosep Dwi Kristanto</a> <a href="https://orcid.org/0000-0003-1446-0422" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+    </div>
+    <div class="quarto-title-meta-contents">
+          <p class="affiliation">
+              <a href="https://www.usd.ac.id/s1pmat">
+              Pendidikan Matematika, Universitas Sanata Dharma, Yogyakarta
+              </a>
+            </p>
+        </div>
+    </div>
 
-      
+  <div class="quarto-title-meta">
+
+        
+      <div>
+      <div class="quarto-title-meta-heading">Terbit</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">August 3, 2024</p>
+      </div>
+    </div>
     
       
     </div>
     
+
+  <div>
+    <div class="keywords">
+      <div class="block-title">Kata kunci</div>
+      <p>Biostatistika, keanekaragaman hayati, Raja Ampat, pemodelan, model linear, model nonlinear, Tujuan Pembangunan Berkelanjutan</p>
+    </div>
+  </div>
   
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Kategori</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">Semua <span class="quarto-category-count">(2)</span></div><div class="category" data-category="PISA">PISA <span class="quarto-category-count">(1)</span></div><div class="category" data-category="matematika membumi">matematika membumi <span class="quarto-category-count">(1)</span></div><div class="category" data-category="pendidikan">pendidikan <span class="quarto-category-count">(2)</span></div><div class="category" data-category="perubahan iklim">perubahan iklim <span class="quarto-category-count">(1)</span></div><div class="category" data-category="tutorial">tutorial <span class="quarto-category-count">(1)</span></div></div></div>
-<!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
-
-
-
-
-
-
-
-
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-     <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-     <select id="listing-listing-sort" class="form-select" aria-label="Urutkan Dengan" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-       <option value="" disabled="" selected="" hidden="">Urutkan Dengan</option>
-       <option value="index" data-direction="asc">Setelan Standar</option>
-         <option value="listing-title" data-direction="asc">
-          Judul
-        </option>
-         <option value="listing-date-sort" data-direction="asc">
-          Tanggal - Terlama
-        </option>
-         <option value="listing-date-sort" data-direction="desc">
-          Tanggal - Terbaru
-        </option>
-         <option value="listing-author" data-direction="asc">
-          Pengarang
-        </option>
-     </select>
-  </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
     </div>
-</div>
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="matematika membumi,pendidikan,perubahan iklim,tutorial" data-listing-date-sort="1722376800000" data-listing-file-modified-sort="1722543855632" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1173">
-<div class="thumbnail">
-<p><a href="./pos/2024-07-anomali-suhu-global/index.html" class="no-external"></a></p><a href="./pos/2024-07-anomali-suhu-global/index.html" class="no-external">
-<p><img src="./pos/2024-07-anomali-suhu-global/anomali-suhu.png" class="thumbnail-image" alt="Tren anomali suhu planet bumi dari 1880 sampai 2024. Anomali suhu tersebut dihitung dengan garis dasar (baseline) rerata suhu pada periode 1951 - 1980. Secara umum, tren anomali suhu tersebut naik dari tahun ke tahun.
-"></p>
-</a><p><a href="./pos/2024-07-anomali-suhu-global/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./pos/2024-07-anomali-suhu-global/index.html" class="no-external">Tren Suhu Planet Bumi</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./pos/2024-07-anomali-suhu-global/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('matematika membumi'); return false;">
-matematika membumi
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('pendidikan'); return false;">
-pendidikan
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('perubahan iklim'); return false;">
-perubahan iklim
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('tutorial'); return false;">
-tutorial
-</div>
-</div>
-<div class="listing-description">
-<a href="./pos/2024-07-anomali-suhu-global/index.html" class="no-external">Bagaimana tren suhu planet bumi dari tahun ke tahun? Artikel ini mendemonstrasikan bagaimana mengimpor data tentang perubahan iklim dari sebuah situs web, mengolahnya, dan memvisualisasikannya ke dalam diagram garis. Proses seperti ini dapat diterapkan dalam menyusun desain pembelajaran Matematika yang ramah akan peserta didik dan relevan terhadap isu-isu penting planet bumi. </a>
-</div>
-</div>
-<div class="metadata">
-<a href="./pos/2024-07-anomali-suhu-global/index.html" class="no-external">
-<div class="listing-date">
-Jul 31, 2024
-</div>
-<div class="listing-author">
-Yosep Dwi Kristanto
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="pendidikan,PISA" data-listing-date-sort="1722290400000" data-listing-file-modified-sort="1722543733657" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="982">
-<div class="thumbnail">
-<p><a href="./pos/2024-07-literasi-matematika-sosial-budaya/index.html" class="no-external"></a></p><a href="./pos/2024-07-literasi-matematika-sosial-budaya/index.html" class="no-external">
-<p><img src="./pos/2024-07-literasi-matematika-sosial-budaya/literasi-matematika.png" class="thumbnail-image" alt="Model linear untuk hubungan antara status sosial ekonomi dan literasi matematika antarnegara yang mengikuti PISA 2022. Modelnya digambarkan sebagai dua garis lurus yang kurang lebih sejajar.
-"></p>
-</a><p><a href="./pos/2024-07-literasi-matematika-sosial-budaya/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./pos/2024-07-literasi-matematika-sosial-budaya/index.html" class="no-external">Literasi Matematika dan Status Sosial Ekonomi dalam PISA 2022</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./pos/2024-07-literasi-matematika-sosial-budaya/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('pendidikan'); return false;">
-pendidikan
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('PISA'); return false;">
-PISA
-</div>
-</div>
-<div class="listing-description">
-<a href="./pos/2024-07-literasi-matematika-sosial-budaya/index.html" class="no-external">Bagaimana hubungan antara literasi matematika dan status sosial ekonomi berdasarkan data PISA 2022? Apakah hubungan tersebut sama untuk setiap negara atau ekonomi yang berpartisipasi dalam PISA 2022? Artikel ini menunjukkan beberapa negara yang memiliki rerata skor Matematika lebih tinggi dibandingkan dengan negara-negara lain yang rerata indeks status sosial ekonominya sama. Apa saja negara tersebut? </a>
-</div>
-</div>
-<div class="metadata">
-<a href="./pos/2024-07-literasi-matematika-sosial-budaya/index.html" class="no-external">
-<div class="listing-date">
-Jul 30, 2024
-</div>
-<div class="listing-author">
-Yosep Dwi Kristanto
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-Tidak ada item yang cocok
-</div>
-</div></main> <!-- /main -->
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<p>Aku ingin bercerita. Sebuah cerita tentang soal cerita.</p>
+
+
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Penggunaan Kembali</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-copyright"><h2 class="anchored quarto-appendix-heading">Hak Cipta</h2><div class="quarto-appendix-contents"><div>© 2024 Yosep Dwi Kristanto</div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -691,25 +580,66 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         }
       };
     }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
+      const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+      for (let i=0; i<annoteTargets.length; i++) {
+        const annoteTarget = annoteTargets[i];
+        const targetCell = annoteTarget.getAttribute("data-target-cell");
+        const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+        const contentFn = () => {
+          const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          if (content) {
+            const tipContent = content.cloneNode(true);
+            tipContent.classList.add("code-annotation-tip-content");
+            return tipContent.outerHTML;
           }
-        });
+        }
+        const config = {
+          allowHTML: true,
+          content: contentFn,
+          onShow: (instance) => {
+            selectCodeLines(instance.reference);
+            instance.reference.classList.add('code-annotation-active');
+            window.tippy.hideAll();
+          },
+          onHide: (instance) => {
+            unselectCodeLines();
+            instance.reference.classList.remove('code-annotation-active');
+          },
+          maxWidth: 300,
+          delay: [50, 0],
+          duration: [200, 0],
+          offset: [5, 10],
+          arrow: true,
+          trigger: 'click',
+          appendTo: function(el) {
+            return el.parentElement.parentElement.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'quarto',
+          placement: 'right',
+          positionFixed: true,
+          popperOptions: {
+            modifiers: [
+            {
+              name: 'flip',
+              options: {
+                flipVariations: false, // true by default
+                allowedAutoPlacements: ['right'],
+                fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+              },
+            },
+            {
+              name: 'preventOverflow',
+              options: {
+                mainAxis: false,
+                altAxis: false
+              }
+            }
+            ]        
+          }      
+        };
+        window.tippy(annoteTarget, config); 
       }
   const findCites = (el) => {
     const parentEl = el.parentElement;
@@ -750,6 +680,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<script src="https://giscus.app/client.js" data-repo="jelajahstatid/jelajahstatid.github.io" data-repo-id="R_kgDOMcGEtw" data-category="Blog" data-category-id="" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script>
+<input type="hidden" id="giscus-base-theme" value="light">
+<input type="hidden" id="giscus-alt-theme" value="dark">
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
@@ -758,7 +692,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/jelajahstatid/jelajahstatid.github.io/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Sunting laman ini</a></li><li><a href="https://github.com/jelajahstatid/jelajahstatid.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Laporkan sebuah isu</a></li></ul></div></div>
+    <div class="toc-actions"><ul><li><a href="https://github.com/jelajahstatid/jelajahstatid.github.io/edit/main/pos/2024-08-statistik-soal-cerita/index.qmd" class="toc-action"><i class="bi bi-github"></i>Sunting laman ini</a></li><li><a href="https://github.com/jelajahstatid/jelajahstatid.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Laporkan sebuah isu</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>Blog ini dikembangkan dengan <a href="https://quarto.org/">Quarto</a>.</p>
 </div>

@@ -272,16 +272,16 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
 
 
 
-<p>Beberapa waktu lalu aku mendiskusikan ide Matematika Membumi. Diskusi dalam <a href="https://www.instagram.com/p/C8848fQSZzw/">webinar YPMIPA</a> tersebut membahas sebuah desain pembelajaran yang menggunakan data riil, yaitu data tren suhu global planet bumi dari tahun ke tahun.</p>
+<p>Beberapa waktu lalu aku mendiskusikan ide Matematika Membumi. Diskusi dalam <a href="https://www.instagram.com/p/C8848fQSZzw/" class="external" target="_blank">webinar YPMIPA</a> tersebut membahas sebuah desain pembelajaran yang menggunakan data riil, yaitu data tren suhu global planet bumi dari tahun ke tahun.</p>
 <p>Ide seperti itu sebenarnya sudah aku pikirkan dan implementasikan kurang lebih pada tahun 2019. Pada tahun itu, aku mencoba mengajak para mahasiswa calon pendidik matematika tak hanya untuk bermatematika saja, tetapi juga memiliki kesadaran akan pembangunan berkelanjutan. Keseruannya dapat dilihat pada pos media sosial berikut.</p>
 <p align="center">
 <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FYosepDwiK%2Fposts%2Fpfbid02LvJ8WGjnXLe6SWTiBLNnTECkNXNAD6YtihSev81SbP8YfXdwd1mmSBoem2g1hVZ5l&amp;show_text=true&amp;width=500" width="500" height="601" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
 </p>
-<p>Di artikel ini, kita tidak akan membahas desain pembelajaran tersebut. Melainkan, kita akan mengetahui bagaimana mendapatkan data tren suhu planet bumi tersebut, mengolahnya, dan memvisualisasikannya. Seluruh proses ini akan kita lakukan dengan menggunakan <a href="https://www.R-project.org/">R</a>.</p>
+<p>Di artikel ini, kita tidak akan membahas desain pembelajaran tersebut. Melainkan, kita akan mengetahui bagaimana mendapatkan data tren suhu planet bumi tersebut, mengolahnya, dan memvisualisasikannya. Seluruh proses ini akan kita lakukan dengan menggunakan <a href="https://www.R-project.org/" class="external" target="_blank">R</a>.</p>
 <section id="sec-impor-data" class="level2">
 <h2 class="anchored" data-anchor-id="sec-impor-data">Data Tren Suhu Global</h2>
-<p>Banyak situs web yang menyediakan data tren suhu global. Salah satunya adalah <a href="https://data.giss.nasa.gov/gistemp/">GISTEMP</a>. Dari situs web itu, kita memilih data gabungan antara anomali suhu udara daratan dan anomali suhu air lautan. Apa itu anomali suhu? <a href="https://www.ncei.noaa.gov/access/monitoring/dyk/anomalies-vs-temperature/">Anomali suhu</a> merupakan selisih terhadap suhu rata-rata atau garis dasar. Di situs GISTEMP, garis dasar yang digunakan adalah rata-rata suhu pada periode 1951 - 1980.</p>
-<p>Langkah awal sebelum kita melakukan proses berikutnya adalah memanggil paket <a href="https://doi.org/10.32614/CRAN.package.tidyverse">{tidyverse}</a>. Paket tersebut menyediakan berbagai macam fungsi yang akan kita gunakan untuk mencapai tujuan kita.</p>
+<p>Banyak situs web yang menyediakan data tren suhu global. Salah satunya adalah <a href="https://data.giss.nasa.gov/gistemp/" class="external" target="_blank">GISTEMP</a>. Dari situs web itu, kita memilih data gabungan antara anomali suhu udara daratan dan anomali suhu air lautan. Apa itu anomali suhu? <a href="https://www.ncei.noaa.gov/access/monitoring/dyk/anomalies-vs-temperature/" class="external" target="_blank">Anomali suhu</a> merupakan selisih terhadap suhu rata-rata atau garis dasar. Di situs GISTEMP, garis dasar yang digunakan adalah rata-rata suhu pada periode 1951 - 1980.</p>
+<p>Langkah awal sebelum kita melakukan proses berikutnya adalah memanggil paket <a href="https://doi.org/10.32614/CRAN.package.tidyverse" class="external" target="_blank">{tidyverse}</a>. Paket tersebut menyediakan berbagai macam fungsi yang akan kita gunakan untuk mencapai tujuan kita.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -341,7 +341,7 @@ $ SON   &lt;dbl&gt; -0.19, -0.19, -0.18, -0.19, -0.29, -0.25, -0.27, -0.29, -0.0
 </section>
 <section id="sec-gulat-data" class="level2">
 <h2 class="anchored" data-anchor-id="sec-gulat-data">Bergulat dengan Data</h2>
-<p>Gulat tidak hanya dilombakan di olimpiade <a href="https://twitter.com/hashtag/Paris2024">#Paris2024</a>, tetapi juga umum dilakukan terhadap data. Sekarang kita akan bergulat dengan data. Seperti olahraga gulat yang menantang, bergulat dengan data juga tak kalah menantang. Akan tetapi, tantangan itu akan menghasilkan data yang rapi. Kita lakukan pergulatan ini setahap demi setahap.</p>
+<p>Gulat tidak hanya dilombakan di olimpiade <a href="https://twitter.com/hashtag/Paris2024" class="external" target="_blank">#Paris2024</a>, tetapi juga umum dilakukan terhadap data. Sekarang kita akan bergulat dengan data. Seperti olahraga gulat yang menantang, bergulat dengan data juga tak kalah menantang. Akan tetapi, tantangan itu akan menghasilkan data yang rapi. Kita lakukan pergulatan ini setahap demi setahap.</p>
 <p>Ketika kita menggunakan fungsi <code>glimpse()</code> sebelumnya, kita tahu bahwa data kita memuat 19 kolom. Kolom yang akan kita olah di sini adalah 13 kolom pertama. Untuk itu, pada tahap pertama, kita gunakan fungsi <code>select()</code> dari {tidyverse} untuk memilih ketigabelas kolom tersebut. Kita juga dapat mengganti nama kolom pertama yang awalnya <code>Year</code> menjadi <code>tahun</code> dengan menggunakan <code>rename()</code> dari {tidyverse}. Untuk melihat hasilnya kita dapat menggunakan fungsi <code>head()</code> lagi.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>tren_suhu_global <span class="ot">&lt;-</span> tren_suhu_global <span class="sc">|&gt;</span> </span>
@@ -362,7 +362,7 @@ $ SON   &lt;dbl&gt; -0.19, -0.19, -0.18, -0.19, -0.29, -0.25, -0.27, -0.29, -0.0
 </div>
 </div>
 <p>Sekarang kita mendapatkan data yang memuat 13 kolom. Kolom pertama merupakan tahun, kolom kedua sampai ketiga belas merupakan bulan Januari sampai Desember. Isi sel kolom kedua sampai ketigabelas merupakan anomali suhu.</p>
-<p>Sampai di sini, aku teringat terhadap salah satu adegan di sebuah serial TV yang berjudul <a href="https://www.imdb.com/title/tt0108778/">Friends</a>. Dalam episode yang berjudul “<em>The One with the Cop</em>”, Ross meminta Chandler untuk mem-<em>pivot</em> sofa yang mereka angkat.</p>
+<p>Sampai di sini, aku teringat terhadap salah satu adegan di sebuah serial TV yang berjudul <a href="https://www.imdb.com/title/tt0108778/" class="external" target="_blank">Friends</a>. Dalam episode yang berjudul “<em>The One with the Cop</em>”, Ross meminta Chandler untuk mem-<em>pivot</em> sofa yang mereka angkat.</p>
 <p align="center">
 <iframe src="https://giphy.com/embed/2OP9jbHFlFPW" width="480" height="307" style="" frameborder="0" class="giphy-embed" allowfullscreen=""></iframe>
 </p>

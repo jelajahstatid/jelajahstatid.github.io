@@ -303,14 +303,14 @@ window.Quarto = {
 
 
 
-<p>Pada tahun 2024, aku dan tiga kolega dari University of Auckland, Universitas Pendidikan Indonesia, dan SMA Negeri 7 Yogyakarta merevisi buku teks kami, baik <a href="https://buku.kemdikbud.go.id/katalog/matematika-tingkat-lanjut-untuk-sma-kelas-xi">buku siswa</a> maupun <a href="https://buku.kemdikbud.go.id/katalog/buku-panduan-guru-matematika-tingkat-lanjut-untuk-sma-kelas-xi">buku panduan guru</a>. Dalam edisi revisi buku-buku tersebut, kami mencoba untuk mempromosikan tema Tujuan Pembangunan Berkelanjutan.</p>
+<p>Pada tahun 2024, aku dan tiga kolega dari University of Auckland, Universitas Pendidikan Indonesia, dan SMA Negeri 7 Yogyakarta merevisi buku teks kami, baik <a href="https://buku.kemdikbud.go.id/katalog/matematika-tingkat-lanjut-untuk-sma-kelas-xi" class="external" target="_blank">buku siswa</a> maupun <a href="https://buku.kemdikbud.go.id/katalog/buku-panduan-guru-matematika-tingkat-lanjut-untuk-sma-kelas-xi" class="external" target="_blank">buku panduan guru</a>. Dalam edisi revisi buku-buku tersebut, kami mencoba untuk mempromosikan tema Tujuan Pembangunan Berkelanjutan.</p>
 <p>Salah satu aktivitas pembelajaran dalam edisi revisi tersebut adalah pemodelan keanekaragaman spesies tanaman berpohon di Kepulauan Raja Ampat. Dengan aktivitas pembelajaran ini, peserta didik diharapkan dapat menggunakan berbagai macam fungsi matematika untuk melakukan pemodelan serta menginterpretasi dan mengevaluasi model-model yang mereka hasilkan. Tak hanya itu, mereka juga diharapkan menyadari betapa kayanya bumi Kepulauan Raja Ampat.</p>
 <p>Di artikel ini, aku akan bercerita tentang bagaimana menemukan data keanekaragaman hayati di Kepulauan Raja Ampat tersebut. Selain itu, aku juga akan mendemonstrasikan bagaimana mengolah dan memodelkan data tersebut dengan model linear maupun nonlinear.</p>
 <section id="sec-menemukan-data" class="level2">
 <h2 class="anchored" data-anchor-id="sec-menemukan-data">Petulangan Menemukan Data</h2>
-<p>Salah satu hobiku adalah membaca. Meskipun bidang pekerjaanku adalah Pendidikan Matematika, tak jarang aku “tersesat” dan membaca berbagai bahan bacaan di luar bidang itu. Suatu ketika, aku menemukan <a href="https://doi.org/10.1111/ecog.04512">sebuah artikel</a> menarik di <a href="https://nsojournals.onlinelibrary.wiley.com/journal/16000587"><em>Ecography</em></a>. Artikel yang dikarang oleh tim peneliti dari University of Göttingen, Universitas Papua, dan University of South Australia tersebut membahas tentang dampak perbedaan pengambilan sampel terhadap hubungan antara keanekaragaman spesies tanaman berkayu dan luas pulau-pulau kecil di Kepulauan Raja Ampat.</p>
-<p>Menurutku artikel tersebut menarik. Namun, artikel tersebut tidak melampirkan data mentah yang digunakan. Oleh karena itu, aku langsung berkirim surel ke salah satu pengarangnya untuk meminta data mentahnya dan sekalian meminta izin untuk menggunakannya sebagai bahan ajar ke dalam buku-buku kami. Dengan ramah pengarang tersebut menunjukkan <a href="https://doi.org/10.3897/BDJ.8.e55275">sebuah artikel</a> yang memuat data mentah tersebut. Ia juga dengan senang memberikan izin penggunaan data tersebut asalkan dibarengi dengan pemberian atribusi yang tepat.</p>
-<p>Data mentah yang aku perlukan letaknya ada di bagian lampiran artikel tersebut. Agar pembahasannya nanti sederhana, kita akan menggunakan data dalam bagian <a href="https://doi.org/10.3897/BDJ.8.e55275.suppl1">Suppl. material 1: Island Data</a> saja. Kita nanti hanya akan mengolah data yang terkait dengan variabel luas pulau dan banyaknya spesies tanaman berkayu dalam pulau tersebut untuk memodelkan hubungan antara kedua variabel itu.</p>
+<p>Salah satu hobiku adalah membaca. Meskipun bidang pekerjaanku adalah Pendidikan Matematika, tak jarang aku “tersesat” dan membaca berbagai bahan bacaan di luar bidang itu. Suatu ketika, aku menemukan <a href="https://doi.org/10.1111/ecog.04512" class="external" target="_blank">sebuah artikel</a> menarik di <a href="https://nsojournals.onlinelibrary.wiley.com/journal/16000587" class="external" target="_blank"><em>Ecography</em></a>. Artikel yang dikarang oleh tim peneliti dari University of Göttingen, Universitas Papua, dan University of South Australia tersebut membahas tentang dampak perbedaan pengambilan sampel terhadap hubungan antara keanekaragaman spesies tanaman berkayu dan luas pulau-pulau kecil di Kepulauan Raja Ampat.</p>
+<p>Menurutku artikel tersebut menarik. Namun, artikel tersebut tidak melampirkan data mentah yang digunakan. Oleh karena itu, aku langsung berkirim surel ke salah satu pengarangnya untuk meminta data mentahnya dan sekalian meminta izin untuk menggunakannya sebagai bahan ajar ke dalam buku-buku kami. Dengan ramah pengarang tersebut menunjukkan <a href="https://doi.org/10.3897/BDJ.8.e55275" class="external" target="_blank">sebuah artikel</a> yang memuat data mentah tersebut. Ia juga dengan senang memberikan izin penggunaan data tersebut asalkan dibarengi dengan pemberian atribusi yang tepat.</p>
+<p>Data mentah yang aku perlukan letaknya ada di bagian lampiran artikel tersebut. Agar pembahasannya nanti sederhana, kita akan menggunakan data dalam bagian <a href="https://doi.org/10.3897/BDJ.8.e55275.suppl1" class="external" target="_blank">Suppl. material 1: Island Data</a> saja. Kita nanti hanya akan mengolah data yang terkait dengan variabel luas pulau dan banyaknya spesies tanaman berkayu dalam pulau tersebut untuk memodelkan hubungan antara kedua variabel itu.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -321,18 +321,18 @@ Catatan
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Selain hubungan antara luas pulau dan banyaknya spesies, data dalam artikel tersebut juga memungkin untuk dilakukan analisis sampai level transek dan substransek. Analisis tentang transek dan subtransek tersebut pada umumnya digunakan untuk mengidentifikasi kepadatan spesies dalam pulau-pulau yang ada. Analisis pada level transek dan subtransek tersebut tidak dilakukan dalam artikel ini. Jika pembaca ingin mengetahui analisis semacam itu, silakan kunjungi <a href="https://people.usd.ac.id/~ydkristanto/app/jelajah-raja-ampat/">aplikasi Shiny</a> yang telah aku kembangkan.</p>
+<p>Selain hubungan antara luas pulau dan banyaknya spesies, data dalam artikel tersebut juga memungkin untuk dilakukan analisis sampai level transek dan substransek. Analisis tentang transek dan subtransek tersebut pada umumnya digunakan untuk mengidentifikasi kepadatan spesies dalam pulau-pulau yang ada. Analisis pada level transek dan subtransek tersebut tidak dilakukan dalam artikel ini. Jika pembaca ingin mengetahui analisis semacam itu, silakan kunjungi <a href="https://people.usd.ac.id/~ydkristanto/app/jelajah-raja-ampat/" class="external" target="_blank">aplikasi Shiny</a> yang telah aku kembangkan.</p>
 </div>
 </div>
 </section>
 <section id="sec-jelajah-data" class="level2">
 <h2 class="anchored" data-anchor-id="sec-jelajah-data">Menjelajah Data</h2>
-<p>Petualangan kita lanjutkan. Karena data sudah ada, sekarang kita siap untuk mengeksplorasinya dengan <a href="https://www.R-project.org/">R</a>. Pertama-tama, kita panggil paket yang diperlukan. Paket {tidyverse} kita gunakan untuk mengimpor, mengolah, dan memvisualisasikan data. Paket {ggtext} kita gunakan untuk menyesuaikan label/teks pada diagram yang akan kita buat nantinya.</p>
+<p>Petualangan kita lanjutkan. Karena data sudah ada, sekarang kita siap untuk mengeksplorasinya dengan <a href="https://www.R-project.org/" class="external" target="_blank">R</a>. Pertama-tama, kita panggil paket yang diperlukan. Paket {tidyverse} kita gunakan untuk mengimpor, mengolah, dan memvisualisasikan data. Paket {ggtext} kita gunakan untuk menyesuaikan label/teks pada diagram yang akan kita buat nantinya.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(ggtext)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Agar datanya nanti mudah kita impor, aku unduh fail data tersebut, kemudian aku hapus bagian yang tidak kita perlukan (seperti keterangan fail dan deskripsi variabelnya) dan aku simpan kembali menjadi fail csv. Fail data yang baru tersebut dapat diakses di <a href="https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/main/pos/2024-08-keanekaragaman-hayati-raja-ampat/data/oo_444807.csv">tautan ini</a>.</p>
+<p>Agar datanya nanti mudah kita impor, aku unduh fail data tersebut, kemudian aku hapus bagian yang tidak kita perlukan (seperti keterangan fail dan deskripsi variabelnya) dan aku simpan kembali menjadi fail csv. Fail data yang baru tersebut dapat diakses di <a href="https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/main/pos/2024-08-keanekaragaman-hayati-raja-ampat/data/oo_444807.csv" class="external" target="_blank">tautan ini</a>.</p>
 <p>Kita impor data tersebut dengan fungsi <code>read_csv()</code>. Untuk melihat gambaran umum data tersebut, kita dapat menggunakan fungsi <code>glimpse()</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>data_pulau <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/main/pos/2024-08-keanekaragaman-hayati-raja-ampat/data/oo_444807.csv"</span>)</span>
@@ -667,7 +667,7 @@ Gambar&nbsp;7: Pemodelan dengan fungsi Weibull dengan kalkulator grafik Desmos.
 </figcaption>
 </figure>
 </div>
-<p>Pemodelan dengan kalkulator grafik Desmos tersebut menghasilkan <span class="math inline">\(d\approx\text{21,9586}\)</span>, <span class="math inline">\(z\approx\text{0,0125515}\)</span>, dan <span class="math inline">\(f\approx\text{0,608648}\)</span>. (Pemodelan tersebut dapat diakses melalui <a href="https://www.desmos.com/calculator/ngfsx3dlfu">tautan ini</a>.) Kita gunakan nilai-nilai tersebut sebagai nilai-nilai awal untuk <code>nls()</code>.</p>
+<p>Pemodelan dengan kalkulator grafik Desmos tersebut menghasilkan <span class="math inline">\(d\approx\text{21,9586}\)</span>, <span class="math inline">\(z\approx\text{0,0125515}\)</span>, dan <span class="math inline">\(f\approx\text{0,608648}\)</span>. (Pemodelan tersebut dapat diakses melalui <a href="https://www.desmos.com/calculator/ngfsx3dlfu" class="external" target="_blank">tautan ini</a>.) Kita gunakan nilai-nilai tersebut sebagai nilai-nilai awal untuk <code>nls()</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>model_weibull <span class="ot">&lt;-</span> <span class="fu">nls</span>(</span>
 <span id="cb20-2"><a href="#cb20-2"></a>  <span class="at">formula =</span> banyak_spesies <span class="sc">~</span> d <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">exp</span>(<span class="sc">-</span>z <span class="sc">*</span> luas_pulau<span class="sc">^</span>f)),</span>
@@ -734,8 +734,8 @@ Tabel&nbsp;1: Model-model untuk <code>luas_pulau</code> vs.&nbsp;<code>banyak_sp
 <div aria-describedby="tbl-ringkasan-model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table-striped table-hover caption-top table">
 <colgroup>
-<col style="width: 27%">
-<col style="width: 72%">
+<col style="width: 13%">
+<col style="width: 86%">
 </colgroup>
 <thead>
 <tr class="header">

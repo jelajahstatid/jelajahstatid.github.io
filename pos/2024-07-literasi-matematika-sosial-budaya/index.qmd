@@ -39,7 +39,7 @@ library(ggrepel)
 
 Masuk akal memang status sosial ekonomi peserta didik berbanding lurus dengan hasil belajarnya. Semakin tinggi status sosial ekonomi seorang peserta didik, hasil belajarnya juga cenderung semakin tinggi. Misalnya saja, peserta didik yang memiliki kamar sendiri, komputer yang ditunjang dengan berbagai macam perangkat lunak pembelajaran, buku, dan orang tua yang berpendidikan tinggi memiliki kesempatan yang lebih besar untuk mendapatkan pendidikan yang berkualitas. Alhasil, hasil belajarnya relatif tinggi.
 
-Untuk mengkonfirmasinya, mari kita analisis [data PISA 2022](https://www.oecd.org/en/publications/pisa-2022-results-volume-i_53f23881-en/full-report/component-25.html#annex-d1e17821-e6cec34019). Dalam PISA, status sosial ekonomi diukur dengan indeks status ekonomi, sosial, dan budaya (ESCS). Hasil belajarnya ada tiga, yaitu skor literasi Matematika, Membaca, dan Sains. Pertama, kita lihat hubungan antara rerata ESCS dan rerata skor Membaca dan Sains antarnegara pada @fig-hb-escs-ms.
+Untuk mengkonfirmasinya, mari kita analisis [data PISA 2022](https://www.oecd.org/en/publications/pisa-2022-results-volume-i_53f23881-en/full-report/component-25.html#annex-d1e17821-e6cec34019){.external target="_blank"}. Dalam PISA, status sosial ekonomi diukur dengan indeks status ekonomi, sosial, dan budaya (ESCS). Hasil belajarnya ada tiga, yaitu skor literasi Matematika, Membaca, dan Sains. Pertama, kita lihat hubungan antara rerata ESCS dan rerata skor Membaca dan Sains antarnegara pada @fig-hb-escs-ms.
 
 ```{r}
 #| echo: true
