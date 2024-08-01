@@ -2,7 +2,7 @@
 title: "Pemodelan Keanekaragaman Hayati di Kepulauan Raja Ampat"
 draft: true
 description: |
-  Bagaimana model keanekaragaman tanaman berpohon di Kepulauan Raja Ampat?
+  Kepulauan Raja Ampat kaya akan keanekaragaman hayatinya. Bagaimana kita dapat mengetahui keanekaragaman tersebut? Apakah kita dapat memodelkannya?
 author:
   - name: Yosep Dwi Kristanto
     url: https://people.usd.ac.id/~ydkristanto/
@@ -17,31 +17,36 @@ categories:
   - tutorial
 image: "keanekaragaman-hayati.png"
 image-alt: |
-  Hubungan antara banyaknya spesies tanaman berpohon dan luas pulau-pulau kecil di Kepulauan Raja Ampat.
+  Model linear dan nonlinear terhadap hubungan antara banyaknya spesies tanaman berpohon dan luas pulau-pulau kecil di Kepulauan Raja Ampat.
 keywords: 
   - Biostatistika
+  - keanekaragaman hayati
+  - Raja Ampat
   - pemodelan
+  - model linear
+  - model nonlinear
   - Tujuan Pembangunan Berkelanjutan
 copyright: "© 2024 Yosep Dwi Kristanto"
 license: "CC BY"
 google-scholar: true
 editor_options: 
   chunk_output_type: console
+code-annotations: select
 ---
 
-Pada tahun 2024, aku dan tiga kolega dari University of Auckland, Universitas Pendidikan Indonesia, dan SMA Negeri 7 Yogyakarta merevisi buku teks kami, baik [buku siswa](https://buku.kemdikbud.go.id/katalog/matematika-tingkat-lanjut-untuk-sma-kelas-xi) maupun [buku panduan guru](https://buku.kemdikbud.go.id/katalog/buku-panduan-guru-matematika-tingkat-lanjut-untuk-sma-kelas-xi). Dalam edisi revisi buku-buku tersebut, kami mencoba untuk mempromosikan tema tujuan pembangunan berkelanjutan.
+Pada tahun 2024, aku dan tiga kolega dari University of Auckland, Universitas Pendidikan Indonesia, dan SMA Negeri 7 Yogyakarta merevisi buku teks kami, baik [buku siswa](https://buku.kemdikbud.go.id/katalog/matematika-tingkat-lanjut-untuk-sma-kelas-xi) maupun [buku panduan guru](https://buku.kemdikbud.go.id/katalog/buku-panduan-guru-matematika-tingkat-lanjut-untuk-sma-kelas-xi). Dalam edisi revisi buku-buku tersebut, kami mencoba untuk mempromosikan tema Tujuan Pembangunan Berkelanjutan.
 
-Salah satu aktivitas pembelajaran dalam edisi revisi tersebut adalah pemodelan keanekaragaman spesies tanaman berpohon di Kepulauan Raja Ampat. Dengan aktivitas pembelajaran ini, peserta didik diharapkan dapat menggunakan berbagai macam fungsi matematika dalam pemodelan serta menginterpretasi dan mengevaluasi model-model yang mereka hasilkan. Tak hanya itu, mereka juga diharapkan menyadari betapa kayanya bumi Kepulauan Raja Ampat.
+Salah satu aktivitas pembelajaran dalam edisi revisi tersebut adalah pemodelan keanekaragaman spesies tanaman berpohon di Kepulauan Raja Ampat. Dengan aktivitas pembelajaran ini, peserta didik diharapkan dapat menggunakan berbagai macam fungsi matematika untuk melakukan pemodelan serta menginterpretasi dan mengevaluasi model-model yang mereka hasilkan. Tak hanya itu, mereka juga diharapkan menyadari betapa kayanya bumi Kepulauan Raja Ampat.
 
-Di artikel ini, aku akan bercerita tentang bagaimana menemukan data keanekaragaman hayati di Kepulauan Raja Ampat. Selain itu, aku juga akan mendemonstrasikan bagaimana mengolah data tersebut hingga menjadi bahan ajar.
+Di artikel ini, aku akan bercerita tentang bagaimana menemukan data keanekaragaman hayati di Kepulauan Raja Ampat tersebut. Selain itu, aku juga akan mendemonstrasikan bagaimana mengolah dan memodelkan data tersebut dengan model linear maupun nonlinear.
 
-## Petulangan Menemukan Data
+## Petulangan Menemukan Data {#sec-menemukan-data}
 
 Salah satu hobiku adalah membaca. Meskipun bidang pekerjaanku adalah Pendidikan Matematika, tak jarang aku "tersesat" dan membaca berbagai bahan bacaan di luar bidang itu. Suatu ketika, aku menemukan [sebuah artikel](https://doi.org/10.1111/ecog.04512) menarik di [*Ecography*](https://nsojournals.onlinelibrary.wiley.com/journal/16000587). Artikel yang dikarang oleh tim peneliti dari University of Göttingen, Universitas Papua, dan University of South Australia tersebut membahas tentang dampak perbedaan pengambilan sampel terhadap hubungan antara keanekaragaman spesies tanaman berkayu dan luas pulau-pulau kecil di Kepulauan Raja Ampat.
 
-Menurutku artikel tersebut menarik. Akan tetapi, artikel tersebut tidak melampirkan data mentah yang digunakan. Oleh karena itu, aku langsung berkirim surel ke salah satu pengarangnya untuk meminta data mentahnya dan sekalian meminta izin untuk menggunakannya sebagai bahan ajar ke dalam buku-buku kami. Dengan ramah pengarang tersebut menunjukkan [sebuah artikel](https://doi.org/10.3897/BDJ.8.e55275) yang memuat data mentah tersebut. Ia juga dengan senang memberikan izin penggunaan data tersebut asalkan dibarengi dengan pemberian atribusi yang tepat.
+Menurutku artikel tersebut menarik. Namun, artikel tersebut tidak melampirkan data mentah yang digunakan. Oleh karena itu, aku langsung berkirim surel ke salah satu pengarangnya untuk meminta data mentahnya dan sekalian meminta izin untuk menggunakannya sebagai bahan ajar ke dalam buku-buku kami. Dengan ramah pengarang tersebut menunjukkan [sebuah artikel](https://doi.org/10.3897/BDJ.8.e55275) yang memuat data mentah tersebut. Ia juga dengan senang memberikan izin penggunaan data tersebut asalkan dibarengi dengan pemberian atribusi yang tepat.
 
-Data mentah yang aku perlukan letaknya ada di bagian lampiran artikel tersebut. Agar pembahasannya nanti sederhana, kita akan menggunakan data dalam bagian [Suppl. material 1: Island Data](https://doi.org/10.3897/BDJ.8.e55275.suppl1) saja. Kita nanti hanya akan mengolah data yang terkait dengan variabel luas pulau dan banyaknya spesies tanaman berkayu dalam pulau tersebut untuk memodelkan hubungan antara kedua variabel tersebut.
+Data mentah yang aku perlukan letaknya ada di bagian lampiran artikel tersebut. Agar pembahasannya nanti sederhana, kita akan menggunakan data dalam bagian [Suppl. material 1: Island Data](https://doi.org/10.3897/BDJ.8.e55275.suppl1) saja. Kita nanti hanya akan mengolah data yang terkait dengan variabel luas pulau dan banyaknya spesies tanaman berkayu dalam pulau tersebut untuk memodelkan hubungan antara kedua variabel itu.
 
 ::: callout-note
 ## Catatan
@@ -49,9 +54,9 @@ Data mentah yang aku perlukan letaknya ada di bagian lampiran artikel tersebut. 
 Selain hubungan antara luas pulau dan banyaknya spesies, data dalam artikel tersebut juga memungkin untuk dilakukan analisis sampai level transek dan substransek. Analisis tentang transek dan subtransek tersebut pada umumnya digunakan untuk mengidentifikasi kepadatan spesies dalam pulau-pulau yang ada. Analisis pada level transek dan subtransek tersebut tidak dilakukan dalam artikel ini. Jika pembaca ingin mengetahui analisis semacam itu, silakan kunjungi [aplikasi Shiny](https://people.usd.ac.id/~ydkristanto/app/jelajah-raja-ampat/) yang telah aku kembangkan.
 :::
 
-## Menjelajah Data
+## Menjelajah Data {#sec-jelajah-data}
 
-Petualangan kita lanjutkan. Karena data sudah ada, sekarang kita siap untuk mengeksplorasinya dengan R. Pertama-tama, kita panggil paket yang diperlukan.
+Petualangan kita lanjutkan. Karena data sudah ada, sekarang kita siap untuk mengeksplorasinya dengan [R](https://www.R-project.org/). Pertama-tama, kita panggil paket yang diperlukan. Paket {tidyverse} kita gunakan untuk mengimpor, mengolah, dan memvisualisasikan data. Paket {ggtext} kita gunakan untuk menyesuaikan label/teks pada diagram yang akan kita buat nantinya.
 
 ```{r}
 #| message: false
@@ -77,7 +82,7 @@ glimpse(data_pulau)
 
 ```
 
-Data tersebut memuat 60 baris dan 12 kolom. Dari keduabelas kolom tersebut, kita hanya akan menganalisis dua di antaranya, yaitu `island_area` (luas pulau dalam m^2^) dan `species_number` (banyaknya spesies). Untuk itu, kita pilih kedua variabel tersebut dengan fungsi `select()` dan kita ganti nama variabel-variabel tersebut dengan `rename()`.
+Data tersebut memuat 60 baris dan 12 kolom. Dari keduabelas kolom tersebut, kita hanya akan menganalisis dua di antaranya, yaitu `island_area` (luas pulau dalam m^2^) dan `species_number` (banyaknya spesies). Untuk itu, kita pilih kedua variabel tersebut dengan fungsi `select()`. Kita ganti nama kedua variabel tersebut menjadi `luas_pulau` dan `banyak_spesies` dengan fungsi `rename()`.
 
 ```{r}
 #| echo: true
@@ -94,7 +99,7 @@ head(data_pulau)
 
 ```
 
-Sekarang kita mendapatkan `data_pulau` yang lebih sederhana dan rapi. Data tersebut memiliki dua variabel, yaitu `luas_pulau` dan `banyak_spesies`. Kita lihat distribusi `luas_pulau`-nya seperti apa. Perhatikan @fig-dist-luas.
+Sekarang kita mendapatkan `data_pulau` yang lebih sederhana dan rapi. Kita lihat distribusi `luas_pulau`-nya seperti apa. Perhatikan @fig-dist-luas.
 
 ```{r}
 #| echo: true
@@ -111,8 +116,11 @@ data_pulau |>
     color = "white"
   ) + 
   theme_minimal() + 
+  theme(
+    axis.title.x = element_markdown()
+  ) + 
   labs(
-    x = "Luas pulau (m^2)",
+    x = "Luas pulau (m^2^)",
     y = "Frekuensi"
   )
 
@@ -160,8 +168,11 @@ diagram_pencar <- data_pulau |>
     size = 3
   ) + 
   theme_minimal() + 
+  theme(
+    axis.title.x = element_markdown()
+  ) + 
   labs(
-    x = "Luas pulau (m^2)",
+    x = "Luas pulau (m^2^)",
     y = "Banyak spesies"
   )
 
@@ -190,7 +201,7 @@ print(model_linear)
 
 ```
 
-Berdasarkan pemodelan linear tersebut, kita mendapatkan persamaan dengan konstanta 3,662650 dan koefisien variabel `luas_pulau` sebesar 0,002549. Perhatikan @fig-model-linear!
+Berdasarkan pemodelan linear tersebut, kita mendapatkan persamaan dengan konstanta 3,662650 dan koefisien variabel `luas_pulau` sebesar 0,002549. Visualisasi model linear tersebut disajikan pada @fig-model-linear!
 
 ```{r}
 #| echo: true
@@ -240,7 +251,7 @@ print(model_pangkat)
 
 ```
 
-Dengan demikian, kita mendapatkan $a\approx\text{0,9239}$ dan $z\approx\text{0,3574}$. Perhatikan
+Dengan demikian, kita mendapatkan $a\approx\text{0,9239}$ dan $z\approx\text{0,3574}$. Model ini dapat ditunjukkan pada @fig-model-pangkat.
 
 ```{r}
 #| echo: true
@@ -334,7 +345,14 @@ model_weibull <- nls(
 print(model_weibull)
 ```
 
-Uh oh! Kita mendapatkan pesan *error* setelah menjalankan perintah-perintah di atas. Apa yang salah? Kesalahannya terletak pada nilai-nilai awal $d$, $z$, dan $f$ yang kita berikan.
+Uh oh! Kita mendapatkan pesan *error* setelah menjalankan perintah-perintah di atas. Pesannya seperti ini.
+
+``` {style="background-color: white;"}
+Error in nls(formula = banyak_spesies ~ d * (1 - exp(-z * luas_pulau^f)),  :
+    singular gradient
+```
+
+Apa yang salah? Kesalahannya terletak pada nilai-nilai awal $d$, $z$, dan $f$ yang kita berikan.
 
 Salah satu seni dalam menggunakan fungsi `nls()` adalah penentukan nilai-nilai awalnya. Nilai-nilai awal tersebut sebaiknya dipilih agar mendekati nilai-nilai yang sebenarnya. Untuk melakukannya, kita dapat memanfaatkan alat lain, misalnya kalkulator grafik Desmos.
 
@@ -386,12 +404,12 @@ diagram_pencar +
 
 ```
 
-## Mengevaluasi Model
+## Mengevaluasi Model {#sec-evaluasi-model}
 
 Pada @sec-model-linear dan @sec-model-nonlinear, kita telah mendapatkan empat model untuk memodelkan hubungan antara `luas_pulau` dan `banyak_spesies`. Keempat model tersebut diringkas pada @tbl-ringkasan-model.
 
 | Model     | Persamaan                                                             |
-|---------------|---------------------------------------------------------|
+|--------------------|----------------------------------------------------|
 | Linear    | $y = \text{3,662650} + \text{0,002549}x$                              |
 | Pangkat   | $y = \text{0,9239}x^\text{0,3574}$                                    |
 | Logaritma | $y = -\text{5,347} + \text{6,228} \log{x}$                            |
@@ -495,3 +513,11 @@ data_rmse |>
 ```
 
 Model yang baik memiliki galat yang lebih kecil. Dengan demikian, semakin kecil RMSE sebuah model, semakin baik model tersebut. Berdasarkan @fig-rmse, kita dapat melihat bahwa model Weibull merupakan model yang paling baik dibandingkan ketiga model lainnya.
+
+## Catatan Akhir
+
+Banyak sekali set data riil yang dapat dimanfaatkan untuk keperluan pembelajaran Matematika. Artikel ini memperlihatkan bahwa set data tentang keanekaragaman tanaman berpohon di Kepulauan Raja Ampat merupakan salah satunya. Set data seperti ini tidak hanya berpotensi untuk membuat matematika semakin membumi, tetapi juga dapat menyadarkan peserta didik terhadap kekayaan alam Kepulauan Raja Ampat.
+
+Secara lebih khusus, artikel ini mendemonstrasikan strategi untuk mendapatkan dan mengolah data tersebut hingga siap pakai. Strategi tersebut diceritakan mulai dari bagaimana proses penemuan data tersebut. Proses tersebut diceritakan pada @sec-menemukan-data. Setelah itu, data yang diperoleh juga perlu dikenali struktur dan isinya agar memudahkan kita dalam mengolahnya. Hal ini dipaparkan pada @sec-jelajah-data.
+
+Pemodelan data juga telah didemonstrasikan pada @sec-model-linear dan @sec-model-nonlinear. Meskipun pemodelan dalam bagian itu dipaparkan secara ringkas, pemaparan tersebut diharapkan dapat memberikan gambaran umum tentang bagaimana memodelkan data, khususnya ketika kita menggunakan R. Terakhir, evaluasi model-model yang diperoleh juga telah didemonstrasikan secara sederhana di @sec-evaluasi-model.

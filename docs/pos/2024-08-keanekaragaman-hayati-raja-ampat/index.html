@@ -8,8 +8,8 @@
 
 <meta name="author" content="Yosep Dwi Kristanto">
 <meta name="dcterms.date" content="2024-08-03">
-<meta name="keywords" content="Biostatistika, pemodelan, Tujuan Pembangunan Berkelanjutan">
-<meta name="description" content="Bagaimana model keanekaragaman tanaman berpohon di Kepulauan Raja Ampat?">
+<meta name="keywords" content="Biostatistika, keanekaragaman hayati, Raja Ampat, pemodelan, model linear, model nonlinear, Tujuan Pembangunan Berkelanjutan">
+<meta name="description" content="Kepulauan Raja Ampat kaya akan keanekaragaman hayatinya. Bagaimana kita dapat mengetahui keanekaragaman tersebut? Apakah kita dapat memodelkannya?">
 
 <title>Jelajah Statistika dan Ilmu Data - Pemodelan Keanekaragaman Hayati di Kepulauan Raja Ampat</title>
 <style>
@@ -152,19 +152,23 @@ window.Quarto = {
 
 <link rel="stylesheet" href="../../styles.css">
 <meta property="og:title" content="Jelajah Statistika dan Ilmu Data - Pemodelan Keanekaragaman Hayati di Kepulauan Raja Ampat">
-<meta property="og:description" content="Bagaimana model keanekaragaman tanaman berpohon di Kepulauan Raja Ampat?">
+<meta property="og:description" content="Kepulauan Raja Ampat kaya akan keanekaragaman hayatinya. Bagaimana kita dapat mengetahui keanekaragaman tersebut? Apakah kita dapat memodelkannya?">
 <meta property="og:image" content="https://jelajahstatid.github.io/pos/2024-08-keanekaragaman-hayati-raja-ampat/keanekaragaman-hayati.png">
 <meta property="og:site_name" content="Jelajah Statistika dan Ilmu Data">
-<meta property="og:image:alt" content="Hubungan antara banyaknya spesies tanaman berpohon dan luas pulau-pulau kecil di Kepulauan Raja Ampat.
+<meta property="og:image:height" content="900">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:alt" content="Model linear dan nonlinear terhadap hubungan antara banyaknya spesies tanaman berpohon dan luas pulau-pulau kecil di Kepulauan Raja Ampat.
 ">
 <meta name="twitter:title" content="Jelajah Statistika dan Ilmu Data - Pemodelan Keanekaragaman Hayati di Kepulauan Raja Ampat">
-<meta name="twitter:description" content="Bagaimana model keanekaragaman tanaman berpohon di Kepulauan Raja Ampat?">
+<meta name="twitter:description" content="Kepulauan Raja Ampat kaya akan keanekaragaman hayatinya. Bagaimana kita dapat mengetahui keanekaragaman tersebut? Apakah kita dapat memodelkannya?">
 <meta name="twitter:image" content="https://jelajahstatid.github.io/pos/2024-08-keanekaragaman-hayati-raja-ampat/keanekaragaman-hayati.png">
-<meta name="twitter:image:alt" content="Hubungan antara banyaknya spesies tanaman berpohon dan luas pulau-pulau kecil di Kepulauan Raja Ampat.
+<meta name="twitter:image-height" content="900">
+<meta name="twitter:image-width" content="1200">
+<meta name="twitter:image:alt" content="Model linear dan nonlinear terhadap hubungan antara banyaknya spesies tanaman berpohon dan luas pulau-pulau kecil di Kepulauan Raja Ampat.
 ">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="citation_title" content="Pemodelan Keanekaragaman Hayati di Kepulauan Raja Ampat">
-<meta name="citation_keywords" content="Biostatistika,pemodelan,Tujuan Pembangunan Berkelanjutan">
+<meta name="citation_keywords" content="Biostatistika,keanekaragaman hayati,Raja Ampat,pemodelan,model linear,model nonlinear,Tujuan Pembangunan Berkelanjutan">
 <meta name="citation_author" content="Yosep Dwi Kristanto">
 <meta name="citation_publication_date" content="2024-08-03">
 <meta name="citation_cover_date" content="2024-08-03">
@@ -223,7 +227,7 @@ window.Quarto = {
       <h1 class="title">Pemodelan Keanekaragaman Hayati di Kepulauan Raja Ampat</h1>
                   <div>
         <div class="description">
-          <p>Bagaimana model keanekaragaman tanaman berpohon di Kepulauan Raja Ampat?</p>
+          <p>Kepulauan Raja Ampat kaya akan keanekaragaman hayatinya. Bagaimana kita dapat mengetahui keanekaragaman tersebut? Apakah kita dapat memodelkannya?</p>
         </div>
       </div>
                           <div class="quarto-categories">
@@ -268,7 +272,7 @@ window.Quarto = {
   <div>
     <div class="keywords">
       <div class="block-title">Kata kunci</div>
-      <p>Biostatistika, pemodelan, Tujuan Pembangunan Berkelanjutan</p>
+      <p>Biostatistika, keanekaragaman hayati, Raja Ampat, pemodelan, model linear, model nonlinear, Tujuan Pembangunan Berkelanjutan</p>
     </div>
   </div>
   
@@ -279,11 +283,12 @@ window.Quarto = {
     <h2 id="toc-title">Pada laman ini</h2>
    
   <ul>
-  <li><a href="#petulangan-menemukan-data" id="toc-petulangan-menemukan-data" class="nav-link active" data-scroll-target="#petulangan-menemukan-data">Petulangan Menemukan Data</a></li>
-  <li><a href="#menjelajah-data" id="toc-menjelajah-data" class="nav-link" data-scroll-target="#menjelajah-data">Menjelajah Data</a></li>
+  <li><a href="#sec-menemukan-data" id="toc-sec-menemukan-data" class="nav-link active" data-scroll-target="#sec-menemukan-data">Petulangan Menemukan Data</a></li>
+  <li><a href="#sec-jelajah-data" id="toc-sec-jelajah-data" class="nav-link" data-scroll-target="#sec-jelajah-data">Menjelajah Data</a></li>
   <li><a href="#sec-model-linear" id="toc-sec-model-linear" class="nav-link" data-scroll-target="#sec-model-linear">Pemodelan Linear</a></li>
   <li><a href="#sec-model-nonlinear" id="toc-sec-model-nonlinear" class="nav-link" data-scroll-target="#sec-model-nonlinear">Pemodelan Nonlinear</a></li>
-  <li><a href="#mengevaluasi-model" id="toc-mengevaluasi-model" class="nav-link" data-scroll-target="#mengevaluasi-model">Mengevaluasi Model</a></li>
+  <li><a href="#sec-evaluasi-model" id="toc-sec-evaluasi-model" class="nav-link" data-scroll-target="#sec-evaluasi-model">Mengevaluasi Model</a></li>
+  <li><a href="#catatan-akhir" id="toc-catatan-akhir" class="nav-link" data-scroll-target="#catatan-akhir">Catatan Akhir</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/jelajahstatid/jelajahstatid.github.io/edit/main/pos/2024-08-keanekaragaman-hayati-raja-ampat/index.qmd" class="toc-action"><i class="bi bi-github"></i>Sunting laman ini</a></li><li><a href="https://github.com/jelajahstatid/jelajahstatid.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Laporkan sebuah isu</a></li></ul></div></nav>
 </nav>
@@ -298,14 +303,14 @@ window.Quarto = {
 
 
 
-<p>Pada tahun 2024, aku dan tiga kolega dari University of Auckland, Universitas Pendidikan Indonesia, dan SMA Negeri 7 Yogyakarta merevisi buku teks kami, baik <a href="https://buku.kemdikbud.go.id/katalog/matematika-tingkat-lanjut-untuk-sma-kelas-xi">buku siswa</a> maupun <a href="https://buku.kemdikbud.go.id/katalog/buku-panduan-guru-matematika-tingkat-lanjut-untuk-sma-kelas-xi">buku panduan guru</a>. Dalam edisi revisi buku-buku tersebut, kami mencoba untuk mempromosikan tema tujuan pembangunan berkelanjutan.</p>
-<p>Salah satu aktivitas pembelajaran dalam edisi revisi tersebut adalah pemodelan keanekaragaman spesies tanaman berpohon di Kepulauan Raja Ampat. Dengan aktivitas pembelajaran ini, peserta didik diharapkan dapat menggunakan berbagai macam fungsi matematika dalam pemodelan serta menginterpretasi dan mengevaluasi model-model yang mereka hasilkan. Tak hanya itu, mereka juga diharapkan menyadari betapa kayanya bumi Kepulauan Raja Ampat.</p>
-<p>Di artikel ini, aku akan bercerita tentang bagaimana menemukan data keanekaragaman hayati di Kepulauan Raja Ampat. Selain itu, aku juga akan mendemonstrasikan bagaimana mengolah data tersebut hingga menjadi bahan ajar.</p>
-<section id="petulangan-menemukan-data" class="level2">
-<h2 class="anchored" data-anchor-id="petulangan-menemukan-data">Petulangan Menemukan Data</h2>
+<p>Pada tahun 2024, aku dan tiga kolega dari University of Auckland, Universitas Pendidikan Indonesia, dan SMA Negeri 7 Yogyakarta merevisi buku teks kami, baik <a href="https://buku.kemdikbud.go.id/katalog/matematika-tingkat-lanjut-untuk-sma-kelas-xi">buku siswa</a> maupun <a href="https://buku.kemdikbud.go.id/katalog/buku-panduan-guru-matematika-tingkat-lanjut-untuk-sma-kelas-xi">buku panduan guru</a>. Dalam edisi revisi buku-buku tersebut, kami mencoba untuk mempromosikan tema Tujuan Pembangunan Berkelanjutan.</p>
+<p>Salah satu aktivitas pembelajaran dalam edisi revisi tersebut adalah pemodelan keanekaragaman spesies tanaman berpohon di Kepulauan Raja Ampat. Dengan aktivitas pembelajaran ini, peserta didik diharapkan dapat menggunakan berbagai macam fungsi matematika untuk melakukan pemodelan serta menginterpretasi dan mengevaluasi model-model yang mereka hasilkan. Tak hanya itu, mereka juga diharapkan menyadari betapa kayanya bumi Kepulauan Raja Ampat.</p>
+<p>Di artikel ini, aku akan bercerita tentang bagaimana menemukan data keanekaragaman hayati di Kepulauan Raja Ampat tersebut. Selain itu, aku juga akan mendemonstrasikan bagaimana mengolah dan memodelkan data tersebut dengan model linear maupun nonlinear.</p>
+<section id="sec-menemukan-data" class="level2">
+<h2 class="anchored" data-anchor-id="sec-menemukan-data">Petulangan Menemukan Data</h2>
 <p>Salah satu hobiku adalah membaca. Meskipun bidang pekerjaanku adalah Pendidikan Matematika, tak jarang aku “tersesat” dan membaca berbagai bahan bacaan di luar bidang itu. Suatu ketika, aku menemukan <a href="https://doi.org/10.1111/ecog.04512">sebuah artikel</a> menarik di <a href="https://nsojournals.onlinelibrary.wiley.com/journal/16000587"><em>Ecography</em></a>. Artikel yang dikarang oleh tim peneliti dari University of Göttingen, Universitas Papua, dan University of South Australia tersebut membahas tentang dampak perbedaan pengambilan sampel terhadap hubungan antara keanekaragaman spesies tanaman berkayu dan luas pulau-pulau kecil di Kepulauan Raja Ampat.</p>
-<p>Menurutku artikel tersebut menarik. Akan tetapi, artikel tersebut tidak melampirkan data mentah yang digunakan. Oleh karena itu, aku langsung berkirim surel ke salah satu pengarangnya untuk meminta data mentahnya dan sekalian meminta izin untuk menggunakannya sebagai bahan ajar ke dalam buku-buku kami. Dengan ramah pengarang tersebut menunjukkan <a href="https://doi.org/10.3897/BDJ.8.e55275">sebuah artikel</a> yang memuat data mentah tersebut. Ia juga dengan senang memberikan izin penggunaan data tersebut asalkan dibarengi dengan pemberian atribusi yang tepat.</p>
-<p>Data mentah yang aku perlukan letaknya ada di bagian lampiran artikel tersebut. Agar pembahasannya nanti sederhana, kita akan menggunakan data dalam bagian <a href="https://doi.org/10.3897/BDJ.8.e55275.suppl1">Suppl. material 1: Island Data</a> saja. Kita nanti hanya akan mengolah data yang terkait dengan variabel luas pulau dan banyaknya spesies tanaman berkayu dalam pulau tersebut untuk memodelkan hubungan antara kedua variabel tersebut.</p>
+<p>Menurutku artikel tersebut menarik. Namun, artikel tersebut tidak melampirkan data mentah yang digunakan. Oleh karena itu, aku langsung berkirim surel ke salah satu pengarangnya untuk meminta data mentahnya dan sekalian meminta izin untuk menggunakannya sebagai bahan ajar ke dalam buku-buku kami. Dengan ramah pengarang tersebut menunjukkan <a href="https://doi.org/10.3897/BDJ.8.e55275">sebuah artikel</a> yang memuat data mentah tersebut. Ia juga dengan senang memberikan izin penggunaan data tersebut asalkan dibarengi dengan pemberian atribusi yang tepat.</p>
+<p>Data mentah yang aku perlukan letaknya ada di bagian lampiran artikel tersebut. Agar pembahasannya nanti sederhana, kita akan menggunakan data dalam bagian <a href="https://doi.org/10.3897/BDJ.8.e55275.suppl1">Suppl. material 1: Island Data</a> saja. Kita nanti hanya akan mengolah data yang terkait dengan variabel luas pulau dan banyaknya spesies tanaman berkayu dalam pulau tersebut untuk memodelkan hubungan antara kedua variabel itu.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -320,9 +325,9 @@ Catatan
 </div>
 </div>
 </section>
-<section id="menjelajah-data" class="level2">
-<h2 class="anchored" data-anchor-id="menjelajah-data">Menjelajah Data</h2>
-<p>Petualangan kita lanjutkan. Karena data sudah ada, sekarang kita siap untuk mengeksplorasinya dengan R. Pertama-tama, kita panggil paket yang diperlukan.</p>
+<section id="sec-jelajah-data" class="level2">
+<h2 class="anchored" data-anchor-id="sec-jelajah-data">Menjelajah Data</h2>
+<p>Petualangan kita lanjutkan. Karena data sudah ada, sekarang kita siap untuk mengeksplorasinya dengan <a href="https://www.R-project.org/">R</a>. Pertama-tama, kita panggil paket yang diperlukan. Paket {tidyverse} kita gunakan untuk mengimpor, mengolah, dan memvisualisasikan data. Paket {ggtext} kita gunakan untuk menyesuaikan label/teks pada diagram yang akan kita buat nantinya.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(ggtext)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -350,7 +355,7 @@ $ no_transects       &lt;dbl&gt; 5, 0, 4, 0, 0, 2, 4, 4, 4, 1, 3, 4, 2, 2, 1, 0,
 $ no_plots           &lt;dbl&gt; 25, 1, 20, 1, 1, 10, 20, 20, 20, 5, 15, 20, 10, 10,…</code></pre>
 </div>
 </div>
-<p>Data tersebut memuat 60 baris dan 12 kolom. Dari keduabelas kolom tersebut, kita hanya akan menganalisis dua di antaranya, yaitu <code>island_area</code> (luas pulau dalam m<sup>2</sup>) dan <code>species_number</code> (banyaknya spesies). Untuk itu, kita pilih kedua variabel tersebut dengan fungsi <code>select()</code> dan kita ganti nama variabel-variabel tersebut dengan <code>rename()</code>.</p>
+<p>Data tersebut memuat 60 baris dan 12 kolom. Dari keduabelas kolom tersebut, kita hanya akan menganalisis dua di antaranya, yaitu <code>island_area</code> (luas pulau dalam m<sup>2</sup>) dan <code>species_number</code> (banyaknya spesies). Untuk itu, kita pilih kedua variabel tersebut dengan fungsi <code>select()</code>. Kita ganti nama kedua variabel tersebut menjadi <code>luas_pulau</code> dan <code>banyak_spesies</code> dengan fungsi <code>rename()</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>data_pulau <span class="ot">&lt;-</span> data_pulau <span class="sc">|&gt;</span> </span>
 <span id="cb4-2"><a href="#cb4-2"></a>  <span class="fu">select</span>(island_area, species_number) <span class="sc">|&gt;</span> </span>
@@ -372,7 +377,7 @@ $ no_plots           &lt;dbl&gt; 25, 1, 20, 1, 1, 10, 20, 20, 20, 5, 15, 20, 10,
 6     317.                8</code></pre>
 </div>
 </div>
-<p>Sekarang kita mendapatkan <code>data_pulau</code> yang lebih sederhana dan rapi. Data tersebut memiliki dua variabel, yaitu <code>luas_pulau</code> dan <code>banyak_spesies</code>. Kita lihat distribusi <code>luas_pulau</code>-nya seperti apa. Perhatikan <a href="#fig-dist-luas" class="quarto-xref">Gambar&nbsp;1</a>.</p>
+<p>Sekarang kita mendapatkan <code>data_pulau</code> yang lebih sederhana dan rapi. Kita lihat distribusi <code>luas_pulau</code>-nya seperti apa. Perhatikan <a href="#fig-dist-luas" class="quarto-xref">Gambar&nbsp;1</a>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>data_pulau <span class="sc">|&gt;</span> </span>
 <span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> luas_pulau)) <span class="sc">+</span> </span>
@@ -381,10 +386,13 @@ $ no_plots           &lt;dbl&gt; 25, 1, 20, 1, 1, 10, 20, 20, 20, 5, 15, 20, 10,
 <span id="cb6-5"><a href="#cb6-5"></a>    <span class="at">color =</span> <span class="st">"white"</span></span>
 <span id="cb6-6"><a href="#cb6-6"></a>  ) <span class="sc">+</span> </span>
 <span id="cb6-7"><a href="#cb6-7"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
-<span id="cb6-8"><a href="#cb6-8"></a>  <span class="fu">labs</span>(</span>
-<span id="cb6-9"><a href="#cb6-9"></a>    <span class="at">x =</span> <span class="st">"Luas pulau (m^2)"</span>,</span>
-<span id="cb6-10"><a href="#cb6-10"></a>    <span class="at">y =</span> <span class="st">"Frekuensi"</span></span>
-<span id="cb6-11"><a href="#cb6-11"></a>  )</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-8"><a href="#cb6-8"></a>  <span class="fu">theme</span>(</span>
+<span id="cb6-9"><a href="#cb6-9"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_markdown</span>()</span>
+<span id="cb6-10"><a href="#cb6-10"></a>  ) <span class="sc">+</span> </span>
+<span id="cb6-11"><a href="#cb6-11"></a>  <span class="fu">labs</span>(</span>
+<span id="cb6-12"><a href="#cb6-12"></a>    <span class="at">x =</span> <span class="st">"Luas pulau (m^2^)"</span>,</span>
+<span id="cb6-13"><a href="#cb6-13"></a>    <span class="at">y =</span> <span class="st">"Frekuensi"</span></span>
+<span id="cb6-14"><a href="#cb6-14"></a>  )</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-dist-luas" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -435,12 +443,15 @@ Gambar&nbsp;2: Distribusi <code>banyak_spesies</code>.
 <span id="cb8-7"><a href="#cb8-7"></a>    <span class="at">size =</span> <span class="dv">3</span></span>
 <span id="cb8-8"><a href="#cb8-8"></a>  ) <span class="sc">+</span> </span>
 <span id="cb8-9"><a href="#cb8-9"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
-<span id="cb8-10"><a href="#cb8-10"></a>  <span class="fu">labs</span>(</span>
-<span id="cb8-11"><a href="#cb8-11"></a>    <span class="at">x =</span> <span class="st">"Luas pulau (m^2)"</span>,</span>
-<span id="cb8-12"><a href="#cb8-12"></a>    <span class="at">y =</span> <span class="st">"Banyak spesies"</span></span>
-<span id="cb8-13"><a href="#cb8-13"></a>  )</span>
-<span id="cb8-14"><a href="#cb8-14"></a></span>
-<span id="cb8-15"><a href="#cb8-15"></a><span class="fu">print</span>(diagram_pencar)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-10"><a href="#cb8-10"></a>  <span class="fu">theme</span>(</span>
+<span id="cb8-11"><a href="#cb8-11"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_markdown</span>()</span>
+<span id="cb8-12"><a href="#cb8-12"></a>  ) <span class="sc">+</span> </span>
+<span id="cb8-13"><a href="#cb8-13"></a>  <span class="fu">labs</span>(</span>
+<span id="cb8-14"><a href="#cb8-14"></a>    <span class="at">x =</span> <span class="st">"Luas pulau (m^2^)"</span>,</span>
+<span id="cb8-15"><a href="#cb8-15"></a>    <span class="at">y =</span> <span class="st">"Banyak spesies"</span></span>
+<span id="cb8-16"><a href="#cb8-16"></a>  )</span>
+<span id="cb8-17"><a href="#cb8-17"></a></span>
+<span id="cb8-18"><a href="#cb8-18"></a><span class="fu">print</span>(diagram_pencar)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-relasi-luas-spesies" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -477,7 +488,7 @@ Coefficients:
    3.662650     0.002549  </code></pre>
 </div>
 </div>
-<p>Berdasarkan pemodelan linear tersebut, kita mendapatkan persamaan dengan konstanta 3,662650 dan koefisien variabel <code>luas_pulau</code> sebesar 0,002549. Perhatikan <a href="#fig-model-linear" class="quarto-xref">Gambar&nbsp;4</a>!</p>
+<p>Berdasarkan pemodelan linear tersebut, kita mendapatkan persamaan dengan konstanta 3,662650 dan koefisien variabel <code>luas_pulau</code> sebesar 0,002549. Visualisasi model linear tersebut disajikan pada <a href="#fig-model-linear" class="quarto-xref">Gambar&nbsp;4</a>!</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Kode</summary>
@@ -537,7 +548,7 @@ Number of iterations to convergence: 17
 Achieved convergence tolerance: 5.839e-06</code></pre>
 </div>
 </div>
-<p>Dengan demikian, kita mendapatkan <span class="math inline">\(a\approx\text{0,9239}\)</span> dan <span class="math inline">\(z\approx\text{0,3574}\)</span>. Perhatikan</p>
+<p>Dengan demikian, kita mendapatkan <span class="math inline">\(a\approx\text{0,9239}\)</span> dan <span class="math inline">\(z\approx\text{0,3574}\)</span>. Model ini dapat ditunjukkan pada <a href="#fig-model-pangkat" class="quarto-xref">Gambar&nbsp;5</a>.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Kode</summary>
@@ -640,10 +651,13 @@ y = d \left( 1 - e^{-z x^f} \right)
 <span id="cb18-5"><a href="#cb18-5"></a>)</span>
 <span id="cb18-6"><a href="#cb18-6"></a></span>
 <span id="cb18-7"><a href="#cb18-7"></a><span class="fu">print</span>(model_weibull)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Uh oh! Kita mendapatkan pesan <em>error</em> setelah menjalankan perintah-perintah di atas. Apa yang salah? Kesalahannya terletak pada nilai-nilai awal <span class="math inline">\(d\)</span>, <span class="math inline">\(z\)</span>, dan <span class="math inline">\(f\)</span> yang kita berikan.</p>
+<p>Uh oh! Kita mendapatkan pesan <em>error</em> setelah menjalankan perintah-perintah di atas. Pesannya seperti ini.</p>
+<pre style="background-color: white;"><code>Error in nls(formula = banyak_spesies ~ d * (1 - exp(-z * luas_pulau^f)),  :
+    singular gradient</code></pre>
+<p>Apa yang salah? Kesalahannya terletak pada nilai-nilai awal <span class="math inline">\(d\)</span>, <span class="math inline">\(z\)</span>, dan <span class="math inline">\(f\)</span> yang kita berikan.</p>
 <p>Salah satu seni dalam menggunakan fungsi <code>nls()</code> adalah penentukan nilai-nilai awalnya. Nilai-nilai awal tersebut sebaiknya dipilih agar mendekati nilai-nilai yang sebenarnya. Untuk melakukannya, kita dapat memanfaatkan alat lain, misalnya kalkulator grafik Desmos.</p>
 <p>Dengan menginputkan data yang kita punya, yaitu <code>data_pulau</code>, ke dalam kalkulator grafik Desmos, kita dapat memodelkannya. Tangkapan layar hasil pemodelan tersebut ditunjukkan pada <a href="#fig-model-weibull-Desmos" class="quarto-xref">Gambar&nbsp;7</a>.</p>
-<div id="fig-model-weibull-Desmos" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center" alt="Diagram pencar yang menunjukkan hubungan antara luas pulau dan banyak spesies, disertai dengan model fungsi Weibull.">
+<div id="fig-model-weibull-Desmos" class="quarto-figure quarto-figure-center quarto-float anchored" alt="Diagram pencar yang menunjukkan hubungan antara luas pulau dan banyak spesies, disertai dengan model fungsi Weibull." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-model-weibull-Desmos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="model-Weibull-Desmos.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Diagram pencar yang menunjukkan hubungan antara luas pulau dan banyak spesies, disertai dengan model fungsi Weibull.">
@@ -655,13 +669,13 @@ Gambar&nbsp;7: Pemodelan dengan fungsi Weibull dengan kalkulator grafik Desmos.
 </div>
 <p>Pemodelan dengan kalkulator grafik Desmos tersebut menghasilkan <span class="math inline">\(d\approx\text{21,9586}\)</span>, <span class="math inline">\(z\approx\text{0,0125515}\)</span>, dan <span class="math inline">\(f\approx\text{0,608648}\)</span>. (Pemodelan tersebut dapat diakses melalui <a href="https://www.desmos.com/calculator/ngfsx3dlfu">tautan ini</a>.) Kita gunakan nilai-nilai tersebut sebagai nilai-nilai awal untuk <code>nls()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>model_weibull <span class="ot">&lt;-</span> <span class="fu">nls</span>(</span>
-<span id="cb19-2"><a href="#cb19-2"></a>  <span class="at">formula =</span> banyak_spesies <span class="sc">~</span> d <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">exp</span>(<span class="sc">-</span>z <span class="sc">*</span> luas_pulau<span class="sc">^</span>f)),</span>
-<span id="cb19-3"><a href="#cb19-3"></a>  <span class="at">data =</span> data_pulau,</span>
-<span id="cb19-4"><a href="#cb19-4"></a>  <span class="at">start =</span> <span class="fu">c</span>(<span class="at">d =</span> <span class="fl">21.9586</span>, <span class="at">z =</span> <span class="fl">0.0125515</span>, <span class="at">f =</span> <span class="fl">0.608648</span>)</span>
-<span id="cb19-5"><a href="#cb19-5"></a>)</span>
-<span id="cb19-6"><a href="#cb19-6"></a></span>
-<span id="cb19-7"><a href="#cb19-7"></a><span class="fu">print</span>(model_weibull)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>model_weibull <span class="ot">&lt;-</span> <span class="fu">nls</span>(</span>
+<span id="cb20-2"><a href="#cb20-2"></a>  <span class="at">formula =</span> banyak_spesies <span class="sc">~</span> d <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">exp</span>(<span class="sc">-</span>z <span class="sc">*</span> luas_pulau<span class="sc">^</span>f)),</span>
+<span id="cb20-3"><a href="#cb20-3"></a>  <span class="at">data =</span> data_pulau,</span>
+<span id="cb20-4"><a href="#cb20-4"></a>  <span class="at">start =</span> <span class="fu">c</span>(<span class="at">d =</span> <span class="fl">21.9586</span>, <span class="at">z =</span> <span class="fl">0.0125515</span>, <span class="at">f =</span> <span class="fl">0.608648</span>)</span>
+<span id="cb20-5"><a href="#cb20-5"></a>)</span>
+<span id="cb20-6"><a href="#cb20-6"></a></span>
+<span id="cb20-7"><a href="#cb20-7"></a><span class="fu">print</span>(model_weibull)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Nonlinear regression model
   model: banyak_spesies ~ d * (1 - exp(-z * luas_pulau^f))
@@ -678,22 +692,22 @@ Achieved convergence tolerance: 6.004e-06</code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Kode</summary>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>d_weibull <span class="ot">&lt;-</span> <span class="fu">coef</span>(model_weibull)[<span class="st">"d"</span>]</span>
-<span id="cb21-2"><a href="#cb21-2"></a>z_weibull <span class="ot">&lt;-</span> <span class="fu">coef</span>(model_weibull)[<span class="st">"z"</span>]</span>
-<span id="cb21-3"><a href="#cb21-3"></a>f_weibull <span class="ot">&lt;-</span> <span class="fu">coef</span>(model_weibull)[<span class="st">"f"</span>]</span>
-<span id="cb21-4"><a href="#cb21-4"></a></span>
-<span id="cb21-5"><a href="#cb21-5"></a>diagram_pencar <span class="sc">+</span> </span>
-<span id="cb21-6"><a href="#cb21-6"></a>  <span class="fu">geom_function</span>(</span>
-<span id="cb21-7"><a href="#cb21-7"></a>    <span class="at">fun =</span> <span class="cf">function</span>(x) d_weibull <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">exp</span>(<span class="sc">-</span>z_weibull <span class="sc">*</span> x<span class="sc">^</span>f_weibull)),</span>
-<span id="cb21-8"><a href="#cb21-8"></a>    <span class="at">color =</span> <span class="st">"#164863"</span>,</span>
-<span id="cb21-9"><a href="#cb21-9"></a>    <span class="at">linewidth =</span> <span class="dv">1</span></span>
-<span id="cb21-10"><a href="#cb21-10"></a>  ) <span class="sc">+</span> </span>
-<span id="cb21-11"><a href="#cb21-11"></a>  <span class="fu">geom_richtext</span>(</span>
-<span id="cb21-12"><a href="#cb21-12"></a>    <span class="at">x =</span> <span class="dv">12000</span>,</span>
-<span id="cb21-13"><a href="#cb21-13"></a>    <span class="at">y =</span> <span class="dv">24</span>,</span>
-<span id="cb21-14"><a href="#cb21-14"></a>    <span class="at">label =</span> <span class="st">"*y* = 21,95860(1 - *e*&lt;sup&gt;-0,01255*x*&lt;sup&gt;0,60865&lt;/sup&gt;&lt;/sup&gt;)"</span>,</span>
-<span id="cb21-15"><a href="#cb21-15"></a>    <span class="at">hjust =</span> <span class="dv">1</span></span>
-<span id="cb21-16"><a href="#cb21-16"></a>  )</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>d_weibull <span class="ot">&lt;-</span> <span class="fu">coef</span>(model_weibull)[<span class="st">"d"</span>]</span>
+<span id="cb22-2"><a href="#cb22-2"></a>z_weibull <span class="ot">&lt;-</span> <span class="fu">coef</span>(model_weibull)[<span class="st">"z"</span>]</span>
+<span id="cb22-3"><a href="#cb22-3"></a>f_weibull <span class="ot">&lt;-</span> <span class="fu">coef</span>(model_weibull)[<span class="st">"f"</span>]</span>
+<span id="cb22-4"><a href="#cb22-4"></a></span>
+<span id="cb22-5"><a href="#cb22-5"></a>diagram_pencar <span class="sc">+</span> </span>
+<span id="cb22-6"><a href="#cb22-6"></a>  <span class="fu">geom_function</span>(</span>
+<span id="cb22-7"><a href="#cb22-7"></a>    <span class="at">fun =</span> <span class="cf">function</span>(x) d_weibull <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">exp</span>(<span class="sc">-</span>z_weibull <span class="sc">*</span> x<span class="sc">^</span>f_weibull)),</span>
+<span id="cb22-8"><a href="#cb22-8"></a>    <span class="at">color =</span> <span class="st">"#164863"</span>,</span>
+<span id="cb22-9"><a href="#cb22-9"></a>    <span class="at">linewidth =</span> <span class="dv">1</span></span>
+<span id="cb22-10"><a href="#cb22-10"></a>  ) <span class="sc">+</span> </span>
+<span id="cb22-11"><a href="#cb22-11"></a>  <span class="fu">geom_richtext</span>(</span>
+<span id="cb22-12"><a href="#cb22-12"></a>    <span class="at">x =</span> <span class="dv">12000</span>,</span>
+<span id="cb22-13"><a href="#cb22-13"></a>    <span class="at">y =</span> <span class="dv">24</span>,</span>
+<span id="cb22-14"><a href="#cb22-14"></a>    <span class="at">label =</span> <span class="st">"*y* = 21,95860(1 - *e*&lt;sup&gt;-0,01255*x*&lt;sup&gt;0,60865&lt;/sup&gt;&lt;/sup&gt;)"</span>,</span>
+<span id="cb22-15"><a href="#cb22-15"></a>    <span class="at">hjust =</span> <span class="dv">1</span></span>
+<span id="cb22-16"><a href="#cb22-16"></a>  )</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div id="fig-model-weibull" class="quarto-figure quarto-figure-center quarto-float anchored">
@@ -709,8 +723,8 @@ Gambar&nbsp;8: Model fungsi Weibull untuk hubungan antara <code>luas_wilayah</co
 </div>
 </div>
 </section>
-<section id="mengevaluasi-model" class="level2">
-<h2 class="anchored" data-anchor-id="mengevaluasi-model">Mengevaluasi Model</h2>
+<section id="sec-evaluasi-model" class="level2">
+<h2 class="anchored" data-anchor-id="sec-evaluasi-model">Mengevaluasi Model</h2>
 <p>Pada <a href="#sec-model-linear" class="quarto-xref">Bagian&nbsp;3</a> dan <a href="#sec-model-nonlinear" class="quarto-xref">Bagian&nbsp;4</a>, kita telah mendapatkan empat model untuk memodelkan hubungan antara <code>luas_pulau</code> dan <code>banyak_spesies</code>. Keempat model tersebut diringkas pada <a href="#tbl-ringkasan-model" class="quarto-xref">Tabel&nbsp;1</a>.</p>
 <div id="tbl-ringkasan-model" class="striped hover quarto-float anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -720,8 +734,8 @@ Tabel&nbsp;1: Model-model untuk <code>luas_pulau</code> vs.&nbsp;<code>banyak_sp
 <div aria-describedby="tbl-ringkasan-model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table-striped table-hover caption-top table">
 <colgroup>
-<col style="width: 20%">
-<col style="width: 79%">
+<col style="width: 27%">
+<col style="width: 72%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -756,34 +770,34 @@ Tabel&nbsp;1: Model-model untuk <code>luas_pulau</code> vs.&nbsp;<code>banyak_sp
 <div class="cell">
 <details class="code-fold">
 <summary>Kode</summary>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>est_spesies <span class="ot">&lt;-</span> <span class="fu">fitted.values</span>(model_linear)</span>
-<span id="cb22-2"><a href="#cb22-2"></a>galat_linear <span class="ot">&lt;-</span> <span class="fu">resid</span>(model_linear)</span>
-<span id="cb22-3"><a href="#cb22-3"></a></span>
-<span id="cb22-4"><a href="#cb22-4"></a>data_pulau_linear <span class="ot">&lt;-</span> data_pulau <span class="sc">|&gt;</span> </span>
-<span id="cb22-5"><a href="#cb22-5"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb22-6"><a href="#cb22-6"></a>    <span class="at">est_spesies =</span> est_spesies,</span>
-<span id="cb22-7"><a href="#cb22-7"></a>    <span class="at">galat =</span> galat_linear</span>
-<span id="cb22-8"><a href="#cb22-8"></a>  )</span>
-<span id="cb22-9"><a href="#cb22-9"></a></span>
-<span id="cb22-10"><a href="#cb22-10"></a>diagram_pencar <span class="sc">+</span> </span>
-<span id="cb22-11"><a href="#cb22-11"></a>  <span class="fu">geom_segment</span>(</span>
-<span id="cb22-12"><a href="#cb22-12"></a>    <span class="at">data =</span> data_pulau_linear,</span>
-<span id="cb22-13"><a href="#cb22-13"></a>    <span class="fu">aes</span>(<span class="at">x =</span> luas_pulau, <span class="at">y =</span> banyak_spesies, <span class="at">yend =</span> est_spesies),</span>
-<span id="cb22-14"><a href="#cb22-14"></a>    <span class="at">color =</span> <span class="st">"#9BBEC8"</span></span>
-<span id="cb22-15"><a href="#cb22-15"></a>  ) <span class="sc">+</span> </span>
-<span id="cb22-16"><a href="#cb22-16"></a>  <span class="fu">geom_smooth</span>(</span>
-<span id="cb22-17"><a href="#cb22-17"></a>    <span class="at">method =</span> <span class="st">"lm"</span>,</span>
-<span id="cb22-18"><a href="#cb22-18"></a>    <span class="at">formula =</span> y <span class="sc">~</span> x,</span>
-<span id="cb22-19"><a href="#cb22-19"></a>    <span class="at">se =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb22-20"><a href="#cb22-20"></a>    <span class="at">color =</span> <span class="st">"#164863"</span></span>
-<span id="cb22-21"><a href="#cb22-21"></a>  ) <span class="sc">+</span> </span>
-<span id="cb22-22"><a href="#cb22-22"></a>  <span class="fu">geom_richtext</span>(</span>
-<span id="cb22-23"><a href="#cb22-23"></a>    <span class="at">x =</span> <span class="dv">9000</span>,</span>
-<span id="cb22-24"><a href="#cb22-24"></a>    <span class="at">y =</span> <span class="dv">30</span>,</span>
-<span id="cb22-25"><a href="#cb22-25"></a>    <span class="at">label =</span> <span class="st">"*y* = 3,662650 + 0,002549*x*"</span>,</span>
-<span id="cb22-26"><a href="#cb22-26"></a>    <span class="at">hjust =</span> <span class="dv">1</span>,</span>
-<span id="cb22-27"><a href="#cb22-27"></a>    <span class="at">color =</span> <span class="st">"#164863"</span></span>
-<span id="cb22-28"><a href="#cb22-28"></a>  )</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>est_spesies <span class="ot">&lt;-</span> <span class="fu">fitted.values</span>(model_linear)</span>
+<span id="cb23-2"><a href="#cb23-2"></a>galat_linear <span class="ot">&lt;-</span> <span class="fu">resid</span>(model_linear)</span>
+<span id="cb23-3"><a href="#cb23-3"></a></span>
+<span id="cb23-4"><a href="#cb23-4"></a>data_pulau_linear <span class="ot">&lt;-</span> data_pulau <span class="sc">|&gt;</span> </span>
+<span id="cb23-5"><a href="#cb23-5"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb23-6"><a href="#cb23-6"></a>    <span class="at">est_spesies =</span> est_spesies,</span>
+<span id="cb23-7"><a href="#cb23-7"></a>    <span class="at">galat =</span> galat_linear</span>
+<span id="cb23-8"><a href="#cb23-8"></a>  )</span>
+<span id="cb23-9"><a href="#cb23-9"></a></span>
+<span id="cb23-10"><a href="#cb23-10"></a>diagram_pencar <span class="sc">+</span> </span>
+<span id="cb23-11"><a href="#cb23-11"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb23-12"><a href="#cb23-12"></a>    <span class="at">data =</span> data_pulau_linear,</span>
+<span id="cb23-13"><a href="#cb23-13"></a>    <span class="fu">aes</span>(<span class="at">x =</span> luas_pulau, <span class="at">y =</span> banyak_spesies, <span class="at">yend =</span> est_spesies),</span>
+<span id="cb23-14"><a href="#cb23-14"></a>    <span class="at">color =</span> <span class="st">"#9BBEC8"</span></span>
+<span id="cb23-15"><a href="#cb23-15"></a>  ) <span class="sc">+</span> </span>
+<span id="cb23-16"><a href="#cb23-16"></a>  <span class="fu">geom_smooth</span>(</span>
+<span id="cb23-17"><a href="#cb23-17"></a>    <span class="at">method =</span> <span class="st">"lm"</span>,</span>
+<span id="cb23-18"><a href="#cb23-18"></a>    <span class="at">formula =</span> y <span class="sc">~</span> x,</span>
+<span id="cb23-19"><a href="#cb23-19"></a>    <span class="at">se =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb23-20"><a href="#cb23-20"></a>    <span class="at">color =</span> <span class="st">"#164863"</span></span>
+<span id="cb23-21"><a href="#cb23-21"></a>  ) <span class="sc">+</span> </span>
+<span id="cb23-22"><a href="#cb23-22"></a>  <span class="fu">geom_richtext</span>(</span>
+<span id="cb23-23"><a href="#cb23-23"></a>    <span class="at">x =</span> <span class="dv">9000</span>,</span>
+<span id="cb23-24"><a href="#cb23-24"></a>    <span class="at">y =</span> <span class="dv">30</span>,</span>
+<span id="cb23-25"><a href="#cb23-25"></a>    <span class="at">label =</span> <span class="st">"*y* = 3,662650 + 0,002549*x*"</span>,</span>
+<span id="cb23-26"><a href="#cb23-26"></a>    <span class="at">hjust =</span> <span class="dv">1</span>,</span>
+<span id="cb23-27"><a href="#cb23-27"></a>    <span class="at">color =</span> <span class="st">"#164863"</span></span>
+<span id="cb23-28"><a href="#cb23-28"></a>  )</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div id="fig-model-linear-galat" class="quarto-figure quarto-figure-center quarto-float anchored">
@@ -800,24 +814,24 @@ Gambar&nbsp;9: Galat-galat yang direpresentasikan sebagai panjang ruas-ruas gari
 </div>
 <p>Untuk mendapatkan galat-galat dari sebuah model, kita dapat menggunakan fungsi <code>resid()</code> atau <code>residuals()</code>. Dengan demikian, RMSE dari keempat model dalam <a href="#tbl-ringkasan-model" class="quarto-xref">Tabel&nbsp;1</a> dapat ditentukan seperti berikut.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>RMSE_linear <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>(<span class="fu">resid</span>(model_linear)<span class="sc">^</span><span class="dv">2</span>))</span>
-<span id="cb23-2"><a href="#cb23-2"></a>RMSE_pangkat <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>(<span class="fu">resid</span>(model_pangkat)<span class="sc">^</span><span class="dv">2</span>))</span>
-<span id="cb23-3"><a href="#cb23-3"></a>RMSE_log <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>(<span class="fu">resid</span>(model_log)<span class="sc">^</span><span class="dv">2</span>))</span>
-<span id="cb23-4"><a href="#cb23-4"></a>RMSE_weibull <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>(<span class="fu">resid</span>(model_weibull)<span class="sc">^</span><span class="dv">2</span>))</span>
-<span id="cb23-5"><a href="#cb23-5"></a></span>
-<span id="cb23-6"><a href="#cb23-6"></a><span class="fu">print</span>(RMSE_linear)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>RMSE_linear <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>(<span class="fu">resid</span>(model_linear)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb24-2"><a href="#cb24-2"></a>RMSE_pangkat <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>(<span class="fu">resid</span>(model_pangkat)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb24-3"><a href="#cb24-3"></a>RMSE_log <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>(<span class="fu">resid</span>(model_log)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb24-4"><a href="#cb24-4"></a>RMSE_weibull <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>(<span class="fu">resid</span>(model_weibull)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb24-5"><a href="#cb24-5"></a></span>
+<span id="cb24-6"><a href="#cb24-6"></a><span class="fu">print</span>(RMSE_linear)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4.682503</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="fu">print</span>(RMSE_pangkat)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="fu">print</span>(RMSE_pangkat)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2.260007</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">print</span>(RMSE_log)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="fu">print</span>(RMSE_log)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2.177911</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="fu">print</span>(RMSE_weibull)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="fu">print</span>(RMSE_weibull)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1.762084</code></pre>
 </div>
@@ -826,29 +840,29 @@ Gambar&nbsp;9: Galat-galat yang direpresentasikan sebagai panjang ruas-ruas gari
 <div class="cell">
 <details class="code-fold">
 <summary>Kode</summary>
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>rmse <span class="ot">&lt;-</span> <span class="fu">c</span>(RMSE_linear, RMSE_pangkat, RMSE_log, RMSE_weibull)</span>
-<span id="cb31-2"><a href="#cb31-2"></a>nama_model <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Linear"</span>, <span class="st">"Pangkat"</span>, <span class="st">"Logaritma"</span>, <span class="st">"Weibull"</span>)</span>
-<span id="cb31-3"><a href="#cb31-3"></a></span>
-<span id="cb31-4"><a href="#cb31-4"></a>data_rmse <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb31-5"><a href="#cb31-5"></a>  <span class="at">model =</span> nama_model,</span>
-<span id="cb31-6"><a href="#cb31-6"></a>  <span class="at">rmse =</span> rmse</span>
-<span id="cb31-7"><a href="#cb31-7"></a>)</span>
-<span id="cb31-8"><a href="#cb31-8"></a></span>
-<span id="cb31-9"><a href="#cb31-9"></a>data_rmse <span class="sc">|&gt;</span> </span>
-<span id="cb31-10"><a href="#cb31-10"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb31-11"><a href="#cb31-11"></a>    <span class="at">model =</span> <span class="fu">fct_reorder</span>(model, <span class="sc">-</span>rmse)</span>
-<span id="cb31-12"><a href="#cb31-12"></a>  ) <span class="sc">|&gt;</span> </span>
-<span id="cb31-13"><a href="#cb31-13"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> model, <span class="at">y =</span> rmse)) <span class="sc">+</span> </span>
-<span id="cb31-14"><a href="#cb31-14"></a>  <span class="fu">geom_col</span>(</span>
-<span id="cb31-15"><a href="#cb31-15"></a>    <span class="fu">aes</span>(<span class="at">fill =</span> rmse),</span>
-<span id="cb31-16"><a href="#cb31-16"></a>    <span class="at">show.legend =</span> <span class="cn">FALSE</span></span>
-<span id="cb31-17"><a href="#cb31-17"></a>  ) <span class="sc">+</span> </span>
-<span id="cb31-18"><a href="#cb31-18"></a>  <span class="fu">scale_fill_gradient</span>(<span class="at">low =</span> <span class="st">"#9BBEC8"</span>, <span class="at">high =</span> <span class="st">"#164863"</span>) <span class="sc">+</span> </span>
-<span id="cb31-19"><a href="#cb31-19"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
-<span id="cb31-20"><a href="#cb31-20"></a>  <span class="fu">labs</span>(</span>
-<span id="cb31-21"><a href="#cb31-21"></a>    <span class="at">x =</span> <span class="st">"Model"</span>,</span>
-<span id="cb31-22"><a href="#cb31-22"></a>    <span class="at">y =</span> <span class="st">"RMSE"</span></span>
-<span id="cb31-23"><a href="#cb31-23"></a>  )</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>rmse <span class="ot">&lt;-</span> <span class="fu">c</span>(RMSE_linear, RMSE_pangkat, RMSE_log, RMSE_weibull)</span>
+<span id="cb32-2"><a href="#cb32-2"></a>nama_model <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Linear"</span>, <span class="st">"Pangkat"</span>, <span class="st">"Logaritma"</span>, <span class="st">"Weibull"</span>)</span>
+<span id="cb32-3"><a href="#cb32-3"></a></span>
+<span id="cb32-4"><a href="#cb32-4"></a>data_rmse <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb32-5"><a href="#cb32-5"></a>  <span class="at">model =</span> nama_model,</span>
+<span id="cb32-6"><a href="#cb32-6"></a>  <span class="at">rmse =</span> rmse</span>
+<span id="cb32-7"><a href="#cb32-7"></a>)</span>
+<span id="cb32-8"><a href="#cb32-8"></a></span>
+<span id="cb32-9"><a href="#cb32-9"></a>data_rmse <span class="sc">|&gt;</span> </span>
+<span id="cb32-10"><a href="#cb32-10"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb32-11"><a href="#cb32-11"></a>    <span class="at">model =</span> <span class="fu">fct_reorder</span>(model, <span class="sc">-</span>rmse)</span>
+<span id="cb32-12"><a href="#cb32-12"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb32-13"><a href="#cb32-13"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> model, <span class="at">y =</span> rmse)) <span class="sc">+</span> </span>
+<span id="cb32-14"><a href="#cb32-14"></a>  <span class="fu">geom_col</span>(</span>
+<span id="cb32-15"><a href="#cb32-15"></a>    <span class="fu">aes</span>(<span class="at">fill =</span> rmse),</span>
+<span id="cb32-16"><a href="#cb32-16"></a>    <span class="at">show.legend =</span> <span class="cn">FALSE</span></span>
+<span id="cb32-17"><a href="#cb32-17"></a>  ) <span class="sc">+</span> </span>
+<span id="cb32-18"><a href="#cb32-18"></a>  <span class="fu">scale_fill_gradient</span>(<span class="at">low =</span> <span class="st">"#9BBEC8"</span>, <span class="at">high =</span> <span class="st">"#164863"</span>) <span class="sc">+</span> </span>
+<span id="cb32-19"><a href="#cb32-19"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb32-20"><a href="#cb32-20"></a>  <span class="fu">labs</span>(</span>
+<span id="cb32-21"><a href="#cb32-21"></a>    <span class="at">x =</span> <span class="st">"Model"</span>,</span>
+<span id="cb32-22"><a href="#cb32-22"></a>    <span class="at">y =</span> <span class="st">"RMSE"</span></span>
+<span id="cb32-23"><a href="#cb32-23"></a>  )</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div id="fig-rmse" class="quarto-figure quarto-figure-center quarto-float anchored">
@@ -864,6 +878,12 @@ Gambar&nbsp;10: Nilai RMSE keempat model.
 </div>
 </div>
 <p>Model yang baik memiliki galat yang lebih kecil. Dengan demikian, semakin kecil RMSE sebuah model, semakin baik model tersebut. Berdasarkan <a href="#fig-rmse" class="quarto-xref">Gambar&nbsp;10</a>, kita dapat melihat bahwa model Weibull merupakan model yang paling baik dibandingkan ketiga model lainnya.</p>
+</section>
+<section id="catatan-akhir" class="level2">
+<h2 class="anchored" data-anchor-id="catatan-akhir">Catatan Akhir</h2>
+<p>Banyak sekali set data riil yang dapat dimanfaatkan untuk keperluan pembelajaran Matematika. Artikel ini memperlihatkan bahwa set data tentang keanekaragaman tanaman berpohon di Kepulauan Raja Ampat merupakan salah satunya. Set data seperti ini tidak hanya berpotensi untuk membuat matematika semakin membumi, tetapi juga dapat menyadarkan peserta didik terhadap kekayaan alam Kepulauan Raja Ampat.</p>
+<p>Secara lebih khusus, artikel ini mendemonstrasikan strategi untuk mendapatkan dan mengolah data tersebut hingga siap pakai. Strategi tersebut diceritakan mulai dari bagaimana proses penemuan data tersebut. Proses tersebut diceritakan pada <a href="#sec-menemukan-data" class="quarto-xref">Bagian&nbsp;1</a>. Setelah itu, data yang diperoleh juga perlu dikenali struktur dan isinya agar memudahkan kita dalam mengolahnya. Hal ini dipaparkan pada <a href="#sec-jelajah-data" class="quarto-xref">Bagian&nbsp;2</a>.</p>
+<p>Pemodelan data juga telah didemonstrasikan pada <a href="#sec-model-linear" class="quarto-xref">Bagian&nbsp;3</a> dan <a href="#sec-model-nonlinear" class="quarto-xref">Bagian&nbsp;4</a>. Meskipun pemodelan dalam bagian itu dipaparkan secara ringkas, pemaparan tersebut diharapkan dapat memberikan gambaran umum tentang bagaimana memodelkan data, khususnya ketika kita menggunakan R. Terakhir, evaluasi model-model yang diperoleh juga telah didemonstrasikan secara sederhana di <a href="#sec-evaluasi-model" class="quarto-xref">Bagian&nbsp;5</a>.</p>
 
 
 </section>
@@ -1219,25 +1239,66 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         }
       };
     }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
+      const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+      for (let i=0; i<annoteTargets.length; i++) {
+        const annoteTarget = annoteTargets[i];
+        const targetCell = annoteTarget.getAttribute("data-target-cell");
+        const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+        const contentFn = () => {
+          const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          if (content) {
+            const tipContent = content.cloneNode(true);
+            tipContent.classList.add("code-annotation-tip-content");
+            return tipContent.outerHTML;
           }
-        });
+        }
+        const config = {
+          allowHTML: true,
+          content: contentFn,
+          onShow: (instance) => {
+            selectCodeLines(instance.reference);
+            instance.reference.classList.add('code-annotation-active');
+            window.tippy.hideAll();
+          },
+          onHide: (instance) => {
+            unselectCodeLines();
+            instance.reference.classList.remove('code-annotation-active');
+          },
+          maxWidth: 300,
+          delay: [50, 0],
+          duration: [200, 0],
+          offset: [5, 10],
+          arrow: true,
+          trigger: 'click',
+          appendTo: function(el) {
+            return el.parentElement.parentElement.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'quarto',
+          placement: 'right',
+          positionFixed: true,
+          popperOptions: {
+            modifiers: [
+            {
+              name: 'flip',
+              options: {
+                flipVariations: false, // true by default
+                allowedAutoPlacements: ['right'],
+                fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+              },
+            },
+            {
+              name: 'preventOverflow',
+              options: {
+                mainAxis: false,
+                altAxis: false
+              }
+            }
+            ]        
+          }      
+        };
+        window.tippy(annoteTarget, config); 
       }
   const findCites = (el) => {
     const parentEl = el.parentElement;
