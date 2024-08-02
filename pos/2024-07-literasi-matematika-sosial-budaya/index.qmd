@@ -11,7 +11,7 @@ author:
 date: 2024-07-30
 categories:
   - pendidikan
-  - PISA
+  - statistik dunia
 image: "literasi-matematika.png"
 image-alt: |
   Model linear untuk hubungan antara status sosial ekonomi dan literasi matematika antarnegara yang mengikuti PISA 2022. Modelnya digambarkan sebagai dua garis lurus yang kurang lebih sejajar.

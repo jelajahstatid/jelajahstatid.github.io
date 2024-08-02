@@ -1,0 +1,59 @@
+---
+title: "Laman Tidak Ditemukan"
+---
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-asp: 0.3333
+#| fig-format: svg
+#| fig-alt: "Seratus selang kepercayaan yang tidak memuat nilai tertentu."
+
+library(ggplot2)
+
+x <- 1:100
+y <- runif(100, 4, 6)
+df <- data.frame(
+  x = x,
+  y = y,
+  y1 = y - 1,
+  y2 = y + 1,
+  h = y - 2
+)
+
+df |> ggplot() + 
+  geom_segment(
+    aes(x = x, y = y1, yend = y2, col = h),
+    show.legend = FALSE
+  ) + 
+  geom_point(
+    aes(x = x, y = y),
+    col = "#164863"
+  ) + 
+  geom_hline(
+    yintercept = 2.5,
+    linewidth = 1,
+    color = "#164863"
+  ) + 
+  geom_text(
+    x = 0,
+    y = 2.8,
+    label = "Laman yang kamu cari",
+    color = "#343a40",
+    hjust = 0
+  ) + 
+  scale_color_gradient(
+    low = "#164863", high = "#9BBEC8"
+  ) + 
+  theme_minimal() + 
+  theme(
+    axis.title = element_blank(),
+    axis.text = element_blank()
+  )
+  
+```
+
+Oops! Laman yang kamu cari tidak masuk ke dalam selang kepercayaan kami. Mohon maaf, mungkin tingkat kepercayaan kami yang kurang tinggi.
+
+Cobalah untuk mencari lagi atau kunjungi [beranda kami](index.qmd).

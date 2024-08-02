@@ -1,0 +1,210 @@
+---
+title: "Membuat Diagram Lebih Hidup dengan Animasi"
+draft: true
+description: |
+  Bagaimana menganimasikan diagram statistik? Artikel ini mendemonstrasikan bagaimana menggunakan paket {gganimate} untuk membuat animasi dalam penyajian data yang efisien dan menarik.
+author:
+  - name: Yosep Dwi Kristanto
+    url: https://people.usd.ac.id/~ydkristanto/
+    affiliation: Pendidikan Matematika, Universitas Sanata Dharma, Yogyakarta
+    affiliation-url: https://www.usd.ac.id/s1pmat
+    orcid: 0000-0003-1446-0422
+date: 2024-08-07
+categories:
+  - tutorial
+  - visualisasi data
+image: "animasi.gif"
+image-alt: |
+  Animasi yang menunjukkan hubungan antara PDB per kapita dan angka harapan hidup setiap tahunnya.
+keywords: 
+  - animasi
+  - Gapminder
+  - gganimate
+  - harapan hidup
+  - produk domestik bruto
+  - PDB
+copyright: "© 2024 Yosep Dwi Kristanto"
+license: "CC BY"
+google-scholar: true
+editor_options: 
+  chunk_output_type: console
+code-annotations: select
+---
+
+```{r}
+#| echo: false
+#| message: false
+
+library(tidyverse)
+
+```
+
+Umumnya, diagram itu untuk menyampaikan pesan. Akibatnya, pembuatan diagram perlu disesuaikan dengan pesan yang perlu disampaikan. *Nah*, berdasarkan hal ini, mari kita tinjau kembali sebuah diagram pada [pos sebelumnya](/pos/2024-08-statistik-jendela-dunia/index.qmd). @fig-pdb-vs-ahh menyajikan diagram yang dimaksud.
+
+![Hubungan antara PDB per kapita dan angka harapan hidup setiap negara](aset/pdb-vs-ahh.png){#fig-pdb-vs-ahh fig-align="center"}
+
+@fig-pdb-vs-ahh sudah baik dalam menunjukkan seperti apa relasi antara PDB per kapita dan angka harapan hidup setiap negara pada tahun 2007. Akan tetapi, bagaimana jika kita ingin menunjukkan relasi tersebut pada tahun-tahun lainnya?
+
+Mungkin kita langsung berpikir untuk memvisualisasikan relasi tersebut untuk setiap tahunnya. Dengan demikian, penyajian datanya seperti yang ditunjukkan pada @fig-semua-tahun.
+
+```{r}
+#| echo: false
+#| label: fig-semua-tahun
+#| fig-cap: Relasi antara PDB per kapita dan angka harapan hidup setiap negara mulai tahun 1952 sampai 2007
+#| fig-asp: 0.5625
+
+# Impor data `gapminder`
+load(url("https://github.com/jennybc/gapminder/raw/main/data/gapminder.rdata"))
+
+# Menyiapkan data
+terjemahan_benua <- c(
+  "Asia" = "Asia",
+  "Europe" = "Eropa",
+  "Africa" = "Afrika",
+  "Americas" = "Amerika",
+  "Oceania" = "Oseania"
+)
+gapminder <- gapminder |> 
+  mutate(
+    continent = recode(continent, !!!terjemahan_benua)
+  )
+
+# Memplot data
+gapminder |> 
+  ggplot(
+    aes(x = gdpPercap, y = lifeExp)
+  ) + 
+  geom_point(
+    aes(color = continent, size = pop),
+    alpha = .6
+  ) + 
+  scale_size(
+    range = c(1, 5),
+    guide = "none"
+  ) + 
+  scale_color_viridis_d(name = "Benua") + 
+  facet_wrap(
+    vars(year),
+    ncol = 4
+  ) + 
+  theme_minimal() + 
+  theme(legend.position = "bottom") + 
+  labs(
+    x = "PDB per kapita",
+    y = "Angka harapan hidup"
+  )
+
+```
+
+@fig-semua-tahun tersebut tampak sudah sesuai dengan pesan yang ingin kita sampaikan. Akan tetapi, gambar tersebut kurang efisien karena terlalu banyak memuat informasi. Apakah ada metode yang lebih efisien?
+
+Penggunaan animasi adalah salah satu solusinya. Pembuatan animasi tersebut dapat dilakukan di [R](https://www.R-project.org/){.external target="_blank"} dengan menggunakan paket [{gganimate}](https://CRAN.R-project.org/package=gganimate){.external target="_blank"}. Tak perlu berlama-lama, mari kita panggil paket tersebut bersamaan dengan paket [{tidyverse}](https://www.tidyverse.org/){.external target="_blank"}. Paket {tidyverse} tersebut berguna untuk mengimpor, mengolah, dan memvisualisasikan data. Sebagai tambahan, sebaiknya dalam R kita juga sudah terinstal paket [{gifski}](%7Bhttps://CRAN.R-project.org/package=gifski%7D){.external target="_blank"}. Paket ini digunakan untuk merender animasi kita nanti menjadi fail gif.
+
+```{r}
+#| echo: true
+#| message: false
+#| code-fold: false
+
+library(tidyverse)
+library(gganimate)
+
+```
+
+## Mengkreasi Animasi {#sec-kreasi-animasi}
+
+Kita impor dan olah data Gapminder seperti pada [pos sebelumnya](/pos/2024-08-statistik-jendela-dunia/index.qmd). Baris kode yang digunakan adalah sebagai berikut.
+
+```{r}
+#| echo: true
+#| code-fold: false
+
+# Impor data `gapminder`
+load(url("https://github.com/jennybc/gapminder/raw/main/data/gapminder.rdata"))
+
+# Menerjemahkan nama benua
+terjemahan_benua <- c(
+  "Asia" = "Asia",
+  "Europe" = "Eropa",
+  "Africa" = "Afrika",
+  "Americas" = "Amerika",
+  "Oceania" = "Oseania"
+)
+gapminder <- gapminder |> 
+  mutate(
+    continent = recode(continent, !!!terjemahan_benua)
+  )
+
+head(gapminder)
+
+```
+
+Data `gapminder` sudah siap. Sekarang waktunya untuk membuat animasi. Berikut ini adalah baris kodenya.
+
+```{r}
+#| echo: true
+#| code-fold: false
+#| label: fig-animasi
+#| fig-cap: "Relasi antara PDB per kapita dan angka harapan hidup setiap tahunnya, disajikan dengan animasi"
+#| fig-asp: 0.5625
+
+anim <- gapminder |> 
+  ggplot(
+    aes( x = gdpPercap, y = lifeExp)
+  ) + 
+  geom_point(
+    aes(color = continent, size = pop),
+    alpha = .6
+  ) + 
+  scale_size(
+    range = c(1, 20),
+    guide = "none"
+  ) + 
+  scale_color_viridis_d(name = "Benua") + 
+  theme_minimal() + 
+  theme(
+    legend.position = "bottom",
+    plot.title = element_text(face = "bold")
+  ) + 
+  # Penggunaan {gganimate} mulai dari sini
+  labs(
+    title = "Tahun: {frame_time}",
+    x = "PDB per kapita",
+    y = "Angka harapan hidup"
+  ) + 
+  transition_time(year) + 
+  ease_aes("linear")
+
+anim
+
+```
+
+Dari baris kode di atas, kita menggunakan dua fungsi dari {gganimate}. Kedua fungsi tersebut adalah `transition_time()` dan `ease_aes()`. Fungsi `transition_time()` berfungsi untuk membagi data kita berdasarkan kolom/variabel waktu tertentu. Karena data `gapminder` memiliki variabel waktu `year`, kita masukkan variabel ini ke dalam fungsi tersebut.
+
+Fungsi `transition_time()` menghasilkan variabel `frame_time`. Variabel ini kita masukkan ke dalam judul diagram agar judul tersebut berubah-ubah di sepanjang animasinya, perhatikan bagian kiri atas @fig-animasi. Penulisan variabel ini ke dalam judul perlu kita masukkan ke dalam kurung kurawal `{ }` agar terbaca sebagai variabel.
+
+Fungsi `ease_aes()` mengatur bagaimana perubahan variabel `year`. Pilihan dalam fungsi ini antara lain `quadratic`, `cubic`, dan `quartic`. Bawaannya, argumen awal fungsi ini adalah `linear`.
+
+## Menyimpan Animasi {#sec-simpan-animasi}
+
+Setelah animasi sudah jadi, saatnya kita simpan animasi tersebut. Sebelum kita menyimpannya, kita perlu merender animasi tersebut. Kita dapat merendernya dengan menggunakan `animate()` dan mengisikan argumen `renderer = gifski_renderer()` apabila ingin merendernya menjadi fail gif. Untuk menyimpan hasil animasinya, kita menggunakan fungsi `anim_save()`.
+
+``` r
+# Merender animasi
+animate(
+  plot = anim,
+  renderer = gifski_renderer()
+)
+
+# Menyimpan animasi
+anim_save(
+  file = "anim_pdb_harapan_hidup.gif"
+)
+```
+
+Ketika menggunakan fungsi `animate()` dalam merender animasi, kita dapat mengatur beberapa argumen. Misalnya, `nframes`, `fps`, dan `duration`. Untuk lebih jelasnya, silakan kunjungi [laman referensinya](https://gganimate.com/reference/animate.html){.external target="_blank"}.
+
+## Catatan Akhir
+
+Kita telah dapat menyajikan data yang kompleks secara sederhana dengan animasi. Dalam R, kita dapat menggunakan paket {gganimate}. Dengan paket tersebut, kita dapat membuat objek animasi. Hal ini telah didemonstrasikan pada @sec-kreasi-animasi. Selanjutnya, kita dapat merender objek animasi tersebut dan menyimpannya ke dalam sebuah fail. Hal ini telah dipaparkan pada @sec-simpan-animasi.
+
+Animasi tetap memiliki kekurangan. Kita hanya bisa melihat animasi tersebut, tanpa melakukan interaksi. Apakah kita dapat membuat diagram yang tak hanya efisien, tetapi juga interaktif? Iya, kita dapat membuat diagram yang interaktif dengan R. Untuk mengetahui caranya, silakan pantau pos selanjutnya.

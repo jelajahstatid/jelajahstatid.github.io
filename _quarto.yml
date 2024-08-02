@@ -30,8 +30,8 @@ format:
     toc: true
     theme: cosmo
     code-fold: true
-    css: styles.css
     code-line-numbers: true
+    css: styles.css
 
 editor: visual
 

@@ -1,0 +1,33 @@
+---
+title: "Membuat Statistik Menjadi Dinamis dan Interaktif"
+draft: true
+description: |
+  Statistik dapat digunakan untuk menyingkap fakta-fakta tentang dunia. Secara khusus, statistik dapat dimanfaatkan untuk melihat angka harapan hidup dan PDB per kapita berbagai negara.
+author:
+  - name: Yosep Dwi Kristanto
+    url: https://people.usd.ac.id/~ydkristanto/
+    affiliation: Pendidikan Matematika, Universitas Sanata Dharma, Yogyakarta
+    affiliation-url: https://www.usd.ac.id/s1pmat
+    orcid: 0000-0003-1446-0422
+date: 2024-08-10
+categories:
+  - statistik dunia
+  - tutorial
+  - visualisasi data
+image: "statistik-interaktif.png"
+image-alt: |
+  Hubungan antara PDB per kapita dan angka harapan hidup pada tahun 1992, 1997, 2002, dan 2007
+keywords: 
+  - Gapminder
+  - harapan hidup
+  - produk domestik bruto
+  - PDB
+  - diagram pencar
+  - diagram garis
+copyright: "© 2024 Yosep Dwi Kristanto"
+license: "CC BY"
+google-scholar: true
+editor_options: 
+  chunk_output_type: console
+code-annotations: select
+---
