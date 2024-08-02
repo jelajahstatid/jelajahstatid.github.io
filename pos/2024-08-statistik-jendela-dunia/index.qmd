@@ -2,30 +2,28 @@
 title: "Statistik Adalah Jendela Dunia"
 draft: true
 description: |
-  Kepulauan Raja Ampat kaya akan keanekaragaman hayatinya. Bagaimana kita dapat mengetahui keanekaragaman tersebut? Apakah kita dapat memodelkannya?
+  Statistik dapat digunakan untuk menyingkap fakta-fakta tentang dunia. Secara khusus, statistik dapat dimanfaatkan untuk melihat angka harapan hidup dan PDB per kapita berbagai negara.
 author:
   - name: Yosep Dwi Kristanto
     url: https://people.usd.ac.id/~ydkristanto/
     affiliation: Pendidikan Matematika, Universitas Sanata Dharma, Yogyakarta
     affiliation-url: https://www.usd.ac.id/s1pmat
     orcid: 0000-0003-1446-0422
-date: 2024-08-03
+date: 2024-08-05
 categories:
-  - Biostatistika
-  - matematika membumi
-  - pendidikan
+  - statistik dunia
   - tutorial
-image: "keanekaragaman-hayati.png"
+  - visualisasi data
+image: "jendela-dunia.png"
 image-alt: |
-  Model linear dan nonlinear terhadap hubungan antara banyaknya spesies tanaman berpohon dan luas pulau-pulau kecil di Kepulauan Raja Ampat.
+  Hubungan antara PDB per kapita dan angka harapan hidup pada tahun 1992, 1997, 2002, dan 2007
 keywords: 
-  - Biostatistika
-  - keanekaragaman hayati
-  - Raja Ampat
-  - pemodelan
-  - model linear
-  - model nonlinear
-  - Tujuan Pembangunan Berkelanjutan
+  - Gapminder
+  - harapan hidup
+  - produk domestik bruto
+  - PDB
+  - diagram pencar
+  - diagram garis
 copyright: "© 2024 Yosep Dwi Kristanto"
 license: "CC BY"
 google-scholar: true
@@ -33,3 +31,361 @@ editor_options:
   chunk_output_type: console
 code-annotations: select
 ---
+
+Statistik adalah jendela dunia. Biasanya buku yang demikian, sekarang statistiklah yang mendapat giliran. [Pos sebelumnya](/pos/2024-07-literasi-matematika-sosial-budaya) menunjukkan peran statistik untuk memahami keadaan sosial ekonomi dan pendidikan berbagai negara. Sekarang, kita akan melihat faedah statistik dalam memahami karakteristik-karakteristik lainnya.
+
+Untuk memahami dunia, kita akan menggunakan data dari Gapminder. Data tersebut dapat diunduh dari situs [Gapminder](https://www.gapminder.org/data/){.external target="_blank"}. Di situs itu, kita dapat memilih berbagai macam indikator, seperti produk domestik bruto per kapita, harapan hidup, dan populasi.
+
+Alternatifnya, kita juga dapat mengunduhnya dari [repositori Github](https://github.com/jennybc/gapminder){.external target="_blank"}. Data yang disiapkan oleh [Jenny Bryan](https://github.com/jennybc){.external target="_blank"} dan para koleganya tersebut relatif sederhana. Data ini mudah untuk diolah secara lebih lanjut. Data inilah yang akan kita gunakan pada bagian berikutnya. Untuk mengawali proses pengolahan data, kita panggil paket [{tidyverse}](https://www.tidyverse.org/){.external target="_blank"} dan [{ggrepel}](https://CRAN.R-project.org/package=ggrepel){.external target="_blank"}.
+
+```{r}
+#| echo: true
+#| message: false
+#| code-fold: false
+
+library(tidyverse)
+library(ggrepel)
+
+```
+
+## Data dan Konteksnya {#sec-data-konteks}
+
+Data yang akan kita olah dapat diunduh di [tautan ini](https://github.com/jennybc/gapminder/raw/main/data/gapminder.rdata){.external target="_blank"}. Data tersebut merupakan fail RData. Untuk mengimpor fail RData ke dalam R, kita menggunakan fungsi `load()` dan `url()`.
+
+```{r}
+#| echo: true
+#| code-fold: false
+
+load(url("https://github.com/jennybc/gapminder/raw/main/data/gapminder.rdata"))
+
+```
+
+Setelah kita menjalankan baris kode di atas, kita mendapatkan data dengan nama `gapminder`. Untuk melihat strukturnya, kita dapat menggunakan fungsi `glimpse()`.
+
+```{r}
+#| echo: true
+#| code-fold: false
+
+glimpse(gapminder)
+
+```
+
+Ternyata data tersebut memiliki 1.704 baris dan 6 kolom. Keterangan lebih lanjut tentang keenam kolom tersebut disajikan pada @tbl-var-gapminder.
+
+| Variabel    | Keterangan                                                       |
+|-------------|------------------------------------------------------------------|
+| `country`   | Negara                                                           |
+| `continent` | Benua                                                            |
+| `year`      | Tahun                                                            |
+| `lifeExp`   | Angka harapan hidup                                              |
+| `pop`       | Populasi                                                         |
+| `gdpPercap` | Produk Domestik Bruto (PDB) per kapita dalam dolar internasional |
+
+: Keterangan variabel-variabel dalam `gapminder`. {#tbl-var-gapminder .striped .hover}
+
+## Visualisasi Data {#sec-vis-data}
+
+Penjelajahan pun kita mulai. Dalam data `gapminder` tersebut, tahunnya merentang kapan saja? Untuk menjawabnya, kita dapat menggunakan `unique()`.
+
+```{r}
+#| echo: true
+#| code-fold: false
+
+unique(gapminder$year)
+
+```
+
+Ternyata tahunnya merentang mulai 1952 sampai 2007 dengan interval lima tahun. Selanjutnya, bagaimana tren angka harapan hidup setiap negara pada periode tersebut? Kita dapat memvisualisasikannya dengan diagram pencar. Kita menggunakan benua (`continent`) sebagai pembeda warna titik-titiknya dan populasi (`pop`) sebagai penanda ukuran titik-titiknya.
+
+```{r}
+#| echo: true
+#| code-fold: false
+#| label: fig-harapan-hidup
+#| fig-cap: Tren angka harapan hidup setiap negara pada 1952 - 2007.
+#| fig-asp: 0.5625
+
+terjemahan_benua <- c(
+  "Asia" = "Asia",
+  "Europe" = "Eropa",
+  "Africa" = "Afrika",
+  "Americas" = "Amerika",
+  "Oceania" = "Oseania"
+)
+
+plot_harapan_hidup <- gapminder |> 
+  mutate(
+    continent = recode(continent, !!!terjemahan_benua)
+  ) |> 
+  ggplot() + 
+  geom_point(
+    aes(x = year, y = lifeExp, color = continent, size = pop),
+    alpha = .6) + 
+  scale_size(range = c(1, 20), guide = "none") + 
+  scale_color_viridis_d(name = "Benua") + 
+  theme_minimal() + 
+  theme(legend.position = "bottom") + 
+  labs(
+    x = "Tahun",
+    y = "Angka harapan hidup"
+  )
+
+print(plot_harapan_hidup)
+
+```
+
+Berdasarkan @fig-harapan-hidup, kita melihat ada empat titik (negara) yang posisinya jauh di bawah dibandingkan kebanyakan negara lain. Itu terjadi pada tahun 1977, 1992, 1997, dan 2007. Kita selidiki apa saja negara tersebut.
+
+```{r}
+#| echo: true
+#| code-fold: false
+
+lifeExp_bawah <- gapminder |> 
+  filter(
+    year %in% c(1977, 1992, 1997, 2007)
+  ) |> 
+  group_by(year) |> 
+  slice_min(lifeExp, n = 1) |> 
+  ungroup()
+
+print(lifeExp_bawah)
+
+```
+
+Kita sudah mengetahui apa saja negara tersebut. Sekarang kita masukkan informasi ini ke dalam diagram pencar pada @fig-harapan-hidup. Hasilnya ditunjukkan pada @fig-harapan-hidup-info-bawah.
+
+```{r}
+#| echo: true
+#| code-fold: false
+#| label: fig-harapan-hidup-info-bawah
+#| fig-cap: Tren angka harapan hidup setiap negara pada 1952 - 2007, dengan penambahan informasi negara-negara yang angka harapan hidupnya relatif rendah.
+#| fig-asp: 0.5625
+
+plot_harapan_hidup + 
+  geom_text_repel(
+    data = lifeExp_bawah,
+    aes(x = year, y = lifeExp, label = country),
+    size = 3.5,
+    nudge_y = -1,
+    show.legend = FALSE
+  )
+
+```
+
+Berdasarkan @fig-harapan-hidup dan @fig-harapan-hidup-info-bawah, kita dapat melihat bahwa angka harapan hidupnya secara rata-rata naik dari tahun ke tahun. Untuk mengkonfirmasinya, kita dapat menambahkan visualisasi nilai tengah (median) angka harapan hidup ini. Perhatikan @fig-harapan-hidup-median!
+
+```{r}
+#| echo: true
+#| code-fold: false
+#| label: fig-harapan-hidup-median
+#| fig-cap: Tren angka harapan hidup setiap negara pada 1952 - 2007.
+#| fig-asp: 0.5625
+
+median_lifeExp <- gapminder |> 
+  group_by(year) |> 
+  summarise(
+    median = median(lifeExp, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+plot_harapan_hidup + 
+  geom_line(
+    data = median_lifeExp,
+    aes(x = year, y = median),
+    linewidth = 1,
+    color = "#164863"
+  ) + 
+  geom_text_repel(
+    data = lifeExp_bawah,
+    aes(x = year, y = lifeExp, label = country),
+    size = 3.5,
+    nudge_y = -1,
+    show.legend = FALSE
+  )
+
+```
+
+Bagaimana dengan PDB per kapita setiap negaranya? Apakah trennya juga naik dari tahun ke tahun? Mari kita visualisasikan PDB tersebut. Perhatikan @fig-pdb!
+
+```{r}
+#| echo: true
+#| code-fold: false
+#| label: fig-pdb
+#| fig-cap: Tren PDB per kapita setiap negara pada 1952 - 2007.
+#| fig-asp: 0.5625
+
+median_gdpPercap <- gapminder |> 
+  group_by(year) |> 
+  summarise(
+    median = median(gdpPercap, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+gdpPercap_atas <- gapminder |> 
+  filter(
+    year >= 1952,
+    year <= 1977
+  ) |> 
+  group_by(year) |> 
+  slice_max(gdpPercap, n = 1) |> 
+  ungroup()
+
+plot_pdb <- gapminder |> 
+  mutate(
+    continent = recode(continent, !!!terjemahan_benua)
+  ) |> 
+  ggplot() + 
+  geom_point(
+    aes(x = year, y = gdpPercap, color = continent, size = pop),
+    alpha = .6
+  ) + 
+  geom_line(
+    data = median_gdpPercap,
+    aes(x = year, y = median),
+    linewidth = 1,
+    color = "#164863"
+  ) + 
+  geom_text_repel(
+    data = gdpPercap_atas,
+    aes(x = year, y = gdpPercap, label = country, color = continent),
+    size = 3.5,
+    nudge_y = -1,
+    show.legend = FALSE
+  ) + 
+  scale_size(
+    range = c(1, 20),
+    guide = "none"
+  ) + 
+  scale_color_viridis_d(name = "Benua") + 
+  theme_minimal() + 
+  theme(legend.position = "bottom") + 
+  labs(
+    x = "Tahun",
+    y = "PDB per kapita"
+  )
+
+print(plot_pdb)
+
+```
+
+Tren nilai tengah PDB per kapita pada @fig-pdb tidak begitu tampak jelas. Kita plot ulang tren tersebut.
+
+```{r}
+#| echo: true
+#| code-fold: false
+#| label: fig-median-pdb
+#| fig-cap: Tren nilai tengah PDB per kapita setiap negara pada 1952 - 2007.
+#| fig-asp: 0.5625
+
+median_gdpPercap |> 
+  ggplot(aes(x = year, y = median)) + 
+  geom_line(
+    linewidth = 1,
+    color = "#164863"
+  ) + 
+  theme_minimal() + 
+  labs(
+    x = "Tahun",
+    y = "Nilai tengah PDB per kapita"
+  )
+
+```
+
+@fig-median-pdb menunjukkan secara lebih jelas bahwa nilai tengah PDB per kapita mengalami kenaikan dari tahun ke tahun.
+
+*Nah*, sekarang kita lanjutkan penjelajahan kita. Apakah terdapat hubungan antara PDB per kapita dengan angka harapan hidup? Kita selidiki pertanyaan ini dengan menggunakan tahun 2007.
+
+```{r}
+#| echo: true
+#| code-fold: false
+#| label: fig-hubungan-pdb-ahh
+#| fig-cap: Hubungan antara PDB dan angka harapan hidup pada tahun 2007.
+#| fig-asp: 0.5625
+
+gapminder |> 
+  mutate(
+    continent = recode(continent, !!!terjemahan_benua)
+  ) |> 
+  filter(year == 2007) |> 
+  ggplot(
+    aes(x = gdpPercap, y = lifeExp)
+  ) + 
+  geom_point(
+    aes(color = continent, size = pop),
+    alpha = .6
+  ) + 
+  geom_smooth(
+    method = "loess",
+    formula = y ~ x,
+    linewidth = 1,
+    alpha = .1,
+    color = "#427D9D"
+  ) + 
+  scale_size(
+    range = c(1, 20),
+    guide = "none"
+  ) + 
+  scale_color_viridis_d(name = "Benua") + 
+  theme_minimal() + 
+  theme(legend.position = "bottom") + 
+  labs(
+    x = "PDB per kapita",
+    y = "Angka harapan hidup"
+  )
+
+```
+
+Berdasarkan @fig-hubungan-pdb-ahh, kita dapat melihat bahwa terdapat hubungan antara PDB per kapita dan angka harapan hidup. Semakin tinggi PDB per kapita sebuah negara, semakin tinggi juga angka harapan hidupnya. Secara spesifik, ketika PDB per kapita naik dari 0 sampai 7.500 dolar, laju kenaikan angka harapan hidupnya paling tinggi.
+
+Apakah hubungan seperti itu juga terjadi pada tahun-tahun lainnya? Kita selidiki dengan memvisualisasikan data yang serupa, tapi untuk tahun 1987, 1992, 1997, dan 2002. Perhatikan @fig-hubungan-pdb-ahh-tahun-lain!
+
+```{r}
+#| echo: true
+#| code-fold: false
+#| label: fig-hubungan-pdb-ahh-tahun-lain
+#| fig-cap: Hubungan antara PDB dan angka harapan hidup pada tahun 1987, 1992, 1997, dan 2002.
+#| fig-asp: 0.5625
+
+gapminder |> 
+  filter(year %in% c(1987, 1992, 1997, 2002)) |> 
+  mutate(
+    continent = recode(continent, !!!terjemahan_benua)
+  ) |> 
+  ggplot(
+    aes(x = gdpPercap, y = lifeExp)
+  ) + 
+  geom_point(
+    aes(color = continent, size = pop),
+    alpha = .6
+  ) + 
+  geom_smooth(
+    method = "loess",
+    formula = y ~ x,
+    linewidth = 1,
+    alpha = .1,
+    color = "#427D9D"
+  ) + 
+  scale_size(
+    range = c(1, 10),
+    guide = "none"
+  ) + 
+  scale_color_viridis_d(name = "Benua") + 
+  facet_wrap(
+    vars(year),
+    ncol = 2
+  ) + 
+  theme_minimal() + 
+  theme(legend.position = "bottom") + 
+  labs(
+    x = "PDB per kapita",
+    y = "Angka harapan hidup"
+  )
+
+```
+
+Berdasarkan @fig-hubungan-pdb-ahh-tahun-lain, kita melihat hubungan yang serupa untuk tahun 1987, 1992, 1997, dan 2002. Semakin tinggi PBD per kapita sebuah negara, semakin tinggi juga angka harapan hidupnya.
+
+## Catatan Akhir
+
+Kita telah melihat situasi dunia melalui jendela yang namanya statistik. Hal ini kita lakukan dengan menjelajah dan memvisualisasikan data Gapminder. Pada @sec-vis-data, kita telah melihat bagaimana tren angka harapan hidup dan PDB per kapita setiap tahunnya. Selain itu, kita juga telah melihat hubungan antara PDB per kapita dan angka harapan hidup untuk tahun 1987, 1992, 1997, 2002, dan 2007.
+
+Apa selanjutnya? Kita mungkin menyadari adanya keterbatasan visualisasi data pada @fig-hubungan-pdb-ahh dan @fig-hubungan-pdb-ahh-tahun-lain. Pada kedua diagram tersebut, kita belum bisa menyajikan data untuk semua tahun yang tersedia. Bagaimana cara mengatasi keterbatasan ini? Salah satunya, kita dapat menganimasikan hubungan antara PDB per kapita dan angka harapan hidup mulai tahun 1952 sampai 2007. Alternatifnya, kita juga dapat membuat sebuah aplikasi interaktif yang memungkinkan pengguna untuk memilih tahun-tahunnya. Kedua cara tersebut akan didemonstrasikan pada pos-pos berikutnya. Untuk itu, silakan tunggu terus pembaharuan blog ini!
