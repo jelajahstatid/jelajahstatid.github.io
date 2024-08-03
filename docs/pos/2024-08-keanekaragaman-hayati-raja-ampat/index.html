@@ -321,13 +321,13 @@ Catatan
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Selain hubungan antara luas pulau dan banyaknya spesies, data dalam artikel tersebut juga memungkin untuk dilakukan analisis sampai level transek dan substransek. Analisis tentang transek dan subtransek tersebut pada umumnya digunakan untuk mengidentifikasi kepadatan spesies dalam pulau-pulau yang ada. Analisis pada level transek dan subtransek tersebut tidak dilakukan dalam artikel ini. Jika pembaca ingin mengetahui analisis semacam itu, silakan kunjungi <a href="https://people.usd.ac.id/~ydkristanto/app/jelajah-raja-ampat/" class="external" target="_blank">aplikasi Shiny</a> yang telah aku kembangkan.</p>
+<p>Selain hubungan antara luas pulau dan banyaknya spesies, data dalam artikel tersebut juga memungkinkan untuk dilakukan analisis sampai level transek dan subtransek. Analisis tentang transek dan subtransek tersebut pada umumnya digunakan untuk mengidentifikasi kepadatan spesies dalam pulau-pulau yang ada. Analisis pada level transek dan subtransek tersebut tidak dilakukan dalam artikel ini. Jika pembaca ingin mengetahui analisis semacam itu, silakan kunjungi <a href="https://people.usd.ac.id/~ydkristanto/app/jelajah-raja-ampat/" class="external" target="_blank">aplikasi Shiny</a> yang telah aku kembangkan. Aplikasi inilah yang digunakan sebagai bahan ajar penunjang dalam buku-buku yang kami revisi.</p>
 </div>
 </div>
 </section>
 <section id="sec-jelajah-data" class="level2">
 <h2 class="anchored" data-anchor-id="sec-jelajah-data">Menjelajah Data</h2>
-<p>Petualangan kita lanjutkan. Karena data sudah ada, sekarang kita siap untuk mengeksplorasinya dengan <a href="https://www.R-project.org/" class="external" target="_blank">R</a>. Pertama-tama, kita panggil paket yang diperlukan. Paket {tidyverse} kita gunakan untuk mengimpor, mengolah, dan memvisualisasikan data. Paket {ggtext} kita gunakan untuk menyesuaikan label/teks pada diagram yang akan kita buat nantinya.</p>
+<p>Petualangan kita lanjutkan. Karena data sudah ada, sekarang kita siap untuk mengeksplorasinya dengan <a href="https://www.R-project.org/" class="external" target="_blank">R</a>. Pertama-tama, kita panggil paket yang diperlukan. Paket <a href="https://www.tidyverse.org/" class="external" target="_blank">{tidyverse}</a> kita gunakan untuk mengimpor, mengolah, dan memvisualisasikan data. Paket <a href="https://CRAN.R-project.org/package=ggtext" class="external" target="_blank">{ggtext}</a> kita gunakan untuk menyesuaikan label/teks pada diagram yang akan kita buat nantinya.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(ggtext)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -657,7 +657,7 @@ y = d \left( 1 - e^{-z x^f} \right)
 <p>Apa yang salah? Kesalahannya terletak pada nilai-nilai awal <span class="math inline">\(d\)</span>, <span class="math inline">\(z\)</span>, dan <span class="math inline">\(f\)</span> yang kita berikan.</p>
 <p>Salah satu seni dalam menggunakan fungsi <code>nls()</code> adalah penentukan nilai-nilai awalnya. Nilai-nilai awal tersebut sebaiknya dipilih agar mendekati nilai-nilai yang sebenarnya. Untuk melakukannya, kita dapat memanfaatkan alat lain, misalnya kalkulator grafik Desmos.</p>
 <p>Dengan menginputkan data yang kita punya, yaitu <code>data_pulau</code>, ke dalam kalkulator grafik Desmos, kita dapat memodelkannya. Tangkapan layar hasil pemodelan tersebut ditunjukkan pada <a href="#fig-model-weibull-Desmos" class="quarto-xref">Gambar&nbsp;7</a>.</p>
-<div id="fig-model-weibull-Desmos" class="quarto-figure quarto-figure-center quarto-float anchored" alt="Diagram pencar yang menunjukkan hubungan antara luas pulau dan banyak spesies, disertai dengan model fungsi Weibull." data-fig-align="center">
+<div id="fig-model-weibull-Desmos" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center" alt="Diagram pencar yang menunjukkan hubungan antara luas pulau dan banyak spesies, disertai dengan model fungsi Weibull.">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-model-weibull-Desmos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="model-Weibull-Desmos.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Diagram pencar yang menunjukkan hubungan antara luas pulau dan banyak spesies, disertai dengan model fungsi Weibull.">
@@ -734,8 +734,8 @@ Tabel&nbsp;1: Model-model untuk <code>luas_pulau</code> vs.&nbsp;<code>banyak_sp
 <div aria-describedby="tbl-ringkasan-model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table-striped table-hover caption-top table">
 <colgroup>
-<col style="width: 20%">
-<col style="width: 79%">
+<col style="width: 23%">
+<col style="width: 76%">
 </colgroup>
 <thead>
 <tr class="header">

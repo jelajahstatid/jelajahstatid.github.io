@@ -50,12 +50,12 @@ Data mentah yang aku perlukan letaknya ada di bagian lampiran artikel tersebut. 
 ::: callout-note
 ## Catatan
 
-Selain hubungan antara luas pulau dan banyaknya spesies, data dalam artikel tersebut juga memungkin untuk dilakukan analisis sampai level transek dan substransek. Analisis tentang transek dan subtransek tersebut pada umumnya digunakan untuk mengidentifikasi kepadatan spesies dalam pulau-pulau yang ada. Analisis pada level transek dan subtransek tersebut tidak dilakukan dalam artikel ini. Jika pembaca ingin mengetahui analisis semacam itu, silakan kunjungi [aplikasi Shiny](https://people.usd.ac.id/~ydkristanto/app/jelajah-raja-ampat/){.external target="_blank"} yang telah aku kembangkan.
+Selain hubungan antara luas pulau dan banyaknya spesies, data dalam artikel tersebut juga memungkinkan untuk dilakukan analisis sampai level transek dan subtransek. Analisis tentang transek dan subtransek tersebut pada umumnya digunakan untuk mengidentifikasi kepadatan spesies dalam pulau-pulau yang ada. Analisis pada level transek dan subtransek tersebut tidak dilakukan dalam artikel ini. Jika pembaca ingin mengetahui analisis semacam itu, silakan kunjungi [aplikasi Shiny](https://people.usd.ac.id/~ydkristanto/app/jelajah-raja-ampat/){.external target="_blank"} yang telah aku kembangkan. Aplikasi inilah yang digunakan sebagai bahan ajar penunjang dalam buku-buku yang kami revisi.
 :::
 
 ## Menjelajah Data {#sec-jelajah-data}
 
-Petualangan kita lanjutkan. Karena data sudah ada, sekarang kita siap untuk mengeksplorasinya dengan [R](https://www.R-project.org/){.external target="_blank"}. Pertama-tama, kita panggil paket yang diperlukan. Paket {tidyverse} kita gunakan untuk mengimpor, mengolah, dan memvisualisasikan data. Paket {ggtext} kita gunakan untuk menyesuaikan label/teks pada diagram yang akan kita buat nantinya.
+Petualangan kita lanjutkan. Karena data sudah ada, sekarang kita siap untuk mengeksplorasinya dengan [R](https://www.R-project.org/){.external target="_blank"}. Pertama-tama, kita panggil paket yang diperlukan. Paket [{tidyverse}](https://www.tidyverse.org/){.external target="_blank"} kita gunakan untuk mengimpor, mengolah, dan memvisualisasikan data. Paket [{ggtext}](https://CRAN.R-project.org/package=ggtext){.external target="_blank"} kita gunakan untuk menyesuaikan label/teks pada diagram yang akan kita buat nantinya.
 
 ```{r}
 #| message: false
@@ -408,7 +408,7 @@ diagram_pencar +
 Pada @sec-model-linear dan @sec-model-nonlinear, kita telah mendapatkan empat model untuk memodelkan hubungan antara `luas_pulau` dan `banyak_spesies`. Keempat model tersebut diringkas pada @tbl-ringkasan-model.
 
 | Model     | Persamaan                                                             |
-|---------------|---------------------------------------------------------|
+|-----------------|-------------------------------------------------------|
 | Linear    | $y = \text{3,662650} + \text{0,002549}x$                              |
 | Pangkat   | $y = \text{0,9239}x^\text{0,3574}$                                    |
 | Logaritma | $y = -\text{5,347} + \text{6,228} \log{x}$                            |
