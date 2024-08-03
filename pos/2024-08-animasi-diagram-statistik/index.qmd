@@ -149,7 +149,7 @@ Data `gapminder` sudah siap. Sekarang waktunya untuk membuat animasi. Berikut in
 
 anim <- gapminder |> 
   ggplot(
-    aes( x = gdpPercap, y = lifeExp)
+    aes(x = gdpPercap, y = lifeExp)
   ) + 
   geom_point(
     aes(color = continent, size = pop),

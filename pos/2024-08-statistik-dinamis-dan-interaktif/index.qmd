@@ -2,7 +2,7 @@
 title: "Membuat Statistik Menjadi Dinamis dan Interaktif"
 draft: true
 description: |
-  Statistik dapat digunakan untuk menyingkap fakta-fakta tentang dunia. Secara khusus, statistik dapat dimanfaatkan untuk melihat angka harapan hidup dan PDB per kapita berbagai negara.
+  Statistik bukan hanya untuk statistikawan tetapi juga untuk orang awam. Untuk itu, statistik perlu dikemas secara lebih menarik dan menawan. Shiny memungkinkan agar statistik disajikan secara dinamis dan interaktif agar menarik dan mudah dipelajari oleh orang awam.
 author:
   - name: Yosep Dwi Kristanto
     url: https://people.usd.ac.id/~ydkristanto/
@@ -14,16 +14,16 @@ categories:
   - statistik dunia
   - tutorial
   - visualisasi data
-image: "statistik-interaktif.png"
+image: "statistik-interaktif.gif"
 image-alt: |
   Hubungan antara PDB per kapita dan angka harapan hidup pada tahun 1992, 1997, 2002, dan 2007
 keywords: 
+  - Shiny
   - Gapminder
   - harapan hidup
   - produk domestik bruto
   - PDB
   - diagram pencar
-  - shiny
 copyright: "© 2024 Yosep Dwi Kristanto"
 license: "CC BY"
 google-scholar: true
@@ -32,9 +32,9 @@ editor_options:
 code-annotations: select
 ---
 
-Jelajah data itu seringkali kompleks dan menantang. Apalagi yang kita jelajahi adalah data raya. Apakah penjelajahan data tersebut dapat kita buat lebih mudah dan menarik? Artikel blog ini akan mendemonstrasikan bagaimana mengembangkan aplikasi Shiny untuk menjelajah data pada [pos sebelumnya](/pos/2024-08-statistik-jendela-dunia/index.qmd "Statistik Adalah Jendela Dunia").
+Jelajah data itu seringkali kompleks dan menantang. Apalagi yang kita jelajahi adalah data raya. Apakah penjelajahan data tersebut dapat kita buat lebih mudah dan menarik? Artikel blog ini akan mendemonstrasikan bagaimana mengembangkan aplikasi Shiny untuk menjelajah data dari [pos sebelumnya](/pos/2024-08-statistik-jendela-dunia/index.qmd "Statistik Adalah Jendela Dunia").
 
-Kita berkenalan dengan Shiny terlebih dahulu. Shiny adalah sebuah cara yang memungkinkan kita untuk membuat aplikasi berbasis web dengan bahasa pemrograman R (atau Python). Shiny ini cocok bagi kamu yang baru awal-awal memelajari R atau yang sudah lama dan lihai menggunakan bahasa pemrograman itu.
+Kita berkenalan dengan Shiny terlebih dahulu. Shiny adalah sebuah cara yang memungkinkan kita untuk membuat aplikasi berbasis web dengan bahasa pemrograman R (atau Python). Shiny ini cocok bagi kamu yang baru awal-awal memelajari R maupun yang sudah lama dan lihai menggunakan bahasa pemrograman itu.
 
 ## Mengapa Perlu Aplikasi Shiny? {#sec-mengapa-shiny}
 
@@ -59,7 +59,7 @@ load(url("https://github.com/jennybc/gapminder/raw/main/data/gapminder.rdata"))
 
 ```
 
-Data tersebut memiliki variabel enam variabel, yaitu negara (`country`), benua (`continent`), tahun (`tahun`), angka harapan hidup (`lifeExp`), dan PDB per kapita (`gdpPercap`, dalam dolar internasional). Tak ingin berlama-lama, kamu langsung memvisualisasikan hubungan antara PDB per kapita dan angka harapan hidup dengan diagram pencar.
+Data tersebut memiliki enam variabel, yaitu negara (`country`), benua (`continent`), tahun (`year`), angka harapan hidup (`lifeExp`), dan PDB per kapita (`gdpPercap`, dalam dolar internasional). Tak ingin berlama-lama, kamu langsung memvisualisasikan hubungan antara PDB per kapita dan angka harapan hidup dengan diagram pencar. Hasilnya ditunjukkan pada @fig-hub-pdb-ahh.
 
 ```{r}
 #| echo: true
@@ -73,7 +73,7 @@ gapminder |>
 
 ```
 
-Hmmm. Dengan baris kode itu, semua titik datanya digambarkan pada @fig-hub-pdb-ahh. Padahal, kamu ingin menggambarkan titik-titik pada tahun tertentu saja. Untuk itu, kamu perlu tahu tahun berapa saja yang tersedia dalam data.
+Sayangnya, @fig-hub-pdb-ahh menggambarkan semua titik datanya. Padahal, kamu ingin menggambarkan titik-titik pada tahun tertentu saja. Untuk itu, kamu perlu mengetahui tahun berapa saja yang tersedia dalam data.
 
 ```{r}
 #| echo: true
@@ -83,7 +83,7 @@ unique(gapminder$year)
 
 ```
 
-Tahunnya ternyata mulai dari 1952 sampai 2007 dengan interval lima tahun. Selanjutnya, kamu ingin menggambar seperti pada @fig-hub-pdb-ahh tetapi hanya untuk tahun 2007.
+Tahunnya ternyata mulai dari 1952 sampai 2007 dengan interval lima tahun. Selanjutnya, kamu ingin menggambar seperti pada @fig-hub-pdb-ahh tetapi hanya untuk tahun 2007. Keinginanmu ini terwujud dengan menjalankan baris kode di bawah. Hasilnya tersaji pada @fig-hub-pdb-ahh-2007.
 
 ```{r}
 #| echo: true
@@ -98,9 +98,9 @@ gapminder |>
 
 ```
 
-Dalam baris kode di atas terdapat perintah `filter(year == 2007)`. Kode tersebut berguna untuk memfilter datanya agar nilai variabel `year`-nya sama dengan 2007.
+Dalam baris kode di atas, terdapat perintah `filter(year == 2007)`. Kode tersebut berguna untuk memfilter datanya agar nilai variabel `year`-nya sama dengan 2007.
 
-Sekarang kamu ingin memvisualisasikan lagi data tersebut tetapi untuk tahun 2002. Caranya mudah. Kamu tinggal mengganti 2007 dengan 2002 dalam fungsi `filter()` di atas. Alternatifnya, kamu membuat sebuah variabel baru, misalnya `tahun_int`, dan membuat nilainya menjadi 2002. Setelah itu, kamu ganti 2007 dalam fungsi `filter()` di atas dengan variabel tersebut.
+Sekarang kamu ingin memvisualisasikan lagi data tersebut tetapi untuk tahun 2002. Caranya mudah. Kamu tinggal mengganti 2007 dengan 2002 dalam fungsi `filter()` di atas. Alternatifnya, kamu dapat membuat sebuah variabel baru, misalnya `tahun_int`, dan membuat nilainya menjadi 2002. Setelah itu, kamu ganti 2007 dalam fungsi `filter()` di atas dengan variabel tersebut. Alhasil, kamu mendapatkan diagram pencar seperti yang ditunjukkan @fig-hub-pdb-ahh-2002.
 
 ```{r}
 #| echo: true
@@ -125,7 +125,7 @@ Bagaimana jika kamu ingin membuat visualisasi data untuk tahun 1997? Kamu ganti 
 
 2.  jalankan lagi baris kodenya.
 
-Dua langkah tersebut perlu dilakukan agar kamu dapat memvisualisasikan data untuk tahun tertentu. Apakah ada cara yang lebih efisien? Apakah ada cara agar langkah kedua di atas otomatis dijalankan ketika kamu mengganti nilai variabel `tahun_int`? Ada, caranya adalah dengan menggunakan Shiny.
+Dua langkah tersebut perlu dilakukan agar kamu dapat memvisualisasikan data untuk tahun-tahun tertentu. Apakah ada cara yang lebih efisien? Apakah ada cara agar langkah kedua di atas otomatis dijalankan ketika kamu mengganti nilai variabel `tahun_int`? Tentu saja ada! Caranya adalah dengan menggunakan Shiny.
 
 Shiny menggunakan pemrograman yang reaktif. Artinya, Shiny akan secara otomatis menjalankan baris perintah untuk menghasilkan luaran ketika nilai inputnya diganti. Dalam kasusmu ini, inputnya adalah nilai variabel `tahun_int` dan luarannya adalah diagram pencar seperti pada @fig-hub-pdb-ahh-2007 atau @fig-hub-pdb-ahh-2002. Dengan demikian, Shiny akan langsung membuat diagram pencar seperti itu ketika nilai variabel `tahun_int` kamu ganti.
 
@@ -195,7 +195,7 @@ shinyApp(ui = ui, server = server)
 
 Baris kode di atas adalah baris kode yang sudah lengkap untuk sebuah aplikasi. Tetapi, aplikasi tersebut tidak sesuai dengan tujuanmu, yaitu memvisualisasikan hubungan antara PDB per kapita dan angka harapan hidup. Untuk itu, hapus semua baris kode di atas dan ganti dengan baris kode seperti ini.
 
-``` {.r filename="app.R"}
+``` {#lst-kode-app-shiny .r filename="app.R" lst-cap="Baris kode di dalam app.R"}
 library(shiny)
 library(tidyverse)
 load(url("https://github.com/jennybc/gapminder/raw/main/data/gapminder.rdata"))
@@ -227,8 +227,122 @@ server <- function(input, output, session) {
 shinyApp(ui = ui, server = server)
 ```
 
-Aplikasi `app.R` tersebut melakukan empat hal sebagai berikut.
+Aplikasi `app.R` tersebut memuat baris kode yang melakukan empat hal sebagai berikut.
 
-1.  Aplikasi tersebut memanggil paket {shiny} dan {tidyverse} melalui perintah `library(shiny)` dan `library(tidyverse)`. Selain itu, aplikasi tersebut juga mengimpor data `gapminder` dengan perintah `load(url("https://github.com/jennybc/gapminder/raw/main/data/gapminder.rdata"))`.
+1.  Baris kode tersebut memanggil paket {shiny} dan {tidyverse} melalui perintah `library(shiny)` dan `library(tidyverse)`. Selain itu, baris kode tersebut juga mengimpor data `gapminder` dengan perintah `load(url("https://github.com/jennybc/gapminder/raw/main/data/gapminder.rdata"))`.
 
-2.  
+2.  Baris kode tersebut membuat antarmuka (`ui`): laman yang menjadi tempat berinteraksinya pengguna. Ada tiga fungsi yang digunakan untuk membuat antarmuka tersebut, yaitu `fluidPage()`, `sliderInput()`, dan `plotOutput()`. Lebih lengkapnya akan dijelaskan pada @sec-antarmuka.
+
+3.  Baris kode tersebut menentukan perilaku dari aplikasi tersebut dengan fungsi `server`. Pembahasan lebih lanjut dapat dilihat pada @sec-server.
+
+4.  Baris kode yang terakhir, yaitu `shinyApp(ui = ui, server = server)`, berfungsi untuk membuat aplikasi Shiny berdasarkan antarmuka `ui` dan fungsi `server` dan kemudian menjalankannya.
+
+Apabila kamu sudah penasaran dengan aplikasi Shiny tersebut, kamu dapat menjalankannya. Untuk melakukannya di RStudio, klik tombol **Run App** yang terletak di bagian kanan-atas dokumen. Perhatikan @fig-run-app!
+
+![Tombol Run App yang dapat ditemukan di bagian kanan-atas dokumen](aset/Run-App-RStudio.png){#fig-run-app fig-alt="Tombol Run App dalam RStudio" fig-align="center"}
+
+Setelah kamu mengklik tombol tersebut, beberapa saat kamu dapat melihat aplikasi tersebut. Tampilannya ditunjukkan pada @fig-tampilan-app.
+
+![Tampilan aplikasi Shiny](aset/tampilan-aplikasi-shiny.png){#fig-tampilan-app fig-align="center"}
+
+Kamu dapat berinteraksi dengan aplikasi tersebut. Silakan geser-geser slidernya (bagian kiri-atas aplikasi dengan label "Tahun") untuk mengubah tahunnya. Ketika tahun tersebut kamu ganti, kamu dapat melihat tampilan diagram pencarnya juga menyesuaikan. Untuk menutup aplikasi tersebut, klik tombol **Close** yang terletak di sebelah kanan-atas.
+
+### Antarmuka Aplikasi Shiny {#sec-antarmuka}
+
+Salah satu bagian baris kode aplikasi Shiny adalah kode antarmukanya. Pada baris kode @lst-kode-app-shiny, pendefinisian antarmukanya ada di `ui`. Terdapat tiga fungsi yang digunakan, yaitu `fluidPage()`, `sliderInput()`, dan `plotOutput()`.
+
+-   `fluidPage()` merupakan fungsi tata letak. Fungsi ini mengatur tata letak dari tampilan aplikasi Shiny kita.
+
+-   `sliderInput()` merupakan salah satu kontrol input. Fungsi ini memungkinkan pengguna untuk berinteraksi dengan aplikasi kita. Dengan menggeser-geser slidernya, pengguna menyediakan input bagi aplikasi kita. Terdapat enam argumen yang kita isikan dalam fungsi tersebut. Argumen `inputId = "tahun"` memberikan identitas terhadap slider tersebut. Identitas ini selanjutnya digunakan lagi dalam fungsi `server` nantinya. Argumen `label="Tahun"` berfungsi untuk memberikan label terhadap slider tersebut. Label ini ditampilkan dalam antarmuka aplikasi kita. Argumen `min = 1952` , `max = 2007`, dan `step = 5` memberikan nilai-nilai yang mungkin untuk inputnya, yaitu bilangan mulai dari 1952 sampai 2007 dengan interval 5. Terakhir, `value = 2007` memberikan nilai awal untuk slider tersebut.
+
+-   `plotOutput()` merupakan salah satu kontrol luaran aplikasi Shiny. Fungsi ini memberitahu Shiny tempat meletakkan luaran plot yang memiliki identitas `diagram_pencar`.
+
+### Dapur Aplikasi Shiny {#sec-server}
+
+@sec-antarmuka telah menunjukkan adanya input dan luaran dalam aplikasi Shiny kita. Dari input menjadi luaran, terdapat proses komputasi yang dilakukan di dapur Shiny. Proses ini kita tentukan di dalam fungsi `server`.
+
+Di dalam fungsi `server`, kita memberikan resep kepada Shiny untuk melakukan komputasi. Ruas kiri dari operator `<-`, yaitu `output$diagram_pencar`, mengindikasikan bahwa kita memberikan resep untuk luaran dengan identitas `diagram_pencar`.
+
+Ruas kanan operator `<-` merupakan fungsi render. Fungsi render ini bermacam-macam jenisnya, tergantung dari luarannya. Karena di antarmuka kita akan membuat plot dengan `plotOutput`, kita perlu menggunakan fungsi `renderPlot()` di sini.
+
+Logika di dalam fungsi `renderPlot()` sama dengan logika yang kita gunakan pada @sec-mengapa-shiny, tetapi dengan sedikit penambahan. Penambahannya adalah pada `tahun_int <- input$tahun`. Kode ini berfungsi untuk memberikan nilai sebesar `input$tahun` kepada variabel `tahun_int`. Nilai `input$tahun` tersebut tergantung dari nilai yang diberikan oleh pengguna terhadap slider dengan identitas `tahun` pada antarmuka.
+
+Alur kerja aplikasi Shiny kita ringkasnya seperti ini. Pertama, pengguna melihat antarmuka aplikasi kita. Di situ dia dapat menggeser slider dengan identitas `tahun` untuk mengganti-ganti nilanya. Nilai ini kemudian dikirim ke dapur Shiny dalam rupa `input$tahun` untuk diolah di dalam fungsi render, yaitu `renderPlot()`. Olahan tersebut menghasilkan luaran yang disebut dengan `output$diagram_pencar`. Luaran ini kemudian dikirimkan lagi ke antarmuka agar dapat dilihat oleh pengguna. Di mana posisinya? Posisinya berada di mana `plotOutput("diagram_pencar")` berada.
+
+## Sentuhan Akhir {#sec-sentuhan-akhir}
+
+Aplikasi Shiny kita masih sederhana dan seperlunya. Kita dapat memperindah aplikasi tersebut. Beberapa hal yang dapat kita lakukan adalah
+
+-   menambahkan judul ke dalam antarmukanya,
+
+-   mengatur slidernya agar menampilkan bilangan yang tidak memuat pemisah ribuan, dan
+
+-   memperbaiki diagram pencar yang disajikan agar tampilannya sama dengan diagram pencar pada [pos sebelumnya](/pos/2024-08-animasi-diagram-statistik/index.qmd), serta mengatur agar batasan jendelanya konsisten dari tahun ke tahun.
+
+Ketiga hal tersebut dapat kita penuhi dengan baris kode seperti pada @lst-app-shiny-baru berikut.
+
+``` {#lst-app-shiny-baru .r filename="app.R" lst-cap="Baris kode di dalam app.R"}
+library(shiny)
+library(tidyverse)
+load(url("https://github.com/jennybc/gapminder/raw/main/data/gapminder.rdata"))
+
+ui <- fluidPage(
+  titlePanel("PDB per Kapita vs. Angka Harapan Hidup"),
+  sliderInput(
+    inputId = "tahun",
+    label = "Tahun",
+    min = 1952,
+    max = 2007,
+    value = 2007,
+    step = 5,
+    sep = ""
+  ),
+  plotOutput("diagram_pencar")
+)
+
+server <- function(input, output, session) {
+  output$diagram_pencar <- renderPlot({
+    tahun_int <- input$tahun
+    
+    gapminder |> 
+      filter(year == tahun_int) |> 
+      ggplot(
+        aes(x = gdpPercap, y = lifeExp)
+      ) + 
+      geom_point(
+        aes(color = continent, size = pop),
+        alpha = .6
+      ) + 
+      scale_size(
+        range = c(5, 30),
+        guide = "none"
+      ) + 
+      scale_color_viridis_d(name = "Benua") + 
+      theme_minimal(base_size = 18) + 
+      theme(
+        legend.position = "bottom",
+        plot.title = element_text(face = "bold")
+      ) + 
+      xlim(c(200, 60000)) + 
+      ylim(c(20, 90)) + 
+      labs(
+        x = "PDB per kapita",
+        y = "Angka harapan hidup",
+        caption = "Data: Jenny Bryan dkk. / Github"
+      )
+    
+  })
+}
+
+shinyApp(ui = ui, server = server)
+```
+
+Bagaimana tampilan aplikasi Shiny kita sekarang? Tampilannya ditunjukkan pada @fig-tampilan-app-baru.
+
+![Tampilan aplikasi Shiny setelah dilakukan sentuhan akhir](aset/tampilan-aplikasi-shiny-baru.gif){#fig-tampilan-app-baru fig-align="center"}
+
+## Catatan Akhir {#sec-catatan-akhir}
+
+Kita telah mengenal Shiny. Kita secara bersama-sama juga telah membuat aplikasi Shiny sederhana pada @sec-membuat-app-shiny dan memberikan sentuhan akhir pada @sec-sentuhan-akhir. Aplikasi tersebut dapat menampilkan visualisasi data secara interaktif. Dengan cara demikian, harapannya statistik tidak hanya menjadi konsumsi statistikawan tetapi juga orang awam.
+
+Apa selanjutnya? Jika kamu tertarik untuk mengembangkan aplikasi Shiny, kamu dapat belajar dari contoh-contohnya. Contoh tersebut dapat kamu lihat di [laman galeri Shiny untuk R](https://shiny.posit.co/r/gallery/){.external target="_blank"}. Selain itu, kamu juga dapat menjelajah [beberapa aplikasi Shiny yang telah aku kembangkan](https://people.usd.ac.id/~ydkristanto/index.php/media-pengajaran/shiny-stat-dan-id/){.external target="_blank"}. *Have a shiny day!*
