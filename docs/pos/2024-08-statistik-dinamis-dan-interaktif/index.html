@@ -124,14 +124,18 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
 <link rel="stylesheet" href="../../styles.css">
 <meta property="og:title" content="Jelajah Statistika dan Ilmu Data - Membuat Statistik Menjadi Dinamis dan Interaktif">
 <meta property="og:description" content="Statistik bukan hanya untuk statistikawan tetapi juga untuk orang awam. Untuk itu, statistik perlu dikemas secara lebih menarik dan menawan. Shiny memungkinkan agar statistik disajikan secara dinamis dan interaktif agar menarik dan mudah dipelajari oleh orang awam.">
-<meta property="og:image" content="https://jelajahstatid.github.io/pos/2024-08-statistik-dinamis-dan-interaktif/statistik-interaktif.gif">
+<meta property="og:image" content="https://jelajahstatid.github.io/pos/2024-08-statistik-dinamis-dan-interaktif/statistik-interaktif.png">
 <meta property="og:site_name" content="Jelajah Statistika dan Ilmu Data">
-<meta property="og:image:alt" content="Hubungan antara PDB per kapita dan angka harapan hidup pada tahun 1992, 1997, 2002, dan 2007
+<meta property="og:image:height" content="600">
+<meta property="og:image:width" content="800">
+<meta property="og:image:alt" content="Logo Shiny dengan latar belakang diagram pencar yang dibuat secara acak. Logo Shiny diperoleh dari Wikimedia.
 ">
 <meta name="twitter:title" content="Jelajah Statistika dan Ilmu Data - Membuat Statistik Menjadi Dinamis dan Interaktif">
 <meta name="twitter:description" content="Statistik bukan hanya untuk statistikawan tetapi juga untuk orang awam. Untuk itu, statistik perlu dikemas secara lebih menarik dan menawan. Shiny memungkinkan agar statistik disajikan secara dinamis dan interaktif agar menarik dan mudah dipelajari oleh orang awam.">
-<meta name="twitter:image" content="https://jelajahstatid.github.io/pos/2024-08-statistik-dinamis-dan-interaktif/statistik-interaktif.gif">
-<meta name="twitter:image:alt" content="Hubungan antara PDB per kapita dan angka harapan hidup pada tahun 1992, 1997, 2002, dan 2007
+<meta name="twitter:image" content="https://jelajahstatid.github.io/pos/2024-08-statistik-dinamis-dan-interaktif/statistik-interaktif.png">
+<meta name="twitter:image-height" content="600">
+<meta name="twitter:image-width" content="800">
+<meta name="twitter:image:alt" content="Logo Shiny dengan latar belakang diagram pencar yang dibuat secara acak. Logo Shiny diperoleh dari Wikimedia.
 ">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="citation_title" content="Membuat Statistik Menjadi Dinamis dan Interaktif">
@@ -271,7 +275,7 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
 
 
 
-<p>Jelajah data itu seringkali kompleks dan menantang. Apalagi yang kita jelajahi adalah data raya. Apakah penjelajahan data tersebut dapat kita buat lebih mudah dan menarik? Artikel blog ini akan mendemonstrasikan bagaimana mengembangkan aplikasi Shiny untuk menjelajah data dari <a href="../../pos/2024-08-statistik-jendela-dunia/index.html" title="Statistik Adalah Jendela Dunia">pos sebelumnya</a>.</p>
+<p>Jelajah data itu seringkali kompleks dan menantang. Apalagi yang kita jelajahi adalah data raya. Apakah penjelajahan data tersebut dapat kita buat menjadi lebih mudah dan menarik? Artikel blog ini akan mendemonstrasikan bagaimana mengembangkan aplikasi Shiny untuk menjelajah data dari <a href="../../pos/2024-08-statistik-jendela-dunia/index.html" title="Statistik Adalah Jendela Dunia">pos sebelumnya</a>.</p>
 <p>Kita berkenalan dengan Shiny terlebih dahulu. Shiny adalah sebuah cara yang memungkinkan kita untuk membuat aplikasi berbasis web dengan bahasa pemrograman R (atau Python). Shiny ini cocok bagi kamu yang baru awal-awal memelajari R maupun yang sudah lama dan lihai menggunakan bahasa pemrograman itu.</p>
 <section id="sec-mengapa-shiny" class="level2">
 <h2 class="anchored" data-anchor-id="sec-mengapa-shiny">Mengapa Perlu Aplikasi Shiny?</h2>
@@ -356,14 +360,14 @@ Gambar&nbsp;3: Hubungan antara PDB per kapita dan angka harapan hidup berbagai n
 <li><p>kamu ganti nilai varibel <code>tahun_int</code> dengan tahun yang kamu mau, dan kemudian</p></li>
 <li><p>jalankan lagi baris kodenya.</p></li>
 </ol>
-<p>Dua langkah tersebut perlu dilakukan agar kamu dapat memvisualisasikan data untuk tahun-tahun tertentu. Apakah ada cara yang lebih efisien? Apakah ada cara agar langkah kedua di atas otomatis dijalankan ketika kamu mengganti nilai variabel <code>tahun_int</code>? Tentu saja ada! Caranya adalah dengan menggunakan Shiny.</p>
+<p>Dua langkah tersebut perlu dilakukan agar kamu dapat memvisualisasikan data untuk tahun-tahun tertentu. Adakah cara yang lebih efisien? Adakah cara agar langkah kedua di atas otomatis dijalankan ketika kamu mengganti nilai variabel <code>tahun_int</code>? Tentu saja ada! Caranya adalah dengan menggunakan Shiny.</p>
 <p>Shiny menggunakan pemrograman yang reaktif. Artinya, Shiny akan secara otomatis menjalankan baris perintah untuk menghasilkan luaran ketika nilai inputnya diganti. Dalam kasusmu ini, inputnya adalah nilai variabel <code>tahun_int</code> dan luarannya adalah diagram pencar seperti pada <a href="#fig-hub-pdb-ahh-2007" class="quarto-xref">Gambar&nbsp;2</a> atau <a href="#fig-hub-pdb-ahh-2002" class="quarto-xref">Gambar&nbsp;3</a>. Dengan demikian, Shiny akan langsung membuat diagram pencar seperti itu ketika nilai variabel <code>tahun_int</code> kamu ganti.</p>
 </section>
 <section id="sec-membuat-app-shiny" class="level2">
 <h2 class="anchored" data-anchor-id="sec-membuat-app-shiny">Membuat Aplikasi Shiny</h2>
 <p>Kamu telah mengenal Shiny. Sekarang kita akan membuat aplikasi Shiny berdasarkan proses analisis data yang dipaparkan pada <a href="#sec-mengapa-shiny" class="quarto-xref">Bagian&nbsp;1</a>. Karena kita akan menggunakan paket <a href="https://CRAN.R-project.org/package=shiny" class="external" target="_blank">{shiny}</a>, paket tersebut perlu terpasang di komputermu. Jika belum, kamu perlu memasangnya dengan perintah berikut.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">install.packages</span>(<span class="st">"shiny"</span>)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Aku menyarankan agar kamu membuat aplikasi Shiny dengan <a href="https://posit.co/download/rstudio-desktop/" class="external" target="_blank">RStudio</a> agar lebih mudah. Di RStudio, kamu dapat membuat aplikasi Shiny dengan mengklik <strong>File | New File | Shiny Web App…</strong>. Pada jendela <em>New Shiny Web Application</em>, tuliskan nama aplikasinya dan klik <strong>Create</strong>. Setelah itu, kamu akan mendapatkan fail <code>app.R</code> yang isinya seperti ini.</p>
+<p>Aku menyarankanmu untuk membuat aplikasi Shiny dengan <a href="https://posit.co/download/rstudio-desktop/" class="external" target="_blank">RStudio</a> agar lebih mudah. Di RStudio, kamu dapat membuat aplikasi Shiny dengan mengklik <strong>File | New File | Shiny Web App…</strong> Pada jendela <em>New Shiny Web Application</em>, tuliskan nama aplikasinya dan klik <strong>Create</strong>. Setelah itu, kamu akan mendapatkan fail <code>app.R</code> yang isinya seperti ini.</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>app.R</strong></pre>
@@ -420,7 +424,7 @@ Gambar&nbsp;3: Hubungan antara PDB per kapita dan angka harapan hidup berbagai n
 <span id="cb9-50"><a href="#cb9-50"></a><span class="co"># Run the application </span></span>
 <span id="cb9-51"><a href="#cb9-51"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Baris kode di atas adalah baris kode yang sudah lengkap untuk sebuah aplikasi. Tetapi, aplikasi tersebut tidak sesuai dengan tujuanmu, yaitu memvisualisasikan hubungan antara PDB per kapita dan angka harapan hidup. Untuk itu, hapus semua baris kode di atas dan ganti dengan baris kode seperti ini.</p>
+<p>Baris kode di atas adalah baris kode yang sudah lengkap untuk sebuah aplikasi. Tetapi, aplikasi tersebut tidak sesuai dengan tujuanmu, yaitu memvisualisasikan hubungan antara PDB per kapita dan angka harapan hidup. Untuk itu, hapus semua baris kode di atas dan ganti dengan baris kode seperti pada <a href="#lst-kode-app-shiny" class="quarto-xref">Daftar&nbsp;1</a> berikut.</p>
 <div id="lst-kode-app-shiny" class="r listing quarto-float" data-filename="app.R">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-kode-app-shiny-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -509,12 +513,12 @@ Gambar&nbsp;5: Tampilan aplikasi Shiny
 <p>Di dalam fungsi <code>server</code>, kita memberikan resep kepada Shiny untuk melakukan komputasi. Ruas kiri dari operator <code>&lt;-</code>, yaitu <code>output$diagram_pencar</code>, mengindikasikan bahwa kita memberikan resep untuk luaran dengan identitas <code>diagram_pencar</code>.</p>
 <p>Ruas kanan operator <code>&lt;-</code> merupakan fungsi render. Fungsi render ini bermacam-macam jenisnya, tergantung dari luarannya. Karena di antarmuka kita akan membuat plot dengan <code>plotOutput</code>, kita perlu menggunakan fungsi <code>renderPlot()</code> di sini.</p>
 <p>Logika di dalam fungsi <code>renderPlot()</code> sama dengan logika yang kita gunakan pada <a href="#sec-mengapa-shiny" class="quarto-xref">Bagian&nbsp;1</a>, tetapi dengan sedikit penambahan. Penambahannya adalah pada <code>tahun_int &lt;- input$tahun</code>. Kode ini berfungsi untuk memberikan nilai sebesar <code>input$tahun</code> kepada variabel <code>tahun_int</code>. Nilai <code>input$tahun</code> tersebut tergantung dari nilai yang diberikan oleh pengguna terhadap slider dengan identitas <code>tahun</code> pada antarmuka.</p>
-<p>Alur kerja aplikasi Shiny kita ringkasnya seperti ini. Pertama, pengguna melihat antarmuka aplikasi kita. Di situ dia dapat menggeser slider dengan identitas <code>tahun</code> untuk mengganti-ganti nilanya. Nilai ini kemudian dikirim ke dapur Shiny dalam rupa <code>input$tahun</code> untuk diolah di dalam fungsi render, yaitu <code>renderPlot()</code>. Olahan tersebut menghasilkan luaran yang disebut dengan <code>output$diagram_pencar</code>. Luaran ini kemudian dikirimkan lagi ke antarmuka agar dapat dilihat oleh pengguna. Di mana posisinya? Posisinya berada di mana <code>plotOutput("diagram_pencar")</code> berada.</p>
+<p>Alur kerja aplikasi Shiny kita ringkasnya seperti ini. Pertama, pengguna melihat antarmuka aplikasi kita. Di situ dia dapat menggeser slider dengan identitas <code>tahun</code> untuk mengganti-ganti nilanya. Nilai ini kemudian dikirim ke dapur Shiny dalam rupa <code>input$tahun</code> untuk diolah di dalam fungsi render, yaitu <code>renderPlot()</code>. Olahan tersebut menghasilkan luaran yang disebut dengan <code>output$diagram_pencar</code>. Luaran ini kemudian dikirimkan lagi ke antarmuka agar dapat dilihat oleh pengguna. Di mana posisinya? Posisinya terletak di mana <code>plotOutput("diagram_pencar")</code> berada.</p>
 </section>
 </section>
 <section id="sec-sentuhan-akhir" class="level2">
 <h2 class="anchored" data-anchor-id="sec-sentuhan-akhir">Sentuhan Akhir</h2>
-<p>Aplikasi Shiny kita masih sederhana dan seperlunya. Kita dapat memperindah aplikasi tersebut. Beberapa hal yang dapat kita lakukan adalah</p>
+<p>Aplikasi Shiny kita masih sederhana dan seperlunya. Kita dapat memperindah aplikasi tersebut. Beberapa hal yang dapat kita lakukan antara lain</p>
 <ul>
 <li><p>menambahkan judul ke dalam antarmukanya,</p></li>
 <li><p>mengatur slidernya agar menampilkan bilangan yang tidak memuat pemisah ribuan, dan</p></li>

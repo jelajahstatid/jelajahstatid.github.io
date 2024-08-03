@@ -14,9 +14,9 @@ categories:
   - statistik dunia
   - tutorial
   - visualisasi data
-image: "statistik-interaktif.gif"
+image: "statistik-interaktif.png"
 image-alt: |
-  Hubungan antara PDB per kapita dan angka harapan hidup pada tahun 1992, 1997, 2002, dan 2007
+  Logo Shiny dengan latar belakang diagram pencar yang dibuat secara acak. Logo Shiny diperoleh dari Wikimedia.
 keywords: 
   - Shiny
   - Gapminder
@@ -32,7 +32,7 @@ editor_options:
 code-annotations: select
 ---
 
-Jelajah data itu seringkali kompleks dan menantang. Apalagi yang kita jelajahi adalah data raya. Apakah penjelajahan data tersebut dapat kita buat lebih mudah dan menarik? Artikel blog ini akan mendemonstrasikan bagaimana mengembangkan aplikasi Shiny untuk menjelajah data dari [pos sebelumnya](/pos/2024-08-statistik-jendela-dunia/index.qmd "Statistik Adalah Jendela Dunia").
+Jelajah data itu seringkali kompleks dan menantang. Apalagi yang kita jelajahi adalah data raya. Apakah penjelajahan data tersebut dapat kita buat menjadi lebih mudah dan menarik? Artikel blog ini akan mendemonstrasikan bagaimana mengembangkan aplikasi Shiny untuk menjelajah data dari [pos sebelumnya](/pos/2024-08-statistik-jendela-dunia/index.qmd "Statistik Adalah Jendela Dunia").
 
 Kita berkenalan dengan Shiny terlebih dahulu. Shiny adalah sebuah cara yang memungkinkan kita untuk membuat aplikasi berbasis web dengan bahasa pemrograman R (atau Python). Shiny ini cocok bagi kamu yang baru awal-awal memelajari R maupun yang sudah lama dan lihai menggunakan bahasa pemrograman itu.
 
@@ -125,7 +125,7 @@ Bagaimana jika kamu ingin membuat visualisasi data untuk tahun 1997? Kamu ganti 
 
 2.  jalankan lagi baris kodenya.
 
-Dua langkah tersebut perlu dilakukan agar kamu dapat memvisualisasikan data untuk tahun-tahun tertentu. Apakah ada cara yang lebih efisien? Apakah ada cara agar langkah kedua di atas otomatis dijalankan ketika kamu mengganti nilai variabel `tahun_int`? Tentu saja ada! Caranya adalah dengan menggunakan Shiny.
+Dua langkah tersebut perlu dilakukan agar kamu dapat memvisualisasikan data untuk tahun-tahun tertentu. Adakah cara yang lebih efisien? Adakah cara agar langkah kedua di atas otomatis dijalankan ketika kamu mengganti nilai variabel `tahun_int`? Tentu saja ada! Caranya adalah dengan menggunakan Shiny.
 
 Shiny menggunakan pemrograman yang reaktif. Artinya, Shiny akan secara otomatis menjalankan baris perintah untuk menghasilkan luaran ketika nilai inputnya diganti. Dalam kasusmu ini, inputnya adalah nilai variabel `tahun_int` dan luarannya adalah diagram pencar seperti pada @fig-hub-pdb-ahh-2007 atau @fig-hub-pdb-ahh-2002. Dengan demikian, Shiny akan langsung membuat diagram pencar seperti itu ketika nilai variabel `tahun_int` kamu ganti.
 
@@ -137,7 +137,7 @@ Kamu telah mengenal Shiny. Sekarang kita akan membuat aplikasi Shiny berdasarkan
 install.packages("shiny")
 ```
 
-Aku menyarankan agar kamu membuat aplikasi Shiny dengan [RStudio](https://posit.co/download/rstudio-desktop/){.external target="_blank"} agar lebih mudah. Di RStudio, kamu dapat membuat aplikasi Shiny dengan mengklik **File \| New File \| Shiny Web App...**. Pada jendela *New Shiny Web Application*, tuliskan nama aplikasinya dan klik **Create**. Setelah itu, kamu akan mendapatkan fail `app.R` yang isinya seperti ini.
+Aku menyarankanmu untuk membuat aplikasi Shiny dengan [RStudio](https://posit.co/download/rstudio-desktop/){.external target="_blank"} agar lebih mudah. Di RStudio, kamu dapat membuat aplikasi Shiny dengan mengklik **File \| New File \| Shiny Web App...** Pada jendela *New Shiny Web Application*, tuliskan nama aplikasinya dan klik **Create**. Setelah itu, kamu akan mendapatkan fail `app.R` yang isinya seperti ini.
 
 ``` {.r filename="app.R"}
 #
@@ -193,7 +193,7 @@ server <- function(input, output) {
 shinyApp(ui = ui, server = server)
 ```
 
-Baris kode di atas adalah baris kode yang sudah lengkap untuk sebuah aplikasi. Tetapi, aplikasi tersebut tidak sesuai dengan tujuanmu, yaitu memvisualisasikan hubungan antara PDB per kapita dan angka harapan hidup. Untuk itu, hapus semua baris kode di atas dan ganti dengan baris kode seperti ini.
+Baris kode di atas adalah baris kode yang sudah lengkap untuk sebuah aplikasi. Tetapi, aplikasi tersebut tidak sesuai dengan tujuanmu, yaitu memvisualisasikan hubungan antara PDB per kapita dan angka harapan hidup. Untuk itu, hapus semua baris kode di atas dan ganti dengan baris kode seperti pada @lst-kode-app-shiny berikut.
 
 ``` {#lst-kode-app-shiny .r filename="app.R" lst-cap="Baris kode di dalam app.R"}
 library(shiny)
@@ -267,11 +267,11 @@ Ruas kanan operator `<-` merupakan fungsi render. Fungsi render ini bermacam-mac
 
 Logika di dalam fungsi `renderPlot()` sama dengan logika yang kita gunakan pada @sec-mengapa-shiny, tetapi dengan sedikit penambahan. Penambahannya adalah pada `tahun_int <- input$tahun`. Kode ini berfungsi untuk memberikan nilai sebesar `input$tahun` kepada variabel `tahun_int`. Nilai `input$tahun` tersebut tergantung dari nilai yang diberikan oleh pengguna terhadap slider dengan identitas `tahun` pada antarmuka.
 
-Alur kerja aplikasi Shiny kita ringkasnya seperti ini. Pertama, pengguna melihat antarmuka aplikasi kita. Di situ dia dapat menggeser slider dengan identitas `tahun` untuk mengganti-ganti nilanya. Nilai ini kemudian dikirim ke dapur Shiny dalam rupa `input$tahun` untuk diolah di dalam fungsi render, yaitu `renderPlot()`. Olahan tersebut menghasilkan luaran yang disebut dengan `output$diagram_pencar`. Luaran ini kemudian dikirimkan lagi ke antarmuka agar dapat dilihat oleh pengguna. Di mana posisinya? Posisinya berada di mana `plotOutput("diagram_pencar")` berada.
+Alur kerja aplikasi Shiny kita ringkasnya seperti ini. Pertama, pengguna melihat antarmuka aplikasi kita. Di situ dia dapat menggeser slider dengan identitas `tahun` untuk mengganti-ganti nilanya. Nilai ini kemudian dikirim ke dapur Shiny dalam rupa `input$tahun` untuk diolah di dalam fungsi render, yaitu `renderPlot()`. Olahan tersebut menghasilkan luaran yang disebut dengan `output$diagram_pencar`. Luaran ini kemudian dikirimkan lagi ke antarmuka agar dapat dilihat oleh pengguna. Di mana posisinya? Posisinya terletak di mana `plotOutput("diagram_pencar")` berada.
 
 ## Sentuhan Akhir {#sec-sentuhan-akhir}
 
-Aplikasi Shiny kita masih sederhana dan seperlunya. Kita dapat memperindah aplikasi tersebut. Beberapa hal yang dapat kita lakukan adalah
+Aplikasi Shiny kita masih sederhana dan seperlunya. Kita dapat memperindah aplikasi tersebut. Beberapa hal yang dapat kita lakukan antara lain
 
 -   menambahkan judul ke dalam antarmukanya,
 
