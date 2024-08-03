@@ -23,7 +23,7 @@ keywords:
   - produk domestik bruto
   - PDB
   - diagram pencar
-  - diagram garis
+  - shiny
 copyright: "© 2024 Yosep Dwi Kristanto"
 license: "CC BY"
 google-scholar: true
@@ -31,3 +31,204 @@ editor_options:
   chunk_output_type: console
 code-annotations: select
 ---
+
+Jelajah data itu seringkali kompleks dan menantang. Apalagi yang kita jelajahi adalah data raya. Apakah penjelajahan data tersebut dapat kita buat lebih mudah dan menarik? Artikel blog ini akan mendemonstrasikan bagaimana mengembangkan aplikasi Shiny untuk menjelajah data pada [pos sebelumnya](/pos/2024-08-statistik-jendela-dunia/index.qmd "Statistik Adalah Jendela Dunia").
+
+Kita berkenalan dengan Shiny terlebih dahulu. Shiny adalah sebuah cara yang memungkinkan kita untuk membuat aplikasi berbasis web dengan bahasa pemrograman R (atau Python). Shiny ini cocok bagi kamu yang baru awal-awal memelajari R atau yang sudah lama dan lihai menggunakan bahasa pemrograman itu.
+
+## Mengapa Perlu Aplikasi Shiny? {#sec-mengapa-shiny}
+
+Bayangkan kamu adalah seorang analis data. Kamu sedang menganalisis [data Gapminder](https://github.com/jennybc/gapminder){.external target="_blank"} dengan R. Tujuannya adalah untuk melihat hubungan antara PDB (Pendapatan Domestik Bruto) per kapita dan angka harapan hidup berbagai negara. Pertama, kamu panggil dulu paket yang diperlukan. Paket tersebut adalah [{tidyverse}](https://www.tidyverse.org/){.external target="_blank"}.
+
+```{r}
+#| echo: true
+#| message: false
+#| code-fold: false
+
+library(tidyverse)
+
+```
+
+Setelah itu, kamu impor data yang tersedia secara daring dengan menggunakan fungsi `load()` dan `url()`. Hasilnya, kamu mendapatkan data dengan nama `gapminder`.
+
+```{r}
+#| echo: true
+#| code-fold: false
+
+load(url("https://github.com/jennybc/gapminder/raw/main/data/gapminder.rdata"))
+
+```
+
+Data tersebut memiliki variabel enam variabel, yaitu negara (`country`), benua (`continent`), tahun (`tahun`), angka harapan hidup (`lifeExp`), dan PDB per kapita (`gdpPercap`, dalam dolar internasional). Tak ingin berlama-lama, kamu langsung memvisualisasikan hubungan antara PDB per kapita dan angka harapan hidup dengan diagram pencar.
+
+```{r}
+#| echo: true
+#| code-fold: false
+#| label: fig-hub-pdb-ahh
+#| fig-cap: Hubungan antara PDB per kapita dan angka harapan hidup berbagai negara
+
+gapminder |> 
+  ggplot(aes(x = gdpPercap, y = lifeExp)) + 
+  geom_point()
+
+```
+
+Hmmm. Dengan baris kode itu, semua titik datanya digambarkan pada @fig-hub-pdb-ahh. Padahal, kamu ingin menggambarkan titik-titik pada tahun tertentu saja. Untuk itu, kamu perlu tahu tahun berapa saja yang tersedia dalam data.
+
+```{r}
+#| echo: true
+#| code-fold: false
+
+unique(gapminder$year)
+
+```
+
+Tahunnya ternyata mulai dari 1952 sampai 2007 dengan interval lima tahun. Selanjutnya, kamu ingin menggambar seperti pada @fig-hub-pdb-ahh tetapi hanya untuk tahun 2007.
+
+```{r}
+#| echo: true
+#| code-fold: false
+#| label: fig-hub-pdb-ahh-2007
+#| fig-cap: Hubungan antara PDB per kapita dan angka harapan hidup berbagai negara pada tahun 2007
+
+gapminder |> 
+  filter(year == 2007) |> 
+  ggplot(aes(x = gdpPercap, y = lifeExp)) + 
+  geom_point()
+
+```
+
+Dalam baris kode di atas terdapat perintah `filter(year == 2007)`. Kode tersebut berguna untuk memfilter datanya agar nilai variabel `year`-nya sama dengan 2007.
+
+Sekarang kamu ingin memvisualisasikan lagi data tersebut tetapi untuk tahun 2002. Caranya mudah. Kamu tinggal mengganti 2007 dengan 2002 dalam fungsi `filter()` di atas. Alternatifnya, kamu membuat sebuah variabel baru, misalnya `tahun_int`, dan membuat nilainya menjadi 2002. Setelah itu, kamu ganti 2007 dalam fungsi `filter()` di atas dengan variabel tersebut.
+
+```{r}
+#| echo: true
+#| code-fold: false
+#| label: fig-hub-pdb-ahh-2002
+#| fig-cap: Hubungan antara PDB per kapita dan angka harapan hidup berbagai negara pada tahun 2002
+
+# Variabel `tahun_int` dan nilainya sama dengan 2002
+tahun_int <- 2002
+
+# Memvisualisasikan data untuk tahun 2002
+gapminder |> 
+  filter(year == tahun_int) |> 
+  ggplot(aes(x = gdpPercap, y = lifeExp)) + 
+  geom_point()
+
+```
+
+Bagaimana jika kamu ingin membuat visualisasi data untuk tahun 1997? Kamu ganti nilai variabel `tahun_int` dengan 1997 dan jalankan baris kodenya. Bagaimana untuk tahun-tahun lainnya? Caranya sama:
+
+1.  kamu ganti nilai varibel `tahun_int` dengan tahun yang kamu mau, dan kemudian
+
+2.  jalankan lagi baris kodenya.
+
+Dua langkah tersebut perlu dilakukan agar kamu dapat memvisualisasikan data untuk tahun tertentu. Apakah ada cara yang lebih efisien? Apakah ada cara agar langkah kedua di atas otomatis dijalankan ketika kamu mengganti nilai variabel `tahun_int`? Ada, caranya adalah dengan menggunakan Shiny.
+
+Shiny menggunakan pemrograman yang reaktif. Artinya, Shiny akan secara otomatis menjalankan baris perintah untuk menghasilkan luaran ketika nilai inputnya diganti. Dalam kasusmu ini, inputnya adalah nilai variabel `tahun_int` dan luarannya adalah diagram pencar seperti pada @fig-hub-pdb-ahh-2007 atau @fig-hub-pdb-ahh-2002. Dengan demikian, Shiny akan langsung membuat diagram pencar seperti itu ketika nilai variabel `tahun_int` kamu ganti.
+
+## Membuat Aplikasi Shiny {#sec-membuat-app-shiny}
+
+Kamu telah mengenal Shiny. Sekarang kita akan membuat aplikasi Shiny berdasarkan proses analisis data yang dipaparkan pada @sec-mengapa-shiny. Karena kita akan menggunakan paket [{shiny}](https://CRAN.R-project.org/package=shiny){.external target="_blank"}, paket tersebut perlu terpasang di komputermu. Jika belum, kamu perlu memasangnya dengan perintah berikut.
+
+``` r
+install.packages("shiny")
+```
+
+Aku menyarankan agar kamu membuat aplikasi Shiny dengan [RStudio](https://posit.co/download/rstudio-desktop/){.external target="_blank"} agar lebih mudah. Di RStudio, kamu dapat membuat aplikasi Shiny dengan mengklik **File \| New File \| Shiny Web App...**. Pada jendela *New Shiny Web Application*, tuliskan nama aplikasinya dan klik **Create**. Setelah itu, kamu akan mendapatkan fail `app.R` yang isinya seperti ini.
+
+``` {.r filename="app.R"}
+#
+# This is a Shiny web application. You can run the application by clicking
+# the 'Run App' button above.
+#
+# Find out more about building applications with Shiny here:
+#
+#    https://shiny.posit.co/
+#
+
+library(shiny)
+
+# Define UI for application that draws a histogram
+ui <- fluidPage(
+
+    # Application title
+    titlePanel("Old Faithful Geyser Data"),
+
+    # Sidebar with a slider input for number of bins 
+    sidebarLayout(
+        sidebarPanel(
+            sliderInput("bins",
+                        "Number of bins:",
+                        min = 1,
+                        max = 50,
+                        value = 30)
+        ),
+
+        # Show a plot of the generated distribution
+        mainPanel(
+           plotOutput("distPlot")
+        )
+    )
+)
+
+# Define server logic required to draw a histogram
+server <- function(input, output) {
+
+    output$distPlot <- renderPlot({
+        # generate bins based on input$bins from ui.R
+        x    <- faithful[, 2]
+        bins <- seq(min(x), max(x), length.out = input$bins + 1)
+
+        # draw the histogram with the specified number of bins
+        hist(x, breaks = bins, col = 'darkgray', border = 'white',
+             xlab = 'Waiting time to next eruption (in mins)',
+             main = 'Histogram of waiting times')
+    })
+}
+
+# Run the application 
+shinyApp(ui = ui, server = server)
+```
+
+Baris kode di atas adalah baris kode yang sudah lengkap untuk sebuah aplikasi. Tetapi, aplikasi tersebut tidak sesuai dengan tujuanmu, yaitu memvisualisasikan hubungan antara PDB per kapita dan angka harapan hidup. Untuk itu, hapus semua baris kode di atas dan ganti dengan baris kode seperti ini.
+
+``` {.r filename="app.R"}
+library(shiny)
+library(tidyverse)
+load(url("https://github.com/jennybc/gapminder/raw/main/data/gapminder.rdata"))
+
+ui <- fluidPage(
+  sliderInput(
+    inputId = "tahun",
+    label = "Tahun",
+    min = 1952,
+    max = 2007,
+    value = 2007,
+    step = 5
+  ),
+  plotOutput("diagram_pencar")
+)
+
+server <- function(input, output, session) {
+  output$diagram_pencar <- renderPlot({
+    tahun_int <- input$tahun
+    
+    gapminder |> 
+      filter(year == tahun_int) |> 
+      ggplot(aes(x = gdpPercap, y = lifeExp)) + 
+      geom_point()
+    
+  })
+}
+
+shinyApp(ui = ui, server = server)
+```
+
+Aplikasi `app.R` tersebut melakukan empat hal sebagai berikut.
+
+1.  Aplikasi tersebut memanggil paket {shiny} dan {tidyverse} melalui perintah `library(shiny)` dan `library(tidyverse)`. Selain itu, aplikasi tersebut juga mengimpor data `gapminder` dengan perintah `load(url("https://github.com/jennybc/gapminder/raw/main/data/gapminder.rdata"))`.
+
+2.  
