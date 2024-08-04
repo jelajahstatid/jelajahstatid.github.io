@@ -1,6 +1,5 @@
 ---
 title: "Statistik Adalah Jendela Dunia"
-draft: true
 description: |
   Statistik dapat digunakan untuk menyingkap fakta-fakta tentang dunia. Secara khusus, statistik dapat dimanfaatkan untuk melihat angka harapan hidup dan PDB per kapita berbagai negara.
 author:
@@ -32,7 +31,7 @@ editor_options:
 code-annotations: select
 ---
 
-Statistik adalah jendela dunia. Biasanya buku yang demikian, sekarang statistiklah yang mendapat giliran. [Pos sebelumnya](/pos/2024-07-literasi-matematika-sosial-budaya) menunjukkan peran statistik untuk memahami keadaan sosial ekonomi dan pendidikan berbagai negara. Sekarang, kita akan melihat faedah statistik dalam memahami karakteristik-karakteristik lainnya.
+Statistik adalah jendela dunia. Biasanya buku yang demikian, sekarang statistiklah yang mendapat giliran. [Pos sebelumnya](/pos/2024-07-literasi-matematika-sosial-budaya "Literasi Matematika dan Status Sosial Ekonomi dalam PISA 2022") menunjukkan peran statistik untuk memahami keadaan sosial ekonomi dan pendidikan berbagai negara. Sekarang, kita akan melihat faedah statistik dalam memahami karakteristik-karakteristik lainnya.
 
 Untuk memahami dunia, kita akan menggunakan data dari Gapminder. Data tersebut dapat diunduh dari situs [Gapminder](https://www.gapminder.org/data/){.external target="_blank"}. Di situs itu, kita dapat memilih berbagai macam indikator, seperti produk domestik bruto per kapita, harapan hidup, dan populasi.
 
@@ -73,7 +72,7 @@ glimpse(gapminder)
 Ternyata data tersebut memiliki 1.704 baris dan 6 kolom. Keterangan lebih lanjut tentang keenam kolom tersebut disajikan pada @tbl-var-gapminder.
 
 | Variabel    | Keterangan                                                       |
-|-------------|------------------------------------------------------------------|
+|---------------------|---------------------------------------------------|
 | `country`   | Negara                                                           |
 | `continent` | Benua                                                            |
 | `year`      | Tahun                                                            |
@@ -101,7 +100,7 @@ Ternyata tahunnya merentang mulai 1952 sampai 2007 dengan interval lima tahun. S
 #| echo: true
 #| code-fold: false
 #| label: fig-harapan-hidup
-#| fig-cap: Tren angka harapan hidup setiap negara pada 1952 - 2007.
+#| fig-cap: Tren angka harapan hidup setiap negara pada tahun 1952 - 2007.
 #| fig-asp: 0.5625
 
 terjemahan_benua <- c(
@@ -157,7 +156,7 @@ Kita sudah mengetahui apa saja negara tersebut. Sekarang kita masukkan informasi
 #| echo: true
 #| code-fold: false
 #| label: fig-harapan-hidup-info-bawah
-#| fig-cap: Tren angka harapan hidup setiap negara pada 1952 - 2007, dengan penambahan informasi negara-negara yang angka harapan hidupnya relatif rendah.
+#| fig-cap: Tren angka harapan hidup setiap negara pada tahun 1952 - 2007, dengan penambahan informasi negara-negara yang angka harapan hidupnya relatif rendah.
 #| fig-asp: 0.5625
 
 plot_harapan_hidup + 
@@ -177,7 +176,7 @@ Berdasarkan @fig-harapan-hidup dan @fig-harapan-hidup-info-bawah, kita dapat mel
 #| echo: true
 #| code-fold: false
 #| label: fig-harapan-hidup-median
-#| fig-cap: Tren angka harapan hidup setiap negara pada 1952 - 2007.
+#| fig-cap: Tren angka harapan hidup setiap negara pada tahun 1952 - 2007.
 #| fig-asp: 0.5625
 
 median_lifeExp <- gapminder |> 
@@ -210,7 +209,7 @@ Bagaimana dengan PDB per kapita setiap negaranya? Apakah trennya juga naik dari 
 #| echo: true
 #| code-fold: false
 #| label: fig-pdb
-#| fig-cap: Tren PDB per kapita setiap negara pada 1952 - 2007.
+#| fig-cap: Tren PDB per kapita setiap negara pada tahun 1952 - 2007.
 #| fig-asp: 0.5625
 
 median_gdpPercap <- gapminder |> 
@@ -273,7 +272,7 @@ Tren nilai tengah PDB per kapita pada @fig-pdb tidak begitu tampak jelas. Kita p
 #| echo: true
 #| code-fold: false
 #| label: fig-median-pdb
-#| fig-cap: Tren nilai tengah PDB per kapita setiap negara pada 1952 - 2007.
+#| fig-cap: Tren nilai tengah PDB per kapita setiap negara pada tahun 1952 - 2007.
 #| fig-asp: 0.5625
 
 median_gdpPercap |> 
@@ -298,7 +297,7 @@ median_gdpPercap |>
 #| echo: true
 #| code-fold: false
 #| label: fig-hubungan-pdb-ahh
-#| fig-cap: Hubungan antara PDB dan angka harapan hidup pada tahun 2007.
+#| fig-cap: Hubungan antara PDB per kapita dan angka harapan hidup pada tahun 2007.
 #| fig-asp: 0.5625
 
 gapminder |> 
@@ -336,13 +335,80 @@ gapminder |>
 
 Berdasarkan @fig-hubungan-pdb-ahh, kita dapat melihat bahwa terdapat hubungan antara PDB per kapita dan angka harapan hidup. Semakin tinggi PDB per kapita sebuah negara, semakin tinggi juga angka harapan hidupnya. Secara spesifik, ketika PDB per kapita naik dari 0 sampai 7.500 dolar, laju kenaikan angka harapan hidupnya paling tinggi.
 
+::: callout-note
+## Catatan
+
+Berdasarkan @fig-hubungan-pdb-ahh, kita mengetahui bahwa laju kenaikan angka harapan hidup paling tinggi ketika PDB per kapitanya naik dari 0 sampai 7.500 dolar. Laju kenaikan ini disajikan sebagai gradien model linear yang disajikan pada @fig-hubungan-pdb-ahh-filter berikut.
+
+```{r}
+#| echo: true
+#| label: fig-hubungan-pdb-ahh-filter
+#| fig-cap: Hubungan antara PDB per kapita dan angka harapan hidup pada tahun 2007 ketika PDB per kapitanya di antara 0 dan 7.500 dolar internasional
+#| fig-asp: 0.5625
+
+gapminder_filter_pdb <- gapminder |> 
+  filter(
+    year == 2007,
+    gdpPercap >= 0,
+    gdpPercap <= 7500
+  )
+
+model_linear <- lm(
+  formula = lifeExp ~ gdpPercap,
+  data = gapminder_filter_pdb
+)
+
+gapminder |> 
+  mutate(
+    continent = recode(continent, !!!terjemahan_benua)
+  ) |> 
+  filter(year == 2007) |> 
+  ggplot(
+    aes(x = gdpPercap, y = lifeExp)
+  ) + 
+  geom_point(
+    aes(color = continent, size = pop),
+    alpha = .6
+  ) + 
+  geom_smooth(
+    data = gapminder_filter_pdb,
+    method = "lm",
+    formula = y ~ x,
+    linewidth = 1.5,
+    alpha = .1,
+    color = "black"
+  ) + 
+  scale_size(
+    range = c(1, 20),
+    guide = "none"
+  ) + 
+  scale_color_viridis_d(name = "Benua") + 
+  xlim(0, 50000) + 
+  theme_minimal() + 
+  theme(legend.position = "bottom") + 
+  labs(
+    x = "PDB per kapita",
+    y = "Angka harapan hidup"
+  )
+
+```
+
+Persamaan garis untuk model linear tersebut ditunjukkan pada @eq-model-linear.
+
+$$
+\text{lifeExp} = \text{50,89832} + \text{0,003358}\text{gdpPercap}
+$$ {#eq-model-linear}
+
+Berdasarkan model tersebut, angka harapan hidup (`lifeExp`) naik 0,003358 tahun ketika PDB per kapitanya (`gdpPercap`) naik 1 dolar. Dengan kata lain, angka harapan hidup itu secara rata-rata naik sekitar 3,4 tahun ketika PDB per kapitanya naik 1.000 dolar.
+:::
+
 Apakah hubungan seperti itu juga terjadi pada tahun-tahun lainnya? Kita selidiki dengan memvisualisasikan data yang serupa, tapi untuk tahun 1987, 1992, 1997, dan 2002. Perhatikan @fig-hubungan-pdb-ahh-tahun-lain!
 
 ```{r}
 #| echo: true
 #| code-fold: false
 #| label: fig-hubungan-pdb-ahh-tahun-lain
-#| fig-cap: Hubungan antara PDB dan angka harapan hidup pada tahun 1987, 1992, 1997, dan 2002.
+#| fig-cap: Hubungan antara PDB per kapita dan angka harapan hidup pada tahun 1987, 1992, 1997, dan 2002.
 #| fig-asp: 0.5625
 
 gapminder |> 
