@@ -24,7 +24,7 @@ website:
     left: |
       © 2024 Jelajah Statistika dan Ilmu Data
     right: |
-      Blog ini dikembangkan dengan [Quarto](https://quarto.org/).
+      Blog ini dikembangkan dengan [Quarto](https://quarto.org/){.external target="_blank"}.
 format:
   html:
     toc: true
