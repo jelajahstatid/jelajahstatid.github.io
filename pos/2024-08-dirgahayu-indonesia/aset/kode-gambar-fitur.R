@@ -207,6 +207,8 @@ realisasi_penanaman_modal_tahun |>
   ) + 
   theme_minimal(base_size = 28)
 
+gg_stop_recording()
+
 # Sumber ----
 # https://nrennie.rbind.io/tidytuesday-shiny-app/
 # https://github.com/nrennie/tidytuesday/blob/main/2023/2023-10-31/20231031.R

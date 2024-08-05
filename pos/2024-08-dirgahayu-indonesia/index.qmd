@@ -9,21 +9,24 @@ author:
     affiliation: Pendidikan Matematika, Universitas Sanata Dharma, Yogyakarta
     affiliation-url: https://www.usd.ac.id/s1pmat
     orcid: 0000-0003-1446-0422
-date: 2024-08-14
+date: 2024-08-12
 categories:
   - statistik nasional
   - tutorial
   - visualisasi data
-image: "statistik-interaktif.png"
+image: "statistik-hut-ri-2024.png"
 image-alt: |
-  Logo Shiny dengan latar belakang diagram pencar yang dibuat secara acak. Logo Shiny diperoleh dari Wikimedia.
+  Diagram alir yang menunjukkan tren kenaikan realisasi penanaman modal asing di Indonesia.
 keywords: 
   - kemerdekaan
   - Republik Indonesia
+  - nusantara
   - ekonomi
   - investasi
   - logo
   - penanaman modal asing
+  - diagram batang
+  - diagram alir
 copyright: "© 2024 Yosep Dwi Kristanto"
 license: "CC BY"
 google-scholar: true
@@ -31,3 +34,501 @@ editor_options:
   chunk_output_type: console
 code-annotations: select
 ---
+
+Di awal bulan Agustus, masyarakat Indonesia pada umumnya sibuk mempersiapkan hajatan negara. Mereka secara serentak memasang bendera merah putih, spanduk, umbul-umbul, bersih-bersih desa, dan lain sebagainya. Berbagai perlombaan pun dilakukan. Mulai dari sepak bola, bola voli, bulu tangkis, tenis meja, sampai panjat pinang. Itu semua merupakan luapan suka cita kemerdekaan dan harapan ke depan.
+
+Nusantara Baru, Indonesia Maju. Itulah tema besar peringatan hari ulang tahun ke-79 kemerdekaan Republik Indonesia. Peringatan HUT ke-79 RI tersebut tentu memiliki banyak makna dan harapan. Menariknya, makna dan harapan tersebut tergambar dalam logo numerik yang digunakan. Salah satu harapannya adalah pertumbuhan ekonomi.
+
+![Logo numerik HUT ke-79 kemerdekaan RI (kiri). Sorotan terhadap angka tujuh pada logo (kanan).](aset/logo-numerik-hut-ri-2004.svg){#fig-logo-hut-ri-2024 fig-alt="Logo numerik HUT ke-79 kemerdekaan RI (kiri). Sorotan terhadap angka tujuh pada logo (kanan)." fig-align="center"}
+
+Berdasarkan [panduan identitas visualnya](https://www.setneg.go.id/view/index/peringatan_hari_ulang_tahun_ke_79_kemerdekaan_republik_indonesia_tahun_2024 "Peringatan Hari Ulang Tahun Ke-79 Kemerdekaan Republik Indonesia Tahun 2024"){.external target="_blank"}, angka tujuh pada logo tersebut menyerupai anak panah yang mengarah ke kanan-atas. Dalam bahasa Statistika, angka tersebut menyimbolkan tren yang naik. Perhatikan @fig-logo-hut-ri-2024. Hal itu melambangkan harapan Indonesia untuk meningkatkan investasi dan ekspornya sehingga bertumbuh ekonominya.
+
+*Nah*, kita akan melihat harapan besar itu, khususnya dalam hal investasi. Kita akan menggunakan data realisasi penanaman modal asing pada periode 2010 - 2024 dari Kementerian Investasi/BKPM. Data tersebut kita manfaatkan untuk memvisualisasikan dan melihat tren realisasi penanaman modal dari berbagai negara.
+
+Kita akan memvisualisasikan data tersebut dengan pemrograman R. Untuk melakukannya, kita menggunakan paket [{tidyverse}](https://www.tidyverse.org/){.external target="_blank"}, [{ggstream}](https://CRAN.R-project.org/package=ggstream){.external target="_blank"}, dan [{ggtext}](https://CRAN.R-project.org/package=ggtext){.external target="_blank"}. Untuk itu kita perlu memastikan kelima paket tersebut telah terpasang. Jika sudah, kita dapat memanggilnya dengan kode seperti berikut.
+
+```{r}
+#| echo: true
+#| code-fold: false
+#| message: false
+
+library(tidyverse)
+library(ggstream)
+library(ggtext)
+
+```
+
+## Menjelajah Data {#sec-menjelajah-data}
+
+Mari singsingkan lengan baju kita. Dengan semangat kemerdekaan (agak berlebihan tak apa), kita mulai penjelahan data. Data realisasi penanaman modal tersebut tersedia di situs web [Kementerian Investasi/BKPM](https://bkpm.go.id/id/info/realisasi-investasi "Halaman Laporan Realisasi Penanaman Modal Kementerian Investasi/BKPM"){.external target="_blank"}. Data yang sudah aku siapkan dapat diakses di [tautan ini](https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/main/pos/2024-08-dirgahayu-indonesia/aset/realisasi_penanaman_modal.csv "Unduh data"){.external target="_blank"}. Dengan fungsi `read_csv()` kita impor data tersebut dan kita namai dengan `realisasi_penanaman_modal`. Untuk melihat datanya, kita dapat menggunakan fungsi `print()`.
+
+```{r}
+#| echo: true
+#| code-fold: false
+#| message: false
+
+realisasi_penanaman_modal <- read_csv("https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/main/pos/2024-08-dirgahayu-indonesia/aset/realisasi_penanaman_modal.csv")
+
+print(realisasi_penanaman_modal)
+
+```
+
+Data tersebut memiliki 17 variabel dan 177 baris. Variabel-variabelnya adalah `benua`, `negara`, dan realisasi penanaman modal (dalam ribuan dolar AS) dari tahun `2010` sampai `2024`. Akan tetapi, nilai pada tahun 2024 tersebut belum utuh. Nilainya terhitung hanya sampai pada 30 Juni 2024.
+
+Data kita tersebut bentuknya melebar. Kita buat data itu menjadi memanjang dengan menggunakan `pivot_longer()`. Karena tahun 2004 nilainya belum utuh, kita perlu memfilternya agar mengabaikan data pada tahun itu. Hal ini dilakukan dengan fungsi `filter()` dengan argumen `tahun < 2024`. Namun, filter seperti itu mengharuskan nilai-nilai dalam variabel `tahun` jenisnya adalah integer (atau numerik). Untuk itu, kita modifikasi variabel `tahun` agar menjadi integer dengan fungsi `mutate` dan `as.integer()`. Kita lihat hasilnya dengan `print()`.
+
+```{r}
+#| echo: true
+#| code-fold: false
+
+realisasi_penanaman_modal <- realisasi_penanaman_modal |> 
+  pivot_longer(
+    cols = starts_with("20"),
+    names_to = "tahun",
+    values_to = "nilai_investasi"
+  ) |> 
+  mutate(tahun = as.integer(tahun)) |> 
+  filter(tahun < 2024)
+
+print(realisasi_penanaman_modal)
+
+```
+
+Sekarang data kita, `realisasi_penanaman_modal`, memiliki empat variabel dan 2.655 baris. Keempat variabel tersebut adalah `benua`, `negara`, `tahun`, dan `nilai_investasi`. Dari data tersebut, menarik untuk menyelidiki total investasi negara-negara berdasarkan benuanya.
+
+Kita dapat melakukannya dengan mengelompokkan baris-baris dalam `realisasi_penanaman_modal` berdasarkan `tahun`, kemudian meringkasnya untuk membuat variabel baru, yaitu `total_investasi`. Variabel tersebut merupakan jumlah, atau `sum()`, dari nilai-nilai dalam `nilai_investasi` dalam setiap kelompoknya. Agar mudah membaca hasilnya, kita dapat mengurutkan baris-barisnya berdasarkan nilai dalam variabel `total_investasi` dengan menggunakan `arrange()`.
+
+```{r}
+#| echo: true
+#| code-fold: false
+
+realisasi_penanaman_modal_benua <- realisasi_penanaman_modal |> 
+  group_by(benua) |> 
+  summarise(
+    total_investasi = sum(nilai_investasi, na.rm = TRUE),
+    .groups = "drop"
+  ) |> 
+  arrange(-total_investasi)
+
+print(realisasi_penanaman_modal_benua)
+
+```
+
+Negara-negara Asia memberikan investasi terbesar bagi Indonesia. Proporsinya adalah sekitar 68% dari keseluruhan.
+
+> Apabila ditotal, negara-negara dari Asia menanamkan modal terbesar dibandingkan dengan benua-benua lainnya (sekitar 68% dari keseluruhan).
+
+Sekarang kita lihat tren realisasi penanaman modal setiap tahunnya. Kita dapat melakukannya dengan menggunakan kode yang serupa, tetapi pengelompokannya berdasarkan `tahun`.
+
+```{r}
+#| echo: true
+#| code-fold: false
+
+realisasi_penanaman_modal_tahun <- realisasi_penanaman_modal |> 
+  group_by(tahun) |> 
+  summarise(
+    total_investasi = sum(nilai_investasi, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+print(realisasi_penanaman_modal_tahun)
+
+```
+
+Secara umum, kita melihat adanya tren yang naik untuk nilai variabel `total_investasi`. Berapakah kenaikan setiap tahunnya? Untuk menjawabnya, kita dapat menambahkan variabel baru ke dalam data tersebut dengan `mutate()`. Misalnya, nama variabel tersebut adalah `kenaikan_investasi`. Nilai variabel tersebut diperoleh dengan mengurangi nilai `total_investasi` sebuah baris dengan nilai dalam baris sebelumnya. Untuk mendapatkan nilai pada baris sebelumnya, kita dapat menggunakan fungsi `lag()`.
+
+```{r}
+#| echo: true
+#| code-fold: false
+
+realisasi_penanaman_modal_tahun <- realisasi_penanaman_modal_tahun |> 
+  mutate(
+    kenaikan_investasi = total_investasi - lag(total_investasi)
+  )
+
+print(realisasi_penanaman_modal_tahun)
+
+```
+
+Berapakah rerata kenaikan realisasi penanaman modal setiap tahunnya? Kita dapat menghitungnya dengan menggunakan `mean()` terhadap kolom `kenaikan_investasi` dalam data `realisasi_penanaman_modal_tahun`.
+
+```{r}
+#| echo: true
+#| code-fold: false
+
+rerata_kenaikan_investasi <- mean(realisasi_penanaman_modal_tahun$kenaikan_investasi, na.rm = TRUE)
+
+print(rerata_kenaikan_investasi)
+
+```
+
+Jadi, secara rata-rata kenaikan realisasi penanaman modal dari tahun 2010 sampai 2023 adalah sekitar 2.619.442 (ribuan dolar AS) atau sekitar 2,6 milyar dolar AS per tahunnya.
+
+> Terdapat tren yang naik untuk total realisasi penanaman modal asing dari berbagai negara. Mulai tahun 2010 sampai 2023, rerata kenaikannya sekitar 2,6 milyar dolar AS per tahunnya.
+
+Tren realisasi penanaman modal tersebut ditunjukkan pada @fig-tren-investasi-asing.
+
+```{r}
+#| echo: true
+#| label: fig-tren-investasi-asing
+#| fig-cap: "Tren total realisasi penanaman modal asing setiap tahunnya"
+#| fig-asp: 0.5625
+
+realisasi_penanaman_modal_tahun |> 
+  ggplot(aes(x = tahun, y = total_investasi)) + 
+  geom_line() + 
+  geom_point()
+
+```
+
+Berdasarkan @fig-tren-investasi-asing tersebut, kita dapat melihat bahwa kenaikan realisasi penanaman modal yang paling besar berada pada rentang tahun 2021 - 2023. Rerata kenaikan pada periode tersebut kurang lebih 9,6 milyar dolar AS per tahun.
+
+> Kenaikan penanaman modal asing terbesar terjadi di antara tahun 2021 dan 2023.
+
+## Memvisualisasikan Data {#sec-memvisualisasikan-data}
+
+Saatnya kita wartakan temuan-temuan yang telah kita dapatkan. Berdasarkan @sec-menjelajah-data, kita menemukan tiga hal.
+
+1.  Apabila ditotal, negara-negara dari Asia menanamkan modal terbesar dibandingkan dengan benua-benua lainnya (sekitar 68% dari keseluruhan).
+2.  Terdapat tren yang naik untuk total realisasi penanaman modal asing dari berbagai negara. Mulai tahun 2010 sampai 2023, rerata kenaikannya sekitar 2,6 milyar dolar AS per tahunnya.
+3.  Kenaikan penanaman modal asing terbesar terjadi di antara tahun 2021 dan 2023.
+
+Kita akan menyampaikan ketiga pesan tersebut melalui sebuah diagram. Diagram apa yang cocok? Mungkin diagram batang cocok—diagram batang yang menunjukkan realisasi penanaman modal setiap tahunnya beserta dengan proporsi setiap benuanya.
+
+Untuk membuat diagram batang yang demikian, kita memerlukan data yang memiliki variabel `benua` dan `tahun`, serta nilai akumulasi dari realisasi penanaman modal untuk `benua` dan `tahun` yang bersangkutan.
+
+Untuk membuat data seperti itu, kita menggunakan data `realisasi_penanaman_modal`. Setelah itu, kita kelompokkan baris-baris dalam data tersebut menurut `benua` dan `tahun` untuk dihitung jumlah (`sum()`) nilai-nilai variabel `nilai_investasi`-nya. Kita namai data ini sebagai `investasi_benua_tahun`.
+
+```{r}
+#| echo: true
+#| code-fold: false
+
+investasi_benua_tahun <- realisasi_penanaman_modal |> 
+  group_by(benua, tahun) |> 
+  summarise(
+    total_investasi = sum(nilai_investasi, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+print(investasi_benua_tahun)
+
+```
+
+Sekarang kita gunakan data `investasi_data_benua` tersebut untuk membuat diagram batang. Diagram batang tersebut ditunjukkan @fig-diagram-batang.
+
+```{r}
+#| echo: true
+#| code-fold: false
+#| label: fig-diagram-batang
+#| fig-cap: "Realisasi penanaman modal asing per tahun untuk setiap benua"
+#| fig-asp: 0.75
+
+investasi_benua_tahun |> 
+  ggplot(aes(x = tahun, y = total_investasi)) + 
+  geom_col(aes(fill = benua))
+
+```
+
+Diagram batang pada @fig-diagram-batang tersebut telah dapat menyampaikan tiga temuan kita. Akan tetapi, diagram tersebut mungkin terasa belum cukup meyakinkan. Diagram tersebut juga kurang sejalan dengan elemen grafis perayaan HUT ke-79 RI. Berdasarkan pedoman identitas visualnya, elemen grafis tersebut ditunjukkan pada @fig-elemen-grafis.
+
+![Elemen grafis peringatan HUT ke-79 RI](aset/elemen-grafis-hut-ri-2024-01.svg){#fig-elemen-grafis fig-align="center"}
+
+Elemen grafis pada @fig-elemen-grafis tersebut melambangkan aliran sungai. Harapannya, negara akan terus berkembang mengikuti zaman seperti sifat sungai.
+
+Berdasarkan harapan itu, kita dapat menggunakan diagram alir. Diagram seperti ini dapat kita buat dengan menggunakan fungsi `geom_stream()` dari paket {ggstream}. Diagram alirnya dapat dilihat pada
+
+```{r}
+#| echo: true
+#| code-fold: false
+#| label: fig-diagram-alir-sederhana
+#| fig-cap: "Diagram alir sederhana yang menunjukkan realisasi penanaman modal asing per tahun untuk setiap benua"
+#| fig-asp: 0.75
+
+investasi_benua_tahun |> 
+  ggplot(aes(x = tahun, y = total_investasi)) + 
+  geom_stream(aes(fill = benua))
+
+```
+
+Agar terlihat lebih bersih, kita hilangkan latar belakang plotnya. Hal ini dapat kita lakukan dengan memilih tema `theme_void()`. Warna yang merepresentasikan benua-benuanya juga dapat kita ganti. Untuk itu, kita perlu mengetahui apa saja benua-benua yang ada dalam data kita.
+
+```{r}
+#| echo: true
+#| code-fold: false
+
+unique(investasi_benua_tahun$benua)
+
+```
+
+Ternyata ada lima benua (yaitu Afrika, Amerika, Asia, Australia, dan Eropa) serta satu kelompok dengan nama Joint. Kelompok Joint ini merupakan gabungan dari beberapa negara (tidak harus dalam satu benua).
+
+Kita pilih warna untuk keenam kelompok tersebut. Agar warnanya sesuai dengan tema peringatan kemerdekaan Republik Indonesia, kita pilih warna-warnanya adalah `#900C3F`, `#C70039`, `#FF5733`, `#FF8D1A`, `#FFC300`, dan `grey85`. Kita petakan warna-warna ini ke nama kelompok-kelompoknya. Kita namai pemetaan tersebut dengan `warna_benua`.
+
+```{r}
+#| echo: true
+#| code-fold: false
+
+warna_benua <- c(
+  "Asia" = "#900C3F",
+  "Amerika" = "#FFC300",
+  "Eropa" = "#C70039",
+  "Afrika" = "#FF5733",
+  "Australia" = "#ff8d1a",
+  "Joint" = "grey85"
+)
+
+```
+
+Sekarang kita modifikasi diagram pada @fig-diagram-alir-sederhana. Hasilnya seperti tampa pada
+
+```{r}
+#| echo: true
+#| code-fold: false
+#| label: fig-diagram-alir-warna
+#| fig-cap: "Diagram alir setelah dimodifikasi tema dan warnanya"
+#| fig-asp: 0.75
+
+investasi_benua_tahun |> 
+  ggplot(aes(x = tahun, y = total_investasi)) + 
+  geom_stream(aes(fill = benua)) + 
+  scale_y_continuous(limits = c(-6e+07, 6e+07)) + 
+  scale_fill_manual(
+    values = warna_benua
+  ) + 
+  theme_void()
+
+```
+
+Kita perbaiki lagi diagram pada @fig-diagram-alir-warna tersebut. Apakah kamu punya ide perbaikannya seperti apa?
+
+Pertama, kita hilangkan legendanya. Kedua, kita buat teks untuk sumbu-$x$ secara manual. Agar teksnya nanti kelihatan rapi, kita juga perlu mengatur ulang batas-batas jendela grafiknya. Selain itu, kita perlu mengatur agar grafiknya lebih mepet ke kiri dan kanan. Hasil eksekusi ide ini ditunjukkan pada @fig-diagram-alir-sumbu-x.
+
+```{r}
+#| echo: true
+#| code-fold: false
+#| label: fig-diagram-alir-sumbu-x
+#| fig-cap: "Diagram alir setelah diberikan teks untuk sumbu-$x$"
+#| fig-asp: 0.75
+
+investasi_benua_tahun |> 
+  ggplot(aes(x = tahun, y = total_investasi)) + 
+  # Layer teks pada sumbu-x
+  geom_segment(
+    data = data.frame(tahun = seq(2012, 2022, 2)),
+    aes(x = tahun, y = 0, yend = -5e+07),
+    linewidth = .5,
+    linetype = "dashed",
+    alpha = .4
+  ) +
+  geom_text(
+    data = data.frame(tahun = seq(2012, 2022, 2)),
+    aes(x = tahun, y = -5.5e+07, label = tahun),
+    size = 3
+  ) + 
+  # Layer diagram alir
+  geom_stream(aes(fill = benua)) + 
+  # Pembatas jendela grafik
+  scale_y_continuous(limits = c(-6e+07, 6e+07)) + 
+  # Pewarnaan manual
+  scale_fill_manual(
+    values = warna_benua
+  ) + 
+  # Pengaturan bidang koordinat
+  coord_cartesian(expand = FALSE) + 
+  # Pemilihan tema
+  theme_void() + 
+  # Pengaturan tema
+  theme(
+    legend.position = "none"
+  )
+```
+
+Apa selanjutnya? Agar diagram pada @fig-diagram-alir-sumbu-x tersebut jelas menyampaikan informasi apa, kita perlu menambahkan judul dan anak judul. Karena tadi kita telah menghapus legendanya, informasi legenda tersebut dapat kita masukkan ke dalam anak judul tersebut. Selain itu, kita juga dapat menambakan takarir ke dalam diagram tersebut. Takarir tersebut dapat menginformasikan sumber data yang kita gunakan. Untuk itu, kita siapkan judul, anak judul, dan takarirnya.
+
+```{r}
+#| echo: true
+#| code-fold: false
+
+judul <- "Realisasi Penanaman Modal Asing"
+anak_judul <- "Terdapat tren yang naik untuk total realisasi penanaman modal asing dari berbagai negara dari benua <span style='color:#900C3F'><b>Asia,</b></span> <span style='color:#FFC300'><b>Amerika,</b></span> <span style='color:#C70039'><b>Eropa,</b></span> <span style='color:#FF5733'><b>Afrika,</b></span> dan <span style='color:#FF8D1a'><b>Australia.</b></span> Mulai tahun 2010 sampai 2023, rerata kenaikannya sekitar 2,6 milyar dolar AS per tahunnya."
+takarir <- "Data: Kementerian Investasi/BKPM"
+
+```
+
+Setelah `judul`, `anak_judul`, dan `takarir` siap, kita dapat menambahkannya ke dalam diagram alirnya. Hasilnya ditunjukkan pada @fig-diagram-alir-judul.
+
+```{r}
+#| echo: true
+#| code-fold: false
+#| label: fig-diagram-alir-judul
+#| fig-cap: "Diagram alir setelah diberikan judul, anak judul, dan takarir"
+#| fig-asp: 0.75
+
+investasi_benua_tahun |> 
+  ggplot(aes(x = tahun, y = total_investasi)) + 
+  # Layer teks pada sumbu-x
+  geom_segment(
+    data = data.frame(tahun = seq(2012, 2022, 2)),
+    aes(x = tahun, y = 0, yend = -5e+07),
+    linewidth = .5,
+    linetype = "dashed",
+    alpha = .4
+  ) +
+  geom_text(
+    data = data.frame(tahun = seq(2012, 2022, 2)),
+    aes(x = tahun, y = -5.5e+07, label = tahun),
+    size = 3
+  ) + 
+  # Layer diagram alir
+  geom_stream(aes(fill = benua)) + 
+  # Pembatas jendela grafik
+  scale_y_continuous(limits = c(-6e+07, 6e+07)) + 
+  # Pewarnaan manual
+  scale_fill_manual(
+    values = warna_benua
+  ) + 
+  # Pengaturan bidang koordinat
+  coord_cartesian(expand = FALSE) + 
+  # Pemilihan tema
+  theme_void() + 
+  # Pengaturan tema
+  theme(
+    legend.position = "none",
+    plot.title = element_textbox_simple(
+      size = 20,
+      face = "bold",
+      margin = margin(t = 10, r = 20, b = 5, l = 20)
+    ),
+    plot.subtitle = element_textbox_simple(
+      margin = margin(t = 0, r = 20, b = 5, l = 20)
+    ),
+    plot.caption = element_textbox_simple(
+      margin = margin(t = 5, r = 20, b = 10, l = 20)
+    )
+  ) + 
+  labs(
+    title = judul,
+    subtitle = anak_judul,
+    caption = takarir
+  )
+
+```
+
+Diagram alir yang ditunjukkan pada @fig-diagram-alir-judul sudah menawan. Akan tetapi, belum semua pesan yang kita temukan di @sec-menjelajah-data tersampaikan. Untuk itu, kita perlu menambahkan label pada diagram tersebut. Terlebih dahulu kita siapkan label-label tersebut.
+
+```{r}
+#| echo: true
+#| code-fold: false
+
+pesan_1 <- "<b>Penanam modal terbesar</b><br>Apabila ditotal, negara-negara dari Asia menanamkan modal terbesar dibandingkan dengan benua-benua lainnya (sekitar 68% dari keseluruhan)."
+pesan_2 <- "<b>Kenaikan terbesar</b><br>Kenaikan penanaman modal asing terbesar terjadi di antara tahun 2021 dan 2023."
+
+```
+
+Label-label sudah siap. Kita masukkan kedua label tersebut (yaitu `pesan_1` dan `pesan_2`) ke dalam diagram alirnya. Hasilnya disajikan pada @fig-diagram-alir-label.
+
+```{r}
+#| echo: true
+#| code-fold: false
+#| label: fig-diagram-alir-label
+#| fig-cap: "Diagram alir setelah diberikan label yang menyampaikan pesan-pesan utama"
+#| fig-asp: 0.75
+
+investasi_benua_tahun |> 
+  ggplot(aes(x = tahun, y = total_investasi)) + 
+  # Layer teks pada sumbu-x
+  geom_segment(
+    data = data.frame(tahun = seq(2012, 2022, 2)),
+    aes(x = tahun, y = 0, yend = -5e+07),
+    linewidth = .5,
+    linetype = "dashed",
+    alpha = .4
+  ) +
+  geom_text(
+    data = data.frame(tahun = seq(2012, 2022, 2)),
+    aes(x = tahun, y = -5.5e+07, label = tahun),
+    size = 3
+  ) + 
+  # Layer pesan 1
+  geom_segment(
+    x = 2015.05,
+    y = 5e+07,
+    yend = 0,
+    linewidth = 1
+  ) +
+  geom_textbox(
+    x = 2015,
+    y = 5e+07,
+    label = pesan_1,
+    vjust = 0.95,
+    size = 3,
+    lineheight = 1,
+    hjust = 1,
+    halign = 1,
+    box.colour = "transparent",
+    fill = "transparent",
+    width = .38
+  ) + 
+  # Layer pesan 2
+  geom_segment(
+    x = 2022.55,
+    y = 5.5e+07,
+    yend = 0,
+    linewidth = 1
+  ) + 
+  geom_textbox(
+    x = 2022.5,
+    y = 5.5e+07,
+    label = pesan_2,
+    vjust = 0.95,
+    size = 3,
+    lineheight = 1,
+    hjust = 1,
+    halign = 1,
+    box.colour = "transparent",
+    fill = "transparent",
+    width = .3
+  ) + 
+  # Layer diagram alir
+  geom_stream(aes(fill = benua)) + 
+  # Pembatas jendela grafik
+  scale_y_continuous(limits = c(-6e+07, 6e+07)) + 
+  # Pewarnaan manual
+  scale_fill_manual(
+    values = warna_benua
+  ) + 
+  # Pengaturan bidang koordinat
+  coord_cartesian(expand = FALSE) + 
+  # Pemilihan tema
+  theme_void() + 
+  # Pengaturan tema
+  theme(
+    legend.position = "none",
+    plot.title = element_textbox_simple(
+      size = 20,
+      face = "bold",
+      margin = margin(t = 10, r = 20, b = 5, l = 20),
+      lineheight = 1
+    ),
+    plot.subtitle = element_textbox_simple(
+      margin = margin(t = 0, r = 20, b = 5, l = 20),
+      lineheight = 1
+    ),
+    plot.caption = element_textbox_simple(
+      margin = margin(t = 5, r = 20, b = 10, l = 20),
+      lineheight = 1
+    )
+  ) + 
+  labs(
+    title = judul,
+    subtitle = anak_judul,
+    caption = takarir
+  )
+
+```
+
+Diagram alir pada @fig-diagram-alir-label tersebut telah menyampaikan temuan-temuan yang kita dapatkan pada @sec-menjelajah-data. Diagram tersebut juga sudah tampak indah dan sejalan dengan harapan-harapan Indonesia tentang pertumbuhan ekonomi dan perkembangan bangsa Indonesia yang mengikuti zaman.
+
+## Catatan Akhir {#sec-catatan-akhir}
+
+Pada bulan Agustus, semua bangsa Indonesia memperingati kemerdekaan Republik Indonesia. Banyak cara yang dapat dilakukan. Salah satu cara yang kita lakukan adalah memberikan persembahan visualisasi data yang bertemakan pertumbuhan ekonomi nasional. Hal itu kita lakukan pada @sec-memvisualisasikan-data. Diagram alir pada @fig-diagram-alir-label tidak hanya menunjukkan tren pertumbuhan ekonomi Indonesia, tetapi juga sejalan dengan semangat perkembangan bangsa Indonesia yang mengikuti zaman.
