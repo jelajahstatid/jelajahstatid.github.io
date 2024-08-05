@@ -235,7 +235,7 @@ Diagram batang pada @fig-diagram-batang tersebut telah dapat menyampaikan tiga t
 
 Elemen grafis pada @fig-elemen-grafis tersebut melambangkan aliran sungai. Harapannya, negara akan terus berkembang mengikuti zaman seperti sifat sungai.
 
-Berdasarkan harapan itu, kita dapat menggunakan diagram alir. Diagram seperti ini dapat kita buat dengan menggunakan fungsi `geom_stream()` dari paket {ggstream}. Diagram alirnya dapat dilihat pada
+Berdasarkan harapan itu, kita dapat menggunakan diagram alir. Diagram seperti ini dapat kita buat dengan menggunakan fungsi `geom_stream()` dari paket {ggstream}. Diagram alirnya dapat dilihat pada @fig-diagram-alir-sederhana.
 
 ```{r}
 #| echo: true
@@ -529,6 +529,197 @@ investasi_benua_tahun |>
 
 Diagram alir pada @fig-diagram-alir-label tersebut telah menyampaikan temuan-temuan yang kita dapatkan pada @sec-menjelajah-data. Diagram tersebut juga sudah tampak indah dan sejalan dengan harapan-harapan Indonesia tentang pertumbuhan ekonomi dan perkembangan bangsa Indonesia yang mengikuti zaman.
 
+## Visualisasi Lebih Lanjut {#sec-visualisasi-lebih-lanjut}
+
+Kita masih dapat memodifikasi diagram alir pada @fig-diagram-alir-label. Paling tidak ada dua hal yang dapat kita lakukan:
+
+1.  mengganti jenis dan warna fonnya, dan
+2.  mengatur ukuran dan resolusi fail gambarnya.
+
+Untuk melakukannya kita dapat menggunakan paket [{showtext}](https://CRAN.R-project.org/package=showtext "showtext: Menggunakan Fon Lebih Mudah dalam Grafik R"){.external target="_blank"} dan [{camcorder}](https://CRAN.R-project.org/package=camcorder "camcorder: Rekam Sejarah Grafikmu"){.external target="_blank"}. Paket {showtext} akan memudahkan kita untuk menggunakan berbagai macam jenis fon pada diagram kita nanti.
+
+Fungsi paket {camcorder} sebenarnya untuk merekam sejarah diagram-diagram yang kita buat. Akan tetapi, di sini kita menggunakan paket tersebut untuk memastikan tampilan diagram pada fail gambar yang kita hasilkan nanti persis sama dengan diagram luaran R. Sebagai ilustrasi, jika kita menjalankan baris kode yang menghasilkan @fig-diagram-alir-label, kita akan mendapatkan tampilan seperti pada @fig-tampilan-rstudio. Akan tetapi, jika kita simpan diagram tersebut dengan ukuran 1280 px × 960 px, kita mendapatkan fail gambar yang tampilannya seperti pada @fig-tampilan-fail-gambar. Perbedaan yang mencolok dari kedua diagram tersebut adalah ukuran fonnya. Agar tampilan diagram kita konsisten, kita akan menggunakan fungsi-fungsi dari paket {camcorder}.
+
+::: {#fig-perbedaan-tampilan-diagram layout-ncol="2"}
+![Tampilan diagram pada jendela Plots di RStudio](aset/tangkapan-layar-plot-rstudio.png){#fig-tampilan-rstudio}
+
+![Tampilan diagram yang sama setelah disimpan dengan ukuran 1280 px × 960 px](aset/diagram-alir-1280-960.png){#fig-tampilan-fail-gambar}
+
+Perbedaan tampilan diagram
+:::
+
+Jika kedua paket tersebut belum terinstal, silakan instal paket-paket tersebut dengan fungsi `install.packages()`. Jika sudah terinstal, mari kita panggil kedua paket tersebut.
+
+``` r
+library(showtext)
+library(camcorder)
+```
+
+Misalnya kita akan membuat sebuah gambar png yang berukuran 1280 px × 960 px dan memiliki kedalaman gambar 72 dpi. Kita gunakan fungsi `gg_record()` seperti pada baris kode di bawah. Argumen `dir` diisi dengan nama folder tempat kita menyimpan gambar yang akan dihasilkan.
+
+``` r
+gg_record(
+  dir = "rekaman/",
+  device = "png",
+  width = 1280,
+  height = 960,
+  units = "px",
+  dpi = 72
+)
+```
+
+Selanjutnya kita akan mengganti jenis dan warna fonnya. Untuk jenis fon, kita pilih fon Lato. Fon ini tersedia secara gratis di [Google Fonts](https://fonts.google.com/specimen/Lato "Lato - Google Fonts"){.external target="_blank"}. Fon Lato tersebut dapat diimpor dengan menggunakan fungsi `font_add_google()`. Untuk menggunakan fungsi-fungsi {showtext} secara otomatis, kita perlu memanggi fungsi `showtext_auto()`. Untuk warna teks, kita pilih `#343A40` agar tidak terlalu kontras.
+
+``` r
+# Mengimpor fon dan menyalakan fungsi-fungsi {showtext}
+font_add_google("Lato", "lato")
+showtext_auto()
+
+#' Membuat variabel `fon_judul` dan `fon_batang_tubuh`
+#' untuk digunakan di tahap berikutnya
+fon_judul <- "lato"
+fon_batang_tubuh <- "lato"
+
+# Menentukan `warna_teks`
+warna_teks <- "#343A40"
+```
+
+Sekarang waktunya kita beraksi untuk melakukan visualisasi data. Kita modifikasi kode-kode yang digunakan untuk membuat diagram alir pada @fig-diagram-alir-label. Misalnya, hasil modifikasi tersebut adalah sebagai berikut.
+
+``` r
+investasi_benua_tahun |> 
+  ggplot(aes(x = tahun, y = total_investasi)) + 
+  # Layer teks pada sumbu-x
+  geom_segment(
+    data = data.frame(tahun = seq(2012, 2022, 2)),
+    aes(x = tahun, y = 0, yend = -5e+07),
+    linewidth = 1,
+    linetype = "dashed",
+    alpha = .4,
+    colour = warna_teks
+  ) +
+  geom_text(
+    data = data.frame(tahun = seq(2012, 2022, 2)),
+    mapping = aes(x = tahun, y = -5.5e+07, label = tahun),
+    colour = warna_teks,
+    family = fon_batang_tubuh,
+    size = 6
+  ) + 
+  # Layer pesan 1
+  geom_segment(
+    x = 2015.1,
+    y = 4.5e+07,
+    yend = 0,
+    colour = warna_teks,
+    linewidth = 1.5
+  ) +
+  geom_textbox(
+    x = 2015,
+    y = 4.5e+07,
+    label = pesan_1,
+    colour = warna_teks,
+    family = fon_batang_tubuh,
+    vjust = 0.95,
+    size = 6,
+    lineheight = 1.5,
+    hjust = 1,
+    halign = 1,
+    box.colour = "transparent",
+    fill = "transparent",
+    width = .35
+  ) + 
+  # Layer pesan 2
+  geom_segment(
+    x = 2022.6,
+    y = 5.5e+07,
+    yend = 0,
+    colour = warna_teks,
+    linewidth = 1.5
+  ) + 
+  geom_textbox(
+    x = 2022.5,
+    y = 5.5e+07,
+    label = pesan_2,
+    colour = warna_teks,
+    family = fon_batang_tubuh,
+    vjust = 0.95,
+    size = 6,
+    lineheight = 1.5,
+    hjust = 1,
+    halign = 1,
+    box.colour = "transparent",
+    fill = "transparent",
+    width = .3
+  ) + 
+  # Layer diagram alir
+  geom_stream(
+    aes(fill = benua)
+  ) + 
+  # Pembatas jendela grafik
+  scale_y_continuous(limits = c(-6e+07, 6e+07)) + 
+  # Pewarnaan manual
+  scale_fill_manual(
+    values = warna_benua
+  ) + 
+  # Pengaturan bidang koordinat
+  coord_cartesian(expand = FALSE) + 
+  # Pemilihan tema
+  theme_void(base_size = 24, base_family = fon_batang_tubuh) + 
+  # Pengaturan tema
+  theme(
+    legend.position = "none",
+    plot.margin = margin(5, 5, 5, 0),
+    plot.background = element_rect(
+      fill = "white", colour = "white"
+    ),
+    panel.background = element_rect(
+      fill = "white", colour = "white"
+    ),
+    plot.title = element_textbox_simple(
+      colour = warna_teks,
+      hjust = 0,
+      halign = 0,
+      margin = margin(t = 30, r = 20, b = 5, l = 30),
+      lineheight = 1.5,
+      family = fon_judul,
+      face = "bold",
+      size = 40
+    ),
+    plot.subtitle = element_textbox_simple(
+      colour = warna_teks,
+      hjust = 0,
+      halign = 0,
+      margin = margin(t = 5, r = 20, b = 15, l = 30),
+      lineheight = 1.5,
+      family = fon_batang_tubuh
+    ),
+    plot.caption = element_textbox_simple(
+      colour = warna_teks,
+      hjust = 0,
+      halign = 0,
+      margin = margin(l = 30, b = 20, t = 10),
+      lineheight = 1.5,
+      family = fon_batang_tubuh
+    )
+  ) + 
+  # Pemberian judul, anak judul, dan takarir
+  labs(
+    title = judul,
+    subtitle = anak_judul,
+    caption = takarir
+  )
+```
+
+Setelah baris kode di atas dijalankan, kita akan mendapatkan diagram alir seperti yang ditunjukkan pada @fig-versi-terakhir.
+
+![Versi terakhir diagram alir yang menunjukkan tren kenaikan realisasi penanaman modal asing ke Indonesia](aset/diagram-alir-akhir.png){#fig-versi-terakhir fig-alt="Diagram alir yang menunjukkan tren kenaikan realisasi penanaman modal asing ke Indonesia"}
+
+Fail gambar pada @fig-versi-terakhir tersebut dapat ditemukan dalam folder yang kita inputkan pada argumen `dir` dalam fungsi `gg_record()` di atas. Untuk mengakhiri perekaman, kita gunakan fungsi `gg_stop_recording()`.
+
+``` r
+gg_stop_recording()
+```
+
 ## Catatan Akhir {#sec-catatan-akhir}
 
-Pada bulan Agustus, semua bangsa Indonesia memperingati kemerdekaan Republik Indonesia. Banyak cara yang dapat dilakukan. Salah satu cara yang kita lakukan adalah memberikan persembahan visualisasi data yang bertemakan pertumbuhan ekonomi nasional. Hal itu kita lakukan pada @sec-memvisualisasikan-data. Diagram alir pada @fig-diagram-alir-label tidak hanya menunjukkan tren pertumbuhan ekonomi Indonesia, tetapi juga sejalan dengan semangat perkembangan bangsa Indonesia yang mengikuti zaman.
+Pada bulan Agustus, semua bangsa Indonesia memperingati kemerdekaan Republik Indonesia. Banyak cara yang dapat dilakukan. Salah satu cara yang kita lakukan adalah memberikan persembahan visualisasi data yang bertemakan pertumbuhan ekonomi nasional. Hal itu kita lakukan pada @sec-memvisualisasikan-data. Diagram alir pada @fig-diagram-alir-label atau @fig-versi-terakhir tidak hanya menunjukkan tren pertumbuhan ekonomi Indonesia, tetapi juga sejalan dengan semangat perkembangan bangsa Indonesia yang mengikuti zaman.

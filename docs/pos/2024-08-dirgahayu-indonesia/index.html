@@ -285,6 +285,7 @@ window.Quarto = {
   <ul>
   <li><a href="#sec-menjelajah-data" id="toc-sec-menjelajah-data" class="nav-link active" data-scroll-target="#sec-menjelajah-data">Menjelajah Data</a></li>
   <li><a href="#sec-memvisualisasikan-data" id="toc-sec-memvisualisasikan-data" class="nav-link" data-scroll-target="#sec-memvisualisasikan-data">Memvisualisasikan Data</a></li>
+  <li><a href="#sec-visualisasi-lebih-lanjut" id="toc-sec-visualisasi-lebih-lanjut" class="nav-link" data-scroll-target="#sec-visualisasi-lebih-lanjut">Visualisasi Lebih Lanjut</a></li>
   <li><a href="#sec-catatan-akhir" id="toc-sec-catatan-akhir" class="nav-link" data-scroll-target="#sec-catatan-akhir">Catatan Akhir</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/jelajahstatid/jelajahstatid.github.io/edit/main/pos/2024-08-dirgahayu-indonesia/index.qmd" class="toc-action"><i class="bi bi-github"></i>Sunting laman ini</a></li><li><a href="https://github.com/jelajahstatid/jelajahstatid.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Laporkan sebuah isu</a></li></ul></div></nav>
@@ -302,7 +303,7 @@ window.Quarto = {
 
 <p>Di awal bulan Agustus, masyarakat Indonesia pada umumnya sibuk mempersiapkan hajatan negara. Mereka secara serentak memasang bendera merah putih, spanduk, umbul-umbul, bersih-bersih desa, dan lain sebagainya. Berbagai perlombaan pun dilakukan. Mulai dari sepak bola, bola voli, bulu tangkis, tenis meja, sampai panjat pinang. Itu semua merupakan luapan suka cita kemerdekaan dan harapan ke depan.</p>
 <p>Nusantara Baru, Indonesia Maju. Itulah tema besar peringatan hari ulang tahun ke-79 kemerdekaan Republik Indonesia. Peringatan HUT ke-79 RI tersebut tentu memiliki banyak makna dan harapan. Menariknya, makna dan harapan tersebut tergambar dalam logo numerik yang digunakan. Salah satu harapannya adalah pertumbuhan ekonomi.</p>
-<div id="fig-logo-hut-ri-2024" class="quarto-figure quarto-figure-center quarto-float anchored" alt="Logo numerik HUT ke-79 kemerdekaan RI (kiri). Sorotan terhadap angka tujuh pada logo (kanan)." data-fig-align="center">
+<div id="fig-logo-hut-ri-2024" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center" alt="Logo numerik HUT ke-79 kemerdekaan RI (kiri). Sorotan terhadap angka tujuh pada logo (kanan).">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-logo-hut-ri-2024-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="aset/logo-numerik-hut-ri-2004.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Logo numerik HUT ke-79 kemerdekaan RI (kiri). Sorotan terhadap angka tujuh pada logo (kanan).">
@@ -569,7 +570,7 @@ Gambar&nbsp;4: Elemen grafis peringatan HUT ke-79 RI
 </figure>
 </div>
 <p>Elemen grafis pada <a href="#fig-elemen-grafis" class="quarto-xref">Gambar&nbsp;4</a> tersebut melambangkan aliran sungai. Harapannya, negara akan terus berkembang mengikuti zaman seperti sifat sungai.</p>
-<p>Berdasarkan harapan itu, kita dapat menggunakan diagram alir. Diagram seperti ini dapat kita buat dengan menggunakan fungsi <code>geom_stream()</code> dari paket {ggstream}. Diagram alirnya dapat dilihat pada</p>
+<p>Berdasarkan harapan itu, kita dapat menggunakan diagram alir. Diagram seperti ini dapat kita buat dengan menggunakan fungsi <code>geom_stream()</code> dari paket {ggstream}. Diagram alirnya dapat dilihat pada <a href="#fig-diagram-alir-sederhana" class="quarto-xref">Gambar&nbsp;5</a>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>investasi_benua_tahun <span class="sc">|&gt;</span> </span>
 <span id="cb18-2"><a href="#cb18-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> tahun, <span class="at">y =</span> total_investasi)) <span class="sc">+</span> </span>
@@ -856,9 +857,213 @@ Gambar&nbsp;9: Diagram alir setelah diberikan label yang menyampaikan pesan-pesa
 </div>
 <p>Diagram alir pada <a href="#fig-diagram-alir-label" class="quarto-xref">Gambar&nbsp;9</a> tersebut telah menyampaikan temuan-temuan yang kita dapatkan pada <a href="#sec-menjelajah-data" class="quarto-xref">Bagian&nbsp;1</a>. Diagram tersebut juga sudah tampak indah dan sejalan dengan harapan-harapan Indonesia tentang pertumbuhan ekonomi dan perkembangan bangsa Indonesia yang mengikuti zaman.</p>
 </section>
+<section id="sec-visualisasi-lebih-lanjut" class="level2">
+<h2 class="anchored" data-anchor-id="sec-visualisasi-lebih-lanjut">Visualisasi Lebih Lanjut</h2>
+<p>Kita masih dapat memodifikasi diagram alir pada <a href="#fig-diagram-alir-label" class="quarto-xref">Gambar&nbsp;9</a>. Paling tidak ada dua hal yang dapat kita lakukan:</p>
+<ol type="1">
+<li>mengganti jenis dan warna fonnya, dan</li>
+<li>mengatur ukuran dan resolusi fail gambarnya.</li>
+</ol>
+<p>Untuk melakukannya kita dapat menggunakan paket <a href="https://CRAN.R-project.org/package=showtext" class="external" target="_blank" title="showtext: Menggunakan Fon Lebih Mudah dalam Grafik R">{showtext}</a> dan <a href="https://CRAN.R-project.org/package=camcorder" class="external" target="_blank" title="camcorder: Rekam Sejarah Grafikmu">{camcorder}</a>. Paket {showtext} akan memudahkan kita untuk menggunakan berbagai macam jenis fon pada diagram kita nanti.</p>
+<p>Fungsi paket {camcorder} sebenarnya untuk merekam sejarah diagram-diagram yang kita buat. Akan tetapi, di sini kita menggunakan paket tersebut untuk memastikan tampilan diagram pada fail gambar yang kita hasilkan nanti persis sama dengan diagram luaran R. Sebagai ilustrasi, jika kita menjalankan baris kode yang menghasilkan <a href="#fig-diagram-alir-label" class="quarto-xref">Gambar&nbsp;9</a>, kita akan mendapatkan tampilan seperti pada <a href="#fig-tampilan-rstudio" class="quarto-xref">Gambar&nbsp;10 (a)</a>. Akan tetapi, jika kita simpan diagram tersebut dengan ukuran 1280 px × 960 px, kita mendapatkan fail gambar yang tampilannya seperti pada <a href="#fig-tampilan-fail-gambar" class="quarto-xref">Gambar&nbsp;10 (b)</a>. Perbedaan yang mencolok dari kedua diagram tersebut adalah ukuran fonnya. Agar tampilan diagram kita konsisten, kita akan menggunakan fungsi-fungsi dari paket {camcorder}.</p>
+<div id="fig-perbedaan-tampilan-diagram" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-perbedaan-tampilan-diagram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-perbedaan-tampilan-diagram" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-tampilan-rstudio" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-tampilan-rstudio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="aset/tangkapan-layar-plot-rstudio.png" class="img-fluid figure-img" data-ref-parent="fig-perbedaan-tampilan-diagram">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-tampilan-rstudio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Tampilan diagram pada jendela Plots di RStudio
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-perbedaan-tampilan-diagram" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-tampilan-fail-gambar" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-tampilan-fail-gambar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="aset/diagram-alir-1280-960.png" class="img-fluid figure-img" data-ref-parent="fig-perbedaan-tampilan-diagram">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-tampilan-fail-gambar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Tampilan diagram yang sama setelah disimpan dengan ukuran 1280 px × 960 px
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-perbedaan-tampilan-diagram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Gambar&nbsp;10: Perbedaan tampilan diagram
+</figcaption>
+</figure>
+</div>
+<p>Jika kedua paket tersebut belum terinstal, silakan instal paket-paket tersebut dengan fungsi <code>install.packages()</code>. Jika sudah terinstal, mari kita panggil kedua paket tersebut.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="fu">library</span>(showtext)</span>
+<span id="cb28-2"><a href="#cb28-2"></a><span class="fu">library</span>(camcorder)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Misalnya kita akan membuat sebuah gambar png yang berukuran 1280 px × 960 px dan memiliki kedalaman gambar 72 dpi. Kita gunakan fungsi <code>gg_record()</code> seperti pada baris kode di bawah. Argumen <code>dir</code> diisi dengan nama folder tempat kita menyimpan gambar yang akan dihasilkan.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="fu">gg_record</span>(</span>
+<span id="cb29-2"><a href="#cb29-2"></a>  <span class="at">dir =</span> <span class="st">"rekaman/"</span>,</span>
+<span id="cb29-3"><a href="#cb29-3"></a>  <span class="at">device =</span> <span class="st">"png"</span>,</span>
+<span id="cb29-4"><a href="#cb29-4"></a>  <span class="at">width =</span> <span class="dv">1280</span>,</span>
+<span id="cb29-5"><a href="#cb29-5"></a>  <span class="at">height =</span> <span class="dv">960</span>,</span>
+<span id="cb29-6"><a href="#cb29-6"></a>  <span class="at">units =</span> <span class="st">"px"</span>,</span>
+<span id="cb29-7"><a href="#cb29-7"></a>  <span class="at">dpi =</span> <span class="dv">72</span></span>
+<span id="cb29-8"><a href="#cb29-8"></a>)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Selanjutnya kita akan mengganti jenis dan warna fonnya. Untuk jenis fon, kita pilih fon Lato. Fon ini tersedia secara gratis di <a href="https://fonts.google.com/specimen/Lato" class="external" target="_blank" title="Lato - Google Fonts">Google Fonts</a>. Fon Lato tersebut dapat diimpor dengan menggunakan fungsi <code>font_add_google()</code>. Untuk menggunakan fungsi-fungsi {showtext} secara otomatis, kita perlu memanggi fungsi <code>showtext_auto()</code>. Untuk warna teks, kita pilih <code>#343A40</code> agar tidak terlalu kontras.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="co"># Mengimpor fon dan menyalakan fungsi-fungsi {showtext}</span></span>
+<span id="cb30-2"><a href="#cb30-2"></a><span class="fu">font_add_google</span>(<span class="st">"Lato"</span>, <span class="st">"lato"</span>)</span>
+<span id="cb30-3"><a href="#cb30-3"></a><span class="fu">showtext_auto</span>()</span>
+<span id="cb30-4"><a href="#cb30-4"></a></span>
+<span id="cb30-5"><a href="#cb30-5"></a><span class="co">#' Membuat variabel `fon_judul` dan `fon_batang_tubuh`</span></span>
+<span id="cb30-6"><a href="#cb30-6"></a><span class="co">#' untuk digunakan di tahap berikutnya</span></span>
+<span id="cb30-7"><a href="#cb30-7"></a>fon_judul <span class="ot">&lt;-</span> <span class="st">"lato"</span></span>
+<span id="cb30-8"><a href="#cb30-8"></a>fon_batang_tubuh <span class="ot">&lt;-</span> <span class="st">"lato"</span></span>
+<span id="cb30-9"><a href="#cb30-9"></a></span>
+<span id="cb30-10"><a href="#cb30-10"></a><span class="co"># Menentukan `warna_teks`</span></span>
+<span id="cb30-11"><a href="#cb30-11"></a>warna_teks <span class="ot">&lt;-</span> <span class="st">"#343A40"</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Sekarang waktunya kita beraksi untuk melakukan visualisasi data. Kita modifikasi kode-kode yang digunakan untuk membuat diagram alir pada <a href="#fig-diagram-alir-label" class="quarto-xref">Gambar&nbsp;9</a>. Misalnya, hasil modifikasi tersebut adalah sebagai berikut.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>investasi_benua_tahun <span class="sc">|&gt;</span> </span>
+<span id="cb31-2"><a href="#cb31-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> tahun, <span class="at">y =</span> total_investasi)) <span class="sc">+</span> </span>
+<span id="cb31-3"><a href="#cb31-3"></a>  <span class="co"># Layer teks pada sumbu-x</span></span>
+<span id="cb31-4"><a href="#cb31-4"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb31-5"><a href="#cb31-5"></a>    <span class="at">data =</span> <span class="fu">data.frame</span>(<span class="at">tahun =</span> <span class="fu">seq</span>(<span class="dv">2012</span>, <span class="dv">2022</span>, <span class="dv">2</span>)),</span>
+<span id="cb31-6"><a href="#cb31-6"></a>    <span class="fu">aes</span>(<span class="at">x =</span> tahun, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">yend =</span> <span class="sc">-</span><span class="fl">5e+07</span>),</span>
+<span id="cb31-7"><a href="#cb31-7"></a>    <span class="at">linewidth =</span> <span class="dv">1</span>,</span>
+<span id="cb31-8"><a href="#cb31-8"></a>    <span class="at">linetype =</span> <span class="st">"dashed"</span>,</span>
+<span id="cb31-9"><a href="#cb31-9"></a>    <span class="at">alpha =</span> .<span class="dv">4</span>,</span>
+<span id="cb31-10"><a href="#cb31-10"></a>    <span class="at">colour =</span> warna_teks</span>
+<span id="cb31-11"><a href="#cb31-11"></a>  ) <span class="sc">+</span></span>
+<span id="cb31-12"><a href="#cb31-12"></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb31-13"><a href="#cb31-13"></a>    <span class="at">data =</span> <span class="fu">data.frame</span>(<span class="at">tahun =</span> <span class="fu">seq</span>(<span class="dv">2012</span>, <span class="dv">2022</span>, <span class="dv">2</span>)),</span>
+<span id="cb31-14"><a href="#cb31-14"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> tahun, <span class="at">y =</span> <span class="sc">-</span><span class="fl">5.5e+07</span>, <span class="at">label =</span> tahun),</span>
+<span id="cb31-15"><a href="#cb31-15"></a>    <span class="at">colour =</span> warna_teks,</span>
+<span id="cb31-16"><a href="#cb31-16"></a>    <span class="at">family =</span> fon_batang_tubuh,</span>
+<span id="cb31-17"><a href="#cb31-17"></a>    <span class="at">size =</span> <span class="dv">6</span></span>
+<span id="cb31-18"><a href="#cb31-18"></a>  ) <span class="sc">+</span> </span>
+<span id="cb31-19"><a href="#cb31-19"></a>  <span class="co"># Layer pesan 1</span></span>
+<span id="cb31-20"><a href="#cb31-20"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb31-21"><a href="#cb31-21"></a>    <span class="at">x =</span> <span class="fl">2015.1</span>,</span>
+<span id="cb31-22"><a href="#cb31-22"></a>    <span class="at">y =</span> <span class="fl">4.5e+07</span>,</span>
+<span id="cb31-23"><a href="#cb31-23"></a>    <span class="at">yend =</span> <span class="dv">0</span>,</span>
+<span id="cb31-24"><a href="#cb31-24"></a>    <span class="at">colour =</span> warna_teks,</span>
+<span id="cb31-25"><a href="#cb31-25"></a>    <span class="at">linewidth =</span> <span class="fl">1.5</span></span>
+<span id="cb31-26"><a href="#cb31-26"></a>  ) <span class="sc">+</span></span>
+<span id="cb31-27"><a href="#cb31-27"></a>  <span class="fu">geom_textbox</span>(</span>
+<span id="cb31-28"><a href="#cb31-28"></a>    <span class="at">x =</span> <span class="dv">2015</span>,</span>
+<span id="cb31-29"><a href="#cb31-29"></a>    <span class="at">y =</span> <span class="fl">4.5e+07</span>,</span>
+<span id="cb31-30"><a href="#cb31-30"></a>    <span class="at">label =</span> pesan_1,</span>
+<span id="cb31-31"><a href="#cb31-31"></a>    <span class="at">colour =</span> warna_teks,</span>
+<span id="cb31-32"><a href="#cb31-32"></a>    <span class="at">family =</span> fon_batang_tubuh,</span>
+<span id="cb31-33"><a href="#cb31-33"></a>    <span class="at">vjust =</span> <span class="fl">0.95</span>,</span>
+<span id="cb31-34"><a href="#cb31-34"></a>    <span class="at">size =</span> <span class="dv">6</span>,</span>
+<span id="cb31-35"><a href="#cb31-35"></a>    <span class="at">lineheight =</span> <span class="fl">1.5</span>,</span>
+<span id="cb31-36"><a href="#cb31-36"></a>    <span class="at">hjust =</span> <span class="dv">1</span>,</span>
+<span id="cb31-37"><a href="#cb31-37"></a>    <span class="at">halign =</span> <span class="dv">1</span>,</span>
+<span id="cb31-38"><a href="#cb31-38"></a>    <span class="at">box.colour =</span> <span class="st">"transparent"</span>,</span>
+<span id="cb31-39"><a href="#cb31-39"></a>    <span class="at">fill =</span> <span class="st">"transparent"</span>,</span>
+<span id="cb31-40"><a href="#cb31-40"></a>    <span class="at">width =</span> .<span class="dv">35</span></span>
+<span id="cb31-41"><a href="#cb31-41"></a>  ) <span class="sc">+</span> </span>
+<span id="cb31-42"><a href="#cb31-42"></a>  <span class="co"># Layer pesan 2</span></span>
+<span id="cb31-43"><a href="#cb31-43"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb31-44"><a href="#cb31-44"></a>    <span class="at">x =</span> <span class="fl">2022.6</span>,</span>
+<span id="cb31-45"><a href="#cb31-45"></a>    <span class="at">y =</span> <span class="fl">5.5e+07</span>,</span>
+<span id="cb31-46"><a href="#cb31-46"></a>    <span class="at">yend =</span> <span class="dv">0</span>,</span>
+<span id="cb31-47"><a href="#cb31-47"></a>    <span class="at">colour =</span> warna_teks,</span>
+<span id="cb31-48"><a href="#cb31-48"></a>    <span class="at">linewidth =</span> <span class="fl">1.5</span></span>
+<span id="cb31-49"><a href="#cb31-49"></a>  ) <span class="sc">+</span> </span>
+<span id="cb31-50"><a href="#cb31-50"></a>  <span class="fu">geom_textbox</span>(</span>
+<span id="cb31-51"><a href="#cb31-51"></a>    <span class="at">x =</span> <span class="fl">2022.5</span>,</span>
+<span id="cb31-52"><a href="#cb31-52"></a>    <span class="at">y =</span> <span class="fl">5.5e+07</span>,</span>
+<span id="cb31-53"><a href="#cb31-53"></a>    <span class="at">label =</span> pesan_2,</span>
+<span id="cb31-54"><a href="#cb31-54"></a>    <span class="at">colour =</span> warna_teks,</span>
+<span id="cb31-55"><a href="#cb31-55"></a>    <span class="at">family =</span> fon_batang_tubuh,</span>
+<span id="cb31-56"><a href="#cb31-56"></a>    <span class="at">vjust =</span> <span class="fl">0.95</span>,</span>
+<span id="cb31-57"><a href="#cb31-57"></a>    <span class="at">size =</span> <span class="dv">6</span>,</span>
+<span id="cb31-58"><a href="#cb31-58"></a>    <span class="at">lineheight =</span> <span class="fl">1.5</span>,</span>
+<span id="cb31-59"><a href="#cb31-59"></a>    <span class="at">hjust =</span> <span class="dv">1</span>,</span>
+<span id="cb31-60"><a href="#cb31-60"></a>    <span class="at">halign =</span> <span class="dv">1</span>,</span>
+<span id="cb31-61"><a href="#cb31-61"></a>    <span class="at">box.colour =</span> <span class="st">"transparent"</span>,</span>
+<span id="cb31-62"><a href="#cb31-62"></a>    <span class="at">fill =</span> <span class="st">"transparent"</span>,</span>
+<span id="cb31-63"><a href="#cb31-63"></a>    <span class="at">width =</span> .<span class="dv">3</span></span>
+<span id="cb31-64"><a href="#cb31-64"></a>  ) <span class="sc">+</span> </span>
+<span id="cb31-65"><a href="#cb31-65"></a>  <span class="co"># Layer diagram alir</span></span>
+<span id="cb31-66"><a href="#cb31-66"></a>  <span class="fu">geom_stream</span>(</span>
+<span id="cb31-67"><a href="#cb31-67"></a>    <span class="fu">aes</span>(<span class="at">fill =</span> benua)</span>
+<span id="cb31-68"><a href="#cb31-68"></a>  ) <span class="sc">+</span> </span>
+<span id="cb31-69"><a href="#cb31-69"></a>  <span class="co"># Pembatas jendela grafik</span></span>
+<span id="cb31-70"><a href="#cb31-70"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">6e+07</span>, <span class="fl">6e+07</span>)) <span class="sc">+</span> </span>
+<span id="cb31-71"><a href="#cb31-71"></a>  <span class="co"># Pewarnaan manual</span></span>
+<span id="cb31-72"><a href="#cb31-72"></a>  <span class="fu">scale_fill_manual</span>(</span>
+<span id="cb31-73"><a href="#cb31-73"></a>    <span class="at">values =</span> warna_benua</span>
+<span id="cb31-74"><a href="#cb31-74"></a>  ) <span class="sc">+</span> </span>
+<span id="cb31-75"><a href="#cb31-75"></a>  <span class="co"># Pengaturan bidang koordinat</span></span>
+<span id="cb31-76"><a href="#cb31-76"></a>  <span class="fu">coord_cartesian</span>(<span class="at">expand =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> </span>
+<span id="cb31-77"><a href="#cb31-77"></a>  <span class="co"># Pemilihan tema</span></span>
+<span id="cb31-78"><a href="#cb31-78"></a>  <span class="fu">theme_void</span>(<span class="at">base_size =</span> <span class="dv">24</span>, <span class="at">base_family =</span> fon_batang_tubuh) <span class="sc">+</span> </span>
+<span id="cb31-79"><a href="#cb31-79"></a>  <span class="co"># Pengaturan tema</span></span>
+<span id="cb31-80"><a href="#cb31-80"></a>  <span class="fu">theme</span>(</span>
+<span id="cb31-81"><a href="#cb31-81"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
+<span id="cb31-82"><a href="#cb31-82"></a>    <span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">0</span>),</span>
+<span id="cb31-83"><a href="#cb31-83"></a>    <span class="at">plot.background =</span> <span class="fu">element_rect</span>(</span>
+<span id="cb31-84"><a href="#cb31-84"></a>      <span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">colour =</span> <span class="st">"white"</span></span>
+<span id="cb31-85"><a href="#cb31-85"></a>    ),</span>
+<span id="cb31-86"><a href="#cb31-86"></a>    <span class="at">panel.background =</span> <span class="fu">element_rect</span>(</span>
+<span id="cb31-87"><a href="#cb31-87"></a>      <span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">colour =</span> <span class="st">"white"</span></span>
+<span id="cb31-88"><a href="#cb31-88"></a>    ),</span>
+<span id="cb31-89"><a href="#cb31-89"></a>    <span class="at">plot.title =</span> <span class="fu">element_textbox_simple</span>(</span>
+<span id="cb31-90"><a href="#cb31-90"></a>      <span class="at">colour =</span> warna_teks,</span>
+<span id="cb31-91"><a href="#cb31-91"></a>      <span class="at">hjust =</span> <span class="dv">0</span>,</span>
+<span id="cb31-92"><a href="#cb31-92"></a>      <span class="at">halign =</span> <span class="dv">0</span>,</span>
+<span id="cb31-93"><a href="#cb31-93"></a>      <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">t =</span> <span class="dv">30</span>, <span class="at">r =</span> <span class="dv">20</span>, <span class="at">b =</span> <span class="dv">5</span>, <span class="at">l =</span> <span class="dv">30</span>),</span>
+<span id="cb31-94"><a href="#cb31-94"></a>      <span class="at">lineheight =</span> <span class="fl">1.5</span>,</span>
+<span id="cb31-95"><a href="#cb31-95"></a>      <span class="at">family =</span> fon_judul,</span>
+<span id="cb31-96"><a href="#cb31-96"></a>      <span class="at">face =</span> <span class="st">"bold"</span>,</span>
+<span id="cb31-97"><a href="#cb31-97"></a>      <span class="at">size =</span> <span class="dv">40</span></span>
+<span id="cb31-98"><a href="#cb31-98"></a>    ),</span>
+<span id="cb31-99"><a href="#cb31-99"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_textbox_simple</span>(</span>
+<span id="cb31-100"><a href="#cb31-100"></a>      <span class="at">colour =</span> warna_teks,</span>
+<span id="cb31-101"><a href="#cb31-101"></a>      <span class="at">hjust =</span> <span class="dv">0</span>,</span>
+<span id="cb31-102"><a href="#cb31-102"></a>      <span class="at">halign =</span> <span class="dv">0</span>,</span>
+<span id="cb31-103"><a href="#cb31-103"></a>      <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">t =</span> <span class="dv">5</span>, <span class="at">r =</span> <span class="dv">20</span>, <span class="at">b =</span> <span class="dv">15</span>, <span class="at">l =</span> <span class="dv">30</span>),</span>
+<span id="cb31-104"><a href="#cb31-104"></a>      <span class="at">lineheight =</span> <span class="fl">1.5</span>,</span>
+<span id="cb31-105"><a href="#cb31-105"></a>      <span class="at">family =</span> fon_batang_tubuh</span>
+<span id="cb31-106"><a href="#cb31-106"></a>    ),</span>
+<span id="cb31-107"><a href="#cb31-107"></a>    <span class="at">plot.caption =</span> <span class="fu">element_textbox_simple</span>(</span>
+<span id="cb31-108"><a href="#cb31-108"></a>      <span class="at">colour =</span> warna_teks,</span>
+<span id="cb31-109"><a href="#cb31-109"></a>      <span class="at">hjust =</span> <span class="dv">0</span>,</span>
+<span id="cb31-110"><a href="#cb31-110"></a>      <span class="at">halign =</span> <span class="dv">0</span>,</span>
+<span id="cb31-111"><a href="#cb31-111"></a>      <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">l =</span> <span class="dv">30</span>, <span class="at">b =</span> <span class="dv">20</span>, <span class="at">t =</span> <span class="dv">10</span>),</span>
+<span id="cb31-112"><a href="#cb31-112"></a>      <span class="at">lineheight =</span> <span class="fl">1.5</span>,</span>
+<span id="cb31-113"><a href="#cb31-113"></a>      <span class="at">family =</span> fon_batang_tubuh</span>
+<span id="cb31-114"><a href="#cb31-114"></a>    )</span>
+<span id="cb31-115"><a href="#cb31-115"></a>  ) <span class="sc">+</span> </span>
+<span id="cb31-116"><a href="#cb31-116"></a>  <span class="co"># Pemberian judul, anak judul, dan takarir</span></span>
+<span id="cb31-117"><a href="#cb31-117"></a>  <span class="fu">labs</span>(</span>
+<span id="cb31-118"><a href="#cb31-118"></a>    <span class="at">title =</span> judul,</span>
+<span id="cb31-119"><a href="#cb31-119"></a>    <span class="at">subtitle =</span> anak_judul,</span>
+<span id="cb31-120"><a href="#cb31-120"></a>    <span class="at">caption =</span> takarir</span>
+<span id="cb31-121"><a href="#cb31-121"></a>  )</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Setelah baris kode di atas dijalankan, kita akan mendapatkan diagram alir seperti yang ditunjukkan pada <a href="#fig-versi-terakhir" class="quarto-xref">Gambar&nbsp;11</a>.</p>
+<div id="fig-versi-terakhir" class="quarto-figure quarto-figure-center quarto-float anchored" alt="Diagram alir yang menunjukkan tren kenaikan realisasi penanaman modal asing ke Indonesia">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-versi-terakhir-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="aset/diagram-alir-akhir.png" class="img-fluid figure-img" alt="Diagram alir yang menunjukkan tren kenaikan realisasi penanaman modal asing ke Indonesia">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-versi-terakhir-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Gambar&nbsp;11: Versi terakhir diagram alir yang menunjukkan tren kenaikan realisasi penanaman modal asing ke Indonesia
+</figcaption>
+</figure>
+</div>
+<p>Fail gambar pada <a href="#fig-versi-terakhir" class="quarto-xref">Gambar&nbsp;11</a> tersebut dapat ditemukan dalam folder yang kita inputkan pada argumen <code>dir</code> dalam fungsi <code>gg_record()</code> di atas. Untuk mengakhiri perekaman, kita gunakan fungsi <code>gg_stop_recording()</code>.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">gg_stop_recording</span>()</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
 <section id="sec-catatan-akhir" class="level2">
 <h2 class="anchored" data-anchor-id="sec-catatan-akhir">Catatan Akhir</h2>
-<p>Pada bulan Agustus, semua bangsa Indonesia memperingati kemerdekaan Republik Indonesia. Banyak cara yang dapat dilakukan. Salah satu cara yang kita lakukan adalah memberikan persembahan visualisasi data yang bertemakan pertumbuhan ekonomi nasional. Hal itu kita lakukan pada <a href="#sec-memvisualisasikan-data" class="quarto-xref">Bagian&nbsp;2</a>. Diagram alir pada <a href="#fig-diagram-alir-label" class="quarto-xref">Gambar&nbsp;9</a> tidak hanya menunjukkan tren pertumbuhan ekonomi Indonesia, tetapi juga sejalan dengan semangat perkembangan bangsa Indonesia yang mengikuti zaman.</p>
+<p>Pada bulan Agustus, semua bangsa Indonesia memperingati kemerdekaan Republik Indonesia. Banyak cara yang dapat dilakukan. Salah satu cara yang kita lakukan adalah memberikan persembahan visualisasi data yang bertemakan pertumbuhan ekonomi nasional. Hal itu kita lakukan pada <a href="#sec-memvisualisasikan-data" class="quarto-xref">Bagian&nbsp;2</a>. Diagram alir pada <a href="#fig-diagram-alir-label" class="quarto-xref">Gambar&nbsp;9</a> atau <a href="#fig-versi-terakhir" class="quarto-xref">Gambar&nbsp;11</a> tidak hanya menunjukkan tren pertumbuhan ekonomi Indonesia, tetapi juga sejalan dengan semangat perkembangan bangsa Indonesia yang mengikuti zaman.</p>
 
 
 </section>
