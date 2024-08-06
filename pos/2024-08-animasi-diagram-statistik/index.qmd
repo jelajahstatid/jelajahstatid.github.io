@@ -1,6 +1,5 @@
 ---
 title: "Membuat Diagram Lebih Hidup dengan Animasi"
-draft: true
 description: |
   Bagaimana menganimasikan diagram statistik? Artikel ini mendemonstrasikan bagaimana menggunakan paket {gganimate} untuk membuat animasi dalam penyajian data yang efisien dan menarik.
 author:
@@ -39,9 +38,9 @@ library(tidyverse)
 
 ```
 
-Umumnya, diagram itu untuk menyampaikan pesan. Akibatnya, pembuatan diagram perlu disesuaikan dengan pesan yang perlu disampaikan. *Nah*, berdasarkan hal ini, mari kita tinjau kembali sebuah diagram pada [pos sebelumnya](/pos/2024-08-statistik-jendela-dunia/index.qmd). @fig-pdb-vs-ahh menyajikan diagram yang dimaksud.
+Umumnya, diagram itu untuk menyampaikan pesan. Akibatnya, pembuatan diagram perlu disesuaikan dengan pesan yang perlu disampaikan. *Nah*, berdasarkan hal ini, mari kita tinjau kembali sebuah diagram pada [pos sebelumnya](/pos/2024-08-statistik-jendela-dunia/index.qmd "Statistik Adalah Jendela Dunia"). @fig-pdb-vs-ahh menyajikan diagram yang dimaksud.
 
-![Hubungan antara PDB per kapita dan angka harapan hidup setiap negara](aset/pdb-vs-ahh.png){#fig-pdb-vs-ahh fig-align="center"}
+![Hubungan antara PDB per kapita dan angka harapan hidup setiap negara pada tahun 2007](aset/pdb-vs-ahh.png){#fig-pdb-vs-ahh fig-align="center"}
 
 @fig-pdb-vs-ahh sudah baik dalam menunjukkan seperti apa relasi antara PDB per kapita dan angka harapan hidup setiap negara pada tahun 2007. Akan tetapi, bagaimana jika kita ingin menunjukkan relasi tersebut pada tahun-tahun lainnya?
 
@@ -50,7 +49,7 @@ Mungkin kita langsung berpikir untuk memvisualisasikan relasi tersebut untuk set
 ```{r}
 #| echo: false
 #| label: fig-semua-tahun
-#| fig-cap: Relasi antara PDB per kapita dan angka harapan hidup setiap negara mulai tahun 1952 sampai 2007
+#| fig-cap: "Relasi antara PDB per kapita dan angka harapan hidup setiap negara mulai tahun 1952 sampai 2007"
 #| fig-asp: 0.5625
 
 # Impor data `gapminder`
@@ -112,7 +111,7 @@ library(gganimate)
 
 ## Mengkreasi Animasi {#sec-kreasi-animasi}
 
-Kita impor dan olah data Gapminder seperti pada [pos sebelumnya](/pos/2024-08-statistik-jendela-dunia/index.qmd). Baris kode yang digunakan adalah sebagai berikut.
+Kita impor dan olah data Gapminder seperti pada [pos sebelumnya](/pos/2024-08-statistik-jendela-dunia/index.qmd "Statistik Adalah Jendela Dunia"). Baris kode yang digunakan adalah sebagai berikut.
 
 ```{r}
 #| echo: true
