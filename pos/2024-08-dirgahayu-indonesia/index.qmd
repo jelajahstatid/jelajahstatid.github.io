@@ -1,6 +1,7 @@
 ---
 title: "Dirgahayu Kemerdekaan Republik Indonesia"
 subtitle: "Persembahan Untuk HUT Ke-79 RI"
+title-meta: "Dirgahayu Kemerdekaan Republik Indonesia: Persembahan Untuk HUT Ke-79 RI"
 description: "Peringatan hari ulang tahun ke-79 Republik Indonesia menyimpan banyak harapan. Salah satunya adalah pertumbuhan ekonomi. Artikel ini memberikan persembahan visualisasi data dalam tema pertumbuhan ekonomi tersebut."
 draft: true
 author:
@@ -11,6 +12,7 @@ author:
     orcid: 0000-0003-1446-0422
 date: 2024-08-12
 categories:
+  - ekonomi
   - statistik nasional
   - tutorial
   - visualisasi data

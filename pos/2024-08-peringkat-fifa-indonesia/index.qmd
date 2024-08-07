@@ -1,0 +1,198 @@
+---
+title: "Sepak Bola Indonesia vs. Negara-Negara Asia Tenggara"
+subtitle: "Peringkat Dunia FIFA"
+title-meta: "Sepak Bola Indonesia vs. Negara-Negara Asia Tenggara: Peringkat Dunia FIFA"
+description: "Bagaimana prestasi sepak bola Indonesia dibandingkan dengan negara-negara Asia Tenggara lainnya? Dengan menggunakan data peringkat dunia FIFA, diagram garis dan animasi diagram batang dapat dimanfaatkan untuk menyelidikanya."
+draft: true
+author:
+  - name: Yosep Dwi Kristanto
+    url: https://people.usd.ac.id/~ydkristanto/
+    affiliation: Pendidikan Matematika, Universitas Sanata Dharma, Yogyakarta
+    affiliation-url: https://www.usd.ac.id/s1pmat
+    orcid: 0000-0003-1446-0422
+date: 2024-08-14
+categories:
+  - olahraga
+  - statistik dunia
+  - studi kasus
+  - visualisasi data
+image: "peringkat-fifa-indonesia.png"
+image-alt: |
+  Diagram batang yang menunjukkan total poin sepak bola Indonesia dibandingkan dengan sepak bola negara-negara lain di Asia Tenggara.
+keywords: 
+  - kemerdekaan
+  - Republik Indonesia
+  - nusantara
+  - sepak bola
+  - FIFA
+  - AFF
+  - Asia Tenggara
+  - diagram batang
+  - diagram garis
+copyright: "© 2024 Yosep Dwi Kristanto"
+license: "CC BY"
+google-scholar: true
+editor_options: 
+  chunk_output_type: console
+code-annotations: select
+---
+
+```{r}
+#| echo: false
+#| message: false
+
+library(tidyverse)
+
+# Impor data ----
+data_dunia <- read_csv(
+  "https://raw.githubusercontent.com/hericlibong/Fifa-Api-Ranking-Scraper/main/FifaMenRanking/FifaMenRanking/spiders/data.csv",
+  col_types = cols(date = col_date(format = "%Y-%m-%d"))
+)
+
+# Mempersiapkan data ----
+data_aff <- data_dunia |> 
+  filter(
+    (country == "Australia" & date >= as.Date("2013-01-01")) | 
+      (country == "Brunei Darussalam" & date >= as.Date("1984-01-01")) | 
+      (country == "Cambodia" & date >= as.Date("1996-01-01")) | 
+      (country == "Timor-Leste" & date >= as.Date("2004-01-01")) | 
+      (country == "Indonesia" & date >= as.Date("1984-01-01")) | 
+      (country == "Laos" & date >= as.Date("1996-01-01")) | 
+      (country == "Malaysia" & date >= as.Date("1984-01-01")) | 
+      (country == "Myanmar" & date >= as.Date("1996-01-01")) | 
+      (country == "Philippines" & date >= as.Date("1984-01-01")) | 
+      (country == "Singapore" & date >= as.Date("1984-01-01")) | 
+      (country == "Thailand" & date >= as.Date("1984-01-01")) | 
+      (country == "Vietnam" & date >= as.Date("1996-01-01"))
+  ) |> 
+  arrange(desc(date), -total_points)
+data_id <- data_aff |> 
+  group_by(date) |> 
+  mutate(
+    IDN = ifelse(
+      country == "Indonesia", TRUE, FALSE
+    ),
+    rank_aff = 1:n(),
+    tahun = year(date),
+    poin = ifelse(
+      total_points >= 250,
+      as.character(total_points), ""
+    )
+  ) |> 
+  select(date, tahun, country, IDN, rank_aff, total_points, poin)
+
+pemetaan_bendera <- tribble(
+  ~country, ~negara, ~bendera,
+  "Australia", "Australia", "pos/2024-08-peringkat-fifa-indonesia/aset/AUS.png",
+  "Thailand", "Thailand", "pos/2024-08-peringkat-fifa-indonesia/aset/THA.png",
+  "Vietnam", "Vietnam", "pos/2024-08-peringkat-fifa-indonesia/aset/VIE.png",
+  "Indonesia", "Indonesia", "pos/2024-08-peringkat-fifa-indonesia/aset/IDN.png",
+  "Malaysia", "Malaysia", "pos/2024-08-peringkat-fifa-indonesia/aset/MAS.png",
+  "Philippines", "Filipina", "pos/2024-08-peringkat-fifa-indonesia/aset/PHI.png",
+  "Singapore", "Singapura", "pos/2024-08-peringkat-fifa-indonesia/aset/SGP.png",
+  "Myanmar", "Myanmar", "pos/2024-08-peringkat-fifa-indonesia/aset/MYA.png",
+  "Cambodia", "Kamboja", "pos/2024-08-peringkat-fifa-indonesia/aset/CAM.png",
+  "Laos", "Laos", "pos/2024-08-peringkat-fifa-indonesia/aset/LAO.png",
+  "Brunei Darussalam", "Brunei Darussalam", "pos/2024-08-peringkat-fifa-indonesia/aset/BRU.png",
+  "Timor-Leste", "Timor-Leste", "pos/2024-08-peringkat-fifa-indonesia/aset/TLS.png"
+)
+
+data_id <- data_id |> 
+  left_join(pemetaan_bendera, by = join_by(country))
+```
+
+Akhir-akhir ini prestasi tim nasional sepak bola Indonesia menjadi sorotan. Pertama, tim nasional U-23 Indonesia berhasil tampil ciamik di perhelatan Piala Asia U-23 AFC 2024. Timnas yang dilatih Shin Tae-yong ini secara dramatis berhasil mengalahkan Korea Selatan di babak perempat final melalui adu penalti. Akhirnya, timnas ini menduduki peringkat keempat di turnamen tersebut.
+
+Kedua adalah prestasi tim nasional U-19 Indonesia di Kejuaraan Remaja U-19 ASEAN 2024. Di kejuaraan ini, timnas Indonesia berhasil menjadi juara grup dengan poin sempurna, mengalahkan Malaysia di babak semifinal, dan mengunci posisi juara setelah mempecundangi Thailand di babak final.
+
+Prestasi-prestasi itu juga sejalan dengan perjalanan tim nasional (senior) Indonesia. Berdasarkan [rilis FIFA](https://inside.fifa.com/fifa-world-ranking/men/news/indonesian-football-is-making-good-progress "Indonesian football is making good progress"){.external target="_blank"} dan [akun X Timnas Indonesia](https://x.com/TimnasIndonesia/status/1775865389148442810 "Timnas Indonesia (@TimnasIndonesia)"){.external target="_blank"}, Indonesia menjadi tim dengan kenaikan posisi tertinggi pada peringkat dunia FIFA di periode 4 April 2024. Indonesia naik delapan peringkat, dari peringkat 142 menjadi 134. Kenaikan peringkat yang drastis ini terjadi karena timnas Indonesia berhasil mengalahkan Vietnam, baik kandang maupun tandang, di Kualifikasi Piala Dunia FIFA 2026 pada 21 dan 26 Maret 2024.
+
+Prestasi-prestasi sepak bola Indonesia tersebut menambah cerita manis di tahun 2024. Mumpung masih di bulan Agustus yang penuh dengan sukacita peringatan kemerdekaan, mari kita lihat prestasi timnas Indonesia secara lebih mendalam. Kita akan melihatnya dengan menganalisis [data peringkat dunia FIFA](https://inside.fifa.com/fifa-world-ranking/men "Men's Ranking"){.external target="_blank"}.
+
+## Statistik Sepak Bola Indonesia {#sec-indonesia-dan-asia-tenggara}
+
+Kenaikan peringkat sepak bola Indonesia memang menjanjikan. Akan tetapi, bagaimana jika peringkat Indonesia dibandingkan dengan negara-negara Asia Tenggara lainnya? Animasi pada @fig-animasi-peringkat-indonesia berikut menunjukkan perubahan peringkat sepak bola Indonesia dibandingkan dengan negara-negara tersebut.
+
+![Peringkat sepak bola Indonesia dibandingkan dengan negara-negara Asia Tenggara Lainnya](aset/peringkat-fifa-aff.gif){#fig-animasi-peringkat-indonesia fig-alt="Peringkat sepak bola Indonesia dibandingkan dengan negara-negara Asia Tenggara Lainnya" fig-align="center"}
+
+::: {#posisi-terbawah}
+Gambar tersebut menunjukkan bagaimana posisi Indonesia berubah-ubah. Dibandingkan dengan negara-negara anggota AFF (*ASEAN Football Federation*), Indonesia pernah menduduki peringkat ke-11. Itu terjadi pada 5 Mei, 2 Juni, dan 14 Juli 2016. Posisi Indonesia hanya berada di atas satu negara anggota AFF, yaitu Brunei Darussalam.
+:::
+
+Indonesia juga pernah menduduk posisi teratas di antara negara-negara AFF. Itu terjadi pada 20 Juli 2005. Pada waktu itu, Indonesia berada di atas Thailand, Singapura, dan Vietnam. Meskipun Australia berada di atas Indonesia pada periode tersebut, tetapi waktu itu Australia belum bergabung ke AFF.
+
+Selama setahun terakhir, Indonesia termasuk ke dalam lima teratas negara-negara AFF bersama dengan Australia, Thailand, Vietnam, dan Malaysia. @fig-lima-teratas-aff berikut menunjukkan peringkat Indonesia dan keempat negara tersebut.
+
+```{r}
+#| echo: false
+#| label: fig-lima-teratas-aff
+#| fig-cap: "Peringkat negara-negara lima teratas AFF"
+#| fig-asp: 0.5625
+
+data_id |> 
+  filter(
+    date >= as.Date("2023-07-20"),
+    negara %in% c("Australia", "Thailand", "Vietnam", "Malaysia", "Indonesia")
+  ) |> 
+  ggplot(
+    aes(x = date, y = rank_aff)
+  ) + 
+  geom_line(
+    aes(group = negara, colour = negara),
+    linewidth = 1
+  ) + 
+  scale_x_date(
+    labels = scales::label_date(
+      format = "%d %b %Y", locale = "id"
+    )
+  ) + 
+  scale_y_reverse(breaks = 1:6) + 
+  scale_colour_viridis_d(name = "") + 
+  theme_minimal() + 
+  theme(
+    legend.position = "bottom",
+    axis.title.x = element_blank()
+  ) + 
+  labs(
+    y = "Peringkat\n(dibandingkan negara-negara AFF)",
+    caption = "Data: FIFA.com"
+  )
+
+```
+
+Lalu bagaimana peringkat Indonesia dibandingkan dengan semua negara anggota FIFA? @fig-peringkat-fifa-indonesia berikut menunjukkan tren peringkat Indonesia mulai tahun 1992.
+
+```{r}
+#| echo: false
+#| label: fig-peringkat-fifa-indonesia
+#| fig-cap: "Peringkat FIFA untuk Indonesia mulai 1992 sampai 2024"
+#| fig-asp: 0.5625
+
+data_aff |> 
+  filter(country == "Indonesia") |> 
+  ggplot(
+    aes(x = date, y = rank)
+  ) + 
+  geom_line(
+    linewidth = 1
+  ) + 
+  scale_y_reverse() + 
+  theme_minimal() + 
+  theme(
+    axis.title.x = element_blank()
+  ) + 
+  labs(
+    y = "Peringkat FIFA"
+  )
+
+```
+
+Peringkat tertinggi Indonesia terjadi pada 16 September 1998. Pada periode itu, Indonesia menduduki peringkat ke-76. Peringkat terbawah Indonesia adalah 65. Hal ini terjadi ketika Indonesia menduduki peringkat ke-11 dibandingkan negara-negara Asia Tenggara lainnya, seperti yang telah [disebutkan sebelumnya](#posisi-terbawah).
+
+## Catatan Akhir
+
+Kita telah melihat seberapa baik sepak bola Indonesia melalui kacamata statistik. Dengan menggunakan data peringkat dunia FIFA, kita dapat membandingkan sepak bola Indonesia dengan negara-negara lainnya, khususnya negara-negara anggota AFF. @fig-animasi-peringkat-indonesia memperlihatkan bagaimana posisi sepak bola Indonesia dibandingkan dengan negara-negara AFF setiap waktunya. [Animasi yang dibuat dengan {gganimate}](/pos/2024-08-animasi-diagram-statistik/index.qmd "Membuat Diagram Lebih Hidup dengan Animasi") tersebut juga memperlihatkan poin Indonesia (beserta negara-negara AFF lainnya) setiap tahunnya.
+
+@fig-lima-teratas-aff dan @fig-peringkat-fifa-indonesia juga memberikan informasi yang tak kalah pentingnya. Berdasarkan kedua diagram tersebut, kita dapat mengetahui bagaimana tren peringkat sepak bola Indonesia dibandingkan dengan negara-negara AFF maupun semua negara anggota FIFA.
+
+Statistik-statistik sepak bola Indonesia tersebut harapannya dapat memberikan pemaknaan dan warna baru dalam peringatan HUT ke-79 Republik Indonesia. Semoga sepak bola Indonesia semakin berjaya!
