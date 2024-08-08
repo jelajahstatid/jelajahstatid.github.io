@@ -107,7 +107,7 @@ Kedua adalah prestasi tim nasional U-19 Indonesia di Kejuaraan Remaja U-19 ASEAN
 
 Prestasi-prestasi itu juga sejalan dengan perjalanan tim nasional (senior) Indonesia. Berdasarkan [rilis FIFA](https://inside.fifa.com/fifa-world-ranking/men/news/indonesian-football-is-making-good-progress "Indonesian football is making good progress"){.external target="_blank"} dan [akun X Timnas Indonesia](https://x.com/TimnasIndonesia/status/1775865389148442810 "Timnas Indonesia (@TimnasIndonesia)"){.external target="_blank"}, Indonesia menjadi tim dengan kenaikan posisi tertinggi pada peringkat dunia FIFA di periode 4 April 2024. Indonesia naik delapan peringkat, dari peringkat 142 menjadi 134. Kenaikan peringkat yang drastis ini terjadi karena timnas Indonesia berhasil mengalahkan Vietnam, baik kandang maupun tandang, di Kualifikasi Piala Dunia FIFA 2026 pada 21 dan 26 Maret 2024.
 
-Prestasi-prestasi sepak bola Indonesia tersebut menambah cerita manis di tahun 2024. Mumpung masih di bulan Agustus yang penuh dengan sukacita peringatan kemerdekaan, mari kita lihat prestasi timnas Indonesia secara lebih mendalam. Kita akan melihatnya dengan menganalisis [data peringkat dunia FIFA](https://inside.fifa.com/fifa-world-ranking/men "Men's Ranking"){.external target="_blank"}.
+Prestasi-prestasi sepak bola Indonesia tersebut menambah cerita manis di tahun 2024. Mumpung masih di bulan Agustus yang penuh dengan sukacita [peringatan kemerdekaan](/pos/2024-08-dirgahayu-indonesia/index.qmd "Dirgahayu Kemerdekaan Republik Indonesia: Persembahan Untuk HUT Ke-79 RI"), mari kita lihat prestasi timnas Indonesia secara lebih mendalam. Kita akan melihatnya dengan menganalisis [data peringkat dunia FIFA](https://inside.fifa.com/fifa-world-ranking/men "Men's Ranking"){.external target="_blank"}.
 
 ## Statistik Sepak Bola Indonesia {#sec-indonesia-dan-asia-tenggara}
 
@@ -126,8 +126,14 @@ Selama setahun terakhir, Indonesia termasuk ke dalam lima teratas negara-negara 
 ```{r}
 #| echo: false
 #| label: fig-lima-teratas-aff
-#| fig-cap: "Peringkat negara-negara lima teratas AFF"
+#| fig-cap: "Peringkat lima teratas negara-negara AFF"
 #| fig-asp: 0.5625
+
+pos_akhir <- data_id |> 
+  filter(
+    date == as.Date("2024-07-18"),
+    negara %in% c("Australia", "Thailand", "Vietnam", "Malaysia", "Indonesia")
+  )
 
 data_id |> 
   filter(
@@ -144,13 +150,29 @@ data_id |>
   scale_x_date(
     labels = scales::label_date(
       format = "%d %b %Y", locale = "id"
+    ),
+    expand = c(0, 0)
+  ) + 
+  scale_y_reverse(
+    breaks = 1:6,
+    sec.axis = dup_axis(
+      name = NULL,
+      breaks = pos_akhir$rank_aff,
+      labels = pos_akhir$negara
     )
   ) + 
-  scale_y_reverse(breaks = 1:6) + 
-  scale_colour_viridis_d(name = "") + 
+  scale_colour_manual(
+    values = c(
+      "Australia" = "#9BBEC8",
+      "Thailand" = "#9BBEC8",
+      "Vietnam" = "#9BBEC8",
+      "Malaysia" = "#9BBEC8",
+      "Indonesia" = "#164863"
+    )
+  ) + 
   theme_minimal() + 
   theme(
-    legend.position = "bottom",
+    legend.position = "none",
     axis.title.x = element_blank()
   ) + 
   labs(
@@ -168,13 +190,41 @@ Lalu bagaimana peringkat Indonesia dibandingkan dengan semua negara anggota FIFA
 #| fig-cap: "Peringkat FIFA untuk Indonesia mulai 1992 sampai 2024"
 #| fig-asp: 0.5625
 
+sanksi_fifa <- data_aff |> 
+  filter(
+    country == "Indonesia",
+    date >= as.Date("2015-06-04"),
+    date <= as.Date("2016-05-05")
+  )
+
 data_aff |> 
   filter(country == "Indonesia") |> 
   ggplot(
     aes(x = date, y = rank)
   ) + 
+  geom_smooth(
+    method = "lm",
+    formula = y ~ poly(x, 3),
+    se = FALSE,
+    color = "#9BBEC8",
+    linetype = "dashed"
+  ) + 
   geom_line(
-    linewidth = 1
+    linewidth = 1,
+    color = "#164863"
+  ) + 
+  geom_line(
+    data = sanksi_fifa,
+    linewidth = 1,
+    color = "#EC1C24"
+  ) + 
+  annotate(
+    geom = "text",
+    x = as.Date("2015-06-01"),
+    y = 175,
+    label = "Periode sanksi FIFA",
+    color = "#EC1C24",
+    hjust = 1
   ) + 
   scale_y_reverse() + 
   theme_minimal() + 
@@ -182,12 +232,13 @@ data_aff |>
     axis.title.x = element_blank()
   ) + 
   labs(
-    y = "Peringkat FIFA"
+    y = "Peringkat FIFA",
+    caption = "Data: FIFA.com"
   )
 
 ```
 
-Peringkat tertinggi Indonesia terjadi pada 16 September 1998. Pada periode itu, Indonesia menduduki peringkat ke-76. Peringkat terbawah Indonesia adalah 65. Hal ini terjadi ketika Indonesia menduduki peringkat ke-11 dibandingkan negara-negara Asia Tenggara lainnya, seperti yang telah [disebutkan sebelumnya](#posisi-terbawah).
+Peringkat tertinggi Indonesia terjadi pada 16 September 1998. Pada periode itu, Indonesia menduduki peringkat ke-76. Peringkat terbawah Indonesia adalah 191. Hal ini terjadi ketika Indonesia menduduki peringkat ke-11 dibandingkan negara-negara Asia Tenggara lainnya, seperti yang telah [disebutkan sebelumnya](#posisi-terbawah). Kemerosotan peringkat tersebut merupakan buntut dari [sanksi FIFA](https://www.pssi.org/news/surat-resmi-sanksi-fifa-terhadap-pssi "Surat Resmi Sanksi FIFA Terhadap PSSI"){.external target="_blank"} yang memaksa timnas Indonesia vakum dalam pertandingan internasional selama kurang lebih setahun.
 
 ## Catatan Akhir
 
