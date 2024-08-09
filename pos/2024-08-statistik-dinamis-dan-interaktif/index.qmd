@@ -1,6 +1,5 @@
 ---
 title: "Membuat Statistik Menjadi Dinamis dan Interaktif"
-draft: true
 description: |
   Statistik bukan hanya untuk statistikawan tetapi juga untuk orang awam. Untuk itu, statistik perlu dikemas secara lebih menarik dan menawan. Shiny memungkinkan agar statistik disajikan secara dinamis dan interaktif agar menarik dan mudah dipelajari oleh orang awam.
 author:
@@ -277,7 +276,7 @@ Aplikasi Shiny kita masih sederhana dan seperlunya. Kita dapat memperindah aplik
 
 -   mengatur slidernya agar menampilkan bilangan yang tidak memuat pemisah ribuan, dan
 
--   memperbaiki diagram pencar yang disajikan agar tampilannya sama dengan diagram pencar pada [pos sebelumnya](/pos/2024-08-animasi-diagram-statistik/index.qmd), serta mengatur agar batasan jendelanya konsisten dari tahun ke tahun.
+-   memperbaiki diagram pencar yang disajikan agar tampilannya sama dengan diagram pencar pada [pos sebelumnya](/pos/2024-08-animasi-diagram-statistik/index.qmd "Membuat Diagram Lebih Hidup dengan Animasi"), serta mengatur agar batasan jendelanya konsisten dari tahun ke tahun.
 
 Ketiga hal tersebut dapat kita penuhi dengan baris kode seperti pada @lst-app-shiny-baru berikut.
 
@@ -345,4 +344,4 @@ Bagaimana tampilan aplikasi Shiny kita sekarang? Tampilannya ditunjukkan pada @f
 
 Kita telah mengenal Shiny. Kita secara bersama-sama juga telah membuat aplikasi Shiny sederhana pada @sec-membuat-app-shiny dan memberikan sentuhan akhir pada @sec-sentuhan-akhir. Aplikasi tersebut dapat menampilkan visualisasi data secara interaktif. Dengan cara demikian, harapannya statistik tidak hanya menjadi konsumsi statistikawan tetapi juga orang awam.
 
-Apa selanjutnya? Jika kamu tertarik untuk mengembangkan aplikasi Shiny, kamu dapat belajar dari contoh-contohnya. Contoh tersebut dapat kamu lihat di [laman galeri Shiny untuk R](https://shiny.posit.co/r/gallery/){.external target="_blank"}. Selain itu, kamu juga dapat menjelajah [beberapa aplikasi Shiny yang telah aku kembangkan](https://people.usd.ac.id/~ydkristanto/index.php/media-pengajaran/shiny-stat-dan-id/){.external target="_blank"}. *Have a shiny day!*
+Apa selanjutnya? Jika kamu tertarik untuk mengembangkan aplikasi Shiny, kamu dapat belajar dari contoh-contohnya. Contoh tersebut dapat kamu lihat di [laman galeri Shiny untuk R](https://shiny.posit.co/r/gallery/ "Shiny for R Gallery"){.external target="_blank"}. Selain itu, kamu juga dapat menjelajah [beberapa aplikasi Shiny yang telah aku kembangkan](https://people.usd.ac.id/~ydkristanto/index.php/media-pengajaran/shiny-stat-dan-id/ "Aplikasi Shiny untuk Statistika dan Ilmu Data"){.external target="_blank"}. *Have a shiny day!*

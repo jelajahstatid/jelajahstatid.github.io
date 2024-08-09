@@ -246,4 +246,4 @@ Kita telah melihat seberapa baik sepak bola Indonesia melalui kacamata statistik
 
 @fig-lima-teratas-aff dan @fig-peringkat-fifa-indonesia juga memberikan informasi yang tak kalah pentingnya. Berdasarkan kedua diagram tersebut, kita dapat mengetahui bagaimana tren peringkat sepak bola Indonesia dibandingkan dengan negara-negara AFF maupun semua negara anggota FIFA.
 
-Statistik-statistik sepak bola Indonesia tersebut harapannya dapat memberikan pemaknaan dan warna baru dalam peringatan HUT ke-79 Republik Indonesia. Semoga sepak bola Indonesia semakin berjaya!
+Statistik-statistik sepak bola Indonesia tersebut harapannya dapat memberikan pemaknaan dan warna baru dalam peringatan HUT ke-79 Republik Indonesia. Dirgahayu Indonesiaku. Semoga sepak bola Indonesia semakin berjaya!

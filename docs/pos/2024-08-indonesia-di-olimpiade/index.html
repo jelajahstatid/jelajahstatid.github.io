@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.555">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Yosep Dwi Kristanto">
+<meta name="dcterms.date" content="2024-08-17">
+<meta name="keywords" content="kemerdekaan, Republik Indonesia, nusantara, olimpiade, Olimpiade Musim Panas 2024, Olimpiade Paris 2024, diagram batang, diagram garis">
+<meta name="description" content="Bagaimana prestasi sepak bola Indonesia dibandingkan dengan negara-negara Asia Tenggara lainnya? Dengan menggunakan data peringkat dunia FIFA, diagram garis dan animasi diagram batang dapat dimanfaatkan untuk menyelidikanya.">
+
+<title>Jelajah Statistika dan Ilmu Data - Prestasi Indonesia di Olimpiade</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Tak ada hasil",
+    "search-matching-documents-text": "dokumen yang cocok",
+    "search-copy-link-title": "Salin tautan untuk mencari",
+    "search-hide-matches-text": "Sembunyikan kecocokan tambahan",
+    "search-more-match-text": "kecocokan yang lebih banyak di dokumen ini",
+    "search-more-matches-text": "kecocokan yang lebih banyak di dokumen ini",
+    "search-clear-button-title": "Bersihkan",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Batal",
+    "search-submit-button-title": "Kirim",
+    "search-label": "Cari"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-WTEJLB3562"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
+</script>
+<style>
+
+      .quarto-title-block .quarto-title-banner {
+        background: #EBF7FE;
+      }
+</style>
+
+
+<link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="Jelajah Statistika dan Ilmu Data - Prestasi Indonesia di Olimpiade">
+<meta property="og:description" content="Bagaimana prestasi sepak bola Indonesia dibandingkan dengan negara-negara Asia Tenggara lainnya? Dengan menggunakan data peringkat dunia FIFA, diagram garis dan animasi diagram batang dapat dimanfaatkan untuk menyelidikanya.">
+<meta property="og:image" content="https://jelajahstatid.github.io/pos/2024-08-indonesia-di-olimpiade/indonesia-di-olimpiade.png">
+<meta property="og:site_name" content="Jelajah Statistika dan Ilmu Data">
+<meta property="og:image:alt" content="Diagram batang yang menunjukkan total poin sepak bola Indonesia dibandingkan dengan sepak bola negara-negara lain di Asia Tenggara.
+">
+<meta name="twitter:title" content="Jelajah Statistika dan Ilmu Data - Prestasi Indonesia di Olimpiade">
+<meta name="twitter:description" content="Bagaimana prestasi sepak bola Indonesia dibandingkan dengan negara-negara Asia Tenggara lainnya? Dengan menggunakan data peringkat dunia FIFA, diagram garis dan animasi diagram batang dapat dimanfaatkan untuk menyelidikanya.">
+<meta name="twitter:image" content="https://jelajahstatid.github.io/pos/2024-08-indonesia-di-olimpiade/indonesia-di-olimpiade.png">
+<meta name="twitter:image:alt" content="Diagram batang yang menunjukkan total poin sepak bola Indonesia dibandingkan dengan sepak bola negara-negara lain di Asia Tenggara.
+">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="citation_title" content="Prestasi Indonesia di Olimpiade">
+<meta name="citation_keywords" content="kemerdekaan,Republik Indonesia,nusantara,olimpiade,Olimpiade Musim Panas 2024,Olimpiade Paris 2024,diagram batang,diagram garis">
+<meta name="citation_author" content="Yosep Dwi Kristanto">
+<meta name="citation_publication_date" content="2024-08-17">
+<meta name="citation_cover_date" content="2024-08-17">
+<meta name="citation_year" content="2024">
+<meta name="citation_online_date" content="2024-08-17">
+<meta name="citation_fulltext_html_url" content="https://jelajahstatid.github.io/pos/2024-08-indonesia-di-olimpiade">
+<meta name="citation_language" content="en">
+</head>
+
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Jelajah Statistika dan Ilmu Data</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Cari"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../ihwal.html"> 
+<span class="menu-text">Ihwal</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/jelajahstatid/jelajahstatid.github.io"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/yosepdwik"> <i class="bi bi-twitter" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Prestasi Indonesia di Olimpiade</h1>
+                  <div>
+        <div class="description">
+          Bagaimana prestasi sepak bola Indonesia dibandingkan dengan negara-negara Asia Tenggara lainnya? Dengan menggunakan data peringkat dunia FIFA, diagram garis dan animasi diagram batang dapat dimanfaatkan untuk menyelidikanya.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">olahraga</div>
+                <div class="quarto-category">statistik dunia</div>
+                <div class="quarto-category">turorial</div>
+                <div class="quarto-category">visualisasi data</div>
+              </div>
+                  </div>
+  </div>
+    
+  <div class="quarto-title-meta-author">
+    <div class="quarto-title-meta-heading">Pengarang</div>
+    <div class="quarto-title-meta-heading">Afiliasi</div>
+    
+      <div class="quarto-title-meta-contents">
+      <p class="author"><a href="https://people.usd.ac.id/~ydkristanto/">Yosep Dwi Kristanto</a> <a href="https://orcid.org/0000-0003-1446-0422" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+    </div>
+    <div class="quarto-title-meta-contents">
+          <p class="affiliation">
+              <a href="https://www.usd.ac.id/s1pmat">
+              Pendidikan Matematika, Universitas Sanata Dharma, Yogyakarta
+              </a>
+            </p>
+        </div>
+    </div>
+
+  <div class="quarto-title-meta">
+
+        
+      <div>
+      <div class="quarto-title-meta-heading">Terbit</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">August 17, 2024</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+
+  <div>
+    <div class="keywords">
+      <div class="block-title">Kata kunci</div>
+      <p>kemerdekaan, Republik Indonesia, nusantara, olimpiade, Olimpiade Musim Panas 2024, Olimpiade Paris 2024, diagram batang, diagram garis</p>
+    </div>
+  </div>
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Pada laman ini</h2>
+   
+  <ul>
+  <li><a href="#sec-mempersiapkan-data" id="toc-sec-mempersiapkan-data" class="nav-link active" data-scroll-target="#sec-mempersiapkan-data">Mempersiapkan Data</a>
+  <ul class="collapse">
+  <li><a href="#sec-mengimpor-data" id="toc-sec-mengimpor-data" class="nav-link" data-scroll-target="#sec-mengimpor-data">Mengimpor Data</a></li>
+  <li><a href="#sec-merapikan-data" id="toc-sec-merapikan-data" class="nav-link" data-scroll-target="#sec-merapikan-data">Merapikan Data</a></li>
+  </ul></li>
+  <li><a href="#sec-visualisasi-data" id="toc-sec-visualisasi-data" class="nav-link" data-scroll-target="#sec-visualisasi-data">Visualisasi Data</a>
+  <ul class="collapse">
+  <li><a href="#sec-medali-dan-perhelatan-olimpiade" id="toc-sec-medali-dan-perhelatan-olimpiade" class="nav-link" data-scroll-target="#sec-medali-dan-perhelatan-olimpiade">Medali dan Perhelatan Olimpiade</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/jelajahstatid/jelajahstatid.github.io/edit/main/pos/2024-08-indonesia-di-olimpiade/index.qmd" class="toc-action"><i class="bi bi-github"></i>Sunting laman ini</a></li><li><a href="https://github.com/jelajahstatid/jelajahstatid.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Laporkan sebuah isu</a></li></ul></div></nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<p><a href="https://olympics.com/en/paris-2024" class="external" target="_blank" title="Paris 2024 Olympics">Olimpiade Musim Panas 2024</a> telah usai. Olimpiade itu meninggalkan banyak cerita menarik. Salah satu yang banyak diperbincangkan adalah <a href="https://olympics.com/en/paris-2024/athlete/yeji-kim_1893930" class="external" target="_blank" title="KIM Yeji">Kim Yeji</a> dan <a href="https://olympics.com/en/paris-2024/athlete/yusuf-dikec_1564893" class="external" target="_blank" title="DIKEC Yusuf">Yusuf Dikeç</a>. Atlet yang secara berturut-turut membela negara Turki dan Korea Selatan tersebut tidak hanya mengukir prestasi, tetapi juga meninggalkan bekas karena gaya dan penampilannya.</p>
+<blockquote class="twitter-tweet blockquote" data-lang="id" data-dnt="true"><p lang="en" dir="ltr">The Olympic <a href="https://twitter.com/hashtag/shootingsport?src=hash&amp;ref_src=twsrc%5Etfw">#shootingsport</a> stars we didn’t know we needed.<br><br>🇰🇷 Kim Yeji 🤝 Yusuf Dikeç 🇹🇷 <a href="https://t.co/gfkyGjFg4I">pic.twitter.com/gfkyGjFg4I</a></p>— The Olympic Games (@Olympics) <a href="https://twitter.com/Olympics/status/1818909520661278729?ref_src=twsrc%5Etfw">1 Agustus 2024</a></blockquote> <script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<p>Akan tetapi, kita tidak akan memperbincangkan kedua atlet itu. Di suasana <a href="../../pos/2024-08-dirgahayu-indonesia/index.html" title="Dirgahayu Kemerdekaan Republik Indonesia: Persembahan Untuk HUT Ke-79 RI">peringatan kemerdekaan Republik Indonesia ini</a>, kita akan melihat prestasi atlet-atlet Indonesia di Olimpiade Musim Panas. Untuk melakukannya, kita akan menggunakan data yang tersedia di laman Wikipedia.</p>
+<section id="sec-mempersiapkan-data" class="level2">
+<h2 class="anchored" data-anchor-id="sec-mempersiapkan-data">Mempersiapkan Data</h2>
+<p>Kita akan melakukan analisis dan visualisasi data dengan <a href="https://www.R-project.org/" class="external" target="_blank" title="R: A Language and Environment for Statistical Computing">pemrograman R</a>. Pertama, kita panggil paket-paket yang diperlukan. Kita gunakan <a href="https://CRAN.R-project.org/package=rvest" class="external" target="_blank" title="rvest: Easily Harvest (Scrape) Web Pages">{rvest}</a> untuk mengimpor data dari sebuah laman web, <a href="https://www.tidyverse.org/" class="external" target="_blank" title="R packages for data science">{tidyverse}</a> untuk menganalisis dan memvisualisasikan data, dan <a href="https://CRAN.R-project.org/package=ggstream" class="external" target="_blank" title="ggstream: Create Streamplots in 'ggplot2'">{ggstream}</a> untuk membuat diagram alir.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(rvest)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(ggstream)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="sec-mengimpor-data" class="level3">
+<h3 class="anchored" data-anchor-id="sec-mengimpor-data">Mengimpor Data</h3>
+<p>Sekarang kita mengimpor datanya. Data tersebut berasal dari laman <a href="https://id.wikipedia.org/w/index.php?title=Indonesia_pada_Olimpiade&amp;oldid=26147360" class="external" target="_blank" title="Indonesia pada Olimpiade">Wikipedia</a>. Data yang kita impor adalah data jumlah medali berdasarkan olimpiade dan cabang olahraganya. Untuk melakukannya, kita menggunakan baris kode seperti berikut.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>html <span class="ot">&lt;-</span> <span class="fu">read_html</span>(<span class="st">"https://id.wikipedia.org/w/index.php?title=Indonesia_pada_Olimpiade&amp;oldid=26147360"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2"></a></span>
+<span id="cb2-3"><a href="#cb2-3"></a>daftar_tabel <span class="ot">&lt;-</span> html <span class="sc">|&gt;</span> </span>
+<span id="cb2-4"><a href="#cb2-4"></a>  <span class="fu">html_elements</span>(<span class="st">".wikitable"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb2-5"><a href="#cb2-5"></a>  <span class="fu">html_table</span>()</span>
+<span id="cb2-6"><a href="#cb2-6"></a></span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="fu">print</span>(daftar_tabel)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+# A tibble: 50 × 5
+   Medali       Nama                                    Olimpiade Olahraga Nomor
+   &lt;chr&gt;        &lt;chr&gt;                                   &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;
+ 1 01 &nbsp;Emas     Hartono, RudyRudy Hartono               Munich 1… Bulu ta… Tung…
+ 2 01 &nbsp;Emas     Chandra, AdeAde Chandra dan Christian … Munich 1… Bulu ta… Tung…
+ 3 02 &nbsp;Perak    Dewi, UtamiUtami Dewi                   Munich 1… Bulu ta… Tung…
+ 4 03 &nbsp;Perunggu Hadinata, ChristianChristian Hadinata … Munich 1… Bulu ta… Gand…
+ 5 02 &nbsp;Perak    Sugiarto, IcukIcuk Sugiarto             Seoul 19… Bulu ta… Tung…
+ 6 02 &nbsp;Perak    Handayani, LiliesLilies Handayani, Nur… Seoul 19… Panahan  Tim …
+ 7 02 &nbsp;Perak    Dirc Talumewo                           Barcelon… Taekwon… Putr…
+ 8 02 &nbsp;Perak    Rahmi Kurnia                            Barcelon… Taekwon… Putr…
+ 9 02 &nbsp;Perak    Susilawati                              Barcelon… Taekwon… Putr…
+10 03 &nbsp;Perunggu Jefi Tri Aji                            Barcelon… Taekwon… Putr…
+# ℹ 40 more rows
+
+[[2]]
+# A tibble: 22 × 9
+   Olimpiade  `Jumlah atlet` `Pembawa bendera` Jumlah cabangolahrag…¹ `01 &nbsp;Emas`
+   &lt;chr&gt;      &lt;chr&gt;          &lt;chr&gt;             &lt;chr&gt;                  &lt;chr&gt;     
+ 1 Helsinki … 3              ""                3                      0         
+ 2 Melbourne… 22             ""                6                      0         
+ 3 Roma 1960  22             ""                8                      0         
+ 4 Tokyo 1964 Tidak ikut     "Tidak ikut"      Tidak ikut             Tidak ikut
+ 5 Mexico Ci… 6              ""                2                      0         
+ 6 München 1… 6              "Wiem Gommies"    5                      0         
+ 7 Montreal … 7              "Donald Pandiang… 5                      0         
+ 8 Moskwa 19… Tidak ikut     "Tidak ikut"      Tidak ikut             Tidak ikut
+ 9 Los Angel… 16             "Luki Niode"      6                      0         
+10 Seoul 1988 29             "Tonny Maringgi"  11                     0         
+# ℹ 12 more rows
+# ℹ abbreviated name: ¹​`Jumlah cabangolahraga yang diikuti`
+# ℹ 4 more variables: `02 &nbsp;Perak` &lt;chr&gt;, `03 &nbsp;Perunggu` &lt;chr&gt;, Total &lt;chr&gt;,
+#   Peringkat &lt;chr&gt;
+
+[[3]]
+# A tibble: 5 × 5
+  Cabang                   Emas Perak Perunggu Total
+  &lt;chr&gt;                   &lt;int&gt; &lt;int&gt;    &lt;int&gt; &lt;int&gt;
+1 Bulu tangkis  (detail)      8     6        8    22
+2 Angkat besi  (detail)       1     7        8    16
+3 Panjat tebing  (detail)     1     0        0     1
+4 Panahan  (detail)           0     1        0     1
+5 Total (4 cabang)           10    14       16    40</code></pre>
+</div>
+</div>
+<p>Apa yang dilakukan baris kode di atas? Pertama, kita membaca html pada laman Wikipedia tersebut dan menyimpannya sebagai sebuah sebuah objek dengan nama <code>html</code>. Setelah itu, objek <code>html</code> tersebut kita cari elemennya yang bernama <code>.wikitable</code>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Setelah elemen tersebut ditemukan, kita baca elemen tersebut sebagai tabel dengan fungsi <code>html_table()</code>. Hasil dari proses ini kemudian kita namai sebagai <code>daftar_tabel</code>. Untuk melihat apa isi <code>daftar_tabel</code> tersebut, kita dapat menggunakan fungsi <code>print()</code>.</p>
+<p>Setelah kita lihat dengan <code>print()</code>, ternyata <code>daftar_tabel</code> merupakan sebuah <a href="https://people.usd.ac.id/~ydkristanto/index.php/seri-belajar-statistika-dan-ilmu-data-dengan-r/pengantar-r/7/" class="external" target="_blank" title="Pengantar Pemrograman R">daftar (<em>list</em>)</a>. Data yang kita inginkan, yaitu data jumlah medali berdasarkan olimpiade dan cabang olahraganya, merupakan elemen kedua dan ketiga dari <code>daftar_tabel</code>. Untuk itu, kita dapat mengekstrak kedua data tersebut dengan <code>daftar_tabel[[1]]</code> dan <code>daftar_tabel[[2]]</code>. Kita namai hasilnya dengan <code>data_dsr_olimpiade</code> dan <code>data_dsr_cabang</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>data_dsr_olimpiade <span class="ot">&lt;-</span> daftar_tabel[[<span class="dv">2</span>]]</span>
+<span id="cb4-2"><a href="#cb4-2"></a>data_dsr_cabang <span class="ot">&lt;-</span> daftar_tabel[[<span class="dv">3</span>]]</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="sec-merapikan-data" class="level3">
+<h3 class="anchored" data-anchor-id="sec-merapikan-data">Merapikan Data</h3>
+<p>Saat ini kita telah memiliki dua data, yaitu <code>data_dsr_olimpiade</code> (data jumlah medali berdasarkan penyelenggaraan olimpiade) dan <code>data_dsr_cabang</code> (data jumlah medali berdasarkan cabang olahraga). Kita rapikan kedua data tersebut. Untuk merapikan <code>data_dsr_olimpiade</code>, kita lihat gambaran umumnya terlebih dahulu dengan fungsi <code>glimpse()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">glimpse</span>(data_dsr_olimpiade)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 22
+Columns: 9
+$ Olimpiade                            &lt;chr&gt; "Helsinki 1952", "Melbourne 1956"…
+$ `Jumlah atlet`                       &lt;chr&gt; "3", "22", "22", "Tidak ikut", "6…
+$ `Pembawa bendera`                    &lt;chr&gt; "", "", "", "Tidak ikut", "", "Wi…
+$ `Jumlah cabangolahraga yang diikuti` &lt;chr&gt; "3", "6", "8", "Tidak ikut", "2",…
+$ `01 &nbsp;Emas`                           &lt;chr&gt; "0", "0", "0", "Tidak ikut", "0",…
+$ `02 &nbsp;Perak`                          &lt;chr&gt; "0", "0", "0", "Tidak ikut", "0",…
+$ `03 &nbsp;Perunggu`                       &lt;chr&gt; "0", "0", "0", "Tidak ikut", "0",…
+$ Total                                &lt;chr&gt; "0", "0", "0", "Tidak ikut", "0",…
+$ Peringkat                            &lt;chr&gt; "", "", "", "Tidak ikut", "", "",…</code></pre>
+</div>
+</div>
+<p><code>data_dsr_olimpiade</code> memiliki sembilan variabel. Dari variabel-variabel tersebut, kita pilih lima saja, yaitu <code>Olimpiade</code>, <code>01 &nbsp;Emas</code>, <code>02 &nbsp;Perak</code>, <code>03 &nbsp;Perunggu</code>, dan <code>Peringkat</code>. Setelah itu kita buat data tersebut menjadi data yang memanjang dengan <code>pivot_longer()</code> dan kita rapikan isinya. Untuk memudahkan analisis data selanjutnya, kita tambahkan variabel <code>tahun</code>. Variabel ini kita ekstrak dari variabel <code>Olimpiade</code> karena nilai-nilai variabel tersebut memuat tahun, misalnya “Helsinki 1952” dan “Melbourne 1956”.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>data_dsr_olimpiade <span class="ot">&lt;-</span> data_dsr_olimpiade <span class="sc">|&gt;</span> </span>
+<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">select</span>(Olimpiade, <span class="st">`</span><span class="at">01 &nbsp;Emas</span><span class="st">`</span>, <span class="st">`</span><span class="at">02 &nbsp;Perak</span><span class="st">`</span>, <span class="st">`</span><span class="at">03 &nbsp;Perunggu</span><span class="st">`</span>, Peringkat) <span class="sc">|&gt;</span> </span>
+<span id="cb7-3"><a href="#cb7-3"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb7-4"><a href="#cb7-4"></a>    <span class="at">cols =</span> <span class="fu">contains</span>(<span class="st">"0"</span>),</span>
+<span id="cb7-5"><a href="#cb7-5"></a>    <span class="at">names_to =</span> <span class="st">"medali"</span>,</span>
+<span id="cb7-6"><a href="#cb7-6"></a>    <span class="at">values_to =</span> <span class="st">"banyak"</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb7-8"><a href="#cb7-8"></a>  <span class="fu">rename</span>(</span>
+<span id="cb7-9"><a href="#cb7-9"></a>    <span class="at">olimpiade =</span> Olimpiade,</span>
+<span id="cb7-10"><a href="#cb7-10"></a>    <span class="at">peringkat =</span> Peringkat</span>
+<span id="cb7-11"><a href="#cb7-11"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb7-12"><a href="#cb7-12"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb7-13"><a href="#cb7-13"></a>    <span class="at">tahun =</span> <span class="fu">as.integer</span>(<span class="fu">str_extract</span>(olimpiade, <span class="st">"</span><span class="sc">\\</span><span class="st">d{4}"</span>)),</span>
+<span id="cb7-14"><a href="#cb7-14"></a>    <span class="at">peringkat =</span> <span class="fu">ifelse</span>(</span>
+<span id="cb7-15"><a href="#cb7-15"></a>      peringkat <span class="sc">==</span> <span class="st">""</span> <span class="sc">|</span> peringkat <span class="sc">==</span> <span class="st">"Tidak ikut"</span>,</span>
+<span id="cb7-16"><a href="#cb7-16"></a>      <span class="cn">NA</span>, <span class="fu">as.integer</span>(peringkat)</span>
+<span id="cb7-17"><a href="#cb7-17"></a>    ),</span>
+<span id="cb7-18"><a href="#cb7-18"></a>    <span class="at">medali =</span> <span class="fu">substr</span>(medali, <span class="dv">5</span>, <span class="fu">nchar</span>(medali)),</span>
+<span id="cb7-19"><a href="#cb7-19"></a>    <span class="at">banyak =</span> <span class="fu">ifelse</span>(</span>
+<span id="cb7-20"><a href="#cb7-20"></a>      banyak <span class="sc">==</span> <span class="st">"Tidak ikut"</span>,</span>
+<span id="cb7-21"><a href="#cb7-21"></a>      <span class="cn">NA</span>, <span class="fu">as.integer</span>(banyak)</span>
+<span id="cb7-22"><a href="#cb7-22"></a>    )</span>
+<span id="cb7-23"><a href="#cb7-23"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb7-24"><a href="#cb7-24"></a>  <span class="fu">select</span>(</span>
+<span id="cb7-25"><a href="#cb7-25"></a>    tahun, olimpiade, medali, banyak, peringkat</span>
+<span id="cb7-26"><a href="#cb7-26"></a>  )</span>
+<span id="cb7-27"><a href="#cb7-27"></a></span>
+<span id="cb7-28"><a href="#cb7-28"></a><span class="fu">print</span>(data_dsr_olimpiade)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 66 × 5
+   tahun olimpiade      medali   banyak peringkat
+   &lt;int&gt; &lt;chr&gt;          &lt;chr&gt;     &lt;int&gt;     &lt;int&gt;
+ 1  1952 Helsinki 1952  Emas          0        NA
+ 2  1952 Helsinki 1952  Perak         0        NA
+ 3  1952 Helsinki 1952  Perunggu      0        NA
+ 4  1956 Melbourne 1956 Emas          0        NA
+ 5  1956 Melbourne 1956 Perak         0        NA
+ 6  1956 Melbourne 1956 Perunggu      0        NA
+ 7  1960 Roma 1960      Emas          0        NA
+ 8  1960 Roma 1960      Perak         0        NA
+ 9  1960 Roma 1960      Perunggu      0        NA
+10  1964 Tokyo 1964     Emas         NA        NA
+# ℹ 56 more rows</code></pre>
+</div>
+</div>
+<p><code>data_dsr_olimpiade</code> telah siap tersaji. Sekarang saatnya kita beralih ke <code>data_dsr_cabang</code>. Sebelum merapikan data ini, kita lihat datanya terlebih dahulu.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">print</span>(data_dsr_cabang)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 5
+  Cabang                   Emas Perak Perunggu Total
+  &lt;chr&gt;                   &lt;int&gt; &lt;int&gt;    &lt;int&gt; &lt;int&gt;
+1 Bulu tangkis  (detail)      8     6        8    22
+2 Angkat besi  (detail)       1     7        8    16
+3 Panjat tebing  (detail)     1     0        0     1
+4 Panahan  (detail)           0     1        0     1
+5 Total (4 cabang)           10    14       16    40</code></pre>
+</div>
+</div>
+<p>Untuk merapikan data tersebut, kita dapat melakukan beberapa hal. Pertama, kita hapus baris dan kolom terakhirnya (baris dan kolom total). Kedua, kita rapikan isi dari variabel <code>Cabang</code>. Ketiga, kita buat data tersebut menjadi data yang memanjang. Terakhir, kita konsistenkan nama variabelnya.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>data_dsr_cabang <span class="ot">&lt;-</span> data_dsr_cabang <span class="sc">|&gt;</span> </span>
+<span id="cb11-2"><a href="#cb11-2"></a>  <span class="fu">select</span>(<span class="sc">-</span>Total) <span class="sc">|&gt;</span> </span>
+<span id="cb11-3"><a href="#cb11-3"></a>  <span class="fu">filter</span>(Cabang <span class="sc">!=</span> <span class="st">"Total (4 cabang)"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb11-4"><a href="#cb11-4"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb11-5"><a href="#cb11-5"></a>    <span class="at">Cabang =</span> <span class="fu">str_trim</span>(<span class="fu">str_remove</span>(Cabang, <span class="st">" </span><span class="sc">\\</span><span class="st">(detail</span><span class="sc">\\</span><span class="st">)"</span>))</span>
+<span id="cb11-6"><a href="#cb11-6"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb11-7"><a href="#cb11-7"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb11-8"><a href="#cb11-8"></a>    <span class="at">cols =</span> <span class="sc">-</span>Cabang,</span>
+<span id="cb11-9"><a href="#cb11-9"></a>    <span class="at">names_to =</span> <span class="st">"medali"</span>,</span>
+<span id="cb11-10"><a href="#cb11-10"></a>    <span class="at">values_to =</span> <span class="st">"banyak"</span></span>
+<span id="cb11-11"><a href="#cb11-11"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb11-12"><a href="#cb11-12"></a>  <span class="fu">rename</span>(<span class="at">cabang =</span> Cabang)</span>
+<span id="cb11-13"><a href="#cb11-13"></a></span>
+<span id="cb11-14"><a href="#cb11-14"></a><span class="fu">print</span>(data_dsr_cabang)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12 × 3
+   cabang        medali   banyak
+   &lt;chr&gt;         &lt;chr&gt;     &lt;int&gt;
+ 1 Bulu tangkis  Emas          8
+ 2 Bulu tangkis  Perak         6
+ 3 Bulu tangkis  Perunggu      8
+ 4 Angkat besi   Emas          1
+ 5 Angkat besi   Perak         7
+ 6 Angkat besi   Perunggu      8
+ 7 Panjat tebing Emas          1
+ 8 Panjat tebing Perak         0
+ 9 Panjat tebing Perunggu      0
+10 Panahan       Emas          0
+11 Panahan       Perak         1
+12 Panahan       Perunggu      0</code></pre>
+</div>
+</div>
+<p><code>data_dsr_cabang</code> sekarang sudah rapi. Saatnya kita lanjut ke tahapan berikutnya—visualisasi data.</p>
+</section>
+</section>
+<section id="sec-visualisasi-data" class="level2">
+<h2 class="anchored" data-anchor-id="sec-visualisasi-data">Visualisasi Data</h2>
+<p>Pada <a href="#sec-mempersiapkan-data" class="quarto-xref">Bagian&nbsp;1</a> kita telah mengimpor dan merapikan data tentang banyaknya medali yang diperoleh Indonesia berdasarkan perhelatan olimpiade dan cabang-cabang olahraganya. Selanjutnya, kita akan memvisualisasikan kedua data tersebut.</p>
+<section id="sec-medali-dan-perhelatan-olimpiade" class="level3">
+<h3 class="anchored" data-anchor-id="sec-medali-dan-perhelatan-olimpiade">Medali dan Perhelatan Olimpiade</h3>
+<p>Bagaimana perolehan medali Indonesia di setiap keikutsertaannya di olimpiade? Untuk menjawab pertanyaan ini, kita dapat membuat diagram batang dengan menggunakan <code>data_dsr_olimpiade</code>. Perhatikan <a href="#fig-diagram-batang" class="quarto-xref">Gambar&nbsp;1</a>!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>data_dsr_olimpiade <span class="sc">|&gt;</span> </span>
+<span id="cb13-2"><a href="#cb13-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> tahun, <span class="at">y =</span> banyak, <span class="at">fill =</span> medali)) <span class="sc">+</span> </span>
+<span id="cb13-3"><a href="#cb13-3"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span> </span>
+<span id="cb13-4"><a href="#cb13-4"></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb13-5"><a href="#cb13-5"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">4.2</span>),</span>
+<span id="cb13-6"><a href="#cb13-6"></a>    <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb13-7"><a href="#cb13-7"></a>  ) <span class="sc">+</span> </span>
+<span id="cb13-8"><a href="#cb13-8"></a>  <span class="fu">scale_fill_manual</span>(</span>
+<span id="cb13-9"><a href="#cb13-9"></a>    <span class="at">name =</span> <span class="st">"Medali"</span>,</span>
+<span id="cb13-10"><a href="#cb13-10"></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
+<span id="cb13-11"><a href="#cb13-11"></a>      <span class="st">"Emas"</span> <span class="ot">=</span> <span class="st">"#FCC861"</span>,</span>
+<span id="cb13-12"><a href="#cb13-12"></a>      <span class="st">"Perak"</span> <span class="ot">=</span> <span class="st">"#E5E5E5"</span>,</span>
+<span id="cb13-13"><a href="#cb13-13"></a>      <span class="st">"Perunggu"</span> <span class="ot">=</span> <span class="st">"#DCB386"</span></span>
+<span id="cb13-14"><a href="#cb13-14"></a>    )</span>
+<span id="cb13-15"><a href="#cb13-15"></a>  ) <span class="sc">+</span> </span>
+<span id="cb13-16"><a href="#cb13-16"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb13-17"><a href="#cb13-17"></a>  <span class="fu">theme</span>(</span>
+<span id="cb13-18"><a href="#cb13-18"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
+<span id="cb13-19"><a href="#cb13-19"></a>    <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb13-20"><a href="#cb13-20"></a>    <span class="at">panel.grid.minor.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb13-21"><a href="#cb13-21"></a>    <span class="at">axis.line.x =</span> <span class="fu">element_line</span>(),</span>
+<span id="cb13-22"><a href="#cb13-22"></a>    <span class="at">axis.ticks.x =</span> <span class="fu">element_line</span>()</span>
+<span id="cb13-23"><a href="#cb13-23"></a>  ) <span class="sc">+</span> </span>
+<span id="cb13-24"><a href="#cb13-24"></a>  <span class="fu">labs</span>(</span>
+<span id="cb13-25"><a href="#cb13-25"></a>    <span class="at">x =</span> <span class="st">"Tahun"</span>,</span>
+<span id="cb13-26"><a href="#cb13-26"></a>    <span class="at">y =</span> <span class="st">"Banyak perolehan medali"</span></span>
+<span id="cb13-27"><a href="#cb13-27"></a>  )</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-diagram-batang" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-diagram-batang-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-diagram-batang-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diagram-batang-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Gambar&nbsp;1: Banyaknya medali yang diperoleh Indonesia di setiap olimpiade yang diikutinya
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Berdasarkan <a href="#fig-diagram-batang" class="quarto-xref">Gambar&nbsp;1</a> tersebut, Indonesia pertama kali meraih medali pada tahun 1988 meskipun sudah ikut olimpiade sejak 1952. Bagaimana kalau kita ingin melihat tren perolehan medali emas, perak, dan perunggu setiap penyelenggaraan olimpiadenya? Perhatikan <a href="#fig-diagram-garis" class="quarto-xref">Gambar&nbsp;2</a>!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>data_dsr_olimpiade <span class="sc">|&gt;</span> </span>
+<span id="cb14-2"><a href="#cb14-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> tahun, <span class="at">y =</span> banyak, <span class="at">col =</span> medali)) <span class="sc">+</span> </span>
+<span id="cb14-3"><a href="#cb14-3"></a>  <span class="fu">geom_line</span>(</span>
+<span id="cb14-4"><a href="#cb14-4"></a>    <span class="at">linewidth =</span> <span class="dv">1</span></span>
+<span id="cb14-5"><a href="#cb14-5"></a>  ) <span class="sc">+</span> </span>
+<span id="cb14-6"><a href="#cb14-6"></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb14-7"><a href="#cb14-7"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">4.2</span>),</span>
+<span id="cb14-8"><a href="#cb14-8"></a>    <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb14-9"><a href="#cb14-9"></a>  ) <span class="sc">+</span> </span>
+<span id="cb14-10"><a href="#cb14-10"></a>  <span class="fu">scale_color_manual</span>(</span>
+<span id="cb14-11"><a href="#cb14-11"></a>    <span class="at">name =</span> <span class="st">"Medali"</span>,</span>
+<span id="cb14-12"><a href="#cb14-12"></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
+<span id="cb14-13"><a href="#cb14-13"></a>      <span class="st">"Emas"</span> <span class="ot">=</span> <span class="st">"#FCC861"</span>,</span>
+<span id="cb14-14"><a href="#cb14-14"></a>      <span class="st">"Perak"</span> <span class="ot">=</span> <span class="st">"#E5E5E5"</span>,</span>
+<span id="cb14-15"><a href="#cb14-15"></a>      <span class="st">"Perunggu"</span> <span class="ot">=</span> <span class="st">"#DCB386"</span></span>
+<span id="cb14-16"><a href="#cb14-16"></a>    )</span>
+<span id="cb14-17"><a href="#cb14-17"></a>  ) <span class="sc">+</span> </span>
+<span id="cb14-18"><a href="#cb14-18"></a>  <span class="fu">facet_grid</span>(<span class="sc">~</span>medali) <span class="sc">+</span> </span>
+<span id="cb14-19"><a href="#cb14-19"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb14-20"><a href="#cb14-20"></a>  <span class="fu">theme</span>(</span>
+<span id="cb14-21"><a href="#cb14-21"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
+<span id="cb14-22"><a href="#cb14-22"></a>    <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb14-23"><a href="#cb14-23"></a>    <span class="at">panel.grid.minor.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb14-24"><a href="#cb14-24"></a>    <span class="at">panel.grid.minor.y =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb14-25"><a href="#cb14-25"></a>  ) <span class="sc">+</span> </span>
+<span id="cb14-26"><a href="#cb14-26"></a>  <span class="fu">labs</span>(</span>
+<span id="cb14-27"><a href="#cb14-27"></a>    <span class="at">x =</span> <span class="st">"Tahun"</span>,</span>
+<span id="cb14-28"><a href="#cb14-28"></a>    <span class="at">y =</span> <span class="st">"Banyak perolehan medali"</span></span>
+<span id="cb14-29"><a href="#cb14-29"></a>  )</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-diagram-garis" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-diagram-garis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-diagram-garis-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diagram-garis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Gambar&nbsp;2: Tren perolehan medali Indonesia di setiap olimpiade yang diikutinya
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Kita dapat menggabungkan fokus informasi yang disampaikan diagram batang pada <a href="#fig-diagram-batang" class="quarto-xref">Gambar&nbsp;1</a> dan diagram garis pada <a href="#fig-diagram-garis" class="quarto-xref">Gambar&nbsp;2</a> dengan menggunakan diagram alir.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>data_dsr_olimpiade <span class="sc">|&gt;</span> </span>
+<span id="cb15-2"><a href="#cb15-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> tahun, <span class="at">y =</span> banyak, <span class="at">fill =</span> medali)) <span class="sc">+</span> </span>
+<span id="cb15-3"><a href="#cb15-3"></a>  <span class="fu">geom_vline</span>(</span>
+<span id="cb15-4"><a href="#cb15-4"></a>    <span class="fu">aes</span>(<span class="at">xintercept =</span> tahun),</span>
+<span id="cb15-5"><a href="#cb15-5"></a>    <span class="at">color =</span> <span class="st">"grey"</span></span>
+<span id="cb15-6"><a href="#cb15-6"></a>  ) <span class="sc">+</span> </span>
+<span id="cb15-7"><a href="#cb15-7"></a>  <span class="fu">geom_stream</span>() <span class="sc">+</span> </span>
+<span id="cb15-8"><a href="#cb15-8"></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb15-9"><a href="#cb15-9"></a>    <span class="fu">aes</span>(<span class="at">label =</span> olimpiade),</span>
+<span id="cb15-10"><a href="#cb15-10"></a>    <span class="at">y =</span> <span class="sc">-</span><span class="dv">5</span>,</span>
+<span id="cb15-11"><a href="#cb15-11"></a>    <span class="at">angle =</span> <span class="dv">90</span>,</span>
+<span id="cb15-12"><a href="#cb15-12"></a>    <span class="at">hjust =</span> <span class="dv">0</span>,</span>
+<span id="cb15-13"><a href="#cb15-13"></a>    <span class="at">nudge_x =</span> <span class="sc">-</span><span class="fl">1.2</span>,</span>
+<span id="cb15-14"><a href="#cb15-14"></a>    <span class="at">color =</span> <span class="st">"grey"</span></span>
+<span id="cb15-15"><a href="#cb15-15"></a>  ) <span class="sc">+</span> </span>
+<span id="cb15-16"><a href="#cb15-16"></a>  <span class="fu">scale_fill_manual</span>(</span>
+<span id="cb15-17"><a href="#cb15-17"></a>    <span class="at">name =</span> <span class="st">"Medali"</span>,</span>
+<span id="cb15-18"><a href="#cb15-18"></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
+<span id="cb15-19"><a href="#cb15-19"></a>      <span class="st">"Emas"</span> <span class="ot">=</span> <span class="st">"#FCC861"</span>,</span>
+<span id="cb15-20"><a href="#cb15-20"></a>      <span class="st">"Perak"</span> <span class="ot">=</span> <span class="st">"#E5E5E5"</span>,</span>
+<span id="cb15-21"><a href="#cb15-21"></a>      <span class="st">"Perunggu"</span> <span class="ot">=</span> <span class="st">"#DCB386"</span></span>
+<span id="cb15-22"><a href="#cb15-22"></a>    )</span>
+<span id="cb15-23"><a href="#cb15-23"></a>  ) <span class="sc">+</span> </span>
+<span id="cb15-24"><a href="#cb15-24"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">1950</span>, <span class="dv">2024</span>)) <span class="sc">+</span> </span>
+<span id="cb15-25"><a href="#cb15-25"></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb15-26"><a href="#cb15-26"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">3</span>)</span>
+<span id="cb15-27"><a href="#cb15-27"></a>  ) <span class="sc">+</span> </span>
+<span id="cb15-28"><a href="#cb15-28"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span> </span>
+<span id="cb15-29"><a href="#cb15-29"></a>  <span class="fu">theme</span>(</span>
+<span id="cb15-30"><a href="#cb15-30"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span></span>
+<span id="cb15-31"><a href="#cb15-31"></a>  )</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-diagram-alir" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-diagram-alir-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-diagram-alir-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diagram-alir-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Gambar&nbsp;3: Tren perolehan medali emas, perak, dan perunggu Indonesia di setiap olimpiade yang diikutinya
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Catatan Kaki</h2>
+
+<ol>
+<li id="fn1"><p>Bagaimana cara menemukan nama elemen dari objek yang ingin kita impor? Salah satunya adalah dengan membaca kode sumber laman webnya. Selain itu, jika kita menggunakan Google Chrome, kita juga dapat memanfaatkan <em>Developer tools</em>-nya.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Penggunaan Kembali</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-copyright"><h2 class="anchored quarto-appendix-heading">Hak Cipta</h2><div class="quarto-appendix-contents"><div>© 2024 Yosep Dwi Kristanto</div></div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Tersalin!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Tersalin!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/jelajahstatid\.github\.io");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+      for (let i=0; i<annoteTargets.length; i++) {
+        const annoteTarget = annoteTargets[i];
+        const targetCell = annoteTarget.getAttribute("data-target-cell");
+        const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+        const contentFn = () => {
+          const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          if (content) {
+            const tipContent = content.cloneNode(true);
+            tipContent.classList.add("code-annotation-tip-content");
+            return tipContent.outerHTML;
+          }
+        }
+        const config = {
+          allowHTML: true,
+          content: contentFn,
+          onShow: (instance) => {
+            selectCodeLines(instance.reference);
+            instance.reference.classList.add('code-annotation-active');
+            window.tippy.hideAll();
+          },
+          onHide: (instance) => {
+            unselectCodeLines();
+            instance.reference.classList.remove('code-annotation-active');
+          },
+          maxWidth: 300,
+          delay: [50, 0],
+          duration: [200, 0],
+          offset: [5, 10],
+          arrow: true,
+          trigger: 'click',
+          appendTo: function(el) {
+            return el.parentElement.parentElement.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'quarto',
+          placement: 'right',
+          positionFixed: true,
+          popperOptions: {
+            modifiers: [
+            {
+              name: 'flip',
+              options: {
+                flipVariations: false, // true by default
+                allowedAutoPlacements: ['right'],
+                fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+              },
+            },
+            {
+              name: 'preventOverflow',
+              options: {
+                mainAxis: false,
+                altAxis: false
+              }
+            }
+            ]        
+          }      
+        };
+        window.tippy(annoteTarget, config); 
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="jelajahstatid/jelajahstatid.github.io" data-repo-id="R_kgDOMcGEtw" data-category="Blog" data-category-id="" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script>
+<input type="hidden" id="giscus-base-theme" value="light">
+<input type="hidden" id="giscus-alt-theme" value="dark">
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2024 Jelajah Statistika dan Ilmu Data</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/jelajahstatid/jelajahstatid.github.io/edit/main/pos/2024-08-indonesia-di-olimpiade/index.qmd" class="toc-action"><i class="bi bi-github"></i>Sunting laman ini</a></li><li><a href="https://github.com/jelajahstatid/jelajahstatid.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Laporkan sebuah isu</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Blog ini dikembangkan dengan <a href="https://quarto.org/" class="external" target="_blank">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
