@@ -151,7 +151,7 @@
     "href": "pos/2024-08-statistik-jendela-dunia/index.html#catatan-akhir",
     "title": "Statistik Adalah Jendela Dunia",
     "section": "Catatan Akhir",
-    "text": "Catatan Akhir\nKita telah melihat situasi dunia melalui jendela yang namanya statistik. Hal ini kita lakukan dengan menjelajah dan memvisualisasikan data Gapminder. Pada Bagian 2, kita telah melihat bagaimana tren angka harapan hidup dan PDB per kapita setiap tahunnya. Selain itu, kita juga telah melihat hubungan antara PDB per kapita dan angka harapan hidup untuk tahun 1987, 1992, 1997, 2002, dan 2007.\nApa selanjutnya? Kita mungkin menyadari adanya keterbatasan visualisasi data pada Gambar 6 dan Gambar 8. Pada kedua diagram tersebut, kita belum bisa menyajikan data untuk semua tahun yang tersedia. Bagaimana cara mengatasi keterbatasan ini? Salah satunya, kita dapat menganimasikan hubungan antara PDB per kapita dan angka harapan hidup mulai tahun 1952 sampai 2007.1 Alternatifnya, kita juga dapat membuat sebuah aplikasi interaktif yang memungkinkan pengguna untuk memilih tahun-tahunnya. Kedua cara tersebut akan didemonstrasikan pada pos-pos berikutnya. Untuk itu, silakan tunggu terus pembaharuan blog ini!"
+    "text": "Catatan Akhir\nKita telah melihat situasi dunia melalui jendela yang namanya statistik. Hal ini kita lakukan dengan menjelajah dan memvisualisasikan data Gapminder. Pada Bagian 2, kita telah melihat bagaimana tren angka harapan hidup dan PDB per kapita setiap tahunnya. Selain itu, kita juga telah melihat hubungan antara PDB per kapita dan angka harapan hidup untuk tahun 1987, 1992, 1997, 2002, dan 2007.\nApa selanjutnya? Kita mungkin menyadari adanya keterbatasan visualisasi data pada Gambar 6 dan Gambar 8. Pada kedua diagram tersebut, kita belum bisa menyajikan data untuk semua tahun yang tersedia. Bagaimana cara mengatasi keterbatasan ini? Salah satunya, kita dapat menganimasikan hubungan antara PDB per kapita dan angka harapan hidup mulai tahun 1952 sampai 2007.1 Alternatifnya, kita juga dapat membuat sebuah aplikasi interaktif yang memungkinkan pengguna untuk memilih tahun-tahunnya.2 Kedua cara tersebut akan didemonstrasikan pada pos-pos berikutnya. Untuk itu, silakan tunggu terus pembaharuan blog ini!"
   },
   {
     "objectID": "pos/2024-08-animasi-diagram-statistik/index.html",
@@ -186,7 +186,7 @@
     "href": "pos/2024-08-statistik-jendela-dunia/index.html#footnotes",
     "title": "Statistik Adalah Jendela Dunia",
     "section": "Catatan Kaki",
-    "text": "Catatan Kaki\n\n\nAnimasi dapat dibuat di R dengan menggunakan paket {gganimate}. Pos berikutnya mendemonstrasikan bagaimana menggunakan paket tersebut untuk memvisualisasikan hubungan antara PDB per kapita dan angka harapan hidup dari tahun ke tahun.↩︎"
+    "text": "Catatan Kaki\n\n\nAnimasi dapat dibuat di R dengan menggunakan paket {gganimate}. Pos berikutnya mendemonstrasikan bagaimana menggunakan paket tersebut untuk memvisualisasikan hubungan antara PDB per kapita dan angka harapan hidup dari tahun ke tahun.↩︎\nPos selanjutnya memperlihatkan bagaimana menggunakan aplikasi interaktif ini dengan menggunakan {shiny}.↩︎"
   },
   {
     "objectID": "pos/2024-08-statistik-dinamis-dan-interaktif/index.html",

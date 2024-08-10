@@ -9,7 +9,7 @@ author:
     affiliation-url: https://www.usd.ac.id/s1pmat
     orcid: 0000-0003-1446-0422
 date: 2024-08-05
-date-modified: 2024-08-07
+date-modified: 2024-08-08
 categories:
   - statistik dunia
   - tutorial
@@ -73,7 +73,7 @@ glimpse(gapminder)
 Ternyata data tersebut memiliki 1.704 baris dan 6 kolom. Keterangan lebih lanjut tentang keenam kolom tersebut disajikan pada @tbl-var-gapminder.
 
 | Variabel    | Keterangan                                                       |
-|-----------------------|-------------------------------------------------|
+|------------------------|------------------------------------------------|
 | `country`   | Negara                                                           |
 | `continent` | Benua                                                            |
 | `year`      | Tahun                                                            |
@@ -455,6 +455,8 @@ Berdasarkan @fig-hubungan-pdb-ahh-tahun-lain, kita melihat hubungan yang serupa 
 
 Kita telah melihat situasi dunia melalui jendela yang namanya statistik. Hal ini kita lakukan dengan menjelajah dan memvisualisasikan data Gapminder. Pada @sec-vis-data, kita telah melihat bagaimana tren angka harapan hidup dan PDB per kapita setiap tahunnya. Selain itu, kita juga telah melihat hubungan antara PDB per kapita dan angka harapan hidup untuk tahun 1987, 1992, 1997, 2002, dan 2007.
 
-Apa selanjutnya? Kita mungkin menyadari adanya keterbatasan visualisasi data pada @fig-hubungan-pdb-ahh dan @fig-hubungan-pdb-ahh-tahun-lain. Pada kedua diagram tersebut, kita belum bisa menyajikan data untuk semua tahun yang tersedia. Bagaimana cara mengatasi keterbatasan ini? Salah satunya, kita dapat menganimasikan hubungan antara PDB per kapita dan angka harapan hidup mulai tahun 1952 sampai 2007.[^1] Alternatifnya, kita juga dapat membuat sebuah aplikasi interaktif yang memungkinkan pengguna untuk memilih tahun-tahunnya. Kedua cara tersebut akan didemonstrasikan pada pos-pos berikutnya. Untuk itu, silakan tunggu terus pembaharuan blog ini!
+Apa selanjutnya? Kita mungkin menyadari adanya keterbatasan visualisasi data pada @fig-hubungan-pdb-ahh dan @fig-hubungan-pdb-ahh-tahun-lain. Pada kedua diagram tersebut, kita belum bisa menyajikan data untuk semua tahun yang tersedia. Bagaimana cara mengatasi keterbatasan ini? Salah satunya, kita dapat menganimasikan hubungan antara PDB per kapita dan angka harapan hidup mulai tahun 1952 sampai 2007.[^1] Alternatifnya, kita juga dapat membuat sebuah aplikasi interaktif yang memungkinkan pengguna untuk memilih tahun-tahunnya.[^2] Kedua cara tersebut akan didemonstrasikan pada pos-pos berikutnya. Untuk itu, silakan tunggu terus pembaharuan blog ini!
 
 [^1]: Animasi dapat dibuat di R dengan menggunakan paket {gganimate}. [Pos berikutnya](/pos/2024-08-animasi-diagram-statistik/index.qmd "Membuat Diagram Lebih Hidup dengan Animasi") mendemonstrasikan bagaimana menggunakan paket tersebut untuk memvisualisasikan hubungan antara PDB per kapita dan angka harapan hidup dari tahun ke tahun.
+
+[^2]: [Pos selanjutnya](/pos/2024-08-statistik-dinamis-dan-interaktif/index.qmd "Membuat Statistik Menjadi Dinamis dan Interaktif") memperlihatkan bagaimana menggunakan aplikasi interaktif ini dengan menggunakan {shiny}.
