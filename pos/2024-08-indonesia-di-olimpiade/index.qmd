@@ -1,6 +1,6 @@
 ---
 title: "Prestasi Indonesia di Olimpiade"
-description: "Bagaimana prestasi sepak bola Indonesia dibandingkan dengan negara-negara Asia Tenggara lainnya? Dengan menggunakan data peringkat dunia FIFA, diagram garis dan animasi diagram batang dapat dimanfaatkan untuk menyelidikanya."
+description: "Indonesia berpartisipasi dalam olimpiade sejak tahun 1952. Artikel ini mendemonstrasikan bagaimana melihat prestasi Indonesia dalam kejuaraan tersebut dengan melakukan visualisasi data."
 draft: true
 author:
   - name: Yosep Dwi Kristanto
@@ -16,7 +16,7 @@ categories:
   - visualisasi data
 image: "indonesia-di-olimpiade.png"
 image-alt: |
-  Diagram batang yang menunjukkan total poin sepak bola Indonesia dibandingkan dengan sepak bola negara-negara lain di Asia Tenggara.
+  Diagram alir yang menunjukkan perolehan medali Indonesia di olimpiade sejak tahun 1952 sampai 2024.
 keywords: 
   - kemerdekaan
   - Republik Indonesia
@@ -26,6 +26,7 @@ keywords:
   - Olimpiade Paris 2024
   - diagram batang
   - diagram garis
+  - diagram alir
 copyright: "© 2024 Yosep Dwi Kristanto"
 license: "CC BY"
 google-scholar: true
@@ -39,7 +40,7 @@ editor_options:
 ```{=html}
 <blockquote class="twitter-tweet" data-lang="id" data-dnt="true"><p lang="en" dir="ltr">The Olympic <a href="https://twitter.com/hashtag/shootingsport?src=hash&amp;ref_src=twsrc%5Etfw">#shootingsport</a> stars we didn’t know we needed.<br><br>🇰🇷 Kim Yeji 🤝 Yusuf Dikeç 🇹🇷 <a href="https://t.co/gfkyGjFg4I">pic.twitter.com/gfkyGjFg4I</a></p>&mdash; The Olympic Games (@Olympics) <a href="https://twitter.com/Olympics/status/1818909520661278729?ref_src=twsrc%5Etfw">1 Agustus 2024</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 ```
-Akan tetapi, kita tidak akan memperbincangkan kedua atlet itu. Di suasana [peringatan kemerdekaan Republik Indonesia ini](/pos/2024-08-dirgahayu-indonesia/index.qmd "Dirgahayu Kemerdekaan Republik Indonesia: Persembahan Untuk HUT Ke-79 RI"), kita akan melihat prestasi atlet-atlet Indonesia di Olimpiade Musim Panas. Untuk melakukannya, kita akan menggunakan data yang tersedia di laman Wikipedia.
+Akan tetapi, kita tidak akan memperbincangkan kedua atlet itu. Di suasana [peringatan kemerdekaan Republik Indonesia ini](/pos/2024-08-dirgahayu-indonesia/index.qmd "Dirgahayu Kemerdekaan Republik Indonesia: Persembahan Untuk HUT Ke-79 RI"), kita akan melihat prestasi atlet-atlet Indonesia di Olimpiade Musim Panas. Pada Olimpiade Paris 2024, Indonesia berhasil menyabet dua medali emas dan satu perunggu. Bagaimana dengan pagelaran olimpiade-olimpiade sebelumnya? Kita akan menjawab pertanyaan ini dengan menggunakan data yang tersedia di laman Wikipedia.
 
 ## Mempersiapkan Data {#sec-mempersiapkan-data}
 
@@ -91,7 +92,48 @@ data_dsr_cabang <- daftar_tabel[[3]]
 
 ### Merapikan Data {#sec-merapikan-data}
 
-Saat ini kita telah memiliki dua data, yaitu `data_dsr_olimpiade` (data jumlah medali berdasarkan penyelenggaraan olimpiade) dan `data_dsr_cabang` (data jumlah medali berdasarkan cabang olahraga). Kita rapikan kedua data tersebut. Untuk merapikan `data_dsr_olimpiade`, kita lihat gambaran umumnya terlebih dahulu dengan fungsi `glimpse()`.
+Saat ini kita telah memiliki dua data, yaitu `data_dsr_olimpiade` (data jumlah medali berdasarkan penyelenggaraan olimpiade) dan `data_dsr_cabang` (data jumlah medali berdasarkan cabang olahraga). Kita rapikan kedua data tersebut. Untuk merapikan `data_dsr_olimpiade`, kita lihat isi data tersebut dengan fungsi `print()`.
+
+```{r}
+#| echo: true
+#| code-fold: false
+
+print(data_dsr_olimpiade)
+
+```
+
+Data tersebut memiliki 22 baris dan 9 variabel/kolom. Kita dapat melihat beberapa baris terakhirnya dengan fungsi `tail()`.
+
+```{r}
+#| echo: true
+#| code-fold: false
+
+tail(data_dsr_olimpiade)
+
+```
+
+Ternyata, `data_dsr_olimpiade` tersebut juga memuat dua olimpiade yang belum terlaksana dan satu baris total. Kita hilangkan ketiga baris tersebut dengan menggunakan `slice_head()`. Dengan demikian, kita hanya menggunakan 22 - 3 = 19 barisnya saja.
+
+```{r}
+#| echo: true
+#| code-fold: false
+
+data_dsr_olimpiade <- data_dsr_olimpiade |> 
+  slice_head(n = 19)
+
+```
+
+Untuk mengeceknya lagi, kita dapat menggunakan `tail()` lagi.
+
+```{r}
+#| echo: true
+#| code-fold: false
+
+tail(data_dsr_olimpiade)
+
+```
+
+Kita telah mengkonfirmasi bahwa `data_dsr_olimpiade` sudah berisi baris-baris yang kita butuhkan saja. Selanjutnya, kita lihat gambaran umum data tersebut dengan fungsi `glimpse()`.
 
 ```{r}
 #| echo: true
@@ -101,7 +143,7 @@ glimpse(data_dsr_olimpiade)
 
 ```
 
-`data_dsr_olimpiade` memiliki sembilan variabel. Dari variabel-variabel tersebut, kita pilih lima saja, yaitu `Olimpiade`, `01  Emas`, `02  Perak`, `03  Perunggu`, dan `Peringkat`. Setelah itu kita buat data tersebut menjadi data yang memanjang dengan `pivot_longer()` dan kita rapikan isinya. Untuk memudahkan analisis data selanjutnya, kita tambahkan variabel `tahun`. Variabel ini kita ekstrak dari variabel `Olimpiade` karena nilai-nilai variabel tersebut memuat tahun, misalnya "Helsinki 1952" dan "Melbourne 1956".
+Setelah melihat hasilnya, kita gunakan lima variabel dari `data_dsr_olimpiade` saja, yaitu `Olimpiade`, `01  Emas`, `02  Perak`, `03  Perunggu`, dan `Peringkat`. Setelah itu kita buat data tersebut menjadi data yang memanjang dengan `pivot_longer()` dan kita rapikan isinya. Untuk memudahkan analisis data selanjutnya, kita tambahkan variabel `tahun`. Variabel ini kita ekstrak dari variabel `Olimpiade` karena nilai-nilai variabel tersebut memuat tahun, misalnya "Helsinki 1952" dan "Melbourne 1956".
 
 ```{r}
 #| echo: true
@@ -187,10 +229,14 @@ Bagaimana perolehan medali Indonesia di setiap keikutsertaannya di olimpiade? Un
 #| warning: false
 #| label: fig-diagram-batang
 #| fig-cap: "Banyaknya medali yang diperoleh Indonesia di setiap olimpiade yang diikutinya"
+#| fig-asp: 0.5625
 
 data_dsr_olimpiade |> 
   ggplot(aes(x = tahun, y = banyak, fill = medali)) + 
   geom_col(position = "dodge") + 
+  scale_x_continuous(
+    breaks = seq(1952, 2024, 4)
+  ) + 
   scale_y_continuous(
     limits = c(0, 4.2),
     expand = c(0, 0)
@@ -209,16 +255,22 @@ data_dsr_olimpiade |>
     panel.grid.major.x = element_blank(),
     panel.grid.minor.x = element_blank(),
     axis.line.x = element_line(),
-    axis.ticks.x = element_line()
+    axis.ticks.x = element_line(),
+    axis.text.x = element_text(
+      angle = 90,
+      vjust = .5
+    ),
+    axis.title.x = element_blank()
   ) + 
   labs(
-    x = "Tahun",
     y = "Banyak perolehan medali"
   )
 
 ```
 
-Berdasarkan @fig-diagram-batang tersebut, Indonesia pertama kali meraih medali pada tahun 1988 meskipun sudah ikut olimpiade sejak 1952. Bagaimana kalau kita ingin melihat tren perolehan medali emas, perak, dan perunggu setiap penyelenggaraan olimpiadenya? Perhatikan @fig-diagram-garis!
+Berdasarkan @fig-diagram-batang tersebut, Indonesia pertama kali meraih medali pada tahun 1988 meskipun telah ikut olimpiade sejak 1952. Selain itu, Indonesia dapat meraih medali emas sebanyak dua kali untuk pertama kalinya pada tahun 1992. Capaian ini diulang kembali pada olimpiade terakhir, yaitu pada tahun 2024.
+
+Bagaimana kalau kita ingin melihat tren perolehan medali emas, perak, dan perunggu setiap penyelenggaraan olimpiadenya? Perhatikan @fig-diagram-garis!
 
 ```{r}
 #| echo: true
@@ -226,6 +278,7 @@ Berdasarkan @fig-diagram-batang tersebut, Indonesia pertama kali meraih medali p
 #| warning: false
 #| label: fig-diagram-garis
 #| fig-cap: "Tren perolehan medali Indonesia di setiap olimpiade yang diikutinya"
+#| fig-asp: 0.5625
 
 data_dsr_olimpiade |> 
   ggplot(aes(x = tahun, y = banyak, col = medali)) + 
@@ -266,17 +319,20 @@ Kita dapat menggabungkan fokus informasi yang disampaikan diagram batang pada @f
 #| warning: false
 #| label: fig-diagram-alir
 #| fig-cap: "Tren perolehan medali emas, perak, dan perunggu Indonesia di setiap olimpiade yang diikutinya"
+#| fig-asp: 0.5625
 
 data_dsr_olimpiade |> 
   ggplot(aes(x = tahun, y = banyak, fill = medali)) + 
   geom_vline(
     aes(xintercept = tahun),
-    color = "grey"
+    color = "grey",
+    linewidth = .25
   ) + 
   geom_stream() + 
+  geom_stream_label(aes(label = medali)) + 
   geom_text(
     aes(label = olimpiade),
-    y = -5,
+    y = -4.9,
     angle = 90,
     hjust = 0,
     nudge_x = -1.2,
@@ -290,12 +346,72 @@ data_dsr_olimpiade |>
       "Perunggu" = "#DCB386"
     )
   ) + 
-  scale_x_continuous(limits = c(1950, 2024)) + 
+  scale_x_continuous(
+    limits = c(1948, 2026),
+    expand = c(0, 0)
+  ) + 
   scale_y_continuous(
-    limits = c(-5, 3)
+    limits = c(-5, 3),
+    expand = c(0, 0)
   ) + 
   theme_void() + 
   theme(
     legend.position = "none"
   )
 ```
+
+Kita telah memvisualisasikan perolehan medali Indonesia di olimpiade. Selanjutnya kita akan memvisualisasikan distribusi medali untuk cabang-cabang olahraganya.
+
+### Medali dan Cabang Olahraga {#sec-medali-dan-cabang-olahraga}
+
+Cabang olahraga apa saja yang menyumbangkan medali bagi Indonesia? Bagaimana distribusinya? Untuk menjawab pertanyaan-pertanyaan ini, kita dapat menggambarkan distribusinya dengan diagram batang.
+
+```{r}
+#| echo: true
+#| code-fold: false
+#| warning: false
+#| label: fig-diagram-batang-olahraga
+#| fig-cap: "Distribusi medali olimpiade yang diperoleh Indonesia berdasarkan cabang olahraganya"
+#| fig-asp: 0.5625
+
+data_dsr_cabang |> 
+  mutate(
+    cabang = fct_relevel(
+      cabang,
+      "Bulu tangkis", "Angkat besi", "Panjat tebing", "Panahan"
+    )
+  ) |> 
+  ggplot(aes(x = cabang, y = banyak)) + 
+  geom_col(aes(fill = medali)) + 
+  scale_y_continuous(
+    expand = c(0, 0)
+  ) + 
+  scale_fill_manual(
+    name = "Medali",
+    values = c(
+      "Emas" = "#FCC861",
+      "Perak" = "#E5E5E5",
+      "Perunggu" = "#DCB386"
+    )
+  ) + 
+  theme_minimal() + 
+  theme(
+    legend.position = "bottom",
+    axis.line.x = element_line(),
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank()
+  ) + 
+  labs(
+    x = "Cabang olaharaga",
+    y = "Banyak perolehan medali"
+  )
+
+```
+
+Berdasarkan @fig-diagram-batang-olahraga, kita dapat melihat bahwa ada empat cabang olahraga yang berkontribusi bagi perolehan medali Indonesia. Keempat cabang olahraga tersebut jika diurutkan berdasarkan perolehan medalinya adalah bulu tangkis, angkat besi, panjat tebing, dan panahan.
+
+## Catatan Akhir {#sec-catatan-akhir}
+
+Di suasana riuh rendah [peringatan HUT ke-79 kemerdekaan Republik Indonesia](/pos/2024-08-dirgahayu-indonesia/index.qmd "Dirgahayu Kemerdekaan Republik Indonesia: Persembahan Untuk HUT Ke-79 RI") dan Olimpiade Paris 2024 ini, bersama-sama kita telah melihat prestasi Indonesia di perhelatan olimpiade mulai tahun 1952 sampai 2024. Untuk melihatnya, kita awali dengan mempersiapkan data pada @sec-mempersiapkan-data. Di tahapan ini, kita melakukan impor data dari Wikipedia pada @sec-mengimpor-data dan merapikan datanya pada @sec-merapikan-data.
+
+Setelah data rapi, kita melakukan visualisasi data pada @sec-visualisasi-data. Terdapat dua macam informasi yang kita visualisasikan. Pertama adalah banyak medali di setiap pagelaran olimpiade yang Indonesia ikuti (@sec-medali-dan-perhelatan-olimpiade). Kedua adalah distribusi medali berdasarkan cabang olahraganya (@sec-medali-dan-cabang-olahraga).
