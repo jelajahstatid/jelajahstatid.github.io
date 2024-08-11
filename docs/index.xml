@@ -10,7 +10,2432 @@
 <atom:link href="https://jelajahstatid.github.io/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.4.555</generator>
-<lastBuildDate>Fri, 09 Aug 2024 22:00:00 GMT</lastBuildDate>
+<lastBuildDate>Sun, 11 Aug 2024 22:00:00 GMT</lastBuildDate>
+<item>
+  <title>Dirgahayu Kemerdekaan Republik Indonesia</title>
+  <dc:creator>Yosep Dwi Kristanto</dc:creator>
+  <link>https://jelajahstatid.github.io/pos/2024-08-dirgahayu-indonesia/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>Di awal bulan Agustus, masyarakat Indonesia pada umumnya sibuk mempersiapkan hajatan negara. Mereka secara serentak memasang bendera merah putih, spanduk, umbul-umbul, bersih-bersih desa, dan lain sebagainya. Berbagai perlombaan pun dilakukan. Mulai dari sepak bola, bola voli, bulu tangkis, tenis meja, sampai panjat pinang. Itu semua merupakan luapan suka cita kemerdekaan dan harapan ke depan.</p>
+<p>Nusantara Baru, Indonesia Maju. Itulah tema besar peringatan hari ulang tahun ke-79 kemerdekaan Republik Indonesia. Peringatan HUT ke-79 RI tersebut tentu memiliki banyak makna dan harapan. Menariknya, makna dan harapan tersebut tergambar dalam logo numerik yang digunakan. Salah satu harapannya adalah pertumbuhan ekonomi.</p>
+<div id="fig-logo-hut-ri-2024" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center" alt="Logo numerik HUT ke-79 kemerdekaan RI (kiri). Sorotan terhadap angka tujuh pada logo (kanan).">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-logo-hut-ri-2024-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://jelajahstatid.github.io/pos/2024-08-dirgahayu-indonesia/aset/logo-numerik-hut-ri-2004.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Logo numerik HUT ke-79 kemerdekaan RI (kiri). Sorotan terhadap angka tujuh pada logo (kanan).">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-logo-hut-ri-2024-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Gambar&nbsp;1: Logo numerik HUT ke-79 kemerdekaan RI (kiri). Sorotan terhadap angka tujuh pada logo (kanan).
+</figcaption>
+</figure>
+</div>
+<p>Berdasarkan <a href="https://www.setneg.go.id/view/index/peringatan_hari_ulang_tahun_ke_79_kemerdekaan_republik_indonesia_tahun_2024" class="external" target="_blank" title="Peringatan Hari Ulang Tahun Ke-79 Kemerdekaan Republik Indonesia Tahun 2024">panduan identitas visualnya</a>, angka tujuh pada logo tersebut menyerupai anak panah yang mengarah ke kanan-atas. Dalam bahasa Statistika, angka tersebut menyimbolkan tren yang naik. Perhatikan Gambar&nbsp;1. Hal itu melambangkan harapan Indonesia untuk meningkatkan investasi dan ekspornya sehingga bertumbuh ekonominya.</p>
+<p><em>Nah</em>, kita akan melihat harapan besar itu, khususnya dalam hal investasi. Kita akan menggunakan data realisasi penanaman modal asing pada periode 2010 – 2024 dari Kementerian Investasi/BKPM. Data tersebut kita manfaatkan untuk memvisualisasikan dan melihat tren realisasi penanaman modal dari berbagai negara.</p>
+<p>Kita akan memvisualisasikan data tersebut dengan <a href="https://www.R-project.org/" class="external" target="_blank" title="R: A Language and Environment for Statistical Computing">pemrograman R</a>. Untuk melakukannya, kita menggunakan paket <a href="https://www.tidyverse.org/" class="external" target="_blank">{tidyverse}</a>, <a href="https://CRAN.R-project.org/package=ggstream" class="external" target="_blank">{ggstream}</a>, dan <a href="https://CRAN.R-project.org/package=ggtext" class="external" target="_blank">{ggtext}</a>. Untuk itu kita perlu memastikan kelima paket tersebut telah terpasang. Jika sudah, kita dapat memanggilnya dengan kode seperti berikut.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(tidyverse)</span>
+<span id="cb1-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(ggstream)</span>
+<span id="cb1-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(ggtext)</span></code></pre></div>
+</div>
+<section id="sec-menjelajah-data" class="level2">
+<h2 class="anchored" data-anchor-id="sec-menjelajah-data">Menjelajah Data</h2>
+<p>Mari singsingkan lengan baju kita. Dengan semangat kemerdekaan (agak berlebihan tak apa), kita mulai penjelahan data. Data realisasi penanaman modal tersebut tersedia di situs web <a href="https://bkpm.go.id/id/info/realisasi-investasi" class="external" target="_blank" title="Halaman Laporan Realisasi Penanaman Modal Kementerian Investasi/BKPM">Kementerian Investasi/BKPM</a>. Data yang sudah aku siapkan dapat diakses di <a href="https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/main/pos/2024-08-dirgahayu-indonesia/aset/realisasi_penanaman_modal.csv" class="external" target="_blank" title="Unduh data">tautan ini</a>. Dengan fungsi <code>read_csv()</code> kita impor data tersebut dan kita namai dengan <code>realisasi_penanaman_modal</code>. Untuk melihat datanya, kita dapat menggunakan fungsi <code>print()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1">realisasi_penanaman_modal <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">read_csv</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/main/pos/2024-08-dirgahayu-indonesia/aset/realisasi_penanaman_modal.csv"</span>)</span>
+<span id="cb2-2"></span>
+<span id="cb2-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">print</span>(realisasi_penanaman_modal)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 177 × 17
+   benua  negara  `2010` `2011` `2012` `2013` `2014` `2015` `2016` `2017` `2018`
+   &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+ 1 Afrika Afrika…     NA     NA     NA     NA     NA   NA      NA     NA      0 
+ 2 Afrika Afrika…     NA   1190     NA     NA    500   69.1   982.  4292.  5369.
+ 3 Afrika Aljaza…     NA     NA     NA     NA     NA    0     400      0      0 
+ 4 Afrika Benin       NA     NA     NA     NA     NA   NA      NA     NA     NA 
+ 5 Afrika Burkin…     NA     NA     NA     NA    200  300       0    411.     0 
+ 6 Afrika Eswati…     NA     NA     NA     NA     NA   NA      NA     NA     NA 
+ 7 Afrika Ethiop…     NA     NA     NA     NA     NA   NA      NA     NA    650 
+ 8 Afrika Gambia      NA     NA     NA     NA      0   NA      NA     NA     NA 
+ 9 Afrika Ghana       NA     NA     NA     NA     NA   NA      NA     NA     NA 
+10 Afrika Guinea      NA     NA     NA     NA    500  100     200   1500      0 
+# ℹ 167 more rows
+# ℹ 6 more variables: `2019` &lt;dbl&gt;, `2020` &lt;dbl&gt;, `2021` &lt;dbl&gt;, `2022` &lt;dbl&gt;,
+#   `2023` &lt;dbl&gt;, `2024` &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>Data tersebut memiliki 17 variabel dan 177 baris. Variabel-variabelnya adalah <code>benua</code>, <code>negara</code>, dan realisasi penanaman modal (dalam ribuan dolar AS) dari tahun <code>2010</code> sampai <code>2024</code>. Akan tetapi, nilai pada tahun 2024 tersebut belum utuh. Nilainya terhitung hanya sampai pada 30 Juni 2024.</p>
+<p>Data kita tersebut bentuknya melebar. Kita buat data itu menjadi memanjang dengan menggunakan <code>pivot_longer()</code>. Karena tahun 2004 nilainya belum utuh, kita perlu memfilternya agar mengabaikan data pada tahun itu. Hal ini dilakukan dengan fungsi <code>filter()</code> dengan argumen <code>tahun &lt; 2024</code>. Namun, filter seperti itu mengharuskan nilai-nilai dalam variabel <code>tahun</code> jenisnya adalah integer (atau numerik). Untuk itu, kita modifikasi variabel <code>tahun</code> agar menjadi integer dengan fungsi <code>mutate</code> dan <code>as.integer()</code>. Kita lihat hasilnya dengan <code>print()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1">realisasi_penanaman_modal <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> realisasi_penanaman_modal <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb4-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">pivot_longer</span>(</span>
+<span id="cb4-3">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">cols =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">starts_with</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"20"</span>),</span>
+<span id="cb4-4">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">names_to =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"tahun"</span>,</span>
+<span id="cb4-5">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">values_to =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"nilai_investasi"</span></span>
+<span id="cb4-6">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb4-7">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">tahun =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as.integer</span>(tahun)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb4-8">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(tahun <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2024</span>)</span>
+<span id="cb4-9"></span>
+<span id="cb4-10"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">print</span>(realisasi_penanaman_modal)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,478 × 4
+   benua  negara         tahun nilai_investasi
+   &lt;chr&gt;  &lt;chr&gt;          &lt;int&gt;           &lt;dbl&gt;
+ 1 Afrika Afrika Lainnya  2010              NA
+ 2 Afrika Afrika Lainnya  2011              NA
+ 3 Afrika Afrika Lainnya  2012              NA
+ 4 Afrika Afrika Lainnya  2013              NA
+ 5 Afrika Afrika Lainnya  2014              NA
+ 6 Afrika Afrika Lainnya  2015              NA
+ 7 Afrika Afrika Lainnya  2016              NA
+ 8 Afrika Afrika Lainnya  2017              NA
+ 9 Afrika Afrika Lainnya  2018               0
+10 Afrika Afrika Lainnya  2019              NA
+# ℹ 2,468 more rows</code></pre>
+</div>
+</div>
+<p>Sekarang data kita, <code>realisasi_penanaman_modal</code>, memiliki empat variabel dan 2.478 baris. Keempat variabel tersebut adalah <code>benua</code>, <code>negara</code>, <code>tahun</code>, dan <code>nilai_investasi</code>. Dari data tersebut, menarik untuk menyelidiki total investasi negara-negara berdasarkan benuanya.</p>
+<p>Kita dapat melakukannya dengan mengelompokkan baris-baris dalam <code>realisasi_penanaman_modal</code> berdasarkan <code>benua</code>, kemudian meringkasnya untuk membuat variabel baru, yaitu <code>total_investasi</code>. Variabel tersebut merupakan jumlah, atau <code>sum()</code>, dari nilai-nilai dalam <code>nilai_investasi</code> dalam setiap kelompoknya. Agar mudah membaca hasilnya, kita dapat mengurutkan baris-barisnya berdasarkan nilai dalam variabel <code>total_investasi</code> dengan menggunakan <code>arrange()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1">realisasi_penanaman_modal_benua <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> realisasi_penanaman_modal <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb6-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">group_by</span>(benua) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb6-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">summarise</span>(</span>
+<span id="cb6-4">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">total_investasi =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>(nilai_investasi, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">na.rm =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>),</span>
+<span id="cb6-5">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">.groups =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"drop"</span></span>
+<span id="cb6-6">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb6-7">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">arrange</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>total_investasi)</span>
+<span id="cb6-8"></span>
+<span id="cb6-9"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">print</span>(realisasi_penanaman_modal_benua)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 2
+  benua     total_investasi
+  &lt;chr&gt;               &lt;dbl&gt;
+1 Asia           286233096.
+2 Joint           41288935.
+3 Amerika         40521759.
+4 Eropa           39327051 
+5 Afrika           7185703.
+6 Australia        6471650.</code></pre>
+</div>
+</div>
+<p>Negara-negara Asia memberikan investasi terbesar bagi Indonesia. Proporsinya adalah sekitar 68% dari keseluruhan.</p>
+<blockquote class="blockquote">
+<p>Apabila ditotal, negara-negara dari Asia menanamkan modal terbesar dibandingkan dengan benua-benua lainnya (sekitar 68% dari keseluruhan).</p>
+</blockquote>
+<p>Sekarang kita lihat tren realisasi penanaman modal setiap tahunnya. Kita dapat melakukannya dengan menggunakan kode yang serupa, tetapi pengelompokannya berdasarkan <code>tahun</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1">realisasi_penanaman_modal_tahun <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> realisasi_penanaman_modal <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb8-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">group_by</span>(tahun) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb8-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">summarise</span>(</span>
+<span id="cb8-4">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">total_investasi =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>(nilai_investasi, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">na.rm =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>),</span>
+<span id="cb8-5">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">.groups =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"drop"</span></span>
+<span id="cb8-6">  )</span>
+<span id="cb8-7"></span>
+<span id="cb8-8"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">print</span>(realisasi_penanaman_modal_tahun)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 14 × 2
+   tahun total_investasi
+   &lt;int&gt;           &lt;dbl&gt;
+ 1  2010       16214772.
+ 2  2011       19474532.
+ 3  2012       24564670.
+ 4  2013       28616270.
+ 5  2014       28529698.
+ 6  2015       29275941.
+ 7  2016       28964075.
+ 8  2017       32239752.
+ 9  2018       29307908.
+10  2019       28208761.
+11  2020       28666272.
+12  2021       31093069 
+13  2022       45604963.
+14  2023       50267512.</code></pre>
+</div>
+</div>
+<p>Secara umum, kita melihat adanya tren yang naik untuk nilai variabel <code>total_investasi</code>. Berapakah kenaikan setiap tahunnya? Untuk menjawabnya, kita dapat menambahkan variabel baru ke dalam data tersebut dengan <code>mutate()</code>. Misalnya, nama variabel tersebut adalah <code>kenaikan_investasi</code>. Nilai variabel tersebut diperoleh dengan mengurangi nilai <code>total_investasi</code> sebuah baris dengan nilai dalam baris sebelumnya. Untuk mendapatkan nilai pada baris sebelumnya, kita dapat menggunakan fungsi <code>lag()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1">realisasi_penanaman_modal_tahun <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> realisasi_penanaman_modal_tahun <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb10-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(</span>
+<span id="cb10-3">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">kenaikan_investasi =</span> total_investasi <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">lag</span>(total_investasi)</span>
+<span id="cb10-4">  )</span>
+<span id="cb10-5"></span>
+<span id="cb10-6"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">print</span>(realisasi_penanaman_modal_tahun)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 14 × 3
+   tahun total_investasi kenaikan_investasi
+   &lt;int&gt;           &lt;dbl&gt;              &lt;dbl&gt;
+ 1  2010       16214772.                NA 
+ 2  2011       19474532.           3259759.
+ 3  2012       24564670.           5090139.
+ 4  2013       28616270.           4051600.
+ 5  2014       28529698.            -86571.
+ 6  2015       29275941.            746242.
+ 7  2016       28964075.           -311866 
+ 8  2017       32239752.           3275677 
+ 9  2018       29307908.          -2931844.
+10  2019       28208761.          -1099147 
+11  2020       28666272.            457512.
+12  2021       31093069            2426797.
+13  2022       45604963.          14511894.
+14  2023       50267512.           4662549.</code></pre>
+</div>
+</div>
+<p>Berapakah rerata kenaikan realisasi penanaman modal setiap tahunnya? Kita dapat menghitungnya dengan menggunakan <code>mean()</code> terhadap kolom <code>kenaikan_investasi</code> dalam data <code>realisasi_penanaman_modal_tahun</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1">rerata_kenaikan_investasi <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(realisasi_penanaman_modal_tahun<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>kenaikan_investasi, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">na.rm =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>)</span>
+<span id="cb12-2"></span>
+<span id="cb12-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">print</span>(rerata_kenaikan_investasi)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2619442</code></pre>
+</div>
+</div>
+<p>Jadi, secara rata-rata kenaikan realisasi penanaman modal dari tahun 2010 sampai 2023 adalah sekitar 2.619.442 (ribuan dolar AS) atau sekitar 2,6 milyar dolar AS per tahunnya.</p>
+<blockquote class="blockquote">
+<p>Terdapat tren yang naik untuk total realisasi penanaman modal asing dari berbagai negara. Mulai tahun 2010 sampai 2023, rerata kenaikannya sekitar 2,6 milyar dolar AS per tahunnya.</p>
+</blockquote>
+<p>Tren realisasi penanaman modal tersebut ditunjukkan pada Gambar&nbsp;2.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Kode</summary>
+<div class="sourceCode cell-code" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1">realisasi_penanaman_modal_tahun <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb14-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> tahun, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> total_investasi)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb14-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_line</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb14-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_point</span>()</span></code></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-tren-investasi-asing" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-tren-investasi-asing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://jelajahstatid.github.io/pos/2024-08-dirgahayu-indonesia/index_files/figure-html/fig-tren-investasi-asing-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tren-investasi-asing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Gambar&nbsp;2: Tren total realisasi penanaman modal asing setiap tahunnya
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Berdasarkan Gambar&nbsp;2 tersebut, kita dapat melihat bahwa kenaikan realisasi penanaman modal yang paling besar berada pada rentang tahun 2021 - 2023. Rerata kenaikan pada periode tersebut kurang lebih 9,6 milyar dolar AS per tahun.</p>
+<blockquote class="blockquote">
+<p>Kenaikan penanaman modal asing terbesar terjadi di antara tahun 2021 dan 2023.</p>
+</blockquote>
+</section>
+<section id="sec-memvisualisasikan-data" class="level2">
+<h2 class="anchored" data-anchor-id="sec-memvisualisasikan-data">Memvisualisasikan Data</h2>
+<p>Saatnya kita wartakan temuan-temuan yang telah kita dapatkan. Berdasarkan Bagian&nbsp;1, kita menemukan tiga hal.</p>
+<ol type="1">
+<li>Apabila ditotal, negara-negara dari Asia menanamkan modal terbesar dibandingkan dengan benua-benua lainnya (sekitar 68% dari keseluruhan).</li>
+<li>Terdapat tren yang naik untuk total realisasi penanaman modal asing dari berbagai negara. Mulai tahun 2010 sampai 2023, rerata kenaikannya sekitar 2,6 milyar dolar AS per tahunnya.</li>
+<li>Kenaikan penanaman modal asing terbesar terjadi di antara tahun 2021 dan 2023.</li>
+</ol>
+<p>Kita akan menyampaikan ketiga pesan tersebut melalui sebuah diagram. Diagram apa yang cocok? Mungkin diagram batang cocok—diagram batang yang menunjukkan realisasi penanaman modal setiap tahunnya beserta dengan proporsi setiap benuanya.</p>
+<p>Untuk membuat diagram batang yang demikian, kita memerlukan data yang memiliki variabel <code>benua</code> dan <code>tahun</code>, serta nilai akumulasi dari realisasi penanaman modal untuk <code>benua</code> dan <code>tahun</code> yang bersangkutan.</p>
+<p>Untuk membuat data seperti itu, kita menggunakan data <code>realisasi_penanaman_modal</code>. Setelah itu, kita kelompokkan baris-baris dalam data tersebut menurut <code>benua</code> dan <code>tahun</code> untuk dihitung jumlah (<code>sum()</code>) nilai-nilai variabel <code>nilai_investasi</code>-nya. Kita namai data ini sebagai <code>investasi_benua_tahun</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1">investasi_benua_tahun <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> realisasi_penanaman_modal <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb15-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">group_by</span>(benua, tahun) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb15-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">summarise</span>(</span>
+<span id="cb15-4">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">total_investasi =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>(nilai_investasi, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">na.rm =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>),</span>
+<span id="cb15-5">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">.groups =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"drop"</span></span>
+<span id="cb15-6">  )</span>
+<span id="cb15-7"></span>
+<span id="cb15-8"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">print</span>(investasi_benua_tahun)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 84 × 3
+   benua  tahun total_investasi
+   &lt;chr&gt;  &lt;int&gt;           &lt;dbl&gt;
+ 1 Afrika  2010         149993.
+ 2 Afrika  2011         202130.
+ 3 Afrika  2012        1195699.
+ 4 Afrika  2013         801737.
+ 5 Afrika  2014         663936.
+ 6 Afrika  2015         192825.
+ 7 Afrika  2016         744869.
+ 8 Afrika  2017        1288737.
+ 9 Afrika  2018         373937.
+10 Afrika  2019         326860.
+# ℹ 74 more rows</code></pre>
+</div>
+</div>
+<p>Sekarang kita gunakan data <code>investasi_benua_tahun</code> tersebut untuk membuat diagram batang. Diagram batang tersebut ditunjukkan pada Gambar&nbsp;3.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1">investasi_benua_tahun <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb17-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> tahun, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> total_investasi)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb17-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_col</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fill =</span> benua))</span></code></pre></div>
+<div class="cell-output-display">
+<div id="fig-diagram-batang" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-diagram-batang-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://jelajahstatid.github.io/pos/2024-08-dirgahayu-indonesia/index_files/figure-html/fig-diagram-batang-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diagram-batang-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Gambar&nbsp;3: Realisasi penanaman modal asing per tahun untuk setiap benua
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Diagram batang pada Gambar&nbsp;3 tersebut telah dapat menyampaikan tiga temuan kita. Akan tetapi, diagram tersebut mungkin terasa belum cukup meyakinkan. Diagram tersebut juga kurang sejalan dengan elemen grafis perayaan HUT ke-79 RI. Berdasarkan pedoman identitas visualnya, elemen grafis tersebut ditunjukkan pada Gambar&nbsp;4.</p>
+<div id="fig-elemen-grafis" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-elemen-grafis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://jelajahstatid.github.io/pos/2024-08-dirgahayu-indonesia/aset/elemen-grafis-hut-ri-2024-01.svg" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-elemen-grafis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Gambar&nbsp;4: Elemen grafis peringatan HUT ke-79 RI
+</figcaption>
+</figure>
+</div>
+<p>Elemen grafis pada Gambar&nbsp;4 tersebut melambangkan aliran sungai. Harapannya, negara akan terus berkembang mengikuti zaman seperti sifat sungai.</p>
+<p>Berdasarkan harapan itu, kita dapat menggunakan diagram alir. Diagram seperti ini dapat kita buat dengan menggunakan fungsi <code>geom_stream()</code> dari paket {ggstream}. Diagram alirnya dapat dilihat pada Gambar&nbsp;5.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1">investasi_benua_tahun <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb18-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> tahun, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> total_investasi)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb18-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_stream</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fill =</span> benua))</span></code></pre></div>
+<div class="cell-output-display">
+<div id="fig-diagram-alir-sederhana" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-diagram-alir-sederhana-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://jelajahstatid.github.io/pos/2024-08-dirgahayu-indonesia/index_files/figure-html/fig-diagram-alir-sederhana-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diagram-alir-sederhana-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Gambar&nbsp;5: Diagram alir sederhana yang menunjukkan realisasi penanaman modal asing per tahun untuk setiap benua
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Agar terlihat lebih bersih, kita hilangkan latar belakang plotnya. Hal ini dapat kita lakukan dengan memilih tema <code>theme_void()</code>. Warna yang merepresentasikan benua-benuanya juga dapat kita ganti. Untuk itu, kita perlu mengetahui apa saja benua-benua yang ada dalam data kita.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">unique</span>(investasi_benua_tahun<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>benua)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Afrika"    "Amerika"   "Asia"      "Australia" "Eropa"     "Joint"    </code></pre>
+</div>
+</div>
+<p>Ternyata ada lima benua (yaitu Afrika, Amerika, Asia, Australia, dan Eropa) serta satu kelompok dengan nama Joint. Kelompok Joint ini merupakan gabungan dari beberapa negara (tidak harus dalam satu benua).</p>
+<p>Kita pilih warna untuk keenam kelompok tersebut. Agar warnanya sesuai dengan tema peringatan kemerdekaan Republik Indonesia, kita pilih warna-warnanya adalah <code>#900C3F</code>, <code>#C70039</code>, <code>#FF5733</code>, <code>#FF8D1A</code>, <code>#FFC300</code>, dan <code>grey85</code>. Kita petakan warna-warna ini ke nama kelompok-kelompoknya. Kita namai pemetaan tersebut dengan <code>warna_benua</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1">warna_benua <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(</span>
+<span id="cb21-2">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Asia"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#900C3F"</span>,</span>
+<span id="cb21-3">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Amerika"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#FFC300"</span>,</span>
+<span id="cb21-4">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Eropa"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#C70039"</span>,</span>
+<span id="cb21-5">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Afrika"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#FF5733"</span>,</span>
+<span id="cb21-6">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Australia"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#ff8d1a"</span>,</span>
+<span id="cb21-7">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Joint"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"grey85"</span></span>
+<span id="cb21-8">)</span></code></pre></div>
+</div>
+<p>Sekarang kita modifikasi diagram pada Gambar&nbsp;5. Hasilnya seperti tampak pada Gambar&nbsp;6.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1">investasi_benua_tahun <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb22-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> tahun, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> total_investasi)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb22-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_stream</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fill =</span> benua)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb22-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_y_continuous</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">limits =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6e+07</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6e+07</span>)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb22-5">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_fill_manual</span>(</span>
+<span id="cb22-6">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">values =</span> warna_benua</span>
+<span id="cb22-7">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb22-8">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_void</span>()</span></code></pre></div>
+<div class="cell-output-display">
+<div id="fig-diagram-alir-warna" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-diagram-alir-warna-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://jelajahstatid.github.io/pos/2024-08-dirgahayu-indonesia/index_files/figure-html/fig-diagram-alir-warna-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diagram-alir-warna-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Gambar&nbsp;6: Diagram alir setelah dimodifikasi tema dan warnanya
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Kita perbaiki lagi diagram pada Gambar&nbsp;6 tersebut. Apakah kamu punya ide perbaikannya seperti apa?</p>
+<p>Pertama, kita hilangkan legendanya. Kedua, kita buat teks untuk sumbu-<img src="https://latex.codecogs.com/png.latex?x"> secara manual. Agar teksnya nanti kelihatan rapi, kita juga perlu mengatur ulang batas-batas jendela grafiknya. Selain itu, kita perlu mengatur agar grafiknya lebih mepet ke kiri dan kanan. Hasil eksekusi ide ini ditunjukkan pada Gambar&nbsp;7.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1">investasi_benua_tahun <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb23-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> tahun, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> total_investasi)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb23-3">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Layer teks pada sumbu-x</span></span>
+<span id="cb23-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_segment</span>(</span>
+<span id="cb23-5">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">data.frame</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">tahun =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">seq</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2012</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2022</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>)),</span>
+<span id="cb23-6">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> tahun, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">yend =</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5e+07</span>),</span>
+<span id="cb23-7">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">linewidth =</span> .<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>,</span>
+<span id="cb23-8">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">linetype =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"dashed"</span>,</span>
+<span id="cb23-9">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">alpha =</span> .<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span></span>
+<span id="cb23-10">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb23-11">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_text</span>(</span>
+<span id="cb23-12">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">data.frame</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">tahun =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">seq</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2012</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2022</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>)),</span>
+<span id="cb23-13">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> tahun, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5.5e+07</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> tahun),</span>
+<span id="cb23-14">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span></span>
+<span id="cb23-15">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb23-16">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Layer diagram alir</span></span>
+<span id="cb23-17">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_stream</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fill =</span> benua)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb23-18">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Pembatas jendela grafik</span></span>
+<span id="cb23-19">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_y_continuous</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">limits =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6e+07</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6e+07</span>)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb23-20">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Pewarnaan manual</span></span>
+<span id="cb23-21">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_fill_manual</span>(</span>
+<span id="cb23-22">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">values =</span> warna_benua</span>
+<span id="cb23-23">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb23-24">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Pengaturan bidang koordinat</span></span>
+<span id="cb23-25">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">coord_cartesian</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">expand =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">FALSE</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb23-26">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Pemilihan tema</span></span>
+<span id="cb23-27">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_void</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb23-28">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Pengaturan tema</span></span>
+<span id="cb23-29">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme</span>(</span>
+<span id="cb23-30">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">legend.position =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"none"</span></span>
+<span id="cb23-31">  )</span></code></pre></div>
+<div class="cell-output-display">
+<div id="fig-diagram-alir-sumbu-x" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-diagram-alir-sumbu-x-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://jelajahstatid.github.io/pos/2024-08-dirgahayu-indonesia/index_files/figure-html/fig-diagram-alir-sumbu-x-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diagram-alir-sumbu-x-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Gambar&nbsp;7: Diagram alir setelah diberikan teks untuk sumbu-<img src="https://latex.codecogs.com/png.latex?x">
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Apa selanjutnya? Agar diagram pada Gambar&nbsp;7 tersebut jelas menyampaikan informasi apa, kita perlu menambahkan judul dan anak judul. Karena tadi kita telah menghapus legendanya, informasi legenda tersebut dapat kita masukkan ke dalam anak judul tersebut. Selain itu, kita juga dapat menambakan takarir ke dalam diagram tersebut. Takarir tersebut dapat menginformasikan sumber data yang kita gunakan. Untuk itu, kita siapkan judul, anak judul, dan takarirnya.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1">judul <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Realisasi Penanaman Modal Asing"</span></span>
+<span id="cb24-2">anak_judul <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Terdapat tren yang naik untuk total realisasi penanaman modal asing dari berbagai negara dari benua &lt;span style='color:#900C3F'&gt;&lt;b&gt;Asia,&lt;/b&gt;&lt;/span&gt; &lt;span style='color:#FFC300'&gt;&lt;b&gt;Amerika,&lt;/b&gt;&lt;/span&gt; &lt;span style='color:#C70039'&gt;&lt;b&gt;Eropa,&lt;/b&gt;&lt;/span&gt; &lt;span style='color:#FF5733'&gt;&lt;b&gt;Afrika,&lt;/b&gt;&lt;/span&gt; dan &lt;span style='color:#FF8D1a'&gt;&lt;b&gt;Australia.&lt;/b&gt;&lt;/span&gt; Mulai tahun 2010 sampai 2023, rerata kenaikannya sekitar 2,6 milyar dolar AS per tahunnya."</span></span>
+<span id="cb24-3">takarir <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Data: Kementerian Investasi/BKPM"</span></span></code></pre></div>
+</div>
+<p>Setelah <code>judul</code>, <code>anak_judul</code>, dan <code>takarir</code> siap, kita dapat menambahkannya ke dalam diagram alirnya. Hasilnya ditunjukkan pada Gambar&nbsp;8.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1">investasi_benua_tahun <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb25-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> tahun, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> total_investasi)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb25-3">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Layer teks pada sumbu-x</span></span>
+<span id="cb25-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_segment</span>(</span>
+<span id="cb25-5">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">data.frame</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">tahun =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">seq</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2012</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2022</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>)),</span>
+<span id="cb25-6">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> tahun, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">yend =</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5e+07</span>),</span>
+<span id="cb25-7">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">linewidth =</span> .<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>,</span>
+<span id="cb25-8">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">linetype =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"dashed"</span>,</span>
+<span id="cb25-9">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">alpha =</span> .<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span></span>
+<span id="cb25-10">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb25-11">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_text</span>(</span>
+<span id="cb25-12">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">data.frame</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">tahun =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">seq</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2012</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2022</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>)),</span>
+<span id="cb25-13">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> tahun, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5.5e+07</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> tahun),</span>
+<span id="cb25-14">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span></span>
+<span id="cb25-15">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb25-16">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Layer diagram alir</span></span>
+<span id="cb25-17">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_stream</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fill =</span> benua)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb25-18">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Pembatas jendela grafik</span></span>
+<span id="cb25-19">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_y_continuous</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">limits =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6e+07</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6e+07</span>)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb25-20">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Pewarnaan manual</span></span>
+<span id="cb25-21">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_fill_manual</span>(</span>
+<span id="cb25-22">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">values =</span> warna_benua</span>
+<span id="cb25-23">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb25-24">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Pengaturan bidang koordinat</span></span>
+<span id="cb25-25">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">coord_cartesian</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">expand =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">FALSE</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb25-26">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Pemilihan tema</span></span>
+<span id="cb25-27">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_void</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb25-28">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Pengaturan tema</span></span>
+<span id="cb25-29">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme</span>(</span>
+<span id="cb25-30">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">legend.position =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"none"</span>,</span>
+<span id="cb25-31">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.title =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_textbox_simple</span>(</span>
+<span id="cb25-32">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">20</span>,</span>
+<span id="cb25-33">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">face =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"bold"</span>,</span>
+<span id="cb25-34">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">margin =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">margin</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">t =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">r =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">20</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">b =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">l =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">20</span>)</span>
+<span id="cb25-35">    ),</span>
+<span id="cb25-36">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.subtitle =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_textbox_simple</span>(</span>
+<span id="cb25-37">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">margin =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">margin</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">t =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">r =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">20</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">b =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">l =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">20</span>)</span>
+<span id="cb25-38">    ),</span>
+<span id="cb25-39">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.caption =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_textbox_simple</span>(</span>
+<span id="cb25-40">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">margin =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">margin</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">t =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">r =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">20</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">b =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">l =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">20</span>)</span>
+<span id="cb25-41">    )</span>
+<span id="cb25-42">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb25-43">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(</span>
+<span id="cb25-44">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> judul,</span>
+<span id="cb25-45">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">subtitle =</span> anak_judul,</span>
+<span id="cb25-46">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">caption =</span> takarir</span>
+<span id="cb25-47">  )</span></code></pre></div>
+<div class="cell-output-display">
+<div id="fig-diagram-alir-judul" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-diagram-alir-judul-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://jelajahstatid.github.io/pos/2024-08-dirgahayu-indonesia/index_files/figure-html/fig-diagram-alir-judul-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diagram-alir-judul-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Gambar&nbsp;8: Diagram alir setelah diberikan judul, anak judul, dan takarir
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Diagram alir yang ditunjukkan pada Gambar&nbsp;8 sudah menawan. Akan tetapi, belum semua pesan yang kita temukan di Bagian&nbsp;1 tersampaikan. Untuk itu, kita perlu menambahkan label pada diagram tersebut. Terlebih dahulu kita siapkan label-label tersebut.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1">pesan_1 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"&lt;b&gt;Penanam modal terbesar&lt;/b&gt;&lt;br&gt;Apabila ditotal, negara-negara dari Asia menanamkan modal terbesar dibandingkan dengan benua-benua lainnya (sekitar 68% dari keseluruhan)."</span></span>
+<span id="cb26-2">pesan_2 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"&lt;b&gt;Kenaikan terbesar&lt;/b&gt;&lt;br&gt;Kenaikan penanaman modal asing terbesar terjadi di antara tahun 2021 dan 2023."</span></span></code></pre></div>
+</div>
+<p>Label-label sudah siap. Kita masukkan kedua label tersebut (yaitu <code>pesan_1</code> dan <code>pesan_2</code>) ke dalam diagram alirnya. Hasilnya disajikan pada Gambar&nbsp;9.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1">investasi_benua_tahun <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb27-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> tahun, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> total_investasi)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb27-3">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Layer teks pada sumbu-x</span></span>
+<span id="cb27-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_segment</span>(</span>
+<span id="cb27-5">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">data.frame</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">tahun =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">seq</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2012</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2022</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>)),</span>
+<span id="cb27-6">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> tahun, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">yend =</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5e+07</span>),</span>
+<span id="cb27-7">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">linewidth =</span> .<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>,</span>
+<span id="cb27-8">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">linetype =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"dashed"</span>,</span>
+<span id="cb27-9">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">alpha =</span> .<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span></span>
+<span id="cb27-10">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb27-11">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_text</span>(</span>
+<span id="cb27-12">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">data.frame</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">tahun =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">seq</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2012</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2022</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>)),</span>
+<span id="cb27-13">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> tahun, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5.5e+07</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> tahun),</span>
+<span id="cb27-14">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span></span>
+<span id="cb27-15">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb27-16">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Layer pesan 1</span></span>
+<span id="cb27-17">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_segment</span>(</span>
+<span id="cb27-18">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2015.05</span>,</span>
+<span id="cb27-19">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5e+07</span>,</span>
+<span id="cb27-20">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">yend =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>,</span>
+<span id="cb27-21">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">linewidth =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span></span>
+<span id="cb27-22">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb27-23">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_textbox</span>(</span>
+<span id="cb27-24">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2015</span>,</span>
+<span id="cb27-25">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5e+07</span>,</span>
+<span id="cb27-26">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> pesan_1,</span>
+<span id="cb27-27">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">vjust =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.95</span>,</span>
+<span id="cb27-28">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>,</span>
+<span id="cb27-29">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">lineheight =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,</span>
+<span id="cb27-30">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">hjust =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,</span>
+<span id="cb27-31">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">halign =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,</span>
+<span id="cb27-32">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">box.colour =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"transparent"</span>,</span>
+<span id="cb27-33">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fill =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"transparent"</span>,</span>
+<span id="cb27-34">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">width =</span> .<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">38</span></span>
+<span id="cb27-35">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb27-36">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Layer pesan 2</span></span>
+<span id="cb27-37">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_segment</span>(</span>
+<span id="cb27-38">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2022.55</span>,</span>
+<span id="cb27-39">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5.5e+07</span>,</span>
+<span id="cb27-40">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">yend =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>,</span>
+<span id="cb27-41">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">linewidth =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span></span>
+<span id="cb27-42">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb27-43">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_textbox</span>(</span>
+<span id="cb27-44">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2022.5</span>,</span>
+<span id="cb27-45">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5.5e+07</span>,</span>
+<span id="cb27-46">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> pesan_2,</span>
+<span id="cb27-47">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">vjust =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.95</span>,</span>
+<span id="cb27-48">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>,</span>
+<span id="cb27-49">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">lineheight =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,</span>
+<span id="cb27-50">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">hjust =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,</span>
+<span id="cb27-51">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">halign =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,</span>
+<span id="cb27-52">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">box.colour =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"transparent"</span>,</span>
+<span id="cb27-53">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fill =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"transparent"</span>,</span>
+<span id="cb27-54">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">width =</span> .<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span></span>
+<span id="cb27-55">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb27-56">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Layer diagram alir</span></span>
+<span id="cb27-57">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_stream</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fill =</span> benua)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb27-58">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Pembatas jendela grafik</span></span>
+<span id="cb27-59">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_y_continuous</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">limits =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6e+07</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6e+07</span>)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb27-60">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Pewarnaan manual</span></span>
+<span id="cb27-61">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_fill_manual</span>(</span>
+<span id="cb27-62">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">values =</span> warna_benua</span>
+<span id="cb27-63">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb27-64">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Pengaturan bidang koordinat</span></span>
+<span id="cb27-65">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">coord_cartesian</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">expand =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">FALSE</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb27-66">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Pemilihan tema</span></span>
+<span id="cb27-67">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_void</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb27-68">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Pengaturan tema</span></span>
+<span id="cb27-69">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme</span>(</span>
+<span id="cb27-70">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">legend.position =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"none"</span>,</span>
+<span id="cb27-71">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.title =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_textbox_simple</span>(</span>
+<span id="cb27-72">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">20</span>,</span>
+<span id="cb27-73">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">face =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"bold"</span>,</span>
+<span id="cb27-74">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">margin =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">margin</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">t =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">r =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">20</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">b =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">l =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">20</span>),</span>
+<span id="cb27-75">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">lineheight =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span></span>
+<span id="cb27-76">    ),</span>
+<span id="cb27-77">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.subtitle =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_textbox_simple</span>(</span>
+<span id="cb27-78">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">margin =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">margin</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">t =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">r =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">20</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">b =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">l =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">20</span>),</span>
+<span id="cb27-79">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">lineheight =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span></span>
+<span id="cb27-80">    ),</span>
+<span id="cb27-81">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.caption =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_textbox_simple</span>(</span>
+<span id="cb27-82">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">margin =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">margin</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">t =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">r =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">20</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">b =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">l =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">20</span>),</span>
+<span id="cb27-83">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">lineheight =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span></span>
+<span id="cb27-84">    )</span>
+<span id="cb27-85">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb27-86">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(</span>
+<span id="cb27-87">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> judul,</span>
+<span id="cb27-88">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">subtitle =</span> anak_judul,</span>
+<span id="cb27-89">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">caption =</span> takarir</span>
+<span id="cb27-90">  )</span></code></pre></div>
+<div class="cell-output-display">
+<div id="fig-diagram-alir-label" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-diagram-alir-label-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://jelajahstatid.github.io/pos/2024-08-dirgahayu-indonesia/index_files/figure-html/fig-diagram-alir-label-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diagram-alir-label-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Gambar&nbsp;9: Diagram alir setelah diberikan label yang menyampaikan pesan-pesan utama
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Diagram alir pada Gambar&nbsp;9 tersebut telah menyampaikan temuan-temuan yang kita dapatkan pada Bagian&nbsp;1. Diagram tersebut juga sudah tampak indah dan sejalan dengan harapan-harapan Indonesia tentang pertumbuhan ekonomi dan perkembangan bangsa Indonesia yang mengikuti zaman.</p>
+</section>
+<section id="sec-visualisasi-lebih-lanjut" class="level2">
+<h2 class="anchored" data-anchor-id="sec-visualisasi-lebih-lanjut">Visualisasi Lebih Lanjut</h2>
+<p>Kita masih dapat memodifikasi diagram alir pada Gambar&nbsp;9. Paling tidak ada dua hal yang dapat kita lakukan:</p>
+<ol type="1">
+<li>mengganti jenis dan warna fonnya, dan</li>
+<li>mengatur ukuran dan resolusi fail gambarnya.</li>
+</ol>
+<p>Untuk melakukannya kita dapat menggunakan paket <a href="https://CRAN.R-project.org/package=showtext" class="external" target="_blank" title="showtext: Menggunakan Fon Lebih Mudah dalam Grafik R">{showtext}</a> dan <a href="https://CRAN.R-project.org/package=camcorder" class="external" target="_blank" title="camcorder: Rekam Sejarah Grafikmu">{camcorder}</a>. Paket {showtext} akan memudahkan kita untuk menggunakan berbagai macam jenis fon pada diagram kita nanti.</p>
+<p>Fungsi paket {camcorder} sebenarnya untuk merekam sejarah diagram-diagram yang kita buat. Akan tetapi, di sini kita menggunakan paket tersebut untuk memastikan tampilan diagram pada fail gambar yang kita hasilkan nanti persis sama dengan diagram luaran R. Sebagai ilustrasi, jika kita menjalankan baris kode yang menghasilkan Gambar&nbsp;9, kita akan mendapatkan tampilan seperti pada Gambar&nbsp;10 (a). Akan tetapi, jika kita simpan diagram tersebut dengan ukuran 1280 px × 960 px, kita mendapatkan fail gambar yang tampilannya seperti pada Gambar&nbsp;10 (b). Perbedaan yang mencolok dari kedua diagram tersebut adalah ukuran fonnya. Agar tampilan diagram kita konsisten, kita akan menggunakan fungsi-fungsi dari paket {camcorder}.</p>
+<div id="fig-perbedaan-tampilan-diagram" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-perbedaan-tampilan-diagram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-perbedaan-tampilan-diagram" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-tampilan-rstudio" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-tampilan-rstudio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://jelajahstatid.github.io/pos/2024-08-dirgahayu-indonesia/aset/tangkapan-layar-plot-rstudio.png" class="img-fluid figure-img" data-ref-parent="fig-perbedaan-tampilan-diagram">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-tampilan-rstudio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Tampilan diagram pada jendela Plots di RStudio
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-perbedaan-tampilan-diagram" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-tampilan-fail-gambar" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-tampilan-fail-gambar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://jelajahstatid.github.io/pos/2024-08-dirgahayu-indonesia/aset/diagram-alir-1280-960.png" class="img-fluid figure-img" data-ref-parent="fig-perbedaan-tampilan-diagram">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-tampilan-fail-gambar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Tampilan diagram yang sama setelah disimpan dengan ukuran 1280 px × 960 px
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-perbedaan-tampilan-diagram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Gambar&nbsp;10: Perbedaan tampilan diagram
+</figcaption>
+</figure>
+</div>
+<p>Jika kedua paket tersebut belum terinstal, silakan instal paket-paket tersebut dengan fungsi <code>install.packages()</code>. Jika sudah terinstal, mari kita panggil kedua paket tersebut.</p>
+<div class="sourceCode" id="cb28" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(showtext)</span>
+<span id="cb28-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(camcorder)</span></code></pre></div>
+<p>Misalnya kita akan membuat sebuah gambar png yang berukuran 1280 px × 960 px dan memiliki kedalaman gambar 72 dpi. Kita gunakan fungsi <code>gg_record()</code> seperti pada baris kode di bawah. Argumen <code>dir</code> diisi dengan nama folder tempat kita menyimpan gambar yang akan dihasilkan.</p>
+<div class="sourceCode" id="cb29" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gg_record</span>(</span>
+<span id="cb29-2">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">dir =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"rekaman/"</span>,</span>
+<span id="cb29-3">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">device =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"png"</span>,</span>
+<span id="cb29-4">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">width =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1280</span>,</span>
+<span id="cb29-5">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">height =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">960</span>,</span>
+<span id="cb29-6">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">units =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"px"</span>,</span>
+<span id="cb29-7">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">dpi =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">72</span></span>
+<span id="cb29-8">)</span></code></pre></div>
+<p>Selanjutnya kita akan mengganti jenis dan warna fonnya. Untuk jenis fon, kita pilih fon Lato. Fon ini tersedia secara gratis di <a href="https://fonts.google.com/specimen/Lato" class="external" target="_blank" title="Lato - Google Fonts">Google Fonts</a>. Fon Lato tersebut dapat diimpor dengan menggunakan fungsi <code>font_add_google()</code>. Untuk menggunakan fungsi-fungsi {showtext} secara otomatis, kita perlu memanggi fungsi <code>showtext_auto()</code>. Untuk warna teks, kita pilih <code>#343A40</code> agar tidak terlalu kontras.</p>
+<div class="sourceCode" id="cb30" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Mengimpor fon dan menyalakan fungsi-fungsi {showtext}</span></span>
+<span id="cb30-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">font_add_google</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Lato"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"lato"</span>)</span>
+<span id="cb30-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">showtext_auto</span>()</span>
+<span id="cb30-4"></span>
+<span id="cb30-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#' Membuat variabel `fon_judul` dan `fon_batang_tubuh`</span></span>
+<span id="cb30-6"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#' untuk digunakan di tahap berikutnya</span></span>
+<span id="cb30-7">fon_judul <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"lato"</span></span>
+<span id="cb30-8">fon_batang_tubuh <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"lato"</span></span>
+<span id="cb30-9"></span>
+<span id="cb30-10"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Menentukan `warna_teks`</span></span>
+<span id="cb30-11">warna_teks <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#343A40"</span></span></code></pre></div>
+<p>Sekarang waktunya kita beraksi untuk melakukan visualisasi data. Kita modifikasi kode-kode yang digunakan untuk membuat diagram alir pada Gambar&nbsp;9. Misalnya, hasil modifikasi tersebut adalah sebagai berikut.</p>
+<div class="sourceCode" id="cb31" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1">investasi_benua_tahun <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb31-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> tahun, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> total_investasi)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb31-3">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Layer teks pada sumbu-x</span></span>
+<span id="cb31-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_segment</span>(</span>
+<span id="cb31-5">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">data.frame</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">tahun =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">seq</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2012</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2022</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>)),</span>
+<span id="cb31-6">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> tahun, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">yend =</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5e+07</span>),</span>
+<span id="cb31-7">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">linewidth =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,</span>
+<span id="cb31-8">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">linetype =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"dashed"</span>,</span>
+<span id="cb31-9">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">alpha =</span> .<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>,</span>
+<span id="cb31-10">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colour =</span> warna_teks</span>
+<span id="cb31-11">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb31-12">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_text</span>(</span>
+<span id="cb31-13">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">data.frame</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">tahun =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">seq</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2012</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2022</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>)),</span>
+<span id="cb31-14">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">mapping =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> tahun, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5.5e+07</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> tahun),</span>
+<span id="cb31-15">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colour =</span> warna_teks,</span>
+<span id="cb31-16">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">family =</span> fon_batang_tubuh,</span>
+<span id="cb31-17">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6</span></span>
+<span id="cb31-18">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb31-19">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Layer pesan 1</span></span>
+<span id="cb31-20">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_segment</span>(</span>
+<span id="cb31-21">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2015.1</span>,</span>
+<span id="cb31-22">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4.5e+07</span>,</span>
+<span id="cb31-23">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">yend =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>,</span>
+<span id="cb31-24">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colour =</span> warna_teks,</span>
+<span id="cb31-25">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">linewidth =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.5</span></span>
+<span id="cb31-26">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb31-27">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_textbox</span>(</span>
+<span id="cb31-28">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2015</span>,</span>
+<span id="cb31-29">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4.5e+07</span>,</span>
+<span id="cb31-30">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> pesan_1,</span>
+<span id="cb31-31">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colour =</span> warna_teks,</span>
+<span id="cb31-32">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">family =</span> fon_batang_tubuh,</span>
+<span id="cb31-33">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">vjust =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.95</span>,</span>
+<span id="cb31-34">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6</span>,</span>
+<span id="cb31-35">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">lineheight =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.5</span>,</span>
+<span id="cb31-36">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">hjust =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,</span>
+<span id="cb31-37">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">halign =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,</span>
+<span id="cb31-38">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">box.colour =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"transparent"</span>,</span>
+<span id="cb31-39">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fill =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"transparent"</span>,</span>
+<span id="cb31-40">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">width =</span> .<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">35</span></span>
+<span id="cb31-41">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb31-42">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Layer pesan 2</span></span>
+<span id="cb31-43">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_segment</span>(</span>
+<span id="cb31-44">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2022.6</span>,</span>
+<span id="cb31-45">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5.5e+07</span>,</span>
+<span id="cb31-46">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">yend =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>,</span>
+<span id="cb31-47">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colour =</span> warna_teks,</span>
+<span id="cb31-48">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">linewidth =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.5</span></span>
+<span id="cb31-49">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb31-50">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_textbox</span>(</span>
+<span id="cb31-51">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2022.5</span>,</span>
+<span id="cb31-52">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5.5e+07</span>,</span>
+<span id="cb31-53">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> pesan_2,</span>
+<span id="cb31-54">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colour =</span> warna_teks,</span>
+<span id="cb31-55">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">family =</span> fon_batang_tubuh,</span>
+<span id="cb31-56">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">vjust =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.95</span>,</span>
+<span id="cb31-57">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6</span>,</span>
+<span id="cb31-58">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">lineheight =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.5</span>,</span>
+<span id="cb31-59">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">hjust =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,</span>
+<span id="cb31-60">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">halign =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,</span>
+<span id="cb31-61">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">box.colour =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"transparent"</span>,</span>
+<span id="cb31-62">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fill =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"transparent"</span>,</span>
+<span id="cb31-63">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">width =</span> .<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span></span>
+<span id="cb31-64">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb31-65">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Layer diagram alir</span></span>
+<span id="cb31-66">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_stream</span>(</span>
+<span id="cb31-67">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fill =</span> benua)</span>
+<span id="cb31-68">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb31-69">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Pembatas jendela grafik</span></span>
+<span id="cb31-70">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_y_continuous</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">limits =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6e+07</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6e+07</span>)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb31-71">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Pewarnaan manual</span></span>
+<span id="cb31-72">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_fill_manual</span>(</span>
+<span id="cb31-73">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">values =</span> warna_benua</span>
+<span id="cb31-74">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb31-75">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Pengaturan bidang koordinat</span></span>
+<span id="cb31-76">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">coord_cartesian</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">expand =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">FALSE</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb31-77">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Pemilihan tema</span></span>
+<span id="cb31-78">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_void</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">base_size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">24</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">base_family =</span> fon_batang_tubuh) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb31-79">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Pengaturan tema</span></span>
+<span id="cb31-80">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme</span>(</span>
+<span id="cb31-81">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">legend.position =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"none"</span>,</span>
+<span id="cb31-82">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.margin =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">margin</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>),</span>
+<span id="cb31-83">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.background =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_rect</span>(</span>
+<span id="cb31-84">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fill =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"white"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colour =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"white"</span></span>
+<span id="cb31-85">    ),</span>
+<span id="cb31-86">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">panel.background =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_rect</span>(</span>
+<span id="cb31-87">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fill =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"white"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colour =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"white"</span></span>
+<span id="cb31-88">    ),</span>
+<span id="cb31-89">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.title =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_textbox_simple</span>(</span>
+<span id="cb31-90">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colour =</span> warna_teks,</span>
+<span id="cb31-91">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">hjust =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>,</span>
+<span id="cb31-92">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">halign =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>,</span>
+<span id="cb31-93">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">margin =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">margin</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">t =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">30</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">r =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">20</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">b =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">l =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">30</span>),</span>
+<span id="cb31-94">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">lineheight =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.5</span>,</span>
+<span id="cb31-95">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">family =</span> fon_judul,</span>
+<span id="cb31-96">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">face =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"bold"</span>,</span>
+<span id="cb31-97">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">40</span></span>
+<span id="cb31-98">    ),</span>
+<span id="cb31-99">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.subtitle =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_textbox_simple</span>(</span>
+<span id="cb31-100">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colour =</span> warna_teks,</span>
+<span id="cb31-101">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">hjust =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>,</span>
+<span id="cb31-102">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">halign =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>,</span>
+<span id="cb31-103">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">margin =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">margin</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">t =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">r =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">20</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">b =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">15</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">l =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">30</span>),</span>
+<span id="cb31-104">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">lineheight =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.5</span>,</span>
+<span id="cb31-105">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">family =</span> fon_batang_tubuh</span>
+<span id="cb31-106">    ),</span>
+<span id="cb31-107">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.caption =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_textbox_simple</span>(</span>
+<span id="cb31-108">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colour =</span> warna_teks,</span>
+<span id="cb31-109">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">hjust =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>,</span>
+<span id="cb31-110">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">halign =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>,</span>
+<span id="cb31-111">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">margin =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">margin</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">l =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">30</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">b =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">20</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">t =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>),</span>
+<span id="cb31-112">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">lineheight =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.5</span>,</span>
+<span id="cb31-113">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">family =</span> fon_batang_tubuh</span>
+<span id="cb31-114">    )</span>
+<span id="cb31-115">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb31-116">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Pemberian judul, anak judul, dan takarir</span></span>
+<span id="cb31-117">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(</span>
+<span id="cb31-118">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> judul,</span>
+<span id="cb31-119">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">subtitle =</span> anak_judul,</span>
+<span id="cb31-120">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">caption =</span> takarir</span>
+<span id="cb31-121">  )</span></code></pre></div>
+<p>Setelah baris kode di atas dijalankan, kita akan mendapatkan diagram alir seperti yang ditunjukkan pada Gambar&nbsp;11.</p>
+<div id="fig-versi-terakhir" class="quarto-figure quarto-figure-center quarto-float anchored" alt="Diagram alir yang menunjukkan tren kenaikan realisasi penanaman modal asing ke Indonesia">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-versi-terakhir-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://jelajahstatid.github.io/pos/2024-08-dirgahayu-indonesia/aset/diagram-alir-akhir.png" class="img-fluid figure-img" alt="Diagram alir yang menunjukkan tren kenaikan realisasi penanaman modal asing ke Indonesia">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-versi-terakhir-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Gambar&nbsp;11: Versi terakhir diagram alir yang menunjukkan tren kenaikan realisasi penanaman modal asing ke Indonesia
+</figcaption>
+</figure>
+</div>
+<p>Fail gambar pada Gambar&nbsp;11 tersebut dapat ditemukan dalam folder yang kita inputkan pada argumen <code>dir</code> dalam fungsi <code>gg_record()</code> di atas. Untuk mengakhiri perekaman, kita gunakan fungsi <code>gg_stop_recording()</code>.</p>
+<div class="sourceCode" id="cb32" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gg_stop_recording</span>()</span></code></pre></div>
+</section>
+<section id="sec-catatan-akhir" class="level2">
+<h2 class="anchored" data-anchor-id="sec-catatan-akhir">Catatan Akhir</h2>
+<p>Pada bulan Agustus, semua bangsa Indonesia memperingati kemerdekaan Republik Indonesia. Banyak cara yang dapat dilakukan. Salah satu cara yang kita lakukan adalah memberikan persembahan visualisasi data yang bertemakan pertumbuhan ekonomi nasional. Hal itu kita lakukan pada Bagian&nbsp;2. Diagram alir pada Gambar&nbsp;9 atau Gambar&nbsp;11 tidak hanya menunjukkan tren pertumbuhan ekonomi Indonesia, tetapi juga sejalan dengan semangat perkembangan bangsa Indonesia yang mengikuti zaman.</p>
+<p>Pada pos-pos berikutnya, kamu akan melihat bagaimana Statistika dan Ilmu Data digunakan dalam merayakan HUT ke-79 Republik Indonesia. Di pos-pos tersebut, kamu akan melihat bagaimana memvisualisasikan prestasi sepak bola Indonesia dibandingkan dengan negara-negara Asia Tenggara lainnya. Selain itu, kamu juga akan melihat bagaimana torehan atlet-atlet hebat Indonesia di pagelaran olimpiade melalui Statistika dan Ilmu Data. Dirgahayu Republik Indonesia!</p>
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Penggunaan Kembali</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-copyright"><h2 class="anchored quarto-appendix-heading">Hak Cipta</h2><div class="quarto-appendix-contents"><div>© 2024 Yosep Dwi Kristanto</div></div></section></div> ]]></description>
+  <category>ekonomi</category>
+  <category>statistik nasional</category>
+  <category>tutorial</category>
+  <category>visualisasi data</category>
+  <guid>https://jelajahstatid.github.io/pos/2024-08-dirgahayu-indonesia/</guid>
+  <pubDate>Sun, 11 Aug 2024 22:00:00 GMT</pubDate>
+  <media:content url="https://jelajahstatid.github.io/pos/2024-08-dirgahayu-indonesia/statistik-hut-ri-2024.png" medium="image" type="image/png" height="108" width="144"/>
+</item>
 <item>
   <title>Membuat Statistik Menjadi Dinamis dan Interaktif</title>
   <dc:creator>Yosep Dwi Kristanto</dc:creator>

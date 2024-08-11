@@ -3,7 +3,6 @@ title: "Dirgahayu Kemerdekaan Republik Indonesia"
 subtitle: "Persembahan Untuk HUT Ke-79 RI"
 title-meta: "Dirgahayu Kemerdekaan Republik Indonesia: Persembahan Untuk HUT Ke-79 RI"
 description: "Peringatan hari ulang tahun ke-79 Republik Indonesia menyimpan banyak harapan. Salah satunya adalah pertumbuhan ekonomi. Artikel ini memberikan persembahan visualisasi data dalam tema pertumbuhan ekonomi tersebut."
-draft: true
 author:
   - name: Yosep Dwi Kristanto
     url: https://people.usd.ac.id/~ydkristanto/
@@ -45,9 +44,9 @@ Nusantara Baru, Indonesia Maju. Itulah tema besar peringatan hari ulang tahun ke
 
 Berdasarkan [panduan identitas visualnya](https://www.setneg.go.id/view/index/peringatan_hari_ulang_tahun_ke_79_kemerdekaan_republik_indonesia_tahun_2024 "Peringatan Hari Ulang Tahun Ke-79 Kemerdekaan Republik Indonesia Tahun 2024"){.external target="_blank"}, angka tujuh pada logo tersebut menyerupai anak panah yang mengarah ke kanan-atas. Dalam bahasa Statistika, angka tersebut menyimbolkan tren yang naik. Perhatikan @fig-logo-hut-ri-2024. Hal itu melambangkan harapan Indonesia untuk meningkatkan investasi dan ekspornya sehingga bertumbuh ekonominya.
 
-*Nah*, kita akan melihat harapan besar itu, khususnya dalam hal investasi. Kita akan menggunakan data realisasi penanaman modal asing pada periode 2010 - 2024 dari Kementerian Investasi/BKPM. Data tersebut kita manfaatkan untuk memvisualisasikan dan melihat tren realisasi penanaman modal dari berbagai negara.
+*Nah*, kita akan melihat harapan besar itu, khususnya dalam hal investasi. Kita akan menggunakan data realisasi penanaman modal asing pada periode 2010 -- 2024 dari Kementerian Investasi/BKPM. Data tersebut kita manfaatkan untuk memvisualisasikan dan melihat tren realisasi penanaman modal dari berbagai negara.
 
-Kita akan memvisualisasikan data tersebut dengan pemrograman R. Untuk melakukannya, kita menggunakan paket [{tidyverse}](https://www.tidyverse.org/){.external target="_blank"}, [{ggstream}](https://CRAN.R-project.org/package=ggstream){.external target="_blank"}, dan [{ggtext}](https://CRAN.R-project.org/package=ggtext){.external target="_blank"}. Untuk itu kita perlu memastikan kelima paket tersebut telah terpasang. Jika sudah, kita dapat memanggilnya dengan kode seperti berikut.
+Kita akan memvisualisasikan data tersebut dengan [pemrograman R](https://www.R-project.org/ "R: A Language and Environment for Statistical Computing"){.external target="_blank"}. Untuk melakukannya, kita menggunakan paket [{tidyverse}](https://www.tidyverse.org/){.external target="_blank"}, [{ggstream}](https://CRAN.R-project.org/package=ggstream){.external target="_blank"}, dan [{ggtext}](https://CRAN.R-project.org/package=ggtext){.external target="_blank"}. Untuk itu kita perlu memastikan kelima paket tersebut telah terpasang. Jika sudah, kita dapat memanggilnya dengan kode seperti berikut.
 
 ```{r}
 #| echo: true
@@ -96,9 +95,9 @@ print(realisasi_penanaman_modal)
 
 ```
 
-Sekarang data kita, `realisasi_penanaman_modal`, memiliki empat variabel dan 2.655 baris. Keempat variabel tersebut adalah `benua`, `negara`, `tahun`, dan `nilai_investasi`. Dari data tersebut, menarik untuk menyelidiki total investasi negara-negara berdasarkan benuanya.
+Sekarang data kita, `realisasi_penanaman_modal`, memiliki empat variabel dan 2.478 baris. Keempat variabel tersebut adalah `benua`, `negara`, `tahun`, dan `nilai_investasi`. Dari data tersebut, menarik untuk menyelidiki total investasi negara-negara berdasarkan benuanya.
 
-Kita dapat melakukannya dengan mengelompokkan baris-baris dalam `realisasi_penanaman_modal` berdasarkan `tahun`, kemudian meringkasnya untuk membuat variabel baru, yaitu `total_investasi`. Variabel tersebut merupakan jumlah, atau `sum()`, dari nilai-nilai dalam `nilai_investasi` dalam setiap kelompoknya. Agar mudah membaca hasilnya, kita dapat mengurutkan baris-barisnya berdasarkan nilai dalam variabel `total_investasi` dengan menggunakan `arrange()`.
+Kita dapat melakukannya dengan mengelompokkan baris-baris dalam `realisasi_penanaman_modal` berdasarkan `benua`, kemudian meringkasnya untuk membuat variabel baru, yaitu `total_investasi`. Variabel tersebut merupakan jumlah, atau `sum()`, dari nilai-nilai dalam `nilai_investasi` dalam setiap kelompoknya. Agar mudah membaca hasilnya, kita dapat mengurutkan baris-barisnya berdasarkan nilai dalam variabel `total_investasi` dengan menggunakan `arrange()`.
 
 ```{r}
 #| echo: true
@@ -216,7 +215,7 @@ print(investasi_benua_tahun)
 
 ```
 
-Sekarang kita gunakan data `investasi_data_benua` tersebut untuk membuat diagram batang. Diagram batang tersebut ditunjukkan @fig-diagram-batang.
+Sekarang kita gunakan data `investasi_benua_tahun` tersebut untuk membuat diagram batang. Diagram batang tersebut ditunjukkan pada @fig-diagram-batang.
 
 ```{r}
 #| echo: true
@@ -281,7 +280,7 @@ warna_benua <- c(
 
 ```
 
-Sekarang kita modifikasi diagram pada @fig-diagram-alir-sederhana. Hasilnya seperti tampa pada
+Sekarang kita modifikasi diagram pada @fig-diagram-alir-sederhana. Hasilnya seperti tampak pada @fig-diagram-alir-warna.
 
 ```{r}
 #| echo: true
@@ -725,3 +724,5 @@ gg_stop_recording()
 ## Catatan Akhir {#sec-catatan-akhir}
 
 Pada bulan Agustus, semua bangsa Indonesia memperingati kemerdekaan Republik Indonesia. Banyak cara yang dapat dilakukan. Salah satu cara yang kita lakukan adalah memberikan persembahan visualisasi data yang bertemakan pertumbuhan ekonomi nasional. Hal itu kita lakukan pada @sec-memvisualisasikan-data. Diagram alir pada @fig-diagram-alir-label atau @fig-versi-terakhir tidak hanya menunjukkan tren pertumbuhan ekonomi Indonesia, tetapi juga sejalan dengan semangat perkembangan bangsa Indonesia yang mengikuti zaman.
+
+Pada pos-pos berikutnya, kamu akan melihat bagaimana Statistika dan Ilmu Data digunakan dalam merayakan HUT ke-79 Republik Indonesia. Di pos-pos tersebut, kamu akan melihat bagaimana memvisualisasikan prestasi sepak bola Indonesia dibandingkan dengan negara-negara Asia Tenggara lainnya. Selain itu, kamu juga akan melihat bagaimana torehan atlet-atlet hebat Indonesia di pagelaran olimpiade melalui Statistika dan Ilmu Data. Dirgahayu Republik Indonesia!
