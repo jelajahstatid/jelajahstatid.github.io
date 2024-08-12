@@ -76,7 +76,7 @@ print(realisasi_penanaman_modal)
 
 Data tersebut memiliki 17 variabel dan 177 baris. Variabel-variabelnya adalah `benua`, `negara`, dan realisasi penanaman modal (dalam ribuan dolar AS) dari tahun `2010` sampai `2024`. Akan tetapi, nilai pada tahun 2024 tersebut belum utuh. Nilainya terhitung hanya sampai pada 30 Juni 2024.
 
-Data kita tersebut bentuknya melebar. Kita buat data itu menjadi memanjang dengan menggunakan `pivot_longer()`. Karena tahun 2004 nilainya belum utuh, kita perlu memfilternya agar mengabaikan data pada tahun itu. Hal ini dilakukan dengan fungsi `filter()` dengan argumen `tahun < 2024`. Namun, filter seperti itu mengharuskan nilai-nilai dalam variabel `tahun` jenisnya adalah integer (atau numerik). Untuk itu, kita modifikasi variabel `tahun` agar menjadi integer dengan fungsi `mutate` dan `as.integer()`. Kita lihat hasilnya dengan `print()`.
+Data kita tersebut bentuknya melebar. Kita buat data itu menjadi memanjang dengan menggunakan `pivot_longer()`. Karena tahun 2024 nilainya belum utuh, kita perlu memfilternya agar mengabaikan data pada tahun itu. Hal ini dilakukan dengan fungsi `filter()` dengan argumen `tahun < 2024`. Namun, filter seperti itu mengharuskan nilai-nilai dalam variabel `tahun` jenisnya adalah integer (atau numerik). Untuk itu, kita modifikasi variabel `tahun` agar menjadi integer dengan fungsi `mutate` dan `as.integer()`. Kita lihat hasilnya dengan `print()`.
 
 ```{r}
 #| echo: true
