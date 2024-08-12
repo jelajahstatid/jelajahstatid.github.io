@@ -9,11 +9,11 @@ library(camcorder)
 realisasi_penanaman_modal <- read_csv("pos/2024-08-dirgahayu-indonesia/aset/realisasi_penanaman_modal.csv")
 
 # Mengimpor fon ----
-font_add_google("Ubuntu", "ubuntu")
+font_add_google("Lato", "lato")
 showtext_auto()
 
-fon_judul <- "ubuntu"
-fon_batang_tubuh <- "ubuntu"
+fon_judul <- "lato"
+fon_batang_tubuh <- "lato"
 
 # Menyiapkan data ----
 realisasi_penanaman_modal <- realisasi_penanaman_modal |> 
@@ -75,7 +75,8 @@ gg_record(
 
 # Menentukan teks ----
 judul <- "Realisasi Penanaman Modal Asing"
-anak_judul <- "Terdapat tren yang naik untuk total realisasi penanaman modal asing dari berbagai negara dari benua <span style='color:#900C3F'><b>Asia,</b></span> <span style='color:#FFC300'><b>Amerika,</b></span> <span style='color:#C70039'><b>Eropa,</b></span> <span style='color:#FF5733'><b>Afrika,</b></span> dan <span style='color:#FF8D1a'><b>Australia.</b></span> Mulai tahun 2010 sampai 2023, rerata kenaikannya sekitar 2,6 milyar dolar AS per tahunnya."
+anak_judul <- "Terdapat tren yang naik untuk total realisasi penanaman modal asing dari berbagai negara dari benua Asia, Amerika, Eropa, Afrika, dan Australia. Mulai tahun 2010 sampai 2023, rerata kenaikannya sekitar 2,6 milyar dolar AS per tahunnya."
+anak_judul_2 <- "Terdapat tren yang naik untuk total realisasi penanaman modal asing dari berbagai negara dari benua <span style='color:#900C3F'><b>Asia,</b></span> <span style='color:#FFC300'><b>Amerika,</b></span> <span style='color:#C70039'><b>Eropa,</b></span> <span style='color:#FF5733'><b>Afrika,</b></span> dan <span style='color:#FF8D1a'><b>Australia.</b></span> Mulai tahun 2010 sampai 2023, rerata kenaikannya sekitar 2,6 milyar dolar AS per tahunnya."
 takarir <- "Data: Kementerian Investasi/BKPM"
 cerita_1 <- "<b>Penanam modal terbesar</b><br>Apabila ditotal, negara-negara dari Asia menanamkan modal terbesar dibandingkan dengan benua-benua lainnya (sekitar 68% dari keseluruhan)."
 cerita_2 <- "<b>Kenaikan terbesar</b><br>Kenaikan penanaman modal asing terbesar terjadi di antara tahun 2021 dan 2023."

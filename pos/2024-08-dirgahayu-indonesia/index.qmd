@@ -46,7 +46,7 @@ Berdasarkan [panduan identitas visualnya](https://www.setneg.go.id/view/index/pe
 
 *Nah*, kita akan melihat harapan besar itu, khususnya dalam hal investasi. Kita akan menggunakan data realisasi penanaman modal asing pada periode 2010 -- 2024 dari Kementerian Investasi/BKPM. Data tersebut kita manfaatkan untuk memvisualisasikan dan melihat tren realisasi penanaman modal dari berbagai negara.
 
-Kita akan memvisualisasikan data tersebut dengan [pemrograman R](https://www.R-project.org/ "R: A Language and Environment for Statistical Computing"){.external target="_blank"}. Untuk melakukannya, kita menggunakan paket [{tidyverse}](https://www.tidyverse.org/){.external target="_blank"}, [{ggstream}](https://CRAN.R-project.org/package=ggstream){.external target="_blank"}, dan [{ggtext}](https://CRAN.R-project.org/package=ggtext){.external target="_blank"}. Untuk itu kita perlu memastikan kelima paket tersebut telah terpasang. Jika sudah, kita dapat memanggilnya dengan kode seperti berikut.
+Kita akan memvisualisasikan data tersebut dengan [pemrograman R](https://www.R-project.org/ "R: A Language and Environment for Statistical Computing"){.external target="_blank"}. Untuk melakukannya, kita menggunakan paket [{tidyverse}](https://www.tidyverse.org/){.external target="_blank"}, [{ggstream}](https://CRAN.R-project.org/package=ggstream){.external target="_blank"}, dan [{ggtext}](https://CRAN.R-project.org/package=ggtext){.external target="_blank"}. Untuk itu kita perlu memastikan ketiga paket tersebut telah terpasang. Jika sudah, kita dapat memanggilnya dengan kode seperti berikut.
 
 ```{r}
 #| echo: true
