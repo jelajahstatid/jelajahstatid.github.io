@@ -182,7 +182,7 @@ realisasi_penanaman_modal_tahun |>
 
 ```
 
-Berdasarkan @fig-tren-investasi-asing tersebut, kita dapat melihat bahwa kenaikan realisasi penanaman modal yang paling besar berada pada rentang tahun 2021 - 2023. Rerata kenaikan pada periode tersebut kurang lebih 9,6 milyar dolar AS per tahun.
+Berdasarkan @fig-tren-investasi-asing tersebut, kita dapat melihat bahwa kenaikan realisasi penanaman modal yang paling besar berada pada rentang tahun 2021 – 2023. Rerata kenaikan pada periode tersebut kurang lebih 9,6 milyar dolar AS per tahun.
 
 > Kenaikan penanaman modal asing terbesar terjadi di antara tahun 2021 dan 2023.
 
@@ -569,7 +569,7 @@ gg_record(
 )
 ```
 
-Selanjutnya kita akan mengganti jenis dan warna fonnya. Untuk jenis fon, kita pilih fon Lato. Fon ini tersedia secara gratis di [Google Fonts](https://fonts.google.com/specimen/Lato "Lato - Google Fonts"){.external target="_blank"}. Fon Lato tersebut dapat diimpor dengan menggunakan fungsi `font_add_google()`. Untuk menggunakan fungsi-fungsi {showtext} secara otomatis, kita perlu memanggi fungsi `showtext_auto()`. Untuk warna teks, kita pilih `#343A40` agar tidak terlalu kontras.
+Selanjutnya kita akan mengganti jenis dan warna fonnya. Untuk jenis fon, kita pilih fon Lato. Fon ini tersedia secara gratis di [Google Fonts](https://fonts.google.com/specimen/Lato "Lato - Google Fonts"){.external target="_blank"}. Fon Lato tersebut dapat diimpor dengan menggunakan fungsi `font_add_google()`. Untuk menggunakan fungsi-fungsi {showtext} secara otomatis, kita perlu memanggil fungsi `showtext_auto()`. Untuk warna teks, kita pilih `#343A40` agar tidak terlalu kontras.
 
 ``` r
 # Mengimpor fon dan menyalakan fungsi-fungsi {showtext}

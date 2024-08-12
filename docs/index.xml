@@ -368,7 +368,7 @@ Gambar&nbsp;2: Tren total realisasi penanaman modal asing setiap tahunnya
 </div>
 </div>
 </div>
-<p>Berdasarkan Gambar&nbsp;2 tersebut, kita dapat melihat bahwa kenaikan realisasi penanaman modal yang paling besar berada pada rentang tahun 2021 - 2023. Rerata kenaikan pada periode tersebut kurang lebih 9,6 milyar dolar AS per tahun.</p>
+<p>Berdasarkan Gambar&nbsp;2 tersebut, kita dapat melihat bahwa kenaikan realisasi penanaman modal yang paling besar berada pada rentang tahun 2021 – 2023. Rerata kenaikan pada periode tersebut kurang lebih 9,6 milyar dolar AS per tahun.</p>
 <blockquote class="blockquote">
 <p>Kenaikan penanaman modal asing terbesar terjadi di antara tahun 2021 dan 2023.</p>
 </blockquote>
@@ -1757,7 +1757,7 @@ font-style: inherit;">dpi =</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">72</span></span>
 <span id="cb29-8">)</span></code></pre></div>
-<p>Selanjutnya kita akan mengganti jenis dan warna fonnya. Untuk jenis fon, kita pilih fon Lato. Fon ini tersedia secara gratis di <a href="https://fonts.google.com/specimen/Lato" class="external" target="_blank" title="Lato - Google Fonts">Google Fonts</a>. Fon Lato tersebut dapat diimpor dengan menggunakan fungsi <code>font_add_google()</code>. Untuk menggunakan fungsi-fungsi {showtext} secara otomatis, kita perlu memanggi fungsi <code>showtext_auto()</code>. Untuk warna teks, kita pilih <code>#343A40</code> agar tidak terlalu kontras.</p>
+<p>Selanjutnya kita akan mengganti jenis dan warna fonnya. Untuk jenis fon, kita pilih fon Lato. Fon ini tersedia secara gratis di <a href="https://fonts.google.com/specimen/Lato" class="external" target="_blank" title="Lato - Google Fonts">Google Fonts</a>. Fon Lato tersebut dapat diimpor dengan menggunakan fungsi <code>font_add_google()</code>. Untuk menggunakan fungsi-fungsi {showtext} secara otomatis, kita perlu memanggil fungsi <code>showtext_auto()</code>. Untuk warna teks, kita pilih <code>#343A40</code> agar tidak terlalu kontras.</p>
 <div class="sourceCode" id="cb30" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Mengimpor fon dan menyalakan fungsi-fungsi {showtext}</span></span>
