@@ -9,6 +9,7 @@ author:
     affiliation-url: https://www.usd.ac.id/s1pmat
     orcid: 0000-0003-1446-0422
 date: 2024-08-07
+date-modified: 2024-08-13
 categories:
   - tutorial
   - visualisasi data
@@ -97,7 +98,7 @@ gapminder |>
 
 @fig-semua-tahun tersebut tampak sudah sesuai dengan pesan yang ingin kita sampaikan. Akan tetapi, gambar tersebut kurang efisien karena terlalu banyak memuat informasi. Apakah ada metode yang lebih efisien?
 
-Penggunaan animasi adalah salah satu solusinya. Pembuatan animasi tersebut dapat dilakukan di [R](https://www.R-project.org/){.external target="_blank"} dengan menggunakan paket [{gganimate}](https://CRAN.R-project.org/package=gganimate){.external target="_blank"}. Tak perlu berlama-lama, mari kita panggil paket tersebut bersamaan dengan paket [{tidyverse}](https://www.tidyverse.org/){.external target="_blank"}. Paket {tidyverse} tersebut berguna untuk mengimpor, mengolah, dan memvisualisasikan data. Sebagai tambahan, sebaiknya dalam R kita juga sudah terinstal paket [{gifski}](%7Bhttps://CRAN.R-project.org/package=gifski%7D){.external target="_blank"}. Paket ini digunakan untuk merender animasi kita nanti menjadi fail gif.
+Penggunaan animasi adalah salah satu solusinya. Pembuatan animasi tersebut dapat dilakukan di [R](https://www.R-project.org/ "R: A Language and Environment for Statistical Computing"){.external target="_blank"} dengan menggunakan paket [{gganimate}](https://CRAN.R-project.org/package=gganimate "gganimate: A Grammar of Animated Graphics"){.external target="_blank"}. Tak perlu berlama-lama, mari kita panggil paket tersebut bersamaan dengan paket [{tidyverse}](https://www.tidyverse.org/ "Welcome to the {tidyverse}"){.external target="_blank"}. Paket {tidyverse} tersebut berguna untuk mengimpor, mengolah, dan memvisualisasikan data. Sebagai tambahan, sebaiknya dalam R kita juga sudah terinstal paket [{gifski}](https://CRAN.R-project.org/package=gifski "gifski: Highest Quality GIF Encoder"){.external target="_blank"}. Paket ini digunakan untuk merender animasi kita nanti menjadi fail gif.
 
 ```{r}
 #| echo: true
@@ -206,4 +207,4 @@ Ketika menggunakan fungsi `animate()` dalam merender animasi, kita dapat mengatu
 
 Kita telah dapat menyajikan data yang kompleks secara sederhana dengan animasi. Dalam R, kita dapat menggunakan paket {gganimate}. Dengan paket tersebut, kita dapat membuat objek animasi. Hal ini telah didemonstrasikan pada @sec-kreasi-animasi. Selanjutnya, kita dapat merender objek animasi tersebut dan menyimpannya ke dalam sebuah fail. Hal ini telah dipaparkan pada @sec-simpan-animasi.
 
-Animasi tetap memiliki kekurangan. Kita hanya bisa melihat animasi tersebut, tanpa melakukan interaksi. Apakah kita dapat membuat diagram yang tak hanya efisien, tetapi juga interaktif? Iya, kita dapat membuat diagram yang interaktif dengan R. Untuk mengetahui caranya, silakan pantau pos selanjutnya.
+Animasi tetap memiliki kekurangan. Kita hanya bisa melihat animasi tersebut, tanpa melakukan interaksi. Apakah kita dapat membuat diagram yang tak hanya efisien, tetapi juga interaktif? Iya, kita dapat membuat diagram yang interaktif dengan R. Untuk mengetahui caranya, silakan pantau [pos selanjutnya](/pos/2024-08-statistik-dinamis-dan-interaktif/index.qmd "Membuat Statistik Menjadi Dinamis dan Interaktif").
