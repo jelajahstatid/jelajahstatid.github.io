@@ -3,7 +3,6 @@ title: "Sepak Bola Indonesia vs. Negara-Negara Asia Tenggara"
 subtitle: "Peringkat Dunia FIFA"
 title-meta: "Sepak Bola Indonesia vs. Negara-Negara Asia Tenggara: Peringkat Dunia FIFA"
 description: "Bagaimana prestasi sepak bola Indonesia dibandingkan dengan negara-negara Asia Tenggara lainnya? Dengan menggunakan data peringkat dunia FIFA, diagram garis dan animasi diagram batang dapat dimanfaatkan untuk menyelidikanya."
-draft: true
 author:
   - name: Yosep Dwi Kristanto
     url: https://people.usd.ac.id/~ydkristanto/
