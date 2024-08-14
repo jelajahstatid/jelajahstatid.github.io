@@ -4,6 +4,7 @@ project:
 
 website:
   title: "Jelajah Statistika dan Ilmu Data"
+  favicon: "favicon.png"
   google-analytics: G-WTEJLB3562
   open-graph: true
   twitter-card: true
