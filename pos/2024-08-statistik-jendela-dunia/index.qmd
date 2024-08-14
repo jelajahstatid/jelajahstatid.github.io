@@ -73,7 +73,7 @@ glimpse(gapminder)
 Ternyata data tersebut memiliki 1.704 baris dan 6 kolom. Keterangan lebih lanjut tentang keenam kolom tersebut disajikan pada @tbl-var-gapminder.
 
 | Variabel    | Keterangan                                                       |
-|-------------------------|------------------------------------------------|
+|-------------|------------------------------------------------------------------|
 | `country`   | Negara                                                           |
 | `continent` | Benua                                                            |
 | `year`      | Tahun                                                            |

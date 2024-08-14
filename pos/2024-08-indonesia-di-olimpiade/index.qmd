@@ -29,7 +29,6 @@ keywords:
   - diagram alir
 copyright: "© 2024 Yosep Dwi Kristanto"
 license: "CC BY"
-google-scholar: true
 code-annotations: select
 editor_options: 
   chunk_output_type: console

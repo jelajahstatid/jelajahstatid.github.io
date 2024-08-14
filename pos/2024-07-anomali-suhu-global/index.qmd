@@ -27,7 +27,6 @@ keywords:
   - Tujuan Pembangunan Berkelanjutan
 copyright: "© 2024 Yosep Dwi Kristanto"
 license: "CC BY"
-google-scholar: true
 editor_options: 
   chunk_output_type: console
 ---

@@ -28,7 +28,7 @@
 <section id="sec-indonesia-dan-asia-tenggara" class="level2">
 <h2 class="anchored" data-anchor-id="sec-indonesia-dan-asia-tenggara">Statistik Sepak Bola Indonesia</h2>
 <p>Kenaikan peringkat sepak bola Indonesia memang menjanjikan. Akan tetapi, bagaimana jika peringkat Indonesia dibandingkan dengan negara-negara Asia Tenggara lainnya? Animasi pada Gambar&nbsp;1 berikut menunjukkan perubahan peringkat sepak bola Indonesia dibandingkan dengan negara-negara tersebut.</p>
-<div id="fig-animasi-peringkat-indonesia" class="quarto-figure quarto-figure-center quarto-float anchored" alt="Peringkat sepak bola Indonesia dibandingkan dengan negara-negara Asia Tenggara Lainnya" data-fig-align="center">
+<div id="fig-animasi-peringkat-indonesia" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center" alt="Peringkat sepak bola Indonesia dibandingkan dengan negara-negara Asia Tenggara Lainnya">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-animasi-peringkat-indonesia-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-peringkat-fifa-indonesia/aset/peringkat-fifa-aff.gif" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Peringkat sepak bola Indonesia dibandingkan dengan negara-negara Asia Tenggara Lainnya">
@@ -3018,7 +3018,7 @@ font-style: inherit;">server =</span> server)</span></code></pre></div>
 <li><p>Baris kode yang terakhir, yaitu <code>shinyApp(ui = ui, server = server)</code>, berfungsi untuk membuat aplikasi Shiny berdasarkan antarmuka <code>ui</code> dan fungsi <code>server</code> dan kemudian menjalankannya.</p></li>
 </ol>
 <p>Apabila kamu sudah penasaran dengan aplikasi Shiny tersebut, kamu dapat menjalankannya. Untuk melakukannya di RStudio, klik tombol <strong>Run App</strong> yang terletak di bagian kanan-atas dokumen. Perhatikan Gambar&nbsp;4!</p>
-<div id="fig-run-app" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center" alt="Tombol Run App dalam RStudio">
+<div id="fig-run-app" class="quarto-figure quarto-figure-center quarto-float anchored" alt="Tombol Run App dalam RStudio" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-run-app-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-statistik-dinamis-dan-interaktif/aset/Run-App-RStudio.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Tombol Run App dalam RStudio">
@@ -3737,8 +3737,8 @@ Tabel&nbsp;1: Keterangan variabel-variabel dalam <code>gapminder</code>.
 <div aria-describedby="tbl-var-gapminder-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table-striped table-hover caption-top table">
 <colgroup>
-<col style="width: 34%">
-<col style="width: 65%">
+<col style="width: 16%">
+<col style="width: 83%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -6040,8 +6040,8 @@ Tabel&nbsp;1: Model-model untuk <code>luas_pulau</code> vs.&nbsp;<code>banyak_sp
 <div aria-describedby="tbl-ringkasan-model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table-striped table-hover caption-top table">
 <colgroup>
-<col style="width: 23%">
-<col style="width: 76%">
+<col style="width: 13%">
+<col style="width: 86%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -6479,12 +6479,12 @@ font-style: inherit;">head</span>(tren_suhu_global)</span></code></pre></div>
 <pre><code># A tibble: 6 × 19
    Year   Jan   Feb   Mar   Apr   May   Jun   Jul   Aug   Sep   Oct   Nov   Dec
   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1  1880 -0.19 -0.24 -0.09 -0.16 -0.1  -0.21 -0.18 -0.1  -0.14 -0.23 -0.21 -0.18
-2  1881 -0.2  -0.14  0.03  0.05  0.06 -0.19  0    -0.04 -0.16 -0.22 -0.18 -0.07
-3  1882  0.16  0.13  0.04 -0.17 -0.14 -0.23 -0.17 -0.07 -0.14 -0.24 -0.17 -0.36
-4  1883 -0.29 -0.37 -0.12 -0.18 -0.17 -0.08 -0.07 -0.14 -0.21 -0.11 -0.23 -0.11
-5  1884 -0.13 -0.08 -0.36 -0.4  -0.34 -0.35 -0.31 -0.28 -0.27 -0.25 -0.34 -0.31
-6  1885 -0.59 -0.34 -0.27 -0.42 -0.45 -0.44 -0.34 -0.32 -0.29 -0.24 -0.24 -0.1 
+1  1880 -0.2  -0.25 -0.09 -0.16 -0.09 -0.22 -0.2  -0.1  -0.15 -0.22 -0.22 -0.19
+2  1881 -0.2  -0.15  0.02  0.04  0.07 -0.19  0.01 -0.04 -0.16 -0.22 -0.19 -0.07
+3  1882  0.16  0.14  0.05 -0.16 -0.14 -0.22 -0.16 -0.07 -0.14 -0.23 -0.17 -0.36
+4  1883 -0.29 -0.37 -0.12 -0.18 -0.18 -0.07 -0.07 -0.14 -0.22 -0.11 -0.24 -0.11
+5  1884 -0.13 -0.08 -0.36 -0.4  -0.33 -0.35 -0.31 -0.28 -0.27 -0.25 -0.33 -0.31
+6  1885 -0.59 -0.34 -0.26 -0.42 -0.45 -0.43 -0.33 -0.31 -0.28 -0.23 -0.24 -0.1 
 # ℹ 6 more variables: `J-D` &lt;dbl&gt;, `D-N` &lt;dbl&gt;, DJF &lt;dbl&gt;, MAM &lt;dbl&gt;,
 #   JJA &lt;dbl&gt;, SON &lt;dbl&gt;</code></pre>
 </div>
@@ -6498,24 +6498,24 @@ font-style: inherit;">glimpse</span>(tren_suhu_global)</span></code></pre></div>
 <pre><code>Rows: 145
 Columns: 19
 $ Year  &lt;dbl&gt; 1880, 1881, 1882, 1883, 1884, 1885, 1886, 1887, 1888, 1889, 1890…
-$ Jan   &lt;dbl&gt; -0.19, -0.20, 0.16, -0.29, -0.13, -0.59, -0.44, -0.72, -0.34, -0…
-$ Feb   &lt;dbl&gt; -0.24, -0.14, 0.13, -0.37, -0.08, -0.34, -0.51, -0.57, -0.36, 0.…
-$ Mar   &lt;dbl&gt; -0.09, 0.03, 0.04, -0.12, -0.36, -0.27, -0.43, -0.36, -0.41, 0.0…
-$ Apr   &lt;dbl&gt; -0.16, 0.05, -0.17, -0.18, -0.40, -0.42, -0.28, -0.35, -0.20, 0.…
-$ May   &lt;dbl&gt; -0.10, 0.06, -0.14, -0.17, -0.34, -0.45, -0.25, -0.31, -0.22, -0…
-$ Jun   &lt;dbl&gt; -0.21, -0.19, -0.23, -0.08, -0.35, -0.44, -0.35, -0.25, -0.17, -…
-$ Jul   &lt;dbl&gt; -0.18, 0.00, -0.17, -0.07, -0.31, -0.34, -0.18, -0.26, -0.11, -0…
-$ Aug   &lt;dbl&gt; -0.10, -0.04, -0.07, -0.14, -0.28, -0.32, -0.31, -0.36, -0.16, -…
-$ Sep   &lt;dbl&gt; -0.14, -0.16, -0.14, -0.21, -0.27, -0.29, -0.24, -0.26, -0.12, -…
-$ Oct   &lt;dbl&gt; -0.23, -0.22, -0.24, -0.11, -0.25, -0.24, -0.28, -0.36, 0.01, -0…
-$ Nov   &lt;dbl&gt; -0.21, -0.18, -0.17, -0.23, -0.34, -0.24, -0.28, -0.27, 0.03, -0…
-$ Dec   &lt;dbl&gt; -0.18, -0.07, -0.36, -0.11, -0.31, -0.10, -0.26, -0.33, -0.04, -…
-$ `J-D` &lt;dbl&gt; -0.17, -0.09, -0.11, -0.18, -0.29, -0.34, -0.32, -0.37, -0.18, -…
+$ Jan   &lt;dbl&gt; -0.20, -0.20, 0.16, -0.29, -0.13, -0.59, -0.44, -0.72, -0.34, -0…
+$ Feb   &lt;dbl&gt; -0.25, -0.15, 0.14, -0.37, -0.08, -0.34, -0.51, -0.57, -0.36, 0.…
+$ Mar   &lt;dbl&gt; -0.09, 0.02, 0.05, -0.12, -0.36, -0.26, -0.43, -0.36, -0.41, 0.0…
+$ Apr   &lt;dbl&gt; -0.16, 0.04, -0.16, -0.18, -0.40, -0.42, -0.28, -0.35, -0.20, 0.…
+$ May   &lt;dbl&gt; -0.09, 0.07, -0.14, -0.18, -0.33, -0.45, -0.24, -0.31, -0.22, -0…
+$ Jun   &lt;dbl&gt; -0.22, -0.19, -0.22, -0.07, -0.35, -0.43, -0.35, -0.25, -0.17, -…
+$ Jul   &lt;dbl&gt; -0.20, 0.01, -0.16, -0.07, -0.31, -0.33, -0.18, -0.26, -0.10, -0…
+$ Aug   &lt;dbl&gt; -0.10, -0.04, -0.07, -0.14, -0.28, -0.31, -0.31, -0.36, -0.16, -…
+$ Sep   &lt;dbl&gt; -0.15, -0.16, -0.14, -0.22, -0.27, -0.28, -0.24, -0.26, -0.12, -…
+$ Oct   &lt;dbl&gt; -0.22, -0.22, -0.23, -0.11, -0.25, -0.23, -0.28, -0.36, 0.01, -0…
+$ Nov   &lt;dbl&gt; -0.22, -0.19, -0.17, -0.24, -0.33, -0.24, -0.28, -0.26, 0.03, -0…
+$ Dec   &lt;dbl&gt; -0.19, -0.07, -0.36, -0.11, -0.31, -0.10, -0.26, -0.33, -0.04, -…
+$ `J-D` &lt;dbl&gt; -0.18, -0.09, -0.11, -0.18, -0.28, -0.33, -0.32, -0.37, -0.17, -…
 $ `D-N` &lt;dbl&gt; NA, -0.10, -0.09, -0.20, -0.27, -0.35, -0.30, -0.36, -0.20, -0.0…
-$ DJF   &lt;dbl&gt; NA, -0.17, 0.07, -0.34, -0.11, -0.41, -0.35, -0.52, -0.35, 0.01,…
-$ MAM   &lt;dbl&gt; -0.12, 0.05, -0.09, -0.16, -0.37, -0.38, -0.32, -0.34, -0.28, 0.…
-$ JJA   &lt;dbl&gt; -0.16, -0.08, -0.16, -0.10, -0.32, -0.37, -0.28, -0.29, -0.15, -…
-$ SON   &lt;dbl&gt; -0.19, -0.19, -0.18, -0.19, -0.29, -0.25, -0.27, -0.29, -0.03, -…</code></pre>
+$ DJF   &lt;dbl&gt; NA, -0.18, 0.07, -0.34, -0.11, -0.41, -0.35, -0.52, -0.34, 0.01,…
+$ MAM   &lt;dbl&gt; -0.12, 0.04, -0.08, -0.16, -0.36, -0.38, -0.32, -0.34, -0.28, 0.…
+$ JJA   &lt;dbl&gt; -0.17, -0.07, -0.15, -0.10, -0.31, -0.36, -0.28, -0.29, -0.14, -…
+$ SON   &lt;dbl&gt; -0.20, -0.19, -0.18, -0.19, -0.28, -0.25, -0.27, -0.29, -0.03, -…</code></pre>
 </div>
 </div>
 <p>Dari luaran fungsi tersebut, kita dapat melihat bahwa data kita memuat 145 baris dan 19 kolom. Informasi ini berguna untuk proses berikutnya.</p>
@@ -6554,12 +6554,12 @@ font-style: inherit;">head</span>(tren_suhu_global)</span></code></pre></div>
 <pre><code># A tibble: 6 × 13
   tahun   Jan   Feb   Mar   Apr   May   Jun   Jul   Aug   Sep   Oct   Nov   Dec
   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1  1880 -0.19 -0.24 -0.09 -0.16 -0.1  -0.21 -0.18 -0.1  -0.14 -0.23 -0.21 -0.18
-2  1881 -0.2  -0.14  0.03  0.05  0.06 -0.19  0    -0.04 -0.16 -0.22 -0.18 -0.07
-3  1882  0.16  0.13  0.04 -0.17 -0.14 -0.23 -0.17 -0.07 -0.14 -0.24 -0.17 -0.36
-4  1883 -0.29 -0.37 -0.12 -0.18 -0.17 -0.08 -0.07 -0.14 -0.21 -0.11 -0.23 -0.11
-5  1884 -0.13 -0.08 -0.36 -0.4  -0.34 -0.35 -0.31 -0.28 -0.27 -0.25 -0.34 -0.31
-6  1885 -0.59 -0.34 -0.27 -0.42 -0.45 -0.44 -0.34 -0.32 -0.29 -0.24 -0.24 -0.1 </code></pre>
+1  1880 -0.2  -0.25 -0.09 -0.16 -0.09 -0.22 -0.2  -0.1  -0.15 -0.22 -0.22 -0.19
+2  1881 -0.2  -0.15  0.02  0.04  0.07 -0.19  0.01 -0.04 -0.16 -0.22 -0.19 -0.07
+3  1882  0.16  0.14  0.05 -0.16 -0.14 -0.22 -0.16 -0.07 -0.14 -0.23 -0.17 -0.36
+4  1883 -0.29 -0.37 -0.12 -0.18 -0.18 -0.07 -0.07 -0.14 -0.22 -0.11 -0.24 -0.11
+5  1884 -0.13 -0.08 -0.36 -0.4  -0.33 -0.35 -0.31 -0.28 -0.27 -0.25 -0.33 -0.31
+6  1885 -0.59 -0.34 -0.26 -0.42 -0.45 -0.43 -0.33 -0.31 -0.28 -0.23 -0.24 -0.1 </code></pre>
 </div>
 </div>
 <p>Sekarang kita mendapatkan data yang memuat 13 kolom. Kolom pertama merupakan tahun, kolom kedua sampai ketiga belas merupakan bulan Januari sampai Desember. Isi sel kolom kedua sampai ketigabelas merupakan anomali suhu.</p>
@@ -6605,12 +6605,12 @@ font-style: inherit;">head</span>(tren_suhu_global)</span></code></pre></div>
 <pre><code># A tibble: 6 × 3
   tahun bulan anomali_suhu
   &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;
-1  1880 Jan          -0.19
-2  1880 Feb          -0.24
+1  1880 Jan          -0.2 
+2  1880 Feb          -0.25
 3  1880 Mar          -0.09
 4  1880 Apr          -0.16
-5  1880 May          -0.1 
-6  1880 Jun          -0.21</code></pre>
+5  1880 May          -0.09
+6  1880 Jun          -0.22</code></pre>
 </div>
 </div>
 <p>Mengapa kita memerlukan data yang memanjang? Data memanjang tersebut akan memudahkan kita untuk mengolahnya pada tahapan berikutnya.</p>
@@ -6739,12 +6739,12 @@ font-style: inherit;">head</span>(tren_suhu_global)</span></code></pre></div>
 <pre><code># A tibble: 6 × 4
   tahun bulan anomali_suhu tanggal   
   &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;date&gt;    
-1  1880 Jan          -0.19 1880-01-01
-2  1880 Feb          -0.24 1880-02-01
+1  1880 Jan          -0.2  1880-01-01
+2  1880 Feb          -0.25 1880-02-01
 3  1880 Mar          -0.09 1880-03-01
 4  1880 Apr          -0.16 1880-04-01
-5  1880 May          -0.1  1880-05-01
-6  1880 Jun          -0.21 1880-06-01</code></pre>
+5  1880 May          -0.09 1880-05-01
+6  1880 Jun          -0.22 1880-06-01</code></pre>
 </div>
 </div>
 <p>Karena kolom <code>tahun</code> dan <code>bulan</code> sudah diwakili oleh kolom <code>tanggal</code>, kita dapat mengabaikan kedua kolom tersebut.</p>
@@ -6765,12 +6765,12 @@ font-style: inherit;">head</span>(tren_suhu_global)</span></code></pre></div>
 <pre><code># A tibble: 6 × 2
   tanggal    anomali_suhu
   &lt;date&gt;            &lt;dbl&gt;
-1 1880-01-01        -0.19
-2 1880-02-01        -0.24
+1 1880-01-01        -0.2 
+2 1880-02-01        -0.25
 3 1880-03-01        -0.09
 4 1880-04-01        -0.16
-5 1880-05-01        -0.1 
-6 1880-06-01        -0.21</code></pre>
+5 1880-05-01        -0.09
+6 1880-06-01        -0.22</code></pre>
 </div>
 </div>
 <p><em>Nah</em>, sekarang kita mendapatkan data yang rapi. Data kita sekarang hanya memuat dua variabel, yaitu <code>tanggal</code> dan <code>anomali_suhu</code>. Selanjutnya kita akan memvisualisasikan <code>anomali_suhu</code> setiap <code>tanggal</code>-nya.</p>

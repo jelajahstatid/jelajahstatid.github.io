@@ -408,7 +408,7 @@ diagram_pencar +
 Pada @sec-model-linear dan @sec-model-nonlinear, kita telah mendapatkan empat model untuk memodelkan hubungan antara `luas_pulau` dan `banyak_spesies`. Keempat model tersebut diringkas pada @tbl-ringkasan-model.
 
 | Model     | Persamaan                                                             |
-|-----------------|-------------------------------------------------------|
+|-----------|-----------------------------------------------------------------------|
 | Linear    | $y = \text{3,662650} + \text{0,002549}x$                              |
 | Pangkat   | $y = \text{0,9239}x^\text{0,3574}$                                    |
 | Logaritma | $y = -\text{5,347} + \text{6,228} \log{x}$                            |

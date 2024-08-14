@@ -68,6 +68,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -138,15 +139,6 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
 <meta name="twitter:image:alt" content="Tren anomali suhu planet bumi dari 1880 sampai 2024. Anomali suhu tersebut dihitung dengan garis dasar (baseline) rerata suhu pada periode 1951 - 1980. Secara umum, tren anomali suhu tersebut naik dari tahun ke tahun.
 ">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="citation_title" content="Tren Suhu Planet Bumi">
-<meta name="citation_keywords" content="anomali suhu,perubahan iklim,pemanasan global,tidyverse,visualisasi data,diagram garis,Tujuan Pembangunan Berkelanjutan">
-<meta name="citation_author" content="Yosep Dwi Kristanto">
-<meta name="citation_publication_date" content="2024-07-31">
-<meta name="citation_cover_date" content="2024-07-31">
-<meta name="citation_year" content="2024">
-<meta name="citation_online_date" content="2024-07-31">
-<meta name="citation_fulltext_html_url" content="https://jelajahstatid.github.io/pos/2024-07-anomali-suhu-global">
-<meta name="citation_language" content="en">
 </head>
 
 <body class="floating nav-fixed">
@@ -180,7 +172,7 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
 <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com/yosepdwik"> <i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="../../index.xml"> <i class="bi bi-rss" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -300,12 +292,12 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
 <pre><code># A tibble: 6 × 19
    Year   Jan   Feb   Mar   Apr   May   Jun   Jul   Aug   Sep   Oct   Nov   Dec
   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1  1880 -0.19 -0.24 -0.09 -0.16 -0.1  -0.21 -0.18 -0.1  -0.14 -0.23 -0.21 -0.18
-2  1881 -0.2  -0.14  0.03  0.05  0.06 -0.19  0    -0.04 -0.16 -0.22 -0.18 -0.07
-3  1882  0.16  0.13  0.04 -0.17 -0.14 -0.23 -0.17 -0.07 -0.14 -0.24 -0.17 -0.36
-4  1883 -0.29 -0.37 -0.12 -0.18 -0.17 -0.08 -0.07 -0.14 -0.21 -0.11 -0.23 -0.11
-5  1884 -0.13 -0.08 -0.36 -0.4  -0.34 -0.35 -0.31 -0.28 -0.27 -0.25 -0.34 -0.31
-6  1885 -0.59 -0.34 -0.27 -0.42 -0.45 -0.44 -0.34 -0.32 -0.29 -0.24 -0.24 -0.1 
+1  1880 -0.2  -0.25 -0.09 -0.16 -0.09 -0.22 -0.2  -0.1  -0.15 -0.22 -0.22 -0.19
+2  1881 -0.2  -0.15  0.02  0.04  0.07 -0.19  0.01 -0.04 -0.16 -0.22 -0.19 -0.07
+3  1882  0.16  0.14  0.05 -0.16 -0.14 -0.22 -0.16 -0.07 -0.14 -0.23 -0.17 -0.36
+4  1883 -0.29 -0.37 -0.12 -0.18 -0.18 -0.07 -0.07 -0.14 -0.22 -0.11 -0.24 -0.11
+5  1884 -0.13 -0.08 -0.36 -0.4  -0.33 -0.35 -0.31 -0.28 -0.27 -0.25 -0.33 -0.31
+6  1885 -0.59 -0.34 -0.26 -0.42 -0.45 -0.43 -0.33 -0.31 -0.28 -0.23 -0.24 -0.1 
 # ℹ 6 more variables: `J-D` &lt;dbl&gt;, `D-N` &lt;dbl&gt;, DJF &lt;dbl&gt;, MAM &lt;dbl&gt;,
 #   JJA &lt;dbl&gt;, SON &lt;dbl&gt;</code></pre>
 </div>
@@ -317,24 +309,24 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
 <pre><code>Rows: 145
 Columns: 19
 $ Year  &lt;dbl&gt; 1880, 1881, 1882, 1883, 1884, 1885, 1886, 1887, 1888, 1889, 1890…
-$ Jan   &lt;dbl&gt; -0.19, -0.20, 0.16, -0.29, -0.13, -0.59, -0.44, -0.72, -0.34, -0…
-$ Feb   &lt;dbl&gt; -0.24, -0.14, 0.13, -0.37, -0.08, -0.34, -0.51, -0.57, -0.36, 0.…
-$ Mar   &lt;dbl&gt; -0.09, 0.03, 0.04, -0.12, -0.36, -0.27, -0.43, -0.36, -0.41, 0.0…
-$ Apr   &lt;dbl&gt; -0.16, 0.05, -0.17, -0.18, -0.40, -0.42, -0.28, -0.35, -0.20, 0.…
-$ May   &lt;dbl&gt; -0.10, 0.06, -0.14, -0.17, -0.34, -0.45, -0.25, -0.31, -0.22, -0…
-$ Jun   &lt;dbl&gt; -0.21, -0.19, -0.23, -0.08, -0.35, -0.44, -0.35, -0.25, -0.17, -…
-$ Jul   &lt;dbl&gt; -0.18, 0.00, -0.17, -0.07, -0.31, -0.34, -0.18, -0.26, -0.11, -0…
-$ Aug   &lt;dbl&gt; -0.10, -0.04, -0.07, -0.14, -0.28, -0.32, -0.31, -0.36, -0.16, -…
-$ Sep   &lt;dbl&gt; -0.14, -0.16, -0.14, -0.21, -0.27, -0.29, -0.24, -0.26, -0.12, -…
-$ Oct   &lt;dbl&gt; -0.23, -0.22, -0.24, -0.11, -0.25, -0.24, -0.28, -0.36, 0.01, -0…
-$ Nov   &lt;dbl&gt; -0.21, -0.18, -0.17, -0.23, -0.34, -0.24, -0.28, -0.27, 0.03, -0…
-$ Dec   &lt;dbl&gt; -0.18, -0.07, -0.36, -0.11, -0.31, -0.10, -0.26, -0.33, -0.04, -…
-$ `J-D` &lt;dbl&gt; -0.17, -0.09, -0.11, -0.18, -0.29, -0.34, -0.32, -0.37, -0.18, -…
+$ Jan   &lt;dbl&gt; -0.20, -0.20, 0.16, -0.29, -0.13, -0.59, -0.44, -0.72, -0.34, -0…
+$ Feb   &lt;dbl&gt; -0.25, -0.15, 0.14, -0.37, -0.08, -0.34, -0.51, -0.57, -0.36, 0.…
+$ Mar   &lt;dbl&gt; -0.09, 0.02, 0.05, -0.12, -0.36, -0.26, -0.43, -0.36, -0.41, 0.0…
+$ Apr   &lt;dbl&gt; -0.16, 0.04, -0.16, -0.18, -0.40, -0.42, -0.28, -0.35, -0.20, 0.…
+$ May   &lt;dbl&gt; -0.09, 0.07, -0.14, -0.18, -0.33, -0.45, -0.24, -0.31, -0.22, -0…
+$ Jun   &lt;dbl&gt; -0.22, -0.19, -0.22, -0.07, -0.35, -0.43, -0.35, -0.25, -0.17, -…
+$ Jul   &lt;dbl&gt; -0.20, 0.01, -0.16, -0.07, -0.31, -0.33, -0.18, -0.26, -0.10, -0…
+$ Aug   &lt;dbl&gt; -0.10, -0.04, -0.07, -0.14, -0.28, -0.31, -0.31, -0.36, -0.16, -…
+$ Sep   &lt;dbl&gt; -0.15, -0.16, -0.14, -0.22, -0.27, -0.28, -0.24, -0.26, -0.12, -…
+$ Oct   &lt;dbl&gt; -0.22, -0.22, -0.23, -0.11, -0.25, -0.23, -0.28, -0.36, 0.01, -0…
+$ Nov   &lt;dbl&gt; -0.22, -0.19, -0.17, -0.24, -0.33, -0.24, -0.28, -0.26, 0.03, -0…
+$ Dec   &lt;dbl&gt; -0.19, -0.07, -0.36, -0.11, -0.31, -0.10, -0.26, -0.33, -0.04, -…
+$ `J-D` &lt;dbl&gt; -0.18, -0.09, -0.11, -0.18, -0.28, -0.33, -0.32, -0.37, -0.17, -…
 $ `D-N` &lt;dbl&gt; NA, -0.10, -0.09, -0.20, -0.27, -0.35, -0.30, -0.36, -0.20, -0.0…
-$ DJF   &lt;dbl&gt; NA, -0.17, 0.07, -0.34, -0.11, -0.41, -0.35, -0.52, -0.35, 0.01,…
-$ MAM   &lt;dbl&gt; -0.12, 0.05, -0.09, -0.16, -0.37, -0.38, -0.32, -0.34, -0.28, 0.…
-$ JJA   &lt;dbl&gt; -0.16, -0.08, -0.16, -0.10, -0.32, -0.37, -0.28, -0.29, -0.15, -…
-$ SON   &lt;dbl&gt; -0.19, -0.19, -0.18, -0.19, -0.29, -0.25, -0.27, -0.29, -0.03, -…</code></pre>
+$ DJF   &lt;dbl&gt; NA, -0.18, 0.07, -0.34, -0.11, -0.41, -0.35, -0.52, -0.34, 0.01,…
+$ MAM   &lt;dbl&gt; -0.12, 0.04, -0.08, -0.16, -0.36, -0.38, -0.32, -0.34, -0.28, 0.…
+$ JJA   &lt;dbl&gt; -0.17, -0.07, -0.15, -0.10, -0.31, -0.36, -0.28, -0.29, -0.14, -…
+$ SON   &lt;dbl&gt; -0.20, -0.19, -0.18, -0.19, -0.28, -0.25, -0.27, -0.29, -0.03, -…</code></pre>
 </div>
 </div>
 <p>Dari luaran fungsi tersebut, kita dapat melihat bahwa data kita memuat 145 baris dan 19 kolom. Informasi ini berguna untuk proses berikutnya.</p>
@@ -353,12 +345,12 @@ $ SON   &lt;dbl&gt; -0.19, -0.19, -0.18, -0.19, -0.29, -0.25, -0.27, -0.29, -0.0
 <pre><code># A tibble: 6 × 13
   tahun   Jan   Feb   Mar   Apr   May   Jun   Jul   Aug   Sep   Oct   Nov   Dec
   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1  1880 -0.19 -0.24 -0.09 -0.16 -0.1  -0.21 -0.18 -0.1  -0.14 -0.23 -0.21 -0.18
-2  1881 -0.2  -0.14  0.03  0.05  0.06 -0.19  0    -0.04 -0.16 -0.22 -0.18 -0.07
-3  1882  0.16  0.13  0.04 -0.17 -0.14 -0.23 -0.17 -0.07 -0.14 -0.24 -0.17 -0.36
-4  1883 -0.29 -0.37 -0.12 -0.18 -0.17 -0.08 -0.07 -0.14 -0.21 -0.11 -0.23 -0.11
-5  1884 -0.13 -0.08 -0.36 -0.4  -0.34 -0.35 -0.31 -0.28 -0.27 -0.25 -0.34 -0.31
-6  1885 -0.59 -0.34 -0.27 -0.42 -0.45 -0.44 -0.34 -0.32 -0.29 -0.24 -0.24 -0.1 </code></pre>
+1  1880 -0.2  -0.25 -0.09 -0.16 -0.09 -0.22 -0.2  -0.1  -0.15 -0.22 -0.22 -0.19
+2  1881 -0.2  -0.15  0.02  0.04  0.07 -0.19  0.01 -0.04 -0.16 -0.22 -0.19 -0.07
+3  1882  0.16  0.14  0.05 -0.16 -0.14 -0.22 -0.16 -0.07 -0.14 -0.23 -0.17 -0.36
+4  1883 -0.29 -0.37 -0.12 -0.18 -0.18 -0.07 -0.07 -0.14 -0.22 -0.11 -0.24 -0.11
+5  1884 -0.13 -0.08 -0.36 -0.4  -0.33 -0.35 -0.31 -0.28 -0.27 -0.25 -0.33 -0.31
+6  1885 -0.59 -0.34 -0.26 -0.42 -0.45 -0.43 -0.33 -0.31 -0.28 -0.23 -0.24 -0.1 </code></pre>
 </div>
 </div>
 <p>Sekarang kita mendapatkan data yang memuat 13 kolom. Kolom pertama merupakan tahun, kolom kedua sampai ketiga belas merupakan bulan Januari sampai Desember. Isi sel kolom kedua sampai ketigabelas merupakan anomali suhu.</p>
@@ -380,12 +372,12 @@ $ SON   &lt;dbl&gt; -0.19, -0.19, -0.18, -0.19, -0.29, -0.25, -0.27, -0.29, -0.0
 <pre><code># A tibble: 6 × 3
   tahun bulan anomali_suhu
   &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;
-1  1880 Jan          -0.19
-2  1880 Feb          -0.24
+1  1880 Jan          -0.2 
+2  1880 Feb          -0.25
 3  1880 Mar          -0.09
 4  1880 Apr          -0.16
-5  1880 May          -0.1 
-6  1880 Jun          -0.21</code></pre>
+5  1880 May          -0.09
+6  1880 Jun          -0.22</code></pre>
 </div>
 </div>
 <p>Mengapa kita memerlukan data yang memanjang? Data memanjang tersebut akan memudahkan kita untuk mengolahnya pada tahapan berikutnya.</p>
@@ -418,12 +410,12 @@ $ SON   &lt;dbl&gt; -0.19, -0.19, -0.18, -0.19, -0.29, -0.25, -0.27, -0.29, -0.0
 <pre><code># A tibble: 6 × 4
   tahun bulan anomali_suhu tanggal   
   &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;date&gt;    
-1  1880 Jan          -0.19 1880-01-01
-2  1880 Feb          -0.24 1880-02-01
+1  1880 Jan          -0.2  1880-01-01
+2  1880 Feb          -0.25 1880-02-01
 3  1880 Mar          -0.09 1880-03-01
 4  1880 Apr          -0.16 1880-04-01
-5  1880 May          -0.1  1880-05-01
-6  1880 Jun          -0.21 1880-06-01</code></pre>
+5  1880 May          -0.09 1880-05-01
+6  1880 Jun          -0.22 1880-06-01</code></pre>
 </div>
 </div>
 <p>Karena kolom <code>tahun</code> dan <code>bulan</code> sudah diwakili oleh kolom <code>tanggal</code>, kita dapat mengabaikan kedua kolom tersebut.</p>
@@ -436,12 +428,12 @@ $ SON   &lt;dbl&gt; -0.19, -0.19, -0.18, -0.19, -0.29, -0.25, -0.27, -0.29, -0.0
 <pre><code># A tibble: 6 × 2
   tanggal    anomali_suhu
   &lt;date&gt;            &lt;dbl&gt;
-1 1880-01-01        -0.19
-2 1880-02-01        -0.24
+1 1880-01-01        -0.2 
+2 1880-02-01        -0.25
 3 1880-03-01        -0.09
 4 1880-04-01        -0.16
-5 1880-05-01        -0.1 
-6 1880-06-01        -0.21</code></pre>
+5 1880-05-01        -0.09
+6 1880-06-01        -0.22</code></pre>
 </div>
 </div>
 <p><em>Nah</em>, sekarang kita mendapatkan data yang rapi. Data kita sekarang hanya memuat dua variabel, yaitu <code>tanggal</code> dan <code>anomali_suhu</code>. Selanjutnya kita akan memvisualisasikan <code>anomali_suhu</code> setiap <code>tanggal</code>-nya.</p>
@@ -931,7 +923,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       &nbsp;
     <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/jelajahstatid/jelajahstatid.github.io/edit/main/pos/2024-07-anomali-suhu-global/index.qmd" class="toc-action"><i class="bi bi-github"></i>Sunting laman ini</a></li><li><a href="https://github.com/jelajahstatid/jelajahstatid.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Laporkan sebuah isu</a></li></ul></div></div>
     <div class="nav-footer-right">
-<p>Blog ini dikembangkan dengan <a href="https://quarto.org/">Quarto</a>.</p>
+<p>Blog ini dikembangkan dengan <a href="https://quarto.org/" class="external" target="_blank">Quarto</a>.</p>
 </div>
   </div>
 </footer>
