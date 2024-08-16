@@ -10,7 +10,1242 @@
 <atom:link href="https://jelajahstatid.github.io/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.4.555</generator>
-<lastBuildDate>Tue, 13 Aug 2024 22:00:00 GMT</lastBuildDate>
+<lastBuildDate>Fri, 16 Aug 2024 22:00:00 GMT</lastBuildDate>
+<item>
+  <title>Prestasi Indonesia di Olimpiade</title>
+  <dc:creator>Yosep Dwi Kristanto</dc:creator>
+  <link>https://jelajahstatid.github.io/pos/2024-08-indonesia-di-olimpiade/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p><a href="https://olympics.com/en/paris-2024" class="external" target="_blank" title="Paris 2024 Olympics">Olimpiade Musim Panas 2024</a> telah usai. Olimpiade itu meninggalkan banyak cerita menarik. Salah satu yang banyak diperbincangkan adalah <a href="https://olympics.com/en/paris-2024/athlete/yeji-kim_1893930" class="external" target="_blank" title="KIM Yeji">Kim Yeji</a> dan <a href="https://olympics.com/en/paris-2024/athlete/yusuf-dikec_1564893" class="external" target="_blank" title="DIKEC Yusuf">Yusuf Dikeç</a>. Atlet yang secara berturut-turut membela negara Turki dan Korea Selatan tersebut tidak hanya mengukir prestasi, tetapi juga meninggalkan bekas karena gaya dan penampilannya.</p>
+<blockquote class="twitter-tweet blockquote" data-lang="id" data-dnt="true"><p lang="en" dir="ltr">The Olympic <a href="https://twitter.com/hashtag/shootingsport?src=hash&amp;ref_src=twsrc%5Etfw">#shootingsport</a> stars we didn’t know we needed.<br><br>🇰🇷 Kim Yeji 🤝 Yusuf Dikeç 🇹🇷 <a href="https://t.co/gfkyGjFg4I">pic.twitter.com/gfkyGjFg4I</a></p>— The Olympic Games (@Olympics) <a href="https://twitter.com/Olympics/status/1818909520661278729?ref_src=twsrc%5Etfw">1 Agustus 2024</a></blockquote> <script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<p>Akan tetapi, kita tidak akan memperbincangkan kedua atlet itu. Di suasana <a href="../../pos/2024-08-dirgahayu-indonesia/index.html" title="Dirgahayu Kemerdekaan Republik Indonesia: Persembahan Untuk HUT Ke-79 RI">peringatan kemerdekaan Republik Indonesia ini</a>, kita akan melihat prestasi atlet-atlet Indonesia di Olimpiade Musim Panas. Pada Olimpiade Paris 2024, Indonesia berhasil menyabet dua medali emas dan satu perunggu. Dua medali emas tersebut disabet oleh <a href="https://olympics.com/en/paris-2024/athlete/veddriq-leonardo_1940329" class="external" target="_blank" title="LEONARDO Veddriq">Veddriq Leonardo</a> (panjat tebing) dan <a href="https://olympics.com/en/paris-2024/athlete/rizki-juniansyah_1941786" class="external" target="_blank" title="JUNIANSYAH Rizki">Rizki Juniansyah</a> (angkat besi) sedangkan medali perunggunya diraih oleh <a href="https://olympics.com/en/paris-2024/athlete/gregoria-mariska-tunjung_1926315" class="external" target="_blank" title="TUNJUNG Gregoria Mariska">Gregoria Mariska Tunjung</a> (bulu tangkis).</p>
+<p>Bagaimana dengan pagelaran olimpiade-olimpiade sebelumnya? Kita akan menjawab pertanyaan ini dengan menggunakan data yang tersedia di laman Wikipedia.</p>
+<section id="sec-mempersiapkan-data" class="level2">
+<h2 class="anchored" data-anchor-id="sec-mempersiapkan-data">Mempersiapkan Data</h2>
+<p>Kita akan melakukan analisis dan visualisasi data dengan <a href="https://www.R-project.org/" class="external" target="_blank" title="R: A Language and Environment for Statistical Computing">pemrograman R</a>. Pertama, kita panggil paket-paket yang diperlukan. Kita gunakan <a href="https://CRAN.R-project.org/package=rvest" class="external" target="_blank" title="rvest: Easily Harvest (Scrape) Web Pages">{rvest}</a> untuk mengimpor data dari sebuah laman web, <a href="https://www.tidyverse.org/" class="external" target="_blank" title="R packages for data science">{tidyverse}</a> untuk menganalisis dan memvisualisasikan data, dan <a href="https://CRAN.R-project.org/package=ggstream" class="external" target="_blank" title="ggstream: Create Streamplots in 'ggplot2'">{ggstream}</a> untuk membuat diagram alir.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(rvest)</span>
+<span id="cb1-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(tidyverse)</span>
+<span id="cb1-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(ggstream)</span></code></pre></div>
+</div>
+<section id="sec-mengimpor-data" class="level3">
+<h3 class="anchored" data-anchor-id="sec-mengimpor-data">Mengimpor Data</h3>
+<p>Sekarang kita mengimpor datanya. Data tersebut berasal dari laman <a href="https://id.wikipedia.org/w/index.php?title=Indonesia_pada_Olimpiade&amp;oldid=26147360" class="external" target="_blank" title="Indonesia pada Olimpiade">Wikipedia</a>. Data yang kita impor adalah data jumlah medali berdasarkan olimpiade dan cabang olahraganya. Untuk melakukannya, kita menggunakan baris kode seperti berikut.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1">html <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">read_html</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"https://id.wikipedia.org/w/index.php?title=Indonesia_pada_Olimpiade&amp;oldid=26147360"</span>)</span>
+<span id="cb2-2"></span>
+<span id="cb2-3">daftar_tabel <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> html <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb2-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">html_elements</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">".wikitable"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb2-5">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">html_table</span>()</span>
+<span id="cb2-6"></span>
+<span id="cb2-7"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">print</span>(daftar_tabel)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+# A tibble: 50 × 5
+   Medali       Nama                                    Olimpiade Olahraga Nomor
+   &lt;chr&gt;        &lt;chr&gt;                                   &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;
+ 1 01 &nbsp;Emas     Hartono, RudyRudy Hartono               Munich 1… Bulu ta… Tung…
+ 2 01 &nbsp;Emas     Chandra, AdeAde Chandra dan Christian … Munich 1… Bulu ta… Tung…
+ 3 02 &nbsp;Perak    Dewi, UtamiUtami Dewi                   Munich 1… Bulu ta… Tung…
+ 4 03 &nbsp;Perunggu Hadinata, ChristianChristian Hadinata … Munich 1… Bulu ta… Gand…
+ 5 02 &nbsp;Perak    Sugiarto, IcukIcuk Sugiarto             Seoul 19… Bulu ta… Tung…
+ 6 02 &nbsp;Perak    Handayani, LiliesLilies Handayani, Nur… Seoul 19… Panahan  Tim …
+ 7 02 &nbsp;Perak    Dirc Talumewo                           Barcelon… Taekwon… Putr…
+ 8 02 &nbsp;Perak    Rahmi Kurnia                            Barcelon… Taekwon… Putr…
+ 9 02 &nbsp;Perak    Susilawati                              Barcelon… Taekwon… Putr…
+10 03 &nbsp;Perunggu Jefi Tri Aji                            Barcelon… Taekwon… Putr…
+# ℹ 40 more rows
+
+[[2]]
+# A tibble: 22 × 9
+   Olimpiade  `Jumlah atlet` `Pembawa bendera` Jumlah cabangolahrag…¹ `01 &nbsp;Emas`
+   &lt;chr&gt;      &lt;chr&gt;          &lt;chr&gt;             &lt;chr&gt;                  &lt;chr&gt;     
+ 1 Helsinki … 3              ""                3                      0         
+ 2 Melbourne… 22             ""                6                      0         
+ 3 Roma 1960  22             ""                8                      0         
+ 4 Tokyo 1964 Tidak ikut     "Tidak ikut"      Tidak ikut             Tidak ikut
+ 5 Mexico Ci… 6              ""                2                      0         
+ 6 München 1… 6              "Wiem Gommies"    5                      0         
+ 7 Montreal … 7              "Donald Pandiang… 5                      0         
+ 8 Moskwa 19… Tidak ikut     "Tidak ikut"      Tidak ikut             Tidak ikut
+ 9 Los Angel… 16             "Luki Niode"      6                      0         
+10 Seoul 1988 29             "Tonny Maringgi"  11                     0         
+# ℹ 12 more rows
+# ℹ abbreviated name: ¹​`Jumlah cabangolahraga yang diikuti`
+# ℹ 4 more variables: `02 &nbsp;Perak` &lt;chr&gt;, `03 &nbsp;Perunggu` &lt;chr&gt;, Total &lt;chr&gt;,
+#   Peringkat &lt;chr&gt;
+
+[[3]]
+# A tibble: 5 × 5
+  Cabang                   Emas Perak Perunggu Total
+  &lt;chr&gt;                   &lt;int&gt; &lt;int&gt;    &lt;int&gt; &lt;int&gt;
+1 Bulu tangkis  (detail)      8     6        8    22
+2 Angkat besi  (detail)       1     7        8    16
+3 Panjat tebing  (detail)     1     0        0     1
+4 Panahan  (detail)           0     1        0     1
+5 Total (4 cabang)           10    14       16    40</code></pre>
+</div>
+</div>
+<p>Apa yang dilakukan baris kode di atas? Pertama, kita membaca html pada laman Wikipedia tersebut dan menyimpannya sebagai sebuah sebuah objek dengan nama <code>html</code>. Setelah itu, objek <code>html</code> tersebut kita cari elemennya yang bernama <code>.wikitable</code>.<sup>1</sup> Setelah elemen tersebut ditemukan, kita baca elemen tersebut sebagai tabel dengan fungsi <code>html_table()</code>. Hasil dari proses ini kemudian kita namai sebagai <code>daftar_tabel</code>. Untuk melihat apa isi <code>daftar_tabel</code> tersebut, kita dapat menggunakan fungsi <code>print()</code>.</p>
+<p>Setelah kita lihat dengan <code>print()</code>, ternyata <code>daftar_tabel</code> merupakan sebuah <a href="https://people.usd.ac.id/~ydkristanto/index.php/seri-belajar-statistika-dan-ilmu-data-dengan-r/pengantar-r/7/" class="external" target="_blank" title="Pengantar Pemrograman R">daftar (<em>list</em>)</a>. Data yang kita inginkan, yaitu data jumlah medali berdasarkan olimpiade dan cabang olahraganya, merupakan elemen kedua dan ketiga dari <code>daftar_tabel</code>. Untuk itu, kita dapat mengekstrak kedua data tersebut dengan <code>daftar_tabel[[1]]</code> dan <code>daftar_tabel[[2]]</code>. Kita namai hasilnya dengan <code>data_dsr_olimpiade</code> dan <code>data_dsr_cabang</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1">data_dsr_olimpiade <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> daftar_tabel[[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>]]</span>
+<span id="cb4-2">data_dsr_cabang <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> daftar_tabel[[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>]]</span></code></pre></div>
+</div>
+</section>
+<section id="sec-merapikan-data" class="level3">
+<h3 class="anchored" data-anchor-id="sec-merapikan-data">Merapikan Data</h3>
+<p>Saat ini kita telah memiliki dua data, yaitu <code>data_dsr_olimpiade</code> (data jumlah medali berdasarkan penyelenggaraan olimpiade) dan <code>data_dsr_cabang</code> (data jumlah medali berdasarkan cabang olahraga). Kita rapikan kedua data tersebut. Untuk merapikan <code>data_dsr_olimpiade</code>, kita lihat isi data tersebut dengan fungsi <code>print()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">print</span>(data_dsr_olimpiade)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 22 × 9
+   Olimpiade  `Jumlah atlet` `Pembawa bendera` Jumlah cabangolahrag…¹ `01 &nbsp;Emas`
+   &lt;chr&gt;      &lt;chr&gt;          &lt;chr&gt;             &lt;chr&gt;                  &lt;chr&gt;     
+ 1 Helsinki … 3              ""                3                      0         
+ 2 Melbourne… 22             ""                6                      0         
+ 3 Roma 1960  22             ""                8                      0         
+ 4 Tokyo 1964 Tidak ikut     "Tidak ikut"      Tidak ikut             Tidak ikut
+ 5 Mexico Ci… 6              ""                2                      0         
+ 6 München 1… 6              "Wiem Gommies"    5                      0         
+ 7 Montreal … 7              "Donald Pandiang… 5                      0         
+ 8 Moskwa 19… Tidak ikut     "Tidak ikut"      Tidak ikut             Tidak ikut
+ 9 Los Angel… 16             "Luki Niode"      6                      0         
+10 Seoul 1988 29             "Tonny Maringgi"  11                     0         
+# ℹ 12 more rows
+# ℹ abbreviated name: ¹​`Jumlah cabangolahraga yang diikuti`
+# ℹ 4 more variables: `02 &nbsp;Perak` &lt;chr&gt;, `03 &nbsp;Perunggu` &lt;chr&gt;, Total &lt;chr&gt;,
+#   Peringkat &lt;chr&gt;</code></pre>
+</div>
+</div>
+<p>Data tersebut memiliki 22 baris dan 9 variabel/kolom. Kita dapat melihat beberapa baris terakhirnya dengan fungsi <code>tail()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tail</span>(data_dsr_olimpiade)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 9
+  Olimpiade   `Jumlah atlet` `Pembawa bendera` Jumlah cabangolahrag…¹ `01 &nbsp;Emas`
+  &lt;chr&gt;       &lt;chr&gt;          &lt;chr&gt;             &lt;chr&gt;                  &lt;chr&gt;     
+1 Rio de Jan… 28             "Maria Natalia L… "7"                    "1"       
+2 Tokyo 2020  28             "Rio Waida"       "8"                    "1"       
+3 Paris 2024  29             "Maryam March Ma… "12"                   "2"       
+4 Los Angele… Pertandingan … ""                ""                     ""        
+5 Brisbane 2… Pertandingan … ""                ""                     ""        
+6 Total       Total          "Total"           "Total"                "9"       
+# ℹ abbreviated name: ¹​`Jumlah cabangolahraga yang diikuti`
+# ℹ 4 more variables: `02 &nbsp;Perak` &lt;chr&gt;, `03 &nbsp;Perunggu` &lt;chr&gt;, Total &lt;chr&gt;,
+#   Peringkat &lt;chr&gt;</code></pre>
+</div>
+</div>
+<p>Ternyata, <code>data_dsr_olimpiade</code> tersebut juga memuat dua olimpiade yang belum terlaksana dan satu baris total. Kita hilangkan ketiga baris tersebut dengan menggunakan <code>slice_head()</code>. Dengan demikian, kita hanya menggunakan 22 - 3 = 19 barisnya saja.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1">data_dsr_olimpiade <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> data_dsr_olimpiade <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb9-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">slice_head</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">n =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">19</span>)</span></code></pre></div>
+</div>
+<p>Untuk mengeceknya lagi, kita dapat menggunakan <code>tail()</code> lagi.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tail</span>(data_dsr_olimpiade)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 9
+  Olimpiade   `Jumlah atlet` `Pembawa bendera` Jumlah cabangolahrag…¹ `01 &nbsp;Emas`
+  &lt;chr&gt;       &lt;chr&gt;          &lt;chr&gt;             &lt;chr&gt;                  &lt;chr&gt;     
+1 Athena 2004 38             Christian Hadina… 14                     1         
+2 Beijing 20… 24             Oka Sulaksana     7                      1         
+3 London 2012 22             I Gede Siman Sud… 8                      0         
+4 Rio de Jan… 28             Maria Natalia Lo… 7                      1         
+5 Tokyo 2020  28             Rio Waida         8                      1         
+6 Paris 2024  29             Maryam March Mah… 12                     2         
+# ℹ abbreviated name: ¹​`Jumlah cabangolahraga yang diikuti`
+# ℹ 4 more variables: `02 &nbsp;Perak` &lt;chr&gt;, `03 &nbsp;Perunggu` &lt;chr&gt;, Total &lt;chr&gt;,
+#   Peringkat &lt;chr&gt;</code></pre>
+</div>
+</div>
+<p>Kita telah mengkonfirmasi bahwa <code>data_dsr_olimpiade</code> sudah berisi baris-baris yang kita butuhkan saja. Selanjutnya, kita lihat gambaran umum data tersebut dengan fungsi <code>glimpse()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">glimpse</span>(data_dsr_olimpiade)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 19
+Columns: 9
+$ Olimpiade                            &lt;chr&gt; "Helsinki 1952", "Melbourne 1956"…
+$ `Jumlah atlet`                       &lt;chr&gt; "3", "22", "22", "Tidak ikut", "6…
+$ `Pembawa bendera`                    &lt;chr&gt; "", "", "", "Tidak ikut", "", "Wi…
+$ `Jumlah cabangolahraga yang diikuti` &lt;chr&gt; "3", "6", "8", "Tidak ikut", "2",…
+$ `01 &nbsp;Emas`                           &lt;chr&gt; "0", "0", "0", "Tidak ikut", "0",…
+$ `02 &nbsp;Perak`                          &lt;chr&gt; "0", "0", "0", "Tidak ikut", "0",…
+$ `03 &nbsp;Perunggu`                       &lt;chr&gt; "0", "0", "0", "Tidak ikut", "0",…
+$ Total                                &lt;chr&gt; "0", "0", "0", "Tidak ikut", "0",…
+$ Peringkat                            &lt;chr&gt; "", "", "", "Tidak ikut", "", "",…</code></pre>
+</div>
+</div>
+<p>Setelah melihat hasilnya, kita gunakan lima variabel dari <code>data_dsr_olimpiade</code> saja, yaitu <code>Olimpiade</code>, <code>01 &nbsp;Emas</code>, <code>02 &nbsp;Perak</code>, <code>03 &nbsp;Perunggu</code>, dan <code>Peringkat</code>. Setelah itu kita buat data tersebut menjadi data yang memanjang dengan <code>pivot_longer()</code> dan kita rapikan isinya. Untuk memudahkan analisis data selanjutnya, kita tambahkan variabel <code>tahun</code>. Variabel ini kita ekstrak dari variabel <code>Olimpiade</code> karena nilai-nilai variabel tersebut memuat tahun, misalnya “Helsinki 1952” dan “Melbourne 1956”.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1">data_dsr_olimpiade <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> data_dsr_olimpiade <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb14-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">select</span>(Olimpiade, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">01 &nbsp;Emas</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">02 &nbsp;Perak</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">03 &nbsp;Perunggu</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span>, Peringkat) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb14-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">pivot_longer</span>(</span>
+<span id="cb14-4">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">cols =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">contains</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"0"</span>),</span>
+<span id="cb14-5">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">names_to =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"medali"</span>,</span>
+<span id="cb14-6">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">values_to =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"banyak"</span></span>
+<span id="cb14-7">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb14-8">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rename</span>(</span>
+<span id="cb14-9">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">olimpiade =</span> Olimpiade,</span>
+<span id="cb14-10">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">peringkat =</span> Peringkat</span>
+<span id="cb14-11">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb14-12">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(</span>
+<span id="cb14-13">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">tahun =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as.integer</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">str_extract</span>(olimpiade, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\\</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">d{4}"</span>)),</span>
+<span id="cb14-14">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">peringkat =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ifelse</span>(</span>
+<span id="cb14-15">      peringkat <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">""</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|</span> peringkat <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Tidak ikut"</span>,</span>
+<span id="cb14-16">      <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">NA</span>, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as.integer</span>(peringkat)</span>
+<span id="cb14-17">    ),</span>
+<span id="cb14-18">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">medali =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">substr</span>(medali, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">nchar</span>(medali)),</span>
+<span id="cb14-19">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">banyak =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ifelse</span>(</span>
+<span id="cb14-20">      banyak <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Tidak ikut"</span>,</span>
+<span id="cb14-21">      <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">NA</span>, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as.integer</span>(banyak)</span>
+<span id="cb14-22">    )</span>
+<span id="cb14-23">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb14-24">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">select</span>(</span>
+<span id="cb14-25">    tahun, olimpiade, medali, banyak, peringkat</span>
+<span id="cb14-26">  )</span>
+<span id="cb14-27"></span>
+<span id="cb14-28"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">print</span>(data_dsr_olimpiade)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 57 × 5
+   tahun olimpiade      medali   banyak peringkat
+   &lt;int&gt; &lt;chr&gt;          &lt;chr&gt;     &lt;int&gt;     &lt;int&gt;
+ 1  1952 Helsinki 1952  Emas          0        NA
+ 2  1952 Helsinki 1952  Perak         0        NA
+ 3  1952 Helsinki 1952  Perunggu      0        NA
+ 4  1956 Melbourne 1956 Emas          0        NA
+ 5  1956 Melbourne 1956 Perak         0        NA
+ 6  1956 Melbourne 1956 Perunggu      0        NA
+ 7  1960 Roma 1960      Emas          0        NA
+ 8  1960 Roma 1960      Perak         0        NA
+ 9  1960 Roma 1960      Perunggu      0        NA
+10  1964 Tokyo 1964     Emas         NA        NA
+# ℹ 47 more rows</code></pre>
+</div>
+</div>
+<p><code>data_dsr_olimpiade</code> telah siap tersaji. Sekarang saatnya kita beralih ke <code>data_dsr_cabang</code>. Sebelum merapikan data ini, kita lihat datanya terlebih dahulu.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">print</span>(data_dsr_cabang)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 5
+  Cabang                   Emas Perak Perunggu Total
+  &lt;chr&gt;                   &lt;int&gt; &lt;int&gt;    &lt;int&gt; &lt;int&gt;
+1 Bulu tangkis  (detail)      8     6        8    22
+2 Angkat besi  (detail)       1     7        8    16
+3 Panjat tebing  (detail)     1     0        0     1
+4 Panahan  (detail)           0     1        0     1
+5 Total (4 cabang)           10    14       16    40</code></pre>
+</div>
+</div>
+<p>Untuk merapikan data tersebut, kita dapat melakukan beberapa hal. Pertama, kita hapus baris dan kolom terakhirnya (baris dan kolom total). Kedua, kita rapikan isi dari variabel <code>Cabang</code>. Ketiga, kita buat data tersebut menjadi data yang memanjang. Terakhir, kita konsistenkan nama variabelnya.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1">data_dsr_cabang <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> data_dsr_cabang <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb18-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">select</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>Total) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb18-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(Cabang <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">!=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Total (4 cabang)"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb18-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(</span>
+<span id="cb18-5">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">Cabang =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">str_trim</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">str_remove</span>(Cabang, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">" </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\\</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">(detail</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\\</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">)"</span>))</span>
+<span id="cb18-6">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb18-7">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">pivot_longer</span>(</span>
+<span id="cb18-8">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">cols =</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>Cabang,</span>
+<span id="cb18-9">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">names_to =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"medali"</span>,</span>
+<span id="cb18-10">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">values_to =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"banyak"</span></span>
+<span id="cb18-11">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb18-12">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rename</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">cabang =</span> Cabang)</span>
+<span id="cb18-13"></span>
+<span id="cb18-14"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">print</span>(data_dsr_cabang)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12 × 3
+   cabang        medali   banyak
+   &lt;chr&gt;         &lt;chr&gt;     &lt;int&gt;
+ 1 Bulu tangkis  Emas          8
+ 2 Bulu tangkis  Perak         6
+ 3 Bulu tangkis  Perunggu      8
+ 4 Angkat besi   Emas          1
+ 5 Angkat besi   Perak         7
+ 6 Angkat besi   Perunggu      8
+ 7 Panjat tebing Emas          1
+ 8 Panjat tebing Perak         0
+ 9 Panjat tebing Perunggu      0
+10 Panahan       Emas          0
+11 Panahan       Perak         1
+12 Panahan       Perunggu      0</code></pre>
+</div>
+</div>
+<p><code>data_dsr_cabang</code> sekarang sudah rapi. Saatnya kita lanjut ke tahapan berikutnya—visualisasi data.</p>
+</section>
+</section>
+<section id="sec-visualisasi-data" class="level2">
+<h2 class="anchored" data-anchor-id="sec-visualisasi-data">Visualisasi Data</h2>
+<p>Pada Bagian&nbsp;1 kita telah mengimpor dan merapikan data tentang banyaknya medali yang diperoleh Indonesia berdasarkan perhelatan olimpiade dan cabang-cabang olahraganya. Selanjutnya, kita akan memvisualisasikan kedua data tersebut.</p>
+<section id="sec-medali-dan-perhelatan-olimpiade" class="level3">
+<h3 class="anchored" data-anchor-id="sec-medali-dan-perhelatan-olimpiade">Medali dan Perhelatan Olimpiade</h3>
+<p>Bagaimana perolehan medali Indonesia di setiap keikutsertaannya di olimpiade? Untuk menjawab pertanyaan ini, kita dapat membuat diagram batang dengan menggunakan <code>data_dsr_olimpiade</code>. Perhatikan Gambar&nbsp;1!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1">data_dsr_olimpiade <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb20-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> tahun, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> banyak, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fill =</span> medali)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb20-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_col</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">position =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"dodge"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb20-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_x_continuous</span>(</span>
+<span id="cb20-5">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">breaks =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">seq</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1952</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2024</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>)</span>
+<span id="cb20-6">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb20-7">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_y_continuous</span>(</span>
+<span id="cb20-8">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">limits =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4.2</span>),</span>
+<span id="cb20-9">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">expand =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)</span>
+<span id="cb20-10">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb20-11">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_fill_manual</span>(</span>
+<span id="cb20-12">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">name =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Medali"</span>,</span>
+<span id="cb20-13">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">values =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(</span>
+<span id="cb20-14">      <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Emas"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#FCC861"</span>,</span>
+<span id="cb20-15">      <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Perak"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#E5E5E5"</span>,</span>
+<span id="cb20-16">      <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Perunggu"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#DCB386"</span></span>
+<span id="cb20-17">    )</span>
+<span id="cb20-18">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb20-19">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_minimal</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb20-20">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme</span>(</span>
+<span id="cb20-21">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">legend.position =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"bottom"</span>,</span>
+<span id="cb20-22">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">panel.grid.major.x =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_blank</span>(),</span>
+<span id="cb20-23">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">panel.grid.minor.x =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_blank</span>(),</span>
+<span id="cb20-24">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">axis.line.x =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_line</span>(),</span>
+<span id="cb20-25">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">axis.ticks.x =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_line</span>(),</span>
+<span id="cb20-26">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">axis.text.x =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(</span>
+<span id="cb20-27">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">angle =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">90</span>,</span>
+<span id="cb20-28">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">vjust =</span> .<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span></span>
+<span id="cb20-29">    ),</span>
+<span id="cb20-30">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">axis.title.x =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_blank</span>()</span>
+<span id="cb20-31">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb20-32">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(</span>
+<span id="cb20-33">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Banyak perolehan medali"</span></span>
+<span id="cb20-34">  )</span></code></pre></div>
+<div class="cell-output-display">
+<div id="fig-diagram-batang" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-diagram-batang-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://jelajahstatid.github.io/pos/2024-08-indonesia-di-olimpiade/index_files/figure-html/fig-diagram-batang-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diagram-batang-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Gambar&nbsp;1: Banyaknya medali yang diperoleh Indonesia di setiap olimpiade yang diikutinya
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Berdasarkan Gambar&nbsp;1 tersebut, Indonesia pertama kali meraih medali pada tahun 1988 meskipun telah ikut olimpiade sejak 1952. Selain itu, Indonesia dapat meraih medali emas sebanyak dua kali untuk pertama kalinya pada tahun 1992. Capaian ini diulang kembali pada olimpiade terakhir, yaitu pada tahun 2024.</p>
+<p>Bagaimana kalau kita ingin melihat tren perolehan medali emas, perak, dan perunggu setiap penyelenggaraan olimpiadenya? Perhatikan Gambar&nbsp;2!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1">data_dsr_olimpiade <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb21-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> tahun, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> banyak, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">col =</span> medali)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb21-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_line</span>(</span>
+<span id="cb21-4">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">linewidth =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span></span>
+<span id="cb21-5">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb21-6">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_y_continuous</span>(</span>
+<span id="cb21-7">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">limits =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4.2</span>),</span>
+<span id="cb21-8">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">expand =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)</span>
+<span id="cb21-9">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb21-10">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_color_manual</span>(</span>
+<span id="cb21-11">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">name =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Medali"</span>,</span>
+<span id="cb21-12">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">values =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(</span>
+<span id="cb21-13">      <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Emas"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#FCC861"</span>,</span>
+<span id="cb21-14">      <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Perak"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#E5E5E5"</span>,</span>
+<span id="cb21-15">      <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Perunggu"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#DCB386"</span></span>
+<span id="cb21-16">    )</span>
+<span id="cb21-17">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb21-18">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">facet_grid</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span>medali) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb21-19">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_minimal</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb21-20">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme</span>(</span>
+<span id="cb21-21">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">legend.position =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"none"</span>,</span>
+<span id="cb21-22">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">panel.grid.major.x =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_blank</span>(),</span>
+<span id="cb21-23">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">panel.grid.minor.x =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_blank</span>(),</span>
+<span id="cb21-24">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">panel.grid.minor.y =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_blank</span>()</span>
+<span id="cb21-25">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb21-26">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(</span>
+<span id="cb21-27">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Tahun"</span>,</span>
+<span id="cb21-28">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Banyak perolehan medali"</span></span>
+<span id="cb21-29">  )</span></code></pre></div>
+<div class="cell-output-display">
+<div id="fig-diagram-garis" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-diagram-garis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://jelajahstatid.github.io/pos/2024-08-indonesia-di-olimpiade/index_files/figure-html/fig-diagram-garis-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diagram-garis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Gambar&nbsp;2: Tren perolehan medali Indonesia di setiap olimpiade yang diikutinya
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Kita dapat menggabungkan fokus informasi yang disampaikan diagram batang pada Gambar&nbsp;1 dan diagram garis pada Gambar&nbsp;2 dengan menggunakan diagram alir.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1">data_dsr_olimpiade <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb22-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> tahun, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> banyak, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fill =</span> medali)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb22-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_vline</span>(</span>
+<span id="cb22-4">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">xintercept =</span> tahun),</span>
+<span id="cb22-5">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"grey"</span>,</span>
+<span id="cb22-6">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">linewidth =</span> .<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">25</span></span>
+<span id="cb22-7">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb22-8">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_stream</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb22-9">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_stream_label</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> medali)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb22-10">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_text</span>(</span>
+<span id="cb22-11">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> olimpiade),</span>
+<span id="cb22-12">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4.9</span>,</span>
+<span id="cb22-13">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">angle =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">90</span>,</span>
+<span id="cb22-14">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">hjust =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>,</span>
+<span id="cb22-15">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">nudge_x =</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.2</span>,</span>
+<span id="cb22-16">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"grey"</span></span>
+<span id="cb22-17">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb22-18">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_fill_manual</span>(</span>
+<span id="cb22-19">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">name =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Medali"</span>,</span>
+<span id="cb22-20">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">values =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(</span>
+<span id="cb22-21">      <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Emas"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#FCC861"</span>,</span>
+<span id="cb22-22">      <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Perak"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#E5E5E5"</span>,</span>
+<span id="cb22-23">      <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Perunggu"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#DCB386"</span></span>
+<span id="cb22-24">    )</span>
+<span id="cb22-25">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb22-26">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_x_continuous</span>(</span>
+<span id="cb22-27">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">limits =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1948</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2026</span>),</span>
+<span id="cb22-28">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">expand =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)</span>
+<span id="cb22-29">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb22-30">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_y_continuous</span>(</span>
+<span id="cb22-31">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">limits =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>),</span>
+<span id="cb22-32">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">expand =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)</span>
+<span id="cb22-33">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb22-34">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_void</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb22-35">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme</span>(</span>
+<span id="cb22-36">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">legend.position =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"none"</span></span>
+<span id="cb22-37">  )</span></code></pre></div>
+<div class="cell-output-display">
+<div id="fig-diagram-alir" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-diagram-alir-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://jelajahstatid.github.io/pos/2024-08-indonesia-di-olimpiade/index_files/figure-html/fig-diagram-alir-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diagram-alir-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Gambar&nbsp;3: Tren perolehan medali emas, perak, dan perunggu Indonesia di setiap olimpiade yang diikutinya
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Kita telah memvisualisasikan perolehan medali Indonesia di olimpiade. Selanjutnya kita akan memvisualisasikan distribusi medali untuk cabang-cabang olahraganya.</p>
+</section>
+<section id="sec-medali-dan-cabang-olahraga" class="level3">
+<h3 class="anchored" data-anchor-id="sec-medali-dan-cabang-olahraga">Medali dan Cabang Olahraga</h3>
+<p>Cabang olahraga apa saja yang menyumbangkan medali bagi Indonesia? Bagaimana distribusinya? Untuk menjawab pertanyaan-pertanyaan ini, kita dapat menggambarkan distribusinya dengan diagram batang.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1">data_dsr_cabang <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb23-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(</span>
+<span id="cb23-3">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">cabang =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">fct_relevel</span>(</span>
+<span id="cb23-4">      cabang,</span>
+<span id="cb23-5">      <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Bulu tangkis"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Angkat besi"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Panjat tebing"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Panahan"</span></span>
+<span id="cb23-6">    )</span>
+<span id="cb23-7">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb23-8">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> cabang, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> banyak)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb23-9">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_col</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fill =</span> medali)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb23-10">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_y_continuous</span>(</span>
+<span id="cb23-11">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">expand =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)</span>
+<span id="cb23-12">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb23-13">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_fill_manual</span>(</span>
+<span id="cb23-14">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">name =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Medali"</span>,</span>
+<span id="cb23-15">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">values =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(</span>
+<span id="cb23-16">      <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Emas"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#FCC861"</span>,</span>
+<span id="cb23-17">      <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Perak"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#E5E5E5"</span>,</span>
+<span id="cb23-18">      <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Perunggu"</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#DCB386"</span></span>
+<span id="cb23-19">    )</span>
+<span id="cb23-20">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb23-21">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_minimal</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb23-22">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme</span>(</span>
+<span id="cb23-23">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">legend.position =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"bottom"</span>,</span>
+<span id="cb23-24">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">axis.line.x =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_line</span>(),</span>
+<span id="cb23-25">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">panel.grid.major.x =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_blank</span>(),</span>
+<span id="cb23-26">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">panel.grid.minor.x =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_blank</span>()</span>
+<span id="cb23-27">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb23-28">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(</span>
+<span id="cb23-29">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Cabang olahraga"</span>,</span>
+<span id="cb23-30">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Banyak perolehan medali"</span></span>
+<span id="cb23-31">  )</span></code></pre></div>
+<div class="cell-output-display">
+<div id="fig-diagram-batang-olahraga" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-diagram-batang-olahraga-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://jelajahstatid.github.io/pos/2024-08-indonesia-di-olimpiade/index_files/figure-html/fig-diagram-batang-olahraga-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diagram-batang-olahraga-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Gambar&nbsp;4: Distribusi medali olimpiade yang diperoleh Indonesia berdasarkan cabang olahraganya
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Berdasarkan Gambar&nbsp;4, kita dapat melihat bahwa ada empat cabang olahraga yang berkontribusi bagi perolehan medali Indonesia. Keempat cabang olahraga tersebut jika diurutkan berdasarkan perolehan medalinya adalah bulu tangkis, angkat besi, panjat tebing, dan panahan.</p>
+</section>
+</section>
+<section id="sec-catatan-akhir" class="level2">
+<h2 class="anchored" data-anchor-id="sec-catatan-akhir">Catatan Akhir</h2>
+<p>Di suasana riuh rendah <a href="../../pos/2024-08-dirgahayu-indonesia/index.html" title="Dirgahayu Kemerdekaan Republik Indonesia: Persembahan Untuk HUT Ke-79 RI">peringatan HUT ke-79 kemerdekaan Republik Indonesia</a> dan Olimpiade Paris 2024 ini, bersama-sama kita telah melihat prestasi Indonesia di perhelatan olimpiade mulai tahun 1952 sampai 2024. Untuk melihatnya, kita awali dengan mempersiapkan data pada Bagian&nbsp;1. Di tahapan ini, kita melakukan impor data dari Wikipedia pada Bagian&nbsp;1.1 dan merapikan datanya pada Bagian&nbsp;1.2.</p>
+<p>Setelah data rapi, kita melakukan visualisasi data pada Bagian&nbsp;2. Terdapat dua macam informasi yang kita visualisasikan. Pertama adalah banyak medali di setiap pagelaran olimpiade yang Indonesia ikuti (Bagian&nbsp;2.1). Kedua adalah distribusi medali berdasarkan cabang olahraganya (Bagian&nbsp;2.2).</p>
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Catatan Kaki</h2>
+
+<ol>
+<li id="fn1"><p>Bagaimana cara menemukan nama elemen dari objek yang ingin kita impor? Salah satunya adalah dengan membaca kode sumber laman webnya. Selain itu, jika kita menggunakan Google Chrome, kita juga dapat memanfaatkan <em>Developer tools</em>-nya.↩︎</p></li>
+</ol>
+</section><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Penggunaan Kembali</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-copyright"><h2 class="anchored quarto-appendix-heading">Hak Cipta</h2><div class="quarto-appendix-contents"><div>© 2024 Yosep Dwi Kristanto</div></div></section></div> ]]></description>
+  <category>olahraga</category>
+  <category>statistik dunia</category>
+  <category>turorial</category>
+  <category>visualisasi data</category>
+  <guid>https://jelajahstatid.github.io/pos/2024-08-indonesia-di-olimpiade/</guid>
+  <pubDate>Fri, 16 Aug 2024 22:00:00 GMT</pubDate>
+  <media:content url="https://jelajahstatid.github.io/pos/2024-08-indonesia-di-olimpiade/indonesia-di-olimpiade.png" medium="image" type="image/png" height="108" width="144"/>
+</item>
 <item>
   <title>Sepak Bola Indonesia vs. Negara-Negara Asia Tenggara</title>
   <dc:creator>Yosep Dwi Kristanto</dc:creator>

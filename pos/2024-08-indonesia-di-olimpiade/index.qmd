@@ -1,7 +1,6 @@
 ---
 title: "Prestasi Indonesia di Olimpiade"
 description: "Indonesia menyabet dua emas dan satu perunggu di Olimpiade Paris 2024. Prestasi itu diraih berkat performa ciamik Veddriq Leonardo, Rizki Juniansyah, dan Gregoria Mariska Tunjung. Bagaimana dengan performa Indonesia di semua perhelatan olimpiade yang pernah diikutinya?"
-draft: true
 author:
   - name: Yosep Dwi Kristanto
     url: https://people.usd.ac.id/~ydkristanto/
