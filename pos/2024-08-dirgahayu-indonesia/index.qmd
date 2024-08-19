@@ -10,6 +10,7 @@ author:
     affiliation-url: https://www.usd.ac.id/s1pmat
     orcid: 0000-0003-1446-0422
 date: 2024-08-12
+date-modified: 2024-08-19
 categories:
   - ekonomi
   - statistik nasional
@@ -724,4 +725,4 @@ gg_stop_recording()
 
 Pada bulan Agustus, semua bangsa Indonesia memperingati kemerdekaan Republik Indonesia. Banyak cara yang dapat dilakukan. Salah satu cara yang kita lakukan adalah memberikan persembahan visualisasi data yang bertemakan pertumbuhan ekonomi nasional. Hal itu kita lakukan pada @sec-memvisualisasikan-data. Diagram alir pada @fig-diagram-alir-label atau @fig-versi-terakhir tidak hanya menunjukkan tren pertumbuhan ekonomi Indonesia, tetapi juga sejalan dengan semangat perkembangan bangsa Indonesia yang mengikuti zaman.
 
-Pada pos-pos berikutnya, kamu akan melihat bagaimana Statistika dan Ilmu Data digunakan dalam merayakan HUT ke-79 Republik Indonesia. Di pos-pos tersebut, kamu akan melihat bagaimana memvisualisasikan prestasi sepak bola Indonesia dibandingkan dengan negara-negara Asia Tenggara lainnya. Selain itu, kamu juga akan melihat bagaimana torehan atlet-atlet hebat Indonesia di pagelaran olimpiade melalui Statistika dan Ilmu Data. Dirgahayu Republik Indonesia!
+Pada pos-pos berikutnya, kamu akan melihat bagaimana Statistika dan Ilmu Data digunakan dalam merayakan HUT ke-79 Republik Indonesia. Di pos-pos tersebut, kamu akan melihat bagaimana [memvisualisasikan prestasi sepak bola Indonesia dibandingkan dengan negara-negara Asia Tenggara lainnya](/pos/2024-08-peringkat-fifa-indonesia/index.qmd "Sepak Bola Indonesia vs. Negara-Negara Asia Tenggara"). Selain itu, kamu juga akan melihat bagaimana [torehan atlet-atlet hebat Indonesia di pagelaran olimpiade melalui Statistika dan Ilmu Data](/pos/2024-08-indonesia-di-olimpiade/index.qmd "Prestasi Indonesia di Olimpiade"). Dirgahayu Republik Indonesia!

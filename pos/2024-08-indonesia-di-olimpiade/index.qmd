@@ -75,7 +75,7 @@ print(daftar_tabel)
 
 ```
 
-Apa yang dilakukan baris kode di atas? Pertama, kita membaca html pada laman Wikipedia tersebut dan menyimpannya sebagai sebuah sebuah objek dengan nama `html`. Setelah itu, objek `html` tersebut kita cari elemennya yang bernama `.wikitable`.[^1] Setelah elemen tersebut ditemukan, kita baca elemen tersebut sebagai tabel dengan fungsi `html_table()`. Hasil dari proses ini kemudian kita namai sebagai `daftar_tabel`. Untuk melihat apa isi `daftar_tabel` tersebut, kita dapat menggunakan fungsi `print()`.
+Apa yang dilakukan baris kode di atas? Pertama, kita membaca html pada laman Wikipedia tersebut dan menyimpannya sebagai sebuah objek dengan nama `html`. Setelah itu, objek `html` tersebut kita cari elemennya yang bernama `.wikitable`.[^1] Setelah elemen tersebut ditemukan, kita baca elemen tersebut sebagai tabel dengan fungsi `html_table()`. Hasil dari proses ini kemudian kita namai sebagai `daftar_tabel`. Untuk melihat apa isi `daftar_tabel` tersebut, kita dapat menggunakan fungsi `print()`.
 
 [^1]: Bagaimana cara menemukan nama elemen dari objek yang ingin kita impor? Salah satunya adalah dengan membaca kode sumber laman webnya. Selain itu, jika kita menggunakan Google Chrome, kita juga dapat memanfaatkan *Developer tools*-nya.
 
