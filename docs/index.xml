@@ -4253,7 +4253,7 @@ font-style: inherit;">server =</span> server)</span></code></pre></div>
 <li><p>Baris kode yang terakhir, yaitu <code>shinyApp(ui = ui, server = server)</code>, berfungsi untuk membuat aplikasi Shiny berdasarkan antarmuka <code>ui</code> dan fungsi <code>server</code> dan kemudian menjalankannya.</p></li>
 </ol>
 <p>Apabila kamu sudah penasaran dengan aplikasi Shiny tersebut, kamu dapat menjalankannya. Untuk melakukannya di RStudio, klik tombol <strong>Run App</strong> yang terletak di bagian kanan-atas dokumen. Perhatikan Gambar&nbsp;4!</p>
-<div id="fig-run-app" class="quarto-figure quarto-figure-center quarto-float anchored" alt="Tombol Run App dalam RStudio" data-fig-align="center">
+<div id="fig-run-app" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center" alt="Tombol Run App dalam RStudio">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-run-app-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-statistik-dinamis-dan-interaktif/aset/Run-App-RStudio.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Tombol Run App dalam RStudio">
@@ -7088,7 +7088,7 @@ font-style: inherit;">print</span>(model_weibull)</span></code></pre></div>
 <p>Apa yang salah? Kesalahannya terletak pada nilai-nilai awal <img src="https://latex.codecogs.com/png.latex?d">, <img src="https://latex.codecogs.com/png.latex?z">, dan <img src="https://latex.codecogs.com/png.latex?f"> yang kita berikan.</p>
 <p>Salah satu seni dalam menggunakan fungsi <code>nls()</code> adalah penentukan nilai-nilai awalnya. Nilai-nilai awal tersebut sebaiknya dipilih agar mendekati nilai-nilai yang sebenarnya. Untuk melakukannya, kita dapat memanfaatkan alat lain, misalnya kalkulator grafik Desmos.</p>
 <p>Dengan menginputkan data yang kita punya, yaitu <code>data_pulau</code>, ke dalam kalkulator grafik Desmos, kita dapat memodelkannya. Tangkapan layar hasil pemodelan tersebut ditunjukkan pada Gambar&nbsp;7.</p>
-<div id="fig-model-weibull-Desmos" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center" alt="Diagram pencar yang menunjukkan hubungan antara luas pulau dan banyak spesies, disertai dengan model fungsi Weibull.">
+<div id="fig-model-weibull-Desmos" class="quarto-figure quarto-figure-center quarto-float anchored" alt="Diagram pencar yang menunjukkan hubungan antara luas pulau dan banyak spesies, disertai dengan model fungsi Weibull." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-model-weibull-Desmos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-keanekaragaman-hayati-raja-ampat/model-Weibull-Desmos.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Diagram pencar yang menunjukkan hubungan antara luas pulau dan banyak spesies, disertai dengan model fungsi Weibull.">
