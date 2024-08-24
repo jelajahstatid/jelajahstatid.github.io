@@ -1,0 +1,229 @@
+---
+title: "Gunung Agung, Bromo, Merapi, dan Semeru"
+subtitle: "Seberapa Tinggi dan Besar Keempat Gunung Itu?"
+description: "Gunung Agung, Bromo, Merapi, dan Semeru termasuk gunung-gunung yang populer di Indonesia. Pemrograman R dapat digunakan untuk memodelkan keempat gunung tersebut ke dalam bentuk 2D maupun 3D. Cara seperti ini dapat digunakan untuk membandingkan seberapa tinggi dan besar gunung-gunung tersebut."
+draft: true
+author:
+  - name: Yosep Dwi Kristanto
+    url: https://people.usd.ac.id/~ydkristanto/
+    affiliation: Pendidikan Matematika, Universitas Sanata Dharma, Yogyakarta
+    affiliation-url: https://www.usd.ac.id/s1pmat
+    orcid: 0000-0003-1446-0422
+date: 2025-08-25
+categories:
+  - Geostatistika
+  - turorial
+  - visualisasi data
+image: "empat-gunung.png"
+image-alt: |
+  Gambar 3D yang menunjukkan Gunung Agung, Bromo, Merapi, dan Semeru secara berdampingan.
+keywords: 
+  - Gunung Agung
+  - Gunung Bromo
+  - Gunung Merapi
+  - Gunung Semeru
+copyright: "© 2024 Yosep Dwi Kristanto"
+license: "CC BY"
+code-annotations: select
+editor_options: 
+  chunk_output_type: console
+---
+
+Alkisah ada seorang ksatria yang sakti mandraguna bernama Hanoman. Ksatria yang merupakan seekor kera putih itu suatu ketika diutus oleh Rama untuk mencari tanaman obat di Himalaya. Ia pun pergi ke gunung itu tanpa pikir panjang. Sesampainya di sana, ia baru sadar bahwa ternyata ia tidak mengetahui bentuk dan rupa tanaman itu seperti apa. Tak habis akal, ia pun memotong gunung itu dan membawanya ke hadapan Rama. Akhirnya, Rama dan pasukannya menemukan tanaman obat itu, kemudian mereka memakannya sehingga pulih seperti sedia kala.
+
+Cerita heroik tersebut meninggalkan beberapa pesan. Pertama, kita perlu memberikan instruksi sedetail mungkin agar instruksi tersebut dapat terlaksana dengan efektif dan efisien. Kedua, sikap Hanoman dalam cerita itu menyiratkan keinginan yang sangat kuat untuk menyelesaikan sebuah persoalan. Terakhir, kadang-kadang memindahkan gunung adalah solusi terbaik! Pesan terakhir ini relevan dengan persoalan berikut.
+
+> Bagaimana kita dapat membandingkan seberapa tinggi dan besar gunung-gunung di Indonesia?
+
+Karena begitu banyaknya gunung-gunung di Indonesia, kita pilih empat saja berdasarkan kepopulerannya. Berdasarkan [Google Trends](https://trends.google.com/trends/explore/RELATED_QUERIES/1724521800?hl=in&tz=-120&date=all&geo=ID&hl=in&hl=id&q=gunung&tz=-120&sni=3 "gunung - Pelajari - Google Trends"){.external target="_blank"}, keempat gunung tersebut adalah Gunung Agung, Bromo, Merapi, dan Semeru. Untuk membandingkan keempat gunung tersebut, kita dapat "memindahkannya" sehingga berdampingan satu sama lain. Dengan demikian, kita dapat mengamatinya secara lebih mudah untuk kemudian kita bandingkan tinggi dan besar keempat gunung tersebut.
+
+Tidak seperti Hanoman yang memindahkan potongan Gunung Himalaya secara harfiah, kita hanya memindahkan representasi Gunung Agung, Bromo, Merapi, dan Semeru saja. Jika Hanoman melakukannya dengan kesaktiannya, kita akan memindahkan keempat gunung tersebut dengan [pemrograman R](https://www.R-project.org/ "R: A Language and Environment for Statistical Computing"){.external target="_blank"}. Meskipun ada beberapa perbedaan, apa yang kita lakukan nanti intinya kurang lebih sama dengan yang dilakukan Hanoman.
+
+1.  Seperti halnya Hanoman yang mengetahui posisi fisik Gunung Himalaya, kita juga perlu tahu di mana kita dapat menemukan representasi digital Gunung Agung, Bromo, Merapi, dan Semeru. Representasi digital itu adalah data.
+
+2.  Seperti halnya Hanoman yang membawa potongan Gunung Himalaya, kita juga perlu menggunakan potongan keempat gunung tersebut secukupnya saja.
+
+3.  Seperti halnya Hanoman yang memindahkan Gunung Himalaya ke hadapan Rama, kita juga perlu memindahkan keempat gunung itu di suatu tempat agar mudah diamati dan dibandingkan.
+
+Tak perlu berlama-lama, kita keluarkan kesaktian kita. *Eh*, maksudku, kita siapkan alat-alat yang diperlukan.
+
+```{r}
+#| echo: true
+#| code-fold: false
+#| message: false
+
+library(tidyverse)
+library(terra)
+library(rayshader)
+```
+
+## Memahami Ide Dasarnya {#sec-memahami-ide-dasarnya}
+
+Sebelum kita menggambar model 3D Gunung Agung, Bromo, Merapi, dan Semeru, baik apabila kita bahas ide dasarnya: beberapa objek 3D itu dapat dinyatakan ke dalam sebuah matriks elevasi. Baris dan kolom matriks tersebut menyatakan koordinat $x$ dan $y$, sedangkan elemen-elemennya menyatakan ketinggiannya. Misalnya, kita memiliki matriks elevasi seperti berikut.
+
+```{r}
+#| echo: false
+
+set.seed(1234)
+
+elemen_matriks <- rnorm(25, mean = 10, sd = 3) |> 
+  round(0)
+matriks_elevasi <- matrix(
+  data = elemen_matriks,
+  nrow = 5
+)
+rownames(matriks_elevasi) <- 1:5
+colnames(matriks_elevasi) <- 1:5
+
+print(matriks_elevasi)
+
+```
+
+Dari matriks elevasi tersebut, kita dapat membuat objek 3D dengan berdasarkan ketinggiannya (elemen-elemen matriks) dan posisinya (baris dan kolomnya). Tetapi sebelum itu, terlebih dahulu kita perhatikan proyeksi dua dimensinya seperti yang ditunjukkan pada @fig-proy-3d-sederhana.
+
+```{r}
+#| echo: false
+#| label: fig-proy-3d-sederhana
+#| fig-cap: "Proyeksi 2D dari sebuah objek 3D yang dibentuk dari `matriks_elevasi`"
+
+df_elevasi <- matriks_elevasi |> 
+  as.data.frame() |> 
+  mutate(y = rownames(matriks_elevasi)) |> 
+  pivot_longer(
+    cols = !y,
+    names_to = "x",
+    values_to = "elevasi"
+  ) |> 
+  mutate(
+    x = as.numeric(x),
+    y = as.numeric(y)
+  ) |> 
+  select(x, y, elevasi)
+
+proyeksi_2d <- df_elevasi |> 
+  ggplot(aes(x, y)) + 
+  geom_raster(aes(fill = elevasi))
+
+print(proyeksi_2d)
+```
+
+Apakah kamu dapat membayangkan objek 3D-nya seperti apa jika proyeksi 2D-nya ditunjukkan pada @fig-proy-3d-sederhana? Ingat, warna pada diagram tersebut menggambarkan elevasi/ketinggiannya! Bandingkan imajinasimu dengan @fig-objek-3d-sederhana berikut!
+
+![Objek 3D sederhana](aset/objek_3d_sederhana.png){#fig-objek-3d-sederhana fig-align="center"}
+
+Proses seperti itu akan kita lakukan untuk menggambar model 3D Gunung Agung, Bromo, Merapi, dan Semeru. Untuk melakukannya, kita perlu memiliki matriks elevasi keempat gunung tersebut. Matriks tersebut akan kita siapkan pada bagian berikutnya.
+
+## Mempersiapkan Data {#sec-mempersiapkan-data}
+
+Seperti yang telah dijelaskan pada @sec-memahami-ide-dasarnya, kita perlu memiliki matriks elevasi Gunung Agung, Bromo, Merapi, dan Semeru. Matriks ini dapat ditemukan di banyak tempat. Salah satunya di situs webnya [Derek Watkin](https://dwtkns.com/srtm30m/ "30-Meter SRTM Elevation Data Downloader"){.external target="_blank"}. Sebelum mengunduh datanya, kamu perlu *login* terlebih dahulu ke dalam situs web [NASA Earthdata](https://urs.earthdata.nasa.gov/users/new "Earthdata Login User Registration"){.external target="_blank"}.
+
+Setelah berhasil login, kita perlu mencari persegi tempat keempat gunung tersebut. Untuk mencarinya, kita dapat menyeret dan memperbesar laman dalam situs web tersebut. Lokasi keempat gunung tersebut ada pada enam persegi, yaitu S08E110, S08E112, S08E113, S09E112, S09E113, dan S09E115. Untuk mengunduhnya, klik perseginya dan kemudian klik tombol "Download DEM". Setelah itu, ekstrak semua fail zip-nya. Pindahkan fail-fail tersebut ke dalam folder kerjamu.
+
+Sampai di sini, kita memiliki enam fail zip dengan nama `S08E110.hgt`, `S08E112.hgt`, `S08E113.hgt`, `S09E112.hgt`, `S09E113.hgt`, dan `S09E115.hgt` dalam folder kerja kita. Kita gunakan semua fail tersebut untuk membuat sebuah matriks elevasi dengan kode berikut.
+
+``` r
+S08E110 <- terra::rast("S08E110.hgt")
+S08E112 <- terra::rast("S08E112.hgt")
+S08E113 <- terra::rast("S08E113.hgt")
+S09E112 <- terra::rast("S09E112.hgt")
+S09E113 <- terra::rast("S09E113.hgt")
+S09E115 <- terra::rast("S09E115.hgt")
+
+matriks_elevasi <- terra::merge(
+  S08E110, S08E112, S08E113,
+  S09E112, S09E113, S09E115
+)
+```
+
+Untuk memudahkan dalam pengolahan data berikutnya, kita ubah `matriks_elevasi` tersebut menjadi sebuah tibble. Kita jalankan baris kode berikut untuk menghasilkan tibble dengan nama `df_elevasi`.
+
+``` r
+df_elevasi <- terra::as.data.frame(matriks_elevasi, xy = TRUE) |> 
+  as_tibble()
+df_elevasi <- df_elevasi |> 
+  rename(elevasi = S08E110)
+```
+
+Seperti yang dilakukan Hanoman terhadap Gunung Himalaya, kita juga perlu memotong `df_elevasi` agar hanya memuat koordinat $x$ dan $y$ dari Gunung Agung, Bromo, Merapi, dan Semeru seperlunya saja.
+
+``` r
+# Agung
+df_agung <- df_elevasi |> 
+  filter(
+    x >= 115.4562,
+    x <= 115.5562,
+    y >= -8.393267,
+    y <= -8.293267
+  )
+df_agung <- df_agung |> 
+  mutate(
+    gunung = "Agung"
+  )
+
+# Bromo
+df_bromo <- df_elevasi |> 
+  filter(
+    x >= 112.9,
+    x <= 113.0,
+    y >= -8.0,
+    y <= -7.9
+  )
+df_bromo <- df_bromo |> 
+  mutate(
+    gunung = "Bromo"
+  )
+
+# Merapi
+df_merapi <- df_elevasi |> 
+  filter(
+    x >= 110.3967,
+    x <= 110.4967,
+    y >= -7.590278,
+    y <= -7.490278
+  )
+df_merapi <- df_merapi |> 
+  mutate(gunung = "Merapi")
+
+# Semeru
+df_semeru <- df_elevasi |> 
+  filter(
+    x >= 112.8722,
+    x <= 112.9722,
+    y >= -8.157778,
+    y <= -8.057778
+  )
+df_semeru <- df_semeru |> 
+  mutate(
+    gunung = "Semeru"
+  )
+```
+
+Selanjutnya, kita gabung semua data dari keempat gunung tersebut menjadi `df_gunung`.
+
+``` r
+df_gunung <- bind_rows(
+  df_agung, df_bromo, df_merapi, df_semeru
+)
+```
+
+*Nah*, sekarang kita "pindahkan" keempat gunung tersebut dari posisi asalnya. Posisi akhir yang kita targetkan adalah posisi dengan koordinat $x$ dan $y$ minimumnya bernilai nol.
+
+``` r
+df_gunung <- df_gunung |> 
+  group_by(gunung) |> 
+  mutate(
+    x_trans = x - min(x),
+    y_trans = y - min(y)
+  ) |> 
+  ungroup()
+```
+
+Apakah sampai di sini kamu berhasil menjalankan baris-baris kode di atas sampai mendapatkan `df_gunung`? Jika iya, selamat! Jika tidak, mungkin ada beberapa hal yang perlu dicek kembali. Tetapi jika kamu langsung ingin mendapatkan `df_gunung` tersebut tanpa menjalankan semua baris kode di atas, kamu dapat mendapatkannya dengan menjalankan kode berikut.
+
+```{r}
+#| echo: true
+#| code-fold: false
+
+load(url("pos/2024-08-gunung-agung-bromo-merapi-dan-semeru/aset/"))
+
+```
