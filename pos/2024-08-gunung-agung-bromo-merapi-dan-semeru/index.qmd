@@ -394,7 +394,7 @@ $$
 \text{Volume} = \sum_{i=1}^{n} L_{i} \cdot h_{i}
 $$
 
-dengan $L_{i}$ dan $h_{i}$ secara berturut-turut adalah luas dan tinggi tiap-tiap petak. Nah, sekarang kita hitung volume keempat gunung tersebut.
+dengan $L_{i}$ dan $h_{i}$ secara berturut-turut adalah luas dan tinggi tiap-tiap petak. *Nah*, sekarang kita hitung volume keempat gunung tersebut.
 
 ```{r}
 #| echo: true

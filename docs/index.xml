@@ -659,7 +659,7 @@ background-color: null;
 font-style: inherit;">720</span></span>
 <span id="cb11-9">)</span></code></pre></div>
 <p>Hasil gambarnya seperti yang ditunjukkan pada Gambar&nbsp;5.</p>
-<div id="fig-empat-gunung-3d" class="quarto-figure quarto-figure-center quarto-float anchored" alt="Model 3D Gunung Agung, Bromo, Merapi, dan Semeru" data-fig-align="center">
+<div id="fig-empat-gunung-3d" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center" alt="Model 3D Gunung Agung, Bromo, Merapi, dan Semeru">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-empat-gunung-3d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-gunung-agung-bromo-merapi-dan-semeru/aset/empat_gunung_3d.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Model 3D Gunung Agung, Bromo, Merapi, dan Semeru">
@@ -858,7 +858,7 @@ font-style: inherit;">print</span>(luas_petak_est)</span></code></pre></div>
 <p>Yup, petak-petak tersebut ukurannya adalah 30 m × 30 m. Dengan demikian, luas petaknya adalah 900 m<sup>2</sup>. Perkiraan kita tadi cukup dekat dengan nilai ini.</p>
 <p>Volume potongan keempat gunung tersebut merupakan jumlah dari hasil kali luas setiap petak dan tinggi petak tersebut.</p>
 <p><img src="https://latex.codecogs.com/png.latex?%0A%5Ctext%7BVolume%7D%20=%20%5Csum_%7Bi=1%7D%5E%7Bn%7D%20L_%7Bi%7D%20%5Ccdot%20h_%7Bi%7D%0A"></p>
-<p>dengan <img src="https://latex.codecogs.com/png.latex?L_%7Bi%7D"> dan <img src="https://latex.codecogs.com/png.latex?h_%7Bi%7D"> secara berturut-turut adalah luas dan tinggi tiap-tiap petak. Nah, sekarang kita hitung volume keempat gunung tersebut.</p>
+<p>dengan <img src="https://latex.codecogs.com/png.latex?L_%7Bi%7D"> dan <img src="https://latex.codecogs.com/png.latex?h_%7Bi%7D"> secara berturut-turut adalah luas dan tinggi tiap-tiap petak. <em>Nah</em>, sekarang kita hitung volume keempat gunung tersebut.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1">volume <span class="ot" style="color: #003B4F;
 background-color: null;
