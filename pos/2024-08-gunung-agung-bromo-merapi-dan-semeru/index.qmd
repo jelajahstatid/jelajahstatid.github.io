@@ -368,17 +368,24 @@ df_gunung |>
 
 ```
 
-Sebagian besar, banyak petaknya adalah 129.600 kecuali data untuk Gunung Bromo. Untuk itu, banyak petak pada Gunung Bromo kita samakan saja dengan ketiga gunung lainnya. Karena alas potongan keempat gunung tersebut persegi, kita dapat menentukan banyaknya petak pada sisi-sisinya seperti berikut.
+Sebagian besar, banyak petaknya adalah 129.600 kecuali data untuk Gunung Bromo. Untuk itu, banyak petak pada Gunung Bromo kita samakan saja dengan ketiga gunung lainnya.
+
+Alas potongan gunung-gunung tersebut memiliki ukuran 0,1 derajat × 0,1 derajat. Karena 0,1 derajat kurang lebih sama dengan 110 km, ukuran alasnya berarti 11 km × 11 km dan luasnya adalah 121 km^2^ atau 121.000.000 m^2^. Padahal alas tersebut berisi 129.600 petak. Dengan demikian, luas petak tersebut dapat dihitung seperti berikut.
 
 ```{r}
 #| echo: true
 #| code-fold: false
 
-sqrt(129600)
+luas_petak_est <- 121000000 / 129600
+print(luas_petak_est)
 
 ```
 
-Berapakah panjang setiap petak tersebut? Alas potongan gunung-gunung tersebut memiliki ukuran 0,1 derajat × 0,1 derajat. Karena 0,1 derajat kurang lebih sama dengan 110 km, ukuran alasnya adalah 11 km × 11 km. Dengan demikian, luas petak ini adalah 121 km^2^ atau 12.100.000 m^2^.
+Dengan demikian, kita memeroleh luas per petaknya sekitar 933,642 m^2^. Sekarang coba kita kembali ke belakang. Ketika kita mengunduh data matriks elevasi dari situs webnya Derek Watkin, di situ terdapat keterangan seperti berikut.
+
+> This interface attempts to ease the pain of downloading *30-meter resolution* elevation data from the Shuttle Radar Topography Mission.
+
+Yup, petak-petak tersebut ukurannya adalah 30 m × 30 m. Dengan demikian, luas petaknya adalah 900 m^2^. Perkiraan kita tadi cukup dekat dengan nilai ini.
 
 Volume potongan keempat gunung tersebut merupakan jumlah dari hasil kali luas setiap petak dan tinggi petak tersebut.
 
@@ -394,7 +401,7 @@ dengan $L_{i}$ dan $h_{i}$ secara berturut-turut adalah luas dan tinggi tiap-tia
 
 volume <- df_gunung |> 
   mutate(
-    volume_petak = 12100000 * elevasi
+    volume_petak = 900 * elevasi
   ) |> 
   group_by(gunung) |> 
   summarise(
@@ -420,7 +427,7 @@ print(volume)
 
 ```
 
-Potongan gunung manakah yang paling besar? Potongan gunung Bromo-lah yang paling besar, yaitu sekitar 3,47 × 10^18^ liter. Selanjutnya kita buat diagram batang yang merepresentasikan volume potongan keempat gunung tersebut. Hasilnya disajikan pada @fig-diagram-batang-volume-gunung.
+Potongan gunung manakah yang paling besar? Potongan gunung Bromo-lah yang paling besar, yaitu sekitar 2,58 × 10^14^ liter. Selanjutnya kita buat diagram batang yang merepresentasikan volume potongan keempat gunung tersebut. Hasilnya disajikan pada @fig-diagram-batang-volume-gunung.
 
 ```{r}
 #| echo: true

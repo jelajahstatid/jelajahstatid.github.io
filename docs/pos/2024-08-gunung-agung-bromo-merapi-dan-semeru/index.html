@@ -516,7 +516,7 @@ Gambar&nbsp;4: Proyeksi 2D Gunung Agung, Bromo, Merapi, dan Semeru
 <span id="cb11-8"><a href="#cb11-8"></a>  <span class="at">height =</span> <span class="dv">720</span></span>
 <span id="cb11-9"><a href="#cb11-9"></a>)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Hasil gambarnya seperti yang ditunjukkan pada <a href="#fig-empat-gunung-3d" class="quarto-xref">Gambar&nbsp;5</a>.</p>
-<div id="fig-empat-gunung-3d" class="quarto-figure quarto-figure-center quarto-float anchored" alt="Model 3D Gunung Agung, Bromo, Merapi, dan Semeru" data-fig-align="center">
+<div id="fig-empat-gunung-3d" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center" alt="Model 3D Gunung Agung, Bromo, Merapi, dan Semeru">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-empat-gunung-3d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="aset/empat_gunung_3d.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Model 3D Gunung Agung, Bromo, Merapi, dan Semeru">
@@ -597,14 +597,20 @@ Gambar&nbsp;6: Ketinggian Gunung Agung, Bromo, Merapi, dan Semeru
 4 Semeru       129600</code></pre>
 </div>
 </div>
-<p>Sebagian besar, banyak petaknya adalah 129.600 kecuali data untuk Gunung Bromo. Untuk itu, banyak petak pada Gunung Bromo kita samakan saja dengan ketiga gunung lainnya. Karena alas potongan keempat gunung tersebut persegi, kita dapat menentukan banyaknya petak pada sisi-sisinya seperti berikut.</p>
+<p>Sebagian besar, banyak petaknya adalah 129.600 kecuali data untuk Gunung Bromo. Untuk itu, banyak petak pada Gunung Bromo kita samakan saja dengan ketiga gunung lainnya.</p>
+<p>Alas potongan gunung-gunung tersebut memiliki ukuran 0,1 derajat × 0,1 derajat. Karena 0,1 derajat kurang lebih sama dengan 110 km, ukuran alasnya berarti 11 km × 11 km dan luasnya adalah 121 km<sup>2</sup> atau 121.000.000 m<sup>2</sup>. Padahal alas tersebut berisi 129.600 petak. Dengan demikian, luas petak tersebut dapat dihitung seperti berikut.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">sqrt</span>(<span class="dv">129600</span>)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>luas_petak_est <span class="ot">&lt;-</span> <span class="dv">121000000</span> <span class="sc">/</span> <span class="dv">129600</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a><span class="fu">print</span>(luas_petak_est)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 360</code></pre>
+<pre><code>[1] 933.642</code></pre>
 </div>
 </div>
-<p>Berapakah panjang setiap petak tersebut? Alas potongan gunung-gunung tersebut memiliki ukuran 0,1 derajat × 0,1 derajat. Karena 0,1 derajat kurang lebih sama dengan 110 km, ukuran alasnya adalah 11 km × 11 km. Dengan demikian, luas petak ini adalah 121 km<sup>2</sup> atau 12.100.000 m<sup>2</sup>.</p>
+<p>Dengan demikian, kita memeroleh luas per petaknya sekitar 933,642 m<sup>2</sup>. Sekarang coba kita kembali ke belakang. Ketika kita mengunduh data matriks elevasi dari situs webnya Derek Watkin, di situ terdapat keterangan seperti berikut.</p>
+<blockquote class="blockquote">
+<p>This interface attempts to ease the pain of downloading <em>30-meter resolution</em> elevation data from the Shuttle Radar Topography Mission.</p>
+</blockquote>
+<p>Yup, petak-petak tersebut ukurannya adalah 30 m × 30 m. Dengan demikian, luas petaknya adalah 900 m<sup>2</sup>. Perkiraan kita tadi cukup dekat dengan nilai ini.</p>
 <p>Volume potongan keempat gunung tersebut merupakan jumlah dari hasil kali luas setiap petak dan tinggi petak tersebut.</p>
 <p><span class="math display">\[
 \sum_{i=1}^{n} L_{i} \cdot h_{i}
@@ -613,7 +619,7 @@ Gambar&nbsp;6: Ketinggian Gunung Agung, Bromo, Merapi, dan Semeru
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>volume <span class="ot">&lt;-</span> df_gunung <span class="sc">|&gt;</span> </span>
 <span id="cb19-2"><a href="#cb19-2"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb19-3"><a href="#cb19-3"></a>    <span class="at">volume_petak =</span> <span class="dv">12100000</span> <span class="sc">*</span> elevasi</span>
+<span id="cb19-3"><a href="#cb19-3"></a>    <span class="at">volume_petak =</span> <span class="dv">900</span> <span class="sc">*</span> elevasi</span>
 <span id="cb19-4"><a href="#cb19-4"></a>  ) <span class="sc">|&gt;</span> </span>
 <span id="cb19-5"><a href="#cb19-5"></a>  <span class="fu">group_by</span>(gunung) <span class="sc">|&gt;</span> </span>
 <span id="cb19-6"><a href="#cb19-6"></a>  <span class="fu">summarise</span>(</span>
@@ -624,12 +630,12 @@ Gambar&nbsp;6: Ketinggian Gunung Agung, Bromo, Merapi, dan Semeru
 <span id="cb19-11"><a href="#cb19-11"></a><span class="fu">print</span>(volume)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 2
-  gunung volume_m3
-  &lt;chr&gt;      &lt;dbl&gt;
-1 Agung    2.12e15
-2 Bromo    3.47e15
-3 Merapi   2.21e15
-4 Semeru   3.20e15</code></pre>
+  gunung    volume_m3
+  &lt;chr&gt;         &lt;dbl&gt;
+1 Agung  157764598200
+2 Bromo  257926200300
+3 Merapi 164324547900
+4 Semeru 237914817300</code></pre>
 </div>
 </div>
 <p>Karena kita biasanya lebih mudah membayangkan volume dengan satuan liter, kita dapat mengkonversi satuan volumenya menjadi liter.</p>
@@ -642,15 +648,15 @@ Gambar&nbsp;6: Ketinggian Gunung Agung, Bromo, Merapi, dan Semeru
 <span id="cb21-6"><a href="#cb21-6"></a><span class="fu">print</span>(volume)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 3
-  gunung volume_m3 volume_liter
-  &lt;chr&gt;      &lt;dbl&gt;        &lt;dbl&gt;
-1 Agung    2.12e15      2.12e18
-2 Bromo    3.47e15      3.47e18
-3 Merapi   2.21e15      2.21e18
-4 Semeru   3.20e15      3.20e18</code></pre>
+  gunung    volume_m3 volume_liter
+  &lt;chr&gt;         &lt;dbl&gt;        &lt;dbl&gt;
+1 Agung  157764598200      1.58e14
+2 Bromo  257926200300      2.58e14
+3 Merapi 164324547900      1.64e14
+4 Semeru 237914817300      2.38e14</code></pre>
 </div>
 </div>
-<p>Potongan gunung manakah yang paling besar? Potongan gunung Bromo-lah yang paling besar, yaitu sekitar 3,47 × 10<sup>18</sup> liter. Selanjutnya kita buat diagram batang yang merepresentasikan volume potongan keempat gunung tersebut. Hasilnya disajikan pada <a href="#fig-diagram-batang-volume-gunung" class="quarto-xref">Gambar&nbsp;7</a>.</p>
+<p>Potongan gunung manakah yang paling besar? Potongan gunung Bromo-lah yang paling besar, yaitu sekitar 2,58 × 10<sup>14</sup> liter. Selanjutnya kita buat diagram batang yang merepresentasikan volume potongan keempat gunung tersebut. Hasilnya disajikan pada <a href="#fig-diagram-batang-volume-gunung" class="quarto-xref">Gambar&nbsp;7</a>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>volume <span class="sc">|&gt;</span> </span>
 <span id="cb23-2"><a href="#cb23-2"></a>  <span class="fu">mutate</span>(</span>
