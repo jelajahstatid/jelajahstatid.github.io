@@ -2,7 +2,6 @@
 title: "Gunung Agung, Bromo, Merapi, dan Semeru"
 subtitle: "Seberapa Tinggi dan Besar Keempat Gunung Itu?"
 description: "Gunung Agung, Bromo, Merapi, dan Semeru termasuk gunung-gunung yang populer di Indonesia. Pemrograman R dapat digunakan untuk memodelkan keempat gunung tersebut ke dalam bentuk 2D maupun 3D. Cara seperti ini dapat digunakan untuk membandingkan seberapa tinggi dan besar gunung-gunung tersebut."
-draft: true
 author:
   - name: Yosep Dwi Kristanto
     url: https://people.usd.ac.id/~ydkristanto/
@@ -14,10 +13,13 @@ categories:
   - Geostatistika
   - turorial
   - visualisasi data
-image: "empat-gunung.png"
+image: "gunung_bromo_3d.png"
 image-alt: |
   Gambar 3D yang menunjukkan Gunung Agung, Bromo, Merapi, dan Semeru secara berdampingan.
 keywords: 
+  - matriks
+  - elevasi
+  - volume
   - Gunung Agung
   - Gunung Bromo
   - Gunung Merapi
@@ -31,13 +33,15 @@ editor_options:
 
 Alkisah ada seorang ksatria yang sakti mandraguna bernama Hanoman. Ksatria yang merupakan seekor kera putih itu suatu ketika diutus oleh Rama untuk mencari tanaman obat di Himalaya. Ia pun pergi ke gunung itu tanpa pikir panjang. Sesampainya di sana, ia baru sadar bahwa ternyata ia tidak mengetahui bentuk dan rupa tanaman itu seperti apa. Tak habis akal, ia pun memotong gunung itu dan membawanya ke hadapan Rama. Akhirnya, Rama dan pasukannya menemukan tanaman obat itu, kemudian mereka memakannya sehingga pulih seperti sedia kala.
 
+![Patung Hanoman di Bali, Indonesia. (Kredit: Wikimedia.org/CC0)](aset/Hanoman_Bali.JPG){#fig-patung-hanoman fig-alt="Patung Hanoman di Bali, Indonesia. (Kredit: Wikimedia.org/CC0)"}
+
 Cerita heroik tersebut meninggalkan beberapa pesan. Pertama, kita perlu memberikan instruksi sedetail mungkin agar instruksi tersebut dapat terlaksana dengan efektif dan efisien. Kedua, sikap Hanoman dalam cerita itu menyiratkan keinginan yang sangat kuat untuk menyelesaikan sebuah persoalan. Terakhir, kadang-kadang memindahkan gunung adalah solusi terbaik! Pesan terakhir ini relevan dengan persoalan berikut.
 
 > Bagaimana kita dapat membandingkan seberapa tinggi dan besar gunung-gunung di Indonesia?
 
 Karena begitu banyaknya gunung-gunung di Indonesia, kita pilih empat saja berdasarkan kepopulerannya. Berdasarkan [Google Trends](https://trends.google.com/trends/explore/RELATED_QUERIES/1724521800?hl=in&tz=-120&date=all&geo=ID&hl=in&hl=id&q=gunung&tz=-120&sni=3 "gunung - Pelajari - Google Trends"){.external target="_blank"}, keempat gunung tersebut adalah Gunung Agung, Bromo, Merapi, dan Semeru. Untuk membandingkan keempat gunung tersebut, kita dapat "memindahkannya" sehingga berdampingan satu sama lain. Dengan demikian, kita dapat mengamatinya secara lebih mudah untuk kemudian kita bandingkan tinggi dan besar keempat gunung tersebut.
 
-Tidak seperti Hanoman yang memindahkan potongan Gunung Himalaya secara harfiah, kita hanya memindahkan representasi Gunung Agung, Bromo, Merapi, dan Semeru saja. Jika Hanoman melakukannya dengan kesaktiannya, kita akan memindahkan keempat gunung tersebut dengan [pemrograman R](https://www.R-project.org/ "R: A Language and Environment for Statistical Computing"){.external target="_blank"}. Meskipun ada beberapa perbedaan, apa yang kita lakukan nanti intinya kurang lebih sama dengan yang dilakukan Hanoman.
+Tak seperti Hanoman yang memindahkan potongan Gunung Himalaya secara harfiah, kita hanya memindahkan representasi Gunung Agung, Bromo, Merapi, dan Semeru saja. Jika Hanoman melakukan dengan kesaktiannya, kita akan memindahkan keempat gunung tersebut dengan [pemrograman R](https://www.R-project.org/ "R: A Language and Environment for Statistical Computing"){.external target="_blank"}. Meskipun ada beberapa perbedaan, apa yang kita lakukan nanti intinya kurang lebih sama dengan yang dilakukan Hanoman.
 
 1.  Seperti halnya Hanoman yang mengetahui posisi fisik Gunung Himalaya, kita juga perlu tahu di mana kita dapat menemukan representasi digital Gunung Agung, Bromo, Merapi, dan Semeru. Representasi digital itu adalah data.
 
@@ -224,6 +228,225 @@ Apakah sampai di sini kamu berhasil menjalankan baris-baris kode di atas sampai 
 #| echo: true
 #| code-fold: false
 
-load(url("pos/2024-08-gunung-agung-bromo-merapi-dan-semeru/aset/"))
+load(url("https://github.com/jelajahstatid/jelajahstatid.github.io/raw/main/pos/2024-08-gunung-agung-bromo-merapi-dan-semeru/aset/df_gunung.RData"))
 
 ```
+
+Kita telah memiliki data untuk menggambarkan Gunung Agung, Bromo, Merapi, dan Semeru secara berdampingan. Kita siap untuk melanjutkan perjalanan kita ke tahapan selanjutnya.
+
+## Memvisualisasikan Data {#sec-memvisualisasikan-data}
+
+Kita telah bekerja keras di @sec-mempersiapkan-data. Sekarang, kita masuk ke tahapan yang mengasyikkan. *Yup*, di tahapan ini kita akan memvisualisasikan data. Data yang kita gunakan adalah `df_gunung`. Visualisasi data pertama yang kita lakukan adalah membuat proyeksi 2D dari Gunung Agung, Bromo, Merapi, dan Semeru. Untuk melakukannya, kita gunakan baris kode di bawah ini. Hasilnya ditunjukkan pada @fig-proy-empat-gunung.
+
+```{r}
+#| echo: true
+#| code-fold: false
+#| warning: false
+#| label: fig-proy-empat-gunung
+#| fig-cap: "Proyeksi 2D Gunung Agung, Bromo, Merapi, dan Semeru"
+
+plot_2d_gunung <- df_gunung |> 
+  ggplot(
+    aes(x_trans, y_trans)
+  ) + 
+  geom_raster(aes(fill = elevasi)) + 
+  geom_contour(
+    aes(z = elevasi), 
+    breaks = c(seq(500, 3500, by = 250)),
+    color = "white",
+    linewidth = .25,
+    alpha = .3
+  ) + 
+  scale_fill_gradient(
+    name = "Elevasi (m)",
+    low = "#6DAA55",
+    high = "#205544"
+  ) + 
+  facet_wrap(vars(gunung)) + 
+  coord_fixed() +
+  theme_minimal() + 
+  theme(
+    axis.title = element_blank(),
+    axis.text = element_blank()
+  )
+
+print(plot_2d_gunung)
+```
+
+Berdasarkan @fig-proy-empat-gunung tersebut, apakah kamu sudah dapat membandingkan tinggi dan besar keempat gunung tersebut? Ya, Gunung Semeru tampak paling tinggi dibandingkan ketiga gunung lainnya. Selain itu, kita dapat melihat bahwa Gunung Bromo tampak relatif lebih luas dibandingkan ketiga gunung lainnya.
+
+Untuk melihat bentuk detailnya, kita dapat menggambar keempat gunung tersebut ke dalam bentuk 3D. Untuk melakukannya, kita gunakan metode yang telah dibahas pada [pos sebelumnya](/pos/2024-08-curah-hujan-indonesia/index.qmd "Indonesia Negara Dua Musim: Bagaimana Curah Hujannya?"). Bagaimana caranya? Kita jalankan kode berikut ini.
+
+``` r
+plot_gg(
+  plot_2d_gunung,
+  multicore = TRUE,
+  sunangle = 135,
+  width = 5,
+  height = 5,
+  scale = 250
+)
+```
+
+Beberapa saat setelah kode di atas kita jalankan, kita akan mendapatkan jendela kamera. Melalui jendela tersebut, kita dapat mengatur tampilan objek 3D-nya sesuai yang kita inginkan. Setelah itu, kita jalankan kode berikut untuk merender gambarnya.
+
+``` r
+render_highquality(
+  filename = "empat_gunung_3d.png",
+  samples = 128,
+  preview = TRUE,
+  interactive = FALSE,
+  light = TRUE,
+  width = 1280,
+  height = 720
+)
+```
+
+Hasil gambarnya seperti yang ditunjukkan pada @fig-empat-gunung-3d.
+
+![Model 3D Gunung Agung, Bromo, Merapi, dan Semeru](aset/empat_gunung_3d.png){#fig-empat-gunung-3d fig-alt="Model 3D Gunung Agung, Bromo, Merapi, dan Semeru" fig-align="center"}
+
+Berdasarkan @fig-empat-gunung-3d, kita dapat membandingkan tinggi dan besar keempat gunung tersebut. Gunung semeru tampak paling tinggi. Gunung Bromo bentuknya lebih melebar dibandingkan dengan ketiga gunung lainnya. Selain itu, berdasarkan gambar tersebut kita dapat membandingkan bentuk detail keempat gunung tersebut.
+
+## Memperkirakan Tinggi dan Volume {#sec-memperkirakan-tinggi-dan-volume}
+
+Secara sederhana, sebenarnya kita telah dapat membandingkan tinggi dan volume keempat gunung pada @fig-empat-gunung-3d. Akan tetapi, kita juga dapat memperkirakan berapakah tinggi dan volume keempat gunung tersebut.
+
+Pertama, kita akan menentukan tinggi Gunung Agung, Bromo, Merapi, dan Semeru. Berdasarkan Wikipedia, tinggi keempat gunung tersebut secara berturut-turut adalah 3.142, 2.614, 2.968, dan 3.676. Sekarang, kita perkirakan tinggi keempat gunung tersebut dengan menggunakan data elevasi dalam `df_gunung`.
+
+```{r}
+#| echo: true
+#| code-fold: false
+
+ketinggian <- df_gunung |> 
+  group_by(gunung) |> 
+  summarise(
+    elevasi_maksimum = max(elevasi, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+print(ketinggian)
+```
+
+Meskipun hasilnya berbeda dengan informasi dalam Wikipedia, kita mendapatkan ketinggian-ketinggian yang tak jauh berbeda. Agar lebih mudah dalam membandingkan tinggi keempat gunung tersebut, kita buat diagram batangnya. Diagram batang tersebut disajikan pada @fig-diagram-batang-tinggi-gunung.
+
+```{r}
+#| echo: true
+#| code-fold: false
+#| label: fig-diagram-batang-tinggi-gunung
+#| fig-cap: "Ketinggian Gunung Agung, Bromo, Merapi, dan Semeru"
+#| fig-asp: 0.5625
+
+ketinggian |> 
+  mutate(gunung = fct_reorder(gunung, -elevasi_maksimum)) |> 
+  ggplot(aes(x = gunung, y = elevasi_maksimum)) + 
+  geom_col(
+    aes(fill = elevasi_maksimum),
+    show.legend = FALSE
+  ) + 
+  scale_fill_viridis_c() + 
+  theme_minimal() + 
+  labs(
+    x = "Gunung",
+    y = "Ketinggian (mdpl)"
+  )
+
+```
+
+Berikutnya, kita akan memperkirakan volume keempat gunung tersebut. Volume yang dimaksud di sini adalah volume potongan tiap gunung pada @fig-empat-gunung-3d. Untuk itu, kita hitung ada berapa petak data dalam setiap data gunungnya.
+
+```{r}
+#| echo: true
+#| code-fold: false
+
+df_gunung |> 
+  group_by(gunung) |> 
+  summarise(
+    banyak_petak = n(),
+    .groups = "drop"
+  )
+
+```
+
+Sebagian besar, banyak petaknya adalah 129.600 kecuali data untuk Gunung Bromo. Untuk itu, banyak petak pada Gunung Bromo kita samakan saja dengan ketiga gunung lainnya. Karena alas potongan keempat gunung tersebut persegi, kita dapat menentukan banyaknya petak pada sisi-sisinya seperti berikut.
+
+```{r}
+#| echo: true
+#| code-fold: false
+
+sqrt(129600)
+
+```
+
+Berapakah panjang setiap petak tersebut? Alas potongan gunung-gunung tersebut memiliki ukuran 0,1 derajat × 0,1 derajat. Karena 0,1 derajat kurang lebih sama dengan 110 km, ukuran alasnya adalah 11 km × 11 km. Dengan demikian, luas petak ini adalah 121 km^2^ atau 12.100.000 m^2^.
+
+Volume potongan keempat gunung tersebut merupakan jumlah dari hasil kali luas setiap petak dan tinggi petak tersebut.
+
+$$
+\sum_{i=1}^{n} L_{i} \cdot h_{i}
+$$
+
+dengan $L_{i}$ dan $h_{i}$ secara berturut-turut adalah luas dan tinggi tiap-tiap petak. Nah, sekarang kita hitung volume keempat gunung tersebut.
+
+```{r}
+#| echo: true
+#| code-fold: false
+
+volume <- df_gunung |> 
+  mutate(
+    volume_petak = 12100000 * elevasi
+  ) |> 
+  group_by(gunung) |> 
+  summarise(
+    volume_m3 = sum(volume_petak),
+    .groups = "drop"
+  )
+
+print(volume)
+```
+
+Karena kita biasanya lebih mudah membayangkan volume dengan satuan liter, kita dapat mengkonversi satuan volumenya menjadi liter.
+
+```{r}
+#| echo: true
+#| code-fold: false
+
+volume <- volume |> 
+  mutate(
+    volume_liter = volume_m3 * 1000
+  )
+
+print(volume)
+
+```
+
+Potongan gunung manakah yang paling besar? Potongan gunung Bromo-lah yang paling besar, yaitu sekitar 3,47 × 10^18^ liter. Selanjutnya kita buat diagram batang yang merepresentasikan volume potongan keempat gunung tersebut. Hasilnya disajikan pada @fig-diagram-batang-volume-gunung.
+
+```{r}
+#| echo: true
+#| code-fold: false
+#| label: fig-diagram-batang-volume-gunung
+#| fig-cap: "Volume potongan Gunung Agung, Bromo, Merapi, dan Semeru"
+#| fig-asp: 0.5625
+
+volume |> 
+  mutate(
+    gunung = fct_reorder(gunung, -volume_liter)
+  ) |> 
+  ggplot(aes(x = gunung, y = volume_liter)) + 
+  geom_col(
+    aes(fill = volume_liter),
+    show.legend = FALSE
+  ) + 
+  scale_fill_viridis_c() + 
+  theme_minimal() + 
+  labs(
+    x = "Gunung",
+    y = "Volume (liter)"
+  )
+
+```
+
+## Catatan Akhir {#sec-catatan-akhir}
+
+Kita telah membandingkan seberapa tinggi dan besar Gunung Agung, Bromo, Merapi, dan Semeru. Hal itu kita lakukan dengan dua jalan: pengamatan dan perhitungan. Ketika menggunakan cara pengamatan, kita gambarkan representasi keempat gunung tersebut ke dalam bentuk 2D maupun 3D. Hasilnya seperti dapat dilihat pada @fig-proy-empat-gunung dan @fig-empat-gunung-3d. Ketika kita menggunakan cara perhitungan, kita gunakan data matriks elevasi keempat gunung tersebut untuk memperkirakan tinggi dan volumenya. Cara ini kita lakukan pada @sec-memperkirakan-tinggi-dan-volume.

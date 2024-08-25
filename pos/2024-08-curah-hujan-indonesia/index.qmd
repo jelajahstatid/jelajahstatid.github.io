@@ -1,5 +1,6 @@
 ---
-title: "Indonesia Negara Dua Musim: Bagaimana Curah Hujannya?"
+title: "Indonesia Negara Dua Musim"
+subtitle: "Bagaimana Curah Hujannya?"
 description: "Indonesia memiliki dua musim, yaitu musim kemarau dan penghujan. Kedua musim ini terjadi pada periode waktu tertentu. Bagaimana sebaran curah hujan dalam periode tersebut? Bagaimana sebarannya pada wilayah-wilayah di Indonesia?"
 author:
   - name: Yosep Dwi Kristanto
