@@ -14,7 +14,7 @@ categories:
   - matematika membumi
   - turorial
   - visualisasi data
-image: "gunung_bromo_3d.png"
+image: "empat_gunung.png"
 image-alt: |
   Gambar 3D yang menunjukkan Gunung Agung, Bromo, Merapi, dan Semeru secara berdampingan.
 keywords: 
