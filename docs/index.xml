@@ -50,8 +50,11 @@ background-color: null;
 font-style: inherit;">library</span>(tidyverse)</span>
 <span id="cb1-2"><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">library</span>(terra)</span>
+font-style: inherit;">library</span>(raster)</span>
 <span id="cb1-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(terra)</span>
+<span id="cb1-4"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">library</span>(rayshader)</span></code></pre></div>
 </div>
@@ -60,12 +63,12 @@ font-style: inherit;">library</span>(rayshader)</span></code></pre></div>
 <p>Sebelum kita menggambar model 3D Gunung Agung, Bromo, Merapi, dan Semeru, baik apabila kita bahas ide dasarnya: beberapa objek 3D itu dapat dinyatakan ke dalam sebuah matriks elevasi. Baris dan kolom matriks tersebut menyatakan koordinat <img src="https://latex.codecogs.com/png.latex?x"> dan <img src="https://latex.codecogs.com/png.latex?y">, sedangkan elemen-elemennya menyatakan ketinggiannya. Misalnya, kita memiliki matriks elevasi seperti berikut.</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>   1  2  3  4  5
-1  6 12  9 10 10
-2 11  8  7  8  9
-3 13  8  8  7  9
-4  3  8 10  7 11
-5 11  7 13 17  8</code></pre>
+<pre><code>     1    2    3    4    5
+1 2803 3014 3034 2567 1872
+2 2502 2936 3056 2798 1909
+3 2381 3138 3669 3192 1941
+4 2181 2794 3260 2955 1838
+5 1739 1922 2017 1904 1487</code></pre>
 </div>
 </div>
 <p>Dari matriks elevasi tersebut, kita dapat membuat objek 3D dengan berdasarkan ketinggiannya (elemen-elemen matriks) dan posisinya (baris dan kolomnya). Tetapi sebelum itu, terlebih dahulu kita perhatikan proyeksi dua dimensinya seperti yang ditunjukkan pada Gambar&nbsp;2.</p>
@@ -77,7 +80,7 @@ font-style: inherit;">library</span>(rayshader)</span></code></pre></div>
 <img src="https://jelajahstatid.github.io/pos/2024-08-gunung-agung-bromo-merapi-dan-semeru/index_files/figure-html/fig-proy-3d-sederhana-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-proy-3d-sederhana-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Gambar&nbsp;2: Proyeksi 2D dari sebuah objek 3D yang dibentuk dari <code>matriks_elevasi</code>
+Gambar&nbsp;2: Proyeksi 2D dari sebuah objek 3D yang dibentuk dari matriks elevasi
 </figcaption>
 </figure>
 </div>
@@ -100,7 +103,7 @@ Gambar&nbsp;3: Objek 3D sederhana
 <h2 class="anchored" data-anchor-id="sec-mempersiapkan-data">Mempersiapkan Data</h2>
 <p>Seperti yang telah dijelaskan pada Bagian&nbsp;1, kita perlu memiliki matriks elevasi Gunung Agung, Bromo, Merapi, dan Semeru. Matriks ini dapat ditemukan di banyak tempat. Salah satunya di situs webnya <a href="https://dwtkns.com/srtm30m/" class="external" target="_blank" title="30-Meter SRTM Elevation Data Downloader">Derek Watkin</a>. Sebelum mengunduh datanya, kamu perlu <em>login</em> terlebih dahulu ke dalam situs web <a href="https://urs.earthdata.nasa.gov/users/new" class="external" target="_blank" title="Earthdata Login User Registration">NASA Earthdata</a>.</p>
 <p>Setelah berhasil login, kita perlu mencari persegi tempat keempat gunung tersebut. Untuk mencarinya, kita dapat menyeret dan memperbesar laman dalam situs web tersebut. Lokasi keempat gunung tersebut ada pada enam persegi, yaitu S08E110, S08E112, S08E113, S09E112, S09E113, dan S09E115. Untuk mengunduhnya, klik perseginya dan kemudian klik tombol “Download DEM”. Setelah itu, ekstrak semua fail zip-nya. Pindahkan fail-fail tersebut ke dalam folder kerjamu.</p>
-<p>Sampai di sini, kita memiliki enam fail zip dengan nama <code>S08E110.hgt</code>, <code>S08E112.hgt</code>, <code>S08E113.hgt</code>, <code>S09E112.hgt</code>, <code>S09E113.hgt</code>, dan <code>S09E115.hgt</code> dalam folder kerja kita. Kita gunakan semua fail tersebut untuk membuat sebuah matriks elevasi dengan kode berikut.</p>
+<p>Sampai di sini, kita memiliki enam fail dengan nama <code>S08E110.hgt</code>, <code>S08E112.hgt</code>, <code>S08E113.hgt</code>, <code>S09E112.hgt</code>, <code>S09E113.hgt</code>, dan <code>S09E115.hgt</code> dalam folder kerja kita. Kita gunakan semua fail tersebut untuk membuat <code>matriks_elevasi</code> dengan kode berikut.</p>
 <div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1">S08E110 <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> terra<span class="sc" style="color: #5E5E5E;
@@ -165,281 +168,274 @@ background-color: null;
 font-style: inherit;">merge</span>(</span>
 <span id="cb3-9">  S08E110, S08E112, S08E113,</span>
 <span id="cb3-10">  S09E112, S09E113, S09E115</span>
-<span id="cb3-11">)</span></code></pre></div>
-<p>Untuk memudahkan dalam pengolahan data berikutnya, kita ubah <code>matriks_elevasi</code> tersebut menjadi sebuah tibble. Kita jalankan baris kode berikut untuk menghasilkan tibble dengan nama <code>df_elevasi</code>.</p>
-<div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1">df_elevasi <span class="ot" style="color: #003B4F;
+<span id="cb3-11">)</span>
+<span id="cb3-12"><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">&lt;-</span> terra<span class="sc" style="color: #5E5E5E;
+font-style: inherit;">varnames</span>(matriks_elevasi) <span class="ot" style="color: #003B4F;
 background-color: null;
-font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+font-style: inherit;">&lt;-</span> <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">as.data.frame</span>(matriks_elevasi, <span class="at" style="color: #657422;
+font-style: inherit;">"elevasi"</span></span>
+<span id="cb3-13"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">names</span>(matriks_elevasi) <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"elevasi"</span></span></code></pre></div>
+<p>Seperti yang dilakukan Hanoman terhadap Gunung Himalaya, kita juga perlu memotong <code>matriks_elevasi</code> agar hanya memuat koordinat <img src="https://latex.codecogs.com/png.latex?x"> dan <img src="https://latex.codecogs.com/png.latex?y"> dari Gunung Agung, Bromo, Merapi, dan Semeru seperlunya saja. Potongan-potongan tersebut kita beri nama <code>matriks_agung</code>, <code>matriks_bromo</code>, <code>matriks_merapi</code>, dan <code>matriks_semeru</code>. Untuk memudahkan dalam pengolahan data berikutnya, kita ubah matriks-matriks tersebut menjadi tibble dan menambahkan satu variabel <code>gunung</code> untuk menjadi identifikasi nama gunungnya.</p>
+<div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Gunung Agung</span></span>
+<span id="cb4-2">batas_agung <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">extent</span>(</span>
+<span id="cb4-3">  <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">115.4562</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">115.5562</span>,</span>
+<span id="cb4-4">  <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">8.393267</span>, <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">8.293267</span></span>
+<span id="cb4-5">)</span>
+<span id="cb4-6">matriks_agung <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">crop</span>(matriks_elevasi, batas_agung)</span>
+<span id="cb4-7">df_agung <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as.data.frame</span>(matriks_agung, <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">xy =</span> <span class="cn" style="color: #8f5902;
 background-color: null;
 font-style: inherit;">TRUE</span>) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">|&gt;</span> </span>
-<span id="cb4-2">  <span class="fu" style="color: #4758AB;
+<span id="cb4-8">  <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">as_tibble</span>()</span>
-<span id="cb4-3">df_elevasi <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> df_elevasi <span class="sc" style="color: #5E5E5E;
+font-style: inherit;">as_tibble</span>() <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">|&gt;</span> </span>
-<span id="cb4-4">  <span class="fu" style="color: #4758AB;
+<span id="cb4-9">  <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">rename</span>(<span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">elevasi =</span> S08E110)</span></code></pre></div>
-<p>Seperti yang dilakukan Hanoman terhadap Gunung Himalaya, kita juga perlu memotong <code>df_elevasi</code> agar hanya memuat koordinat <img src="https://latex.codecogs.com/png.latex?x"> dan <img src="https://latex.codecogs.com/png.latex?y"> dari Gunung Agung, Bromo, Merapi, dan Semeru seperlunya saja.</p>
-<div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Agung</span></span>
-<span id="cb5-2">df_agung <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> df_elevasi <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">|&gt;</span> </span>
-<span id="cb5-3">  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">filter</span>(</span>
-<span id="cb5-4">    x <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&gt;=</span> <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">115.4562</span>,</span>
-<span id="cb5-5">    x <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&lt;=</span> <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">115.5562</span>,</span>
-<span id="cb5-6">    y <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&gt;=</span> <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">8.393267</span>,</span>
-<span id="cb5-7">    y <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&lt;=</span> <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">8.293267</span></span>
-<span id="cb5-8">  )</span>
-<span id="cb5-9">df_agung <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> df_agung <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">|&gt;</span> </span>
-<span id="cb5-10">  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">mutate</span>(</span>
-<span id="cb5-11">    <span class="at" style="color: #657422;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">gunung =</span> <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"Agung"</span></span>
-<span id="cb5-12">  )</span>
-<span id="cb5-13"></span>
-<span id="cb5-14"><span class="co" style="color: #5E5E5E;
+font-style: inherit;">"Agung"</span>)</span>
+<span id="cb4-10"></span>
+<span id="cb4-11"><span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;"># Bromo</span></span>
-<span id="cb5-15">df_bromo <span class="ot" style="color: #003B4F;
+font-style: inherit;"># Gunung Bromo</span></span>
+<span id="cb4-12">batas_bromo <span class="ot" style="color: #003B4F;
 background-color: null;
-font-style: inherit;">&lt;-</span> df_elevasi <span class="sc" style="color: #5E5E5E;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">|&gt;</span> </span>
-<span id="cb5-16">  <span class="fu" style="color: #4758AB;
+font-style: inherit;">extent</span>(</span>
+<span id="cb4-13">  <span class="fl" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">filter</span>(</span>
-<span id="cb5-17">    x <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&gt;=</span> <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">112.9</span>,</span>
-<span id="cb5-18">    x <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&lt;=</span> <span class="fl" style="color: #AD0000;
+font-style: inherit;">112.9</span>, <span class="fl" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">113.0</span>,</span>
-<span id="cb5-19">    y <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&gt;=</span> <span class="sc" style="color: #5E5E5E;
+<span id="cb4-14">  <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">8.0</span>,</span>
-<span id="cb5-20">    y <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&lt;=</span> <span class="sc" style="color: #5E5E5E;
+font-style: inherit;">8.0</span>, <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">7.9</span></span>
-<span id="cb5-21">  )</span>
-<span id="cb5-22">df_bromo <span class="ot" style="color: #003B4F;
+<span id="cb4-15">)</span>
+<span id="cb4-16">matriks_bromo <span class="ot" style="color: #003B4F;
 background-color: null;
-font-style: inherit;">&lt;-</span> df_bromo <span class="sc" style="color: #5E5E5E;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">crop</span>(matriks_elevasi, batas_bromo)</span>
+<span id="cb4-17">df_bromo <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as.data.frame</span>(matriks_bromo, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">xy =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">|&gt;</span> </span>
-<span id="cb5-23">  <span class="fu" style="color: #4758AB;
+<span id="cb4-18">  <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">mutate</span>(</span>
-<span id="cb5-24">    <span class="at" style="color: #657422;
+font-style: inherit;">as_tibble</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb4-19">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">gunung =</span> <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"Bromo"</span></span>
-<span id="cb5-25">  )</span>
-<span id="cb5-26"></span>
-<span id="cb5-27"><span class="co" style="color: #5E5E5E;
+font-style: inherit;">"Bromo"</span>)</span>
+<span id="cb4-20"></span>
+<span id="cb4-21"><span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;"># Merapi</span></span>
-<span id="cb5-28">df_merapi <span class="ot" style="color: #003B4F;
+font-style: inherit;"># Gunung Merapi</span></span>
+<span id="cb4-22">batas_merapi <span class="ot" style="color: #003B4F;
 background-color: null;
-font-style: inherit;">&lt;-</span> df_elevasi <span class="sc" style="color: #5E5E5E;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">|&gt;</span> </span>
-<span id="cb5-29">  <span class="fu" style="color: #4758AB;
+font-style: inherit;">extent</span>(</span>
+<span id="cb4-23">  <span class="fl" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">filter</span>(</span>
-<span id="cb5-30">    x <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&gt;=</span> <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">110.3967</span>,</span>
-<span id="cb5-31">    x <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&lt;=</span> <span class="fl" style="color: #AD0000;
+font-style: inherit;">110.3967</span>, <span class="fl" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">110.4967</span>,</span>
-<span id="cb5-32">    y <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&gt;=</span> <span class="sc" style="color: #5E5E5E;
+<span id="cb4-24">  <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">7.590278</span>,</span>
-<span id="cb5-33">    y <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&lt;=</span> <span class="sc" style="color: #5E5E5E;
+font-style: inherit;">7.590278</span>, <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">7.490278</span></span>
-<span id="cb5-34">  )</span>
-<span id="cb5-35">df_merapi <span class="ot" style="color: #003B4F;
+<span id="cb4-25">)</span>
+<span id="cb4-26">matriks_merapi <span class="ot" style="color: #003B4F;
 background-color: null;
-font-style: inherit;">&lt;-</span> df_merapi <span class="sc" style="color: #5E5E5E;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">crop</span>(matriks_elevasi, batas_merapi)</span>
+<span id="cb4-27">df_merapi <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as.data.frame</span>(matriks_merapi, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">xy =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">|&gt;</span> </span>
-<span id="cb5-36">  <span class="fu" style="color: #4758AB;
+<span id="cb4-28">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as_tibble</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb4-29">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">gunung =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Merapi"</span>)</span>
-<span id="cb5-37"></span>
-<span id="cb5-38"><span class="co" style="color: #5E5E5E;
+<span id="cb4-30"></span>
+<span id="cb4-31"><span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;"># Semeru</span></span>
-<span id="cb5-39">df_semeru <span class="ot" style="color: #003B4F;
+font-style: inherit;"># Gunung Semeru</span></span>
+<span id="cb4-32">batas_semeru <span class="ot" style="color: #003B4F;
 background-color: null;
-font-style: inherit;">&lt;-</span> df_elevasi <span class="sc" style="color: #5E5E5E;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">|&gt;</span> </span>
-<span id="cb5-40">  <span class="fu" style="color: #4758AB;
+font-style: inherit;">extent</span>(</span>
+<span id="cb4-33">  <span class="fl" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">filter</span>(</span>
-<span id="cb5-41">    x <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&gt;=</span> <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">112.8722</span>,</span>
-<span id="cb5-42">    x <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&lt;=</span> <span class="fl" style="color: #AD0000;
+font-style: inherit;">112.8722</span>, <span class="fl" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">112.9722</span>,</span>
-<span id="cb5-43">    y <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&gt;=</span> <span class="sc" style="color: #5E5E5E;
+<span id="cb4-34">  <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">8.157778</span>,</span>
-<span id="cb5-44">    y <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">&lt;=</span> <span class="sc" style="color: #5E5E5E;
+font-style: inherit;">8.157778</span>, <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">8.057778</span></span>
-<span id="cb5-45">  )</span>
-<span id="cb5-46">df_semeru <span class="ot" style="color: #003B4F;
+<span id="cb4-35">)</span>
+<span id="cb4-36">matriks_semeru <span class="ot" style="color: #003B4F;
 background-color: null;
-font-style: inherit;">&lt;-</span> df_semeru <span class="sc" style="color: #5E5E5E;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">crop</span>(matriks_elevasi, batas_semeru)</span>
+<span id="cb4-37">df_semeru <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as.data.frame</span>(matriks_semeru, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">xy =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">|&gt;</span> </span>
-<span id="cb5-47">  <span class="fu" style="color: #4758AB;
+<span id="cb4-38">  <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">mutate</span>(</span>
-<span id="cb5-48">    <span class="at" style="color: #657422;
+font-style: inherit;">as_tibble</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb4-39">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">gunung =</span> <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"Semeru"</span></span>
-<span id="cb5-49">  )</span></code></pre></div>
-<p>Selanjutnya, kita gabung semua data dari keempat gunung tersebut menjadi <code>df_gunung</code>.</p>
-<div class="sourceCode" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1">df_gunung <span class="ot" style="color: #003B4F;
+font-style: inherit;">"Semeru"</span>)</span></code></pre></div>
+<p>Kode di atas menghasilkan empat tibble, yaitu <code>df_agung</code>, <code>df_bromo</code>, <code>df_merapi</code>, dan <code>df_semeru</code>. Selanjutnya, kita gabung keempat tibble tersebut menjadi <code>df_gunung</code>.</p>
+<div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1">df_gunung <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">bind_rows</span>(</span>
-<span id="cb6-2">  df_agung, df_bromo, df_merapi, df_semeru</span>
-<span id="cb6-3">)</span></code></pre></div>
+<span id="cb5-2">  df_agung, df_bromo, df_merapi, df_semeru</span>
+<span id="cb5-3">)</span></code></pre></div>
 <p><em>Nah</em>, sekarang kita “pindahkan” keempat gunung tersebut dari posisi asalnya. Posisi akhir yang kita targetkan adalah posisi dengan koordinat <img src="https://latex.codecogs.com/png.latex?x"> dan <img src="https://latex.codecogs.com/png.latex?y"> minimumnya bernilai nol.</p>
-<div class="sourceCode" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1">df_gunung <span class="ot" style="color: #003B4F;
+<div class="sourceCode" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1">df_gunung <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> df_gunung <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">|&gt;</span> </span>
-<span id="cb7-2">  <span class="fu" style="color: #4758AB;
+<span id="cb6-2">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">group_by</span>(gunung) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">|&gt;</span> </span>
-<span id="cb7-3">  <span class="fu" style="color: #4758AB;
+<span id="cb6-3">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">mutate</span>(</span>
-<span id="cb7-4">    <span class="at" style="color: #657422;
+<span id="cb6-4">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">x_trans =</span> x <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">min</span>(x),</span>
-<span id="cb7-5">    <span class="at" style="color: #657422;
+<span id="cb6-5">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">y_trans =</span> y <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">min</span>(y)</span>
-<span id="cb7-6">  ) <span class="sc" style="color: #5E5E5E;
+<span id="cb6-6">  ) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">|&gt;</span> </span>
-<span id="cb7-7">  <span class="fu" style="color: #4758AB;
+<span id="cb6-7">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">ungroup</span>()</span></code></pre></div>
 <p>Apakah sampai di sini kamu berhasil menjalankan baris-baris kode di atas sampai mendapatkan <code>df_gunung</code>? Jika iya, selamat! Jika tidak, mungkin ada beberapa hal yang perlu dicek kembali. Tetapi jika kamu langsung ingin mendapatkan <code>df_gunung</code> tersebut tanpa menjalankan semua baris kode di atas, kamu dapat mendapatkannya dengan menjalankan kode berikut.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><span class="fu" style="color: #4758AB;
+<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">load</span>(<span class="fu" style="color: #4758AB;
 background-color: null;
@@ -451,7 +447,69 @@ font-style: inherit;">"https://github.com/jelajahstatid/jelajahstatid.github.io/
 </section>
 <section id="sec-memvisualisasikan-data" class="level2">
 <h2 class="anchored" data-anchor-id="sec-memvisualisasikan-data">Memvisualisasikan Data</h2>
-<p>Kita telah bekerja keras di Bagian&nbsp;2. Sekarang, kita masuk ke tahapan yang mengasyikkan. <em>Yup</em>, di tahapan ini kita akan memvisualisasikan data. Data yang kita gunakan adalah <code>df_gunung</code>. Visualisasi data pertama yang kita lakukan adalah membuat proyeksi 2D dari Gunung Agung, Bromo, Merapi, dan Semeru. Untuk melakukannya, kita gunakan baris kode di bawah ini. Hasilnya ditunjukkan pada Gambar&nbsp;4.</p>
+<p>Kita telah bekerja keras di Bagian&nbsp;2. Sekarang, kita masuk ke tahapan yang mengasyikkan. <em>Yup</em>, di tahapan ini kita akan memvisualisasikan data. Data yang kita gunakan adalah <code>df_gunung</code>. Visualisasi data pertama yang kita lakukan adalah membuat proyeksi 2D dari Gunung Agung, Bromo, Merapi, dan Semeru. Sebelum itu, kita siapkan temanya terlebih dahulu.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1">tema_gunung <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">function</span>(){</span>
+<span id="cb8-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme</span>(</span>
+<span id="cb8-3">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">axis.title =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_blank</span>(),</span>
+<span id="cb8-4">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">axis.text =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_blank</span>(),</span>
+<span id="cb8-5">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">axis.ticks =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_blank</span>(),</span>
+<span id="cb8-6">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">legend.position =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"right"</span>,</span>
+<span id="cb8-7">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.margin =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">margin</span>(</span>
+<span id="cb8-8">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">t =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">r =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>,</span>
+<span id="cb8-9">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">b =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">l =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>,</span>
+<span id="cb8-10">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">unit =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"pt"</span></span>
+<span id="cb8-11">      )</span>
+<span id="cb8-12">    )</span>
+<span id="cb8-13">}</span></code></pre></div>
+</div>
+<p>Selanjutnya kita siap untuk memvisualisasikan proyeksi 2D dari Gunung Agung, Bromo, Merapi, dan Semeru. Untuk melakukannya, kita gunakan baris kode di bawah ini. Hasilnya ditunjukkan pada Gambar&nbsp;4.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1">plot_2d_gunung <span class="ot" style="color: #003B4F;
 background-color: null;
@@ -469,7 +527,7 @@ background-color: null;
 font-style: inherit;">+</span> </span>
 <span id="cb9-5">  <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">geom_raster</span>(<span class="fu" style="color: #4758AB;
+font-style: inherit;">geom_tile</span>(<span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
 background-color: null;
@@ -552,25 +610,9 @@ background-color: null;
 font-style: inherit;">+</span></span>
 <span id="cb9-20">  <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">theme_minimal</span>() <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span> </span>
-<span id="cb9-21">  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">theme</span>(</span>
-<span id="cb9-22">    <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">axis.title =</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">element_blank</span>(),</span>
-<span id="cb9-23">    <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">axis.text =</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">element_blank</span>()</span>
-<span id="cb9-24">  )</span>
-<span id="cb9-25"></span>
-<span id="cb9-26"><span class="fu" style="color: #4758AB;
+font-style: inherit;">tema_gunung</span>()</span>
+<span id="cb9-21"></span>
+<span id="cb9-22"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">print</span>(plot_2d_gunung)</span></code></pre></div>
 <div class="cell-output-display">
@@ -588,76 +630,62 @@ Gambar&nbsp;4: Proyeksi 2D Gunung Agung, Bromo, Merapi, dan Semeru
 </div>
 <p>Berdasarkan Gambar&nbsp;4 tersebut, apakah kamu sudah dapat membandingkan tinggi dan besar keempat gunung tersebut? Ya, Gunung Semeru tampak paling tinggi dibandingkan ketiga gunung lainnya. Selain itu, kita dapat melihat bahwa Gunung Bromo tampak relatif lebih luas dibandingkan ketiga gunung lainnya.</p>
 <p>Untuk melihat bentuk detailnya, kita dapat menggambar keempat gunung tersebut ke dalam bentuk 3D. Untuk melakukannya, kita gunakan metode yang telah dibahas pada <a href="../../pos/2024-08-curah-hujan-indonesia/index.html" title="Indonesia Negara Dua Musim: Bagaimana Curah Hujannya?">pos sebelumnya</a>. Bagaimana caranya? Kita jalankan kode berikut ini.</p>
-<div class="sourceCode" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><span class="fu" style="color: #4758AB;
+<div class="sourceCode" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1">plot_gunung <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> plot_2d_gunung <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb10-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme</span>(</span>
+<span id="cb10-3">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">legend.position =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"none"</span>    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Menghapus legenda</span></span>
+<span id="cb10-4">  )</span>
+<span id="cb10-5"></span>
+<span id="cb10-6"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">plot_gg</span>(</span>
-<span id="cb10-2">  plot_2d_gunung,</span>
-<span id="cb10-3">  <span class="at" style="color: #657422;
+<span id="cb10-7">  plot_gunung,</span>
+<span id="cb10-8">  <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">multicore =</span> <span class="cn" style="color: #8f5902;
 background-color: null;
 font-style: inherit;">TRUE</span>,</span>
-<span id="cb10-4">  <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">sunangle =</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">135</span>,</span>
-<span id="cb10-5">  <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">width =</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">5</span>,</span>
-<span id="cb10-6">  <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">height =</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">5</span>,</span>
-<span id="cb10-7">  <span class="at" style="color: #657422;
+<span id="cb10-9">  <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">scale =</span> <span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">250</span></span>
-<span id="cb10-8">)</span></code></pre></div>
-<p>Beberapa saat setelah kode di atas kita jalankan, kita akan mendapatkan jendela kamera. Melalui jendela tersebut, kita dapat mengatur tampilan objek 3D-nya sesuai yang kita inginkan. Setelah itu, kita jalankan kode berikut untuk merender gambarnya.</p>
+font-style: inherit;">150</span></span>
+<span id="cb10-10">)</span></code></pre></div>
+<p>Beberapa saat setelah kode di atas kita jalankan, kita akan mendapatkan jendela kamera. Melalui jendela tersebut, kita dapat mengatur tampilan objek 3D-nya sesuai yang kita inginkan. Selain itu, kita juga dapat mengatur tampilannya dengan baris kode, misalnya seperti berikut.</p>
 <div class="sourceCode" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">render_highquality</span>(</span>
-<span id="cb11-2">  <span class="at" style="color: #657422;
+font-style: inherit;">render_camera</span>(</span>
+<span id="cb11-2">    <span class="at" style="color: #657422;
 background-color: null;
-font-style: inherit;">filename =</span> <span class="st" style="color: #20794D;
+font-style: inherit;">theta =</span> <span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">"empat_gunung_3d.png"</span>,</span>
-<span id="cb11-3">  <span class="at" style="color: #657422;
+font-style: inherit;">45</span>,</span>
+<span id="cb11-3">    <span class="at" style="color: #657422;
 background-color: null;
-font-style: inherit;">samples =</span> <span class="dv" style="color: #AD0000;
+font-style: inherit;">phi =</span> <span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">128</span>,</span>
-<span id="cb11-4">  <span class="at" style="color: #657422;
+font-style: inherit;">55</span>,</span>
+<span id="cb11-4">    <span class="at" style="color: #657422;
 background-color: null;
-font-style: inherit;">preview =</span> <span class="cn" style="color: #8f5902;
+font-style: inherit;">zoom =</span> .<span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">TRUE</span>,</span>
-<span id="cb11-5">  <span class="at" style="color: #657422;
+font-style: inherit;">85</span></span>
+<span id="cb11-5">)</span></code></pre></div>
+<p>Setelah kita mendapatkan tampilan yang cocok, kita jalankan kode berikut untuk merender gambarnya.</p>
+<div class="sourceCode" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">interactive =</span> <span class="cn" style="color: #8f5902;
-background-color: null;
-font-style: inherit;">FALSE</span>,</span>
-<span id="cb11-6">  <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">light =</span> <span class="cn" style="color: #8f5902;
-background-color: null;
-font-style: inherit;">TRUE</span>,</span>
-<span id="cb11-7">  <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">width =</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1280</span>,</span>
-<span id="cb11-8">  <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">height =</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">720</span></span>
-<span id="cb11-9">)</span></code></pre></div>
+font-style: inherit;">render_snapshot</span>()</span></code></pre></div>
 <p>Hasil gambarnya seperti yang ditunjukkan pada Gambar&nbsp;5.</p>
 <div id="fig-empat-gunung-3d" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center" alt="Model 3D Gunung Agung, Bromo, Merapi, dan Semeru">
 <figure class="quarto-float quarto-float-fig figure">
@@ -676,20 +704,20 @@ Gambar&nbsp;5: Model 3D Gunung Agung, Bromo, Merapi, dan Semeru
 <p>Secara sederhana, sebenarnya kita telah dapat membandingkan tinggi dan volume keempat gunung pada Gambar&nbsp;5. Akan tetapi, kita juga dapat memperkirakan berapakah tinggi dan volume keempat gunung tersebut.</p>
 <p>Pertama, kita akan menentukan tinggi Gunung Agung, Bromo, Merapi, dan Semeru. Berdasarkan Wikipedia, tinggi keempat gunung tersebut secara berturut-turut adalah 3.142, 2.614, 2.968, dan 3.676. Sekarang, kita perkirakan tinggi keempat gunung tersebut dengan menggunakan data elevasi dalam <code>df_gunung</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1">ketinggian <span class="ot" style="color: #003B4F;
+<div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1">ketinggian <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> df_gunung <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">|&gt;</span> </span>
-<span id="cb12-2">  <span class="fu" style="color: #4758AB;
+<span id="cb13-2">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">group_by</span>(gunung) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">|&gt;</span> </span>
-<span id="cb12-3">  <span class="fu" style="color: #4758AB;
+<span id="cb13-3">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">summarise</span>(</span>
-<span id="cb12-4">    <span class="at" style="color: #657422;
+<span id="cb13-4">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">elevasi_maksimum =</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -698,14 +726,14 @@ background-color: null;
 font-style: inherit;">na.rm =</span> <span class="cn" style="color: #8f5902;
 background-color: null;
 font-style: inherit;">TRUE</span>),</span>
-<span id="cb12-5">    <span class="at" style="color: #657422;
+<span id="cb13-5">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">.groups =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"drop"</span></span>
-<span id="cb12-6">  )</span>
-<span id="cb12-7"></span>
-<span id="cb12-8"><span class="fu" style="color: #4758AB;
+<span id="cb13-6">  )</span>
+<span id="cb13-7"></span>
+<span id="cb13-8"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">print</span>(ketinggian)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -720,10 +748,10 @@ font-style: inherit;">print</span>(ketinggian)</span></code></pre></div>
 </div>
 <p>Meskipun hasilnya berbeda dengan informasi dalam Wikipedia, kita mendapatkan ketinggian-ketinggian yang tak jauh berbeda. Agar lebih mudah dalam membandingkan tinggi keempat gunung tersebut, kita buat diagram batangnya. Diagram batang tersebut disajikan pada Gambar&nbsp;6.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1">ketinggian <span class="sc" style="color: #5E5E5E;
+<div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1">ketinggian <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">|&gt;</span> </span>
-<span id="cb14-2">  <span class="fu" style="color: #4758AB;
+<span id="cb15-2">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
 background-color: null;
@@ -734,7 +762,7 @@ background-color: null;
 font-style: inherit;">-</span>elevasi_maksimum)) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">|&gt;</span> </span>
-<span id="cb14-3">  <span class="fu" style="color: #4758AB;
+<span id="cb15-3">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">ggplot</span>(<span class="fu" style="color: #4758AB;
 background-color: null;
@@ -745,46 +773,46 @@ background-color: null;
 font-style: inherit;">y =</span> elevasi_maksimum)) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span> </span>
-<span id="cb14-4">  <span class="fu" style="color: #4758AB;
+<span id="cb15-4">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">geom_col</span>(</span>
-<span id="cb14-5">    <span class="fu" style="color: #4758AB;
+<span id="cb15-5">    <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">fill =</span> elevasi_maksimum),</span>
-<span id="cb14-6">    <span class="at" style="color: #657422;
+<span id="cb15-6">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">show.legend =</span> <span class="cn" style="color: #8f5902;
 background-color: null;
 font-style: inherit;">FALSE</span></span>
-<span id="cb14-7">  ) <span class="sc" style="color: #5E5E5E;
+<span id="cb15-7">  ) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span> </span>
-<span id="cb14-8">  <span class="fu" style="color: #4758AB;
+<span id="cb15-8">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">scale_fill_viridis_c</span>() <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span> </span>
-<span id="cb14-9">  <span class="fu" style="color: #4758AB;
+<span id="cb15-9">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">theme_minimal</span>() <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span> </span>
-<span id="cb14-10">  <span class="fu" style="color: #4758AB;
+<span id="cb15-10">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">labs</span>(</span>
-<span id="cb14-11">    <span class="at" style="color: #657422;
+<span id="cb15-11">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">x =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Gunung"</span>,</span>
-<span id="cb14-12">    <span class="at" style="color: #657422;
+<span id="cb15-12">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">y =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Ketinggian (mdpl)"</span></span>
-<span id="cb14-13">  )</span></code></pre></div>
+<span id="cb15-13">  )</span></code></pre></div>
 <div class="cell-output-display">
 <div id="fig-diagram-batang-tinggi-gunung" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -800,28 +828,28 @@ Gambar&nbsp;6: Ketinggian Gunung Agung, Bromo, Merapi, dan Semeru
 </div>
 <p>Berikutnya, kita akan memperkirakan volume keempat gunung tersebut. Volume yang dimaksud di sini adalah volume potongan tiap gunung pada Gambar&nbsp;5. Untuk itu, kita hitung ada berapa petak data dalam setiap data gunungnya.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1">df_gunung <span class="sc" style="color: #5E5E5E;
+<div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1">df_gunung <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">|&gt;</span> </span>
-<span id="cb15-2">  <span class="fu" style="color: #4758AB;
+<span id="cb16-2">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">group_by</span>(gunung) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">|&gt;</span> </span>
-<span id="cb15-3">  <span class="fu" style="color: #4758AB;
+<span id="cb16-3">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">summarise</span>(</span>
-<span id="cb15-4">    <span class="at" style="color: #657422;
+<span id="cb16-4">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">banyak_petak =</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">n</span>(),</span>
-<span id="cb15-5">    <span class="at" style="color: #657422;
+<span id="cb16-5">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">.groups =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"drop"</span></span>
-<span id="cb15-6">  )</span></code></pre></div>
+<span id="cb16-6">  )</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 2
   gunung banyak_petak
@@ -835,7 +863,7 @@ font-style: inherit;">"drop"</span></span>
 <p>Sebagian besar, banyak petaknya adalah 129.600 kecuali data untuk Gunung Bromo. Untuk itu, banyak petak pada Gunung Bromo kita samakan saja dengan ketiga gunung lainnya.</p>
 <p>Alas potongan gunung-gunung tersebut memiliki ukuran 0,1 derajat × 0,1 derajat. Karena 0,1 derajat kurang lebih sama dengan 110 km, ukuran alasnya berarti 11 km × 11 km dan luasnya adalah 121 km<sup>2</sup> atau 121.000.000 m<sup>2</sup>. Padahal alas tersebut berisi 129.600 petak. Dengan demikian, luas petak tersebut dapat dihitung seperti berikut.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1">luas_petak_est <span class="ot" style="color: #003B4F;
+<div class="sourceCode cell-code" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1">luas_petak_est <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
 background-color: null;
@@ -844,7 +872,7 @@ background-color: null;
 font-style: inherit;">/</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">129600</span></span>
-<span id="cb17-2"><span class="fu" style="color: #4758AB;
+<span id="cb18-2"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">print</span>(luas_petak_est)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -860,45 +888,45 @@ font-style: inherit;">print</span>(luas_petak_est)</span></code></pre></div>
 <p><img src="https://latex.codecogs.com/png.latex?%0A%5Ctext%7BVolume%7D%20=%20%5Csum_%7Bi=1%7D%5E%7Bn%7D%20L_%7Bi%7D%20%5Ccdot%20h_%7Bi%7D%0A"></p>
 <p>dengan <img src="https://latex.codecogs.com/png.latex?L_%7Bi%7D"> dan <img src="https://latex.codecogs.com/png.latex?h_%7Bi%7D"> secara berturut-turut adalah luas dan tinggi tiap-tiap petak. <em>Nah</em>, sekarang kita hitung volume keempat gunung tersebut.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1">volume <span class="ot" style="color: #003B4F;
+<div class="sourceCode cell-code" id="cb20" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1">volume <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> df_gunung <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">|&gt;</span> </span>
-<span id="cb19-2">  <span class="fu" style="color: #4758AB;
+<span id="cb20-2">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">mutate</span>(</span>
-<span id="cb19-3">    <span class="at" style="color: #657422;
+<span id="cb20-3">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">volume_petak =</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">900</span> <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">*</span> elevasi</span>
-<span id="cb19-4">  ) <span class="sc" style="color: #5E5E5E;
+<span id="cb20-4">  ) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">|&gt;</span> </span>
-<span id="cb19-5">  <span class="fu" style="color: #4758AB;
+<span id="cb20-5">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">group_by</span>(gunung) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">|&gt;</span> </span>
-<span id="cb19-6">  <span class="fu" style="color: #4758AB;
+<span id="cb20-6">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">summarise</span>(</span>
-<span id="cb19-7">    <span class="at" style="color: #657422;
+<span id="cb20-7">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">volume_m3 =</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">sum</span>(volume_petak),</span>
-<span id="cb19-8">    <span class="at" style="color: #657422;
+<span id="cb20-8">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">.groups =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"drop"</span></span>
-<span id="cb19-9">  )</span>
-<span id="cb19-10"></span>
-<span id="cb19-11"><span class="fu" style="color: #4758AB;
+<span id="cb20-9">  )</span>
+<span id="cb20-10"></span>
+<span id="cb20-11"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">print</span>(volume)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -913,24 +941,24 @@ font-style: inherit;">print</span>(volume)</span></code></pre></div>
 </div>
 <p>Karena kita biasanya lebih mudah membayangkan volume dengan satuan liter, kita dapat mengkonversi satuan volumenya menjadi liter.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1">volume <span class="ot" style="color: #003B4F;
+<div class="sourceCode cell-code" id="cb22" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1">volume <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> volume <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">|&gt;</span> </span>
-<span id="cb21-2">  <span class="fu" style="color: #4758AB;
+<span id="cb22-2">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">mutate</span>(</span>
-<span id="cb21-3">    <span class="at" style="color: #657422;
+<span id="cb22-3">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">volume_liter =</span> volume_m3 <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">*</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1000</span></span>
-<span id="cb21-4">  )</span>
-<span id="cb21-5"></span>
-<span id="cb21-6"><span class="fu" style="color: #4758AB;
+<span id="cb22-4">  )</span>
+<span id="cb22-5"></span>
+<span id="cb22-6"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">print</span>(volume)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -945,23 +973,23 @@ font-style: inherit;">print</span>(volume)</span></code></pre></div>
 </div>
 <p>Potongan gunung manakah yang paling besar? Potongan gunung Bromo-lah yang paling besar, yaitu sekitar 2,58 × 10<sup>14</sup> liter. Selanjutnya kita buat diagram batang yang merepresentasikan volume potongan keempat gunung tersebut. Hasilnya disajikan pada Gambar&nbsp;7.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1">volume <span class="sc" style="color: #5E5E5E;
+<div class="sourceCode cell-code" id="cb24" style="background: #f1f3f5;"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1">volume <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">|&gt;</span> </span>
-<span id="cb23-2">  <span class="fu" style="color: #4758AB;
+<span id="cb24-2">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">mutate</span>(</span>
-<span id="cb23-3">    <span class="at" style="color: #657422;
+<span id="cb24-3">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">gunung =</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">fct_reorder</span>(gunung, <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">-</span>volume_liter)</span>
-<span id="cb23-4">  ) <span class="sc" style="color: #5E5E5E;
+<span id="cb24-4">  ) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">|&gt;</span> </span>
-<span id="cb23-5">  <span class="fu" style="color: #4758AB;
+<span id="cb24-5">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">ggplot</span>(<span class="fu" style="color: #4758AB;
 background-color: null;
@@ -972,46 +1000,46 @@ background-color: null;
 font-style: inherit;">y =</span> volume_liter)) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span> </span>
-<span id="cb23-6">  <span class="fu" style="color: #4758AB;
+<span id="cb24-6">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">geom_col</span>(</span>
-<span id="cb23-7">    <span class="fu" style="color: #4758AB;
+<span id="cb24-7">    <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">fill =</span> volume_liter),</span>
-<span id="cb23-8">    <span class="at" style="color: #657422;
+<span id="cb24-8">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">show.legend =</span> <span class="cn" style="color: #8f5902;
 background-color: null;
 font-style: inherit;">FALSE</span></span>
-<span id="cb23-9">  ) <span class="sc" style="color: #5E5E5E;
+<span id="cb24-9">  ) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span> </span>
-<span id="cb23-10">  <span class="fu" style="color: #4758AB;
+<span id="cb24-10">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">scale_fill_viridis_c</span>() <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span> </span>
-<span id="cb23-11">  <span class="fu" style="color: #4758AB;
+<span id="cb24-11">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">theme_minimal</span>() <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span> </span>
-<span id="cb23-12">  <span class="fu" style="color: #4758AB;
+<span id="cb24-12">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">labs</span>(</span>
-<span id="cb23-13">    <span class="at" style="color: #657422;
+<span id="cb24-13">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">x =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Gunung"</span>,</span>
-<span id="cb23-14">    <span class="at" style="color: #657422;
+<span id="cb24-14">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">y =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Volume (liter)"</span></span>
-<span id="cb23-15">  )</span></code></pre></div>
+<span id="cb24-15">  )</span></code></pre></div>
 <div class="cell-output-display">
 <div id="fig-diagram-batang-volume-gunung" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
