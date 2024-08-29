@@ -11,7 +11,8 @@ author:
 date: 2024-08-24
 categories:
   - Geostatistika
-  - turorial
+  - matematika membumi
+  - tutorial
   - visualisasi data
 image: "curah_hujan_indonesia_fitur.png"
 image-alt: |
@@ -69,69 +70,47 @@ Ada empat argumen yang kita inputkan dalam fungsi `download_data()` di atas. Arg
 
 Setelah kita jalankan kode di atas, kita mendapatkan sebuah fail dengan nama "mswep_tp_mm_global_197902_202301_025_monthly.nc". Fail tersebut berisi data curah hujan untuk semua wilayah di dunia. Padahal, kita hanya memerlukan data untuk Indonesia saja. Oleh karena itu, kita perlu memotong data tersebut. Untuk melakukan hal ini, kita memerlukan poligon wilayah Indonesia. Bagaimana mendapatkannya? Kita dapat memerolehnya dengan menggunakan fungsi `gisco_get_countries()` dari paket {giscoR}.
 
-```{r}
-#| echo: true
-#| code-fold: false
-
+``` r
 sf_negara <- gisco_get_countries(
   country = "ID",
   resolution = 1
 )
-
 ```
 
-Sekarang kita buat sebuah SpatRaster dari fail "mswep_tp_mm_global_197902_202301_025_monthly.nc" dengan menggunakan fungsi `rast()` dari {terra}. Setelah itu, kita potong hasilnya dengan `sf_negara` menggunakan fungsi `crop()` dari {terra}. Kita namai hasilnya sebagai `data_mswep` dan kita cetak objek tersebut dengan menggunakan fungsi `print()`.
+Sekarang kita buat sebuah SpatRaster dari fail "mswep_tp_mm_global_197902_202301_025_monthly.nc" dengan menggunakan fungsi `rast()` dari {terra}. Setelah itu, kita potong hasilnya dengan `sf_negara` menggunakan fungsi `crop()` dari {terra}. Kita namai hasilnya sebagai `data_mswep`.
 
-```{r}
-#| echo: true
-#| code-fold: false
-
+``` r
 data_mswep <- rast(
   "mswep_tp_mm_global_197902_202301_025_monthly.nc"
 ) |> 
   crop(
     sf_negara
   )
-
-print(data_mswep)
-
 ```
 
-Berdasarkan dimensinya, objek `data_mswep` tersebut memiliki 68 baris, 184 kolom, dan 528 lapisan/layer. Baris dan kolom tersebut menyatakan koordinat $x$ dan $y$ wilayah Indonesia sedangkan lapisannya merupakan nilai-nilai variabel `precipitation` atau curah hujan di tiap-tiap koordinat tersebut. Banyaknya lapisan adalah 528 karena nilai `precipitation` untuk setiap koordinat wilayahnya merentang dari 1979-02-01 sampai 2023-01-01 (528 bulan).
+Jika kita menjalankan perintah `print(data_mswep)`, kita mengetahui bahwa objek `data_mswep` tersebut memiliki 68 baris, 184 kolom, dan 528 lapisan/layer. Baris dan kolom tersebut menyatakan koordinat $x$ dan $y$ wilayah Indonesia sedangkan lapisannya merupakan nilai-nilai variabel `precipitation` atau curah hujan di tiap-tiap koordinat tersebut. Banyaknya lapisan adalah 528 karena nilai `precipitation` untuk setiap koordinat wilayahnya merentang dari 1979-02-01 sampai 2023-01-01 (528 bulan).
 
 Pada bagian `names`, kita dapat melihat nama-nama variabelnya adalah `precipitation_1`, `precipitation_2`, `precipitation_3`, dan seterusnya sampai `precipitation_528`. Nama-nama ini kurang informatif. Karena nama-nama itu merepresentasikan curah hujan dari 1979-02-01 sampai 2023-01-01, kita dapat menggantinya dengan barisan tanggal itu.
 
-```{r}
-#| echo: true
-#| code-fold: false
-
+``` r
 barisan_tanggal <- as.character(
   seq(as.Date("1979-02-01"), as.Date("2023-01-01"), by = "month")
 )
 
 names(data_mswep) <- barisan_tanggal
-
 ```
 
-Agar memudahkan kita dalam mengolah data, kita ubah objek `data_mswep` menjadi sebuah [data frame](https://people.usd.ac.id/~ydkristanto/index.php/seri-belajar-statistika-dan-ilmu-data-dengan-r/pengantar-r/6/ "Data Frame -- Pengantar Pemrograman R"){.external target="_blank"}. Untuk melakukannya, kita dapat menggunakan fungsi `as.data.frame()` dari paket {terra}. Kita inputkan `xy = TRUE` ke dalam fungsi tersebut agar mempertahankan koordinat $x$ dan $y$. Setelah itu, kita juga dapat mengubah hasilnya menjadi sebuah tibble dengan fungsi `as_tibble()` agar mudah terbaca. Kita namai hasilnya dengan `df_mswep` dan kita cetak tibble tersebut dengan `print()`.
+Agar memudahkan kita dalam mengolah data, kita ubah objek `data_mswep` menjadi sebuah [data frame](https://people.usd.ac.id/~ydkristanto/index.php/seri-belajar-statistika-dan-ilmu-data-dengan-r/pengantar-r/6/ "Data Frame -- Pengantar Pemrograman R"){.external target="_blank"}. Untuk melakukannya, kita dapat menggunakan fungsi `as.data.frame()` dari paket {terra}. Kita inputkan `xy = TRUE` ke dalam fungsi tersebut agar mempertahankan koordinat $x$ dan $y$. Setelah itu, kita juga dapat mengubah hasilnya menjadi sebuah tibble dengan fungsi `as_tibble()` agar mudah terbaca. Kita namai hasilnya dengan `df_mswep`.
 
-```{r}
-#| echo: true
-#| code-fold: false
-
+``` r
 df_mswep <- data_mswep |>
   as.data.frame(xy = TRUE) |> 
   as_tibble()
-
-print(df_mswep)
 ```
 
-Ternyata `df_mswep` memiliki 12.512 baris dan 530 kolom! Kita buat data tersebut menjadi data yang memanjang dengan fungsi `pivot_longer()`. Kolom-kolom yang kita putar adalah semua kolom kecuali kolom `x` dan `y` sehingga kita inputkan argumen `cols = !c("x", "y")`. Kita namai variabel yang memuat kolom-kolom dari data sebelumnya dengan `tanggal_bawah` dan kita namai variabel yang berisi nilai-nilainya dengan `curah_hujan`. Agar nilai-nilai dalam variabel `tanggal_bawah` memiliki kelas date, kita modifikasi variabel ini dengan `mutate()` dan `as.Date()`. Untuk melihat hasilnya, kita dapat memanggil fungsi `print()` terhadap `df_mswep`.
+Jika kita lihat hasilnya dengan `print(df_mswep)`, ternyata `df_mswep` memiliki 12.512 baris dan 530 kolom! Kita buat data tersebut menjadi data yang memanjang dengan fungsi `pivot_longer()`. Kolom-kolom yang kita putar adalah semua kolom kecuali kolom `x` dan `y` sehingga kita inputkan argumen `cols = !c("x", "y")`. Kita namai variabel yang memuat kolom-kolom dari data sebelumnya dengan `tanggal_bawah` dan kita namai variabel yang berisi nilai-nilainya dengan `curah_hujan`. Agar nilai-nilai dalam variabel `tanggal_bawah` memiliki kelas date, kita modifikasi variabel ini dengan `mutate()` dan `as.Date()`. Untuk melihat hasilnya, kita dapat memanggil fungsi `print()` terhadap `df_mswep`.
 
-```{r}
-#| echo: true
-#| code-fold: false
-
+``` r
 df_mswep <- df_mswep |> 
   pivot_longer(
     !c("x", "y"),
@@ -141,12 +120,23 @@ df_mswep <- df_mswep |>
   mutate(
     tanggal_bawah = as.Date(tanggal_bawah)
   )
-
-print(df_mswep)
-
 ```
 
 Data `df_mswep` telah rapi. Data tersebut memuat 6.606.336 baris dan 4 variabel/kolom. Keempat variabel tersebut adalah `x`, `y`, `tanggal_bawah`, dan `curah_hujan`. Data ini telah siap untuk kita eksplorasi pada bagian berikutnya.
+
+::: callout-note
+## Catatan
+
+@sec-mempersiapkan-data di atas menghasilkan `sf_negara`, `data_mswep`, dan `df_mswep`. Ketiga data tersebut sudah aku siapkan di awan. Untuk itu, kamu dapat memuatnya langsung ke lembar kerja R dengan kode berikut.
+
+```{r}
+#| echo: true
+#| code-fold: false
+
+load(url("https://github.com/jelajahstatid/jelajahstatid.github.io/raw/main/pos/2024-08-curah-hujan-indonesia/aset/data_curah_hujan_id.RData"))
+
+```
+:::
 
 ## Menjelajah Data {#sec-menjelajah-data}
 

@@ -13,7 +13,7 @@ date-modified: 2024-08-28
 categories:
   - Geostatistika
   - matematika membumi
-  - turorial
+  - tutorial
   - visualisasi data
 image: "empat_gunung.png"
 image-alt: |

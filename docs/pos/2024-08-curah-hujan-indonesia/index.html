@@ -225,7 +225,8 @@ window.Quarto = {
       </div>
                           <div class="quarto-categories">
                 <div class="quarto-category">Geostatistika</div>
-                <div class="quarto-category">turorial</div>
+                <div class="quarto-category">matematika membumi</div>
+                <div class="quarto-category">tutorial</div>
                 <div class="quarto-category">visualisasi data</div>
               </div>
                   </div>
@@ -317,128 +318,76 @@ window.Quarto = {
 <span id="cb2-6"><a href="#cb2-6"></a>)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Ada empat argumen yang kita inputkan dalam fungsi <code>download_data()</code> di atas. Argumen <code>dataset = "mswep"</code> mengindikasikan bahwa set data yang kita unduh adalah data <a href="https://doi.org/10.5194/hess-23-207-2019" class="external" target="_blank" title="Daily evaluation of 26 precipitation datasets using Stage-IV gauge-radar data for the CONUS">MSWEP (<em>Multi-Source Weighted-Ensemble Precipitation</em>)</a>. Argumen <code>path = getwd()</code> menunjukkan tempat penyimpanan hasil unduhannya. <code>getwd()</code> mengindikasikan bahwa tempat penyimpanannya adalah folder kerja kita. Argumen <code>domain = "raw"</code> menunjukkan domain set data yang kita inginkan. Nilai domain tersebut juga dapat diisi dengan “global”, “land”, atau “ocean”. Terakhir, <code>timestep = "monthly"</code> menerangkan bahwa set data yang kita inginkan memiliki interval waktu bulanan.</p>
 <p>Setelah kita jalankan kode di atas, kita mendapatkan sebuah fail dengan nama “mswep_tp_mm_global_197902_202301_025_monthly.nc”. Fail tersebut berisi data curah hujan untuk semua wilayah di dunia. Padahal, kita hanya memerlukan data untuk Indonesia saja. Oleh karena itu, kita perlu memotong data tersebut. Untuk melakukan hal ini, kita memerlukan poligon wilayah Indonesia. Bagaimana mendapatkannya? Kita dapat memerolehnya dengan menggunakan fungsi <code>gisco_get_countries()</code> dari paket {giscoR}.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>sf_negara <span class="ot">&lt;-</span> <span class="fu">gisco_get_countries</span>(</span>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>sf_negara <span class="ot">&lt;-</span> <span class="fu">gisco_get_countries</span>(</span>
 <span id="cb3-2"><a href="#cb3-2"></a>  <span class="at">country =</span> <span class="st">"ID"</span>,</span>
 <span id="cb3-3"><a href="#cb3-3"></a>  <span class="at">resolution =</span> <span class="dv">1</span></span>
 <span id="cb3-4"><a href="#cb3-4"></a>)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Sekarang kita buat sebuah SpatRaster dari fail “mswep_tp_mm_global_197902_202301_025_monthly.nc” dengan menggunakan fungsi <code>rast()</code> dari {terra}. Setelah itu, kita potong hasilnya dengan <code>sf_negara</code> menggunakan fungsi <code>crop()</code> dari {terra}. Kita namai hasilnya sebagai <code>data_mswep</code> dan kita cetak objek tersebut dengan menggunakan fungsi <code>print()</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>data_mswep <span class="ot">&lt;-</span> <span class="fu">rast</span>(</span>
+<p>Sekarang kita buat sebuah SpatRaster dari fail “mswep_tp_mm_global_197902_202301_025_monthly.nc” dengan menggunakan fungsi <code>rast()</code> dari {terra}. Setelah itu, kita potong hasilnya dengan <code>sf_negara</code> menggunakan fungsi <code>crop()</code> dari {terra}. Kita namai hasilnya sebagai <code>data_mswep</code>.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>data_mswep <span class="ot">&lt;-</span> <span class="fu">rast</span>(</span>
 <span id="cb4-2"><a href="#cb4-2"></a>  <span class="st">"mswep_tp_mm_global_197902_202301_025_monthly.nc"</span></span>
 <span id="cb4-3"><a href="#cb4-3"></a>) <span class="sc">|&gt;</span> </span>
 <span id="cb4-4"><a href="#cb4-4"></a>  <span class="fu">crop</span>(</span>
 <span id="cb4-5"><a href="#cb4-5"></a>    sf_negara</span>
-<span id="cb4-6"><a href="#cb4-6"></a>  )</span>
-<span id="cb4-7"><a href="#cb4-7"></a></span>
-<span id="cb4-8"><a href="#cb4-8"></a><span class="fu">print</span>(data_mswep)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>class       : SpatRaster 
-dimensions  : 68, 184, 528  (nrow, ncol, nlyr)
-resolution  : 0.25, 0.25  (x, y)
-extent      : 95, 141, -11, 6  (xmin, xmax, ymin, ymax)
-coord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84) 
-source(s)   : memory
-varname     : precipitation 
-names       : preci~ion_1, preci~ion_2, preci~ion_3, preci~ion_4, preci~ion_5, preci~ion_6, ... 
-min values  :    4.965235,     6.70142,    4.924347,     8.77788,   0.3264685,   0.4166667, ... 
-max values  :  985.515991,   849.57117,  857.106995,  1019.46466, 896.0366211, 598.6297607, ... 
-unit        :  mm month-1,  mm month-1,  mm month-1,  mm month-1,  mm month-1,  mm month-1, ... 
-time (days) : 1979-02-01 to 2023-01-01 </code></pre>
-</div>
-</div>
-<p>Berdasarkan dimensinya, objek <code>data_mswep</code> tersebut memiliki 68 baris, 184 kolom, dan 528 lapisan/layer. Baris dan kolom tersebut menyatakan koordinat <span class="math inline">\(x\)</span> dan <span class="math inline">\(y\)</span> wilayah Indonesia sedangkan lapisannya merupakan nilai-nilai variabel <code>precipitation</code> atau curah hujan di tiap-tiap koordinat tersebut. Banyaknya lapisan adalah 528 karena nilai <code>precipitation</code> untuk setiap koordinat wilayahnya merentang dari 1979-02-01 sampai 2023-01-01 (528 bulan).</p>
+<span id="cb4-6"><a href="#cb4-6"></a>  )</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Jika kita menjalankan perintah <code>print(data_mswep)</code>, kita mengetahui bahwa objek <code>data_mswep</code> tersebut memiliki 68 baris, 184 kolom, dan 528 lapisan/layer. Baris dan kolom tersebut menyatakan koordinat <span class="math inline">\(x\)</span> dan <span class="math inline">\(y\)</span> wilayah Indonesia sedangkan lapisannya merupakan nilai-nilai variabel <code>precipitation</code> atau curah hujan di tiap-tiap koordinat tersebut. Banyaknya lapisan adalah 528 karena nilai <code>precipitation</code> untuk setiap koordinat wilayahnya merentang dari 1979-02-01 sampai 2023-01-01 (528 bulan).</p>
 <p>Pada bagian <code>names</code>, kita dapat melihat nama-nama variabelnya adalah <code>precipitation_1</code>, <code>precipitation_2</code>, <code>precipitation_3</code>, dan seterusnya sampai <code>precipitation_528</code>. Nama-nama ini kurang informatif. Karena nama-nama itu merepresentasikan curah hujan dari 1979-02-01 sampai 2023-01-01, kita dapat menggantinya dengan barisan tanggal itu.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>barisan_tanggal <span class="ot">&lt;-</span> <span class="fu">as.character</span>(</span>
-<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">seq</span>(<span class="fu">as.Date</span>(<span class="st">"1979-02-01"</span>), <span class="fu">as.Date</span>(<span class="st">"2023-01-01"</span>), <span class="at">by =</span> <span class="st">"month"</span>)</span>
-<span id="cb6-3"><a href="#cb6-3"></a>)</span>
-<span id="cb6-4"><a href="#cb6-4"></a></span>
-<span id="cb6-5"><a href="#cb6-5"></a><span class="fu">names</span>(data_mswep) <span class="ot">&lt;-</span> barisan_tanggal</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Agar memudahkan kita dalam mengolah data, kita ubah objek <code>data_mswep</code> menjadi sebuah <a href="https://people.usd.ac.id/~ydkristanto/index.php/seri-belajar-statistika-dan-ilmu-data-dengan-r/pengantar-r/6/" class="external" target="_blank" title="Data Frame -- Pengantar Pemrograman R">data frame</a>. Untuk melakukannya, kita dapat menggunakan fungsi <code>as.data.frame()</code> dari paket {terra}. Kita inputkan <code>xy = TRUE</code> ke dalam fungsi tersebut agar mempertahankan koordinat <span class="math inline">\(x\)</span> dan <span class="math inline">\(y\)</span>. Setelah itu, kita juga dapat mengubah hasilnya menjadi sebuah tibble dengan fungsi <code>as_tibble()</code> agar mudah terbaca. Kita namai hasilnya dengan <code>df_mswep</code> dan kita cetak tibble tersebut dengan <code>print()</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>df_mswep <span class="ot">&lt;-</span> data_mswep <span class="sc">|&gt;</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">as.data.frame</span>(<span class="at">xy =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb7-3"><a href="#cb7-3"></a>  <span class="fu">as_tibble</span>()</span>
-<span id="cb7-4"><a href="#cb7-4"></a></span>
-<span id="cb7-5"><a href="#cb7-5"></a><span class="fu">print</span>(df_mswep)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 12,512 × 530
-       x     y `1979-02-01` `1979-03-01` `1979-04-01` `1979-05-01` `1979-06-01`
-   &lt;dbl&gt; &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;
- 1  95.1  5.88         55.7         82.0         450.        122.         168. 
- 2  95.4  5.88         55.7         82.0         450.        122.         168. 
- 3  95.6  5.88         47.2         67.4         374.         62.9         81.3
- 4  95.9  5.88         58.6         68.7         390.         61.9         71.4
- 5  96.1  5.88         93.4         71.6         423.         94.7         85.7
- 6  96.4  5.88        165.          61.7         389.        131.         107. 
- 7  96.6  5.88        199.          56.7         359.        152.         123. 
- 8  96.9  5.88        199.          56.7         359.        152.         123. 
- 9  97.1  5.88        199.          55.0         300.        141.         130. 
-10  97.4  5.88        200.          54.4         260.        135.         142. 
-# ℹ 12,502 more rows
-# ℹ 523 more variables: `1979-07-01` &lt;dbl&gt;, `1979-08-01` &lt;dbl&gt;,
-#   `1979-09-01` &lt;dbl&gt;, `1979-10-01` &lt;dbl&gt;, `1979-11-01` &lt;dbl&gt;,
-#   `1979-12-01` &lt;dbl&gt;, `1980-01-01` &lt;dbl&gt;, `1980-02-01` &lt;dbl&gt;,
-#   `1980-03-01` &lt;dbl&gt;, `1980-04-01` &lt;dbl&gt;, `1980-05-01` &lt;dbl&gt;,
-#   `1980-06-01` &lt;dbl&gt;, `1980-07-01` &lt;dbl&gt;, `1980-08-01` &lt;dbl&gt;,
-#   `1980-09-01` &lt;dbl&gt;, `1980-10-01` &lt;dbl&gt;, `1980-11-01` &lt;dbl&gt;, …</code></pre>
-</div>
-</div>
-<p>Ternyata <code>df_mswep</code> memiliki 12.512 baris dan 530 kolom! Kita buat data tersebut menjadi data yang memanjang dengan fungsi <code>pivot_longer()</code>. Kolom-kolom yang kita putar adalah semua kolom kecuali kolom <code>x</code> dan <code>y</code> sehingga kita inputkan argumen <code>cols = !c("x", "y")</code>. Kita namai variabel yang memuat kolom-kolom dari data sebelumnya dengan <code>tanggal_bawah</code> dan kita namai variabel yang berisi nilai-nilainya dengan <code>curah_hujan</code>. Agar nilai-nilai dalam variabel <code>tanggal_bawah</code> memiliki kelas date, kita modifikasi variabel ini dengan <code>mutate()</code> dan <code>as.Date()</code>. Untuk melihat hasilnya, kita dapat memanggil fungsi <code>print()</code> terhadap <code>df_mswep</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>df_mswep <span class="ot">&lt;-</span> df_mswep <span class="sc">|&gt;</span> </span>
-<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb9-3"><a href="#cb9-3"></a>    <span class="sc">!</span><span class="fu">c</span>(<span class="st">"x"</span>, <span class="st">"y"</span>),</span>
-<span id="cb9-4"><a href="#cb9-4"></a>    <span class="at">names_to =</span> <span class="st">"tanggal_bawah"</span>,</span>
-<span id="cb9-5"><a href="#cb9-5"></a>    <span class="at">values_to =</span> <span class="st">"curah_hujan"</span></span>
-<span id="cb9-6"><a href="#cb9-6"></a>  ) <span class="sc">|&gt;</span> </span>
-<span id="cb9-7"><a href="#cb9-7"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb9-8"><a href="#cb9-8"></a>    <span class="at">tanggal_bawah =</span> <span class="fu">as.Date</span>(tanggal_bawah)</span>
-<span id="cb9-9"><a href="#cb9-9"></a>  )</span>
-<span id="cb9-10"><a href="#cb9-10"></a></span>
-<span id="cb9-11"><a href="#cb9-11"></a><span class="fu">print</span>(df_mswep)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6,606,336 × 4
-       x     y tanggal_bawah curah_hujan
-   &lt;dbl&gt; &lt;dbl&gt; &lt;date&gt;              &lt;dbl&gt;
- 1  95.1  5.88 1979-02-01           55.7
- 2  95.1  5.88 1979-03-01           82.0
- 3  95.1  5.88 1979-04-01          450. 
- 4  95.1  5.88 1979-05-01          122. 
- 5  95.1  5.88 1979-06-01          168. 
- 6  95.1  5.88 1979-07-01          130. 
- 7  95.1  5.88 1979-08-01          138. 
- 8  95.1  5.88 1979-09-01          150. 
- 9  95.1  5.88 1979-10-01          146. 
-10  95.1  5.88 1979-11-01          524. 
-# ℹ 6,606,326 more rows</code></pre>
-</div>
-</div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>barisan_tanggal <span class="ot">&lt;-</span> <span class="fu">as.character</span>(</span>
+<span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">seq</span>(<span class="fu">as.Date</span>(<span class="st">"1979-02-01"</span>), <span class="fu">as.Date</span>(<span class="st">"2023-01-01"</span>), <span class="at">by =</span> <span class="st">"month"</span>)</span>
+<span id="cb5-3"><a href="#cb5-3"></a>)</span>
+<span id="cb5-4"><a href="#cb5-4"></a></span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="fu">names</span>(data_mswep) <span class="ot">&lt;-</span> barisan_tanggal</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Agar memudahkan kita dalam mengolah data, kita ubah objek <code>data_mswep</code> menjadi sebuah <a href="https://people.usd.ac.id/~ydkristanto/index.php/seri-belajar-statistika-dan-ilmu-data-dengan-r/pengantar-r/6/" class="external" target="_blank" title="Data Frame -- Pengantar Pemrograman R">data frame</a>. Untuk melakukannya, kita dapat menggunakan fungsi <code>as.data.frame()</code> dari paket {terra}. Kita inputkan <code>xy = TRUE</code> ke dalam fungsi tersebut agar mempertahankan koordinat <span class="math inline">\(x\)</span> dan <span class="math inline">\(y\)</span>. Setelah itu, kita juga dapat mengubah hasilnya menjadi sebuah tibble dengan fungsi <code>as_tibble()</code> agar mudah terbaca. Kita namai hasilnya dengan <code>df_mswep</code>.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>df_mswep <span class="ot">&lt;-</span> data_mswep <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">as.data.frame</span>(<span class="at">xy =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb6-3"><a href="#cb6-3"></a>  <span class="fu">as_tibble</span>()</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Jika kita lihat hasilnya dengan <code>print(df_mswep)</code>, ternyata <code>df_mswep</code> memiliki 12.512 baris dan 530 kolom! Kita buat data tersebut menjadi data yang memanjang dengan fungsi <code>pivot_longer()</code>. Kolom-kolom yang kita putar adalah semua kolom kecuali kolom <code>x</code> dan <code>y</code> sehingga kita inputkan argumen <code>cols = !c("x", "y")</code>. Kita namai variabel yang memuat kolom-kolom dari data sebelumnya dengan <code>tanggal_bawah</code> dan kita namai variabel yang berisi nilai-nilainya dengan <code>curah_hujan</code>. Agar nilai-nilai dalam variabel <code>tanggal_bawah</code> memiliki kelas date, kita modifikasi variabel ini dengan <code>mutate()</code> dan <code>as.Date()</code>. Untuk melihat hasilnya, kita dapat memanggil fungsi <code>print()</code> terhadap <code>df_mswep</code>.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>df_mswep <span class="ot">&lt;-</span> df_mswep <span class="sc">|&gt;</span> </span>
+<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb7-3"><a href="#cb7-3"></a>    <span class="sc">!</span><span class="fu">c</span>(<span class="st">"x"</span>, <span class="st">"y"</span>),</span>
+<span id="cb7-4"><a href="#cb7-4"></a>    <span class="at">names_to =</span> <span class="st">"tanggal_bawah"</span>,</span>
+<span id="cb7-5"><a href="#cb7-5"></a>    <span class="at">values_to =</span> <span class="st">"curah_hujan"</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb7-7"><a href="#cb7-7"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb7-8"><a href="#cb7-8"></a>    <span class="at">tanggal_bawah =</span> <span class="fu">as.Date</span>(tanggal_bawah)</span>
+<span id="cb7-9"><a href="#cb7-9"></a>  )</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Data <code>df_mswep</code> telah rapi. Data tersebut memuat 6.606.336 baris dan 4 variabel/kolom. Keempat variabel tersebut adalah <code>x</code>, <code>y</code>, <code>tanggal_bawah</code>, dan <code>curah_hujan</code>. Data ini telah siap untuk kita eksplorasi pada bagian berikutnya.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Catatan
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><a href="#sec-mempersiapkan-data" class="quarto-xref">Bagian&nbsp;1</a> di atas menghasilkan <code>sf_negara</code>, <code>data_mswep</code>, dan <code>df_mswep</code>. Ketiga data tersebut sudah aku siapkan di awan. Untuk itu, kamu dapat memuatnya langsung ke lembar kerja R dengan kode berikut.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">load</span>(<span class="fu">url</span>(<span class="st">"https://github.com/jelajahstatid/jelajahstatid.github.io/raw/main/pos/2024-08-curah-hujan-indonesia/aset/data_curah_hujan_id.RData"</span>))</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="sec-menjelajah-data" class="level2">
 <h2 class="anchored" data-anchor-id="sec-menjelajah-data">Menjelajah Data</h2>
 <p>Data yang telah kita peroleh pada bagian <a href="#sec-mempersiapkan-data" class="quarto-xref">Bagian&nbsp;1</a> dapat kita gunakan untuk melihat tren rerata curah hujan per bulannya, mulai Februari 1979 sampai Januari 2023. Untuk melakukannya, kita perlu mengelompokkan baris-baris dalam <code>df_mswep</code> berdasarkan nilai dalam variabel <code>tanggal_bawah</code>. Pengelompokkan ini dapat kita lakukan dengan menggunakan fungsi <code>group_by()</code>. Setelah itu, kita hitung rerata <code>curah_hujan</code> pada setiap kelompoknya dengan menggunakan fungsi <code>summarise()</code>.</p>
 <p>Hasil pada proses sebelumnya kemudian dapat gunakan untuk membuat diagram garis. Perhatikan <a href="#fig-tren-curah-hujan-setiap-bulan" class="quarto-xref">Gambar&nbsp;1</a>!</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>df_mswep <span class="sc">|&gt;</span> </span>
-<span id="cb11-2"><a href="#cb11-2"></a>  <span class="fu">group_by</span>(tanggal_bawah) <span class="sc">|&gt;</span> </span>
-<span id="cb11-3"><a href="#cb11-3"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb11-4"><a href="#cb11-4"></a>    <span class="at">rerata_curah_hujan =</span> <span class="fu">mean</span>(curah_hujan, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb11-5"><a href="#cb11-5"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
-<span id="cb11-6"><a href="#cb11-6"></a>  ) <span class="sc">|&gt;</span> </span>
-<span id="cb11-7"><a href="#cb11-7"></a>  <span class="fu">ggplot</span>(</span>
-<span id="cb11-8"><a href="#cb11-8"></a>    <span class="fu">aes</span>(<span class="at">x =</span> tanggal_bawah, <span class="at">y =</span> rerata_curah_hujan)</span>
-<span id="cb11-9"><a href="#cb11-9"></a>  ) <span class="sc">+</span> </span>
-<span id="cb11-10"><a href="#cb11-10"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
-<span id="cb11-11"><a href="#cb11-11"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
-<span id="cb11-12"><a href="#cb11-12"></a>  <span class="fu">labs</span>(</span>
-<span id="cb11-13"><a href="#cb11-13"></a>    <span class="at">x =</span> <span class="st">"Waktu"</span>,</span>
-<span id="cb11-14"><a href="#cb11-14"></a>    <span class="at">y =</span> <span class="st">"Rerata curah hujan (mm)"</span></span>
-<span id="cb11-15"><a href="#cb11-15"></a>  )</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>df_mswep <span class="sc">|&gt;</span> </span>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">group_by</span>(tanggal_bawah) <span class="sc">|&gt;</span> </span>
+<span id="cb9-3"><a href="#cb9-3"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb9-4"><a href="#cb9-4"></a>    <span class="at">rerata_curah_hujan =</span> <span class="fu">mean</span>(curah_hujan, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb9-5"><a href="#cb9-5"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb9-7"><a href="#cb9-7"></a>  <span class="fu">ggplot</span>(</span>
+<span id="cb9-8"><a href="#cb9-8"></a>    <span class="fu">aes</span>(<span class="at">x =</span> tanggal_bawah, <span class="at">y =</span> rerata_curah_hujan)</span>
+<span id="cb9-9"><a href="#cb9-9"></a>  ) <span class="sc">+</span> </span>
+<span id="cb9-10"><a href="#cb9-10"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
+<span id="cb9-11"><a href="#cb9-11"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb9-12"><a href="#cb9-12"></a>  <span class="fu">labs</span>(</span>
+<span id="cb9-13"><a href="#cb9-13"></a>    <span class="at">x =</span> <span class="st">"Waktu"</span>,</span>
+<span id="cb9-14"><a href="#cb9-14"></a>    <span class="at">y =</span> <span class="st">"Rerata curah hujan (mm)"</span></span>
+<span id="cb9-15"><a href="#cb9-15"></a>  )</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-tren-curah-hujan-setiap-bulan" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -454,22 +403,22 @@ Gambar&nbsp;1: Tren rerata curah hujan di Indonesia setiap bulannya mulai Februa
 </div>
 <p>Apakah kita dapat membandingkan rerata curah hujan setiap bulannya? Pertanyaan ini dapat kita jawab dengan membandingkan distribusi curah hujan untuk bulan Januari sampai Desember. Hal ini dapat kita lakukan dengan diagram kotak. Perhatikan <a href="#fig-rerata-curah-hujan-per-bulan" class="quarto-xref">Gambar&nbsp;2</a>!</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>vek_nama_bulan <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Januari"</span>, <span class="st">"Februari"</span>, <span class="st">"Maret"</span>, <span class="st">"April"</span>, <span class="st">"Mei"</span>, <span class="st">"Juni"</span>, <span class="st">"Juli"</span>, <span class="st">"Agustus"</span>, <span class="st">"September"</span>, <span class="st">"Oktober"</span>, <span class="st">"November"</span>, <span class="st">"Desember"</span>)</span>
-<span id="cb12-2"><a href="#cb12-2"></a></span>
-<span id="cb12-3"><a href="#cb12-3"></a>df_mswep <span class="sc">|&gt;</span> </span>
-<span id="cb12-4"><a href="#cb12-4"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb12-5"><a href="#cb12-5"></a>    <span class="at">bulan =</span> <span class="fu">month</span>(tanggal_bawah),</span>
-<span id="cb12-6"><a href="#cb12-6"></a>    <span class="at">nama_bulan =</span> vek_nama_bulan[<span class="fu">month</span>(tanggal_bawah)]</span>
-<span id="cb12-7"><a href="#cb12-7"></a>  ) <span class="sc">|&gt;</span> </span>
-<span id="cb12-8"><a href="#cb12-8"></a>  <span class="fu">ggplot</span>(</span>
-<span id="cb12-9"><a href="#cb12-9"></a>    <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(nama_bulan, bulan), <span class="at">y =</span> curah_hujan)</span>
-<span id="cb12-10"><a href="#cb12-10"></a>  ) <span class="sc">+</span> </span>
-<span id="cb12-11"><a href="#cb12-11"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outliers =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> </span>
-<span id="cb12-12"><a href="#cb12-12"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
-<span id="cb12-13"><a href="#cb12-13"></a>  <span class="fu">labs</span>(</span>
-<span id="cb12-14"><a href="#cb12-14"></a>    <span class="at">x =</span> <span class="st">"Bulan"</span>,</span>
-<span id="cb12-15"><a href="#cb12-15"></a>    <span class="at">y =</span> <span class="st">"Curah hujan (mm)"</span></span>
-<span id="cb12-16"><a href="#cb12-16"></a>  )</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>vek_nama_bulan <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Januari"</span>, <span class="st">"Februari"</span>, <span class="st">"Maret"</span>, <span class="st">"April"</span>, <span class="st">"Mei"</span>, <span class="st">"Juni"</span>, <span class="st">"Juli"</span>, <span class="st">"Agustus"</span>, <span class="st">"September"</span>, <span class="st">"Oktober"</span>, <span class="st">"November"</span>, <span class="st">"Desember"</span>)</span>
+<span id="cb10-2"><a href="#cb10-2"></a></span>
+<span id="cb10-3"><a href="#cb10-3"></a>df_mswep <span class="sc">|&gt;</span> </span>
+<span id="cb10-4"><a href="#cb10-4"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb10-5"><a href="#cb10-5"></a>    <span class="at">bulan =</span> <span class="fu">month</span>(tanggal_bawah),</span>
+<span id="cb10-6"><a href="#cb10-6"></a>    <span class="at">nama_bulan =</span> vek_nama_bulan[<span class="fu">month</span>(tanggal_bawah)]</span>
+<span id="cb10-7"><a href="#cb10-7"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb10-8"><a href="#cb10-8"></a>  <span class="fu">ggplot</span>(</span>
+<span id="cb10-9"><a href="#cb10-9"></a>    <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(nama_bulan, bulan), <span class="at">y =</span> curah_hujan)</span>
+<span id="cb10-10"><a href="#cb10-10"></a>  ) <span class="sc">+</span> </span>
+<span id="cb10-11"><a href="#cb10-11"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outliers =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> </span>
+<span id="cb10-12"><a href="#cb10-12"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb10-13"><a href="#cb10-13"></a>  <span class="fu">labs</span>(</span>
+<span id="cb10-14"><a href="#cb10-14"></a>    <span class="at">x =</span> <span class="st">"Bulan"</span>,</span>
+<span id="cb10-15"><a href="#cb10-15"></a>    <span class="at">y =</span> <span class="st">"Curah hujan (mm)"</span></span>
+<span id="cb10-16"><a href="#cb10-16"></a>  )</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-rerata-curah-hujan-per-bulan" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -491,26 +440,26 @@ Gambar&nbsp;2: Perbandingan rerata curah hujan setiap bulannya
 <p>Curah hujan tergantung dari wilayahnya. Suatu wilayah dapat memiliki curah hujan yang relatif lebih tinggi dibandingkan wilayah lainnya. Demikian juga sebaliknya. Untuk itu, kita perlu melakukan visualisasi data yang berbeda dari apa yang kita lakukan pada <a href="#sec-menjelajah-data" class="quarto-xref">Bagian&nbsp;2</a>. Kita akan memanfaatkan peta.</p>
 <p>Peta pertama yang kita buat adalah peta yang menunjukkan rerata curah hujan di setiap wilayah Indonesia empat tahun terakhir, yaitu tahun 2019 – 2022. (Data pada tahun 2023 kita abaikan karena hanya memuat data bulan Januari.) Untuk itu, kita siapkan terlebih dahulu datanya. Data tersebut kita beri nama <code>df_mswep_19_22</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="co"># Data curah hujan tahunan</span></span>
-<span id="cb13-2"><a href="#cb13-2"></a>df_mswep_tahunan <span class="ot">&lt;-</span> df_mswep <span class="sc">|&gt;</span> </span>
-<span id="cb13-3"><a href="#cb13-3"></a>  <span class="fu">filter</span>(</span>
-<span id="cb13-4"><a href="#cb13-4"></a>    tanggal_bawah <span class="sc">&gt;=</span> <span class="fu">as.Date</span>(<span class="st">"1980-01-01"</span>),</span>
-<span id="cb13-5"><a href="#cb13-5"></a>    tanggal_bawah <span class="sc">&lt;=</span> <span class="fu">as.Date</span>(<span class="st">"2022-12-01"</span>)</span>
-<span id="cb13-6"><a href="#cb13-6"></a>  ) <span class="sc">|&gt;</span> </span>
-<span id="cb13-7"><a href="#cb13-7"></a>  <span class="fu">mutate</span>(<span class="at">tahun =</span> <span class="fu">year</span>(tanggal_bawah)) <span class="sc">|&gt;</span> </span>
-<span id="cb13-8"><a href="#cb13-8"></a>  <span class="fu">group_by</span>(x, y, tahun) <span class="sc">|&gt;</span> </span>
-<span id="cb13-9"><a href="#cb13-9"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb13-10"><a href="#cb13-10"></a>    <span class="at">curah_hujan_tahunan =</span> <span class="fu">sum</span>(curah_hujan, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb13-11"><a href="#cb13-11"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
-<span id="cb13-12"><a href="#cb13-12"></a>  )</span>
-<span id="cb13-13"><a href="#cb13-13"></a></span>
-<span id="cb13-14"><a href="#cb13-14"></a><span class="co"># Data curah hujan tahunan pada tahun 2019 -- 2022</span></span>
-<span id="cb13-15"><a href="#cb13-15"></a>df_mswep_19_22 <span class="ot">&lt;-</span> df_mswep_tahunan <span class="sc">|&gt;</span> </span>
-<span id="cb13-16"><a href="#cb13-16"></a>  <span class="fu">filter</span>(</span>
-<span id="cb13-17"><a href="#cb13-17"></a>    tahun <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">2019</span>, <span class="dv">2020</span>, <span class="dv">2021</span>, <span class="dv">2022</span>)</span>
-<span id="cb13-18"><a href="#cb13-18"></a>  )</span>
-<span id="cb13-19"><a href="#cb13-19"></a></span>
-<span id="cb13-20"><a href="#cb13-20"></a><span class="fu">print</span>(df_mswep_19_22)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="co"># Data curah hujan tahunan</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a>df_mswep_tahunan <span class="ot">&lt;-</span> df_mswep <span class="sc">|&gt;</span> </span>
+<span id="cb11-3"><a href="#cb11-3"></a>  <span class="fu">filter</span>(</span>
+<span id="cb11-4"><a href="#cb11-4"></a>    tanggal_bawah <span class="sc">&gt;=</span> <span class="fu">as.Date</span>(<span class="st">"1980-01-01"</span>),</span>
+<span id="cb11-5"><a href="#cb11-5"></a>    tanggal_bawah <span class="sc">&lt;=</span> <span class="fu">as.Date</span>(<span class="st">"2022-12-01"</span>)</span>
+<span id="cb11-6"><a href="#cb11-6"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb11-7"><a href="#cb11-7"></a>  <span class="fu">mutate</span>(<span class="at">tahun =</span> <span class="fu">year</span>(tanggal_bawah)) <span class="sc">|&gt;</span> </span>
+<span id="cb11-8"><a href="#cb11-8"></a>  <span class="fu">group_by</span>(x, y, tahun) <span class="sc">|&gt;</span> </span>
+<span id="cb11-9"><a href="#cb11-9"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb11-10"><a href="#cb11-10"></a>    <span class="at">curah_hujan_tahunan =</span> <span class="fu">sum</span>(curah_hujan, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb11-11"><a href="#cb11-11"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb11-12"><a href="#cb11-12"></a>  )</span>
+<span id="cb11-13"><a href="#cb11-13"></a></span>
+<span id="cb11-14"><a href="#cb11-14"></a><span class="co"># Data curah hujan tahunan pada tahun 2019 -- 2022</span></span>
+<span id="cb11-15"><a href="#cb11-15"></a>df_mswep_19_22 <span class="ot">&lt;-</span> df_mswep_tahunan <span class="sc">|&gt;</span> </span>
+<span id="cb11-16"><a href="#cb11-16"></a>  <span class="fu">filter</span>(</span>
+<span id="cb11-17"><a href="#cb11-17"></a>    tahun <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">2019</span>, <span class="dv">2020</span>, <span class="dv">2021</span>, <span class="dv">2022</span>)</span>
+<span id="cb11-18"><a href="#cb11-18"></a>  )</span>
+<span id="cb11-19"><a href="#cb11-19"></a></span>
+<span id="cb11-20"><a href="#cb11-20"></a><span class="fu">print</span>(df_mswep_19_22)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 50,048 × 4
        x     y tahun curah_hujan_tahunan
@@ -536,31 +485,31 @@ Gambar&nbsp;2: Perbandingan rerata curah hujan setiap bulannya
 </ul>
 <p>Peta pertama kita dapat dibuat dengan menggunakan baris kode seperti berikut. Hasilnya ditunjukkan pada <a href="#fig-peta-per-tahun" class="quarto-xref">Gambar&nbsp;3</a>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>df_mswep_19_22 <span class="sc">|&gt;</span> </span>
-<span id="cb15-2"><a href="#cb15-2"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb15-3"><a href="#cb15-3"></a>  <span class="fu">geom_raster</span>(</span>
-<span id="cb15-4"><a href="#cb15-4"></a>    <span class="fu">aes</span>(</span>
-<span id="cb15-5"><a href="#cb15-5"></a>      <span class="at">x =</span> x,</span>
-<span id="cb15-6"><a href="#cb15-6"></a>      <span class="at">y =</span> y,</span>
-<span id="cb15-7"><a href="#cb15-7"></a>      <span class="at">fill =</span> curah_hujan_tahunan</span>
-<span id="cb15-8"><a href="#cb15-8"></a>    )</span>
-<span id="cb15-9"><a href="#cb15-9"></a>  ) <span class="sc">+</span></span>
-<span id="cb15-10"><a href="#cb15-10"></a>  <span class="fu">geom_contour</span>(</span>
-<span id="cb15-11"><a href="#cb15-11"></a>    <span class="fu">aes</span>(</span>
-<span id="cb15-12"><a href="#cb15-12"></a>      <span class="at">x =</span> x,</span>
-<span id="cb15-13"><a href="#cb15-13"></a>      <span class="at">y =</span> y,</span>
-<span id="cb15-14"><a href="#cb15-14"></a>      <span class="at">z =</span> curah_hujan_tahunan</span>
-<span id="cb15-15"><a href="#cb15-15"></a>    ),</span>
-<span id="cb15-16"><a href="#cb15-16"></a>    <span class="at">color =</span> <span class="st">"white"</span></span>
-<span id="cb15-17"><a href="#cb15-17"></a>  ) <span class="sc">+</span></span>
-<span id="cb15-18"><a href="#cb15-18"></a>  <span class="fu">geom_sf</span>(</span>
-<span id="cb15-19"><a href="#cb15-19"></a>    <span class="at">data =</span> sf_negara,</span>
-<span id="cb15-20"><a href="#cb15-20"></a>    <span class="at">fill =</span> <span class="st">"transparent"</span>,</span>
-<span id="cb15-21"><a href="#cb15-21"></a>    <span class="at">color =</span> <span class="st">"grey10"</span>,</span>
-<span id="cb15-22"><a href="#cb15-22"></a>    <span class="at">size =</span> .<span class="dv">5</span></span>
-<span id="cb15-23"><a href="#cb15-23"></a>  ) <span class="sc">+</span></span>
-<span id="cb15-24"><a href="#cb15-24"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(tahun), <span class="at">ncol =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb15-25"><a href="#cb15-25"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>df_mswep_19_22 <span class="sc">|&gt;</span> </span>
+<span id="cb13-2"><a href="#cb13-2"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb13-3"><a href="#cb13-3"></a>  <span class="fu">geom_raster</span>(</span>
+<span id="cb13-4"><a href="#cb13-4"></a>    <span class="fu">aes</span>(</span>
+<span id="cb13-5"><a href="#cb13-5"></a>      <span class="at">x =</span> x,</span>
+<span id="cb13-6"><a href="#cb13-6"></a>      <span class="at">y =</span> y,</span>
+<span id="cb13-7"><a href="#cb13-7"></a>      <span class="at">fill =</span> curah_hujan_tahunan</span>
+<span id="cb13-8"><a href="#cb13-8"></a>    )</span>
+<span id="cb13-9"><a href="#cb13-9"></a>  ) <span class="sc">+</span></span>
+<span id="cb13-10"><a href="#cb13-10"></a>  <span class="fu">geom_contour</span>(</span>
+<span id="cb13-11"><a href="#cb13-11"></a>    <span class="fu">aes</span>(</span>
+<span id="cb13-12"><a href="#cb13-12"></a>      <span class="at">x =</span> x,</span>
+<span id="cb13-13"><a href="#cb13-13"></a>      <span class="at">y =</span> y,</span>
+<span id="cb13-14"><a href="#cb13-14"></a>      <span class="at">z =</span> curah_hujan_tahunan</span>
+<span id="cb13-15"><a href="#cb13-15"></a>    ),</span>
+<span id="cb13-16"><a href="#cb13-16"></a>    <span class="at">color =</span> <span class="st">"white"</span></span>
+<span id="cb13-17"><a href="#cb13-17"></a>  ) <span class="sc">+</span></span>
+<span id="cb13-18"><a href="#cb13-18"></a>  <span class="fu">geom_sf</span>(</span>
+<span id="cb13-19"><a href="#cb13-19"></a>    <span class="at">data =</span> sf_negara,</span>
+<span id="cb13-20"><a href="#cb13-20"></a>    <span class="at">fill =</span> <span class="st">"transparent"</span>,</span>
+<span id="cb13-21"><a href="#cb13-21"></a>    <span class="at">color =</span> <span class="st">"grey10"</span>,</span>
+<span id="cb13-22"><a href="#cb13-22"></a>    <span class="at">size =</span> .<span class="dv">5</span></span>
+<span id="cb13-23"><a href="#cb13-23"></a>  ) <span class="sc">+</span></span>
+<span id="cb13-24"><a href="#cb13-24"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(tahun), <span class="at">ncol =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb13-25"><a href="#cb13-25"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-peta-per-tahun" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -576,91 +525,91 @@ Gambar&nbsp;3: Rerata curah hujan di setiap wilayah Indonesia per tahunnya
 </div>
 <p>Kita dapat memperbaiki tampilan pada <a href="#fig-peta-per-tahun" class="quarto-xref">Gambar&nbsp;3</a>. Perbaikan tersebut dapat kita lakukan pada tema, interval, dan warnanya. Kita siapkan ketiga hal tersebut.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>tema_peta <span class="ot">&lt;-</span> <span class="cf">function</span>(){</span>
-<span id="cb16-2"><a href="#cb16-2"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb16-3"><a href="#cb16-3"></a>    <span class="fu">theme</span>(</span>
-<span id="cb16-4"><a href="#cb16-4"></a>      <span class="at">axis.line =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb16-5"><a href="#cb16-5"></a>      <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb16-6"><a href="#cb16-6"></a>      <span class="at">axis.title.y =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb16-7"><a href="#cb16-7"></a>      <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb16-8"><a href="#cb16-8"></a>      <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb16-9"><a href="#cb16-9"></a>      <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
-<span id="cb16-10"><a href="#cb16-10"></a>      <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(</span>
-<span id="cb16-11"><a href="#cb16-11"></a>        <span class="at">color =</span> <span class="cn">NA</span></span>
-<span id="cb16-12"><a href="#cb16-12"></a>      ),</span>
-<span id="cb16-13"><a href="#cb16-13"></a>      <span class="at">panel.grid.minor =</span> <span class="fu">element_line</span>(</span>
-<span id="cb16-14"><a href="#cb16-14"></a>        <span class="at">color =</span> <span class="cn">NA</span></span>
-<span id="cb16-15"><a href="#cb16-15"></a>      ),</span>
-<span id="cb16-16"><a href="#cb16-16"></a>      <span class="at">plot.background =</span> <span class="fu">element_rect</span>(</span>
-<span id="cb16-17"><a href="#cb16-17"></a>        <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">color =</span> <span class="cn">NA</span></span>
-<span id="cb16-18"><a href="#cb16-18"></a>      ),</span>
-<span id="cb16-19"><a href="#cb16-19"></a>      <span class="at">legend.background =</span> <span class="fu">element_rect</span>(</span>
-<span id="cb16-20"><a href="#cb16-20"></a>        <span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">color =</span> <span class="cn">NA</span></span>
-<span id="cb16-21"><a href="#cb16-21"></a>      ),</span>
-<span id="cb16-22"><a href="#cb16-22"></a>      <span class="at">panel.border =</span> <span class="fu">element_rect</span>(</span>
-<span id="cb16-23"><a href="#cb16-23"></a>        <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">color =</span> <span class="cn">NA</span></span>
-<span id="cb16-24"><a href="#cb16-24"></a>      ),</span>
-<span id="cb16-25"><a href="#cb16-25"></a>      <span class="at">plot.margin =</span> <span class="fu">unit</span>(</span>
-<span id="cb16-26"><a href="#cb16-26"></a>        <span class="fu">c</span>(</span>
-<span id="cb16-27"><a href="#cb16-27"></a>          <span class="at">t =</span> <span class="dv">0</span>, <span class="at">r =</span> <span class="dv">0</span>,</span>
-<span id="cb16-28"><a href="#cb16-28"></a>          <span class="at">b =</span> <span class="dv">0</span>, <span class="at">l =</span> <span class="dv">0</span></span>
-<span id="cb16-29"><a href="#cb16-29"></a>        ), <span class="st">"lines"</span></span>
-<span id="cb16-30"><a href="#cb16-30"></a>      )</span>
-<span id="cb16-31"><a href="#cb16-31"></a>    )</span>
-<span id="cb16-32"><a href="#cb16-32"></a>}</span>
-<span id="cb16-33"><a href="#cb16-33"></a></span>
-<span id="cb16-34"><a href="#cb16-34"></a>warna <span class="ot">&lt;-</span> <span class="fu">hcl.colors</span>(</span>
-<span id="cb16-35"><a href="#cb16-35"></a>  <span class="at">n =</span> <span class="dv">5</span>,</span>
-<span id="cb16-36"><a href="#cb16-36"></a>  <span class="at">palette =</span> <span class="st">"Temps"</span>,</span>
-<span id="cb16-37"><a href="#cb16-37"></a>  <span class="at">rev =</span> <span class="cn">TRUE</span></span>
-<span id="cb16-38"><a href="#cb16-38"></a>)</span>
-<span id="cb16-39"><a href="#cb16-39"></a></span>
-<span id="cb16-40"><a href="#cb16-40"></a><span class="co"># Curah hujan bulanan (mm per bulan)</span></span>
-<span id="cb16-41"><a href="#cb16-41"></a>batas_int_bulanan <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">300</span>, <span class="dv">400</span>, <span class="fu">ceiling</span>(<span class="fu">max</span>(df_mswep<span class="sc">$</span>curah_hujan)))</span>
-<span id="cb16-42"><a href="#cb16-42"></a></span>
-<span id="cb16-43"><a href="#cb16-43"></a>batas_int_bulanan_baku <span class="ot">&lt;-</span> (batas_int_bulanan <span class="sc">-</span> <span class="fu">min</span>(batas_int_bulanan)) <span class="sc">/</span> (<span class="fu">max</span>(batas_int_bulanan) <span class="sc">-</span> <span class="fu">min</span>(batas_int_bulanan))</span>
-<span id="cb16-44"><a href="#cb16-44"></a></span>
-<span id="cb16-45"><a href="#cb16-45"></a><span class="co"># Curah hujan tahunan (mm per tahun)</span></span>
-<span id="cb16-46"><a href="#cb16-46"></a>batas_int_tahunan <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1500</span>, <span class="dv">3000</span>, <span class="dv">4500</span>, <span class="fu">ceiling</span>(<span class="fu">max</span>(df_mswep_tahunan<span class="sc">$</span>curah_hujan_tahunan)))</span>
-<span id="cb16-47"><a href="#cb16-47"></a></span>
-<span id="cb16-48"><a href="#cb16-48"></a>batas_int_tahunan_baku <span class="ot">&lt;-</span> (batas_int_tahunan <span class="sc">-</span> <span class="fu">min</span>(batas_int_tahunan)) <span class="sc">/</span> (<span class="fu">max</span>(batas_int_tahunan) <span class="sc">-</span> <span class="fu">min</span>(batas_int_tahunan))</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>tema_peta <span class="ot">&lt;-</span> <span class="cf">function</span>(){</span>
+<span id="cb14-2"><a href="#cb14-2"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a>    <span class="fu">theme</span>(</span>
+<span id="cb14-4"><a href="#cb14-4"></a>      <span class="at">axis.line =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb14-5"><a href="#cb14-5"></a>      <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb14-6"><a href="#cb14-6"></a>      <span class="at">axis.title.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb14-7"><a href="#cb14-7"></a>      <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb14-8"><a href="#cb14-8"></a>      <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb14-9"><a href="#cb14-9"></a>      <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
+<span id="cb14-10"><a href="#cb14-10"></a>      <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(</span>
+<span id="cb14-11"><a href="#cb14-11"></a>        <span class="at">color =</span> <span class="cn">NA</span></span>
+<span id="cb14-12"><a href="#cb14-12"></a>      ),</span>
+<span id="cb14-13"><a href="#cb14-13"></a>      <span class="at">panel.grid.minor =</span> <span class="fu">element_line</span>(</span>
+<span id="cb14-14"><a href="#cb14-14"></a>        <span class="at">color =</span> <span class="cn">NA</span></span>
+<span id="cb14-15"><a href="#cb14-15"></a>      ),</span>
+<span id="cb14-16"><a href="#cb14-16"></a>      <span class="at">plot.background =</span> <span class="fu">element_rect</span>(</span>
+<span id="cb14-17"><a href="#cb14-17"></a>        <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">color =</span> <span class="cn">NA</span></span>
+<span id="cb14-18"><a href="#cb14-18"></a>      ),</span>
+<span id="cb14-19"><a href="#cb14-19"></a>      <span class="at">legend.background =</span> <span class="fu">element_rect</span>(</span>
+<span id="cb14-20"><a href="#cb14-20"></a>        <span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">color =</span> <span class="cn">NA</span></span>
+<span id="cb14-21"><a href="#cb14-21"></a>      ),</span>
+<span id="cb14-22"><a href="#cb14-22"></a>      <span class="at">panel.border =</span> <span class="fu">element_rect</span>(</span>
+<span id="cb14-23"><a href="#cb14-23"></a>        <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">color =</span> <span class="cn">NA</span></span>
+<span id="cb14-24"><a href="#cb14-24"></a>      ),</span>
+<span id="cb14-25"><a href="#cb14-25"></a>      <span class="at">plot.margin =</span> <span class="fu">unit</span>(</span>
+<span id="cb14-26"><a href="#cb14-26"></a>        <span class="fu">c</span>(</span>
+<span id="cb14-27"><a href="#cb14-27"></a>          <span class="at">t =</span> <span class="dv">0</span>, <span class="at">r =</span> <span class="dv">0</span>,</span>
+<span id="cb14-28"><a href="#cb14-28"></a>          <span class="at">b =</span> <span class="dv">0</span>, <span class="at">l =</span> <span class="dv">0</span></span>
+<span id="cb14-29"><a href="#cb14-29"></a>        ), <span class="st">"lines"</span></span>
+<span id="cb14-30"><a href="#cb14-30"></a>      )</span>
+<span id="cb14-31"><a href="#cb14-31"></a>    )</span>
+<span id="cb14-32"><a href="#cb14-32"></a>}</span>
+<span id="cb14-33"><a href="#cb14-33"></a></span>
+<span id="cb14-34"><a href="#cb14-34"></a>warna <span class="ot">&lt;-</span> <span class="fu">hcl.colors</span>(</span>
+<span id="cb14-35"><a href="#cb14-35"></a>  <span class="at">n =</span> <span class="dv">5</span>,</span>
+<span id="cb14-36"><a href="#cb14-36"></a>  <span class="at">palette =</span> <span class="st">"Temps"</span>,</span>
+<span id="cb14-37"><a href="#cb14-37"></a>  <span class="at">rev =</span> <span class="cn">TRUE</span></span>
+<span id="cb14-38"><a href="#cb14-38"></a>)</span>
+<span id="cb14-39"><a href="#cb14-39"></a></span>
+<span id="cb14-40"><a href="#cb14-40"></a><span class="co"># Curah hujan bulanan (mm per bulan)</span></span>
+<span id="cb14-41"><a href="#cb14-41"></a>batas_int_bulanan <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">300</span>, <span class="dv">400</span>, <span class="fu">ceiling</span>(<span class="fu">max</span>(df_mswep<span class="sc">$</span>curah_hujan)))</span>
+<span id="cb14-42"><a href="#cb14-42"></a></span>
+<span id="cb14-43"><a href="#cb14-43"></a>batas_int_bulanan_baku <span class="ot">&lt;-</span> (batas_int_bulanan <span class="sc">-</span> <span class="fu">min</span>(batas_int_bulanan)) <span class="sc">/</span> (<span class="fu">max</span>(batas_int_bulanan) <span class="sc">-</span> <span class="fu">min</span>(batas_int_bulanan))</span>
+<span id="cb14-44"><a href="#cb14-44"></a></span>
+<span id="cb14-45"><a href="#cb14-45"></a><span class="co"># Curah hujan tahunan (mm per tahun)</span></span>
+<span id="cb14-46"><a href="#cb14-46"></a>batas_int_tahunan <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1500</span>, <span class="dv">3000</span>, <span class="dv">4500</span>, <span class="fu">ceiling</span>(<span class="fu">max</span>(df_mswep_tahunan<span class="sc">$</span>curah_hujan_tahunan)))</span>
+<span id="cb14-47"><a href="#cb14-47"></a></span>
+<span id="cb14-48"><a href="#cb14-48"></a>batas_int_tahunan_baku <span class="ot">&lt;-</span> (batas_int_tahunan <span class="sc">-</span> <span class="fu">min</span>(batas_int_tahunan)) <span class="sc">/</span> (<span class="fu">max</span>(batas_int_tahunan) <span class="sc">-</span> <span class="fu">min</span>(batas_int_tahunan))</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Sebagai catatan, interval pada baris kode di atas memiliki batas-batas <code>batas_int_tahunan</code> dan <code>batas_int_bulanan</code>. Batas-batas interval bulanan maupun tahunan tersebut dibuat dengan berdasarkan kategori curah hujan <a href="https://bmkg.go.id/iklim/prakiraan-musim.bmkg" class="external" target="_blank" title="Prakiraan Musim BMKG">BMKG</a>.</p>
 <p>Sekarang, kita terapkan tema, interval, dan warna yang sudah kita siapkan untuk membuat peta. Hasilnya disajikan pada <a href="#fig-peta-per-tahun-modif" class="quarto-xref">Gambar&nbsp;4</a>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>df_mswep_19_22 <span class="sc">|&gt;</span> </span>
-<span id="cb17-2"><a href="#cb17-2"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb17-3"><a href="#cb17-3"></a>  <span class="fu">geom_raster</span>(</span>
-<span id="cb17-4"><a href="#cb17-4"></a>    <span class="fu">aes</span>(</span>
-<span id="cb17-5"><a href="#cb17-5"></a>      <span class="at">x =</span> x,</span>
-<span id="cb17-6"><a href="#cb17-6"></a>      <span class="at">y =</span> y,</span>
-<span id="cb17-7"><a href="#cb17-7"></a>      <span class="at">fill =</span> curah_hujan_tahunan</span>
-<span id="cb17-8"><a href="#cb17-8"></a>    )</span>
-<span id="cb17-9"><a href="#cb17-9"></a>  ) <span class="sc">+</span></span>
-<span id="cb17-10"><a href="#cb17-10"></a>  <span class="fu">geom_contour</span>(</span>
-<span id="cb17-11"><a href="#cb17-11"></a>    <span class="fu">aes</span>(</span>
-<span id="cb17-12"><a href="#cb17-12"></a>      <span class="at">x =</span> x,</span>
-<span id="cb17-13"><a href="#cb17-13"></a>      <span class="at">y =</span> y,</span>
-<span id="cb17-14"><a href="#cb17-14"></a>      <span class="at">z =</span> curah_hujan_tahunan</span>
-<span id="cb17-15"><a href="#cb17-15"></a>    ),</span>
-<span id="cb17-16"><a href="#cb17-16"></a>    <span class="at">color =</span> <span class="st">"white"</span>,</span>
-<span id="cb17-17"><a href="#cb17-17"></a>    <span class="at">linewidth =</span> .<span class="dv">25</span></span>
-<span id="cb17-18"><a href="#cb17-18"></a>  ) <span class="sc">+</span></span>
-<span id="cb17-19"><a href="#cb17-19"></a>  <span class="fu">geom_sf</span>(</span>
-<span id="cb17-20"><a href="#cb17-20"></a>    <span class="at">data =</span> sf_negara,</span>
-<span id="cb17-21"><a href="#cb17-21"></a>    <span class="at">fill =</span> <span class="st">"transparent"</span>,</span>
-<span id="cb17-22"><a href="#cb17-22"></a>    <span class="at">color =</span> <span class="st">"grey10"</span>,</span>
-<span id="cb17-23"><a href="#cb17-23"></a>    <span class="at">linewidth =</span> .<span class="dv">5</span></span>
-<span id="cb17-24"><a href="#cb17-24"></a>  ) <span class="sc">+</span> </span>
-<span id="cb17-25"><a href="#cb17-25"></a>  <span class="fu">scale_fill_gradientn</span>(</span>
-<span id="cb17-26"><a href="#cb17-26"></a>    <span class="at">name =</span> <span class="st">"Curah hujan</span><span class="sc">\n</span><span class="st">(mm/tahun)"</span>,</span>
-<span id="cb17-27"><a href="#cb17-27"></a>    <span class="at">colors =</span> warna,</span>
-<span id="cb17-28"><a href="#cb17-28"></a>    <span class="at">values =</span> batas_int_tahunan_baku,</span>
-<span id="cb17-29"><a href="#cb17-29"></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1500</span>, <span class="dv">3000</span>, <span class="dv">4500</span>),</span>
-<span id="cb17-30"><a href="#cb17-30"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1500</span>, <span class="dv">3000</span>, <span class="dv">4500</span>)</span>
-<span id="cb17-31"><a href="#cb17-31"></a>  ) <span class="sc">+</span> </span>
-<span id="cb17-32"><a href="#cb17-32"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(tahun), <span class="at">ncol =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb17-33"><a href="#cb17-33"></a>  <span class="fu">tema_peta</span>()</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>df_mswep_19_22 <span class="sc">|&gt;</span> </span>
+<span id="cb15-2"><a href="#cb15-2"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb15-3"><a href="#cb15-3"></a>  <span class="fu">geom_raster</span>(</span>
+<span id="cb15-4"><a href="#cb15-4"></a>    <span class="fu">aes</span>(</span>
+<span id="cb15-5"><a href="#cb15-5"></a>      <span class="at">x =</span> x,</span>
+<span id="cb15-6"><a href="#cb15-6"></a>      <span class="at">y =</span> y,</span>
+<span id="cb15-7"><a href="#cb15-7"></a>      <span class="at">fill =</span> curah_hujan_tahunan</span>
+<span id="cb15-8"><a href="#cb15-8"></a>    )</span>
+<span id="cb15-9"><a href="#cb15-9"></a>  ) <span class="sc">+</span></span>
+<span id="cb15-10"><a href="#cb15-10"></a>  <span class="fu">geom_contour</span>(</span>
+<span id="cb15-11"><a href="#cb15-11"></a>    <span class="fu">aes</span>(</span>
+<span id="cb15-12"><a href="#cb15-12"></a>      <span class="at">x =</span> x,</span>
+<span id="cb15-13"><a href="#cb15-13"></a>      <span class="at">y =</span> y,</span>
+<span id="cb15-14"><a href="#cb15-14"></a>      <span class="at">z =</span> curah_hujan_tahunan</span>
+<span id="cb15-15"><a href="#cb15-15"></a>    ),</span>
+<span id="cb15-16"><a href="#cb15-16"></a>    <span class="at">color =</span> <span class="st">"white"</span>,</span>
+<span id="cb15-17"><a href="#cb15-17"></a>    <span class="at">linewidth =</span> .<span class="dv">25</span></span>
+<span id="cb15-18"><a href="#cb15-18"></a>  ) <span class="sc">+</span></span>
+<span id="cb15-19"><a href="#cb15-19"></a>  <span class="fu">geom_sf</span>(</span>
+<span id="cb15-20"><a href="#cb15-20"></a>    <span class="at">data =</span> sf_negara,</span>
+<span id="cb15-21"><a href="#cb15-21"></a>    <span class="at">fill =</span> <span class="st">"transparent"</span>,</span>
+<span id="cb15-22"><a href="#cb15-22"></a>    <span class="at">color =</span> <span class="st">"grey10"</span>,</span>
+<span id="cb15-23"><a href="#cb15-23"></a>    <span class="at">linewidth =</span> .<span class="dv">5</span></span>
+<span id="cb15-24"><a href="#cb15-24"></a>  ) <span class="sc">+</span> </span>
+<span id="cb15-25"><a href="#cb15-25"></a>  <span class="fu">scale_fill_gradientn</span>(</span>
+<span id="cb15-26"><a href="#cb15-26"></a>    <span class="at">name =</span> <span class="st">"Curah hujan</span><span class="sc">\n</span><span class="st">(mm/tahun)"</span>,</span>
+<span id="cb15-27"><a href="#cb15-27"></a>    <span class="at">colors =</span> warna,</span>
+<span id="cb15-28"><a href="#cb15-28"></a>    <span class="at">values =</span> batas_int_tahunan_baku,</span>
+<span id="cb15-29"><a href="#cb15-29"></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1500</span>, <span class="dv">3000</span>, <span class="dv">4500</span>),</span>
+<span id="cb15-30"><a href="#cb15-30"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1500</span>, <span class="dv">3000</span>, <span class="dv">4500</span>)</span>
+<span id="cb15-31"><a href="#cb15-31"></a>  ) <span class="sc">+</span> </span>
+<span id="cb15-32"><a href="#cb15-32"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(tahun), <span class="at">ncol =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb15-33"><a href="#cb15-33"></a>  <span class="fu">tema_peta</span>()</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-peta-per-tahun-modif" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -677,44 +626,44 @@ Gambar&nbsp;4: Rerata curah hujan di setiap wilayah Indonesia per tahunnya
 <p>Berdasarkan peta pada <a href="#fig-peta-per-tahun-modif" class="quarto-xref">Gambar&nbsp;4</a>, kita dapat melihat bahwa tahun 2019 curah hujannya relatif lebih rendah dibandingkan dengan tahun 2020 – 2022. Tak hanya itu, kita juga dapat membandingkan curah hujan antarwilayah di Indonesia. Tampak bahwa wilayah pesisir barat Pulau Sumatera, Kalimantan bagian utara, dan Papua bagian timur memiliki curah hujan yang relatif lebih tinggi.</p>
 <p>Sekarang kita akan membuat sebuah peta curah hujan di Indonesia pada bulan dan tahun tertentu. Apakah kamu punya usulan bulan dan tahun berapa yang perlu kita gambar? Kita pilih bulan dan tahun yang terakhir saja, yaitu Januari 2023. Perhatikan <a href="#fig-peta-bulan-terakhir" class="quarto-xref">Gambar&nbsp;5</a>!</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>peta_2023_01 <span class="ot">&lt;-</span> df_mswep <span class="sc">|&gt;</span> </span>
-<span id="cb18-2"><a href="#cb18-2"></a>  <span class="fu">filter</span>(</span>
-<span id="cb18-3"><a href="#cb18-3"></a>    tanggal_bawah <span class="sc">==</span> <span class="fu">as.Date</span>(<span class="st">"2023-01-01"</span>)</span>
-<span id="cb18-4"><a href="#cb18-4"></a>  ) <span class="sc">|&gt;</span> </span>
-<span id="cb18-5"><a href="#cb18-5"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb18-6"><a href="#cb18-6"></a>  <span class="fu">geom_raster</span>(</span>
-<span id="cb18-7"><a href="#cb18-7"></a>    <span class="fu">aes</span>(</span>
-<span id="cb18-8"><a href="#cb18-8"></a>      <span class="at">x =</span> x,</span>
-<span id="cb18-9"><a href="#cb18-9"></a>      <span class="at">y =</span> y,</span>
-<span id="cb18-10"><a href="#cb18-10"></a>      <span class="at">fill =</span> curah_hujan</span>
-<span id="cb18-11"><a href="#cb18-11"></a>    )</span>
-<span id="cb18-12"><a href="#cb18-12"></a>  ) <span class="sc">+</span></span>
-<span id="cb18-13"><a href="#cb18-13"></a>  <span class="fu">geom_contour</span>(</span>
-<span id="cb18-14"><a href="#cb18-14"></a>    <span class="fu">aes</span>(</span>
-<span id="cb18-15"><a href="#cb18-15"></a>      <span class="at">x =</span> x,</span>
-<span id="cb18-16"><a href="#cb18-16"></a>      <span class="at">y =</span> y,</span>
-<span id="cb18-17"><a href="#cb18-17"></a>      <span class="at">z =</span> curah_hujan </span>
-<span id="cb18-18"><a href="#cb18-18"></a>    ),</span>
-<span id="cb18-19"><a href="#cb18-19"></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">300</span>, <span class="dv">400</span>),</span>
-<span id="cb18-20"><a href="#cb18-20"></a>    <span class="at">color =</span> <span class="st">"white"</span>,</span>
-<span id="cb18-21"><a href="#cb18-21"></a>    <span class="at">linewidth =</span> .<span class="dv">25</span></span>
-<span id="cb18-22"><a href="#cb18-22"></a>  ) <span class="sc">+</span></span>
-<span id="cb18-23"><a href="#cb18-23"></a>  <span class="fu">geom_sf</span>(</span>
-<span id="cb18-24"><a href="#cb18-24"></a>    <span class="at">data =</span> sf_negara,</span>
-<span id="cb18-25"><a href="#cb18-25"></a>    <span class="at">fill =</span> <span class="st">"transparent"</span>,</span>
-<span id="cb18-26"><a href="#cb18-26"></a>    <span class="at">color =</span> <span class="st">"grey10"</span>,</span>
-<span id="cb18-27"><a href="#cb18-27"></a>    <span class="at">linewidth =</span> .<span class="dv">5</span></span>
-<span id="cb18-28"><a href="#cb18-28"></a>  ) <span class="sc">+</span> </span>
-<span id="cb18-29"><a href="#cb18-29"></a>  <span class="fu">scale_fill_gradientn</span>(</span>
-<span id="cb18-30"><a href="#cb18-30"></a>    <span class="at">name =</span> <span class="st">"Curah hujan</span><span class="sc">\n</span><span class="st">(mm/bulan)"</span>,</span>
-<span id="cb18-31"><a href="#cb18-31"></a>    <span class="at">colors =</span> warna,</span>
-<span id="cb18-32"><a href="#cb18-32"></a>    <span class="at">values =</span> batas_int_bulanan_baku,</span>
-<span id="cb18-33"><a href="#cb18-33"></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">300</span>, <span class="dv">400</span>),</span>
-<span id="cb18-34"><a href="#cb18-34"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">300</span>, <span class="dv">400</span>)</span>
-<span id="cb18-35"><a href="#cb18-35"></a>  ) <span class="sc">+</span> </span>
-<span id="cb18-36"><a href="#cb18-36"></a>  <span class="fu">tema_peta</span>()</span>
-<span id="cb18-37"><a href="#cb18-37"></a></span>
-<span id="cb18-38"><a href="#cb18-38"></a><span class="fu">print</span>(peta_2023_01)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>peta_2023_01 <span class="ot">&lt;-</span> df_mswep <span class="sc">|&gt;</span> </span>
+<span id="cb16-2"><a href="#cb16-2"></a>  <span class="fu">filter</span>(</span>
+<span id="cb16-3"><a href="#cb16-3"></a>    tanggal_bawah <span class="sc">==</span> <span class="fu">as.Date</span>(<span class="st">"2023-01-01"</span>)</span>
+<span id="cb16-4"><a href="#cb16-4"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb16-5"><a href="#cb16-5"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb16-6"><a href="#cb16-6"></a>  <span class="fu">geom_raster</span>(</span>
+<span id="cb16-7"><a href="#cb16-7"></a>    <span class="fu">aes</span>(</span>
+<span id="cb16-8"><a href="#cb16-8"></a>      <span class="at">x =</span> x,</span>
+<span id="cb16-9"><a href="#cb16-9"></a>      <span class="at">y =</span> y,</span>
+<span id="cb16-10"><a href="#cb16-10"></a>      <span class="at">fill =</span> curah_hujan</span>
+<span id="cb16-11"><a href="#cb16-11"></a>    )</span>
+<span id="cb16-12"><a href="#cb16-12"></a>  ) <span class="sc">+</span></span>
+<span id="cb16-13"><a href="#cb16-13"></a>  <span class="fu">geom_contour</span>(</span>
+<span id="cb16-14"><a href="#cb16-14"></a>    <span class="fu">aes</span>(</span>
+<span id="cb16-15"><a href="#cb16-15"></a>      <span class="at">x =</span> x,</span>
+<span id="cb16-16"><a href="#cb16-16"></a>      <span class="at">y =</span> y,</span>
+<span id="cb16-17"><a href="#cb16-17"></a>      <span class="at">z =</span> curah_hujan </span>
+<span id="cb16-18"><a href="#cb16-18"></a>    ),</span>
+<span id="cb16-19"><a href="#cb16-19"></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">300</span>, <span class="dv">400</span>),</span>
+<span id="cb16-20"><a href="#cb16-20"></a>    <span class="at">color =</span> <span class="st">"white"</span>,</span>
+<span id="cb16-21"><a href="#cb16-21"></a>    <span class="at">linewidth =</span> .<span class="dv">25</span></span>
+<span id="cb16-22"><a href="#cb16-22"></a>  ) <span class="sc">+</span></span>
+<span id="cb16-23"><a href="#cb16-23"></a>  <span class="fu">geom_sf</span>(</span>
+<span id="cb16-24"><a href="#cb16-24"></a>    <span class="at">data =</span> sf_negara,</span>
+<span id="cb16-25"><a href="#cb16-25"></a>    <span class="at">fill =</span> <span class="st">"transparent"</span>,</span>
+<span id="cb16-26"><a href="#cb16-26"></a>    <span class="at">color =</span> <span class="st">"grey10"</span>,</span>
+<span id="cb16-27"><a href="#cb16-27"></a>    <span class="at">linewidth =</span> .<span class="dv">5</span></span>
+<span id="cb16-28"><a href="#cb16-28"></a>  ) <span class="sc">+</span> </span>
+<span id="cb16-29"><a href="#cb16-29"></a>  <span class="fu">scale_fill_gradientn</span>(</span>
+<span id="cb16-30"><a href="#cb16-30"></a>    <span class="at">name =</span> <span class="st">"Curah hujan</span><span class="sc">\n</span><span class="st">(mm/bulan)"</span>,</span>
+<span id="cb16-31"><a href="#cb16-31"></a>    <span class="at">colors =</span> warna,</span>
+<span id="cb16-32"><a href="#cb16-32"></a>    <span class="at">values =</span> batas_int_bulanan_baku,</span>
+<span id="cb16-33"><a href="#cb16-33"></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">300</span>, <span class="dv">400</span>),</span>
+<span id="cb16-34"><a href="#cb16-34"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">300</span>, <span class="dv">400</span>)</span>
+<span id="cb16-35"><a href="#cb16-35"></a>  ) <span class="sc">+</span> </span>
+<span id="cb16-36"><a href="#cb16-36"></a>  <span class="fu">tema_peta</span>()</span>
+<span id="cb16-37"><a href="#cb16-37"></a></span>
+<span id="cb16-38"><a href="#cb16-38"></a><span class="fu">print</span>(peta_2023_01)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-peta-bulan-terakhir" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -730,20 +679,20 @@ Gambar&nbsp;5: Curah hujan di setiap wilayah Indonesia pada Januari 2023
 </div>
 <p>Berdasarkan <a href="#fig-peta-bulan-terakhir" class="quarto-xref">Gambar&nbsp;5</a>, kita dapat melihat bahwa sebagian besar wilayah Indonesia memiliki curah hujan yang cukup tinggi. Beberapa wilayah saja yang curah hujannya relatif rendah, yaitu sebagian wilayah Sulawesi, bagian selatan Kepulauan Maluku, dan wilayah Nusa Tenggara. Untuk lebih jelasnya, kita dapat melihat distribusi curah hujannya pada Januari 2023, seperti yang ditunjukkan pada <a href="#fig-distribusi-curah-hujan-jan-2023" class="quarto-xref">Gambar&nbsp;6</a>!</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>df_mswep <span class="sc">|&gt;</span> </span>
-<span id="cb19-2"><a href="#cb19-2"></a>  <span class="fu">filter</span>(</span>
-<span id="cb19-3"><a href="#cb19-3"></a>    tanggal_bawah <span class="sc">==</span> <span class="fu">as.Date</span>(<span class="st">"2023-01-01"</span>)</span>
-<span id="cb19-4"><a href="#cb19-4"></a>  ) <span class="sc">|&gt;</span> </span>
-<span id="cb19-5"><a href="#cb19-5"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> curah_hujan)) <span class="sc">+</span> </span>
-<span id="cb19-6"><a href="#cb19-6"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span> </span>
-<span id="cb19-7"><a href="#cb19-7"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
-<span id="cb19-8"><a href="#cb19-8"></a>  <span class="fu">theme</span>(</span>
-<span id="cb19-9"><a href="#cb19-9"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb19-10"><a href="#cb19-10"></a>    <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>()</span>
-<span id="cb19-11"><a href="#cb19-11"></a>  ) <span class="sc">+</span> </span>
-<span id="cb19-12"><a href="#cb19-12"></a>  <span class="fu">labs</span>(</span>
-<span id="cb19-13"><a href="#cb19-13"></a>    <span class="at">x =</span> <span class="st">"Curah hujan (mm/bulan)"</span></span>
-<span id="cb19-14"><a href="#cb19-14"></a>  )</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>df_mswep <span class="sc">|&gt;</span> </span>
+<span id="cb17-2"><a href="#cb17-2"></a>  <span class="fu">filter</span>(</span>
+<span id="cb17-3"><a href="#cb17-3"></a>    tanggal_bawah <span class="sc">==</span> <span class="fu">as.Date</span>(<span class="st">"2023-01-01"</span>)</span>
+<span id="cb17-4"><a href="#cb17-4"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb17-5"><a href="#cb17-5"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> curah_hujan)) <span class="sc">+</span> </span>
+<span id="cb17-6"><a href="#cb17-6"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span> </span>
+<span id="cb17-7"><a href="#cb17-7"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb17-8"><a href="#cb17-8"></a>  <span class="fu">theme</span>(</span>
+<span id="cb17-9"><a href="#cb17-9"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb17-10"><a href="#cb17-10"></a>    <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb17-11"><a href="#cb17-11"></a>  ) <span class="sc">+</span> </span>
+<span id="cb17-12"><a href="#cb17-12"></a>  <span class="fu">labs</span>(</span>
+<span id="cb17-13"><a href="#cb17-13"></a>    <span class="at">x =</span> <span class="st">"Curah hujan (mm/bulan)"</span></span>
+<span id="cb17-14"><a href="#cb17-14"></a>  )</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-distribusi-curah-hujan-jan-2023" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -762,20 +711,20 @@ Gambar&nbsp;6: Distribusi curah hujan di setiap wilayah Indonesia pada Januari 2
 <h2 class="anchored" data-anchor-id="sec-visualisasi-data-dengan-peta-3d">Visualisasi Data dengan Peta 3D</h2>
 <p>Peta yang kita hasilkan pada <a href="#sec-visualisasi-data-dengan-peta-2d" class="quarto-xref">Bagian&nbsp;3</a> merupakan peta 2D meskipun terbantu oleh kontur sehingga tampak seperti 3D. Apakah kita dapat membuat peta 3D? Ya, kita dapat melakukannya dengan menggunakan paket {rayshader}.</p>
 <p>Untuk membuat peta 3D dari <code>peta_2023_01</code> yang telah kita buat sebelumnya, kita gunakan baris kode berikut.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">plot_gg</span>(</span>
-<span id="cb20-2"><a href="#cb20-2"></a>  <span class="at">ggobj =</span> peta_2023_01,</span>
-<span id="cb20-3"><a href="#cb20-3"></a>  <span class="at">width =</span> <span class="dv">7</span>,</span>
-<span id="cb20-4"><a href="#cb20-4"></a>  <span class="at">height =</span> <span class="dv">7</span>,</span>
-<span id="cb20-5"><a href="#cb20-5"></a>  <span class="at">scale =</span> <span class="dv">250</span>,</span>
-<span id="cb20-6"><a href="#cb20-6"></a>  <span class="at">solid =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb20-7"><a href="#cb20-7"></a>  <span class="at">shadow =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb20-8"><a href="#cb20-8"></a>  <span class="at">shadowcolor =</span> <span class="st">"white"</span>,</span>
-<span id="cb20-9"><a href="#cb20-9"></a>  <span class="at">shadowwidth =</span> <span class="dv">0</span>,</span>
-<span id="cb20-10"><a href="#cb20-10"></a>  <span class="at">shadow_intensity =</span> <span class="dv">1</span>,</span>
-<span id="cb20-11"><a href="#cb20-11"></a>  <span class="at">zoom =</span> .<span class="dv">7</span>,</span>
-<span id="cb20-12"><a href="#cb20-12"></a>  <span class="at">phi =</span> <span class="dv">85</span>,</span>
-<span id="cb20-13"><a href="#cb20-13"></a>  <span class="at">theta =</span> <span class="dv">0</span></span>
-<span id="cb20-14"><a href="#cb20-14"></a>)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">plot_gg</span>(</span>
+<span id="cb18-2"><a href="#cb18-2"></a>  <span class="at">ggobj =</span> peta_2023_01,</span>
+<span id="cb18-3"><a href="#cb18-3"></a>  <span class="at">width =</span> <span class="dv">7</span>,</span>
+<span id="cb18-4"><a href="#cb18-4"></a>  <span class="at">height =</span> <span class="dv">7</span>,</span>
+<span id="cb18-5"><a href="#cb18-5"></a>  <span class="at">scale =</span> <span class="dv">250</span>,</span>
+<span id="cb18-6"><a href="#cb18-6"></a>  <span class="at">solid =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb18-7"><a href="#cb18-7"></a>  <span class="at">shadow =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb18-8"><a href="#cb18-8"></a>  <span class="at">shadowcolor =</span> <span class="st">"white"</span>,</span>
+<span id="cb18-9"><a href="#cb18-9"></a>  <span class="at">shadowwidth =</span> <span class="dv">0</span>,</span>
+<span id="cb18-10"><a href="#cb18-10"></a>  <span class="at">shadow_intensity =</span> <span class="dv">1</span>,</span>
+<span id="cb18-11"><a href="#cb18-11"></a>  <span class="at">zoom =</span> .<span class="dv">7</span>,</span>
+<span id="cb18-12"><a href="#cb18-12"></a>  <span class="at">phi =</span> <span class="dv">85</span>,</span>
+<span id="cb18-13"><a href="#cb18-13"></a>  <span class="at">theta =</span> <span class="dv">0</span></span>
+<span id="cb18-14"><a href="#cb18-14"></a>)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Fungsi <code>plot_gg()</code> tersebut gunanya untuk menjadikan objek <code>peta_2023_01</code> menjadi 3D dengan memetakan warnanya sebagai ketinggian dalam gambar 3D tersebut. Setelah baris perintah di atas dijalankan, dalam beberapa saat kita akan mendapatkan jendela baru yang muncul. Jendela tersebut seperti yang ditunjukkan pada <a href="#fig-jendela-kamera" class="quarto-xref">Gambar&nbsp;7</a>.</p>
 <div id="fig-jendela-kamera" class="quarto-figure quarto-figure-center quarto-float anchored" alt="Jendela kamera dari peta 3D" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
@@ -788,33 +737,33 @@ Gambar&nbsp;7: Jendela kamera dari peta 3D
 </figure>
 </div>
 <p>Ketika jendela kamera tersebut masih muncul, kita dapat mengatur posisi dan propertinya dengan menggunakan fungsi <code>render_camera()</code>. Kita dapat mengaturnya seperti pada baris kode berikut.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">render_camera</span>(</span>
-<span id="cb21-2"><a href="#cb21-2"></a>  <span class="at">theta =</span> <span class="dv">30</span>,</span>
-<span id="cb21-3"><a href="#cb21-3"></a>  <span class="at">phi =</span> <span class="dv">75</span></span>
-<span id="cb21-4"><a href="#cb21-4"></a>)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">render_camera</span>(</span>
+<span id="cb19-2"><a href="#cb19-2"></a>  <span class="at">theta =</span> <span class="dv">30</span>,</span>
+<span id="cb19-3"><a href="#cb19-3"></a>  <span class="at">phi =</span> <span class="dv">75</span></span>
+<span id="cb19-4"><a href="#cb19-4"></a>)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Argumen <code>theta = 30</code> menyatakan bahwa sudut rotasinya adalah 30 derajat. Argumen <code>phi = 75</code> menyatakan bahwa sudut azimutnya sebesar 75 derajat. Setelah itu, kita dapat merender peta 3D tersebut dengan menggunakan baris kode sebagai berikut.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>u <span class="ot">&lt;-</span> <span class="st">"https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/4k/air_museum_playground_4k.hdr"</span></span>
-<span id="cb22-2"><a href="#cb22-2"></a></span>
-<span id="cb22-3"><a href="#cb22-3"></a>fail_hdri <span class="ot">&lt;-</span> <span class="fu">basename</span>(u)</span>
-<span id="cb22-4"><a href="#cb22-4"></a></span>
-<span id="cb22-5"><a href="#cb22-5"></a><span class="fu">download.file</span>(</span>
-<span id="cb22-6"><a href="#cb22-6"></a>  <span class="at">url =</span> u,</span>
-<span id="cb22-7"><a href="#cb22-7"></a>  <span class="at">destfile =</span> fail_hdri,</span>
-<span id="cb22-8"><a href="#cb22-8"></a>  <span class="at">mode =</span> <span class="st">"wb"</span></span>
-<span id="cb22-9"><a href="#cb22-9"></a>)</span>
-<span id="cb22-10"><a href="#cb22-10"></a></span>
-<span id="cb22-11"><a href="#cb22-11"></a><span class="fu">render_highquality</span>(</span>
-<span id="cb22-12"><a href="#cb22-12"></a>  <span class="at">filename =</span> <span class="st">"curah_hujan_indonesia.png"</span>,</span>
-<span id="cb22-13"><a href="#cb22-13"></a>  <span class="at">preview =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb22-14"><a href="#cb22-14"></a>  <span class="at">interactive =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb22-15"><a href="#cb22-15"></a>  <span class="at">parallel =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb22-16"><a href="#cb22-16"></a>  <span class="at">light =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb22-17"><a href="#cb22-17"></a>  <span class="at">environment_light =</span> fail_hdri,</span>
-<span id="cb22-18"><a href="#cb22-18"></a>  <span class="at">intensity =</span> .<span class="dv">45</span>,</span>
-<span id="cb22-19"><a href="#cb22-19"></a>  <span class="at">rotate_env =</span> <span class="dv">90</span>,</span>
-<span id="cb22-20"><a href="#cb22-20"></a>  <span class="at">width =</span> <span class="dv">1280</span>,</span>
-<span id="cb22-21"><a href="#cb22-21"></a>  <span class="at">height =</span> <span class="dv">720</span></span>
-<span id="cb22-22"><a href="#cb22-22"></a>)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>u <span class="ot">&lt;-</span> <span class="st">"https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/4k/air_museum_playground_4k.hdr"</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a></span>
+<span id="cb20-3"><a href="#cb20-3"></a>fail_hdri <span class="ot">&lt;-</span> <span class="fu">basename</span>(u)</span>
+<span id="cb20-4"><a href="#cb20-4"></a></span>
+<span id="cb20-5"><a href="#cb20-5"></a><span class="fu">download.file</span>(</span>
+<span id="cb20-6"><a href="#cb20-6"></a>  <span class="at">url =</span> u,</span>
+<span id="cb20-7"><a href="#cb20-7"></a>  <span class="at">destfile =</span> fail_hdri,</span>
+<span id="cb20-8"><a href="#cb20-8"></a>  <span class="at">mode =</span> <span class="st">"wb"</span></span>
+<span id="cb20-9"><a href="#cb20-9"></a>)</span>
+<span id="cb20-10"><a href="#cb20-10"></a></span>
+<span id="cb20-11"><a href="#cb20-11"></a><span class="fu">render_highquality</span>(</span>
+<span id="cb20-12"><a href="#cb20-12"></a>  <span class="at">filename =</span> <span class="st">"curah_hujan_indonesia.png"</span>,</span>
+<span id="cb20-13"><a href="#cb20-13"></a>  <span class="at">preview =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb20-14"><a href="#cb20-14"></a>  <span class="at">interactive =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb20-15"><a href="#cb20-15"></a>  <span class="at">parallel =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb20-16"><a href="#cb20-16"></a>  <span class="at">light =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb20-17"><a href="#cb20-17"></a>  <span class="at">environment_light =</span> fail_hdri,</span>
+<span id="cb20-18"><a href="#cb20-18"></a>  <span class="at">intensity =</span> .<span class="dv">45</span>,</span>
+<span id="cb20-19"><a href="#cb20-19"></a>  <span class="at">rotate_env =</span> <span class="dv">90</span>,</span>
+<span id="cb20-20"><a href="#cb20-20"></a>  <span class="at">width =</span> <span class="dv">1280</span>,</span>
+<span id="cb20-21"><a href="#cb20-21"></a>  <span class="at">height =</span> <span class="dv">720</span></span>
+<span id="cb20-22"><a href="#cb20-22"></a>)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Hasil render tersebut ditunjukkan pada <a href="#fig-peta-3d-curah-hujan-indonesia-2023-01" class="quarto-xref">Gambar&nbsp;8</a>.</p>
 <div id="fig-peta-3d-curah-hujan-indonesia-2023-01" class="quarto-figure quarto-figure-center quarto-float anchored" alt="Peta 3D yang menyajikan curah hujan Indonesia pada Januari 2023" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">

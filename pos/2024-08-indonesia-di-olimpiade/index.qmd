@@ -11,7 +11,7 @@ date: 2024-08-17
 categories:
   - olahraga
   - statistik dunia
-  - turorial
+  - tutorial
   - visualisasi data
 image: "indonesia-di-olimpiade.png"
 image-alt: |
