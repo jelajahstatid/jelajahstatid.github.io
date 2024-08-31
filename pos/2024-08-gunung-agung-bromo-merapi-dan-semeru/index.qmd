@@ -71,14 +71,12 @@ Sebelum kita menggambar model 3D Gunung Agung, Bromo, Merapi, dan Semeru, baik a
 ```{r}
 #| echo: false
 
-set.seed(1234)
-
 elemen_matriks <- c(
-  2803, 3014, 3034, 2567, 1872,
-  2502, 2936, 3056, 2798, 1909,
-  2381, 3138, 3669, 3192, 1941,
-  2181, 2794, 3260, 2955, 1838,
-  1739, 1922, 2017, 1904, 1487
+  28, 30, 30, 26, 19,
+  25, 29, 31, 28, 19,
+  24, 31, 37, 32, 19,
+  22, 28, 33, 30, 18,
+  17, 19, 20, 19, 15
 )
 matriks_elevasi <- matrix(
   data = elemen_matriks,

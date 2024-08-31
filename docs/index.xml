@@ -63,12 +63,12 @@ font-style: inherit;">library</span>(rayshader)</span></code></pre></div>
 <p>Sebelum kita menggambar model 3D Gunung Agung, Bromo, Merapi, dan Semeru, baik apabila kita bahas ide dasarnya: beberapa objek 3D itu dapat dinyatakan ke dalam sebuah matriks elevasi. Baris dan kolom matriks tersebut menyatakan koordinat <img src="https://latex.codecogs.com/png.latex?x"> dan <img src="https://latex.codecogs.com/png.latex?y">, sedangkan elemen-elemennya menyatakan ketinggiannya. Misalnya, kita memiliki matriks elevasi seperti berikut.</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>     1    2    3    4    5
-1 2803 3014 3034 2567 1872
-2 2502 2936 3056 2798 1909
-3 2381 3138 3669 3192 1941
-4 2181 2794 3260 2955 1838
-5 1739 1922 2017 1904 1487</code></pre>
+<pre><code>   1  2  3  4  5
+1 28 30 30 26 19
+2 25 29 31 28 19
+3 24 31 37 32 19
+4 22 28 33 30 18
+5 17 19 20 19 15</code></pre>
 </div>
 </div>
 <p>Dari matriks elevasi tersebut, kita dapat membuat objek 3D dengan berdasarkan ketinggiannya (elemen-elemen matriks) dan posisinya (baris dan kolomnya). Tetapi sebelum itu, terlebih dahulu kita perhatikan proyeksi dua dimensinya seperti yang ditunjukkan pada Gambar&nbsp;2.</p>
@@ -687,7 +687,7 @@ font-style: inherit;">85</span></span>
 background-color: null;
 font-style: inherit;">render_snapshot</span>()</span></code></pre></div>
 <p>Hasil gambarnya seperti yang ditunjukkan pada Gambar&nbsp;5.</p>
-<div id="fig-empat-gunung-3d" class="quarto-figure quarto-figure-center quarto-float anchored" alt="Model 3D Gunung Agung, Bromo, Merapi, dan Semeru" data-fig-align="center">
+<div id="fig-empat-gunung-3d" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center" alt="Model 3D Gunung Agung, Bromo, Merapi, dan Semeru">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-empat-gunung-3d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-gunung-agung-bromo-merapi-dan-semeru/aset/empat_gunung_3d.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Model 3D Gunung Agung, Bromo, Merapi, dan Semeru">
@@ -2415,7 +2415,7 @@ background-color: null;
 font-style: inherit;">0</span></span>
 <span id="cb18-14">)</span></code></pre></div>
 <p>Fungsi <code>plot_gg()</code> tersebut gunanya untuk menjadikan objek <code>peta_2023_01</code> menjadi 3D dengan memetakan warnanya sebagai ketinggian dalam gambar 3D tersebut. Setelah baris perintah di atas dijalankan, dalam beberapa saat kita akan mendapatkan jendela baru yang muncul. Jendela tersebut seperti yang ditunjukkan pada Gambar&nbsp;7.</p>
-<div id="fig-jendela-kamera" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center" alt="Jendela kamera dari peta 3D">
+<div id="fig-jendela-kamera" class="quarto-figure quarto-figure-center quarto-float anchored" alt="Jendela kamera dari peta 3D" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-jendela-kamera-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-curah-hujan-indonesia/aset/jendela-kamera.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Jendela kamera dari peta 3D">
@@ -2522,7 +2522,7 @@ background-color: null;
 font-style: inherit;">720</span></span>
 <span id="cb20-22">)</span></code></pre></div>
 <p>Hasil render tersebut ditunjukkan pada Gambar&nbsp;8.</p>
-<div id="fig-peta-3d-curah-hujan-indonesia-2023-01" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center" alt="Peta 3D yang menyajikan curah hujan Indonesia pada Januari 2023">
+<div id="fig-peta-3d-curah-hujan-indonesia-2023-01" class="quarto-figure quarto-figure-center quarto-float anchored" alt="Peta 3D yang menyajikan curah hujan Indonesia pada Januari 2023" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-peta-3d-curah-hujan-indonesia-2023-01-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-curah-hujan-indonesia/aset/curah_hujan_indonesia.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Peta 3D yang menyajikan curah hujan Indonesia pada Januari 2023">
