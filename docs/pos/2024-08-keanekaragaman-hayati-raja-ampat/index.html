@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.555">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,7 +11,7 @@
 <meta name="keywords" content="Biostatistika, keanekaragaman hayati, Raja Ampat, pemodelan, model linear, model nonlinear, Tujuan Pembangunan Berkelanjutan">
 <meta name="description" content="Kepulauan Raja Ampat kaya akan keanekaragaman hayatinya. Bagaimana kita dapat mengetahui keanekaragaman tersebut? Apakah kita dapat memodelkannya?">
 
-<title>Jelajah Statistika dan Ilmu Data - Pemodelan Keanekaragaman Hayati di Kepulauan Raja Ampat</title>
+<title>Pemodelan Keanekaragaman Hayati di Kepulauan Raja Ampat – Jelajah Statistika dan Ilmu Data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -37,7 +37,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -74,10 +74,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-ddd961a2510921635943dfbbd19534c4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -121,7 +121,7 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
       }
 </style>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -152,7 +152,7 @@ window.Quarto = {
 </script>
 
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="Jelajah Statistika dan Ilmu Data - Pemodelan Keanekaragaman Hayati di Kepulauan Raja Ampat">
+<meta property="og:title" content="Pemodelan Keanekaragaman Hayati di Kepulauan Raja Ampat – Jelajah Statistika dan Ilmu Data">
 <meta property="og:description" content="Kepulauan Raja Ampat kaya akan keanekaragaman hayatinya. Bagaimana kita dapat mengetahui keanekaragaman tersebut? Apakah kita dapat memodelkannya?">
 <meta property="og:image" content="https://jelajahstatid.github.io/pos/2024-08-keanekaragaman-hayati-raja-ampat/keanekaragaman-hayati.png">
 <meta property="og:site_name" content="Jelajah Statistika dan Ilmu Data">
@@ -160,7 +160,7 @@ window.Quarto = {
 <meta property="og:image:width" content="1200">
 <meta property="og:image:alt" content="Model linear dan nonlinear terhadap hubungan antara banyaknya spesies tanaman berpohon dan luas pulau-pulau kecil di Kepulauan Raja Ampat.
 ">
-<meta name="twitter:title" content="Jelajah Statistika dan Ilmu Data - Pemodelan Keanekaragaman Hayati di Kepulauan Raja Ampat">
+<meta name="twitter:title" content="Pemodelan Keanekaragaman Hayati di Kepulauan Raja Ampat – Jelajah Statistika dan Ilmu Data">
 <meta name="twitter:description" content="Kepulauan Raja Ampat kaya akan keanekaragaman hayatinya. Bagaimana kita dapat mengetahui keanekaragaman tersebut? Apakah kita dapat memodelkannya?">
 <meta name="twitter:image" content="https://jelajahstatid.github.io/pos/2024-08-keanekaragaman-hayati-raja-ampat/keanekaragaman-hayati.png">
 <meta name="twitter:image-height" content="900">
@@ -175,7 +175,7 @@ window.Quarto = {
 <meta name="citation_cover_date" content="2024-08-03">
 <meta name="citation_year" content="2024">
 <meta name="citation_online_date" content="2024-08-03">
-<meta name="citation_fulltext_html_url" content="https://jelajahstatid.github.io/pos/2024-08-keanekaragaman-hayati-raja-ampat">
+<meta name="citation_fulltext_html_url" content="https://jelajahstatid.github.io/pos/2024-08-keanekaragaman-hayati-raja-ampat/">
 <meta name="citation_language" content="en">
 </head>
 
@@ -191,7 +191,7 @@ window.Quarto = {
     </a>
   </div>
             <div id="quarto-search" class="" title="Cari"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -216,7 +216,7 @@ window.Quarto = {
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -295,7 +295,7 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
@@ -395,7 +395,7 @@ $ no_plots           &lt;dbl&gt; 25, 1, 20, 1, 1, 10, 20, 20, 20, 5, 15, 20, 10,
 <span id="cb6-13"><a href="#cb6-13"></a>    <span class="at">y =</span> <span class="st">"Frekuensi"</span></span>
 <span id="cb6-14"><a href="#cb6-14"></a>  )</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-dist-luas" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-dist-luas" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-dist-luas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="index_files/figure-html/fig-dist-luas-1.png" class="img-fluid figure-img" width="672">
@@ -421,7 +421,7 @@ Gambar&nbsp;1: Distribusi <code>luas_pulau</code>.
 <span id="cb7-10"><a href="#cb7-10"></a>    <span class="at">y =</span> <span class="st">"Frekuensi"</span></span>
 <span id="cb7-11"><a href="#cb7-11"></a>  )</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-dist-spesies" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-dist-spesies" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-dist-spesies-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="index_files/figure-html/fig-dist-spesies-1.png" class="img-fluid figure-img" width="672">
@@ -454,7 +454,7 @@ Gambar&nbsp;2: Distribusi <code>banyak_spesies</code>.
 <span id="cb8-17"><a href="#cb8-17"></a></span>
 <span id="cb8-18"><a href="#cb8-18"></a><span class="fu">print</span>(diagram_pencar)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-relasi-luas-spesies" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-relasi-luas-spesies" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-relasi-luas-spesies-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="index_files/figure-html/fig-relasi-luas-spesies-1.png" class="img-fluid figure-img" width="672">
@@ -509,7 +509,7 @@ Coefficients:
 <span id="cb11-14"><a href="#cb11-14"></a>  )</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-model-linear" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-model-linear" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-model-linear-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="index_files/figure-html/fig-model-linear-1.png" class="img-fluid figure-img" width="672">
@@ -570,7 +570,7 @@ Achieved convergence tolerance: 5.839e-06</code></pre>
 <span id="cb14-15"><a href="#cb14-15"></a>  )</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-model-pangkat" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-model-pangkat" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-model-pangkat-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="index_files/figure-html/fig-model-pangkat-1.png" class="img-fluid figure-img" width="672">
@@ -628,7 +628,7 @@ Achieved convergence tolerance: 1.058e-08</code></pre>
 <span id="cb17-15"><a href="#cb17-15"></a>  )</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-model-log" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-model-log" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-model-log-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="index_files/figure-html/fig-model-log-1.png" class="img-fluid figure-img" width="672">
@@ -658,7 +658,7 @@ y = d \left( 1 - e^{-z x^f} \right)
 <p>Apa yang salah? Kesalahannya terletak pada nilai-nilai awal <span class="math inline">\(d\)</span>, <span class="math inline">\(z\)</span>, dan <span class="math inline">\(f\)</span> yang kita berikan.</p>
 <p>Salah satu seni dalam menggunakan fungsi <code>nls()</code> adalah penentukan nilai-nilai awalnya. Nilai-nilai awal tersebut sebaiknya dipilih agar mendekati nilai-nilai yang sebenarnya. Untuk melakukannya, kita dapat memanfaatkan alat lain, misalnya kalkulator grafik Desmos.</p>
 <p>Dengan menginputkan data yang kita punya, yaitu <code>data_pulau</code>, ke dalam kalkulator grafik Desmos, kita dapat memodelkannya. Tangkapan layar hasil pemodelan tersebut ditunjukkan pada <a href="#fig-model-weibull-Desmos" class="quarto-xref">Gambar&nbsp;7</a>.</p>
-<div id="fig-model-weibull-Desmos" class="quarto-figure quarto-figure-center quarto-float anchored" alt="Diagram pencar yang menunjukkan hubungan antara luas pulau dan banyak spesies, disertai dengan model fungsi Weibull." data-fig-align="center">
+<div id="fig-model-weibull-Desmos" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Diagram pencar yang menunjukkan hubungan antara luas pulau dan banyak spesies, disertai dengan model fungsi Weibull." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-model-weibull-Desmos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="model-Weibull-Desmos.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Diagram pencar yang menunjukkan hubungan antara luas pulau dan banyak spesies, disertai dengan model fungsi Weibull.">
@@ -711,7 +711,7 @@ Achieved convergence tolerance: 6.004e-06</code></pre>
 <span id="cb22-16"><a href="#cb22-16"></a>  )</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-model-weibull" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-model-weibull" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-model-weibull-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="index_files/figure-html/fig-model-weibull-1.png" class="img-fluid figure-img" width="672">
@@ -727,7 +727,7 @@ Gambar&nbsp;8: Model fungsi Weibull untuk hubungan antara <code>luas_wilayah</co
 <section id="sec-evaluasi-model" class="level2">
 <h2 class="anchored" data-anchor-id="sec-evaluasi-model">Mengevaluasi Model</h2>
 <p>Pada <a href="#sec-model-linear" class="quarto-xref">Bagian&nbsp;3</a> dan <a href="#sec-model-nonlinear" class="quarto-xref">Bagian&nbsp;4</a>, kita telah mendapatkan empat model untuk memodelkan hubungan antara <code>luas_pulau</code> dan <code>banyak_spesies</code>. Keempat model tersebut diringkas pada <a href="#tbl-ringkasan-model" class="quarto-xref">Tabel&nbsp;1</a>.</p>
-<div id="tbl-ringkasan-model" class="striped hover quarto-float anchored">
+<div id="tbl-ringkasan-model" class="striped hover quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ringkasan-model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabel&nbsp;1: Model-model untuk <code>luas_pulau</code> vs.&nbsp;<code>banyak_spesies</code>.
@@ -801,7 +801,7 @@ Tabel&nbsp;1: Model-model untuk <code>luas_pulau</code> vs.&nbsp;<code>banyak_sp
 <span id="cb23-28"><a href="#cb23-28"></a>  )</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-model-linear-galat" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-model-linear-galat" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-model-linear-galat-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="index_files/figure-html/fig-model-linear-galat-1.png" class="img-fluid figure-img" width="672">
@@ -866,7 +866,7 @@ Gambar&nbsp;9: Galat-galat yang direpresentasikan sebagai panjang ruas-ruas gari
 <span id="cb32-23"><a href="#cb32-23"></a>  )</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-rmse" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-rmse" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-rmse-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="index_files/figure-html/fig-rmse-1.png" class="img-fluid figure-img" width="672">
@@ -925,18 +925,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -968,7 +957,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp("https:\/\/jelajahstatid\.github\.io");
@@ -976,7 +985,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
@@ -1073,7 +1082,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

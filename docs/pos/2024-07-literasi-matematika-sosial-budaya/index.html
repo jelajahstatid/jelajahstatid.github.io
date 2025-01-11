@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.555">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,7 +11,7 @@
 <meta name="keywords" content="literasi matematika, PISA, status sosial ekonomi, Sains, Membaca, regresi linear, jarak Cook">
 <meta name="description" content="Bagaimana hubungan antara literasi matematika dan status sosial ekonomi berdasarkan data PISA 2022? Apakah hubungan tersebut sama untuk setiap negara atau ekonomi yang berpartisipasi dalam PISA 2022? Artikel ini menunjukkan beberapa negara yang memiliki rerata skor Matematika lebih tinggi dibandingkan dengan negara-negara lain yang rerata indeks status sosial ekonominya sama. Apa saja negara tersebut?">
 
-<title>Jelajah Statistika dan Ilmu Data - Literasi Matematika dan Status Sosial Ekonomi dalam PISA 2022</title>
+<title>Literasi Matematika dan Status Sosial Ekonomi dalam PISA 2022 – Jelajah Statistika dan Ilmu Data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -37,7 +37,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -74,10 +74,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-ddd961a2510921635943dfbbd19534c4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -123,7 +123,7 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
 
 
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="Jelajah Statistika dan Ilmu Data - Literasi Matematika dan Status Sosial Ekonomi dalam PISA 2022">
+<meta property="og:title" content="Literasi Matematika dan Status Sosial Ekonomi dalam PISA 2022 – Jelajah Statistika dan Ilmu Data">
 <meta property="og:description" content="Bagaimana hubungan antara literasi matematika dan status sosial ekonomi berdasarkan data PISA 2022? Apakah hubungan tersebut sama untuk setiap negara atau ekonomi yang berpartisipasi dalam PISA 2022? Artikel ini menunjukkan beberapa negara yang memiliki rerata skor Matematika lebih tinggi dibandingkan dengan negara-negara lain yang rerata indeks status sosial ekonominya sama. Apa saja negara tersebut?">
 <meta property="og:image" content="https://jelajahstatid.github.io/pos/2024-07-literasi-matematika-sosial-budaya/literasi-matematika.png">
 <meta property="og:site_name" content="Jelajah Statistika dan Ilmu Data">
@@ -131,7 +131,7 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
 <meta property="og:image:width" content="1200">
 <meta property="og:image:alt" content="Model linear untuk hubungan antara status sosial ekonomi dan literasi matematika antarnegara yang mengikuti PISA 2022. Modelnya digambarkan sebagai dua garis lurus yang kurang lebih sejajar.
 ">
-<meta name="twitter:title" content="Jelajah Statistika dan Ilmu Data - Literasi Matematika dan Status Sosial Ekonomi dalam PISA 2022">
+<meta name="twitter:title" content="Literasi Matematika dan Status Sosial Ekonomi dalam PISA 2022 – Jelajah Statistika dan Ilmu Data">
 <meta name="twitter:description" content="Bagaimana hubungan antara literasi matematika dan status sosial ekonomi berdasarkan data PISA 2022? Apakah hubungan tersebut sama untuk setiap negara atau ekonomi yang berpartisipasi dalam PISA 2022? Artikel ini menunjukkan beberapa negara yang memiliki rerata skor Matematika lebih tinggi dibandingkan dengan negara-negara lain yang rerata indeks status sosial ekonominya sama. Apa saja negara tersebut?">
 <meta name="twitter:image" content="https://jelajahstatid.github.io/pos/2024-07-literasi-matematika-sosial-budaya/literasi-matematika.png">
 <meta name="twitter:image-height" content="900">
@@ -146,7 +146,7 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
 <meta name="citation_cover_date" content="2024-07-30">
 <meta name="citation_year" content="2024">
 <meta name="citation_online_date" content="2024-07-30">
-<meta name="citation_fulltext_html_url" content="https://jelajahstatid.github.io/pos/2024-07-literasi-matematika-sosial-budaya">
+<meta name="citation_fulltext_html_url" content="https://jelajahstatid.github.io/pos/2024-07-literasi-matematika-sosial-budaya/">
 <meta name="citation_language" content="en">
 </head>
 
@@ -162,7 +162,7 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
     </a>
   </div>
             <div id="quarto-search" class="" title="Cari"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -187,7 +187,7 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -262,7 +262,7 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
@@ -326,7 +326,7 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
 <span id="cb2-41"><a href="#cb2-41"></a>  )</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-hb-escs-ms" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<div id="fig-hb-escs-ms" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-hb-escs-ms-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="index_files/figure-html/fig-hb-escs-ms-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672">
@@ -368,7 +368,7 @@ Gambar&nbsp;1: Hubungan status sosial ekonomi (ESCS) dengan skor membaca dan sai
 <span id="cb3-22"><a href="#cb3-22"></a>  )</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-hb-escs-mat" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<div id="fig-hb-escs-mat" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-hb-escs-mat-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="index_files/figure-html/fig-hb-escs-mat-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672">
@@ -436,7 +436,7 @@ Gambar&nbsp;2: Hubungan antara status sosial ekonomi (ESCS) dan skor matematika 
 <span id="cb4-45"><a href="#cb4-45"></a>  )</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-hb-escs-mat-pencilan" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<div id="fig-hb-escs-mat-pencilan" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-hb-escs-mat-pencilan-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="index_files/figure-html/fig-hb-escs-mat-pencilan-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672">
@@ -514,18 +514,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -557,7 +546,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp("https:\/\/jelajahstatid\.github\.io");
@@ -565,7 +574,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
@@ -662,7 +671,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

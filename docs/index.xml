@@ -9,8 +9,41 @@
 <link>https://jelajahstatid.github.io/</link>
 <atom:link href="https://jelajahstatid.github.io/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.4.555</generator>
-<lastBuildDate>Sat, 24 Aug 2024 22:00:00 GMT</lastBuildDate>
+<generator>quarto-1.6.39</generator>
+<lastBuildDate>Fri, 10 Jan 2025 23:00:00 GMT</lastBuildDate>
+<item>
+  <title>Visualisasi Data Pendapatan Industri Musik</title>
+  <dc:creator>Yosep Dwi Kristanto</dc:creator>
+  <link>https://jelajahstatid.github.io/pos/2025-01-pendapatan-musik/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>Aku menulis paragraf ini diringi dengan salah satu lagu hits Sheila On 7, Dan… Tak hanya karena lagu itu enak didengar tetapi juga lagu itu menggiringku untuk bernostalgia ke masa kejayaan kaset. Aku masih ingat betul bagaimana dulu aku merengek minta diantar ke kota untuk berbelanja kaset orisinal album Sheila On 7. Sesampai di rumah aku mainkan kaset itu berulang-ulang, khususnya pada lagu pertama side B itu. Beberapa hari kemudian, kasetnya sudah <em>ngelokor</em> tak karuan.</p>
+<p>Sekarang aku jadi bertanya-tanya, apakah kamu paham apa yang aku ceritakan di atas? Dugaanku, hanya sedikit yang memahaminya—khususnya tentang kaset dan fenomena <em>ngelokor</em>-nya. Paling tidak, dugaanku itu sejalan dengan temuanku ketika tersesat di laman <a href="https://www.riaa.com/u-s-sales-database/" class="external" target="_blank">pangkalan data pendapatan industri musik di Amerika Serika (AS)</a>. Di laman itu, aku mendapati sebuah diagram interaktif nan apik. Silakan amati diagram itu pada Gambar&nbsp;1.</p>
+<div id="fig-riaa-music-revenue" class="quarto-float quarto-figure quarto-figure-center anchored page-columns page-full">
+<figure class="quarto-float quarto-float-fig figure page-columns page-full">
+<div aria-describedby="fig-riaa-music-revenue-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca" class="page-columns page-full">
+<div class="tableauPlaceholder page-columns page-full" id="viz1736621768581" style="position: relative"><noscript class="page-columns page-full"><a href="https://www.riaa.com/" class="page-columns page-full"><img alt="Revenues by Format " src="https://public.tableau.com/static/images/U_/U_S_RecordedMusicRevenuesbyFormat_0/RevenuesbyFormat/1_rss.png" style="border: none" class="figure-img column-page"></a></noscript><object class="tableauViz" style="display:none;"><param name="host_url" value="https%3A%2F%2Fpublic.tableau.com%2F"> <param name="embed_code_version" value="3"> <param name="site_root" value=""><param name="name" value="U_S_RecordedMusicRevenuesbyFormat_0/RevenuesbyFormat"><param name="tabs" value="no"><param name="toolbar" value="yes"><param name="static_image" value="https://public.tableau.com/static/images/U_/U_S_RecordedMusicRevenuesbyFormat_0/RevenuesbyFormat/1.png"> <param name="animate_transition" value="yes"><param name="display_static_image" value="yes"><param name="display_spinner" value="yes"><param name="display_overlay" value="yes"><param name="display_count" value="yes"></object></div>                <script type="text/javascript">                    var divElement = document.getElementById('viz1736621768581');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='100%';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-riaa-music-revenue-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Gambar&nbsp;1: Diagram interaktif dari situs web RIAA
+</figcaption>
+</figure>
+</div>
+
+
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Penggunaan Kembali</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-copyright"><h2 class="anchored quarto-appendix-heading">Hak Cipta</h2><div class="quarto-appendix-contents"><div>© 2025 Yosep Dwi Kristanto</div></div></section></div> ]]></description>
+  <category>ekonomi</category>
+  <category>tutorial</category>
+  <category>visualisasi data</category>
+  <guid>https://jelajahstatid.github.io/pos/2025-01-pendapatan-musik/</guid>
+  <pubDate>Fri, 10 Jan 2025 23:00:00 GMT</pubDate>
+  <media:content url="https://jelajahstatid.github.io/pos/2025-01-pendapatan-musik/pendapatan_musik.png" medium="image" type="image/png"/>
+</item>
 <item>
   <title>Gunung Agung, Bromo, Merapi, dan Semeru</title>
   <dc:creator>Yosep Dwi Kristanto</dc:creator>
@@ -22,7 +55,7 @@
 
 
 <p>Alkisah ada seorang ksatria yang sakti mandraguna bernama Hanoman. Ksatria yang merupakan seekor kera putih itu suatu ketika diutus oleh Rama untuk mencari tanaman obat di Himalaya. Ia pun pergi ke gunung itu tanpa pikir panjang. Sesampainya di sana, ia baru sadar bahwa ternyata ia tidak mengetahui bentuk dan rupa tanaman itu seperti apa. Tak habis akal, ia pun memotong gunung itu dan membawanya ke hadapan Rama. Akhirnya, Rama dan pasukannya menemukan tanaman obat itu, kemudian mereka memakannya sehingga pulih seperti sedia kala.</p>
-<div id="fig-patung-hanoman" class="quarto-figure quarto-figure-center quarto-float anchored" alt="Patung Hanoman di Bali, Indonesia. (Kredit: Wikimedia.org/CC0)">
+<div id="fig-patung-hanoman" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Patung Hanoman di Bali, Indonesia. (Kredit: Wikimedia.org/CC0)">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-patung-hanoman-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-gunung-agung-bromo-merapi-dan-semeru/aset/Hanoman_Bali.JPG" class="img-fluid figure-img" alt="Patung Hanoman di Bali, Indonesia. (Kredit: Wikimedia.org/CC0)">
@@ -74,7 +107,7 @@ font-style: inherit;">library</span>(rayshader)</span></code></pre></div>
 <p>Dari matriks elevasi tersebut, kita dapat membuat objek 3D dengan berdasarkan ketinggiannya (elemen-elemen matriks) dan posisinya (baris dan kolomnya). Tetapi sebelum itu, terlebih dahulu kita perhatikan proyeksi dua dimensinya seperti yang ditunjukkan pada Gambar&nbsp;2.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-proy-3d-sederhana" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-proy-3d-sederhana" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-proy-3d-sederhana-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-gunung-agung-bromo-merapi-dan-semeru/index_files/figure-html/fig-proy-3d-sederhana-1.png" class="img-fluid figure-img" width="672">
@@ -87,7 +120,7 @@ Gambar&nbsp;2: Proyeksi 2D dari sebuah objek 3D yang dibentuk dari matriks eleva
 </div>
 </div>
 <p>Apakah kamu dapat membayangkan objek 3D-nya seperti apa jika proyeksi 2D-nya ditunjukkan pada Gambar&nbsp;2? Ingat, warna pada diagram tersebut menggambarkan elevasi/ketinggiannya! Bandingkan imajinasimu dengan Gambar&nbsp;3 berikut!</p>
-<div id="fig-objek-3d-sederhana" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<div id="fig-objek-3d-sederhana" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-objek-3d-sederhana-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-gunung-agung-bromo-merapi-dan-semeru/aset/objek_3d_sederhana.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
@@ -453,6 +486,7 @@ font-style: inherit;">"https://github.com/jelajahstatid/jelajahstatid.github.io/
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(){</span>
 <span id="cb8-2">  <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -616,7 +650,7 @@ font-style: inherit;">tema_gunung</span>()</span>
 background-color: null;
 font-style: inherit;">print</span>(plot_2d_gunung)</span></code></pre></div>
 <div class="cell-output-display">
-<div id="fig-proy-empat-gunung" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-proy-empat-gunung" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-proy-empat-gunung-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-gunung-agung-bromo-merapi-dan-semeru/index_files/figure-html/fig-proy-empat-gunung-1.png" class="img-fluid figure-img" width="672">
@@ -687,7 +721,7 @@ font-style: inherit;">85</span></span>
 background-color: null;
 font-style: inherit;">render_snapshot</span>()</span></code></pre></div>
 <p>Hasil gambarnya seperti yang ditunjukkan pada Gambar&nbsp;5.</p>
-<div id="fig-empat-gunung-3d" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center" alt="Model 3D Gunung Agung, Bromo, Merapi, dan Semeru">
+<div id="fig-empat-gunung-3d" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Model 3D Gunung Agung, Bromo, Merapi, dan Semeru">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-empat-gunung-3d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-gunung-agung-bromo-merapi-dan-semeru/aset/empat_gunung_3d.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Model 3D Gunung Agung, Bromo, Merapi, dan Semeru">
@@ -814,7 +848,7 @@ background-color: null;
 font-style: inherit;">"Ketinggian (mdpl)"</span></span>
 <span id="cb15-13">  )</span></code></pre></div>
 <div class="cell-output-display">
-<div id="fig-diagram-batang-tinggi-gunung" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-diagram-batang-tinggi-gunung" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-diagram-batang-tinggi-gunung-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-gunung-agung-bromo-merapi-dan-semeru/index_files/figure-html/fig-diagram-batang-tinggi-gunung-1.png" class="img-fluid figure-img" width="672">
@@ -1041,7 +1075,7 @@ background-color: null;
 font-style: inherit;">"Volume (liter)"</span></span>
 <span id="cb24-15">  )</span></code></pre></div>
 <div class="cell-output-display">
-<div id="fig-diagram-batang-volume-gunung" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-diagram-batang-volume-gunung" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-diagram-batang-volume-gunung-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-gunung-agung-bromo-merapi-dan-semeru/index_files/figure-html/fig-diagram-batang-volume-gunung-1.png" class="img-fluid figure-img" width="672">
@@ -1348,7 +1382,7 @@ background-color: null;
 font-style: inherit;">"Rerata curah hujan (mm)"</span></span>
 <span id="cb9-15">  )</span></code></pre></div>
 <div class="cell-output-display">
-<div id="fig-tren-curah-hujan-setiap-bulan" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-tren-curah-hujan-setiap-bulan" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-tren-curah-hujan-setiap-bulan-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-curah-hujan-indonesia/index_files/figure-html/fig-tren-curah-hujan-setiap-bulan-1.png" class="img-fluid figure-img" width="672">
@@ -1455,7 +1489,7 @@ background-color: null;
 font-style: inherit;">"Curah hujan (mm)"</span></span>
 <span id="cb10-16">  )</span></code></pre></div>
 <div class="cell-output-display">
-<div id="fig-rerata-curah-hujan-per-bulan" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-rerata-curah-hujan-per-bulan" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-rerata-curah-hujan-per-bulan-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-curah-hujan-indonesia/index_files/figure-html/fig-rerata-curah-hujan-per-bulan-1.png" class="img-fluid figure-img" width="672">
@@ -1680,7 +1714,7 @@ font-style: inherit;">+</span></span>
 background-color: null;
 font-style: inherit;">theme_minimal</span>()</span></code></pre></div>
 <div class="cell-output-display">
-<div id="fig-peta-per-tahun" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-peta-per-tahun" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-peta-per-tahun-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-curah-hujan-indonesia/index_files/figure-html/fig-peta-per-tahun-1.png" class="img-fluid figure-img" width="672">
@@ -1698,6 +1732,7 @@ Gambar&nbsp;3: Rerata curah hujan di setiap wilayah Indonesia per tahunnya
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(){</span>
 <span id="cb14-2">  <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -2082,7 +2117,7 @@ font-style: inherit;">+</span></span>
 background-color: null;
 font-style: inherit;">tema_peta</span>()</span></code></pre></div>
 <div class="cell-output-display">
-<div id="fig-peta-per-tahun-modif" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-peta-per-tahun-modif" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-peta-per-tahun-modif-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-curah-hujan-indonesia/index_files/figure-html/fig-peta-per-tahun-modif-1.png" class="img-fluid figure-img" width="672">
@@ -2260,7 +2295,7 @@ font-style: inherit;">tema_peta</span>()</span>
 background-color: null;
 font-style: inherit;">print</span>(peta_2023_01)</span></code></pre></div>
 <div class="cell-output-display">
-<div id="fig-peta-bulan-terakhir" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-peta-bulan-terakhir" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-peta-bulan-terakhir-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-curah-hujan-indonesia/index_files/figure-html/fig-peta-bulan-terakhir-1.png" class="img-fluid figure-img" width="672">
@@ -2335,7 +2370,7 @@ background-color: null;
 font-style: inherit;">"Curah hujan (mm/bulan)"</span></span>
 <span id="cb17-14">  )</span></code></pre></div>
 <div class="cell-output-display">
-<div id="fig-distribusi-curah-hujan-jan-2023" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-distribusi-curah-hujan-jan-2023" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-distribusi-curah-hujan-jan-2023-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-curah-hujan-indonesia/index_files/figure-html/fig-distribusi-curah-hujan-jan-2023-1.png" class="img-fluid figure-img" width="672">
@@ -2415,7 +2450,7 @@ background-color: null;
 font-style: inherit;">0</span></span>
 <span id="cb18-14">)</span></code></pre></div>
 <p>Fungsi <code>plot_gg()</code> tersebut gunanya untuk menjadikan objek <code>peta_2023_01</code> menjadi 3D dengan memetakan warnanya sebagai ketinggian dalam gambar 3D tersebut. Setelah baris perintah di atas dijalankan, dalam beberapa saat kita akan mendapatkan jendela baru yang muncul. Jendela tersebut seperti yang ditunjukkan pada Gambar&nbsp;7.</p>
-<div id="fig-jendela-kamera" class="quarto-figure quarto-figure-center quarto-float anchored" alt="Jendela kamera dari peta 3D" data-fig-align="center">
+<div id="fig-jendela-kamera" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Jendela kamera dari peta 3D">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-jendela-kamera-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-curah-hujan-indonesia/aset/jendela-kamera.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Jendela kamera dari peta 3D">
@@ -2522,7 +2557,7 @@ background-color: null;
 font-style: inherit;">720</span></span>
 <span id="cb20-22">)</span></code></pre></div>
 <p>Hasil render tersebut ditunjukkan pada Gambar&nbsp;8.</p>
-<div id="fig-peta-3d-curah-hujan-indonesia-2023-01" class="quarto-figure quarto-figure-center quarto-float anchored" alt="Peta 3D yang menyajikan curah hujan Indonesia pada Januari 2023" data-fig-align="center">
+<div id="fig-peta-3d-curah-hujan-indonesia-2023-01" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Peta 3D yang menyajikan curah hujan Indonesia pada Januari 2023">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-peta-3d-curah-hujan-indonesia-2023-01-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-curah-hujan-indonesia/aset/curah_hujan_indonesia.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Peta 3D yang menyajikan curah hujan Indonesia pada Januari 2023">
@@ -3219,7 +3254,7 @@ background-color: null;
 font-style: inherit;">"Banyak perolehan medali"</span></span>
 <span id="cb20-34">  )</span></code></pre></div>
 <div class="cell-output-display">
-<div id="fig-diagram-batang" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-diagram-batang" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-diagram-batang-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-indonesia-di-olimpiade/index_files/figure-html/fig-diagram-batang-1.png" class="img-fluid figure-img" width="672">
@@ -3376,7 +3411,7 @@ background-color: null;
 font-style: inherit;">"Banyak perolehan medali"</span></span>
 <span id="cb21-29">  )</span></code></pre></div>
 <div class="cell-output-display">
-<div id="fig-diagram-garis" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-diagram-garis" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-diagram-garis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-indonesia-di-olimpiade/index_files/figure-html/fig-diagram-garis-1.png" class="img-fluid figure-img" width="672">
@@ -3584,7 +3619,7 @@ background-color: null;
 font-style: inherit;">"none"</span></span>
 <span id="cb22-37">  )</span></code></pre></div>
 <div class="cell-output-display">
-<div id="fig-diagram-alir" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-diagram-alir" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-diagram-alir-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-indonesia-di-olimpiade/index_files/figure-html/fig-diagram-alir-1.png" class="img-fluid figure-img" width="672">
@@ -3746,7 +3781,7 @@ background-color: null;
 font-style: inherit;">"Banyak perolehan medali"</span></span>
 <span id="cb23-31">  )</span></code></pre></div>
 <div class="cell-output-display">
-<div id="fig-diagram-batang-olahraga" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-diagram-batang-olahraga" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-diagram-batang-olahraga-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-indonesia-di-olimpiade/index_files/figure-html/fig-diagram-batang-olahraga-1.png" class="img-fluid figure-img" width="672">
@@ -3801,7 +3836,7 @@ Gambar&nbsp;4: Distribusi medali olimpiade yang diperoleh Indonesia berdasarkan 
 <section id="sec-indonesia-dan-asia-tenggara" class="level2">
 <h2 class="anchored" data-anchor-id="sec-indonesia-dan-asia-tenggara">Statistik Sepak Bola Indonesia</h2>
 <p>Kenaikan peringkat sepak bola Indonesia memang menjanjikan. Akan tetapi, bagaimana jika peringkat Indonesia dibandingkan dengan negara-negara Asia Tenggara lainnya? Animasi pada Gambar&nbsp;1 berikut menunjukkan perubahan peringkat sepak bola Indonesia dibandingkan dengan negara-negara tersebut.</p>
-<div id="fig-animasi-peringkat-indonesia" class="quarto-figure quarto-figure-center quarto-float anchored" alt="Peringkat sepak bola Indonesia dibandingkan dengan negara-negara Asia Tenggara Lainnya" data-fig-align="center">
+<div id="fig-animasi-peringkat-indonesia" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Peringkat sepak bola Indonesia dibandingkan dengan negara-negara Asia Tenggara Lainnya" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-animasi-peringkat-indonesia-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-peringkat-fifa-indonesia/aset/peringkat-fifa-aff.gif" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Peringkat sepak bola Indonesia dibandingkan dengan negara-negara Asia Tenggara Lainnya">
@@ -3818,7 +3853,7 @@ Gambar&nbsp;1: Peringkat sepak bola Indonesia dibandingkan dengan negara-negara 
 <p>Selama setahun terakhir, Indonesia termasuk ke dalam lima teratas negara-negara AFF bersama dengan Australia, Thailand, Vietnam, dan Malaysia. Gambar&nbsp;2 berikut menunjukkan peringkat Indonesia dan keempat negara tersebut.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-lima-teratas-aff" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-lima-teratas-aff" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-lima-teratas-aff-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-peringkat-fifa-indonesia/index_files/figure-html/fig-lima-teratas-aff-1.png" class="img-fluid figure-img" width="672">
@@ -3833,7 +3868,7 @@ Gambar&nbsp;2: Peringkat lima teratas negara-negara AFF
 <p>Lalu bagaimana peringkat Indonesia dibandingkan dengan semua negara anggota FIFA? Gambar&nbsp;3 berikut menunjukkan tren peringkat Indonesia mulai tahun 1992.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-peringkat-fifa-indonesia" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-peringkat-fifa-indonesia" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-peringkat-fifa-indonesia-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-peringkat-fifa-indonesia/index_files/figure-html/fig-peringkat-fifa-indonesia-1.png" class="img-fluid figure-img" width="672">
@@ -3877,7 +3912,7 @@ Gambar&nbsp;3: Peringkat FIFA untuk Indonesia mulai 1992 sampai 2024
 
 <p>Di awal bulan Agustus, masyarakat Indonesia pada umumnya sibuk mempersiapkan hajatan negara. Mereka secara serentak memasang bendera merah putih, spanduk, umbul-umbul, bersih-bersih desa, dan lain sebagainya. Berbagai perlombaan pun dilakukan. Mulai dari sepak bola, bola voli, bulu tangkis, tenis meja, sampai panjat pinang. Itu semua merupakan luapan suka cita kemerdekaan dan harapan ke depan.</p>
 <p>Nusantara Baru, Indonesia Maju. Itulah tema besar peringatan hari ulang tahun ke-79 kemerdekaan Republik Indonesia. Peringatan HUT ke-79 RI tersebut tentu memiliki banyak makna dan harapan. Menariknya, makna dan harapan tersebut tergambar dalam logo numerik yang digunakan. Salah satu harapannya adalah pertumbuhan ekonomi.</p>
-<div id="fig-logo-hut-ri-2024" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center" alt="Logo numerik HUT ke-79 kemerdekaan RI (kiri). Sorotan terhadap angka tujuh pada logo (kanan).">
+<div id="fig-logo-hut-ri-2024" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Logo numerik HUT ke-79 kemerdekaan RI (kiri). Sorotan terhadap angka tujuh pada logo (kanan)." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-logo-hut-ri-2024-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-dirgahayu-indonesia/aset/logo-numerik-hut-ri-2004.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Logo numerik HUT ke-79 kemerdekaan RI (kiri). Sorotan terhadap angka tujuh pada logo (kanan).">
@@ -4210,7 +4245,7 @@ background-color: null;
 font-style: inherit;">geom_point</span>()</span></code></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-tren-investasi-asing" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-tren-investasi-asing" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-tren-investasi-asing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-dirgahayu-indonesia/index_files/figure-html/fig-tren-investasi-asing-1.png" class="img-fluid figure-img" width="672">
@@ -4312,7 +4347,7 @@ font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">fill =</span> benua))</span></code></pre></div>
 <div class="cell-output-display">
-<div id="fig-diagram-batang" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-diagram-batang" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-diagram-batang-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-dirgahayu-indonesia/index_files/figure-html/fig-diagram-batang-1.png" class="img-fluid figure-img" width="672">
@@ -4325,7 +4360,7 @@ Gambar&nbsp;3: Realisasi penanaman modal asing per tahun untuk setiap benua
 </div>
 </div>
 <p>Diagram batang pada Gambar&nbsp;3 tersebut telah dapat menyampaikan tiga temuan kita. Akan tetapi, diagram tersebut mungkin terasa belum cukup meyakinkan. Diagram tersebut juga kurang sejalan dengan elemen grafis perayaan HUT ke-79 RI. Berdasarkan pedoman identitas visualnya, elemen grafis tersebut ditunjukkan pada Gambar&nbsp;4.</p>
-<div id="fig-elemen-grafis" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<div id="fig-elemen-grafis" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-elemen-grafis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-dirgahayu-indonesia/aset/elemen-grafis-hut-ri-2024-01.svg" class="img-fluid quarto-figure quarto-figure-center figure-img">
@@ -4360,7 +4395,7 @@ font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">fill =</span> benua))</span></code></pre></div>
 <div class="cell-output-display">
-<div id="fig-diagram-alir-sederhana" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-diagram-alir-sederhana" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-diagram-alir-sederhana-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-dirgahayu-indonesia/index_files/figure-html/fig-diagram-alir-sederhana-1.png" class="img-fluid figure-img" width="672">
@@ -4488,7 +4523,7 @@ font-style: inherit;">+</span> </span>
 background-color: null;
 font-style: inherit;">theme_void</span>()</span></code></pre></div>
 <div class="cell-output-display">
-<div id="fig-diagram-alir-warna" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-diagram-alir-warna" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-diagram-alir-warna-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-dirgahayu-indonesia/index_files/figure-html/fig-diagram-alir-warna-1.png" class="img-fluid figure-img" width="672">
@@ -4685,7 +4720,7 @@ background-color: null;
 font-style: inherit;">"none"</span></span>
 <span id="cb23-31">  )</span></code></pre></div>
 <div class="cell-output-display">
-<div id="fig-diagram-alir-sumbu-x" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-diagram-alir-sumbu-x" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-diagram-alir-sumbu-x-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-dirgahayu-indonesia/index_files/figure-html/fig-diagram-alir-sumbu-x-1.png" class="img-fluid figure-img" width="672">
@@ -5005,7 +5040,7 @@ background-color: null;
 font-style: inherit;">caption =</span> takarir</span>
 <span id="cb25-47">  )</span></code></pre></div>
 <div class="cell-output-display">
-<div id="fig-diagram-alir-judul" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-diagram-alir-judul" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-diagram-alir-judul-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-dirgahayu-indonesia/index_files/figure-html/fig-diagram-alir-judul-1.png" class="img-fluid figure-img" width="672">
@@ -5511,7 +5546,7 @@ background-color: null;
 font-style: inherit;">caption =</span> takarir</span>
 <span id="cb27-90">  )</span></code></pre></div>
 <div class="cell-output-display">
-<div id="fig-diagram-alir-label" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-diagram-alir-label" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-diagram-alir-label-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-dirgahayu-indonesia/index_files/figure-html/fig-diagram-alir-label-1.png" class="img-fluid figure-img" width="672">
@@ -5539,7 +5574,7 @@ Gambar&nbsp;9: Diagram alir setelah diberikan label yang menyampaikan pesan-pesa
 <div aria-describedby="fig-perbedaan-tampilan-diagram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-perbedaan-tampilan-diagram" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div id="fig-tampilan-rstudio" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-tampilan-rstudio" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-tampilan-rstudio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-dirgahayu-indonesia/aset/tangkapan-layar-plot-rstudio.png" class="img-fluid figure-img" data-ref-parent="fig-perbedaan-tampilan-diagram">
@@ -5551,7 +5586,7 @@ Gambar&nbsp;9: Diagram alir setelah diberikan label yang menyampaikan pesan-pesa
 </div>
 </div>
 <div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-perbedaan-tampilan-diagram" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div id="fig-tampilan-fail-gambar" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-tampilan-fail-gambar" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-tampilan-fail-gambar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-dirgahayu-indonesia/aset/diagram-alir-1280-960.png" class="img-fluid figure-img" data-ref-parent="fig-perbedaan-tampilan-diagram">
@@ -6258,7 +6293,7 @@ background-color: null;
 font-style: inherit;">caption =</span> takarir</span>
 <span id="cb31-121">  )</span></code></pre></div>
 <p>Setelah baris kode di atas dijalankan, kita akan mendapatkan diagram alir seperti yang ditunjukkan pada Gambar&nbsp;11.</p>
-<div id="fig-versi-terakhir" class="quarto-figure quarto-figure-center quarto-float anchored" alt="Diagram alir yang menunjukkan tren kenaikan realisasi penanaman modal asing ke Indonesia">
+<div id="fig-versi-terakhir" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Diagram alir yang menunjukkan tren kenaikan realisasi penanaman modal asing ke Indonesia">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-versi-terakhir-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-dirgahayu-indonesia/aset/diagram-alir-akhir.png" class="img-fluid figure-img" alt="Diagram alir yang menunjukkan tren kenaikan realisasi penanaman modal asing ke Indonesia">
@@ -6340,7 +6375,7 @@ font-style: inherit;">+</span> </span>
 background-color: null;
 font-style: inherit;">geom_point</span>()</span></code></pre></div>
 <div class="cell-output-display">
-<div id="fig-hub-pdb-ahh" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-hub-pdb-ahh" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-hub-pdb-ahh-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-statistik-dinamis-dan-interaktif/index_files/figure-html/fig-hub-pdb-ahh-1.png" class="img-fluid figure-img" width="672">
@@ -6392,7 +6427,7 @@ font-style: inherit;">+</span> </span>
 background-color: null;
 font-style: inherit;">geom_point</span>()</span></code></pre></div>
 <div class="cell-output-display">
-<div id="fig-hub-pdb-ahh-2007" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-hub-pdb-ahh-2007" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-hub-pdb-ahh-2007-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-statistik-dinamis-dan-interaktif/index_files/figure-html/fig-hub-pdb-ahh-2007-1.png" class="img-fluid figure-img" width="672">
@@ -6444,7 +6479,7 @@ font-style: inherit;">+</span> </span>
 background-color: null;
 font-style: inherit;">geom_point</span>()</span></code></pre></div>
 <div class="cell-output-display">
-<div id="fig-hub-pdb-ahh-2002" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-hub-pdb-ahh-2002" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-hub-pdb-ahh-2002-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-statistik-dinamis-dan-interaktif/index_files/figure-html/fig-hub-pdb-ahh-2002-1.png" class="img-fluid figure-img" width="672">
@@ -6580,6 +6615,7 @@ font-style: inherit;"># Define server logic required to draw a histogram</span><
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(input, output) {</span>
 <span id="cb9-37"></span>
 <span id="cb9-38">    output<span class="sc" style="color: #5E5E5E;
@@ -6656,7 +6692,7 @@ background-color: null;
 font-style: inherit;">server =</span> server)</span></code></pre></div>
 </div>
 <p>Baris kode di atas adalah baris kode yang sudah lengkap untuk sebuah aplikasi. Tetapi, aplikasi tersebut tidak sesuai dengan tujuanmu, yaitu memvisualisasikan hubungan antara PDB per kapita dan angka harapan hidup. Untuk itu, hapus semua baris kode di atas dan ganti dengan baris kode seperti pada Daftar&nbsp;1 berikut.</p>
-<div id="lst-kode-app-shiny" class="r listing quarto-float" data-filename="app.R">
+<div id="lst-kode-app-shiny" class="r listing quarto-float quarto-figure quarto-figure-left anchored" data-filename="app.R">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-kode-app-shiny-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Daftar&nbsp;1: Baris kode di dalam app.R
@@ -6730,6 +6766,7 @@ font-style: inherit;">"diagram_pencar"</span>)</span>
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(input, output, session) {</span>
 <span id="lst-kode-app-shiny-18">  output<span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -6791,7 +6828,7 @@ font-style: inherit;">server =</span> server)</span></code></pre></div>
 <li><p>Baris kode yang terakhir, yaitu <code>shinyApp(ui = ui, server = server)</code>, berfungsi untuk membuat aplikasi Shiny berdasarkan antarmuka <code>ui</code> dan fungsi <code>server</code> dan kemudian menjalankannya.</p></li>
 </ol>
 <p>Apabila kamu sudah penasaran dengan aplikasi Shiny tersebut, kamu dapat menjalankannya. Untuk melakukannya di RStudio, klik tombol <strong>Run App</strong> yang terletak di bagian kanan-atas dokumen. Perhatikan Gambar&nbsp;4!</p>
-<div id="fig-run-app" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center" alt="Tombol Run App dalam RStudio">
+<div id="fig-run-app" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Tombol Run App dalam RStudio" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-run-app-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-statistik-dinamis-dan-interaktif/aset/Run-App-RStudio.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Tombol Run App dalam RStudio">
@@ -6802,7 +6839,7 @@ Gambar&nbsp;4: Tombol Run App yang dapat ditemukan di bagian kanan-atas dokumen
 </figure>
 </div>
 <p>Setelah kamu mengklik tombol tersebut, beberapa saat kamu dapat melihat aplikasi tersebut. Tampilannya ditunjukkan pada Gambar&nbsp;5.</p>
-<div id="fig-tampilan-app" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<div id="fig-tampilan-app" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-tampilan-app-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-statistik-dinamis-dan-interaktif/aset/tampilan-aplikasi-shiny.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
@@ -6840,7 +6877,7 @@ Gambar&nbsp;5: Tampilan aplikasi Shiny
 <li><p>memperbaiki diagram pencar yang disajikan agar tampilannya sama dengan diagram pencar pada <a href="../../pos/2024-08-animasi-diagram-statistik/index.html" title="Membuat Diagram Lebih Hidup dengan Animasi">pos sebelumnya</a>, serta mengatur agar batasan jendelanya konsisten dari tahun ke tahun.</p></li>
 </ul>
 <p>Ketiga hal tersebut dapat kita penuhi dengan baris kode seperti pada Daftar&nbsp;2 berikut.</p>
-<div id="lst-app-shiny-baru" class="r listing quarto-float" data-filename="app.R">
+<div id="lst-app-shiny-baru" class="r listing quarto-float quarto-figure quarto-figure-left anchored" data-filename="app.R">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-app-shiny-baru-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Daftar&nbsp;2: Baris kode di dalam app.R
@@ -6924,6 +6961,7 @@ font-style: inherit;">"diagram_pencar"</span>)</span>
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(input, output, session) {</span>
 <span id="lst-app-shiny-baru-20">  output<span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -7094,7 +7132,7 @@ font-style: inherit;">server =</span> server)</span></code></pre></div>
 </figure>
 </div>
 <p>Bagaimana tampilan aplikasi Shiny kita sekarang? Tampilannya ditunjukkan pada Gambar&nbsp;6.</p>
-<div id="fig-tampilan-app-baru" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<div id="fig-tampilan-app-baru" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-tampilan-app-baru-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-statistik-dinamis-dan-interaktif/aset/tampilan-aplikasi-shiny-baru.gif" class="img-fluid quarto-figure quarto-figure-center figure-img">
@@ -7132,7 +7170,7 @@ Gambar&nbsp;6: Tampilan aplikasi Shiny setelah dilakukan sentuhan akhir
 
 
 <p>Umumnya, diagram itu untuk menyampaikan pesan. Akibatnya, pembuatan diagram perlu disesuaikan dengan pesan yang perlu disampaikan. <em>Nah</em>, berdasarkan hal ini, mari kita tinjau kembali sebuah diagram pada <a href="../../pos/2024-08-statistik-jendela-dunia/index.html" title="Statistik Adalah Jendela Dunia">pos sebelumnya</a>. Gambar&nbsp;1 menyajikan diagram yang dimaksud.</p>
-<div id="fig-pdb-vs-ahh" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<div id="fig-pdb-vs-ahh" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-pdb-vs-ahh-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-animasi-diagram-statistik/aset/pdb-vs-ahh.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
@@ -7146,7 +7184,7 @@ Gambar&nbsp;1: Hubungan antara PDB per kapita dan angka harapan hidup setiap neg
 <p>Mungkin kita langsung berpikir untuk memvisualisasikan relasi tersebut untuk setiap tahunnya. Dengan demikian, penyajian datanya seperti yang ditunjukkan pada Gambar&nbsp;2.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-semua-tahun" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-semua-tahun" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-semua-tahun-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-animasi-diagram-statistik/index_files/figure-html/fig-semua-tahun-1.png" class="img-fluid figure-img" width="672">
@@ -7388,7 +7426,7 @@ font-style: inherit;">"linear"</span>)</span>
 <span id="cb4-27"></span>
 <span id="cb4-28">anim</span></code></pre></div>
 <div class="cell-output-display">
-<div id="fig-animasi" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-animasi" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-animasi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-animasi-diagram-statistik/index_files/figure-html/fig-animasi-1.gif" class="img-fluid figure-img">
@@ -7502,7 +7540,7 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
 </div>
 </div>
 <p>Ternyata data tersebut memiliki 1.704 baris dan 6 kolom. Keterangan lebih lanjut tentang keenam kolom tersebut disajikan pada Tabel&nbsp;1.</p>
-<div id="tbl-var-gapminder" class="striped hover quarto-float anchored">
+<div id="tbl-var-gapminder" class="striped hover quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-var-gapminder-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabel&nbsp;1: Keterangan variabel-variabel dalam <code>gapminder</code>.
@@ -7510,8 +7548,8 @@ Tabel&nbsp;1: Keterangan variabel-variabel dalam <code>gapminder</code>.
 <div aria-describedby="tbl-var-gapminder-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table-striped table-hover caption-top table">
 <colgroup>
-<col style="width: 16%">
-<col style="width: 83%">
+<col style="width: 50%">
+<col style="width: 50%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -7710,7 +7748,7 @@ font-style: inherit;">"Angka harapan hidup"</span></span>
 background-color: null;
 font-style: inherit;">print</span>(plot_harapan_hidup)</span></code></pre></div>
 <div class="cell-output-display">
-<div id="fig-harapan-hidup" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-harapan-hidup" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-harapan-hidup-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-statistik-jendela-dunia/index_files/figure-html/fig-harapan-hidup-1.png" class="img-fluid figure-img" width="672">
@@ -7818,7 +7856,7 @@ background-color: null;
 font-style: inherit;">FALSE</span></span>
 <span id="cb10-8">  )</span></code></pre></div>
 <div class="cell-output-display">
-<div id="fig-harapan-hidup-info-bawah" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-harapan-hidup-info-bawah" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-harapan-hidup-info-bawah-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-statistik-jendela-dunia/index_files/figure-html/fig-harapan-hidup-info-bawah-1.png" class="img-fluid figure-img" width="672">
@@ -7924,7 +7962,7 @@ background-color: null;
 font-style: inherit;">FALSE</span></span>
 <span id="cb11-21">  )</span></code></pre></div>
 <div class="cell-output-display">
-<div id="fig-harapan-hidup-median" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-harapan-hidup-median" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-harapan-hidup-median-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-statistik-jendela-dunia/index_files/figure-html/fig-harapan-hidup-median-1.png" class="img-fluid figure-img" width="672">
@@ -8176,7 +8214,7 @@ font-style: inherit;">"PDB per kapita"</span></span>
 background-color: null;
 font-style: inherit;">print</span>(plot_pdb)</span></code></pre></div>
 <div class="cell-output-display">
-<div id="fig-pdb" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-pdb" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-pdb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-statistik-jendela-dunia/index_files/figure-html/fig-pdb-1.png" class="img-fluid figure-img" width="672">
@@ -8240,7 +8278,7 @@ background-color: null;
 font-style: inherit;">"Nilai tengah PDB per kapita"</span></span>
 <span id="cb13-11">  )</span></code></pre></div>
 <div class="cell-output-display">
-<div id="fig-median-pdb" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-median-pdb" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-median-pdb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-statistik-jendela-dunia/index_files/figure-html/fig-median-pdb-1.png" class="img-fluid figure-img" width="672">
@@ -8400,7 +8438,7 @@ background-color: null;
 font-style: inherit;">"Angka harapan hidup"</span></span>
 <span id="cb14-30">  )</span></code></pre></div>
 <div class="cell-output-display">
-<div id="fig-hubungan-pdb-ahh" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-hubungan-pdb-ahh" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-hubungan-pdb-ahh-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-statistik-jendela-dunia/index_files/figure-html/fig-hubungan-pdb-ahh-1.png" class="img-fluid figure-img" width="672">
@@ -8625,7 +8663,7 @@ font-style: inherit;">"Angka harapan hidup"</span></span>
 <span id="cb15-44">  )</span></code></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-hubungan-pdb-ahh-filter" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-hubungan-pdb-ahh-filter" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-hubungan-pdb-ahh-filter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-statistik-jendela-dunia/index_files/figure-html/fig-hubungan-pdb-ahh-filter-1.png" class="img-fluid figure-img" width="672">
@@ -8811,7 +8849,7 @@ background-color: null;
 font-style: inherit;">"Angka harapan hidup"</span></span>
 <span id="cb16-34">  )</span></code></pre></div>
 <div class="cell-output-display">
-<div id="fig-hubungan-pdb-ahh-tahun-lain" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-hubungan-pdb-ahh-tahun-lain" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-hubungan-pdb-ahh-tahun-lain-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-statistik-jendela-dunia/index_files/figure-html/fig-hubungan-pdb-ahh-tahun-lain-1.png" class="img-fluid figure-img" width="672">
@@ -9021,7 +9059,7 @@ background-color: null;
 font-style: inherit;">"Frekuensi"</span></span>
 <span id="cb6-14">  )</span></code></pre></div>
 <div class="cell-output-display">
-<div id="fig-dist-luas" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-dist-luas" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-dist-luas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-keanekaragaman-hayati-raja-ampat/index_files/figure-html/fig-dist-luas-1.png" class="img-fluid figure-img" width="672">
@@ -9083,7 +9121,7 @@ background-color: null;
 font-style: inherit;">"Frekuensi"</span></span>
 <span id="cb7-11">  )</span></code></pre></div>
 <div class="cell-output-display">
-<div id="fig-dist-spesies" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-dist-spesies" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-dist-spesies-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-keanekaragaman-hayati-raja-ampat/index_files/figure-html/fig-dist-spesies-1.png" class="img-fluid figure-img" width="672">
@@ -9166,7 +9204,7 @@ font-style: inherit;">"Banyak spesies"</span></span>
 background-color: null;
 font-style: inherit;">print</span>(diagram_pencar)</span></code></pre></div>
 <div class="cell-output-display">
-<div id="fig-relasi-luas-spesies" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-relasi-luas-spesies" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-relasi-luas-spesies-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-keanekaragaman-hayati-raja-ampat/index_files/figure-html/fig-relasi-luas-spesies-1.png" class="img-fluid figure-img" width="672">
@@ -9277,7 +9315,7 @@ font-style: inherit;">"#164863"</span></span>
 <span id="cb11-14">  )</span></code></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-model-linear" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-model-linear" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-model-linear-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-keanekaragaman-hayati-raja-ampat/index_files/figure-html/fig-model-linear-1.png" class="img-fluid figure-img" width="672">
@@ -9372,6 +9410,7 @@ font-style: inherit;">geom_function</span>(</span>
 background-color: null;
 font-style: inherit;">fun =</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(x) a_pangkat <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">*</span> x<span class="sc" style="color: #5E5E5E;
@@ -9416,7 +9455,7 @@ font-style: inherit;">5</span></span>
 <span id="cb14-15">  )</span></code></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-model-pangkat" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-model-pangkat" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-model-pangkat-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-keanekaragaman-hayati-raja-ampat/index_files/figure-html/fig-model-pangkat-1.png" class="img-fluid figure-img" width="672">
@@ -9510,6 +9549,7 @@ font-style: inherit;">geom_function</span>(</span>
 background-color: null;
 font-style: inherit;">fun =</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(x) c_log <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span> z_log <span class="sc" style="color: #5E5E5E;
@@ -9556,7 +9596,7 @@ font-style: inherit;">1</span></span>
 <span id="cb17-15">  )</span></code></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-model-log" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-model-log" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-model-log-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-keanekaragaman-hayati-raja-ampat/index_files/figure-html/fig-model-log-1.png" class="img-fluid figure-img" width="672">
@@ -9626,7 +9666,7 @@ font-style: inherit;">print</span>(model_weibull)</span></code></pre></div>
 <p>Apa yang salah? Kesalahannya terletak pada nilai-nilai awal <img src="https://latex.codecogs.com/png.latex?d">, <img src="https://latex.codecogs.com/png.latex?z">, dan <img src="https://latex.codecogs.com/png.latex?f"> yang kita berikan.</p>
 <p>Salah satu seni dalam menggunakan fungsi <code>nls()</code> adalah penentukan nilai-nilai awalnya. Nilai-nilai awal tersebut sebaiknya dipilih agar mendekati nilai-nilai yang sebenarnya. Untuk melakukannya, kita dapat memanfaatkan alat lain, misalnya kalkulator grafik Desmos.</p>
 <p>Dengan menginputkan data yang kita punya, yaitu <code>data_pulau</code>, ke dalam kalkulator grafik Desmos, kita dapat memodelkannya. Tangkapan layar hasil pemodelan tersebut ditunjukkan pada Gambar&nbsp;7.</p>
-<div id="fig-model-weibull-Desmos" class="quarto-figure quarto-figure-center quarto-float anchored" alt="Diagram pencar yang menunjukkan hubungan antara luas pulau dan banyak spesies, disertai dengan model fungsi Weibull." data-fig-align="center">
+<div id="fig-model-weibull-Desmos" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Diagram pencar yang menunjukkan hubungan antara luas pulau dan banyak spesies, disertai dengan model fungsi Weibull." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-model-weibull-Desmos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-keanekaragaman-hayati-raja-ampat/model-Weibull-Desmos.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Diagram pencar yang menunjukkan hubungan antara luas pulau dan banyak spesies, disertai dengan model fungsi Weibull.">
@@ -9735,6 +9775,7 @@ font-style: inherit;">geom_function</span>(</span>
 background-color: null;
 font-style: inherit;">fun =</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(x) d_weibull <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">*</span> (<span class="dv" style="color: #AD0000;
@@ -9789,7 +9830,7 @@ font-style: inherit;">1</span></span>
 <span id="cb22-16">  )</span></code></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-model-weibull" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-model-weibull" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-model-weibull-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-keanekaragaman-hayati-raja-ampat/index_files/figure-html/fig-model-weibull-1.png" class="img-fluid figure-img" width="672">
@@ -9805,7 +9846,7 @@ Gambar&nbsp;8: Model fungsi Weibull untuk hubungan antara <code>luas_wilayah</co
 <section id="sec-evaluasi-model" class="level2">
 <h2 class="anchored" data-anchor-id="sec-evaluasi-model">Mengevaluasi Model</h2>
 <p>Pada Bagian&nbsp;3 dan Bagian&nbsp;4, kita telah mendapatkan empat model untuk memodelkan hubungan antara <code>luas_pulau</code> dan <code>banyak_spesies</code>. Keempat model tersebut diringkas pada Tabel&nbsp;1.</p>
-<div id="tbl-ringkasan-model" class="striped hover quarto-float anchored">
+<div id="tbl-ringkasan-model" class="striped hover quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ringkasan-model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabel&nbsp;1: Model-model untuk <code>luas_pulau</code> vs.&nbsp;<code>banyak_spesies</code>.
@@ -9959,7 +10000,7 @@ font-style: inherit;">"#164863"</span></span>
 <span id="cb23-28">  )</span></code></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-model-linear-galat" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-model-linear-galat" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-model-linear-galat-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-keanekaragaman-hayati-raja-ampat/index_files/figure-html/fig-model-linear-galat-1.png" class="img-fluid figure-img" width="672">
@@ -10164,7 +10205,7 @@ font-style: inherit;">"RMSE"</span></span>
 <span id="cb32-23">  )</span></code></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-rmse" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-rmse" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-rmse-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-keanekaragaman-hayati-raja-ampat/index_files/figure-html/fig-rmse-1.png" class="img-fluid figure-img" width="672">
@@ -10576,7 +10617,7 @@ font-style: inherit;">geom_line</span>()</span>
 background-color: null;
 font-style: inherit;">print</span>(diagram_garis)</span></code></pre></div>
 <div class="cell-output-display">
-<div id="fig-diagram-garis-v1" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<div id="fig-diagram-garis-v1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-diagram-garis-v1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-07-anomali-suhu-global/index_files/figure-html/fig-diagram-garis-v1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672">
@@ -10664,7 +10705,7 @@ background-color: null;
 font-style: inherit;">"Data: GISTEMP"</span></span>
 <span id="cb16-15">  )</span></code></pre></div>
 <div class="cell-output-display">
-<div id="fig-diagram-garis-v2" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<div id="fig-diagram-garis-v2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-diagram-garis-v2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-07-anomali-suhu-global/index_files/figure-html/fig-diagram-garis-v2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672">
@@ -10907,7 +10948,7 @@ font-style: inherit;">"Rerata skor"</span></span>
 <span id="cb2-41">  )</span></code></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-hb-escs-ms" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<div id="fig-hb-escs-ms" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-hb-escs-ms-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-07-literasi-matematika-sosial-budaya/index_files/figure-html/fig-hb-escs-ms-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672">
@@ -11021,7 +11062,7 @@ font-style: inherit;">"Rerata skor Matematika"</span></span>
 <span id="cb3-22">  )</span></code></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-hb-escs-mat" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<div id="fig-hb-escs-mat" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-hb-escs-mat-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-07-literasi-matematika-sosial-budaya/index_files/figure-html/fig-hb-escs-mat-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672">
@@ -11237,7 +11278,7 @@ font-style: inherit;">"Rerata skor Matematika"</span></span>
 <span id="cb4-45">  )</span></code></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="fig-hb-escs-mat-pencilan" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<div id="fig-hb-escs-mat-pencilan" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-hb-escs-mat-pencilan-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-07-literasi-matematika-sosial-budaya/index_files/figure-html/fig-hb-escs-mat-pencilan-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672">

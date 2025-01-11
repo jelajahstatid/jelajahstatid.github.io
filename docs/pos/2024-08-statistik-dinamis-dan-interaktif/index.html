@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.555">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,7 +11,7 @@
 <meta name="keywords" content="Shiny, Gapminder, harapan hidup, produk domestik bruto, PDB, diagram pencar">
 <meta name="description" content="Statistik bukan hanya untuk statistikawan tetapi juga untuk orang awam. Untuk itu, statistik perlu dikemas secara lebih menarik dan menawan. Shiny memungkinkan agar statistik disajikan secara dinamis dan interaktif agar menarik dan mudah dipelajari oleh orang awam.">
 
-<title>Jelajah Statistika dan Ilmu Data - Membuat Statistik Menjadi Dinamis dan Interaktif</title>
+<title>Membuat Statistik Menjadi Dinamis dan Interaktif – Jelajah Statistika dan Ilmu Data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -37,7 +37,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -74,10 +74,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-ddd961a2510921635943dfbbd19534c4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -123,7 +123,7 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
 
 
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="Jelajah Statistika dan Ilmu Data - Membuat Statistik Menjadi Dinamis dan Interaktif">
+<meta property="og:title" content="Membuat Statistik Menjadi Dinamis dan Interaktif – Jelajah Statistika dan Ilmu Data">
 <meta property="og:description" content="Statistik bukan hanya untuk statistikawan tetapi juga untuk orang awam. Untuk itu, statistik perlu dikemas secara lebih menarik dan menawan. Shiny memungkinkan agar statistik disajikan secara dinamis dan interaktif agar menarik dan mudah dipelajari oleh orang awam.">
 <meta property="og:image" content="https://jelajahstatid.github.io/pos/2024-08-statistik-dinamis-dan-interaktif/statistik-interaktif.png">
 <meta property="og:site_name" content="Jelajah Statistika dan Ilmu Data">
@@ -131,7 +131,7 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
 <meta property="og:image:width" content="800">
 <meta property="og:image:alt" content="Logo Shiny dengan latar belakang diagram pencar yang dibuat secara acak. Logo Shiny diperoleh dari Wikimedia.
 ">
-<meta name="twitter:title" content="Jelajah Statistika dan Ilmu Data - Membuat Statistik Menjadi Dinamis dan Interaktif">
+<meta name="twitter:title" content="Membuat Statistik Menjadi Dinamis dan Interaktif – Jelajah Statistika dan Ilmu Data">
 <meta name="twitter:description" content="Statistik bukan hanya untuk statistikawan tetapi juga untuk orang awam. Untuk itu, statistik perlu dikemas secara lebih menarik dan menawan. Shiny memungkinkan agar statistik disajikan secara dinamis dan interaktif agar menarik dan mudah dipelajari oleh orang awam.">
 <meta name="twitter:image" content="https://jelajahstatid.github.io/pos/2024-08-statistik-dinamis-dan-interaktif/statistik-interaktif.png">
 <meta name="twitter:image-height" content="600">
@@ -153,7 +153,7 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
     </a>
   </div>
             <div id="quarto-search" class="" title="Cari"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -178,7 +178,7 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -258,7 +258,7 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
@@ -285,7 +285,7 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
 <span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> gdpPercap, <span class="at">y =</span> lifeExp)) <span class="sc">+</span> </span>
 <span id="cb3-3"><a href="#cb3-3"></a>  <span class="fu">geom_point</span>()</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-hub-pdb-ahh" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-hub-pdb-ahh" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-hub-pdb-ahh-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="index_files/figure-html/fig-hub-pdb-ahh-1.png" class="img-fluid figure-img" width="672">
@@ -311,7 +311,7 @@ Gambar&nbsp;1: Hubungan antara PDB per kapita dan angka harapan hidup berbagai n
 <span id="cb6-3"><a href="#cb6-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> gdpPercap, <span class="at">y =</span> lifeExp)) <span class="sc">+</span> </span>
 <span id="cb6-4"><a href="#cb6-4"></a>  <span class="fu">geom_point</span>()</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-hub-pdb-ahh-2007" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-hub-pdb-ahh-2007" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-hub-pdb-ahh-2007-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="index_files/figure-html/fig-hub-pdb-ahh-2007-1.png" class="img-fluid figure-img" width="672">
@@ -335,7 +335,7 @@ Gambar&nbsp;2: Hubungan antara PDB per kapita dan angka harapan hidup berbagai n
 <span id="cb7-7"><a href="#cb7-7"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> gdpPercap, <span class="at">y =</span> lifeExp)) <span class="sc">+</span> </span>
 <span id="cb7-8"><a href="#cb7-8"></a>  <span class="fu">geom_point</span>()</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-hub-pdb-ahh-2002" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-hub-pdb-ahh-2002" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-hub-pdb-ahh-2002-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="index_files/figure-html/fig-hub-pdb-ahh-2002-1.png" class="img-fluid figure-img" width="672">
@@ -417,7 +417,7 @@ Gambar&nbsp;3: Hubungan antara PDB per kapita dan angka harapan hidup berbagai n
 <span id="cb9-51"><a href="#cb9-51"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Baris kode di atas adalah baris kode yang sudah lengkap untuk sebuah aplikasi. Tetapi, aplikasi tersebut tidak sesuai dengan tujuanmu, yaitu memvisualisasikan hubungan antara PDB per kapita dan angka harapan hidup. Untuk itu, hapus semua baris kode di atas dan ganti dengan baris kode seperti pada <a href="#lst-kode-app-shiny" class="quarto-xref">Daftar&nbsp;1</a> berikut.</p>
-<div id="lst-kode-app-shiny" class="r listing quarto-float" data-filename="app.R">
+<div id="lst-kode-app-shiny" class="r listing quarto-float quarto-figure quarto-figure-left anchored" data-filename="app.R">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-kode-app-shiny-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Daftar&nbsp;1: Baris kode di dalam app.R
@@ -468,7 +468,7 @@ Daftar&nbsp;1: Baris kode di dalam app.R
 <li><p>Baris kode yang terakhir, yaitu <code>shinyApp(ui = ui, server = server)</code>, berfungsi untuk membuat aplikasi Shiny berdasarkan antarmuka <code>ui</code> dan fungsi <code>server</code> dan kemudian menjalankannya.</p></li>
 </ol>
 <p>Apabila kamu sudah penasaran dengan aplikasi Shiny tersebut, kamu dapat menjalankannya. Untuk melakukannya di RStudio, klik tombol <strong>Run App</strong> yang terletak di bagian kanan-atas dokumen. Perhatikan <a href="#fig-run-app" class="quarto-xref">Gambar&nbsp;4</a>!</p>
-<div id="fig-run-app" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center" alt="Tombol Run App dalam RStudio">
+<div id="fig-run-app" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Tombol Run App dalam RStudio" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-run-app-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="aset/Run-App-RStudio.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Tombol Run App dalam RStudio">
@@ -479,7 +479,7 @@ Gambar&nbsp;4: Tombol Run App yang dapat ditemukan di bagian kanan-atas dokumen
 </figure>
 </div>
 <p>Setelah kamu mengklik tombol tersebut, beberapa saat kamu dapat melihat aplikasi tersebut. Tampilannya ditunjukkan pada <a href="#fig-tampilan-app" class="quarto-xref">Gambar&nbsp;5</a>.</p>
-<div id="fig-tampilan-app" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<div id="fig-tampilan-app" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-tampilan-app-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="aset/tampilan-aplikasi-shiny.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
@@ -517,7 +517,7 @@ Gambar&nbsp;5: Tampilan aplikasi Shiny
 <li><p>memperbaiki diagram pencar yang disajikan agar tampilannya sama dengan diagram pencar pada <a href="../../pos/2024-08-animasi-diagram-statistik/index.html" title="Membuat Diagram Lebih Hidup dengan Animasi">pos sebelumnya</a>, serta mengatur agar batasan jendelanya konsisten dari tahun ke tahun.</p></li>
 </ul>
 <p>Ketiga hal tersebut dapat kita penuhi dengan baris kode seperti pada <a href="#lst-app-shiny-baru" class="quarto-xref">Daftar&nbsp;2</a> berikut.</p>
-<div id="lst-app-shiny-baru" class="r listing quarto-float" data-filename="app.R">
+<div id="lst-app-shiny-baru" class="r listing quarto-float quarto-figure quarto-figure-left anchored" data-filename="app.R">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-app-shiny-baru-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Daftar&nbsp;2: Baris kode di dalam app.R
@@ -585,7 +585,7 @@ Daftar&nbsp;2: Baris kode di dalam app.R
 </figure>
 </div>
 <p>Bagaimana tampilan aplikasi Shiny kita sekarang? Tampilannya ditunjukkan pada <a href="#fig-tampilan-app-baru" class="quarto-xref">Gambar&nbsp;6</a>.</p>
-<div id="fig-tampilan-app-baru" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<div id="fig-tampilan-app-baru" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-tampilan-app-baru-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="aset/tampilan-aplikasi-shiny-baru.gif" class="img-fluid quarto-figure quarto-figure-center figure-img">
@@ -640,18 +640,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -683,7 +672,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp("https:\/\/jelajahstatid\.github\.io");
@@ -691,7 +700,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
@@ -788,7 +797,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
