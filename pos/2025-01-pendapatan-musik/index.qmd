@@ -16,7 +16,7 @@ categories:
   - visualisasi data
 image: "pendapatan_musik.png"
 image-alt: |
-  Gambar 3D yang menunjukkan Gunung Agung, Bromo, Merapi, dan Semeru secara berdampingan.
+  Gambar yang menunjukkan pendapatan industri musik di AS berdasarkan format.
 keywords: 
   - ekonomi
   - musik
@@ -32,10 +32,12 @@ Aku menulis paragraf ini diringi dengan salah satu lagu hits Sheila On 7, Dan...
 
 Sekarang aku jadi bertanya-tanya, apakah kamu paham apa yang aku ceritakan di atas? Dugaanku, hanya sedikit yang memahaminya—khususnya tentang kaset dan fenomena *ngelokor*-nya. Paling tidak, dugaanku itu sejalan dengan temuanku ketika tersesat di laman [pangkalan data pendapatan industri musik di Amerika Serika (AS)](https://www.riaa.com/u-s-sales-database/){.external target="_blank"}. Di laman itu, aku mendapati sebuah diagram interaktif nan apik. Silakan amati diagram itu pada @fig-riaa-music-revenue.
 
-::: {#fig-riaa-music-revenue .column-page}
-```{=html}
-<div class='tableauPlaceholder' id='viz1736622366649' style='position: relative'><noscript><a href='https:&#47;&#47;www.riaa.com&#47;'><img alt='Revenues by Format ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;U_&#47;U_S_RecordedMusicRevenuesbyFormat_0&#47;RevenuesbyFormat&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='U_S_RecordedMusicRevenuesbyFormat_0&#47;RevenuesbyFormat' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;U_&#47;U_S_RecordedMusicRevenuesbyFormat_0&#47;RevenuesbyFormat&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1736622366649');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='1000px';vizElement.style.height='827px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
-```
+![Pendapatan industri musik di AS berdasarkan format](aset/revenues_by_format.png){#fig-riaa-music-revenue fig-alt="Pendapatan industri musik di AS berdasarkan format"}
 
-Diagram interaktif dari situs web RIAA
-:::
+Meskipun kurang begitu jelas, dari @fig-riaa-music-revenue kita dapat melihat bahwa setelah tahun 2000 pendapatan industri musik dari format kaset dan sejenisnya terus menurun. Bahkan, tak ada lagi pendapatan yang sumbernya dari penjualan kaset dan sejenisnya setelah tahun 2008. Tapi, stop! Kita hentikan sampai di sini interpretasi datanya. Kita apresiasi bagaimana data tersebut dipresentasikan.
+
+Diagram tersebut memberikan contoh penggunaan diagram batang yang efektif, meskipun sumbu horizontalnya menyatakan waktu.[^1] Pemilihan warnanya secara efektif menunjukkan tren dalam data. Misalnya, kita dapat melihat pada @fig-riaa-music-revenue bahwa dari kiri ke kanan warna biru semakin mengecil ketika warna oranye semakin membesar. Hal ini menunjukkan pendapatan industri musik di AS dari format kaset dan sejenisnya semakin menurun seiring adanya format CD.
+
+[^1]: Pada umumnya, diagram garis dipilih untuk menyajikan data yang menyatakan tren (sumbu horizontalnya menyatakan waktu).
+
+Tak hanya itu. Jika kamu mengunjungi [situs web RIAA](https://www.riaa.com/u-s-sales-database/){.external target="_blank"}, kamu dapat berinteraksi dengan diagram tersebut. Kamu dapat memilih pendapatan seperti apa yang ditampilkan—apakah yang disesuaikan dengan inflasi ataukah tidak. Kamu dapat mengatur batasan tahun untuk data yang disajikan. Kamu juga dapat memilih format-format apa saja yang perlu dipresentasikan dalam diagram. Terakhir, kamu dapat menyorot dan mengklik setiap batangnya untuk melihat informasi yang disajikan batang tersebut.

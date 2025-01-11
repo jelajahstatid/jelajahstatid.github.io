@@ -1,509 +1,509 @@
-"format","tahun","pendapatan","pendapatan_infl"
-"CD",1983-01-01,17.2,52.6
-"CD",1984-01-01,103.3,302.9
-"CD",1985-01-01,389.5,1103
-"CD",1986-01-01,930.1,2585.8
-"CD",1987-01-01,1593.6,4274.4
-"CD",1988-01-01,2089.9,5382.9
-"CD",1989-01-01,2587.7,6358.7
-"CD",1990-01-01,3451.6,8046.7
-"CD",1991-01-01,4337.7,9704.2
-"CD",1992-01-01,5326.5,11568
-"CD",1993-01-01,6511.4,13730.4
-"CD",1994-01-01,8464.5,17403.2
-"CD",1995-01-01,9377.4,18748.8
-"CD",1996-01-01,9934.7,19293.3
-"CD",1997-01-01,9915.1,18823.4
-"CD",1998-01-01,11416,21340.4
-"CD",1999-01-01,12816.3,23440.3
-"CD",2000-01-01,13214.5,23382.6
-"CD",2001-01-01,12909.4,22210.7
-"CD",2002-01-01,12044.1,20399.5
-"CD",2003-01-01,11232.9,18601.6
-"CD",2004-01-01,11446.5,18463.6
-"CD",2005-01-01,10520.2,16413.3
-"CD",2006-01-01,9372.6,14165.9
-"CD",2007-01-01,7452.3,10951.6
-"CD",2008-01-01,5471.3,7743.1
-"CD",2009-01-01,4318.8,6133.9
-"CD",2010-01-01,3389.4,4736.2
-"CD",2011-01-01,3100.7,4200.2
-"CD",2012-01-01,2485.6,3298.7
-"CD",2013-01-01,2140.9,2800.3
-"CD",2014-01-01,1776.2,2286.2
-"CD",2015-01-01,1445,1857.6
-"CD",2016-01-01,1130.8,1435.6
-"CD",2017-01-01,1043.9,1297.7
-"CD",2018-01-01,695.8,844.3
-"CD",2019-01-01,636.7,758.8
-"CD",2020-01-01,473.9,557.9
-"CD",2021-01-01,585.8,658.7
-"CD",2022-01-01,482.6,502.4
-"CD",2023-01-01,537.1,537.1
-"CD Single",1988-01-01,9.8,25.2
-"CD Single",1989-01-01,-0.7,-1.7
-"CD Single",1990-01-01,6,14
-"CD Single",1991-01-01,35.1,78.5
-"CD Single",1992-01-01,45.1,97.9
-"CD Single",1993-01-01,45.8,96.6
-"CD Single",1994-01-01,56.1,115.3
-"CD Single",1995-01-01,110.9,221.7
-"CD Single",1996-01-01,184.1,357.5
-"CD Single",1997-01-01,272.7,517.7
-"CD Single",1998-01-01,213.2,398.5
-"CD Single",1999-01-01,222.4,406.8
-"CD Single",2000-01-01,142.7,252.5
-"CD Single",2001-01-01,79.4,136.6
-"CD Single",2002-01-01,19.6,33.2
-"CD Single",2003-01-01,36,59.6
-"8 - Track",1973-01-01,489,3355.8
-"8 - Track",1974-01-01,549.2,3394.4
-"8 - Track",1975-01-01,583,3301.9
-"8 - Track",1976-01-01,678.2,3631.8
-"8 - Track",1977-01-01,811,4077.8
-"8 - Track",1978-01-01,948,4430.3
-"8 - Track",1979-01-01,684.3,2872
-"8 - Track",1980-01-01,527,1948.8
-"8 - Track",1981-01-01,313,1049.2
-"8 - Track",1982-01-01,36,113.7
-"CD Single",2004-01-01,15,24.2
-"CD Single",2005-01-01,10.9,17
-"CD Single",2006-01-01,7.7,11.6
-"CD Single",2007-01-01,12.2,17.9
-"CD Single",2008-01-01,3.5,5
-"CD Single",2009-01-01,3.1,4.4
-"CD Single",2010-01-01,2.9,4.1
-"CD Single",2011-01-01,3.5,4.7
-"CD Single",2012-01-01,3.2,4.3
-"CD Single",2013-01-01,2.4,3.2
-"CD Single",2014-01-01,3.6,4.7
-"CD Single",2015-01-01,1.2,1.5
-"CD Single",2016-01-01,0.3,0.3
-"CD Single",2017-01-01,0.2,0.2
-"CD Single",2018-01-01,0,0
-"CD Single",2019-01-01,0.1,0.1
-"CD Single",2020-01-01,0.4,0.4
-"CD Single",2021-01-01,0.1,0.1
-"CD Single",2022-01-01,6.8,7.1
-"Cassette",1973-01-01,76,521.6
-"Cassette",1974-01-01,87.2,538.9
-"Cassette",1975-01-01,98.8,559.6
-"Cassette",1976-01-01,145.7,780.2
-"Cassette",1977-01-01,249.6,1255
-"Cassette",1978-01-01,449.8,2102.1
-"Cassette",1979-01-01,580.6,2436.8
-"Cassette",1980-01-01,705,2607
-"Cassette",1981-01-01,1062.8,3562.6
-"Cassette",1982-01-01,1384.5,4371.6
-"Cassette",1983-01-01,1810.9,5540
-"Cassette",1984-01-01,2383.9,6991.1
-"Cassette",1985-01-01,2411.5,6828.9
-"Cassette",1986-01-01,2499.5,6948.9
-"Cassette",1987-01-01,2959.7,7938.6
-"Cassette",1988-01-01,3385.1,8718.9
-"Cassette",1989-01-01,3345.8,8221.5
-"Cassette",1990-01-01,3472.4,8095.2
-"Cassette",1991-01-01,3019.6,6755.3
-"Cassette",1992-01-01,3116.3,6767.9
-"Cassette",1993-01-01,2915.8,6148.4
-"Cassette",1994-01-01,2976.4,6119.5
-"Cassette",1995-01-01,2303.6,4605.7
-"Cassette",1996-01-01,1905.3,3700.1
-"Cassette",1997-01-01,1522.7,2890.8
-"Cassette",1998-01-01,1419.9,2654.3
-"Cassette",1999-01-01,1061.6,1941.6
-"Cassette",2000-01-01,626,1107.7
-"Cassette",2001-01-01,363.4,625.2
-"Cassette",2002-01-01,209.8,355.3
-"Cassette",2003-01-01,108.1,179
-"Cassette",2004-01-01,23.7,38.2
-"Cassette",2005-01-01,13.1,20.4
-"Cassette",2006-01-01,3.7,5.6
-"Cassette",2007-01-01,3,4.4
-"Cassette",2008-01-01,0.9,1.3
-"Cassette Single",1987-01-01,14.3,38.4
-"Cassette Single",1988-01-01,57.3,147.6
-"Cassette Single",1989-01-01,194.6,478.2
-"Cassette Single",1990-01-01,257.9,601.2
-"Cassette Single",1991-01-01,230.4,515.4
-"Cassette Single",1992-01-01,298.8,648.9
-"Cassette Single",1993-01-01,298.5,629.4
-"Cassette Single",1994-01-01,274.9,565.2
-"Cassette Single",1995-01-01,236.3,472.4
-"Cassette Single",1996-01-01,189.3,367.6
-"Cassette Single",1997-01-01,133.5,253.4
-"Cassette Single",1998-01-01,94.4,176.5
-"Cassette Single",1999-01-01,48,87.8
-"Cassette Single",2000-01-01,4.6,8.1
-"Cassette Single",2001-01-01,-5.3,-9.1
-"Cassette Single",2002-01-01,-1.6,-2.7
-"DVD Audio",2001-01-01,6,10.3
-"DVD Audio",2002-01-01,8.5,14.4
-"DVD Audio",2003-01-01,8,13.2
-"DVD Audio",2004-01-01,6.5,10.5
-"DVD Audio",2005-01-01,11.2,17.5
-"DVD Audio",2006-01-01,2.4,3.6
-"DVD Audio",2007-01-01,2.8,4.1
-"DVD Audio",2008-01-01,1.2,1.7
-"DVD Audio",2009-01-01,1.6,2.3
-"DVD Audio",2010-01-01,0.9,1.3
-"DVD Audio",2011-01-01,0.3,0.4
-"DVD Audio",2012-01-01,0.2,0.2
-"DVD Audio",2013-01-01,-0.5,-0.6
-"DVD Audio",2014-01-01,2.1,2.8
-"DVD Audio",2015-01-01,5.4,7
-"DVD Audio",2016-01-01,2.8,3.6
-"DVD Audio",2017-01-01,0.3,0.4
-"DVD Audio",2018-01-01,0.3,0.4
-"DVD Audio",2019-01-01,1.3,1.5
-"DVD Audio",2020-01-01,1.8,2.2
-"DVD Audio",2021-01-01,5.8,6.5
-"DVD Audio",2022-01-01,0.1,0.1
-"Download Album",2004-01-01,45.5,73.4
-"Download Album",2005-01-01,135.7,211.7
-"Download Album",2006-01-01,275.9,417
-"Download Album",2007-01-01,497.4,731
-"Download Album",2008-01-01,635.3,899.1
-"Download Album",2009-01-01,744.3,1057.1
-"Download Album",2010-01-01,872.4,1219.1
-"Download Album",2011-01-01,1070.8,1450.5
-"Download Album",2012-01-01,1204.8,1599
-"Download Album",2013-01-01,1232.1,1611.6
-"Download Album",2014-01-01,1117.9,1438.8
-"Download Album",2015-01-01,1064.4,1368.4
-"Download Album",2016-01-01,868.6,1102.7
-"Download Album",2017-01-01,649.7,807.7
-"Download Album",2018-01-01,495.3,601
-"Download Album",2019-01-01,368.5,439.2
-"Download Album",2020-01-01,319.3,375.9
-"Download Album",2021-01-01,303.3,341
-"Download Album",2022-01-01,241.9,251.8
-"Download Album",2023-01-01,204.7,204.7
-"Download Music Video",2005-01-01,3.7,5.8
-"Download Music Video",2006-01-01,19.7,29.8
-"Download Music Video",2007-01-01,28.2,41.4
-"Download Music Video",2008-01-01,41.3,58.4
-"Download Music Video",2009-01-01,40.9,58.1
-"Download Music Video",2010-01-01,36.6,51.1
-"Download Music Video",2011-01-01,32.4,43.9
-"Download Music Video",2012-01-01,20.8,27.7
-"Download Music Video",2013-01-01,16.7,21.9
-"Download Music Video",2014-01-01,13.6,17.5
-"Download Music Video",2015-01-01,6.4,8.2
-"Download Music Video",2016-01-01,4.3,5.4
-"Download Music Video",2017-01-01,2.8,3.5
-"Download Music Video",2018-01-01,2.2,2.7
-"Download Music Video",2019-01-01,1.9,2.2
-"Download Music Video",2020-01-01,1.8,2.1
-"Download Music Video",2021-01-01,1.9,2.2
-"Download Music Video",2022-01-01,1.3,1.4
-"Download Single",2004-01-01,138,222.6
-"Download Single",2005-01-01,363.3,566.8
-"Download Single",2006-01-01,580.6,877.5
-"Download Single",2007-01-01,811,1191.8
-"Download Single",2008-01-01,1032.2,1460.8
-"Download Single",2009-01-01,1172,1664.6
-"Download Single",2010-01-01,1336.4,1867.4
-"Download Single",2011-01-01,1522.4,2062.2
-"Download Single",2012-01-01,1644.6,2182.6
-"Download Single",2013-01-01,1573.4,2058
-"Download Single",2014-01-01,1355.3,1744.4
-"Download Single",2015-01-01,1185.2,1523.7
-"Download Single",2016-01-01,900.2,1142.8
-"Download Single",2017-01-01,667.9,830.2
-"Download Single",2018-01-01,489.9,594.4
-"Download Single",2019-01-01,403,480.3
-"Download Single",2020-01-01,310.4,365.4
-"Download Single",2021-01-01,268.9,302.4
-"Download Single",2022-01-01,214.1,223
-"Download Single",2023-01-01,190.8,190.8
-"Kiosk",2005-01-01,1,1.6
-"Kiosk",2006-01-01,1.9,2.9
-"Kiosk",2007-01-01,2.6,3.8
-"Kiosk",2008-01-01,2.6,3.7
-"Kiosk",2009-01-01,6.3,8.9
-"Kiosk",2010-01-01,6.4,8.9
-"Kiosk",2011-01-01,2.7,3.7
-"Kiosk",2012-01-01,3.7,4.8
-"Kiosk",2013-01-01,6.2,8.1
-"Kiosk",2014-01-01,2.6,3.3
-"Kiosk",2015-01-01,3.7,4.8
-"Kiosk",2016-01-01,2.9,3.7
-"Kiosk",2017-01-01,2.3,2.8
-"Kiosk",2018-01-01,2,2.4
-"Kiosk",2019-01-01,1.6,1.9
-"Kiosk",2020-01-01,1.2,1.4
-"Kiosk",2021-01-01,0.8,0.8
-"Kiosk",2022-01-01,0.4,0.4
-"LP/EP",1973-01-01,1246,8550.9
-"LP/EP",1974-01-01,1356,8380.9
-"LP/EP",1975-01-01,1485,8410.5
-"LP/EP",1976-01-01,1663,8905.4
-"LP/EP",1977-01-01,2195.1,11037.2
-"LP/EP",1978-01-01,2473.3,11558.6
-"LP/EP",1979-01-01,2057,8633.2
-"LP/EP",1980-01-01,2200,8135.2
-"LP/EP",1981-01-01,2341.7,7849.5
-"LP/EP",1982-01-01,1925.1,6078.6
-"LP/EP",1983-01-01,1689,5167.1
-"LP/EP",1984-01-01,1548.8,4542.1
-"LP/EP",1985-01-01,1280.5,3626.1
-"LP/EP",1986-01-01,983,2732.9
-"LP/EP",1987-01-01,793.1,2127.3
-"LP/EP",1988-01-01,532.2,1370.8
-"LP/EP",1989-01-01,220.3,541.3
-"LP/EP",1990-01-01,86.5,201.7
-"LP/EP",1991-01-01,29.4,65.8
-"LP/EP",1992-01-01,13.5,29.3
-"LP/EP",1993-01-01,10.6,22.4
-"LP/EP",1994-01-01,17.8,36.6
-"LP/EP",1995-01-01,25.1,50.2
-"LP/EP",1996-01-01,36.8,71.5
-"LP/EP",1997-01-01,33.3,63.2
-"LP/EP",1998-01-01,34,63.6
-"LP/EP",1999-01-01,31.8,58.2
-"LP/EP",2000-01-01,27.7,49
-"LP/EP",2001-01-01,27.4,47.1
-"LP/EP",2002-01-01,20.5,34.7
-"LP/EP",2003-01-01,21.7,35.9
-"LP/EP",2004-01-01,19.3,31.1
-"LP/EP",2005-01-01,14.2,22.2
-"LP/EP",2006-01-01,15.7,23.7
-"LP/EP",2007-01-01,22.9,33.7
-"LP/EP",2008-01-01,56.7,80.2
-"LP/EP",2009-01-01,63.8,90.6
-"LP/EP",2010-01-01,88.9,124.2
-"LP/EP",2011-01-01,119.4,161.7
-"LP/EP",2012-01-01,160.7,213.3
-"LP/EP",2013-01-01,210.7,275.6
-"LP/EP",2014-01-01,243.8,313.9
-"LP/EP",2015-01-01,333.4,428.6
-"LP/EP",2016-01-01,355.4,451.2
-"LP/EP",2017-01-01,388.5,482.9
-"LP/EP",2018-01-01,419.2,508.7
-"LP/EP",2019-01-01,515.5,614.4
-"LP/EP",2020-01-01,696.4,819.8
-"LP/EP",2021-01-01,1086.3,1221.5
-"LP/EP",2022-01-01,1224.4,1274.8
-"LP/EP",2023-01-01,1350.2,1350.2
-"Limited Tier Paid Subscription",2016-01-01,257.3,326.6
-"Limited Tier Paid Subscription",2017-01-01,568.8,707
-"Limited Tier Paid Subscription",2018-01-01,740.5,898.6
-"Limited Tier Paid Subscription",2019-01-01,634.1,755.8
-"Limited Tier Paid Subscription",2020-01-01,717.9,845.2
-"Limited Tier Paid Subscription",2021-01-01,897,1008.7
-"Limited Tier Paid Subscription",2022-01-01,1063,1106.8
-"Limited Tier Paid Subscription",2023-01-01,1021.4,1021.4
-"Music Video (Physical)",1989-01-01,115.4,283.6
-"Music Video (Physical)",1990-01-01,172.3,401.7
-"Music Video (Physical)",1991-01-01,118.1,264.2
-"Music Video (Physical)",1992-01-01,157.4,341.8
-"Music Video (Physical)",1993-01-01,213.3,449.8
-"Music Video (Physical)",1994-01-01,231.1,475.1
-"Music Video (Physical)",1995-01-01,220.3,440.5
-"Music Video (Physical)",1996-01-01,236.1,458.5
-"Music Video (Physical)",1997-01-01,323.9,614.9
-"Music Video (Physical)",1998-01-01,508,949.6
-"Music Video (Physical)",1999-01-01,376.7,689
-"Music Video (Physical)",2000-01-01,281.9,498.8
-"Music Video (Physical)",2001-01-01,329.2,566.4
-"Music Video (Physical)",2002-01-01,288.4,488.5
-"Music Video (Physical)",2003-01-01,399.9,662.2
-"Music Video (Physical)",2004-01-01,607.2,979.4
-"Music Video (Physical)",2005-01-01,602.2,939.5
-"Music Video (Physical)",2006-01-01,451.1,681.8
-"Music Video (Physical)",2007-01-01,484.9,712.6
-"Music Video (Physical)",2008-01-01,227.3,321.7
-"Music Video (Physical)",2009-01-01,209.6,297.7
-"Music Video (Physical)",2010-01-01,177.6,248.2
-"Music Video (Physical)",2011-01-01,151,204.5
-"Music Video (Physical)",2012-01-01,116.6,154.8
-"Music Video (Physical)",2013-01-01,106.3,139
-"Music Video (Physical)",2014-01-01,89.7,115.5
-"Music Video (Physical)",2015-01-01,70.4,90.5
-"Music Video (Physical)",2016-01-01,56.9,72.3
-"Music Video (Physical)",2017-01-01,37.5,46.6
-"Music Video (Physical)",2018-01-01,28.4,34.5
-"Music Video (Physical)",2019-01-01,26.6,31.7
-"Music Video (Physical)",2020-01-01,27.4,32.3
-"Music Video (Physical)",2021-01-01,19.9,22.4
-"Music Video (Physical)",2022-01-01,11.3,11.8
-"Music Video (Physical)",2023-01-01,10.7,10.7
-"On-Demand Streaming (Ad-Supported)",2011-01-01,113.8,154.2
-"On-Demand Streaming (Ad-Supported)",2012-01-01,170.9,226.9
-"On-Demand Streaming (Ad-Supported)",2013-01-01,220.9,288.9
-"On-Demand Streaming (Ad-Supported)",2014-01-01,283.8,365.3
-"On-Demand Streaming (Ad-Supported)",2015-01-01,372,478.2
-"On-Demand Streaming (Ad-Supported)",2016-01-01,476.8,605.3
-"On-Demand Streaming (Ad-Supported)",2017-01-01,614.3,763.6
-"On-Demand Streaming (Ad-Supported)",2018-01-01,752.7,913.3
-"On-Demand Streaming (Ad-Supported)",2019-01-01,1006.6,1199.7
-"On-Demand Streaming (Ad-Supported)",2020-01-01,1196.6,1408.8
-"On-Demand Streaming (Ad-Supported)",2021-01-01,1733.4,1949.2
-"On-Demand Streaming (Ad-Supported)",2022-01-01,1822.1,1897.1
-"On-Demand Streaming (Ad-Supported)",2023-01-01,1864.5,1864.5
-"Other Ad-Supported Streaming",2016-01-01,70.6,89.7
-"Other Ad-Supported Streaming",2017-01-01,223.9,278.4
-"Other Ad-Supported Streaming",2018-01-01,208.2,252.6
-"Other Ad-Supported Streaming",2019-01-01,207.3,247.1
-"Other Ad-Supported Streaming",2020-01-01,211.2,248.7
-"Other Ad-Supported Streaming",2021-01-01,203.5,228.8
-"Other Ad-Supported Streaming",2022-01-01,261.5,272.2
-"Other Ad-Supported Streaming",2023-01-01,317.7,317.7
-"Other Digital",2016-01-01,17.1,21.8
-"Other Digital",2017-01-01,16.9,21
-"Other Digital",2018-01-01,19.8,24.1
-"Other Digital",2019-01-01,21.5,25.6
-"Other Digital",2020-01-01,18.9,22.2
-"Other Digital",2021-01-01,31.1,35
-"Other Digital",2022-01-01,25.9,27
-"Other Digital",2023-01-01,28.1,28.1
-"Other Physical",2023-01-01,5.7,5.7
-"Other Tapes",1973-01-01,15.6,107.1
-"Other Tapes",1974-01-01,13.3,82.2
-"Other Tapes",1975-01-01,10.2,57.8
-"Other Tapes",1976-01-01,5.1,27.3
-"Paid Subscription",2005-01-01,149.2,232.8
-"Paid Subscription",2006-01-01,206.2,311.7
-"Paid Subscription",2007-01-01,234,343.9
-"Paid Subscription",2008-01-01,221.4,313.3
-"Paid Subscription",2009-01-01,206.2,292.9
-"Paid Subscription",2010-01-01,212.4,296.8
-"Paid Subscription",2011-01-01,247.8,335.7
-"Paid Subscription",2012-01-01,399.9,530.7
-"Paid Subscription",2013-01-01,643.3,841.5
-"Paid Subscription",2014-01-01,770.3,991.4
-"Paid Subscription",2015-01-01,1156.7,1487
-"Paid Subscription",2016-01-01,2186.4,2775.8
-"Paid Subscription",2017-01-01,3359.8,4176.4
-"Paid Subscription",2018-01-01,4614,5598.8
-"Paid Subscription",2019-01-01,6074.6,7239.9
-"Paid Subscription",2020-01-01,6952.1,8184.8
-"Paid Subscription",2021-01-01,8562.8,9628.8
-"Paid Subscription",2022-01-01,9179,9556.9
-"Paid Subscription",2023-01-01,10149.7,10149.7
-"Ringtones & Ringbacks",2005-01-01,421.6,657.8
-"Ringtones & Ringbacks",2006-01-01,773.8,1169.5
-"Ringtones & Ringbacks",2007-01-01,1055.8,1551.6
-"Ringtones & Ringbacks",2008-01-01,977.1,1382.8
-"Ringtones & Ringbacks",2009-01-01,702.8,998.2
-"Ringtones & Ringbacks",2010-01-01,448,626
-"Ringtones & Ringbacks",2011-01-01,276.2,374.1
-"Ringtones & Ringbacks",2012-01-01,146,193.8
-"Ringtones & Ringbacks",2013-01-01,98,128.2
-"Ringtones & Ringbacks",2014-01-01,66.3,85.3
-"Ringtones & Ringbacks",2015-01-01,54.6,70.2
-"Ringtones & Ringbacks",2016-01-01,56.3,71.5
-"Ringtones & Ringbacks",2017-01-01,35.5,44.1
-"Ringtones & Ringbacks",2018-01-01,25,30.3
-"Ringtones & Ringbacks",2019-01-01,20.6,24.6
-"Ringtones & Ringbacks",2020-01-01,20.2,23.8
-"Ringtones & Ringbacks",2021-01-01,15.7,17.6
-"Ringtones & Ringbacks",2022-01-01,11,11.5
-"Ringtones & Ringbacks",2023-01-01,10.5,10.5
-"SACD",2003-01-01,26.3,43.6
-"SACD",2004-01-01,16.6,26.8
-"SACD",2005-01-01,10,15.6
-"SACD",2006-01-01,5.5,8.3
-"SACD",2007-01-01,3.6,5.3
-"SACD",2008-01-01,3.1,4.4
-"SACD",2009-01-01,2.4,3.4
-"SACD",2010-01-01,1.7,2.4
-"SACD",2011-01-01,1.5,2
-"SACD",2012-01-01,1.3,1.8
-"SACD",2013-01-01,1,1.3
-"SACD",2014-01-01,0.8,1
-"SACD",2015-01-01,1,1.3
-"SACD",2016-01-01,1.2,1.5
-"SACD",2017-01-01,0.9,1.1
-"SACD",2018-01-01,0.9,1
-"SACD",2019-01-01,0.4,0.5
-"SACD",2020-01-01,0.2,0.3
-"SACD",2021-01-01,0.2,0.2
-"SACD",2022-01-01,0.2,0.2
-"SoundExchange Distributions",2004-01-01,6.9,11.1
-"SoundExchange Distributions",2005-01-01,20.4,31.8
-"SoundExchange Distributions",2006-01-01,32.8,49.6
-"SoundExchange Distributions",2007-01-01,36.2,53.2
-"SoundExchange Distributions",2008-01-01,100,141.5
-"SoundExchange Distributions",2009-01-01,155.5,220.9
-"SoundExchange Distributions",2010-01-01,249.2,348.2
-"SoundExchange Distributions",2011-01-01,292,395.5
-"SoundExchange Distributions",2012-01-01,462,613.1
-"SoundExchange Distributions",2013-01-01,590.4,772.2
-"SoundExchange Distributions",2014-01-01,773.4,995.4
-"SoundExchange Distributions",2015-01-01,802.6,1031.8
-"SoundExchange Distributions",2016-01-01,883.9,1122.2
-"SoundExchange Distributions",2017-01-01,652,810.5
-"SoundExchange Distributions",2018-01-01,952.8,1156.2
-"SoundExchange Distributions",2019-01-01,908.2,1082.4
-"SoundExchange Distributions",2020-01-01,947.4,1115.4
-"SoundExchange Distributions",2021-01-01,992.5,1116.1
-"SoundExchange Distributions",2022-01-01,959.4,998.9
-"SoundExchange Distributions",2023-01-01,1004.8,1004.8
-"Synchronization",2009-01-01,201.2,285.8
-"Synchronization",2010-01-01,188.7,263.7
-"Synchronization",2011-01-01,196.5,266.2
-"Synchronization",2012-01-01,190.6,252.9
-"Synchronization",2013-01-01,189.7,248.1
-"Synchronization",2014-01-01,189.7,244.2
-"Synchronization",2015-01-01,202.9,260.9
-"Synchronization",2016-01-01,214.8,272.7
-"Synchronization",2017-01-01,232.1,288.5
-"Synchronization",2018-01-01,285.5,346.5
-"Synchronization",2019-01-01,281.1,335
-"Synchronization",2020-01-01,265.2,312.3
-"Synchronization",2021-01-01,306.5,344.7
-"Synchronization",2022-01-01,382.5,398.2
-"Synchronization",2023-01-01,410.9,410.9
-"Vinyl Single",1973-01-01,190,1303.9
-"Vinyl Single",1974-01-01,194,1199
-"Vinyl Single",1975-01-01,211.5,1197.9
-"Vinyl Single",1976-01-01,245.1,1312.5
-"Vinyl Single",1977-01-01,245.1,1232.4
-"Vinyl Single",1978-01-01,260.3,1216.5
-"Vinyl Single",1979-01-01,353.6,1484.1
-"Vinyl Single",1980-01-01,250,924.5
-"Vinyl Single",1981-01-01,256.4,859.5
-"Vinyl Single",1982-01-01,283,893.6
-"Vinyl Single",1983-01-01,269.3,823.9
-"Vinyl Single",1984-01-01,298.7,876
-"Vinyl Single",1985-01-01,281,795.7
-"Vinyl Single",1986-01-01,228.1,634.1
-"Vinyl Single",1987-01-01,203.3,545.3
-"Vinyl Single",1988-01-01,180.4,464.7
-"Vinyl Single",1989-01-01,116.4,286
-"Vinyl Single",1990-01-01,94.4,220.1
-"Vinyl Single",1991-01-01,63.9,143
-"Vinyl Single",1992-01-01,66.4,144.2
-"Vinyl Single",1993-01-01,51.2,108
-"Vinyl Single",1994-01-01,47.2,97
-"Vinyl Single",1995-01-01,46.7,93.4
-"Vinyl Single",1996-01-01,47.5,92.2
-"Vinyl Single",1997-01-01,35.6,67.6
-"Vinyl Single",1998-01-01,25.7,48
-"Vinyl Single",1999-01-01,27.9,51
-"Vinyl Single",2000-01-01,26.3,46.5
-"Vinyl Single",2001-01-01,31.4,54
-"Vinyl Single",2002-01-01,24.9,42.2
-"Vinyl Single",2003-01-01,21.5,35.6
-"Vinyl Single",2004-01-01,19.9,32.1
-"Vinyl Single",2005-01-01,13.2,20.6
-"Vinyl Single",2006-01-01,9.9,15
-"Vinyl Single",2007-01-01,4,5.9
-"Vinyl Single",2008-01-01,2.9,4.1
-"Vinyl Single",2009-01-01,2.5,3.6
-"Vinyl Single",2010-01-01,2.3,3.2
-"Vinyl Single",2011-01-01,4.6,6.2
-"Vinyl Single",2012-01-01,4.7,6.3
-"Vinyl Single",2013-01-01,3,3.9
-"Vinyl Single",2014-01-01,5.5,7.1
-"Vinyl Single",2015-01-01,5.8,7.4
-"Vinyl Single",2016-01-01,4.9,6.2
-"Vinyl Single",2017-01-01,6.1,7.6
-"Vinyl Single",2018-01-01,5.7,6.9
-"Vinyl Single",2019-01-01,6.7,8
-"Vinyl Single",2020-01-01,6.3,7.4
-"Vinyl Single",2021-01-01,7.9,8.9
-"Vinyl Single",2022-01-01,5.6,5.8
-"Vinyl Single",2023-01-01,8.4,8.4
+"format","grup","tahun","pendapatan","pendapatan_infl"
+"CD","Disc",1983-01-01,17.2,52.6
+"CD","Disc",1984-01-01,103.3,302.9
+"CD","Disc",1985-01-01,389.5,1103
+"CD","Disc",1986-01-01,930.1,2585.8
+"CD","Disc",1987-01-01,1593.6,4274.4
+"CD","Disc",1988-01-01,2089.9,5382.9
+"CD","Disc",1989-01-01,2587.7,6358.7
+"CD","Disc",1990-01-01,3451.6,8046.7
+"CD","Disc",1991-01-01,4337.7,9704.2
+"CD","Disc",1992-01-01,5326.5,11568
+"CD","Disc",1993-01-01,6511.4,13730.4
+"CD","Disc",1994-01-01,8464.5,17403.2
+"CD","Disc",1995-01-01,9377.4,18748.8
+"CD","Disc",1996-01-01,9934.7,19293.3
+"CD","Disc",1997-01-01,9915.1,18823.4
+"CD","Disc",1998-01-01,11416,21340.4
+"CD","Disc",1999-01-01,12816.3,23440.3
+"CD","Disc",2000-01-01,13214.5,23382.6
+"CD","Disc",2001-01-01,12909.4,22210.7
+"CD","Disc",2002-01-01,12044.1,20399.5
+"CD","Disc",2003-01-01,11232.9,18601.6
+"CD","Disc",2004-01-01,11446.5,18463.6
+"CD","Disc",2005-01-01,10520.2,16413.3
+"CD","Disc",2006-01-01,9372.6,14165.9
+"CD","Disc",2007-01-01,7452.3,10951.6
+"CD","Disc",2008-01-01,5471.3,7743.1
+"CD","Disc",2009-01-01,4318.8,6133.9
+"CD","Disc",2010-01-01,3389.4,4736.2
+"CD","Disc",2011-01-01,3100.7,4200.2
+"CD","Disc",2012-01-01,2485.6,3298.7
+"CD","Disc",2013-01-01,2140.9,2800.3
+"CD","Disc",2014-01-01,1776.2,2286.2
+"CD","Disc",2015-01-01,1445,1857.6
+"CD","Disc",2016-01-01,1130.8,1435.6
+"CD","Disc",2017-01-01,1043.9,1297.7
+"CD","Disc",2018-01-01,695.8,844.3
+"CD","Disc",2019-01-01,636.7,758.8
+"CD","Disc",2020-01-01,473.9,557.9
+"CD","Disc",2021-01-01,585.8,658.7
+"CD","Disc",2022-01-01,482.6,502.4
+"CD","Disc",2023-01-01,537.1,537.1
+"CD Single","Disc",1988-01-01,9.8,25.2
+"CD Single","Disc",1989-01-01,-0.7,-1.7
+"CD Single","Disc",1990-01-01,6,14
+"CD Single","Disc",1991-01-01,35.1,78.5
+"CD Single","Disc",1992-01-01,45.1,97.9
+"CD Single","Disc",1993-01-01,45.8,96.6
+"CD Single","Disc",1994-01-01,56.1,115.3
+"CD Single","Disc",1995-01-01,110.9,221.7
+"CD Single","Disc",1996-01-01,184.1,357.5
+"CD Single","Disc",1997-01-01,272.7,517.7
+"CD Single","Disc",1998-01-01,213.2,398.5
+"CD Single","Disc",1999-01-01,222.4,406.8
+"CD Single","Disc",2000-01-01,142.7,252.5
+"CD Single","Disc",2001-01-01,79.4,136.6
+"CD Single","Disc",2002-01-01,19.6,33.2
+"CD Single","Disc",2003-01-01,36,59.6
+"8 - Track","Tape",1973-01-01,489,3355.8
+"8 - Track","Tape",1974-01-01,549.2,3394.4
+"8 - Track","Tape",1975-01-01,583,3301.9
+"8 - Track","Tape",1976-01-01,678.2,3631.8
+"8 - Track","Tape",1977-01-01,811,4077.8
+"8 - Track","Tape",1978-01-01,948,4430.3
+"8 - Track","Tape",1979-01-01,684.3,2872
+"8 - Track","Tape",1980-01-01,527,1948.8
+"8 - Track","Tape",1981-01-01,313,1049.2
+"8 - Track","Tape",1982-01-01,36,113.7
+"CD Single","Disc",2004-01-01,15,24.2
+"CD Single","Disc",2005-01-01,10.9,17
+"CD Single","Disc",2006-01-01,7.7,11.6
+"CD Single","Disc",2007-01-01,12.2,17.9
+"CD Single","Disc",2008-01-01,3.5,5
+"CD Single","Disc",2009-01-01,3.1,4.4
+"CD Single","Disc",2010-01-01,2.9,4.1
+"CD Single","Disc",2011-01-01,3.5,4.7
+"CD Single","Disc",2012-01-01,3.2,4.3
+"CD Single","Disc",2013-01-01,2.4,3.2
+"CD Single","Disc",2014-01-01,3.6,4.7
+"CD Single","Disc",2015-01-01,1.2,1.5
+"CD Single","Disc",2016-01-01,0.3,0.3
+"CD Single","Disc",2017-01-01,0.2,0.2
+"CD Single","Disc",2018-01-01,0,0
+"CD Single","Disc",2019-01-01,0.1,0.1
+"CD Single","Disc",2020-01-01,0.4,0.4
+"CD Single","Disc",2021-01-01,0.1,0.1
+"CD Single","Disc",2022-01-01,6.8,7.1
+"Cassette","Tape",1973-01-01,76,521.6
+"Cassette","Tape",1974-01-01,87.2,538.9
+"Cassette","Tape",1975-01-01,98.8,559.6
+"Cassette","Tape",1976-01-01,145.7,780.2
+"Cassette","Tape",1977-01-01,249.6,1255
+"Cassette","Tape",1978-01-01,449.8,2102.1
+"Cassette","Tape",1979-01-01,580.6,2436.8
+"Cassette","Tape",1980-01-01,705,2607
+"Cassette","Tape",1981-01-01,1062.8,3562.6
+"Cassette","Tape",1982-01-01,1384.5,4371.6
+"Cassette","Tape",1983-01-01,1810.9,5540
+"Cassette","Tape",1984-01-01,2383.9,6991.1
+"Cassette","Tape",1985-01-01,2411.5,6828.9
+"Cassette","Tape",1986-01-01,2499.5,6948.9
+"Cassette","Tape",1987-01-01,2959.7,7938.6
+"Cassette","Tape",1988-01-01,3385.1,8718.9
+"Cassette","Tape",1989-01-01,3345.8,8221.5
+"Cassette","Tape",1990-01-01,3472.4,8095.2
+"Cassette","Tape",1991-01-01,3019.6,6755.3
+"Cassette","Tape",1992-01-01,3116.3,6767.9
+"Cassette","Tape",1993-01-01,2915.8,6148.4
+"Cassette","Tape",1994-01-01,2976.4,6119.5
+"Cassette","Tape",1995-01-01,2303.6,4605.7
+"Cassette","Tape",1996-01-01,1905.3,3700.1
+"Cassette","Tape",1997-01-01,1522.7,2890.8
+"Cassette","Tape",1998-01-01,1419.9,2654.3
+"Cassette","Tape",1999-01-01,1061.6,1941.6
+"Cassette","Tape",2000-01-01,626,1107.7
+"Cassette","Tape",2001-01-01,363.4,625.2
+"Cassette","Tape",2002-01-01,209.8,355.3
+"Cassette","Tape",2003-01-01,108.1,179
+"Cassette","Tape",2004-01-01,23.7,38.2
+"Cassette","Tape",2005-01-01,13.1,20.4
+"Cassette","Tape",2006-01-01,3.7,5.6
+"Cassette","Tape",2007-01-01,3,4.4
+"Cassette","Tape",2008-01-01,0.9,1.3
+"Cassette Single","Tape",1987-01-01,14.3,38.4
+"Cassette Single","Tape",1988-01-01,57.3,147.6
+"Cassette Single","Tape",1989-01-01,194.6,478.2
+"Cassette Single","Tape",1990-01-01,257.9,601.2
+"Cassette Single","Tape",1991-01-01,230.4,515.4
+"Cassette Single","Tape",1992-01-01,298.8,648.9
+"Cassette Single","Tape",1993-01-01,298.5,629.4
+"Cassette Single","Tape",1994-01-01,274.9,565.2
+"Cassette Single","Tape",1995-01-01,236.3,472.4
+"Cassette Single","Tape",1996-01-01,189.3,367.6
+"Cassette Single","Tape",1997-01-01,133.5,253.4
+"Cassette Single","Tape",1998-01-01,94.4,176.5
+"Cassette Single","Tape",1999-01-01,48,87.8
+"Cassette Single","Tape",2000-01-01,4.6,8.1
+"Cassette Single","Tape",2001-01-01,-5.3,-9.1
+"Cassette Single","Tape",2002-01-01,-1.6,-2.7
+"DVD Audio","Other",2001-01-01,6,10.3
+"DVD Audio","Other",2002-01-01,8.5,14.4
+"DVD Audio","Other",2003-01-01,8,13.2
+"DVD Audio","Other",2004-01-01,6.5,10.5
+"DVD Audio","Other",2005-01-01,11.2,17.5
+"DVD Audio","Other",2006-01-01,2.4,3.6
+"DVD Audio","Other",2007-01-01,2.8,4.1
+"DVD Audio","Other",2008-01-01,1.2,1.7
+"DVD Audio","Other",2009-01-01,1.6,2.3
+"DVD Audio","Other",2010-01-01,0.9,1.3
+"DVD Audio","Other",2011-01-01,0.3,0.4
+"DVD Audio","Other",2012-01-01,0.2,0.2
+"DVD Audio","Other",2013-01-01,-0.5,-0.6
+"DVD Audio","Other",2014-01-01,2.1,2.8
+"DVD Audio","Other",2015-01-01,5.4,7
+"DVD Audio","Other",2016-01-01,2.8,3.6
+"DVD Audio","Other",2017-01-01,0.3,0.4
+"DVD Audio","Other",2018-01-01,0.3,0.4
+"DVD Audio","Other",2019-01-01,1.3,1.5
+"DVD Audio","Other",2020-01-01,1.8,2.2
+"DVD Audio","Other",2021-01-01,5.8,6.5
+"DVD Audio","Other",2022-01-01,0.1,0.1
+"Download Album","Download",2004-01-01,45.5,73.4
+"Download Album","Download",2005-01-01,135.7,211.7
+"Download Album","Download",2006-01-01,275.9,417
+"Download Album","Download",2007-01-01,497.4,731
+"Download Album","Download",2008-01-01,635.3,899.1
+"Download Album","Download",2009-01-01,744.3,1057.1
+"Download Album","Download",2010-01-01,872.4,1219.1
+"Download Album","Download",2011-01-01,1070.8,1450.5
+"Download Album","Download",2012-01-01,1204.8,1599
+"Download Album","Download",2013-01-01,1232.1,1611.6
+"Download Album","Download",2014-01-01,1117.9,1438.8
+"Download Album","Download",2015-01-01,1064.4,1368.4
+"Download Album","Download",2016-01-01,868.6,1102.7
+"Download Album","Download",2017-01-01,649.7,807.7
+"Download Album","Download",2018-01-01,495.3,601
+"Download Album","Download",2019-01-01,368.5,439.2
+"Download Album","Download",2020-01-01,319.3,375.9
+"Download Album","Download",2021-01-01,303.3,341
+"Download Album","Download",2022-01-01,241.9,251.8
+"Download Album","Download",2023-01-01,204.7,204.7
+"Download Music Video","Download",2005-01-01,3.7,5.8
+"Download Music Video","Download",2006-01-01,19.7,29.8
+"Download Music Video","Download",2007-01-01,28.2,41.4
+"Download Music Video","Download",2008-01-01,41.3,58.4
+"Download Music Video","Download",2009-01-01,40.9,58.1
+"Download Music Video","Download",2010-01-01,36.6,51.1
+"Download Music Video","Download",2011-01-01,32.4,43.9
+"Download Music Video","Download",2012-01-01,20.8,27.7
+"Download Music Video","Download",2013-01-01,16.7,21.9
+"Download Music Video","Download",2014-01-01,13.6,17.5
+"Download Music Video","Download",2015-01-01,6.4,8.2
+"Download Music Video","Download",2016-01-01,4.3,5.4
+"Download Music Video","Download",2017-01-01,2.8,3.5
+"Download Music Video","Download",2018-01-01,2.2,2.7
+"Download Music Video","Download",2019-01-01,1.9,2.2
+"Download Music Video","Download",2020-01-01,1.8,2.1
+"Download Music Video","Download",2021-01-01,1.9,2.2
+"Download Music Video","Download",2022-01-01,1.3,1.4
+"Download Single","Download",2004-01-01,138,222.6
+"Download Single","Download",2005-01-01,363.3,566.8
+"Download Single","Download",2006-01-01,580.6,877.5
+"Download Single","Download",2007-01-01,811,1191.8
+"Download Single","Download",2008-01-01,1032.2,1460.8
+"Download Single","Download",2009-01-01,1172,1664.6
+"Download Single","Download",2010-01-01,1336.4,1867.4
+"Download Single","Download",2011-01-01,1522.4,2062.2
+"Download Single","Download",2012-01-01,1644.6,2182.6
+"Download Single","Download",2013-01-01,1573.4,2058
+"Download Single","Download",2014-01-01,1355.3,1744.4
+"Download Single","Download",2015-01-01,1185.2,1523.7
+"Download Single","Download",2016-01-01,900.2,1142.8
+"Download Single","Download",2017-01-01,667.9,830.2
+"Download Single","Download",2018-01-01,489.9,594.4
+"Download Single","Download",2019-01-01,403,480.3
+"Download Single","Download",2020-01-01,310.4,365.4
+"Download Single","Download",2021-01-01,268.9,302.4
+"Download Single","Download",2022-01-01,214.1,223
+"Download Single","Download",2023-01-01,190.8,190.8
+"Kiosk","Other",2005-01-01,1,1.6
+"Kiosk","Other",2006-01-01,1.9,2.9
+"Kiosk","Other",2007-01-01,2.6,3.8
+"Kiosk","Other",2008-01-01,2.6,3.7
+"Kiosk","Other",2009-01-01,6.3,8.9
+"Kiosk","Other",2010-01-01,6.4,8.9
+"Kiosk","Other",2011-01-01,2.7,3.7
+"Kiosk","Other",2012-01-01,3.7,4.8
+"Kiosk","Other",2013-01-01,6.2,8.1
+"Kiosk","Other",2014-01-01,2.6,3.3
+"Kiosk","Other",2015-01-01,3.7,4.8
+"Kiosk","Other",2016-01-01,2.9,3.7
+"Kiosk","Other",2017-01-01,2.3,2.8
+"Kiosk","Other",2018-01-01,2,2.4
+"Kiosk","Other",2019-01-01,1.6,1.9
+"Kiosk","Other",2020-01-01,1.2,1.4
+"Kiosk","Other",2021-01-01,0.8,0.8
+"Kiosk","Other",2022-01-01,0.4,0.4
+"LP/EP","Vinyl",1973-01-01,1246,8550.9
+"LP/EP","Vinyl",1974-01-01,1356,8380.9
+"LP/EP","Vinyl",1975-01-01,1485,8410.5
+"LP/EP","Vinyl",1976-01-01,1663,8905.4
+"LP/EP","Vinyl",1977-01-01,2195.1,11037.2
+"LP/EP","Vinyl",1978-01-01,2473.3,11558.6
+"LP/EP","Vinyl",1979-01-01,2057,8633.2
+"LP/EP","Vinyl",1980-01-01,2200,8135.2
+"LP/EP","Vinyl",1981-01-01,2341.7,7849.5
+"LP/EP","Vinyl",1982-01-01,1925.1,6078.6
+"LP/EP","Vinyl",1983-01-01,1689,5167.1
+"LP/EP","Vinyl",1984-01-01,1548.8,4542.1
+"LP/EP","Vinyl",1985-01-01,1280.5,3626.1
+"LP/EP","Vinyl",1986-01-01,983,2732.9
+"LP/EP","Vinyl",1987-01-01,793.1,2127.3
+"LP/EP","Vinyl",1988-01-01,532.2,1370.8
+"LP/EP","Vinyl",1989-01-01,220.3,541.3
+"LP/EP","Vinyl",1990-01-01,86.5,201.7
+"LP/EP","Vinyl",1991-01-01,29.4,65.8
+"LP/EP","Vinyl",1992-01-01,13.5,29.3
+"LP/EP","Vinyl",1993-01-01,10.6,22.4
+"LP/EP","Vinyl",1994-01-01,17.8,36.6
+"LP/EP","Vinyl",1995-01-01,25.1,50.2
+"LP/EP","Vinyl",1996-01-01,36.8,71.5
+"LP/EP","Vinyl",1997-01-01,33.3,63.2
+"LP/EP","Vinyl",1998-01-01,34,63.6
+"LP/EP","Vinyl",1999-01-01,31.8,58.2
+"LP/EP","Vinyl",2000-01-01,27.7,49
+"LP/EP","Vinyl",2001-01-01,27.4,47.1
+"LP/EP","Vinyl",2002-01-01,20.5,34.7
+"LP/EP","Vinyl",2003-01-01,21.7,35.9
+"LP/EP","Vinyl",2004-01-01,19.3,31.1
+"LP/EP","Vinyl",2005-01-01,14.2,22.2
+"LP/EP","Vinyl",2006-01-01,15.7,23.7
+"LP/EP","Vinyl",2007-01-01,22.9,33.7
+"LP/EP","Vinyl",2008-01-01,56.7,80.2
+"LP/EP","Vinyl",2009-01-01,63.8,90.6
+"LP/EP","Vinyl",2010-01-01,88.9,124.2
+"LP/EP","Vinyl",2011-01-01,119.4,161.7
+"LP/EP","Vinyl",2012-01-01,160.7,213.3
+"LP/EP","Vinyl",2013-01-01,210.7,275.6
+"LP/EP","Vinyl",2014-01-01,243.8,313.9
+"LP/EP","Vinyl",2015-01-01,333.4,428.6
+"LP/EP","Vinyl",2016-01-01,355.4,451.2
+"LP/EP","Vinyl",2017-01-01,388.5,482.9
+"LP/EP","Vinyl",2018-01-01,419.2,508.7
+"LP/EP","Vinyl",2019-01-01,515.5,614.4
+"LP/EP","Vinyl",2020-01-01,696.4,819.8
+"LP/EP","Vinyl",2021-01-01,1086.3,1221.5
+"LP/EP","Vinyl",2022-01-01,1224.4,1274.8
+"LP/EP","Vinyl",2023-01-01,1350.2,1350.2
+"Limited Tier Paid Subscription","Streaming",2016-01-01,257.3,326.6
+"Limited Tier Paid Subscription","Streaming",2017-01-01,568.8,707
+"Limited Tier Paid Subscription","Streaming",2018-01-01,740.5,898.6
+"Limited Tier Paid Subscription","Streaming",2019-01-01,634.1,755.8
+"Limited Tier Paid Subscription","Streaming",2020-01-01,717.9,845.2
+"Limited Tier Paid Subscription","Streaming",2021-01-01,897,1008.7
+"Limited Tier Paid Subscription","Streaming",2022-01-01,1063,1106.8
+"Limited Tier Paid Subscription","Streaming",2023-01-01,1021.4,1021.4
+"Music Video (Physical)","Other",1989-01-01,115.4,283.6
+"Music Video (Physical)","Other",1990-01-01,172.3,401.7
+"Music Video (Physical)","Other",1991-01-01,118.1,264.2
+"Music Video (Physical)","Other",1992-01-01,157.4,341.8
+"Music Video (Physical)","Other",1993-01-01,213.3,449.8
+"Music Video (Physical)","Other",1994-01-01,231.1,475.1
+"Music Video (Physical)","Other",1995-01-01,220.3,440.5
+"Music Video (Physical)","Other",1996-01-01,236.1,458.5
+"Music Video (Physical)","Other",1997-01-01,323.9,614.9
+"Music Video (Physical)","Other",1998-01-01,508,949.6
+"Music Video (Physical)","Other",1999-01-01,376.7,689
+"Music Video (Physical)","Other",2000-01-01,281.9,498.8
+"Music Video (Physical)","Other",2001-01-01,329.2,566.4
+"Music Video (Physical)","Other",2002-01-01,288.4,488.5
+"Music Video (Physical)","Other",2003-01-01,399.9,662.2
+"Music Video (Physical)","Other",2004-01-01,607.2,979.4
+"Music Video (Physical)","Other",2005-01-01,602.2,939.5
+"Music Video (Physical)","Other",2006-01-01,451.1,681.8
+"Music Video (Physical)","Other",2007-01-01,484.9,712.6
+"Music Video (Physical)","Other",2008-01-01,227.3,321.7
+"Music Video (Physical)","Other",2009-01-01,209.6,297.7
+"Music Video (Physical)","Other",2010-01-01,177.6,248.2
+"Music Video (Physical)","Other",2011-01-01,151,204.5
+"Music Video (Physical)","Other",2012-01-01,116.6,154.8
+"Music Video (Physical)","Other",2013-01-01,106.3,139
+"Music Video (Physical)","Other",2014-01-01,89.7,115.5
+"Music Video (Physical)","Other",2015-01-01,70.4,90.5
+"Music Video (Physical)","Other",2016-01-01,56.9,72.3
+"Music Video (Physical)","Other",2017-01-01,37.5,46.6
+"Music Video (Physical)","Other",2018-01-01,28.4,34.5
+"Music Video (Physical)","Other",2019-01-01,26.6,31.7
+"Music Video (Physical)","Other",2020-01-01,27.4,32.3
+"Music Video (Physical)","Other",2021-01-01,19.9,22.4
+"Music Video (Physical)","Other",2022-01-01,11.3,11.8
+"Music Video (Physical)","Other",2023-01-01,10.7,10.7
+"On-Demand Streaming (Ad-Supported)","Streaming",2011-01-01,113.8,154.2
+"On-Demand Streaming (Ad-Supported)","Streaming",2012-01-01,170.9,226.9
+"On-Demand Streaming (Ad-Supported)","Streaming",2013-01-01,220.9,288.9
+"On-Demand Streaming (Ad-Supported)","Streaming",2014-01-01,283.8,365.3
+"On-Demand Streaming (Ad-Supported)","Streaming",2015-01-01,372,478.2
+"On-Demand Streaming (Ad-Supported)","Streaming",2016-01-01,476.8,605.3
+"On-Demand Streaming (Ad-Supported)","Streaming",2017-01-01,614.3,763.6
+"On-Demand Streaming (Ad-Supported)","Streaming",2018-01-01,752.7,913.3
+"On-Demand Streaming (Ad-Supported)","Streaming",2019-01-01,1006.6,1199.7
+"On-Demand Streaming (Ad-Supported)","Streaming",2020-01-01,1196.6,1408.8
+"On-Demand Streaming (Ad-Supported)","Streaming",2021-01-01,1733.4,1949.2
+"On-Demand Streaming (Ad-Supported)","Streaming",2022-01-01,1822.1,1897.1
+"On-Demand Streaming (Ad-Supported)","Streaming",2023-01-01,1864.5,1864.5
+"Other Ad-Supported Streaming","Streaming",2016-01-01,70.6,89.7
+"Other Ad-Supported Streaming","Streaming",2017-01-01,223.9,278.4
+"Other Ad-Supported Streaming","Streaming",2018-01-01,208.2,252.6
+"Other Ad-Supported Streaming","Streaming",2019-01-01,207.3,247.1
+"Other Ad-Supported Streaming","Streaming",2020-01-01,211.2,248.7
+"Other Ad-Supported Streaming","Streaming",2021-01-01,203.5,228.8
+"Other Ad-Supported Streaming","Streaming",2022-01-01,261.5,272.2
+"Other Ad-Supported Streaming","Streaming",2023-01-01,317.7,317.7
+"Other Digital","Download",2016-01-01,17.1,21.8
+"Other Digital","Download",2017-01-01,16.9,21
+"Other Digital","Download",2018-01-01,19.8,24.1
+"Other Digital","Download",2019-01-01,21.5,25.6
+"Other Digital","Download",2020-01-01,18.9,22.2
+"Other Digital","Download",2021-01-01,31.1,35
+"Other Digital","Download",2022-01-01,25.9,27
+"Other Digital","Download",2023-01-01,28.1,28.1
+"Other Physical",NA,2023-01-01,5.7,5.7
+"Other Tapes","Tape",1973-01-01,15.6,107.1
+"Other Tapes","Tape",1974-01-01,13.3,82.2
+"Other Tapes","Tape",1975-01-01,10.2,57.8
+"Other Tapes","Tape",1976-01-01,5.1,27.3
+"Paid Subscription","Streaming",2005-01-01,149.2,232.8
+"Paid Subscription","Streaming",2006-01-01,206.2,311.7
+"Paid Subscription","Streaming",2007-01-01,234,343.9
+"Paid Subscription","Streaming",2008-01-01,221.4,313.3
+"Paid Subscription","Streaming",2009-01-01,206.2,292.9
+"Paid Subscription","Streaming",2010-01-01,212.4,296.8
+"Paid Subscription","Streaming",2011-01-01,247.8,335.7
+"Paid Subscription","Streaming",2012-01-01,399.9,530.7
+"Paid Subscription","Streaming",2013-01-01,643.3,841.5
+"Paid Subscription","Streaming",2014-01-01,770.3,991.4
+"Paid Subscription","Streaming",2015-01-01,1156.7,1487
+"Paid Subscription","Streaming",2016-01-01,2186.4,2775.8
+"Paid Subscription","Streaming",2017-01-01,3359.8,4176.4
+"Paid Subscription","Streaming",2018-01-01,4614,5598.8
+"Paid Subscription","Streaming",2019-01-01,6074.6,7239.9
+"Paid Subscription","Streaming",2020-01-01,6952.1,8184.8
+"Paid Subscription","Streaming",2021-01-01,8562.8,9628.8
+"Paid Subscription","Streaming",2022-01-01,9179,9556.9
+"Paid Subscription","Streaming",2023-01-01,10149.7,10149.7
+"Ringtones & Ringbacks","Download",2005-01-01,421.6,657.8
+"Ringtones & Ringbacks","Download",2006-01-01,773.8,1169.5
+"Ringtones & Ringbacks","Download",2007-01-01,1055.8,1551.6
+"Ringtones & Ringbacks","Download",2008-01-01,977.1,1382.8
+"Ringtones & Ringbacks","Download",2009-01-01,702.8,998.2
+"Ringtones & Ringbacks","Download",2010-01-01,448,626
+"Ringtones & Ringbacks","Download",2011-01-01,276.2,374.1
+"Ringtones & Ringbacks","Download",2012-01-01,146,193.8
+"Ringtones & Ringbacks","Download",2013-01-01,98,128.2
+"Ringtones & Ringbacks","Download",2014-01-01,66.3,85.3
+"Ringtones & Ringbacks","Download",2015-01-01,54.6,70.2
+"Ringtones & Ringbacks","Download",2016-01-01,56.3,71.5
+"Ringtones & Ringbacks","Download",2017-01-01,35.5,44.1
+"Ringtones & Ringbacks","Download",2018-01-01,25,30.3
+"Ringtones & Ringbacks","Download",2019-01-01,20.6,24.6
+"Ringtones & Ringbacks","Download",2020-01-01,20.2,23.8
+"Ringtones & Ringbacks","Download",2021-01-01,15.7,17.6
+"Ringtones & Ringbacks","Download",2022-01-01,11,11.5
+"Ringtones & Ringbacks","Download",2023-01-01,10.5,10.5
+"SACD","Disc",2003-01-01,26.3,43.6
+"SACD","Disc",2004-01-01,16.6,26.8
+"SACD","Disc",2005-01-01,10,15.6
+"SACD","Disc",2006-01-01,5.5,8.3
+"SACD","Disc",2007-01-01,3.6,5.3
+"SACD","Disc",2008-01-01,3.1,4.4
+"SACD","Disc",2009-01-01,2.4,3.4
+"SACD","Disc",2010-01-01,1.7,2.4
+"SACD","Disc",2011-01-01,1.5,2
+"SACD","Disc",2012-01-01,1.3,1.8
+"SACD","Disc",2013-01-01,1,1.3
+"SACD","Disc",2014-01-01,0.8,1
+"SACD","Disc",2015-01-01,1,1.3
+"SACD","Disc",2016-01-01,1.2,1.5
+"SACD","Disc",2017-01-01,0.9,1.1
+"SACD","Disc",2018-01-01,0.9,1
+"SACD","Disc",2019-01-01,0.4,0.5
+"SACD","Disc",2020-01-01,0.2,0.3
+"SACD","Disc",2021-01-01,0.2,0.2
+"SACD","Disc",2022-01-01,0.2,0.2
+"SoundExchange Distributions","Streaming",2004-01-01,6.9,11.1
+"SoundExchange Distributions","Streaming",2005-01-01,20.4,31.8
+"SoundExchange Distributions","Streaming",2006-01-01,32.8,49.6
+"SoundExchange Distributions","Streaming",2007-01-01,36.2,53.2
+"SoundExchange Distributions","Streaming",2008-01-01,100,141.5
+"SoundExchange Distributions","Streaming",2009-01-01,155.5,220.9
+"SoundExchange Distributions","Streaming",2010-01-01,249.2,348.2
+"SoundExchange Distributions","Streaming",2011-01-01,292,395.5
+"SoundExchange Distributions","Streaming",2012-01-01,462,613.1
+"SoundExchange Distributions","Streaming",2013-01-01,590.4,772.2
+"SoundExchange Distributions","Streaming",2014-01-01,773.4,995.4
+"SoundExchange Distributions","Streaming",2015-01-01,802.6,1031.8
+"SoundExchange Distributions","Streaming",2016-01-01,883.9,1122.2
+"SoundExchange Distributions","Streaming",2017-01-01,652,810.5
+"SoundExchange Distributions","Streaming",2018-01-01,952.8,1156.2
+"SoundExchange Distributions","Streaming",2019-01-01,908.2,1082.4
+"SoundExchange Distributions","Streaming",2020-01-01,947.4,1115.4
+"SoundExchange Distributions","Streaming",2021-01-01,992.5,1116.1
+"SoundExchange Distributions","Streaming",2022-01-01,959.4,998.9
+"SoundExchange Distributions","Streaming",2023-01-01,1004.8,1004.8
+"Synchronization","Other",2009-01-01,201.2,285.8
+"Synchronization","Other",2010-01-01,188.7,263.7
+"Synchronization","Other",2011-01-01,196.5,266.2
+"Synchronization","Other",2012-01-01,190.6,252.9
+"Synchronization","Other",2013-01-01,189.7,248.1
+"Synchronization","Other",2014-01-01,189.7,244.2
+"Synchronization","Other",2015-01-01,202.9,260.9
+"Synchronization","Other",2016-01-01,214.8,272.7
+"Synchronization","Other",2017-01-01,232.1,288.5
+"Synchronization","Other",2018-01-01,285.5,346.5
+"Synchronization","Other",2019-01-01,281.1,335
+"Synchronization","Other",2020-01-01,265.2,312.3
+"Synchronization","Other",2021-01-01,306.5,344.7
+"Synchronization","Other",2022-01-01,382.5,398.2
+"Synchronization","Other",2023-01-01,410.9,410.9
+"Vinyl Single","Vinyl",1973-01-01,190,1303.9
+"Vinyl Single","Vinyl",1974-01-01,194,1199
+"Vinyl Single","Vinyl",1975-01-01,211.5,1197.9
+"Vinyl Single","Vinyl",1976-01-01,245.1,1312.5
+"Vinyl Single","Vinyl",1977-01-01,245.1,1232.4
+"Vinyl Single","Vinyl",1978-01-01,260.3,1216.5
+"Vinyl Single","Vinyl",1979-01-01,353.6,1484.1
+"Vinyl Single","Vinyl",1980-01-01,250,924.5
+"Vinyl Single","Vinyl",1981-01-01,256.4,859.5
+"Vinyl Single","Vinyl",1982-01-01,283,893.6
+"Vinyl Single","Vinyl",1983-01-01,269.3,823.9
+"Vinyl Single","Vinyl",1984-01-01,298.7,876
+"Vinyl Single","Vinyl",1985-01-01,281,795.7
+"Vinyl Single","Vinyl",1986-01-01,228.1,634.1
+"Vinyl Single","Vinyl",1987-01-01,203.3,545.3
+"Vinyl Single","Vinyl",1988-01-01,180.4,464.7
+"Vinyl Single","Vinyl",1989-01-01,116.4,286
+"Vinyl Single","Vinyl",1990-01-01,94.4,220.1
+"Vinyl Single","Vinyl",1991-01-01,63.9,143
+"Vinyl Single","Vinyl",1992-01-01,66.4,144.2
+"Vinyl Single","Vinyl",1993-01-01,51.2,108
+"Vinyl Single","Vinyl",1994-01-01,47.2,97
+"Vinyl Single","Vinyl",1995-01-01,46.7,93.4
+"Vinyl Single","Vinyl",1996-01-01,47.5,92.2
+"Vinyl Single","Vinyl",1997-01-01,35.6,67.6
+"Vinyl Single","Vinyl",1998-01-01,25.7,48
+"Vinyl Single","Vinyl",1999-01-01,27.9,51
+"Vinyl Single","Vinyl",2000-01-01,26.3,46.5
+"Vinyl Single","Vinyl",2001-01-01,31.4,54
+"Vinyl Single","Vinyl",2002-01-01,24.9,42.2
+"Vinyl Single","Vinyl",2003-01-01,21.5,35.6
+"Vinyl Single","Vinyl",2004-01-01,19.9,32.1
+"Vinyl Single","Vinyl",2005-01-01,13.2,20.6
+"Vinyl Single","Vinyl",2006-01-01,9.9,15
+"Vinyl Single","Vinyl",2007-01-01,4,5.9
+"Vinyl Single","Vinyl",2008-01-01,2.9,4.1
+"Vinyl Single","Vinyl",2009-01-01,2.5,3.6
+"Vinyl Single","Vinyl",2010-01-01,2.3,3.2
+"Vinyl Single","Vinyl",2011-01-01,4.6,6.2
+"Vinyl Single","Vinyl",2012-01-01,4.7,6.3
+"Vinyl Single","Vinyl",2013-01-01,3,3.9
+"Vinyl Single","Vinyl",2014-01-01,5.5,7.1
+"Vinyl Single","Vinyl",2015-01-01,5.8,7.4
+"Vinyl Single","Vinyl",2016-01-01,4.9,6.2
+"Vinyl Single","Vinyl",2017-01-01,6.1,7.6
+"Vinyl Single","Vinyl",2018-01-01,5.7,6.9
+"Vinyl Single","Vinyl",2019-01-01,6.7,8
+"Vinyl Single","Vinyl",2020-01-01,6.3,7.4
+"Vinyl Single","Vinyl",2021-01-01,7.9,8.9
+"Vinyl Single","Vinyl",2022-01-01,5.6,5.8
+"Vinyl Single","Vinyl",2023-01-01,8.4,8.4

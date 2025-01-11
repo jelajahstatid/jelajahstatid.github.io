@@ -56,6 +56,21 @@ urutan_format <- c(
   "Limited Tier Paid Subscription"
 )
 # Plot
+p <- pendapatan_as_riaa |> 
+  filter(
+    grup %in% c("Tape", "Disc")
+  ) |> 
+  group_by(grup, tahun) |> 
+  summarise(
+    sum = sum(pendapatan_infl),
+    .groups = "drop"
+  ) |> 
+  ggplot(
+    aes(x = tahun, y = sum)
+  ) + 
+  geom_line(aes(group = grup)) + 
+  geom_point()
+ggplotly(p)
 plot_musik <- pendapatan_as_riaa |> 
   mutate(
     format = factor(
