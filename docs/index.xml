@@ -9,50 +9,8 @@
 <link>https://jelajahstatid.github.io/</link>
 <atom:link href="https://jelajahstatid.github.io/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.6.39</generator>
-<lastBuildDate>Fri, 10 Jan 2025 23:00:00 GMT</lastBuildDate>
-<item>
-  <title>Visualisasi Data Pendapatan Industri Musik</title>
-  <dc:creator>Yosep Dwi Kristanto</dc:creator>
-  <link>https://jelajahstatid.github.io/pos/2025-01-pendapatan-musik/</link>
-  <description><![CDATA[ 
-
-
-
-
-
-<p>Aku menulis paragraf ini diringi dengan salah satu lagu hits Sheila On 7, Dan… Tak hanya karena lagu itu enak didengar tetapi juga lagu itu menggiringku untuk bernostalgia ke masa kejayaan kaset. Aku masih ingat betul bagaimana dulu aku merengek minta diantar ke kota untuk berbelanja kaset orisinal album Sheila On 7. Sesampai di rumah aku mainkan kaset itu berulang-ulang, khususnya pada lagu pertama side B itu. Beberapa hari kemudian, kasetnya sudah <em>ngelokor</em> tak karuan.</p>
-<p>Sekarang aku jadi bertanya-tanya, apakah kamu paham apa yang aku ceritakan di atas? Dugaanku, hanya sedikit yang memahaminya—khususnya tentang kaset dan fenomena <em>ngelokor</em>-nya. Paling tidak, dugaanku itu sejalan dengan temuanku ketika tersesat di laman <a href="https://www.riaa.com/u-s-sales-database/" class="external" target="_blank">pangkalan data pendapatan industri musik di Amerika Serika (AS)</a>. Di laman itu, aku mendapati sebuah diagram interaktif nan apik. Silakan amati diagram itu pada Gambar&nbsp;1.</p>
-<div id="fig-riaa-music-revenue" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Pendapatan industri musik di AS berdasarkan format">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-riaa-music-revenue-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://jelajahstatid.github.io/pos/2025-01-pendapatan-musik/aset/revenues_by_format.png" class="img-fluid figure-img" alt="Pendapatan industri musik di AS berdasarkan format">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-riaa-music-revenue-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Gambar&nbsp;1: Pendapatan industri musik di AS berdasarkan format
-</figcaption>
-</figure>
-</div>
-<p>Meskipun kurang begitu jelas, dari Gambar&nbsp;1 kita dapat melihat bahwa setelah tahun 2000 pendapatan industri musik dari format kaset dan sejenisnya terus menurun. Bahkan, tak ada lagi pendapatan yang sumbernya dari penjualan kaset dan sejenisnya setelah tahun 2008. Tapi, stop! Kita hentikan sampai di sini interpretasi datanya. Kita apresiasi bagaimana data tersebut dipresentasikan.</p>
-<p>Diagram tersebut memberikan contoh penggunaan diagram batang yang efektif, meskipun sumbu horizontalnya menyatakan waktu.<sup>1</sup> Pemilihan warnanya secara efektif menunjukkan tren dalam data. Misalnya, kita dapat melihat pada Gambar&nbsp;1 bahwa dari kiri ke kanan warna biru semakin mengecil ketika warna oranye semakin membesar. Hal ini menunjukkan pendapatan industri musik di AS dari format kaset dan sejenisnya semakin menurun seiring adanya format CD.</p>
-<p>Tak hanya itu. Jika kamu mengunjungi <a href="https://www.riaa.com/u-s-sales-database/" class="external" target="_blank">situs web RIAA</a>, kamu dapat berinteraksi dengan diagram tersebut. Kamu dapat memilih pendapatan seperti apa yang ditampilkan—apakah yang disesuaikan dengan inflasi ataukah tidak. Kamu dapat mengatur batasan tahun untuk data yang disajikan. Kamu juga dapat memilih format-format apa saja yang perlu dipresentasikan dalam diagram. Terakhir, kamu dapat menyorot dan mengklik setiap batangnya untuk melihat informasi yang disajikan batang tersebut.</p>
-
-
-
-
-<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Catatan Kaki</h2>
-
-<ol>
-<li id="fn1"><p>Pada umumnya, diagram garis dipilih untuk menyajikan data yang menyatakan tren (sumbu horizontalnya menyatakan waktu).↩︎</p></li>
-</ol>
-</section><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Penggunaan Kembali</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-copyright"><h2 class="anchored quarto-appendix-heading">Hak Cipta</h2><div class="quarto-appendix-contents"><div>© 2025 Yosep Dwi Kristanto</div></div></section></div> ]]></description>
-  <category>ekonomi</category>
-  <category>tutorial</category>
-  <category>visualisasi data</category>
-  <guid>https://jelajahstatid.github.io/pos/2025-01-pendapatan-musik/</guid>
-  <pubDate>Fri, 10 Jan 2025 23:00:00 GMT</pubDate>
-  <media:content url="https://jelajahstatid.github.io/pos/2025-01-pendapatan-musik/pendapatan_musik.png" medium="image" type="image/png"/>
-</item>
+<generator>quarto-1.5.57</generator>
+<lastBuildDate>Sat, 24 Aug 2024 22:00:00 GMT</lastBuildDate>
 <item>
   <title>Gunung Agung, Bromo, Merapi, dan Semeru</title>
   <dc:creator>Yosep Dwi Kristanto</dc:creator>

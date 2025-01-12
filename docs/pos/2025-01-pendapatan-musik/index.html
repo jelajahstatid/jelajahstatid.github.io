@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -24,6 +24,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -40,10 +74,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-ddd961a2510921635943dfbbd19534c4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -86,6 +120,7 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
         background: #EBF7FE;
       }
 </style>
+<meta name="quarto:status" content="draft">
 
 
 <link rel="stylesheet" href="../../styles.css">
@@ -106,7 +141,7 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
 <body class="floating nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner"><div id="quarto-draft-alert" class="alert alert-warning"><i class="bi bi-pencil-square"></i>Draf</div>
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
@@ -238,6 +273,15 @@ Gambar&nbsp;1: Pendapatan industri musik di AS berdasarkan format
 <p>Meskipun kurang begitu jelas, dari <a href="#fig-riaa-music-revenue" class="quarto-xref">Gambar&nbsp;1</a> kita dapat melihat bahwa setelah tahun 2000 pendapatan industri musik dari format kaset dan sejenisnya terus menurun. Bahkan, tak ada lagi pendapatan yang sumbernya dari penjualan kaset dan sejenisnya setelah tahun 2008. Tapi, stop! Kita hentikan sampai di sini interpretasi datanya. Kita apresiasi bagaimana data tersebut dipresentasikan.</p>
 <p>Diagram tersebut memberikan contoh penggunaan diagram batang yang efektif, meskipun sumbu horizontalnya menyatakan waktu.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Pemilihan warnanya secara efektif menunjukkan tren dalam data. Misalnya, kita dapat melihat pada <a href="#fig-riaa-music-revenue" class="quarto-xref">Gambar&nbsp;1</a> bahwa dari kiri ke kanan warna biru semakin mengecil ketika warna oranye semakin membesar. Hal ini menunjukkan pendapatan industri musik di AS dari format kaset dan sejenisnya semakin menurun seiring adanya format CD.</p>
 <p>Tak hanya itu. Jika kamu mengunjungi <a href="https://www.riaa.com/u-s-sales-database/" class="external" target="_blank">situs web RIAA</a>, kamu dapat berinteraksi dengan diagram tersebut. Kamu dapat memilih pendapatan seperti apa yang ditampilkan—apakah yang disesuaikan dengan inflasi ataukah tidak. Kamu dapat mengatur batasan tahun untuk data yang disajikan. Kamu juga dapat memilih format-format apa saja yang perlu dipresentasikan dalam diagram. Terakhir, kamu dapat menyorot dan mengklik setiap batangnya untuk melihat informasi yang disajikan batang tersebut.</p>
+<p>Bisakah kita membuat visualisasi data seperti itu? Tentu bisa! Kita akan membuat visualisasi data itu dengan menggunakan <a href="https://www.R-project.org/" class="external" target="_blank">pemrograman R</a>, khususnya dengan paket <a href="https://ggplot2.tidyverse.org" class="external" target="_blank">{ggplot2}</a> dan <a href="https://plotly-r.com" class="external" target="_blank">{plotly}</a>, dan <a href="https://observablehq.com/" class="external" target="_blank">Observable JS</a>. Untuk melakukan visualisasi data di R, terlebih dahulu kita panggil paket-paket yang kita perlukan.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Kode</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(plotly)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 
 
 
@@ -330,6 +374,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -440,6 +486,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
+      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
