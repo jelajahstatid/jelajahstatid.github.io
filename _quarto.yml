@@ -31,7 +31,7 @@ format:
     toc: true
     theme: cosmo
     code-fold: true
-    code-line-numbers: true
+    code-link: true
     css: styles.css
 
 editor: visual

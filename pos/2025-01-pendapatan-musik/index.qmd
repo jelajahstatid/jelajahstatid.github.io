@@ -20,7 +20,11 @@ image-alt: |
   Gambar yang menunjukkan pendapatan industri musik di AS berdasarkan format.
 keywords: 
   - ekonomi
+  - ggplot2
+  - JavaScript
   - musik
+  - Observable JS
+  - plotly
   - pendapatan
 copyright: "© 2025 Yosep Dwi Kristanto"
 license: "CC BY"
@@ -50,9 +54,230 @@ Bisakah kita membuat visualisasi data seperti itu? Tentu bisa! Kita akan membuat
 #| warning: false
 #| code-fold: false
 
-library(readr)
-library(ggplot2)
+library(tidyverse) # Paket {ggplot2} masuk dalam {tidyverse}
 library(plotly)
 ```
 
-## Mempersiapkan Data
+## Mempersiapkan dan Menjelajah Data {#sec-mempersiapkan-dan-menjelajah-data}
+
+Kita siapkan datanya terlebih dahulu. Data tersebut dapat kita peroleh dari situs web RIAA. Data dari situs itu yang sudah aku rapikan dapat diakses di [GitHub](https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/refs/heads/main/pos/2025-01-pendapatan-musik/aset/pendapatan_as_riaa.csv){.external target="_blank"}. Mari kita impor data tersebut dengan `read_csv()`.
+
+```{r}
+#| code-fold: false
+
+url_fail <- "https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/refs/heads/main/pos/2025-01-pendapatan-musik/aset/pendapatan_as_riaa.csv"
+
+pendapatan_as_riaa <- read_csv(
+  file = url_fail,
+  show_col_types = FALSE
+)
+
+print(pendapatan_as_riaa)
+```
+
+Kita mendapatkan sebuah tibble `pendapatan_as_riaa` yang memiliki lima variabel dan 508 baris. Variabel-variabel tersebut adalah `format`, `grup`, dan `tahun`, serta dua ukuran pendapatan: pendapatan yang tidak disesuaikan dengan inflasi (`pendapatan`) dan yang disesuaikan dengan inflasi (`pendapatan_infl`). Pendapatan tersebut semuanya dalam juta dolar AS.
+
+Untuk mengakrabkan diri dengan data tersebut, mari kita lihat lebih jauh dalam data itu. Apa saja `format` dan `grup` dalam data tersebut? Mari kita selidiki!
+
+```{r}
+#| code-fold: false
+
+pendapatan_as_riaa$format |> 
+  unique()
+
+pendapatan_as_riaa$grup |> 
+  unique()
+
+```
+
+Kita selidiki juga pengkategorian `format` ke dalam `grup`. Kita dapat melakukannya dengan kode berikut.
+
+```{r}
+#| code-fold: false
+
+pendapatan_as_riaa |> 
+  select(grup, format) |> 
+  group_by(grup, format) |> 
+  unique() |> 
+  ungroup() |> 
+  arrange(grup, format) |> 
+  print(n = 24)
+
+```
+
+Bagaimana dengan rentangan `tahun`-nya? Dengan menjalankan kode berikut, kita tahu bahwa `tahun`-nya merentang dari 1973 sampai 2023.
+
+```{r}
+#| code-fold: false
+
+pendapatan_as_riaa$tahun |> 
+  unique() |> 
+  sort()
+
+```
+
+Untuk mengkonfirmasi apa yang kukatakan di awal, yaitu pendapatan dari format kaset dan sejenisnya terus menurun setelah tahun 2000, mari kita lihat dari data `pendapatan_as_riaa`.
+
+```{r}
+#| code-fold: false
+
+pendapatan_as_riaa |> 
+  filter(
+    grup == "Tape",
+    tahun > as.Date("2000-01-01")
+  ) |> 
+  group_by(grup, tahun) |> 
+  summarise(
+    total_pendapatan = sum(pendapatan, na.rm = TRUE),
+    total_pendapatan_infl = sum(pendapatan_infl, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+```
+
+Terkonfirmasi! Pendapatan dari kaset dan sejenisnya terus merosot setelah tahun 2000. Bahkan, pendapatan dari format tersebut menghilang mulai tahun 2009.
+
+## Visualisasi Data dengan {ggplot2} {#sec-visualisasi-data-dengan-ggplot2}
+
+Kita telah akrab dengan data `pendapatan_as_riaa`. Sekarang waktunya untuk memvisualisasikannya. Untuk mendapatan diagram seperti pada @fig-riaa-music-revenue, kita gunakan `geom_col()` dengan `position = "stack"` dan `stat = "identity"`.
+
+```{r}
+#| label: fig-ggplot2-awal
+#| fig-cap: "Versi awal visualisasi data pendapatan industri musik di AS dengan {ggplot2}"
+#| fig-asp: 0.5625
+#| code-fold: false
+
+pendapatan_as_riaa |> 
+  ggplot(
+    aes(x = tahun, y = pendapatan_infl, fill = format)
+  ) + 
+  geom_col()
+```
+
+Untuk awalan, tidak terlalu buruk diagramnya. Tapi kita perlu memodifikasi beberapa hal dari diagram batang pada @fig-ggplot2-awal.
+
+-   Kita definisikan warna-warna diagram batangnya.
+
+-   Kita atur legendanya agar terletak di bawah dan terdiri dari empat kolom.
+
+-   Kita atur urutan level pada variabel `format` agar keterbacaannya membaik.
+
+-   Kita tambahkan judul, anak judul, dan takarir ke dalam diagram, serta kita perbaiki judul sumbu vertikal dan horizontalnya.
+
+Kita jalankan rencana pertama dan ketiga terlebih dahulu dengan membuat objek `urutan_format` dan `pemetaan_format_warna`.
+
+```{r}
+#| code-fold: false
+
+# Urutan level pada variabel `format`
+urutan_format <- c(
+  "LP/EP", "Vinyl Single", "8 - Track",
+  "Cassette", "Cassette Single", "Other Tapes",
+  "Kiosk", "CD", "CD Single",
+  "SACD", "DVD Audio", "Music Video (Physical)",
+  "Download Album", "Download Single", "Ringtones & Ringbacks",
+  "Download Music Video", "Other Digital", "Synchronization",
+  "Paid Subscription", "On-Demand Streaming (Ad-Supported)",
+  "Other Ad-Supported Streaming",
+  "SoundExchange Distributions",
+  "Limited Tier Paid Subscription"
+)
+
+# Pemetaan setiap level pada `format` dengan warna
+pemetaan_format_warna <- c(
+  "LP/EP" = "#2A5784",
+  "Vinyl Single" = "#43719F",
+  "8 - Track" = "#5B8DB8",
+  "Cassette" = "#7AAAD0",
+  "Cassette Single" = "#9BC7E4",
+  "Other Tapes" = "#BADDF1",
+  "Kiosk" = "#E1575A",
+  "CD" = "#EE7423",
+  "CD Single" = "#F59D3D",
+  "SACD" = "#FFC686",
+  "DVD Audio" = "#9D7760",
+  "Music Video (Physical)" = "#F1CF63",
+  "Download Album" = "#7C4D79",
+  "Download Single" = "#9B6A97",
+  "Ringtones & Ringbacks" = "#BE89AC",
+  "Download Music Video" = "#D5A5C4",
+  "Other Digital" = "#EFC9E6",
+  "Synchronization" = "#BBB1AC",
+  "Paid Subscription" = "#24693D",
+  "On-Demand Streaming (Ad-Supported)" = "#398949",
+  "Other Ad-Supported Streaming" = "#61AA57",
+  "SoundExchange Distributions" = "#7DC470",
+  "Limited Tier Paid Subscription" = "#B4E0A7"
+)
+
+```
+
+Kita jalankan rencana selanjutnya. Untuk melakukannya, kita jalankan kode berikut ini. Hasilnya ditunjukkan pada @fig-ggplot2-infl-akhir.
+
+```{r}
+#| label: fig-ggplot2-infl-akhir
+#| fig-cap: "Visualisasi data dengan {ggplot2} setelah dilakukan beberapa modifikasi"
+#| fig-asp: 0.75
+#| code-fold: false
+
+plot_musik <- pendapatan_as_riaa |> 
+  mutate(
+    format = factor(
+      format,
+      levels = urutan_format
+    )
+  ) |> 
+  ggplot(
+    aes(x = tahun, y = pendapatan_infl, fill = format)
+  ) + 
+  geom_bar(
+    position = "stack",
+    stat = "identity"
+  ) + 
+  scale_fill_manual(
+    name = "Format",
+    values = pemetaan_format_warna
+  ) + 
+  guides(
+    fill = guide_legend(ncol = 4)
+  ) + 
+  theme_minimal() + 
+  theme(
+    axis.title.x = element_blank(),
+    legend.position = "bottom",
+    legend.title = element_blank(),
+    legend.key.spacing.y = unit(.025, "cm"),
+    plot.title = element_text(
+      face = "bold"
+    )
+  ) + 
+  labs(
+    title = "Pendapatan Industri Musik di AS Berdasarkan Format",
+    subtitle = "Disesuaikan dengan Inflasi, Nilai Dolar Tahun 2023",
+    y = "Pendapatan\n(juta dolar AS)",
+    caption = "Data: Recording Industry Association of America (RIAA)"
+  )
+
+print(plot_musik)
+```
+
+Diagram batang pada @fig-ggplot2-infl-akhir sudah mirip dengan yang ditunjukkan pada @fig-riaa-music-revenue. Diagram tersebut telah efektif menyampaikan informasi tentang pendapatan industri musik berdasarkan formatnya.
+
+## Menambahkan Interaktivitas dengan {plotly} {#sec-menambahkan-interaktivitas-dengan-plotly}
+
+Diagram batang pada @fig-ggplot2-infl-akhir memang sudah efektif dalam menyampaikan informasi pendapatan industri musik di AS berdasarkan formatnya. Meskipun demikian, kita kesulitan dalam mencari informasi yang sifatnya detail. Misalnya, dari gambar tersebut apakah kamu dapat mengetahui besarnya pendapatan dari format download album pada tahun 2010? Sulit, bukan?
+
+Untuk mengatasi masalah tersebut, kita dapat menambahkan interaktivitas ke dalam grafik tersebut dengan [{plotly}](https://plotly-r.com){.external target="_blank"}. Untungnya paket ini dapat kita terapkan terhadap objek ggplot sebelumnya dengan fungsi `ggplotly()`.
+
+```{r}
+#| label: fig-plotly
+#| fig-cap: "Diagram batang menjadi interaktif dengan {plotly}"
+#| fig-asp: 0.5625
+#| code-fold: false
+#| column: page
+
+ggplotly(
+  p = plot_musik
+)
+
+```

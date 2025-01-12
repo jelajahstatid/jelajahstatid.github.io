@@ -10,7 +10,7 @@ pendapatan_as_riaa <- read_csv(
 # Visualisasi data {ggplot2} ----
 
 # Pemetaan warna
-warna_diagram <- c(
+pemetaan_format_warna <- c(
   "LP/EP" = "#2A5784",
   "Vinyl Single" = "#43719F",
   "8 - Track" = "#5B8DB8",
@@ -37,20 +37,13 @@ warna_diagram <- c(
 )
 # Urutan level
 urutan_format <- c(
-  # Vinyl
-  "LP/EP", "Vinyl Single",
-  # Tape
-  "8 - Track", "Cassette", "Cassette Single", "Other Tapes",
-  # Disc and others
-  "Kiosk", "CD", "CD Single", "SACD",
-  "DVD Audio", "Music Video (Physical)",
-  # Download
-  "Download Album", "Download Single",
-  "Ringtones & Ringbacks", "Download Music Video",
-  "Other Digital", "Synchronization",
-  # Streaming
-  "Paid Subscription",
-  "On-Demand Streaming (Ad-Supported)",
+  "LP/EP", "Vinyl Single", "8 - Track",
+  "Cassette", "Cassette Single", "Other Tapes",
+  "Kiosk", "CD", "CD Single",
+  "SACD", "DVD Audio", "Music Video (Physical)",
+  "Download Album", "Download Single", "Ringtones & Ringbacks",
+  "Download Music Video", "Other Digital", "Synchronization",
+  "Paid Subscription", "On-Demand Streaming (Ad-Supported)",
   "Other Ad-Supported Streaming",
   "SoundExchange Distributions",
   "Limited Tier Paid Subscription"

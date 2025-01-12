@@ -1,16 +1,13 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.5.57">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
 <meta name="author" content="Yosep Dwi Kristanto">
 <meta name="dcterms.date" content="2024-07-30">
 <meta name="keywords" content="literasi matematika, PISA, status sosial ekonomi, Sains, Membaca, regresi linear, jarak Cook">
 <meta name="description" content="Bagaimana hubungan antara literasi matematika dan status sosial ekonomi berdasarkan data PISA 2022? Apakah hubungan tersebut sama untuk setiap negara atau ekonomi yang berpartisipasi dalam PISA 2022? Artikel ini menunjukkan beberapa negara yang memiliki rerata skor Matematika lebih tinggi dibandingkan dengan negara-negara lain yang rerata indeks status sosial ekonominya sama. Apa saja negara tersebut?">
-
 <title>Literasi Matematika dan Status Sosial Ekonomi dalam PISA 2022 – Jelajah Statistika dan Ilmu Data</title>
 <style>
 code{white-space: pre-wrap;}
@@ -60,7 +57,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
-
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
@@ -77,8 +73,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -104,24 +99,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Kirim",
     "search-label": "Cari"
   }
-}</script>
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-WTEJLB3562"></script>
-
-<script type="text/javascript">
+}</script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-WTEJLB3562"></script><script type="text/javascript">
 
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
-</script>
-<style>
+</script><style>
 
       .quarto-title-block .quarto-title-banner {
         background: #EBF7FE;
       }
 </style>
-
-
 <link rel="stylesheet" href="../../styles.css">
 <meta property="og:title" content="Literasi Matematika dan Status Sosial Ekonomi dalam PISA 2022 – Jelajah Statistika dan Ilmu Data">
 <meta property="og:description" content="Bagaimana hubungan antara literasi matematika dan status sosial ekonomi berdasarkan data PISA 2022? Apakah hubungan tersebut sama untuk setiap negara atau ekonomi yang berpartisipasi dalam PISA 2022? Artikel ini menunjukkan beberapa negara yang memiliki rerata skor Matematika lebih tinggi dibandingkan dengan negara-negara lain yang rerata indeks status sosial ekonominya sama. Apa saja negara tersebut?">
@@ -149,13 +138,10 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
 <meta name="citation_fulltext_html_url" content="https://jelajahstatid.github.io/pos/2024-07-literasi-matematika-sosial-budaya/">
 <meta name="citation_language" content="en">
 </head>
-
 <body class="floating nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Jelajah Statistika dan Ilmu Data</span>
@@ -167,7 +153,7 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item">
+<li class="nav-item">
     <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
@@ -186,15 +172,11 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
 <span class="menu-text"></span></a>
   </li>  
 </ul>
-          </div> <!-- /navcollapse -->
+</div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
-    </nav>
-</header>
-<!-- content -->
-<header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
+    </nav></header><!-- content --><header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full"><div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
       <h1 class="title">Literasi Matematika dan Status Sosial Ekonomi dalam PISA 2022</h1>
                   <div>
@@ -249,217 +231,184 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
   
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Pada laman ini</h2>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Pada laman ini</h2>
    
   <ul>
-  <li><a href="#status-sosial-ekonomi-dan-literasi-matematika" id="toc-status-sosial-ekonomi-dan-literasi-matematika" class="nav-link active" data-scroll-target="#status-sosial-ekonomi-dan-literasi-matematika">Status Sosial Ekonomi dan Literasi Matematika</a></li>
+<li><a href="#status-sosial-ekonomi-dan-literasi-matematika" id="toc-status-sosial-ekonomi-dan-literasi-matematika" class="nav-link active" data-scroll-target="#status-sosial-ekonomi-dan-literasi-matematika">Status Sosial Ekonomi dan Literasi Matematika</a></li>
   <li><a href="#menjelajah-lebih-dalam" id="toc-menjelajah-lebih-dalam" class="nav-link" data-scroll-target="#menjelajah-lebih-dalam">Menjelajah Lebih Dalam</a></li>
   <li><a href="#catatan-akhir" id="toc-catatan-akhir" class="nav-link" data-scroll-target="#catatan-akhir">Catatan Akhir</a></li>
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/jelajahstatid/jelajahstatid.github.io/edit/main/pos/2024-07-literasi-matematika-sosial-budaya/index.qmd" class="toc-action"><i class="bi bi-github"></i>Sunting laman ini</a></li><li><a href="https://github.com/jelajahstatid/jelajahstatid.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Laporkan sebuah isu</a></li></ul></div></nav>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/jelajahstatid/jelajahstatid.github.io/edit/main/pos/2024-07-literasi-matematika-sosial-budaya/index.qmd" class="toc-action"><i class="bi bi-github"></i>Sunting laman ini</a></li><li><a href="https://github.com/jelajahstatid/jelajahstatid.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Laporkan sebuah isu</a></li></ul></div></nav>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
-
-
-
-
-
-<div class="cell">
-<details class="code-fold">
-<summary>Kode</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(ggrepel)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<main class="content quarto-banner-title-block" id="quarto-document-content"><div class="cell">
+<details class="code-fold"><summary>Kode</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggrepel.slowkow.com/">ggrepel</a></span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>Masuk akal memang status sosial ekonomi peserta didik berbanding lurus dengan hasil belajarnya. Semakin tinggi status sosial ekonomi seorang peserta didik, hasil belajarnya juga cenderung semakin tinggi. Misalnya saja, peserta didik yang memiliki kamar sendiri, komputer yang ditunjang dengan berbagai macam perangkat lunak pembelajaran, buku, dan orang tua yang berpendidikan tinggi memiliki kesempatan yang lebih besar untuk mendapatkan pendidikan yang berkualitas. Alhasil, hasil belajarnya relatif tinggi.</p>
 <p>Untuk mengkonfirmasinya, mari kita analisis <a href="https://www.oecd.org/en/publications/pisa-2022-results-volume-i_53f23881-en/full-report/component-25.html#annex-d1e17821-e6cec34019" class="external" target="_blank">data PISA 2022</a>. Dalam PISA, status sosial ekonomi diukur dengan indeks status ekonomi, sosial, dan budaya (ESCS). Hasil belajarnya ada tiga, yaitu skor literasi Matematika, Membaca, dan Sains. Pertama, kita lihat hubungan antara rerata ESCS dan rerata skor Membaca dan Sains antarnegara pada <a href="#fig-hb-escs-ms" class="quarto-xref">Gambar&nbsp;1</a>.</p>
 <div class="cell" data-layout-align="center">
-<details class="code-fold">
-<summary>Kode</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Impor dan olah data</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a>hasil_belajar_escs <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/main/pos/2024-07-literasi-matematika-sosial-budaya/data/hasil_belajar_escs_csv"</span>)</span>
-<span id="cb2-3"><a href="#cb2-3"></a>hb_escs_ms <span class="ot">&lt;-</span> hasil_belajar_escs <span class="sc">|&gt;</span> </span>
-<span id="cb2-4"><a href="#cb2-4"></a>  <span class="fu">select</span>(negara, membaca, sains, escs) <span class="sc">|&gt;</span> </span>
-<span id="cb2-5"><a href="#cb2-5"></a>  <span class="fu">drop_na</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb2-6"><a href="#cb2-6"></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb2-7"><a href="#cb2-7"></a>    <span class="at">cols =</span> <span class="fu">c</span>(<span class="st">"membaca"</span>, <span class="st">"sains"</span>),</span>
-<span id="cb2-8"><a href="#cb2-8"></a>    <span class="at">names_to =</span> <span class="st">"literasi"</span>,</span>
-<span id="cb2-9"><a href="#cb2-9"></a>    <span class="at">values_to =</span> <span class="st">"rerata_skor"</span></span>
-<span id="cb2-10"><a href="#cb2-10"></a>  ) <span class="sc">|&gt;</span> </span>
-<span id="cb2-11"><a href="#cb2-11"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb2-12"><a href="#cb2-12"></a>    <span class="at">literasi =</span> <span class="fu">str_to_title</span>(literasi)</span>
-<span id="cb2-13"><a href="#cb2-13"></a>  )</span>
-<span id="cb2-14"><a href="#cb2-14"></a></span>
-<span id="cb2-15"><a href="#cb2-15"></a><span class="co"># Visualisasi data</span></span>
-<span id="cb2-16"><a href="#cb2-16"></a>hb_escs_ms <span class="sc">|&gt;</span> </span>
-<span id="cb2-17"><a href="#cb2-17"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> escs, <span class="at">y =</span> rerata_skor)) <span class="sc">+</span> </span>
-<span id="cb2-18"><a href="#cb2-18"></a>  <span class="fu">geom_point</span>(</span>
-<span id="cb2-19"><a href="#cb2-19"></a>    <span class="fu">aes</span>(<span class="at">color =</span> literasi),</span>
-<span id="cb2-20"><a href="#cb2-20"></a>    <span class="at">size =</span> <span class="dv">2</span></span>
-<span id="cb2-21"><a href="#cb2-21"></a>  ) <span class="sc">+</span> </span>
-<span id="cb2-22"><a href="#cb2-22"></a>  <span class="fu">geom_smooth</span>(</span>
-<span id="cb2-23"><a href="#cb2-23"></a>    <span class="at">method =</span> <span class="st">"lm"</span>,</span>
-<span id="cb2-24"><a href="#cb2-24"></a>    <span class="at">formula =</span> y <span class="sc">~</span> x,</span>
-<span id="cb2-25"><a href="#cb2-25"></a>    <span class="at">color =</span> <span class="st">"black"</span>,</span>
-<span id="cb2-26"><a href="#cb2-26"></a>    <span class="at">alpha =</span> .<span class="dv">1</span></span>
-<span id="cb2-27"><a href="#cb2-27"></a>  ) <span class="sc">+</span> </span>
-<span id="cb2-28"><a href="#cb2-28"></a>  <span class="fu">facet_grid</span>(<span class="sc">~</span>literasi) <span class="sc">+</span> </span>
-<span id="cb2-29"><a href="#cb2-29"></a>  <span class="fu">scale_color_manual</span>(</span>
-<span id="cb2-30"><a href="#cb2-30"></a>    <span class="at">name =</span> <span class="st">"Literasi"</span>,</span>
-<span id="cb2-31"><a href="#cb2-31"></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
-<span id="cb2-32"><a href="#cb2-32"></a>      <span class="st">"Membaca"</span> <span class="ot">=</span> <span class="st">"#427D9D"</span>,</span>
-<span id="cb2-33"><a href="#cb2-33"></a>      <span class="st">"Sains"</span> <span class="ot">=</span> <span class="st">"#9BBEC8"</span></span>
-<span id="cb2-34"><a href="#cb2-34"></a>    )</span>
-<span id="cb2-35"><a href="#cb2-35"></a>  ) <span class="sc">+</span> </span>
-<span id="cb2-36"><a href="#cb2-36"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
-<span id="cb2-37"><a href="#cb2-37"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span> </span>
-<span id="cb2-38"><a href="#cb2-38"></a>  <span class="fu">labs</span>(</span>
-<span id="cb2-39"><a href="#cb2-39"></a>    <span class="at">x =</span> <span class="st">"Rerata ESCS"</span>,</span>
-<span id="cb2-40"><a href="#cb2-40"></a>    <span class="at">y =</span> <span class="st">"Rerata skor"</span></span>
-<span id="cb2-41"><a href="#cb2-41"></a>  )</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
+<details class="code-fold"><summary>Kode</summary><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Impor dan olah data</span></span>
+<span><span class="va">hasil_belajar_escs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/main/pos/2024-07-literasi-matematika-sosial-budaya/data/hasil_belajar_escs_csv"</span><span class="op">)</span></span>
+<span><span class="va">hb_escs_ms</span> <span class="op">&lt;-</span> <span class="va">hasil_belajar_escs</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">negara</span>, <span class="va">membaca</span>, <span class="va">sains</span>, <span class="va">escs</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span></span>
+<span>    cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"membaca"</span>, <span class="st">"sains"</span><span class="op">)</span>,</span>
+<span>    names_to <span class="op">=</span> <span class="st">"literasi"</span>,</span>
+<span>    values_to <span class="op">=</span> <span class="st">"rerata_skor"</span></span>
+<span>  <span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>    literasi <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/case.html">str_to_title</a></span><span class="op">(</span><span class="va">literasi</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Visualisasi data</span></span>
+<span><span class="va">hb_escs_ms</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">escs</span>, y <span class="op">=</span> <span class="va">rerata_skor</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">literasi</span><span class="op">)</span>,</span>
+<span>    size <span class="op">=</span> <span class="fl">2</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span></span>
+<span>    method <span class="op">=</span> <span class="st">"lm"</span>,</span>
+<span>    formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="va">x</span>,</span>
+<span>    color <span class="op">=</span> <span class="st">"black"</span>,</span>
+<span>    alpha <span class="op">=</span> <span class="fl">.1</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html">facet_grid</a></span><span class="op">(</span><span class="op">~</span><span class="va">literasi</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_color_manual</a></span><span class="op">(</span></span>
+<span>    name <span class="op">=</span> <span class="st">"Literasi"</span>,</span>
+<span>    values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>      <span class="st">"Membaca"</span> <span class="op">=</span> <span class="st">"#427D9D"</span>,</span>
+<span>      <span class="st">"Sains"</span> <span class="op">=</span> <span class="st">"#9BBEC8"</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="st">"Rerata ESCS"</span>,</span>
+<span>    y <span class="op">=</span> <span class="st">"Rerata skor"</span></span>
+<span>  <span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
 <div id="fig-hb-escs-ms" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-hb-escs-ms-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-hb-escs-ms-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="index_files/figure-html/fig-hb-escs-ms-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hb-escs-ms-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Gambar&nbsp;1: Hubungan status sosial ekonomi (ESCS) dengan skor membaca dan sains antarnegara.
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 </div>
 </div>
-<section id="status-sosial-ekonomi-dan-literasi-matematika" class="level2">
-<h2 class="anchored" data-anchor-id="status-sosial-ekonomi-dan-literasi-matematika">Status Sosial Ekonomi dan Literasi Matematika</h2>
+<section id="status-sosial-ekonomi-dan-literasi-matematika" class="level2"><h2 class="anchored" data-anchor-id="status-sosial-ekonomi-dan-literasi-matematika">Status Sosial Ekonomi dan Literasi Matematika</h2>
 <p>Berdasarkan <a href="#fig-hb-escs-ms" class="quarto-xref">Gambar&nbsp;1</a>, kita melihat bahwa ESCS berbanding lurus dengan skor Membaca maupun Sains. Apakah hubungan seperti ini juga berlaku untuk skor matematika? Mari kita perhatikan <a href="#fig-hb-escs-mat" class="quarto-xref">Gambar&nbsp;2</a>.</p>
 <div class="cell" data-layout-align="center">
-<details class="code-fold">
-<summary>Kode</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># Olah data</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a>hb_escs_mat <span class="ot">&lt;-</span> hasil_belajar_escs <span class="sc">|&gt;</span> </span>
-<span id="cb3-3"><a href="#cb3-3"></a>  <span class="fu">select</span>(negara, escs, matematika) <span class="sc">|&gt;</span> </span>
-<span id="cb3-4"><a href="#cb3-4"></a>  <span class="fu">drop_na</span>()</span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="co"># Visualisasi data</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a>hb_escs_mat <span class="sc">|&gt;</span> </span>
-<span id="cb3-7"><a href="#cb3-7"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> escs, <span class="at">y =</span> matematika)) <span class="sc">+</span> </span>
-<span id="cb3-8"><a href="#cb3-8"></a>  <span class="fu">geom_point</span>(</span>
-<span id="cb3-9"><a href="#cb3-9"></a>    <span class="at">color =</span> <span class="st">"#164863"</span>,</span>
-<span id="cb3-10"><a href="#cb3-10"></a>    <span class="at">size =</span> <span class="dv">2</span></span>
-<span id="cb3-11"><a href="#cb3-11"></a>  ) <span class="sc">+</span> </span>
-<span id="cb3-12"><a href="#cb3-12"></a>  <span class="fu">geom_smooth</span>(</span>
-<span id="cb3-13"><a href="#cb3-13"></a>    <span class="at">method =</span> <span class="st">"lm"</span>,</span>
-<span id="cb3-14"><a href="#cb3-14"></a>    <span class="at">formula =</span> y <span class="sc">~</span> x,</span>
-<span id="cb3-15"><a href="#cb3-15"></a>    <span class="at">color =</span> <span class="st">"black"</span>,</span>
-<span id="cb3-16"><a href="#cb3-16"></a>    <span class="at">alpha =</span> .<span class="dv">1</span></span>
-<span id="cb3-17"><a href="#cb3-17"></a>  ) <span class="sc">+</span> </span>
-<span id="cb3-18"><a href="#cb3-18"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
-<span id="cb3-19"><a href="#cb3-19"></a>  <span class="fu">labs</span>(</span>
-<span id="cb3-20"><a href="#cb3-20"></a>    <span class="at">x =</span> <span class="st">"ESCS"</span>,</span>
-<span id="cb3-21"><a href="#cb3-21"></a>    <span class="at">y =</span> <span class="st">"Rerata skor Matematika"</span></span>
-<span id="cb3-22"><a href="#cb3-22"></a>  )</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
+<details class="code-fold"><summary>Kode</summary><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Olah data</span></span>
+<span><span class="va">hb_escs_mat</span> <span class="op">&lt;-</span> <span class="va">hasil_belajar_escs</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">negara</span>, <span class="va">escs</span>, <span class="va">matematika</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co"># Visualisasi data</span></span>
+<span><span class="va">hb_escs_mat</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">escs</span>, y <span class="op">=</span> <span class="va">matematika</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span></span>
+<span>    color <span class="op">=</span> <span class="st">"#164863"</span>,</span>
+<span>    size <span class="op">=</span> <span class="fl">2</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span></span>
+<span>    method <span class="op">=</span> <span class="st">"lm"</span>,</span>
+<span>    formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="va">x</span>,</span>
+<span>    color <span class="op">=</span> <span class="st">"black"</span>,</span>
+<span>    alpha <span class="op">=</span> <span class="fl">.1</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="st">"ESCS"</span>,</span>
+<span>    y <span class="op">=</span> <span class="st">"Rerata skor Matematika"</span></span>
+<span>  <span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
 <div id="fig-hb-escs-mat" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-hb-escs-mat-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-hb-escs-mat-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="index_files/figure-html/fig-hb-escs-mat-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hb-escs-mat-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Gambar&nbsp;2: Hubungan antara status sosial ekonomi (ESCS) dan skor matematika antarnegara.
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 </div>
 </div>
 <p>Ternyata hubungan yang serupa kita temukan antara rerata indeks status sosial ekonomi dan rerata skor literasi matematika antarnegara. Semakin tinggi rerata status sosial ekonomi sebuah negara, semakin tinggi juga rerata skor Matematika negara tersebut.</p>
-</section>
-<section id="menjelajah-lebih-dalam" class="level2">
-<h2 class="anchored" data-anchor-id="menjelajah-lebih-dalam">Menjelajah Lebih Dalam</h2>
+</section><section id="menjelajah-lebih-dalam" class="level2"><h2 class="anchored" data-anchor-id="menjelajah-lebih-dalam">Menjelajah Lebih Dalam</h2>
 <p>Apabila kita perhatikan kembali <a href="#fig-hb-escs-mat" class="quarto-xref">Gambar&nbsp;2</a> dengan saksama, kita melihat ada beberapa titik (yang merepresentasikan beberapa negara) yang terpisah dengan sebagian besar titik lainnya. Titik-titik yang disebut pencilan tersebut terletak di bagian atas.</p>
 <p>Kita deteksi pencilan tersebut dengan menggunakan model linear dan jarak Cook. Jarak Cook ini biasanya digunakan untuk mengestimasi pengaruh sebuah titik pada analisis regresi linear. Dengan menganggap pencilan sebagai titik-titik yang jarak Cook-nya lebih dari tiga kali rata-ratanya, kita mendapatkan titik-titik pencilan seperti yang ditunjukkan pada <a href="#fig-hb-escs-mat-pencilan" class="quarto-xref">Gambar&nbsp;3</a>.</p>
 <div class="cell" data-layout-align="center">
-<details class="code-fold">
-<summary>Kode</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Membuat model linear</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(matematika <span class="sc">~</span> escs, hb_escs_mat)</span>
-<span id="cb4-3"><a href="#cb4-3"></a></span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="co"># Menentukan jarak Cook untuk setiap titik data</span></span>
-<span id="cb4-5"><a href="#cb4-5"></a>hb_escs_mat_pencilan <span class="ot">&lt;-</span> hb_escs_mat <span class="sc">|&gt;</span> </span>
-<span id="cb4-6"><a href="#cb4-6"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb4-7"><a href="#cb4-7"></a>    <span class="at">jarak_cook =</span> <span class="fu">cooks.distance</span>(model)</span>
-<span id="cb4-8"><a href="#cb4-8"></a>  )</span>
-<span id="cb4-9"><a href="#cb4-9"></a></span>
-<span id="cb4-10"><a href="#cb4-10"></a><span class="co"># Menentukan titik-titik pencilan</span></span>
-<span id="cb4-11"><a href="#cb4-11"></a>rerata_jarak_cook <span class="ot">&lt;-</span> <span class="fu">mean</span>(hb_escs_mat_pencilan<span class="sc">$</span>jarak_cook)</span>
-<span id="cb4-12"><a href="#cb4-12"></a>hb_escs_mat_pencilan <span class="ot">&lt;-</span> hb_escs_mat_pencilan <span class="sc">|&gt;</span> </span>
-<span id="cb4-13"><a href="#cb4-13"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb4-14"><a href="#cb4-14"></a>    <span class="at">kelompok =</span> <span class="fu">ifelse</span>(</span>
-<span id="cb4-15"><a href="#cb4-15"></a>      jarak_cook <span class="sc">&gt;</span> <span class="dv">3</span> <span class="sc">*</span> rerata_jarak_cook,</span>
-<span id="cb4-16"><a href="#cb4-16"></a>      <span class="st">"pencilan"</span>, <span class="st">"bukan pencilan"</span></span>
-<span id="cb4-17"><a href="#cb4-17"></a>    ),</span>
-<span id="cb4-18"><a href="#cb4-18"></a>    <span class="at">negara_pencilan =</span> <span class="fu">ifelse</span>(</span>
-<span id="cb4-19"><a href="#cb4-19"></a>      kelompok <span class="sc">==</span> <span class="st">"pencilan"</span>,</span>
-<span id="cb4-20"><a href="#cb4-20"></a>      negara, <span class="cn">NA</span></span>
-<span id="cb4-21"><a href="#cb4-21"></a>    )</span>
-<span id="cb4-22"><a href="#cb4-22"></a>  )</span>
-<span id="cb4-23"><a href="#cb4-23"></a></span>
-<span id="cb4-24"><a href="#cb4-24"></a><span class="co"># Memvisualisasikan pencilan</span></span>
-<span id="cb4-25"><a href="#cb4-25"></a>hb_escs_mat_pencilan <span class="sc">|&gt;</span> </span>
-<span id="cb4-26"><a href="#cb4-26"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> escs, <span class="at">y =</span> matematika, <span class="at">color =</span> kelompok)) <span class="sc">+</span> </span>
-<span id="cb4-27"><a href="#cb4-27"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> </span>
-<span id="cb4-28"><a href="#cb4-28"></a>  <span class="fu">geom_smooth</span>(</span>
-<span id="cb4-29"><a href="#cb4-29"></a>    <span class="at">method =</span> <span class="st">"lm"</span>,</span>
-<span id="cb4-30"><a href="#cb4-30"></a>    <span class="at">formula =</span> y <span class="sc">~</span> x,</span>
-<span id="cb4-31"><a href="#cb4-31"></a>    <span class="at">alpha =</span> .<span class="dv">1</span></span>
-<span id="cb4-32"><a href="#cb4-32"></a>  ) <span class="sc">+</span> </span>
-<span id="cb4-33"><a href="#cb4-33"></a>  <span class="fu">geom_text_repel</span>(<span class="fu">aes</span>(<span class="at">label =</span> negara_pencilan)) <span class="sc">+</span> </span>
-<span id="cb4-34"><a href="#cb4-34"></a>  <span class="fu">scale_color_manual</span>(</span>
-<span id="cb4-35"><a href="#cb4-35"></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
-<span id="cb4-36"><a href="#cb4-36"></a>      <span class="st">"bukan pencilan"</span> <span class="ot">=</span> <span class="st">"#9BBEC8"</span>,</span>
-<span id="cb4-37"><a href="#cb4-37"></a>      <span class="st">"pencilan"</span> <span class="ot">=</span> <span class="st">"#164863"</span></span>
-<span id="cb4-38"><a href="#cb4-38"></a>    )</span>
-<span id="cb4-39"><a href="#cb4-39"></a>  ) <span class="sc">+</span> </span>
-<span id="cb4-40"><a href="#cb4-40"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
-<span id="cb4-41"><a href="#cb4-41"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span> </span>
-<span id="cb4-42"><a href="#cb4-42"></a>  <span class="fu">labs</span>(</span>
-<span id="cb4-43"><a href="#cb4-43"></a>    <span class="at">x =</span> <span class="st">"Rerata ESCS"</span>,</span>
-<span id="cb4-44"><a href="#cb4-44"></a>    <span class="at">y =</span> <span class="st">"Rerata skor Matematika"</span></span>
-<span id="cb4-45"><a href="#cb4-45"></a>  )</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
+<details class="code-fold"><summary>Kode</summary><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Membuat model linear</span></span>
+<span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">matematika</span> <span class="op">~</span> <span class="va">escs</span>, <span class="va">hb_escs_mat</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Menentukan jarak Cook untuk setiap titik data</span></span>
+<span><span class="va">hb_escs_mat_pencilan</span> <span class="op">&lt;-</span> <span class="va">hb_escs_mat</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>    jarak_cook <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/influence.measures.html">cooks.distance</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Menentukan titik-titik pencilan</span></span>
+<span><span class="va">rerata_jarak_cook</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">hb_escs_mat_pencilan</span><span class="op">$</span><span class="va">jarak_cook</span><span class="op">)</span></span>
+<span><span class="va">hb_escs_mat_pencilan</span> <span class="op">&lt;-</span> <span class="va">hb_escs_mat_pencilan</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>    kelompok <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span></span>
+<span>      <span class="va">jarak_cook</span> <span class="op">&gt;</span> <span class="fl">3</span> <span class="op">*</span> <span class="va">rerata_jarak_cook</span>,</span>
+<span>      <span class="st">"pencilan"</span>, <span class="st">"bukan pencilan"</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    negara_pencilan <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span></span>
+<span>      <span class="va">kelompok</span> <span class="op">==</span> <span class="st">"pencilan"</span>,</span>
+<span>      <span class="va">negara</span>, <span class="cn">NA</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Memvisualisasikan pencilan</span></span>
+<span><span class="va">hb_escs_mat_pencilan</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">escs</span>, y <span class="op">=</span> <span class="va">matematika</span>, color <span class="op">=</span> <span class="va">kelompok</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span></span>
+<span>    method <span class="op">=</span> <span class="st">"lm"</span>,</span>
+<span>    formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="va">x</span>,</span>
+<span>    alpha <span class="op">=</span> <span class="fl">.1</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggrepel.slowkow.com/reference/geom_text_repel.html">geom_text_repel</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">negara_pencilan</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_color_manual</a></span><span class="op">(</span></span>
+<span>    values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>      <span class="st">"bukan pencilan"</span> <span class="op">=</span> <span class="st">"#9BBEC8"</span>,</span>
+<span>      <span class="st">"pencilan"</span> <span class="op">=</span> <span class="st">"#164863"</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="st">"Rerata ESCS"</span>,</span>
+<span>    y <span class="op">=</span> <span class="st">"Rerata skor Matematika"</span></span>
+<span>  <span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
 <div id="fig-hb-escs-mat-pencilan" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-hb-escs-mat-pencilan-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-hb-escs-mat-pencilan-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="index_files/figure-html/fig-hb-escs-mat-pencilan-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hb-escs-mat-pencilan-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Gambar&nbsp;3: Hubungan antara status sosial ekonomi (ESCS) dan skor matematika antarnegara.
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 </div>
 </div>
 <p>Berdasarkan <a href="#fig-hb-escs-mat-pencilan" class="quarto-xref">Gambar&nbsp;3</a>, titik-titik pencilannya adalah Vietnam, Turki, Hongkong, Makau, Tionghoa Taipei, dan Singapura. Negara-negara dalam kelompok ini cenderung memiliki rerata skor Matematika yang lebih tinggi dibandingkan dengan negara-negara lain yang rerata indeks status sosial ekonominya sama. Berapakah perbedaan rerata skor Matematinya? Mari kita gunakan model linear untuk menyelidikinya!</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Kode</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>model_kelompok <span class="ot">&lt;-</span> <span class="fu">lm</span>(</span>
-<span id="cb5-2"><a href="#cb5-2"></a>  matematika <span class="sc">~</span> kelompok <span class="sc">+</span> escs,</span>
-<span id="cb5-3"><a href="#cb5-3"></a>  hb_escs_mat_pencilan</span>
-<span id="cb5-4"><a href="#cb5-4"></a>)</span>
-<span id="cb5-5"><a href="#cb5-5"></a></span>
-<span id="cb5-6"><a href="#cb5-6"></a><span class="fu">print</span>(model_kelompok)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
+<details class="code-fold"><summary>Kode</summary><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">model_kelompok</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span></span>
+<span>  <span class="va">matematika</span> <span class="op">~</span> <span class="va">kelompok</span> <span class="op">+</span> <span class="va">escs</span>,</span>
+<span>  <span class="va">hb_escs_mat_pencilan</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">model_kelompok</span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
 lm(formula = matematika ~ kelompok + escs, data = hb_escs_mat_pencilan)
@@ -470,16 +419,11 @@ Coefficients:
 </div>
 </div>
 <p>Dari model tersebut, kita dapat melihat bahwa koefisien dari <code>kelompok</code> adalah sekitar 106,59. Artinya, negara-negara dalam kelompok pencilan tersebut secara rata-rata skor Matematika peserta didiknya lebih tinggi sebesar 106,59 dibandingkan dengan negara-negara lain yang rerata status sosial ekonominya sama.</p>
-</section>
-<section id="catatan-akhir" class="level2">
-<h2 class="anchored" data-anchor-id="catatan-akhir">Catatan Akhir</h2>
+</section><section id="catatan-akhir" class="level2"><h2 class="anchored" data-anchor-id="catatan-akhir">Catatan Akhir</h2>
 <p>Kita telah melihat bahwa status sosial ekonomi berbanding lurus dengan literasi Matematika. Secara lebih detail, kita melihat ada beberapa negara yang rerata skor Matematikanya lebih besar daripada negara-negara lain dengan rerata indeks sosial ekonomi yang sama. Negara-negara tersebut adalah Vietnam, Turki, Hongkong, Makau, Tionghoa Taipei, dan Singapura. Sebagai bahan perenungan, baik jika pembaca bertanya-tanya mengapa negara-negara tersebut memiliki rerata skor Matematika yang lebih tinggi.</p>
 
 
-</section>
-
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Penggunaan Kembali</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-copyright"><h2 class="anchored quarto-appendix-heading">Hak Cipta</h2><div class="quarto-appendix-contents"><div>© 2024 Yosep Dwi Kristanto</div></div></section></div></main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Penggunaan Kembali</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-copyright"><h2 class="anchored quarto-appendix-heading">Hak Cipta</h2><div class="quarto-appendix-contents"><div>© 2024 Yosep Dwi Kristanto</div></div></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -898,14 +842,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script>
-<script src="https://giscus.app/client.js" data-repo="jelajahstatid/jelajahstatid.github.io" data-repo-id="R_kgDOMcGEtw" data-category="Blog" data-category-id="" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
-</script>
-<input type="hidden" id="giscus-base-theme" value="light">
-<input type="hidden" id="giscus-alt-theme" value="dark">
+</script><script src="https://giscus.app/client.js" data-repo="jelajahstatid/jelajahstatid.github.io" data-repo-id="R_kgDOMcGEtw" data-category="Blog" data-category-id="" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script><input type="hidden" id="giscus-base-theme" value="light"><input type="hidden" id="giscus-alt-theme" value="dark">
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
+<footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">
 <p>© 2025 Jelajah Statistika dan Ilmu Data</p>
 </div>   
@@ -917,8 +857,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
-
-
 
 
 </body></html>
