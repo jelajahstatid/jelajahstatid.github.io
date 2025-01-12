@@ -1,5 +1,6 @@
 ---
 title: "Visualisasi Data Pendapatan Industri Musik"
+draft: true
 subtitle: "Dari {ggplot2} Sampai Observable JS"
 description: "Deskripsi"
 author:
@@ -41,3 +42,17 @@ Diagram tersebut memberikan contoh penggunaan diagram batang yang efektif, meski
 [^1]: Pada umumnya, diagram garis dipilih untuk menyajikan data yang menyatakan tren (sumbu horizontalnya menyatakan waktu).
 
 Tak hanya itu. Jika kamu mengunjungi [situs web RIAA](https://www.riaa.com/u-s-sales-database/){.external target="_blank"}, kamu dapat berinteraksi dengan diagram tersebut. Kamu dapat memilih pendapatan seperti apa yang ditampilkan—apakah yang disesuaikan dengan inflasi ataukah tidak. Kamu dapat mengatur batasan tahun untuk data yang disajikan. Kamu juga dapat memilih format-format apa saja yang perlu dipresentasikan dalam diagram. Terakhir, kamu dapat menyorot dan mengklik setiap batangnya untuk melihat informasi yang disajikan batang tersebut.
+
+Bisakah kita membuat visualisasi data seperti itu? Tentu bisa! Kita akan membuat visualisasi data itu dengan menggunakan [pemrograman R](https://www.R-project.org/){.external target="_blank"}, khususnya dengan paket [{ggplot2}](https://ggplot2.tidyverse.org){.external target="_blank"} dan [{plotly}](https://plotly-r.com){.external target="_blank"}, dan [Observable JS](https://observablehq.com/){.external target="_blank"}. Untuk melakukan visualisasi data di R, terlebih dahulu kita panggil paket-paket yang kita perlukan.
+
+```{r}
+#| message: false
+#| warning: false
+#| code-fold: false
+
+library(readr)
+library(ggplot2)
+library(plotly)
+```
+
+## Mempersiapkan Data

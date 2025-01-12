@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -74,10 +74,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-ddd961a2510921635943dfbbd19534c4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -468,7 +468,7 @@ Daftar&nbsp;1: Baris kode di dalam app.R
 <li><p>Baris kode yang terakhir, yaitu <code>shinyApp(ui = ui, server = server)</code>, berfungsi untuk membuat aplikasi Shiny berdasarkan antarmuka <code>ui</code> dan fungsi <code>server</code> dan kemudian menjalankannya.</p></li>
 </ol>
 <p>Apabila kamu sudah penasaran dengan aplikasi Shiny tersebut, kamu dapat menjalankannya. Untuk melakukannya di RStudio, klik tombol <strong>Run App</strong> yang terletak di bagian kanan-atas dokumen. Perhatikan <a href="#fig-run-app" class="quarto-xref">Gambar&nbsp;4</a>!</p>
-<div id="fig-run-app" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Tombol Run App dalam RStudio" data-fig-align="center">
+<div id="fig-run-app" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Tombol Run App dalam RStudio">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-run-app-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="aset/Run-App-RStudio.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Tombol Run App dalam RStudio">
@@ -687,6 +687,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -797,6 +799,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
+      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
@@ -1071,7 +1074,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>© 2024 Jelajah Statistika dan Ilmu Data</p>
+<p>© 2025 Jelajah Statistika dan Ilmu Data</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
