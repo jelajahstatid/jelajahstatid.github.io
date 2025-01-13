@@ -1,0 +1,43 @@
+---
+title: "Observable Plot"
+---
+
+This code defines the URL for a CSV file containing music revenue data from RIAA. The data file is hosted on a GitHub repository.
+
+```{ojs}
+//| code-fold: false
+
+csvUrl = "https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/refs/heads/main/pos/2025-01-pendapatan-musik/aset/pendapatan_as_riaa.csv"
+```
+
+This code loads the CSV data from the specified URL using D3.js. The `d3.autoType` function automatically converts numeric and date fields in the dataset for easier analysis.
+
+```{ojs}
+//| code-fold: false
+
+revenueData = d3.csv(csvUrl, d3.autoType)
+
+```
+
+This code creates a bar chart using Observable Plot. The chart visualizes inflation-adjusted music revenue (`pendapatan_infl`) by year (`tahun`) and format (`format`). The chart includes a color legend with 4 columns and interactive tooltips for data points.
+
+```{ojs}
+//| code-fold: false
+//| label: fig-obs-plot-dasar
+//| fig-cap: "The colors in the bar chart are not displayed, although the tooltips are functioning correctly."
+
+Plot.plot({
+  color: {
+    legend: true,
+    columns: 4
+},
+  marks: [
+    Plot.rectY(revenueData,{
+      y: "pendapatan_infl",
+      x: "tahun",
+      fill: "format",
+      tip: true
+    })
+  ]
+})
+```
