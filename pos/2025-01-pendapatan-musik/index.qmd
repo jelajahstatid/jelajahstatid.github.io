@@ -1,18 +1,17 @@
 ---
 title: "Visualisasi Data Pendapatan Industri Musik"
-draft: true
-subtitle: "Dari {ggplot2} Sampai Observable JS"
-description: "Deskripsi"
+subtitle: "Dari Pemrograman R Sampai Observable JS"
+description: "Banyak cara untuk memvisualisasikan data secara efektif. Artikel ini mendemonstrasikan bagaimana memvisualisasikan data pendapatan industri musik di AS dengan menggunakan {ggplot2} dan {plotly}. Cara tersebut dilakukan dengan menggunakan pemrograman R. Tak hanya itu, artikel ini juga mendemonstrasikan bagaimana memvisualisasikan data tersebut secara interaktif dengan menggunakan Observable Plot."
 author:
   - name: Yosep Dwi Kristanto
     url: https://people.usd.ac.id/~ydkristanto/
     affiliation: Pendidikan Matematika, Universitas Sanata Dharma, Yogyakarta
     affiliation-url: https://www.usd.ac.id/s1pmat
     orcid: 0000-0003-1446-0422
-date: 2025-01-11
-date-modified: 2025-01-13
+date: 2025-01-13
 categories:
   - ekonomi
+  - musik
   - tutorial
   - visualisasi data
 image: "pendapatan_musik.png"
@@ -275,7 +274,6 @@ Untuk mengatasi masalah tersebut, kita dapat menambahkan interaktivitas ke dalam
 #| fig-cap: "Diagram batang menjadi interaktif dengan {plotly}"
 #| fig-asp: 0.5625
 #| code-fold: false
-#| column: page
 
 ggplotly(
   p = plot_musik
@@ -291,7 +289,7 @@ Selain itu, kita dapat mengklik satu atau lebih item legenda untuk menghilangkan
 
 Pada @sec-visualisasi-data-dengan-ggplot2 dan @sec-menambahkan-interaktivitas-dengan-plotly kita telah memvisualisasikan data pendapatan industri musik dengan menggunakan pemrograman R. Sekarang, kita akan memvisualisasikannya dengan [Observable JS](https://observablehq.com/){.external target="_blank"}, khususnya [Plot](https://observablehq.com/plot/ "The JavaScript library for exploratory data visualization"){.external target="_blank"}.
 
-Pertama, kita impor data dengan menggunakan `d3.csv()`. Kita masukkan alamat url data kita ke dalam fungsi tersebut dan kita atur agar kolom `tahun` diinterpretasi sebagai Date. Kita simpan data tersebut dengan nama `pendapatanMusik`.
+Pertama, kita impor data dengan menggunakan `d3.csv()`. Kita masukkan alamat url data kita ke dalam fungsi tersebut. Kita gunakan fungsi `d3.autoType` untuk mengkonversi variabel-variabel dalam data kita ke dalam Date dan numerik secara otomatis. Kita simpan data tersebut dengan nama `pendapatanMusik`.
 
 ```{ojs}
 //| code-fold: false
@@ -310,10 +308,9 @@ Setelah itu, kita visualisasikan data tersebut dengan menggunakan tiga objek geo
 
 Kita dapat mengatur legenda warnanya pada `color`. Kita atur `legend: true` untuk menampilkan legendanya dan `columns: 4` untuk mengatur banyaknya kolom dalam penyajian item-item legenda tersebut. Kita juga dapat melakukan pengaturan lebih lanjut terhadap `x`, `y`, `caption`, `subtitle`, dan `title`. Hasilnya disajikan pada @fig-obs-plot-dasar.
 
+::: {#fig-obs-plot-dasar}
 ```{ojs}
 //| code-fold: false
-//| label: fig-obs-plot-dasar
-//| fig-cap: "Diagram batang yang dibuat dengan Observable Plot"
 
 Plot.plot({
   x: {label: "Tahun"},
@@ -326,7 +323,7 @@ Plot.plot({
     columns: 4
 },
   marks: [
-    Plot.rectY(pendapatanMusik,{
+    Plot.barY(pendapatanMusik,{
       y: "pendapatan_infl",
       x: "tahun",
       fill: "format",
@@ -337,28 +334,30 @@ Plot.plot({
     Plot.axisX({ticks: "5 years"})
   ],
   caption: "Data: Recording Industry Association of America (RIAA)",
-  subtitle: "Disesuaikan dengan Inflasi, Nilai Dolar Tahun 2023",
-  title: "Pendapatan Industri Musik di AS Berdasarkan Format"
+  subtitle: "Disesuaikan dengan Inflasi, Nilai Dolar Tahun 2023"
 })
 ```
+
+Diagram batang yang dibuat dengan Observable Plot
+:::
 
 *Alright!* Kita mendapatkan @fig-obs-plot-dasar yang secara fungsi serupa dengan @fig-plotly. Selanjutnya kita akan memodifikasi diagram tersebut dalam hal tampilan dan interaktivitasnya. Untuk tampilan, kita akan mengatur warnanya agar sama dengan diagram pada @fig-ggplot2-infl-akhir dan @fig-plotly. Kita juga akan menambahkan interaktivitas pada diagram tersebut dengan menambahkan beberapa input.
 
 ## Menambahkan Interaktivitas dengan Input Observable {#sec-interaktivitas-input-observable}
 
-```{ojs}
-//| echo: false
+Kita tambahkan interaktivitas terhadap @fig-obs-plot-dasar dengan beberapa [input Observable](https://observablehq.com/documentation/inputs/overview){.external target="_blank"}. Ada empat input yang dapat kita tambahkan. Deskripsi keempat input tersebut adalah sebagai berikut.
 
-dataTerpilih = pendapatanMusik.filter(function (pendapatan) {
-  return formatTerpilih.includes(pendapatan.format) &&
-    tahunMin <= pendapatan.tahun &&
-    tahunMaks >= pendapatan.tahun;
-})
-```
+-   Input pendapatan. Input ini menyediakan pilihan bagi pengguna untuk memilih jenis pendapatan yang divisualisasikan—apakah yang disesuaikan dengan inflasi atau yang tidak.
 
-::: {#fig-obs-input-plot .column-page}
+-   Input format. Input ini memberikan keleluasaan bagi pengguna untuk memilih format-format apa yang akan divisualisasikan.
+
+-   Input rentang tahun. Input ini dapat digunakan pengguna untuk memilih rentang tahun terhadap data yang divisualisasikan. Untuk melakukannya, kita sediakan dua input. Kedua input ini digunakan sebagai batas tahun pertama dan kedua.
+
+Setelah penambahan input-input tersebut, diagram batang interaktifnya disajikan pada @fig-obs-input.
+
+:::: {#fig-obs-input}
 ```{ojs}
-//| panel: sidebar
+//| panel: input
 //| echo: false
 
 viewof pendapatanTerpilih = Inputs.radio(
@@ -373,12 +372,14 @@ viewof formatTerpilih = Inputs.select(daftarFormat, {
   label: "Format", 
   value: daftarFormat
 })
-viewof tahun1 = Inputs.range([1973, 2023], {value: 1973, step: 1, label: "Year (batas 1)"})
-viewof tahun2 = Inputs.range([1973, 2023], {value: 2023, step: 1, label: "Year (batas 2)"})
+viewof tahun1 = Inputs.range([1973, 2023], {value: 1973, step: 1, label: "Tahun (batas 1)"})
+viewof tahun2 = Inputs.range([1973, 2023], {value: 2023, step: 1, label: "Tahun (batas 2)"})
 ```
 
+::: panel-tabset
+## Plot
+
 ```{ojs}
-//| panel: fill
 //| echo: false
 
 Plot.plot({
@@ -396,20 +397,48 @@ Plot.plot({
   },
   style: {width: "100%"},
   marks: [
-    Plot.rectY(dataTerpilih,
+    Plot.barY(dataTerpilih,
       {y: pendapatanTerpilih, x: "tahun", fill: "format", tip: true} 
     ),
     Plot.ruleY([0]),
     Plot.axisX({ticks: "5 years"})
   ],
   caption: "Data: Recording Industry Association of America (RIAA)",
-  title: "Pendapatan Industri Musik di AS Berdasarkan Format",
   subtitle: anakJudul
 })
 ```
 
-Diagram yang dibuat dengan Plot Observable dan disertai dengan beberapa input
+## Data
+
+```{ojs}
+//| echo: false
+
+Inputs.table(dataTerpilih, {
+  sort: "tahun",
+  columns: [
+    "format",
+    "tahun",
+    pendapatanTerpilih
+  ],
+  maxWidth: "100%"
+})
+```
 :::
+
+Diagram batang dan tabel interaktif yang dibuat dengan menggunakan Observable JS
+::::
+
+Bagaimana membuat diagram batang yang disertai dengan tabel interaktif seperti yang ditunjukkan pada @fig-obs-input? *Well*, kode lengkapnya dapat kamu lihat dan pelajari [di catatan ini](https://observablehq.com/d/39c7c69c68bb1302){.external target="_blank"}.
+
+```{ojs}
+//| echo: false
+
+dataTerpilih = pendapatanMusik.filter(function (pendapatan) {
+  return formatTerpilih.includes(pendapatan.format) &&
+    tahunMin <= pendapatan.tahun &&
+    tahunMaks >= pendapatan.tahun;
+})
+```
 
 ```{ojs}
 //| echo: false
@@ -448,3 +477,9 @@ warnaFormat = ["#2A5784", "#43719F", "#5B8DB8", "#7AAAD0", "#9BC7E4", "#BADDF1",
             "#7C4D79", "#9B6A97", "#BE89AC", "#D5A5C4", "#EFC9E6", "#BBB1AC", 
             "#24693D", "#398949", "#61AA57", "#7DC470", "#B4E0A7"]
 ```
+
+## Catatan Akhir {#sec-catatan-akhir}
+
+Kita telah memvisualisasikan data pendapatan industri musik dengan beragam cara. Pada @sec-visualisasi-data-dengan-ggplot2 dan @sec-menambahkan-interaktivitas-dengan-plotly, kita melakukan visualisasi dengan pemrograman R. Bagian-bagian itu mendemonstrasikan bagaimana membuat diagram dengan menggunakan {ggplot2} dan {plotly}. Kedua paket tersebut sangat membantu untuk melakukan visualisasi data, baik statik maupun dinamis.
+
+Pada @sec-memvisualisasikan-data-dengan-observable-js, kita menggunakan Observable Plot untuk membuat diagram yang serupa. Pada @sec-interaktivitas-input-observable, kita lengkapi diagram tersebut dengan beberapa input untuk membuat diagramnya semakin dinamis. Teknik visualisasi data seperti ini sangat berguna jika kita ingin mempresentasikan data dengan media daring.

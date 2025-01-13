@@ -80,7 +80,7 @@ plot_musik <- pendapatan_as_riaa |>
   ) + 
   scale_fill_manual(
     name = "Format",
-    values = warna_diagram
+    values = pemetaan_format_warna
   ) + 
   guides(
     fill = guide_legend(ncol = 4)

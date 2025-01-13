@@ -10,7 +10,2140 @@
 <atom:link href="https://jelajahstatid.github.io/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.5.57</generator>
-<lastBuildDate>Sat, 24 Aug 2024 22:00:00 GMT</lastBuildDate>
+<lastBuildDate>Sun, 12 Jan 2025 23:00:00 GMT</lastBuildDate>
+<item>
+  <title>Visualisasi Data Pendapatan Industri Musik</title>
+  <dc:creator>Yosep Dwi Kristanto</dc:creator>
+  <link>https://jelajahstatid.github.io/pos/2025-01-pendapatan-musik/</link>
+  <description><![CDATA[ <p>Aku menulis paragraf ini diringi dengan salah satu lagu hits Sheila On 7, Dan… Tak hanya karena lagu itu enak didengar tetapi juga lagu itu menggiringku untuk bernostalgia ke masa kejayaan kaset. Aku masih ingat betul bagaimana dulu aku merengek minta diantar ke kota untuk berbelanja kaset orisinal album Sheila On 7. Sesampai di rumah aku mainkan kaset itu berulang-ulang, khususnya pada lagu pertama side B itu. Beberapa hari kemudian, kasetnya sudah <em>ngelokor</em> tak karuan.</p>
+<p>Sekarang aku jadi bertanya-tanya, apakah kamu paham apa yang aku ceritakan di atas? Dugaanku, hanya sedikit yang memahaminya—khususnya tentang kaset dan fenomena <em>ngelokor</em>-nya. Paling tidak, dugaanku itu sejalan dengan temuanku ketika tersesat di laman <a href="https://www.riaa.com/u-s-sales-database/" class="external" target="_blank">pangkalan data pendapatan industri musik di Amerika Serika (AS)</a>. Di laman itu, aku mendapati sebuah diagram interaktif nan apik. Silakan amati diagram itu pada Gambar&nbsp;1.</p>
+<div id="fig-riaa-music-revenue" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Pendapatan industri musik di AS berdasarkan format">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-riaa-music-revenue-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://jelajahstatid.github.io/pos/2025-01-pendapatan-musik/aset/revenues_by_format.png" class="img-fluid figure-img" alt="Pendapatan industri musik di AS berdasarkan format">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-riaa-music-revenue-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Gambar&nbsp;1: Pendapatan industri musik di AS berdasarkan format
+</figcaption></figure>
+</div>
+<p>Meskipun kurang begitu jelas, dari Gambar&nbsp;1 kita dapat melihat bahwa setelah tahun 2000 pendapatan industri musik dari format kaset dan sejenisnya terus menurun. Bahkan, tak ada lagi pendapatan yang sumbernya dari penjualan kaset dan sejenisnya setelah tahun 2008. Tapi, stop! Kita hentikan sampai di sini interpretasi datanya. Kita apresiasi bagaimana data tersebut dipresentasikan.</p>
+<p>Diagram tersebut memberikan contoh penggunaan diagram batang yang efektif, meskipun sumbu horizontalnya menyatakan waktu.<sup>1</sup> Pemilihan warnanya secara efektif menunjukkan tren dalam data. Misalnya, kita dapat melihat pada Gambar&nbsp;1 bahwa dari kiri ke kanan warna biru semakin mengecil ketika warna oranye semakin membesar. Hal ini menunjukkan pendapatan industri musik di AS dari format kaset dan sejenisnya semakin menurun seiring adanya format CD.</p>
+<p>Tak hanya itu. Jika kamu mengunjungi <a href="https://www.riaa.com/u-s-sales-database/" class="external" target="_blank">situs web RIAA</a>, kamu dapat berinteraksi dengan diagram tersebut. Kamu dapat memilih pendapatan seperti apa yang ditampilkan—apakah yang disesuaikan dengan inflasi ataukah tidak. Kamu dapat mengatur batasan tahun untuk data yang disajikan. Kamu juga dapat memilih format-format apa saja yang perlu dipresentasikan dalam diagram. Terakhir, kamu dapat menyorot dan mengklik setiap batangnya untuk melihat informasi yang disajikan batang tersebut.</p>
+<p>Bisakah kita membuat visualisasi data seperti itu? Tentu bisa! Kita akan membuat visualisasi data itu dengan menggunakan <a href="https://www.R-project.org/" class="external" target="_blank">pemrograman R</a>, khususnya dengan paket <a href="https://ggplot2.tidyverse.org" class="external" target="_blank">{ggplot2}</a> dan <a href="https://plotly-r.com" class="external" target="_blank">{plotly}</a>, dan <a href="https://observablehq.com/" class="external" target="_blank">Observable JS</a>. Untuk melakukan visualisasi data di R, terlebih dahulu kita panggil paket-paket yang kita perlukan.</p>
+<div class="cell">
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span> <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Paket {ggplot2} masuk dalam {tidyverse}</span></span>
+<span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;"><a href="https://plotly-r.com">plotly</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span></code></pre></div>
+</div>
+<section id="sec-mempersiapkan-dan-menjelajah-data" class="level2"><h2 class="anchored" data-anchor-id="sec-mempersiapkan-dan-menjelajah-data">Mempersiapkan dan Menjelajah Data</h2>
+<p>Kita siapkan datanya terlebih dahulu. Data tersebut dapat kita peroleh dari situs web RIAA. Data dari situs itu yang sudah aku rapikan dapat diakses di <a href="https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/refs/heads/main/pos/2025-01-pendapatan-musik/aset/pendapatan_as_riaa.csv" class="external" target="_blank">GitHub</a>. Mari kita impor data tersebut dengan <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code>.</p>
+<div class="cell">
+<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">url_fail</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/refs/heads/main/pos/2025-01-pendapatan-musik/aset/pendapatan_as_riaa.csv"</span></span>
+<span></span>
+<span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">pendapatan_as_riaa</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span></span>
+<span>  file <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">url_fail</span>,</span>
+<span>  show_col_types <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">FALSE</span></span>
+<span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span></span>
+<span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">pendapatan_as_riaa</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 508 × 5
+   format grup  tahun      pendapatan pendapatan_infl
+   &lt;chr&gt;  &lt;chr&gt; &lt;date&gt;          &lt;dbl&gt;           &lt;dbl&gt;
+ 1 CD     Disc  1983-01-01       17.2            52.6
+ 2 CD     Disc  1984-01-01      103.            303. 
+ 3 CD     Disc  1985-01-01      390.           1103  
+ 4 CD     Disc  1986-01-01      930.           2586. 
+ 5 CD     Disc  1987-01-01     1594.           4274. 
+ 6 CD     Disc  1988-01-01     2090.           5383. 
+ 7 CD     Disc  1989-01-01     2588.           6359. 
+ 8 CD     Disc  1990-01-01     3452.           8047. 
+ 9 CD     Disc  1991-01-01     4338.           9704. 
+10 CD     Disc  1992-01-01     5326.          11568  
+# ℹ 498 more rows</code></pre>
+</div>
+</div>
+<p>Kita mendapatkan sebuah tibble <code>pendapatan_as_riaa</code> yang memiliki lima variabel dan 508 baris. Variabel-variabel tersebut adalah <code>format</code>, <code>grup</code>, dan <code>tahun</code>, serta dua ukuran pendapatan: pendapatan yang tidak disesuaikan dengan inflasi (<code>pendapatan</code>) dan yang disesuaikan dengan inflasi (<code>pendapatan_infl</code>). Pendapatan tersebut semuanya dalam juta dolar AS.</p>
+<p>Untuk mengakrabkan diri dengan data tersebut, mari kita lihat lebih jauh dalam data itu. Apa saja <code>format</code> dan <code>grup</code> dalam data tersebut? Mari kita selidiki!</p>
+<div class="cell">
+<div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">pendapatan_as_riaa</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">format</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "CD"                                 "CD Single"                         
+ [3] "8 - Track"                          "Cassette"                          
+ [5] "Cassette Single"                    "DVD Audio"                         
+ [7] "Download Album"                     "Download Music Video"              
+ [9] "Download Single"                    "Kiosk"                             
+[11] "LP/EP"                              "Limited Tier Paid Subscription"    
+[13] "Music Video (Physical)"             "On-Demand Streaming (Ad-Supported)"
+[15] "Other Ad-Supported Streaming"       "Other Digital"                     
+[17] "Other Physical"                     "Other Tapes"                       
+[19] "Paid Subscription"                  "Ringtones &amp; Ringbacks"             
+[21] "SACD"                               "SoundExchange Distributions"       
+[23] "Synchronization"                    "Vinyl Single"                      </code></pre>
+</div>
+<div class="sourceCode" id="cb6" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">pendapatan_as_riaa</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">grup</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Disc"      "Tape"      "Other"     "Download"  "Vinyl"     "Streaming"
+[7] NA         </code></pre>
+</div>
+</div>
+<p>Kita selidiki juga pengkategorian <code>format</code> ke dalam <code>grup</code>. Kita dapat melakukannya dengan kode berikut.</p>
+<div class="cell">
+<div class="sourceCode" id="cb8" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">pendapatan_as_riaa</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">grup</span>, <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">format</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">grup</span>, <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">format</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">grup</span>, <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">format</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>n <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">24</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 24 × 2
+   grup      format                            
+   &lt;chr&gt;     &lt;chr&gt;                             
+ 1 Disc      CD                                
+ 2 Disc      CD Single                         
+ 3 Disc      SACD                              
+ 4 Download  Download Album                    
+ 5 Download  Download Music Video              
+ 6 Download  Download Single                   
+ 7 Download  Other Digital                     
+ 8 Download  Ringtones &amp; Ringbacks             
+ 9 Other     DVD Audio                         
+10 Other     Kiosk                             
+11 Other     Music Video (Physical)            
+12 Other     Synchronization                   
+13 Streaming Limited Tier Paid Subscription    
+14 Streaming On-Demand Streaming (Ad-Supported)
+15 Streaming Other Ad-Supported Streaming      
+16 Streaming Paid Subscription                 
+17 Streaming SoundExchange Distributions       
+18 Tape      8 - Track                         
+19 Tape      Cassette                          
+20 Tape      Cassette Single                   
+21 Tape      Other Tapes                       
+22 Vinyl     LP/EP                             
+23 Vinyl     Vinyl Single                      
+24 &lt;NA&gt;      Other Physical                    </code></pre>
+</div>
+</div>
+<p>Bagaimana dengan rentangan <code>tahun</code>-nya? Dengan menjalankan kode berikut, kita tahu bahwa <code>tahun</code>-nya merentang dari 1973 sampai 2023.</p>
+<div class="cell">
+<div class="sourceCode" id="cb10" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">pendapatan_as_riaa</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">tahun</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "1973-01-01" "1974-01-01" "1975-01-01" "1976-01-01" "1977-01-01"
+ [6] "1978-01-01" "1979-01-01" "1980-01-01" "1981-01-01" "1982-01-01"
+[11] "1983-01-01" "1984-01-01" "1985-01-01" "1986-01-01" "1987-01-01"
+[16] "1988-01-01" "1989-01-01" "1990-01-01" "1991-01-01" "1992-01-01"
+[21] "1993-01-01" "1994-01-01" "1995-01-01" "1996-01-01" "1997-01-01"
+[26] "1998-01-01" "1999-01-01" "2000-01-01" "2001-01-01" "2002-01-01"
+[31] "2003-01-01" "2004-01-01" "2005-01-01" "2006-01-01" "2007-01-01"
+[36] "2008-01-01" "2009-01-01" "2010-01-01" "2011-01-01" "2012-01-01"
+[41] "2013-01-01" "2014-01-01" "2015-01-01" "2016-01-01" "2017-01-01"
+[46] "2018-01-01" "2019-01-01" "2020-01-01" "2021-01-01" "2022-01-01"
+[51] "2023-01-01"</code></pre>
+</div>
+</div>
+<p>Untuk mengkonfirmasi apa yang kukatakan di awal, yaitu pendapatan dari format kaset dan sejenisnya terus menurun setelah tahun 2000, mari kita lihat dari data <code>pendapatan_as_riaa</code>.</p>
+<div class="cell">
+<div class="sourceCode" id="cb12" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">pendapatan_as_riaa</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span></span>
+<span>    <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">grup</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Tape"</span>,</span>
+<span>    <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">tahun</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"2000-01-01"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span>  <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">grup</span>, <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">tahun</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span></span>
+<span>    total_pendapatan <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">pendapatan</span>, na.rm <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span>,</span>
+<span>    total_pendapatan_infl <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">pendapatan_infl</span>, na.rm <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span>,</span>
+<span>    .groups <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"drop"</span></span>
+<span>  <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 8 × 4
+  grup  tahun      total_pendapatan total_pendapatan_infl
+  &lt;chr&gt; &lt;date&gt;                &lt;dbl&gt;                 &lt;dbl&gt;
+1 Tape  2001-01-01            358.                  616. 
+2 Tape  2002-01-01            208.                  353. 
+3 Tape  2003-01-01            108.                  179  
+4 Tape  2004-01-01             23.7                  38.2
+5 Tape  2005-01-01             13.1                  20.4
+6 Tape  2006-01-01              3.7                   5.6
+7 Tape  2007-01-01              3                     4.4
+8 Tape  2008-01-01              0.9                   1.3</code></pre>
+</div>
+</div>
+<p>Terkonfirmasi! Pendapatan dari kaset dan sejenisnya terus merosot setelah tahun 2000. Bahkan, pendapatan dari format tersebut menghilang mulai tahun 2009.</p>
+</section><section id="sec-visualisasi-data-dengan-ggplot2" class="level2"><h2 class="anchored" data-anchor-id="sec-visualisasi-data-dengan-ggplot2">Memvisualisasikan Data dengan {ggplot2}</h2>
+<p>Kita telah akrab dengan data <code>pendapatan_as_riaa</code>. Sekarang waktunya untuk memvisualisasikannya. Untuk mendapatan diagram seperti pada Gambar&nbsp;1, kita gunakan <code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col()</a></code> dengan <code>position = "stack"</code> dan <code>stat = "identity"</code>.</p>
+<div class="cell">
+<div class="sourceCode" id="cb14" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">pendapatan_as_riaa</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span></span>
+<span>    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>x <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">tahun</span>, y <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">pendapatan_infl</span>, fill <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">format</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span>  <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span></code></pre></div>
+<div class="cell-output-display">
+<div id="fig-ggplot2-awal" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-ggplot2-awal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://jelajahstatid.github.io/pos/2025-01-pendapatan-musik/index_files/figure-html/fig-ggplot2-awal-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ggplot2-awal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Gambar&nbsp;2: Versi awal visualisasi data pendapatan industri musik di AS dengan {ggplot2}
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>Untuk awalan, tidak terlalu buruk diagramnya. Tapi kita perlu memodifikasi beberapa hal dari diagram batang pada Gambar&nbsp;2.</p>
+<ul>
+<li><p>Kita definisikan warna-warna diagram batangnya.</p></li>
+<li><p>Kita atur legendanya agar terletak di bawah dan terdiri dari empat kolom.</p></li>
+<li><p>Kita atur urutan level pada variabel <code>format</code> agar keterbacaannya membaik.</p></li>
+<li><p>Kita tambahkan judul, anak judul, dan takarir ke dalam diagram, serta kita perbaiki judul sumbu vertikal dan horizontalnya.</p></li>
+</ul>
+<p>Kita jalankan rencana pertama dan ketiga terlebih dahulu dengan membuat objek <code>urutan_format</code> dan <code>pemetaan_format_warna</code>.</p>
+<div class="cell">
+<div class="sourceCode" id="cb15" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Urutan level pada variabel `format`</span></span>
+<span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">urutan_format</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span></span>
+<span>  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"LP/EP"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Vinyl Single"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"8 - Track"</span>,</span>
+<span>  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Cassette"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Cassette Single"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Other Tapes"</span>,</span>
+<span>  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Kiosk"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"CD"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"CD Single"</span>,</span>
+<span>  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"SACD"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"DVD Audio"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Music Video (Physical)"</span>,</span>
+<span>  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Download Album"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Download Single"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Ringtones &amp; Ringbacks"</span>,</span>
+<span>  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Download Music Video"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Other Digital"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Synchronization"</span>,</span>
+<span>  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Paid Subscription"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"On-Demand Streaming (Ad-Supported)"</span>,</span>
+<span>  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Other Ad-Supported Streaming"</span>,</span>
+<span>  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"SoundExchange Distributions"</span>,</span>
+<span>  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Limited Tier Paid Subscription"</span></span>
+<span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span></span>
+<span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Pemetaan setiap level pada `format` dengan warna</span></span>
+<span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">pemetaan_format_warna</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span></span>
+<span>  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"LP/EP"</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#2A5784"</span>,</span>
+<span>  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Vinyl Single"</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#43719F"</span>,</span>
+<span>  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"8 - Track"</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#5B8DB8"</span>,</span>
+<span>  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Cassette"</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#7AAAD0"</span>,</span>
+<span>  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Cassette Single"</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#9BC7E4"</span>,</span>
+<span>  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Other Tapes"</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#BADDF1"</span>,</span>
+<span>  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Kiosk"</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#E1575A"</span>,</span>
+<span>  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"CD"</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#EE7423"</span>,</span>
+<span>  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"CD Single"</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#F59D3D"</span>,</span>
+<span>  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"SACD"</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#FFC686"</span>,</span>
+<span>  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"DVD Audio"</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#9D7760"</span>,</span>
+<span>  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Music Video (Physical)"</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#F1CF63"</span>,</span>
+<span>  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Download Album"</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#7C4D79"</span>,</span>
+<span>  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Download Single"</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#9B6A97"</span>,</span>
+<span>  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Ringtones &amp; Ringbacks"</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#BE89AC"</span>,</span>
+<span>  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Download Music Video"</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#D5A5C4"</span>,</span>
+<span>  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Other Digital"</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#EFC9E6"</span>,</span>
+<span>  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Synchronization"</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#BBB1AC"</span>,</span>
+<span>  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Paid Subscription"</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#24693D"</span>,</span>
+<span>  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"On-Demand Streaming (Ad-Supported)"</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#398949"</span>,</span>
+<span>  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Other Ad-Supported Streaming"</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#61AA57"</span>,</span>
+<span>  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"SoundExchange Distributions"</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#7DC470"</span>,</span>
+<span>  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Limited Tier Paid Subscription"</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#B4E0A7"</span></span>
+<span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span></code></pre></div>
+</div>
+<p>Kita jalankan rencana selanjutnya. Untuk melakukannya, kita jalankan kode berikut ini. Hasilnya ditunjukkan pada Gambar&nbsp;3.</p>
+<div class="cell">
+<div class="sourceCode" id="cb16" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">plot_musik</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">pendapatan_as_riaa</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span></span>
+<span>    format <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span></span>
+<span>      <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">format</span>,</span>
+<span>      levels <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">urutan_format</span></span>
+<span>    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span>  <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span></span>
+<span>    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>x <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">tahun</span>, y <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">pendapatan_infl</span>, fill <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">format</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span>  <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span></span>
+<span>    position <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"stack"</span>,</span>
+<span>    stat <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"identity"</span></span>
+<span>  <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span></span>
+<span>    name <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Format"</span>,</span>
+<span>    values <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">pemetaan_format_warna</span></span>
+<span>  <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://ggplot2.tidyverse.org/reference/guides.html">guides</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span></span>
+<span>    fill <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://ggplot2.tidyverse.org/reference/guide_legend.html">guide_legend</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>ncol <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span>  <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span></span>
+<span>    axis.title.x <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span>,</span>
+<span>    legend.position <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"bottom"</span>,</span>
+<span>    legend.title <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span>,</span>
+<span>    legend.key.spacing.y <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/grid/unit.html">unit</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">.025</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"cm"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span>,</span>
+<span>    plot.title <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span></span>
+<span>      face <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"bold"</span></span>
+<span>    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span>  <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span></span>
+<span>    title <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Pendapatan Industri Musik di AS Berdasarkan Format"</span>,</span>
+<span>    subtitle <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Disesuaikan dengan Inflasi, Nilai Dolar Tahun 2023"</span>,</span>
+<span>    y <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Pendapatan\n(juta dolar AS)"</span>,</span>
+<span>    caption <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Data: Recording Industry Association of America (RIAA)"</span></span>
+<span>  <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span></span>
+<span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">plot_musik</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span></code></pre></div>
+<div class="cell-output-display">
+<div id="fig-ggplot2-infl-akhir" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-ggplot2-infl-akhir-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://jelajahstatid.github.io/pos/2025-01-pendapatan-musik/index_files/figure-html/fig-ggplot2-infl-akhir-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ggplot2-infl-akhir-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Gambar&nbsp;3: Visualisasi data dengan {ggplot2} setelah dilakukan beberapa modifikasi
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>Diagram batang pada Gambar&nbsp;3 sudah mirip dengan yang ditunjukkan pada Gambar&nbsp;1. Diagram tersebut telah efektif menyampaikan informasi tentang pendapatan industri musik berdasarkan formatnya.</p>
+</section><section id="sec-menambahkan-interaktivitas-dengan-plotly" class="level2"><h2 class="anchored" data-anchor-id="sec-menambahkan-interaktivitas-dengan-plotly">Menambahkan Interaktivitas dengan {plotly}</h2>
+<p>Diagram batang pada Gambar&nbsp;3 memang sudah efektif dalam menyampaikan informasi pendapatan industri musik di AS berdasarkan formatnya. Meskipun demikian, kita kesulitan dalam mencari informasi yang sifatnya detail. Misalnya, dari gambar tersebut apakah kamu dapat mengetahui besarnya pendapatan dari format download album pada tahun 2010? Sulit, bukan?</p>
+<p>Untuk mengatasi masalah tersebut, kita dapat menambahkan interaktivitas ke dalam grafik tersebut dengan <a href="https://plotly-r.com" class="external" target="_blank">{plotly}</a>. Untungnya paket ini dapat kita terapkan terhadap objek ggplot sebelumnya dengan fungsi <code><a href="https://rdrr.io/pkg/plotly/man/ggplotly.html">ggplotly()</a></code>.</p>
+<div class="cell">
+<div class="sourceCode" id="cb17" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/pkg/plotly/man/ggplotly.html">ggplotly</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span></span>
+<span>  p <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">plot_musik</span></span>
+<span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span></code></pre></div>
+<div id="fig-plotly" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-plotly-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-200d848d815cd8a826d3" style="width:100%;height:365px;"></div>
+<script type="application/json" data-for="htmlwidget-200d848d815cd8a826d3">{"x":{"data":[{"orientation":"v","width":[328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5],"base":[5288.4000000000005,5214.5,5117.1999999999998,5751.8000000000002,6565.2000000000007,7748.8999999999996,6792.8999999999996,5480.3000000000002,5471.3000000000002,5378.9000000000005,6416.5,8170,8727.6000000000004,10168.799999999999,12796.700000000001,14739.299999999999,15628,17378.900000000001,17460.600000000002,19568.700000000001,21162.599999999999,24775.299999999999,24582.5,24269.200000000001,23167.800000000003,25567.300000000003,26616.5,25296.199999999997,23603.200000000001,21333.099999999999,19594.799999999999,19881.899999999998,19152.200000000001,17749.799999999999,15618.5,12340.9,11031.799999999999,9676.6000000000004,9504,9097.6000000000004,8926.2000000000007,8302.8999999999996,8198.5,9059.7000000000007,10087.299999999999,11308,12634.299999999999,13506.5,15672.099999999999,15272.599999999999,15765],"x":[1096,1461,1826,2191,2557,2922,3287,3652,4018,4383,4748,5113,5479,5844,6209,6574,6940,7305,7670,8035,8401,8766,9131,9496,9862,10227,10592,10957,11323,11688,12053,12418,12784,13149,13514,13879,14245,14610,14975,15340,15706,16071,16436,16801,17167,17532,17897,18262,18628,18993,19358],"y":[8550.8999999999978,8380.8999999999996,8410.5,8905.4000000000015,11037.200000000001,11558.6,8633.2000000000007,8135.1999999999998,7849.4999999999991,6078.5999999999995,5167.1000000000004,4542.1000000000004,3626.0999999999985,2732.9000000000015,2127.2999999999993,1370.7999999999993,541.29999999999927,201.69999999999709,65.799999999999272,29.299999999999272,22.400000000001455,36.600000000002183,50.200000000000728,71.5,63.19999999999709,63.599999999998545,58.200000000000728,49,47.099999999998545,34.700000000000728,35.899999999997817,31.100000000002183,22.19999999999709,23.700000000000728,33.700000000000728,80.200000000000728,90.600000000000364,124.19999999999891,161.69999999999891,213.29999999999927,275.59999999999854,313.89999999999964,428.60000000000036,451.19999999999891,482.89999999999964,508.70000000000073,614.39999999999964,819.79999999999927,1221.5,1274.7999999999993,1350.2000000000007],"text":["tahun: 1973-01-01<br />pendapatan_infl:  8550.9<br />format: LP/EP","tahun: 1974-01-01<br />pendapatan_infl:  8380.9<br />format: LP/EP","tahun: 1975-01-01<br />pendapatan_infl:  8410.5<br />format: LP/EP","tahun: 1976-01-01<br />pendapatan_infl:  8905.4<br />format: LP/EP","tahun: 1977-01-01<br />pendapatan_infl: 11037.2<br />format: LP/EP","tahun: 1978-01-01<br />pendapatan_infl: 11558.6<br />format: LP/EP","tahun: 1979-01-01<br />pendapatan_infl:  8633.2<br />format: LP/EP","tahun: 1980-01-01<br />pendapatan_infl:  8135.2<br />format: LP/EP","tahun: 1981-01-01<br />pendapatan_infl:  7849.5<br />format: LP/EP","tahun: 1982-01-01<br />pendapatan_infl:  6078.6<br />format: LP/EP","tahun: 1983-01-01<br />pendapatan_infl:  5167.1<br />format: LP/EP","tahun: 1984-01-01<br />pendapatan_infl:  4542.1<br />format: LP/EP","tahun: 1985-01-01<br />pendapatan_infl:  3626.1<br />format: LP/EP","tahun: 1986-01-01<br />pendapatan_infl:  2732.9<br />format: LP/EP","tahun: 1987-01-01<br />pendapatan_infl:  2127.3<br />format: LP/EP","tahun: 1988-01-01<br />pendapatan_infl:  1370.8<br />format: LP/EP","tahun: 1989-01-01<br />pendapatan_infl:   541.3<br />format: LP/EP","tahun: 1990-01-01<br />pendapatan_infl:   201.7<br />format: LP/EP","tahun: 1991-01-01<br />pendapatan_infl:    65.8<br />format: LP/EP","tahun: 1992-01-01<br />pendapatan_infl:    29.3<br />format: LP/EP","tahun: 1993-01-01<br />pendapatan_infl:    22.4<br />format: LP/EP","tahun: 1994-01-01<br />pendapatan_infl:    36.6<br />format: LP/EP","tahun: 1995-01-01<br />pendapatan_infl:    50.2<br />format: LP/EP","tahun: 1996-01-01<br />pendapatan_infl:    71.5<br />format: LP/EP","tahun: 1997-01-01<br />pendapatan_infl:    63.2<br />format: LP/EP","tahun: 1998-01-01<br />pendapatan_infl:    63.6<br />format: LP/EP","tahun: 1999-01-01<br />pendapatan_infl:    58.2<br />format: LP/EP","tahun: 2000-01-01<br />pendapatan_infl:    49.0<br />format: LP/EP","tahun: 2001-01-01<br />pendapatan_infl:    47.1<br />format: LP/EP","tahun: 2002-01-01<br />pendapatan_infl:    34.7<br />format: LP/EP","tahun: 2003-01-01<br />pendapatan_infl:    35.9<br />format: LP/EP","tahun: 2004-01-01<br />pendapatan_infl:    31.1<br />format: LP/EP","tahun: 2005-01-01<br />pendapatan_infl:    22.2<br />format: LP/EP","tahun: 2006-01-01<br />pendapatan_infl:    23.7<br />format: LP/EP","tahun: 2007-01-01<br />pendapatan_infl:    33.7<br />format: LP/EP","tahun: 2008-01-01<br />pendapatan_infl:    80.2<br />format: LP/EP","tahun: 2009-01-01<br />pendapatan_infl:    90.6<br />format: LP/EP","tahun: 2010-01-01<br />pendapatan_infl:   124.2<br />format: LP/EP","tahun: 2011-01-01<br />pendapatan_infl:   161.7<br />format: LP/EP","tahun: 2012-01-01<br />pendapatan_infl:   213.3<br />format: LP/EP","tahun: 2013-01-01<br />pendapatan_infl:   275.6<br />format: LP/EP","tahun: 2014-01-01<br />pendapatan_infl:   313.9<br />format: LP/EP","tahun: 2015-01-01<br />pendapatan_infl:   428.6<br />format: LP/EP","tahun: 2016-01-01<br />pendapatan_infl:   451.2<br />format: LP/EP","tahun: 2017-01-01<br />pendapatan_infl:   482.9<br />format: LP/EP","tahun: 2018-01-01<br />pendapatan_infl:   508.7<br />format: LP/EP","tahun: 2019-01-01<br />pendapatan_infl:   614.4<br />format: LP/EP","tahun: 2020-01-01<br />pendapatan_infl:   819.8<br />format: LP/EP","tahun: 2021-01-01<br />pendapatan_infl:  1221.5<br />format: LP/EP","tahun: 2022-01-01<br />pendapatan_infl:  1274.8<br />format: LP/EP","tahun: 2023-01-01<br />pendapatan_infl:  1350.2<br />format: LP/EP"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(42,87,132,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"LP/EP","legendgroup":"LP/EP","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5],"base":[3984.5,4015.5,3919.3000000000002,4439.3000000000002,5332.8000000000002,6532.3999999999996,5308.8000000000002,4555.8000000000002,4611.8000000000002,4485.3000000000002,5592.6000000000004,7294,7931.8999999999996,9534.7000000000007,12251.4,14274.599999999999,15342,17158.799999999999,17317.600000000002,19424.5,21054.599999999999,24678.299999999999,24489.099999999999,24177,23100.200000000001,25519.300000000003,26565.5,25249.699999999997,23549.200000000001,21290.900000000001,19559.199999999997,19849.799999999999,19131.599999999999,17734.799999999999,15612.6,12336.800000000001,11028.199999999999,9673.3999999999996,9497.7999999999993,9091.2999999999993,8922.2999999999993,8295.7999999999993,8191.1000000000004,9053.5,10079.699999999999,11301.1,12626.299999999999,13499.1,15663.199999999999,15266.799999999999,15756.6],"x":[1096,1461,1826,2191,2557,2922,3287,3652,4018,4383,4748,5113,5479,5844,6209,6574,6940,7305,7670,8035,8401,8766,9131,9496,9862,10227,10592,10957,11323,11688,12053,12418,12784,13149,13514,13879,14245,14610,14975,15340,15706,16071,16436,16801,17167,17532,17897,18262,18628,18993,19358],"y":[1303.9000000000005,1199,1197.8999999999996,1312.5,1232.4000000000005,1216.5,1484.0999999999995,924.5,859.5,893.60000000000036,823.89999999999964,876,795.70000000000073,634.09999999999854,545.30000000000109,464.70000000000073,286,220.10000000000218,143,144.20000000000073,108,97,93.400000000001455,92.200000000000728,67.600000000002183,48,51,46.5,54,42.19999999999709,35.600000000002183,32.099999999998545,20.600000000002183,15,5.8999999999996362,4.0999999999985448,3.6000000000003638,3.2000000000007276,6.2000000000007276,6.3000000000010914,3.9000000000014552,7.1000000000003638,7.3999999999996362,6.2000000000007276,7.6000000000003638,6.8999999999996362,8,7.3999999999996362,8.8999999999996362,5.7999999999992724,8.3999999999996362],"text":["tahun: 1973-01-01<br />pendapatan_infl:  1303.9<br />format: Vinyl Single","tahun: 1974-01-01<br />pendapatan_infl:  1199.0<br />format: Vinyl Single","tahun: 1975-01-01<br />pendapatan_infl:  1197.9<br />format: Vinyl Single","tahun: 1976-01-01<br />pendapatan_infl:  1312.5<br />format: Vinyl Single","tahun: 1977-01-01<br />pendapatan_infl:  1232.4<br />format: Vinyl Single","tahun: 1978-01-01<br />pendapatan_infl:  1216.5<br />format: Vinyl Single","tahun: 1979-01-01<br />pendapatan_infl:  1484.1<br />format: Vinyl Single","tahun: 1980-01-01<br />pendapatan_infl:   924.5<br />format: Vinyl Single","tahun: 1981-01-01<br />pendapatan_infl:   859.5<br />format: Vinyl Single","tahun: 1982-01-01<br />pendapatan_infl:   893.6<br />format: Vinyl Single","tahun: 1983-01-01<br />pendapatan_infl:   823.9<br />format: Vinyl Single","tahun: 1984-01-01<br />pendapatan_infl:   876.0<br />format: Vinyl Single","tahun: 1985-01-01<br />pendapatan_infl:   795.7<br />format: Vinyl Single","tahun: 1986-01-01<br />pendapatan_infl:   634.1<br />format: Vinyl Single","tahun: 1987-01-01<br />pendapatan_infl:   545.3<br />format: Vinyl Single","tahun: 1988-01-01<br />pendapatan_infl:   464.7<br />format: Vinyl Single","tahun: 1989-01-01<br />pendapatan_infl:   286.0<br />format: Vinyl Single","tahun: 1990-01-01<br />pendapatan_infl:   220.1<br />format: Vinyl Single","tahun: 1991-01-01<br />pendapatan_infl:   143.0<br />format: Vinyl Single","tahun: 1992-01-01<br />pendapatan_infl:   144.2<br />format: Vinyl Single","tahun: 1993-01-01<br />pendapatan_infl:   108.0<br />format: Vinyl Single","tahun: 1994-01-01<br />pendapatan_infl:    97.0<br />format: Vinyl Single","tahun: 1995-01-01<br />pendapatan_infl:    93.4<br />format: Vinyl Single","tahun: 1996-01-01<br />pendapatan_infl:    92.2<br />format: Vinyl Single","tahun: 1997-01-01<br />pendapatan_infl:    67.6<br />format: Vinyl Single","tahun: 1998-01-01<br />pendapatan_infl:    48.0<br />format: Vinyl Single","tahun: 1999-01-01<br />pendapatan_infl:    51.0<br />format: Vinyl Single","tahun: 2000-01-01<br />pendapatan_infl:    46.5<br />format: Vinyl Single","tahun: 2001-01-01<br />pendapatan_infl:    54.0<br />format: Vinyl Single","tahun: 2002-01-01<br />pendapatan_infl:    42.2<br />format: Vinyl Single","tahun: 2003-01-01<br />pendapatan_infl:    35.6<br />format: Vinyl Single","tahun: 2004-01-01<br />pendapatan_infl:    32.1<br />format: Vinyl Single","tahun: 2005-01-01<br />pendapatan_infl:    20.6<br />format: Vinyl Single","tahun: 2006-01-01<br />pendapatan_infl:    15.0<br />format: Vinyl Single","tahun: 2007-01-01<br />pendapatan_infl:     5.9<br />format: Vinyl Single","tahun: 2008-01-01<br />pendapatan_infl:     4.1<br />format: Vinyl Single","tahun: 2009-01-01<br />pendapatan_infl:     3.6<br />format: Vinyl Single","tahun: 2010-01-01<br />pendapatan_infl:     3.2<br />format: Vinyl Single","tahun: 2011-01-01<br />pendapatan_infl:     6.2<br />format: Vinyl Single","tahun: 2012-01-01<br />pendapatan_infl:     6.3<br />format: Vinyl Single","tahun: 2013-01-01<br />pendapatan_infl:     3.9<br />format: Vinyl Single","tahun: 2014-01-01<br />pendapatan_infl:     7.1<br />format: Vinyl Single","tahun: 2015-01-01<br />pendapatan_infl:     7.4<br />format: Vinyl Single","tahun: 2016-01-01<br />pendapatan_infl:     6.2<br />format: Vinyl Single","tahun: 2017-01-01<br />pendapatan_infl:     7.6<br />format: Vinyl Single","tahun: 2018-01-01<br />pendapatan_infl:     6.9<br />format: Vinyl Single","tahun: 2019-01-01<br />pendapatan_infl:     8.0<br />format: Vinyl Single","tahun: 2020-01-01<br />pendapatan_infl:     7.4<br />format: Vinyl Single","tahun: 2021-01-01<br />pendapatan_infl:     8.9<br />format: Vinyl Single","tahun: 2022-01-01<br />pendapatan_infl:     5.8<br />format: Vinyl Single","tahun: 2023-01-01<br />pendapatan_infl:     8.4<br />format: Vinyl Single"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(67,113,159,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Vinyl Single","legendgroup":"Vinyl Single","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5],"base":[628.70000000000005,621.10000000000002,617.39999999999998,807.5,1255,2102.0999999999999,2436.8000000000002,2607,3562.5999999999999,4371.6000000000004],"x":[1096,1461,1826,2191,2557,2922,3287,3652,4018,4383],"y":[3355.8000000000002,3394.4000000000001,3301.9000000000001,3631.8000000000002,4077.8000000000002,4430.2999999999993,2872,1948.8000000000002,1049.2000000000003,113.69999999999982],"text":["tahun: 1973-01-01<br />pendapatan_infl:  3355.8<br />format: 8 - Track","tahun: 1974-01-01<br />pendapatan_infl:  3394.4<br />format: 8 - Track","tahun: 1975-01-01<br />pendapatan_infl:  3301.9<br />format: 8 - Track","tahun: 1976-01-01<br />pendapatan_infl:  3631.8<br />format: 8 - Track","tahun: 1977-01-01<br />pendapatan_infl:  4077.8<br />format: 8 - Track","tahun: 1978-01-01<br />pendapatan_infl:  4430.3<br />format: 8 - Track","tahun: 1979-01-01<br />pendapatan_infl:  2872.0<br />format: 8 - Track","tahun: 1980-01-01<br />pendapatan_infl:  1948.8<br />format: 8 - Track","tahun: 1981-01-01<br />pendapatan_infl:  1049.2<br />format: 8 - Track","tahun: 1982-01-01<br />pendapatan_infl:   113.7<br />format: 8 - Track"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(91,141,184,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"8 - Track","legendgroup":"8 - Track","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5],"base":[107.09999999999999,82.200000000000003,57.799999999999997,27.300000000000001,0,0,0,0,0,0,52.600000000000001,302.89999999999998,1103,2585.8000000000002,4312.7999999999993,5555.6999999999998,7120.5,9063.6000000000004,10562.300000000001,12656.6,14906.199999999999,18558.799999999999,19883.399999999998,20476.899999999998,20209.400000000001,22865,24623.899999999998,24142,22924,20935.599999999999,19380.199999999997,19811.599999999999,19111.200000000001,17729.200000000001,15608.200000000001,12335.5],"x":[1096,1461,1826,2191,2557,2922,3287,3652,4018,4383,4748,5113,5479,5844,6209,6574,6940,7305,7670,8035,8401,8766,9131,9496,9862,10227,10592,10957,11323,11688,12053,12418,12784,13149,13514,13879],"y":[521.60000000000002,538.89999999999998,559.60000000000002,780.20000000000005,1255,2102.0999999999999,2436.8000000000002,2607,3562.5999999999999,4371.6000000000004,5540,6991.1000000000004,6828.8999999999996,6948.9000000000005,7938.6000000000004,8718.8999999999978,8221.5,8095.1999999999989,6755.3000000000011,6767.8999999999996,6148.3999999999996,6119.5,4605.7000000000007,3700.1000000000022,2890.7999999999993,2654.3000000000029,1941.6000000000022,1107.6999999999971,625.20000000000073,355.30000000000291,179,38.200000000000728,20.399999999997817,5.5999999999985448,4.3999999999996362,1.3000000000010914],"text":["tahun: 1973-01-01<br />pendapatan_infl:   521.6<br />format: Cassette","tahun: 1974-01-01<br />pendapatan_infl:   538.9<br />format: Cassette","tahun: 1975-01-01<br />pendapatan_infl:   559.6<br />format: Cassette","tahun: 1976-01-01<br />pendapatan_infl:   780.2<br />format: Cassette","tahun: 1977-01-01<br />pendapatan_infl:  1255.0<br />format: Cassette","tahun: 1978-01-01<br />pendapatan_infl:  2102.1<br />format: Cassette","tahun: 1979-01-01<br />pendapatan_infl:  2436.8<br />format: Cassette","tahun: 1980-01-01<br />pendapatan_infl:  2607.0<br />format: Cassette","tahun: 1981-01-01<br />pendapatan_infl:  3562.6<br />format: Cassette","tahun: 1982-01-01<br />pendapatan_infl:  4371.6<br />format: Cassette","tahun: 1983-01-01<br />pendapatan_infl:  5540.0<br />format: Cassette","tahun: 1984-01-01<br />pendapatan_infl:  6991.1<br />format: Cassette","tahun: 1985-01-01<br />pendapatan_infl:  6828.9<br />format: Cassette","tahun: 1986-01-01<br />pendapatan_infl:  6948.9<br />format: Cassette","tahun: 1987-01-01<br />pendapatan_infl:  7938.6<br />format: Cassette","tahun: 1988-01-01<br />pendapatan_infl:  8718.9<br />format: Cassette","tahun: 1989-01-01<br />pendapatan_infl:  8221.5<br />format: Cassette","tahun: 1990-01-01<br />pendapatan_infl:  8095.2<br />format: Cassette","tahun: 1991-01-01<br />pendapatan_infl:  6755.3<br />format: Cassette","tahun: 1992-01-01<br />pendapatan_infl:  6767.9<br />format: Cassette","tahun: 1993-01-01<br />pendapatan_infl:  6148.4<br />format: Cassette","tahun: 1994-01-01<br />pendapatan_infl:  6119.5<br />format: Cassette","tahun: 1995-01-01<br />pendapatan_infl:  4605.7<br />format: Cassette","tahun: 1996-01-01<br />pendapatan_infl:  3700.1<br />format: Cassette","tahun: 1997-01-01<br />pendapatan_infl:  2890.8<br />format: Cassette","tahun: 1998-01-01<br />pendapatan_infl:  2654.3<br />format: Cassette","tahun: 1999-01-01<br />pendapatan_infl:  1941.6<br />format: Cassette","tahun: 2000-01-01<br />pendapatan_infl:  1107.7<br />format: Cassette","tahun: 2001-01-01<br />pendapatan_infl:   625.2<br />format: Cassette","tahun: 2002-01-01<br />pendapatan_infl:   355.3<br />format: Cassette","tahun: 2003-01-01<br />pendapatan_infl:   179.0<br />format: Cassette","tahun: 2004-01-01<br />pendapatan_infl:    38.2<br />format: Cassette","tahun: 2005-01-01<br />pendapatan_infl:    20.4<br />format: Cassette","tahun: 2006-01-01<br />pendapatan_infl:     5.6<br />format: Cassette","tahun: 2007-01-01<br />pendapatan_infl:     4.4<br />format: Cassette","tahun: 2008-01-01<br />pendapatan_infl:     1.3<br />format: Cassette"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(122,170,208,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Cassette","legendgroup":"Cassette","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5],"base":[4274.3999999999996,5408.0999999999995,6642.3000000000002,8462.3999999999996,10046.900000000001,12007.700000000001,14276.799999999999,17993.600000000002,19411,20109.299999999999,19956,22688.5,24536.099999999999,24133.899999999998,-9.0999999999999996,-2.7000000000000002],"x":[6209,6574,6940,7305,7670,8035,8401,8766,9131,9496,9862,10227,10592,10957,11323,11688],"y":[38.399999999999636,147.60000000000036,478.19999999999982,601.20000000000073,515.39999999999964,648.89999999999964,629.39999999999964,565.19999999999709,472.39999999999782,367.59999999999854,253.40000000000146,176.5,87.799999999999272,8.1000000000021828,9.0999999999999996,2.7000000000000002],"text":["tahun: 1987-01-01<br />pendapatan_infl:    38.4<br />format: Cassette Single","tahun: 1988-01-01<br />pendapatan_infl:   147.6<br />format: Cassette Single","tahun: 1989-01-01<br />pendapatan_infl:   478.2<br />format: Cassette Single","tahun: 1990-01-01<br />pendapatan_infl:   601.2<br />format: Cassette Single","tahun: 1991-01-01<br />pendapatan_infl:   515.4<br />format: Cassette Single","tahun: 1992-01-01<br />pendapatan_infl:   648.9<br />format: Cassette Single","tahun: 1993-01-01<br />pendapatan_infl:   629.4<br />format: Cassette Single","tahun: 1994-01-01<br />pendapatan_infl:   565.2<br />format: Cassette Single","tahun: 1995-01-01<br />pendapatan_infl:   472.4<br />format: Cassette Single","tahun: 1996-01-01<br />pendapatan_infl:   367.6<br />format: Cassette Single","tahun: 1997-01-01<br />pendapatan_infl:   253.4<br />format: Cassette Single","tahun: 1998-01-01<br />pendapatan_infl:   176.5<br />format: Cassette Single","tahun: 1999-01-01<br />pendapatan_infl:    87.8<br />format: Cassette Single","tahun: 2000-01-01<br />pendapatan_infl:     8.1<br />format: Cassette Single","tahun: 2001-01-01<br />pendapatan_infl:     9.1<br />format: Cassette Single","tahun: 2002-01-01<br />pendapatan_infl:     2.7<br />format: Cassette Single"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(155,199,228,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Cassette Single","legendgroup":"Cassette Single","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[328.5,328.5,328.5,328.5],"base":[0,0,0,0],"x":[1096,1461,1826,2191],"y":[107.09999999999999,82.200000000000003,57.799999999999997,27.300000000000001],"text":["tahun: 1973-01-01<br />pendapatan_infl:   107.1<br />format: Other Tapes","tahun: 1974-01-01<br />pendapatan_infl:    82.2<br />format: Other Tapes","tahun: 1975-01-01<br />pendapatan_infl:    57.8<br />format: Other Tapes","tahun: 1976-01-01<br />pendapatan_infl:    27.3<br />format: Other Tapes"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(186,221,241,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Other Tapes","legendgroup":"Other Tapes","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5],"base":[19109.599999999999,17726.299999999999,15604.4,12331.800000000001,11019.299999999999,9664.5,9494.1000000000004,9086.5,8914.2000000000007,8292.5,8186.3000000000002,9049.7999999999993,10076.9,11298.700000000001,12624.4,13497.700000000001,15662.4,15266.4],"x":[12784,13149,13514,13879,14245,14610,14975,15340,15706,16071,16436,16801,17167,17532,17897,18262,18628,18993],"y":[1.6000000000021828,2.9000000000014552,3.8000000000010914,3.6999999999989086,8.8999999999996362,8.8999999999996362,3.6999999999989086,4.7999999999992724,8.0999999999985448,3.2999999999992724,4.8000000000001819,3.7000000000007276,2.7999999999992724,2.3999999999996362,1.8999999999996362,1.3999999999996362,0.7999999999992724,0.3999999999996362],"text":["tahun: 2005-01-01<br />pendapatan_infl:     1.6<br />format: Kiosk","tahun: 2006-01-01<br />pendapatan_infl:     2.9<br />format: Kiosk","tahun: 2007-01-01<br />pendapatan_infl:     3.8<br />format: Kiosk","tahun: 2008-01-01<br />pendapatan_infl:     3.7<br />format: Kiosk","tahun: 2009-01-01<br />pendapatan_infl:     8.9<br />format: Kiosk","tahun: 2010-01-01<br />pendapatan_infl:     8.9<br />format: Kiosk","tahun: 2011-01-01<br />pendapatan_infl:     3.7<br />format: Kiosk","tahun: 2012-01-01<br />pendapatan_infl:     4.8<br />format: Kiosk","tahun: 2013-01-01<br />pendapatan_infl:     8.1<br />format: Kiosk","tahun: 2014-01-01<br />pendapatan_infl:     3.3<br />format: Kiosk","tahun: 2015-01-01<br />pendapatan_infl:     4.8<br />format: Kiosk","tahun: 2016-01-01<br />pendapatan_infl:     3.7<br />format: Kiosk","tahun: 2017-01-01<br />pendapatan_infl:     2.8<br />format: Kiosk","tahun: 2018-01-01<br />pendapatan_infl:     2.4<br />format: Kiosk","tahun: 2019-01-01<br />pendapatan_infl:     1.9<br />format: Kiosk","tahun: 2020-01-01<br />pendapatan_infl:     1.4<br />format: Kiosk","tahun: 2021-01-01<br />pendapatan_infl:     0.8<br />format: Kiosk","tahun: 2022-01-01<br />pendapatan_infl:     0.4<br />format: Kiosk"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(225,87,90,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Kiosk","legendgroup":"Kiosk","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5],"base":[0,0,0,0,0,25.199999999999999,283.60000000000002,415.69999999999999,342.69999999999999,439.70000000000005,546.39999999999998,590.39999999999998,662.20000000000005,816,1132.5999999999999,1348.0999999999999,1095.8,751.29999999999995,713.29999999999995,536.10000000000002,778.60000000000002,1348,2696.2999999999997,3560.4000000000001,4652.8000000000002,4588.6999999999998,4885.3999999999996,4928.3000000000002,5293.8999999999996,5787.8000000000002,6113.8999999999996,6006.3000000000002,6328.6999999999998,7614.1999999999998,8779.1999999999989,10454.4,11865.6,12939.800000000001,15003.699999999999,14764,15219.5],"x":[4748,5113,5479,5844,6209,6574,6940,7305,7670,8035,8401,8766,9131,9496,9862,10227,10592,10957,11323,11688,12053,12418,12784,13149,13514,13879,14245,14610,14975,15340,15706,16071,16436,16801,17167,17532,17897,18262,18628,18993,19358],"y":[52.600000000000001,302.89999999999998,1103,2585.8000000000002,4274.3999999999996,5382.8999999999996,6358.6999999999998,8046.6999999999998,9704.2000000000007,11568,13730.4,17403.200000000001,18748.799999999999,19293.299999999999,18823.400000000001,21340.400000000001,23440.299999999999,23382.599999999999,22210.700000000001,20399.5,18601.599999999999,18463.599999999999,16413.299999999999,14165.9,10951.599999999999,7743.1000000000013,6133.8999999999996,4736.1999999999998,4200.2000000000007,3298.6999999999998,2800.3000000000011,2286.1999999999998,1857.6000000000004,1435.5999999999995,1297.7000000000007,844.30000000000109,758.79999999999927,557.89999999999964,658.70000000000073,502.39999999999964,537.10000000000036],"text":["tahun: 1983-01-01<br />pendapatan_infl:    52.6<br />format: CD","tahun: 1984-01-01<br />pendapatan_infl:   302.9<br />format: CD","tahun: 1985-01-01<br />pendapatan_infl:  1103.0<br />format: CD","tahun: 1986-01-01<br />pendapatan_infl:  2585.8<br />format: CD","tahun: 1987-01-01<br />pendapatan_infl:  4274.4<br />format: CD","tahun: 1988-01-01<br />pendapatan_infl:  5382.9<br />format: CD","tahun: 1989-01-01<br />pendapatan_infl:  6358.7<br />format: CD","tahun: 1990-01-01<br />pendapatan_infl:  8046.7<br />format: CD","tahun: 1991-01-01<br />pendapatan_infl:  9704.2<br />format: CD","tahun: 1992-01-01<br />pendapatan_infl: 11568.0<br />format: CD","tahun: 1993-01-01<br />pendapatan_infl: 13730.4<br />format: CD","tahun: 1994-01-01<br />pendapatan_infl: 17403.2<br />format: CD","tahun: 1995-01-01<br />pendapatan_infl: 18748.8<br />format: CD","tahun: 1996-01-01<br />pendapatan_infl: 19293.3<br />format: CD","tahun: 1997-01-01<br />pendapatan_infl: 18823.4<br />format: CD","tahun: 1998-01-01<br />pendapatan_infl: 21340.4<br />format: CD","tahun: 1999-01-01<br />pendapatan_infl: 23440.3<br />format: CD","tahun: 2000-01-01<br />pendapatan_infl: 23382.6<br />format: CD","tahun: 2001-01-01<br />pendapatan_infl: 22210.7<br />format: CD","tahun: 2002-01-01<br />pendapatan_infl: 20399.5<br />format: CD","tahun: 2003-01-01<br />pendapatan_infl: 18601.6<br />format: CD","tahun: 2004-01-01<br />pendapatan_infl: 18463.6<br />format: CD","tahun: 2005-01-01<br />pendapatan_infl: 16413.3<br />format: CD","tahun: 2006-01-01<br />pendapatan_infl: 14165.9<br />format: CD","tahun: 2007-01-01<br />pendapatan_infl: 10951.6<br />format: CD","tahun: 2008-01-01<br />pendapatan_infl:  7743.1<br />format: CD","tahun: 2009-01-01<br />pendapatan_infl:  6133.9<br />format: CD","tahun: 2010-01-01<br />pendapatan_infl:  4736.2<br />format: CD","tahun: 2011-01-01<br />pendapatan_infl:  4200.2<br />format: CD","tahun: 2012-01-01<br />pendapatan_infl:  3298.7<br />format: CD","tahun: 2013-01-01<br />pendapatan_infl:  2800.3<br />format: CD","tahun: 2014-01-01<br />pendapatan_infl:  2286.2<br />format: CD","tahun: 2015-01-01<br />pendapatan_infl:  1857.6<br />format: CD","tahun: 2016-01-01<br />pendapatan_infl:  1435.6<br />format: CD","tahun: 2017-01-01<br />pendapatan_infl:  1297.7<br />format: CD","tahun: 2018-01-01<br />pendapatan_infl:   844.3<br />format: CD","tahun: 2019-01-01<br />pendapatan_infl:   758.8<br />format: CD","tahun: 2020-01-01<br />pendapatan_infl:   557.9<br />format: CD","tahun: 2021-01-01<br />pendapatan_infl:   658.7<br />format: CD","tahun: 2022-01-01<br />pendapatan_infl:   502.4<br />format: CD","tahun: 2023-01-01<br />pendapatan_infl:   537.1<br />format: CD"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(238,116,35,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"CD","legendgroup":"CD","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5],"base":[0,-1.7,401.69999999999999,264.19999999999999,341.80000000000001,449.80000000000001,475.10000000000002,440.5,458.5,614.89999999999998,949.60000000000002,689,498.80000000000001,576.69999999999993,502.89999999999998,719,1323.8,2679.2999999999997,3548.7999999999997,4634.8999999999996,4583.6999999999998,4881,4924.1999999999998,5289.1999999999998,5783.5,6110.6999999999998,6001.6000000000004,6327.1999999999998,7613.9000000000005,8779,10454.4,11865.5,12939.4,15003.599999999999,14756.9],"x":[6574,6940,7305,7670,8035,8401,8766,9131,9496,9862,10227,10592,10957,11323,11688,12053,12418,12784,13149,13514,13879,14245,14610,14975,15340,15706,16071,16436,16801,17167,17532,17897,18262,18628,18993],"y":[25.199999999999999,1.7,14,78.5,97.900000000000034,96.599999999999966,115.29999999999995,221.70000000000005,357.5,517.69999999999993,398.49999999999989,406.79999999999995,252.49999999999994,136.60000000000002,33.200000000000045,59.600000000000023,24.200000000000045,17,11.600000000000364,17.900000000000546,5,4.3999999999996362,4.1000000000003638,4.6999999999998181,4.3000000000001819,3.1999999999998181,4.6999999999998181,1.5,0.2999999999992724,0.19999999999890861,0,0.1000000000003638,0.40000000000145519,0.1000000000003638,7.1000000000003638],"text":["tahun: 1988-01-01<br />pendapatan_infl:    25.2<br />format: CD Single","tahun: 1989-01-01<br />pendapatan_infl:     1.7<br />format: CD Single","tahun: 1990-01-01<br />pendapatan_infl:    14.0<br />format: CD Single","tahun: 1991-01-01<br />pendapatan_infl:    78.5<br />format: CD Single","tahun: 1992-01-01<br />pendapatan_infl:    97.9<br />format: CD Single","tahun: 1993-01-01<br />pendapatan_infl:    96.6<br />format: CD Single","tahun: 1994-01-01<br />pendapatan_infl:   115.3<br />format: CD Single","tahun: 1995-01-01<br />pendapatan_infl:   221.7<br />format: CD Single","tahun: 1996-01-01<br />pendapatan_infl:   357.5<br />format: CD Single","tahun: 1997-01-01<br />pendapatan_infl:   517.7<br />format: CD Single","tahun: 1998-01-01<br />pendapatan_infl:   398.5<br />format: CD Single","tahun: 1999-01-01<br />pendapatan_infl:   406.8<br />format: CD Single","tahun: 2000-01-01<br />pendapatan_infl:   252.5<br />format: CD Single","tahun: 2001-01-01<br />pendapatan_infl:   136.6<br />format: CD Single","tahun: 2002-01-01<br />pendapatan_infl:    33.2<br />format: CD Single","tahun: 2003-01-01<br />pendapatan_infl:    59.6<br />format: CD Single","tahun: 2004-01-01<br />pendapatan_infl:    24.2<br />format: CD Single","tahun: 2005-01-01<br />pendapatan_infl:    17.0<br />format: CD Single","tahun: 2006-01-01<br />pendapatan_infl:    11.6<br />format: CD Single","tahun: 2007-01-01<br />pendapatan_infl:    17.9<br />format: CD Single","tahun: 2008-01-01<br />pendapatan_infl:     5.0<br />format: CD Single","tahun: 2009-01-01<br />pendapatan_infl:     4.4<br />format: CD Single","tahun: 2010-01-01<br />pendapatan_infl:     4.1<br />format: CD Single","tahun: 2011-01-01<br />pendapatan_infl:     4.7<br />format: CD Single","tahun: 2012-01-01<br />pendapatan_infl:     4.3<br />format: CD Single","tahun: 2013-01-01<br />pendapatan_infl:     3.2<br />format: CD Single","tahun: 2014-01-01<br />pendapatan_infl:     4.7<br />format: CD Single","tahun: 2015-01-01<br />pendapatan_infl:     1.5<br />format: CD Single","tahun: 2016-01-01<br />pendapatan_infl:     0.3<br />format: CD Single","tahun: 2017-01-01<br />pendapatan_infl:     0.2<br />format: CD Single","tahun: 2018-01-01<br />pendapatan_infl:     0.0<br />format: CD Single","tahun: 2019-01-01<br />pendapatan_infl:     0.1<br />format: CD Single","tahun: 2020-01-01<br />pendapatan_infl:     0.4<br />format: CD Single","tahun: 2021-01-01<br />pendapatan_infl:     0.1<br />format: CD Single","tahun: 2022-01-01<br />pendapatan_infl:     7.1<br />format: CD Single"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(245,157,61,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"CD Single","legendgroup":"CD Single","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5],"base":[675.40000000000009,1297,2663.6999999999998,3540.5,4629.5999999999995,4579.3000000000002,4877.5999999999995,4921.8000000000002,5287.1999999999998,5781.6999999999998,6109.3999999999996,6000.6000000000004,6325.8999999999996,7612.4000000000005,8777.8999999999996,10453.4,11865,12939.1,15003.4,14756.699999999999],"x":[12053,12418,12784,13149,13514,13879,14245,14610,14975,15340,15706,16071,16436,16801,17167,17532,17897,18262,18628,18993],"y":[43.599999999999909,26.799999999999955,15.599999999999909,8.2999999999997272,5.3000000000001819,4.3999999999996362,3.4000000000005457,2.3999999999996362,2,1.8000000000001819,1.3000000000001819,1,1.3000000000001819,1.5,1.1000000000003638,1,0.5,0.2999999999992724,0.19999999999890861,0.2000000000007276],"text":["tahun: 2003-01-01<br />pendapatan_infl:    43.6<br />format: SACD","tahun: 2004-01-01<br />pendapatan_infl:    26.8<br />format: SACD","tahun: 2005-01-01<br />pendapatan_infl:    15.6<br />format: SACD","tahun: 2006-01-01<br />pendapatan_infl:     8.3<br />format: SACD","tahun: 2007-01-01<br />pendapatan_infl:     5.3<br />format: SACD","tahun: 2008-01-01<br />pendapatan_infl:     4.4<br />format: SACD","tahun: 2009-01-01<br />pendapatan_infl:     3.4<br />format: SACD","tahun: 2010-01-01<br />pendapatan_infl:     2.4<br />format: SACD","tahun: 2011-01-01<br />pendapatan_infl:     2.0<br />format: SACD","tahun: 2012-01-01<br />pendapatan_infl:     1.8<br />format: SACD","tahun: 2013-01-01<br />pendapatan_infl:     1.3<br />format: SACD","tahun: 2014-01-01<br />pendapatan_infl:     1.0<br />format: SACD","tahun: 2015-01-01<br />pendapatan_infl:     1.3<br />format: SACD","tahun: 2016-01-01<br />pendapatan_infl:     1.5<br />format: SACD","tahun: 2017-01-01<br />pendapatan_infl:     1.1<br />format: SACD","tahun: 2018-01-01<br />pendapatan_infl:     1.0<br />format: SACD","tahun: 2019-01-01<br />pendapatan_infl:     0.5<br />format: SACD","tahun: 2020-01-01<br />pendapatan_infl:     0.3<br />format: SACD","tahun: 2021-01-01<br />pendapatan_infl:     0.2<br />format: SACD","tahun: 2022-01-01<br />pendapatan_infl:     0.2<br />format: SACD"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(255,198,134,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"SACD","legendgroup":"SACD","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5],"base":[566.39999999999998,488.5,662.20000000000005,1286.5,2646.1999999999998,3536.9000000000001,4625.5,4577.6000000000004,4875.3000000000002,4920.5,5286.8000000000002,5781.5,-0.59999999999999998,5997.8000000000002,6318.8999999999996,7608.8000000000002,8777.5,10453,11863.5,12936.9,14996.9,14756.6],"x":[11323,11688,12053,12418,12784,13149,13514,13879,14245,14610,14975,15340,15706,16071,16436,16801,17167,17532,17897,18262,18628,18993],"y":[10.299999999999955,14.399999999999977,13.200000000000045,10.5,17.5,3.5999999999999091,4.0999999999994543,1.6999999999998181,2.2999999999992724,1.3000000000001819,0.3999999999996362,0.1999999999998181,0.59999999999999998,2.8000000000001819,7,3.6000000000003638,0.3999999999996362,0.3999999999996362,1.5,2.2000000000007276,6.5,0.099999999998544808],"text":["tahun: 2001-01-01<br />pendapatan_infl:    10.3<br />format: DVD Audio","tahun: 2002-01-01<br />pendapatan_infl:    14.4<br />format: DVD Audio","tahun: 2003-01-01<br />pendapatan_infl:    13.2<br />format: DVD Audio","tahun: 2004-01-01<br />pendapatan_infl:    10.5<br />format: DVD Audio","tahun: 2005-01-01<br />pendapatan_infl:    17.5<br />format: DVD Audio","tahun: 2006-01-01<br />pendapatan_infl:     3.6<br />format: DVD Audio","tahun: 2007-01-01<br />pendapatan_infl:     4.1<br />format: DVD Audio","tahun: 2008-01-01<br />pendapatan_infl:     1.7<br />format: DVD Audio","tahun: 2009-01-01<br />pendapatan_infl:     2.3<br />format: DVD Audio","tahun: 2010-01-01<br />pendapatan_infl:     1.3<br />format: DVD Audio","tahun: 2011-01-01<br />pendapatan_infl:     0.4<br />format: DVD Audio","tahun: 2012-01-01<br />pendapatan_infl:     0.2<br />format: DVD Audio","tahun: 2013-01-01<br />pendapatan_infl:     0.6<br />format: DVD Audio","tahun: 2014-01-01<br />pendapatan_infl:     2.8<br />format: DVD Audio","tahun: 2015-01-01<br />pendapatan_infl:     7.0<br />format: DVD Audio","tahun: 2016-01-01<br />pendapatan_infl:     3.6<br />format: DVD Audio","tahun: 2017-01-01<br />pendapatan_infl:     0.4<br />format: DVD Audio","tahun: 2018-01-01<br />pendapatan_infl:     0.4<br />format: DVD Audio","tahun: 2019-01-01<br />pendapatan_infl:     1.5<br />format: DVD Audio","tahun: 2020-01-01<br />pendapatan_infl:     2.2<br />format: DVD Audio","tahun: 2021-01-01<br />pendapatan_infl:     6.5<br />format: DVD Audio","tahun: 2022-01-01<br />pendapatan_infl:     0.1<br />format: DVD Audio"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(157,119,96,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"DVD Audio","legendgroup":"DVD Audio","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5],"base":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,307.10000000000002,1706.6999999999998,2855.0999999999999,3912.8999999999996,4255.8999999999996,4577.5999999999995,4672.3000000000002,5082.3000000000002,5626.6999999999998,5970.3999999999996,5882.3000000000002,6228.3999999999996,7536.5,8730.8999999999996,10418.5,11831.799999999999,12904.6,14974.5,14744.799999999999,15208.800000000001],"x":[6940,7305,7670,8035,8401,8766,9131,9496,9862,10227,10592,10957,11323,11688,12053,12418,12784,13149,13514,13879,14245,14610,14975,15340,15706,16071,16436,16801,17167,17532,17897,18262,18628,18993,19358],"y":[283.60000000000002,401.69999999999999,264.19999999999999,341.80000000000001,449.80000000000001,475.10000000000002,440.5,458.5,614.89999999999998,949.60000000000002,689,498.80000000000001,566.39999999999998,488.5,662.20000000000005,979.39999999999998,939.5,681.80000000000018,712.60000000000036,321.70000000000073,297.70000000000073,248.19999999999982,204.5,154.80000000000018,139,115.5,90.5,72.300000000000182,46.600000000000364,34.5,31.700000000000728,32.299999999999272,22.399999999999636,11.800000000001091,10.699999999998909],"text":["tahun: 1989-01-01<br />pendapatan_infl:   283.6<br />format: Music Video (Physical)","tahun: 1990-01-01<br />pendapatan_infl:   401.7<br />format: Music Video (Physical)","tahun: 1991-01-01<br />pendapatan_infl:   264.2<br />format: Music Video (Physical)","tahun: 1992-01-01<br />pendapatan_infl:   341.8<br />format: Music Video (Physical)","tahun: 1993-01-01<br />pendapatan_infl:   449.8<br />format: Music Video (Physical)","tahun: 1994-01-01<br />pendapatan_infl:   475.1<br />format: Music Video (Physical)","tahun: 1995-01-01<br />pendapatan_infl:   440.5<br />format: Music Video (Physical)","tahun: 1996-01-01<br />pendapatan_infl:   458.5<br />format: Music Video (Physical)","tahun: 1997-01-01<br />pendapatan_infl:   614.9<br />format: Music Video (Physical)","tahun: 1998-01-01<br />pendapatan_infl:   949.6<br />format: Music Video (Physical)","tahun: 1999-01-01<br />pendapatan_infl:   689.0<br />format: Music Video (Physical)","tahun: 2000-01-01<br />pendapatan_infl:   498.8<br />format: Music Video (Physical)","tahun: 2001-01-01<br />pendapatan_infl:   566.4<br />format: Music Video (Physical)","tahun: 2002-01-01<br />pendapatan_infl:   488.5<br />format: Music Video (Physical)","tahun: 2003-01-01<br />pendapatan_infl:   662.2<br />format: Music Video (Physical)","tahun: 2004-01-01<br />pendapatan_infl:   979.4<br />format: Music Video (Physical)","tahun: 2005-01-01<br />pendapatan_infl:   939.5<br />format: Music Video (Physical)","tahun: 2006-01-01<br />pendapatan_infl:   681.8<br />format: Music Video (Physical)","tahun: 2007-01-01<br />pendapatan_infl:   712.6<br />format: Music Video (Physical)","tahun: 2008-01-01<br />pendapatan_infl:   321.7<br />format: Music Video (Physical)","tahun: 2009-01-01<br />pendapatan_infl:   297.7<br />format: Music Video (Physical)","tahun: 2010-01-01<br />pendapatan_infl:   248.2<br />format: Music Video (Physical)","tahun: 2011-01-01<br />pendapatan_infl:   204.5<br />format: Music Video (Physical)","tahun: 2012-01-01<br />pendapatan_infl:   154.8<br />format: Music Video (Physical)","tahun: 2013-01-01<br />pendapatan_infl:   139.0<br />format: Music Video (Physical)","tahun: 2014-01-01<br />pendapatan_infl:   115.5<br />format: Music Video (Physical)","tahun: 2015-01-01<br />pendapatan_infl:    90.5<br />format: Music Video (Physical)","tahun: 2016-01-01<br />pendapatan_infl:    72.3<br />format: Music Video (Physical)","tahun: 2017-01-01<br />pendapatan_infl:    46.6<br />format: Music Video (Physical)","tahun: 2018-01-01<br />pendapatan_infl:    34.5<br />format: Music Video (Physical)","tahun: 2019-01-01<br />pendapatan_infl:    31.7<br />format: Music Video (Physical)","tahun: 2020-01-01<br />pendapatan_infl:    32.3<br />format: Music Video (Physical)","tahun: 2021-01-01<br />pendapatan_infl:    22.4<br />format: Music Video (Physical)","tahun: 2022-01-01<br />pendapatan_infl:    11.8<br />format: Music Video (Physical)","tahun: 2023-01-01<br />pendapatan_infl:    10.7<br />format: Music Video (Physical)"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(241,207,99,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Music Video (Physical)","legendgroup":"Music Video (Physical)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5],"base":[233.69999999999999,1495,2438.0999999999999,3181.8999999999996,3356.7999999999997,3520.5,3453.2000000000003,3631.7999999999997,4027.6999999999998,4358.8000000000002,4443.5,4860,6433.8000000000002,7923.1999999999998,9817.5,11392.6,12528.700000000001,14633.5,14493,15004.1],"x":[12418,12784,13149,13514,13879,14245,14610,14975,15340,15706,16071,16436,16801,17167,17532,17897,18262,18628,18993,19358],"y":[73.400000000000034,211.69999999999982,417,731,899.09999999999991,1057.0999999999995,1219.0999999999999,1450.5000000000005,1599,1611.5999999999995,1438.8000000000002,1368.3999999999996,1102.6999999999998,807.69999999999982,601,439.19999999999891,375.89999999999964,341,251.79999999999927,204.70000000000073],"text":["tahun: 2004-01-01<br />pendapatan_infl:    73.4<br />format: Download Album","tahun: 2005-01-01<br />pendapatan_infl:   211.7<br />format: Download Album","tahun: 2006-01-01<br />pendapatan_infl:   417.0<br />format: Download Album","tahun: 2007-01-01<br />pendapatan_infl:   731.0<br />format: Download Album","tahun: 2008-01-01<br />pendapatan_infl:   899.1<br />format: Download Album","tahun: 2009-01-01<br />pendapatan_infl:  1057.1<br />format: Download Album","tahun: 2010-01-01<br />pendapatan_infl:  1219.1<br />format: Download Album","tahun: 2011-01-01<br />pendapatan_infl:  1450.5<br />format: Download Album","tahun: 2012-01-01<br />pendapatan_infl:  1599.0<br />format: Download Album","tahun: 2013-01-01<br />pendapatan_infl:  1611.6<br />format: Download Album","tahun: 2014-01-01<br />pendapatan_infl:  1438.8<br />format: Download Album","tahun: 2015-01-01<br />pendapatan_infl:  1368.4<br />format: Download Album","tahun: 2016-01-01<br />pendapatan_infl:  1102.7<br />format: Download Album","tahun: 2017-01-01<br />pendapatan_infl:   807.7<br />format: Download Album","tahun: 2018-01-01<br />pendapatan_infl:   601.0<br />format: Download Album","tahun: 2019-01-01<br />pendapatan_infl:   439.2<br />format: Download Album","tahun: 2020-01-01<br />pendapatan_infl:   375.9<br />format: Download Album","tahun: 2021-01-01<br />pendapatan_infl:   341.0<br />format: Download Album","tahun: 2022-01-01<br />pendapatan_infl:   251.8<br />format: Download Album","tahun: 2023-01-01<br />pendapatan_infl:   204.7<br />format: Download Album"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(124,77,121,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Download Album","legendgroup":"Download Album","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5],"base":[11.1,928.19999999999993,1560.5999999999999,1990.0999999999999,1896,1855.9000000000001,1585.8,1569.5999999999999,1845.1000000000001,2300.8000000000002,2699.0999999999999,3336.2999999999997,5291,7093,9223.1000000000004,10912.299999999999,12163.300000000001,14331.099999999999,14270,14813.300000000001],"x":[12418,12784,13149,13514,13879,14245,14610,14975,15340,15706,16071,16436,16801,17167,17532,17897,18262,18628,18993,19358],"y":[222.59999999999999,566.80000000000007,877.5,1191.7999999999997,1460.7999999999997,1664.5999999999999,1867.4000000000003,2062.1999999999998,2182.5999999999995,2058,1744.4000000000001,1523.7000000000003,1142.8000000000002,830.19999999999982,594.39999999999964,480.30000000000109,365.39999999999964,302.40000000000146,223,190.79999999999927],"text":["tahun: 2004-01-01<br />pendapatan_infl:   222.6<br />format: Download Single","tahun: 2005-01-01<br />pendapatan_infl:   566.8<br />format: Download Single","tahun: 2006-01-01<br />pendapatan_infl:   877.5<br />format: Download Single","tahun: 2007-01-01<br />pendapatan_infl:  1191.8<br />format: Download Single","tahun: 2008-01-01<br />pendapatan_infl:  1460.8<br />format: Download Single","tahun: 2009-01-01<br />pendapatan_infl:  1664.6<br />format: Download Single","tahun: 2010-01-01<br />pendapatan_infl:  1867.4<br />format: Download Single","tahun: 2011-01-01<br />pendapatan_infl:  2062.2<br />format: Download Single","tahun: 2012-01-01<br />pendapatan_infl:  2182.6<br />format: Download Single","tahun: 2013-01-01<br />pendapatan_infl:  2058.0<br />format: Download Single","tahun: 2014-01-01<br />pendapatan_infl:  1744.4<br />format: Download Single","tahun: 2015-01-01<br />pendapatan_infl:  1523.7<br />format: Download Single","tahun: 2016-01-01<br />pendapatan_infl:  1142.8<br />format: Download Single","tahun: 2017-01-01<br />pendapatan_infl:   830.2<br />format: Download Single","tahun: 2018-01-01<br />pendapatan_infl:   594.4<br />format: Download Single","tahun: 2019-01-01<br />pendapatan_infl:   480.3<br />format: Download Single","tahun: 2020-01-01<br />pendapatan_infl:   365.4<br />format: Download Single","tahun: 2021-01-01<br />pendapatan_infl:   302.4<br />format: Download Single","tahun: 2022-01-01<br />pendapatan_infl:   223.0<br />format: Download Single","tahun: 2023-01-01<br />pendapatan_infl:   190.8<br />format: Download Single"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(155,106,151,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Download Single","legendgroup":"Download Single","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5],"base":[270.40000000000003,391.09999999999997,438.5,513.20000000000005,857.70000000000005,959.79999999999995,1195.5,1651.3000000000002,2172.5999999999999,2613.8000000000002,3266.0999999999999,5219.5,7048.8999999999996,9192.8000000000011,10887.699999999999,12139.5,14313.5,14258.5,14802.800000000001],"x":[12784,13149,13514,13879,14245,14610,14975,15340,15706,16071,16436,16801,17167,17532,17897,18262,18628,18993,19358],"y":[657.79999999999995,1169.5,1551.5999999999999,1382.8,998.20000000000005,626,374.09999999999991,193.79999999999995,128.20000000000027,85.299999999999727,70.199999999999818,71.5,44.100000000000364,30.299999999999272,24.600000000000364,23.800000000001091,17.599999999998545,11.5,10.5],"text":["tahun: 2005-01-01<br />pendapatan_infl:   657.8<br />format: Ringtones & Ringbacks","tahun: 2006-01-01<br />pendapatan_infl:  1169.5<br />format: Ringtones & Ringbacks","tahun: 2007-01-01<br />pendapatan_infl:  1551.6<br />format: Ringtones & Ringbacks","tahun: 2008-01-01<br />pendapatan_infl:  1382.8<br />format: Ringtones & Ringbacks","tahun: 2009-01-01<br />pendapatan_infl:   998.2<br />format: Ringtones & Ringbacks","tahun: 2010-01-01<br />pendapatan_infl:   626.0<br />format: Ringtones & Ringbacks","tahun: 2011-01-01<br />pendapatan_infl:   374.1<br />format: Ringtones & Ringbacks","tahun: 2012-01-01<br />pendapatan_infl:   193.8<br />format: Ringtones & Ringbacks","tahun: 2013-01-01<br />pendapatan_infl:   128.2<br />format: Ringtones & Ringbacks","tahun: 2014-01-01<br />pendapatan_infl:    85.3<br />format: Ringtones & Ringbacks","tahun: 2015-01-01<br />pendapatan_infl:    70.2<br />format: Ringtones & Ringbacks","tahun: 2016-01-01<br />pendapatan_infl:    71.5<br />format: Ringtones & Ringbacks","tahun: 2017-01-01<br />pendapatan_infl:    44.1<br />format: Ringtones & Ringbacks","tahun: 2018-01-01<br />pendapatan_infl:    30.3<br />format: Ringtones & Ringbacks","tahun: 2019-01-01<br />pendapatan_infl:    24.6<br />format: Ringtones & Ringbacks","tahun: 2020-01-01<br />pendapatan_infl:    23.8<br />format: Ringtones & Ringbacks","tahun: 2021-01-01<br />pendapatan_infl:    17.6<br />format: Ringtones & Ringbacks","tahun: 2022-01-01<br />pendapatan_infl:    11.5<br />format: Ringtones & Ringbacks","tahun: 2023-01-01<br />pendapatan_infl:    10.5<br />format: Ringtones & Ringbacks"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(190,137,172,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Ringtones & Ringbacks","legendgroup":"Ringtones & Ringbacks","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5],"base":[264.60000000000002,361.30000000000001,397.09999999999997,454.80000000000001,799.60000000000002,908.70000000000005,1151.5999999999999,1623.6000000000001,2150.6999999999998,2596.3000000000002,3257.9000000000001,5214.1000000000004,7045.3999999999996,9190.1000000000004,10885.5,12137.4,14311.299999999999,14257.099999999999],"x":[12784,13149,13514,13879,14245,14610,14975,15340,15706,16071,16436,16801,17167,17532,17897,18262,18628,18993],"y":[5.8000000000000114,29.799999999999955,41.400000000000034,58.400000000000034,58.100000000000023,51.099999999999909,43.900000000000091,27.700000000000045,21.900000000000091,17.5,8.1999999999998181,5.3999999999996362,3.5,2.7000000000007276,2.1999999999989086,2.1000000000003638,2.2000000000007276,1.4000000000014552],"text":["tahun: 2005-01-01<br />pendapatan_infl:     5.8<br />format: Download Music Video","tahun: 2006-01-01<br />pendapatan_infl:    29.8<br />format: Download Music Video","tahun: 2007-01-01<br />pendapatan_infl:    41.4<br />format: Download Music Video","tahun: 2008-01-01<br />pendapatan_infl:    58.4<br />format: Download Music Video","tahun: 2009-01-01<br />pendapatan_infl:    58.1<br />format: Download Music Video","tahun: 2010-01-01<br />pendapatan_infl:    51.1<br />format: Download Music Video","tahun: 2011-01-01<br />pendapatan_infl:    43.9<br />format: Download Music Video","tahun: 2012-01-01<br />pendapatan_infl:    27.7<br />format: Download Music Video","tahun: 2013-01-01<br />pendapatan_infl:    21.9<br />format: Download Music Video","tahun: 2014-01-01<br />pendapatan_infl:    17.5<br />format: Download Music Video","tahun: 2015-01-01<br />pendapatan_infl:     8.2<br />format: Download Music Video","tahun: 2016-01-01<br />pendapatan_infl:     5.4<br />format: Download Music Video","tahun: 2017-01-01<br />pendapatan_infl:     3.5<br />format: Download Music Video","tahun: 2018-01-01<br />pendapatan_infl:     2.7<br />format: Download Music Video","tahun: 2019-01-01<br />pendapatan_infl:     2.2<br />format: Download Music Video","tahun: 2020-01-01<br />pendapatan_infl:     2.1<br />format: Download Music Video","tahun: 2021-01-01<br />pendapatan_infl:     2.2<br />format: Download Music Video","tahun: 2022-01-01<br />pendapatan_infl:     1.4<br />format: Download Music Video"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(213,165,196,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Download Music Video","legendgroup":"Download Music Video","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5],"base":[5192.3000000000002,7024.3999999999996,9166,10859.9,12115.200000000001,14276.299999999999,14230.099999999999,14774.700000000001],"x":[16801,17167,17532,17897,18262,18628,18993,19358],"y":[21.800000000000182,21,24.100000000000364,25.600000000000364,22.199999999998909,35,27,28.100000000000364],"text":["tahun: 2016-01-01<br />pendapatan_infl:    21.8<br />format: Other Digital","tahun: 2017-01-01<br />pendapatan_infl:    21.0<br />format: Other Digital","tahun: 2018-01-01<br />pendapatan_infl:    24.1<br />format: Other Digital","tahun: 2019-01-01<br />pendapatan_infl:    25.6<br />format: Other Digital","tahun: 2020-01-01<br />pendapatan_infl:    22.2<br />format: Other Digital","tahun: 2021-01-01<br />pendapatan_infl:    35.0<br />format: Other Digital","tahun: 2022-01-01<br />pendapatan_infl:    27.0<br />format: Other Digital","tahun: 2023-01-01<br />pendapatan_infl:    28.1<br />format: Other Digital"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(239,201,230,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Other Digital","legendgroup":"Other Digital","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5],"base":[513.79999999999995,645,885.39999999999998,1370.7,1902.5999999999999,2352.0999999999999,2997,4919.6000000000004,6735.8999999999996,8819.5,10524.9,11802.9,13931.599999999999,13831.9,14363.800000000001],"x":[14245,14610,14975,15340,15706,16071,16436,16801,17167,17532,17897,18262,18628,18993,19358],"y":[285.80000000000007,263.70000000000005,266.19999999999993,252.90000000000009,248.09999999999991,244.20000000000027,260.90000000000009,272.69999999999982,288.5,346.5,335,312.30000000000109,344.70000000000073,398.19999999999891,410.89999999999964],"text":["tahun: 2009-01-01<br />pendapatan_infl:   285.8<br />format: Synchronization","tahun: 2010-01-01<br />pendapatan_infl:   263.7<br />format: Synchronization","tahun: 2011-01-01<br />pendapatan_infl:   266.2<br />format: Synchronization","tahun: 2012-01-01<br />pendapatan_infl:   252.9<br />format: Synchronization","tahun: 2013-01-01<br />pendapatan_infl:   248.1<br />format: Synchronization","tahun: 2014-01-01<br />pendapatan_infl:   244.2<br />format: Synchronization","tahun: 2015-01-01<br />pendapatan_infl:   260.9<br />format: Synchronization","tahun: 2016-01-01<br />pendapatan_infl:   272.7<br />format: Synchronization","tahun: 2017-01-01<br />pendapatan_infl:   288.5<br />format: Synchronization","tahun: 2018-01-01<br />pendapatan_infl:   346.5<br />format: Synchronization","tahun: 2019-01-01<br />pendapatan_infl:   335.0<br />format: Synchronization","tahun: 2020-01-01<br />pendapatan_infl:   312.3<br />format: Synchronization","tahun: 2021-01-01<br />pendapatan_infl:   344.7<br />format: Synchronization","tahun: 2022-01-01<br />pendapatan_infl:   398.2<br />format: Synchronization","tahun: 2023-01-01<br />pendapatan_infl:   410.9<br />format: Synchronization"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(187,177,172,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Synchronization","legendgroup":"Synchronization","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5],"base":[31.800000000000001,49.600000000000001,53.200000000000003,141.5,220.90000000000001,348.19999999999999,549.70000000000005,840,1061.0999999999999,1360.7,1510,2143.8000000000002,2559.5,3220.6999999999998,3285,3618.0999999999999,4302.8000000000002,4275,4214.1000000000004],"x":[12784,13149,13514,13879,14245,14610,14975,15340,15706,16071,16436,16801,17167,17532,17897,18262,18628,18993,19358],"y":[232.80000000000001,311.69999999999999,343.89999999999998,313.30000000000001,292.89999999999998,296.80000000000001,335.69999999999993,530.70000000000005,841.5,991.39999999999986,1487,2775.8000000000002,4176.3999999999996,5598.8000000000002,7239.8999999999996,8184.7999999999993,9628.7999999999993,9556.8999999999996,10149.700000000001],"text":["tahun: 2005-01-01<br />pendapatan_infl:   232.8<br />format: Paid Subscription","tahun: 2006-01-01<br />pendapatan_infl:   311.7<br />format: Paid Subscription","tahun: 2007-01-01<br />pendapatan_infl:   343.9<br />format: Paid Subscription","tahun: 2008-01-01<br />pendapatan_infl:   313.3<br />format: Paid Subscription","tahun: 2009-01-01<br />pendapatan_infl:   292.9<br />format: Paid Subscription","tahun: 2010-01-01<br />pendapatan_infl:   296.8<br />format: Paid Subscription","tahun: 2011-01-01<br />pendapatan_infl:   335.7<br />format: Paid Subscription","tahun: 2012-01-01<br />pendapatan_infl:   530.7<br />format: Paid Subscription","tahun: 2013-01-01<br />pendapatan_infl:   841.5<br />format: Paid Subscription","tahun: 2014-01-01<br />pendapatan_infl:   991.4<br />format: Paid Subscription","tahun: 2015-01-01<br />pendapatan_infl:  1487.0<br />format: Paid Subscription","tahun: 2016-01-01<br />pendapatan_infl:  2775.8<br />format: Paid Subscription","tahun: 2017-01-01<br />pendapatan_infl:  4176.4<br />format: Paid Subscription","tahun: 2018-01-01<br />pendapatan_infl:  5598.8<br />format: Paid Subscription","tahun: 2019-01-01<br />pendapatan_infl:  7239.9<br />format: Paid Subscription","tahun: 2020-01-01<br />pendapatan_infl:  8184.8<br />format: Paid Subscription","tahun: 2021-01-01<br />pendapatan_infl:  9628.8<br />format: Paid Subscription","tahun: 2022-01-01<br />pendapatan_infl:  9556.9<br />format: Paid Subscription","tahun: 2023-01-01<br />pendapatan_infl: 10149.7<br />format: Paid Subscription"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(36,105,61,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Paid Subscription","legendgroup":"Paid Subscription","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5],"base":[395.5,613.10000000000002,772.20000000000005,995.39999999999998,1031.8,1538.5,1795.9000000000001,2307.4000000000001,2085.3000000000002,2209.3000000000002,2353.5999999999999,2377.9000000000001,2349.5999999999999],"x":[14975,15340,15706,16071,16436,16801,17167,17532,17897,18262,18628,18993,19358],"y":[154.20000000000005,226.89999999999998,288.89999999999986,365.30000000000007,478.20000000000005,605.30000000000018,763.59999999999991,913.29999999999973,1199.6999999999998,1408.7999999999997,1949.2000000000003,1897.0999999999999,1864.5000000000005],"text":["tahun: 2011-01-01<br />pendapatan_infl:   154.2<br />format: On-Demand Streaming (Ad-Supported)","tahun: 2012-01-01<br />pendapatan_infl:   226.9<br />format: On-Demand Streaming (Ad-Supported)","tahun: 2013-01-01<br />pendapatan_infl:   288.9<br />format: On-Demand Streaming (Ad-Supported)","tahun: 2014-01-01<br />pendapatan_infl:   365.3<br />format: On-Demand Streaming (Ad-Supported)","tahun: 2015-01-01<br />pendapatan_infl:   478.2<br />format: On-Demand Streaming (Ad-Supported)","tahun: 2016-01-01<br />pendapatan_infl:   605.3<br />format: On-Demand Streaming (Ad-Supported)","tahun: 2017-01-01<br />pendapatan_infl:   763.6<br />format: On-Demand Streaming (Ad-Supported)","tahun: 2018-01-01<br />pendapatan_infl:   913.3<br />format: On-Demand Streaming (Ad-Supported)","tahun: 2019-01-01<br />pendapatan_infl:  1199.7<br />format: On-Demand Streaming (Ad-Supported)","tahun: 2020-01-01<br />pendapatan_infl:  1408.8<br />format: On-Demand Streaming (Ad-Supported)","tahun: 2021-01-01<br />pendapatan_infl:  1949.2<br />format: On-Demand Streaming (Ad-Supported)","tahun: 2022-01-01<br />pendapatan_infl:  1897.1<br />format: On-Demand Streaming (Ad-Supported)","tahun: 2023-01-01<br />pendapatan_infl:  1864.5<br />format: On-Demand Streaming (Ad-Supported)"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(57,137,73,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"On-Demand Streaming (Ad-Supported)","legendgroup":"On-Demand Streaming (Ad-Supported)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5],"base":[1448.8000000000002,1517.5,2054.8000000000002,1838.2,1960.6000000000001,2124.8000000000002,2105.6999999999998,2031.8999999999999],"x":[16801,17167,17532,17897,18262,18628,18993,19358],"y":[89.699999999999818,278.40000000000009,252.59999999999991,247.10000000000014,248.70000000000005,228.79999999999973,272.20000000000027,317.70000000000005],"text":["tahun: 2016-01-01<br />pendapatan_infl:    89.7<br />format: Other Ad-Supported Streaming","tahun: 2017-01-01<br />pendapatan_infl:   278.4<br />format: Other Ad-Supported Streaming","tahun: 2018-01-01<br />pendapatan_infl:   252.6<br />format: Other Ad-Supported Streaming","tahun: 2019-01-01<br />pendapatan_infl:   247.1<br />format: Other Ad-Supported Streaming","tahun: 2020-01-01<br />pendapatan_infl:   248.7<br />format: Other Ad-Supported Streaming","tahun: 2021-01-01<br />pendapatan_infl:   228.8<br />format: Other Ad-Supported Streaming","tahun: 2022-01-01<br />pendapatan_infl:   272.2<br />format: Other Ad-Supported Streaming","tahun: 2023-01-01<br />pendapatan_infl:   317.7<br />format: Other Ad-Supported Streaming"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(97,170,87,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Other Ad-Supported Streaming","legendgroup":"Other Ad-Supported Streaming","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5],"base":[0,0,0,0,0,0,0,0,0,0,0,0,326.60000000000002,707,898.60000000000002,755.79999999999995,845.20000000000005,1008.7,1106.8,1027.0999999999999],"x":[12418,12784,13149,13514,13879,14245,14610,14975,15340,15706,16071,16436,16801,17167,17532,17897,18262,18628,18993,19358],"y":[11.1,31.800000000000001,49.600000000000001,53.200000000000003,141.5,220.90000000000001,348.19999999999999,395.5,613.10000000000002,772.20000000000005,995.39999999999998,1031.8,1122.2000000000003,810.5,1156.2000000000003,1082.4000000000001,1115.4000000000001,1116.1000000000001,998.89999999999986,1004.8],"text":["tahun: 2004-01-01<br />pendapatan_infl:    11.1<br />format: SoundExchange Distributions","tahun: 2005-01-01<br />pendapatan_infl:    31.8<br />format: SoundExchange Distributions","tahun: 2006-01-01<br />pendapatan_infl:    49.6<br />format: SoundExchange Distributions","tahun: 2007-01-01<br />pendapatan_infl:    53.2<br />format: SoundExchange Distributions","tahun: 2008-01-01<br />pendapatan_infl:   141.5<br />format: SoundExchange Distributions","tahun: 2009-01-01<br />pendapatan_infl:   220.9<br />format: SoundExchange Distributions","tahun: 2010-01-01<br />pendapatan_infl:   348.2<br />format: SoundExchange Distributions","tahun: 2011-01-01<br />pendapatan_infl:   395.5<br />format: SoundExchange Distributions","tahun: 2012-01-01<br />pendapatan_infl:   613.1<br />format: SoundExchange Distributions","tahun: 2013-01-01<br />pendapatan_infl:   772.2<br />format: SoundExchange Distributions","tahun: 2014-01-01<br />pendapatan_infl:   995.4<br />format: SoundExchange Distributions","tahun: 2015-01-01<br />pendapatan_infl:  1031.8<br />format: SoundExchange Distributions","tahun: 2016-01-01<br />pendapatan_infl:  1122.2<br />format: SoundExchange Distributions","tahun: 2017-01-01<br />pendapatan_infl:   810.5<br />format: SoundExchange Distributions","tahun: 2018-01-01<br />pendapatan_infl:  1156.2<br />format: SoundExchange Distributions","tahun: 2019-01-01<br />pendapatan_infl:  1082.4<br />format: SoundExchange Distributions","tahun: 2020-01-01<br />pendapatan_infl:  1115.4<br />format: SoundExchange Distributions","tahun: 2021-01-01<br />pendapatan_infl:  1116.1<br />format: SoundExchange Distributions","tahun: 2022-01-01<br />pendapatan_infl:   998.9<br />format: SoundExchange Distributions","tahun: 2023-01-01<br />pendapatan_infl:  1004.8<br />format: SoundExchange Distributions"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(125,196,112,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"SoundExchange Distributions","legendgroup":"SoundExchange Distributions","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[328.5,328.5,328.5,328.5,328.5,328.5,328.5,328.5],"base":[0,0,0,0,0,0,0,5.7000000000000002],"x":[16801,17167,17532,17897,18262,18628,18993,19358],"y":[326.60000000000002,707,898.60000000000002,755.79999999999995,845.20000000000005,1008.7,1106.8,1021.3999999999999],"text":["tahun: 2016-01-01<br />pendapatan_infl:   326.6<br />format: Limited Tier Paid Subscription","tahun: 2017-01-01<br />pendapatan_infl:   707.0<br />format: Limited Tier Paid Subscription","tahun: 2018-01-01<br />pendapatan_infl:   898.6<br />format: Limited Tier Paid Subscription","tahun: 2019-01-01<br />pendapatan_infl:   755.8<br />format: Limited Tier Paid Subscription","tahun: 2020-01-01<br />pendapatan_infl:   845.2<br />format: Limited Tier Paid Subscription","tahun: 2021-01-01<br />pendapatan_infl:  1008.7<br />format: Limited Tier Paid Subscription","tahun: 2022-01-01<br />pendapatan_infl:  1106.8<br />format: Limited Tier Paid Subscription","tahun: 2023-01-01<br />pendapatan_infl:  1021.4<br />format: Limited Tier Paid Subscription"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(180,224,167,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Limited Tier Paid Subscription","legendgroup":"Limited Tier Paid Subscription","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":328.5,"base":0,"x":[19358],"y":[5.7000000000000002],"text":"tahun: 2023-01-01<br />pendapatan_infl:     5.7<br />format: NA","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(127,127,127,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"NA","legendgroup":"NA","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":46.522577371892446,"r":7.3059360730593621,"b":28.330796549974643,"l":54.794520547945211},"font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"title":{"text":"<b> Pendapatan Industri Musik di AS Berdasarkan Format <\/b>","font":{"color":"rgba(0,0,0,1)","family":"","size":17.534246575342468},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[2.2249999999999091,20451.775000000001],"tickmode":"array","ticktext":["1980","1990","2000","2010","2020"],"tickvals":[3652,7305,10957,14610,18262],"categoryorder":"array","categoryarray":["1980","1990","2000","2010","2020"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716894984},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"","font":{"color":null,"family":null,"size":0}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-1343.29,28008.889999999999],"tickmode":"array","ticktext":["0","10000","20000"],"tickvals":[0,10000,20000],"categoryorder":"array","categoryarray":["0","10000","20000"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"Pendapatan<br />(juta dolar AS)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716894984},"title":{"text":"Format","font":{"color":null,"family":null,"size":0}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"375c7a783c95":{"x":{},"y":{},"fill":{},"type":"bar"}},"cur_data":"375c7a783c95","visdat":{"375c7a783c95":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotly-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Gambar&nbsp;4: Diagram batang menjadi interaktif dengan {plotly}
+</figcaption></figure>
+</div>
+</div>
+<p>Kita dapat menyorot batang-batang pada Gambar&nbsp;4 untuk melihat informasi detailnya. Misalnya, kita dapat mengarahkan kursor ke batang berwarna ungu tua pada tahun 2010. Di situ kita dapat melihat bahwa besarnya pendapatan industri musik dari format download album pada tahun itu adalah 1219,1 juta dolar AS.</p>
+<p>Selain itu, kita dapat mengklik satu atau lebih item legenda untuk menghilangkan data yang bersangkutan dari diagram. Kita juga dapat mengklik dua kali item legenda untuk mengisolasinya. Fitur-fitur interaktivitas ini memudahkan kita dalam membaca dan menginterpretasi data.</p>
+</section><section id="sec-memvisualisasikan-data-dengan-observable-js" class="level2"><h2 class="anchored" data-anchor-id="sec-memvisualisasikan-data-dengan-observable-js">Memvisualisasikan Data dengan Observable JS</h2>
+<p>Pada Bagian&nbsp;2 dan Bagian&nbsp;3 kita telah memvisualisasikan data pendapatan industri musik dengan menggunakan pemrograman R. Sekarang, kita akan memvisualisasikannya dengan <a href="https://observablehq.com/" class="external" target="_blank">Observable JS</a>, khususnya <a href="https://observablehq.com/plot/" class="external" target="_blank" title="The JavaScript library for exploratory data visualization">Plot</a>.</p>
+<p>Pertama, kita impor data dengan menggunakan <code>d3.csv()</code>. Kita masukkan alamat url data kita ke dalam fungsi tersebut. Kita gunakan fungsi <code>d3.autoType</code> untuk mengkonversi variabel-variabel dalam data kita ke dalam Date dan numerik secara otomatis. Kita simpan data tersebut dengan nama <code>pendapatanMusik</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18" data-startfrom="295" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 294;"><span id="cb18-295">csvUrl <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/refs/heads/main/pos/2025-01-pendapatan-musik/aset/pendapatan_as_riaa.csv"</span></span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19" data-startfrom="301" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 300;"><span id="cb19-301">pendapatanMusik <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> d3<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">csv</span>(csvUrl<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> d3<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">autoType</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<p>Setelah itu, kita visualisasikan data tersebut dengan menggunakan tiga objek geometris: rectY, ruleY, dan axisX. Objek geometris rectY kita gunakan untuk membuat persegi panjang vertikal dengan <code>y: "pendapatan_infl"</code>, <code>x: "tahun"</code>, <code>fill: "format"</code>. Kita atur agar persegi panjang tersebut interaktif dengan menambahkan <code>tip: true</code>. Objek geometris ruleY kita gunakan untuk membuat garis horizontal yang memotong sumbu-<img src="https://latex.codecogs.com/png.latex?y"> di <img src="https://latex.codecogs.com/png.latex?y%20=%200">. Garis itu adalah sumbu-<img src="https://latex.codecogs.com/png.latex?x">. Terakhir, kita atur agar tik-tik pada sumbu-<img src="https://latex.codecogs.com/png.latex?x"> dibuat dengan selang lima tahunan. Pengaturan ini kita lakukan pada objek geometris axisX.</p>
+<p>Kita dapat mengatur legenda warnanya pada <code>color</code>. Kita atur <code>legend: true</code> untuk menampilkan legendanya dan <code>columns: 4</code> untuk mengatur banyaknya kolom dalam penyajian item-item legenda tersebut. Kita juga dapat melakukan pengaturan lebih lanjut terhadap <code>x</code>, <code>y</code>, <code>caption</code>, <code>subtitle</code>, dan <code>title</code>. Hasilnya disajikan pada Gambar&nbsp;5.</p>
+<div id="fig-obs-plot-dasar" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-obs-plot-dasar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20" data-startfrom="313" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 312;"><span id="cb20-313">Plot<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">plot</span>({</span>
+<span id="cb20-314">  <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">x</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> {<span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">label</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Tahun"</span>}<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb20-315">  <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">y</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> {</span>
+<span id="cb20-316">    <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">grid</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">true</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb20-317">    <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">label</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Pendapatan (juta dolar AS)"</span></span>
+<span id="cb20-318">  }<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb20-319">  <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">color</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> {</span>
+<span id="cb20-320">    <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">legend</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">true</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb20-321">    <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">columns</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span></span>
+<span id="cb20-322">}<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb20-323">  <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">marks</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> [</span>
+<span id="cb20-324">    Plot<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">barY</span>(pendapatanMusik<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span>{</span>
+<span id="cb20-325">      <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">y</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"pendapatan_infl"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb20-326">      <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">x</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"tahun"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb20-327">      <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">fill</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"format"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb20-328">      <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">order</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">null</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb20-329">      <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">tip</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">true</span></span>
+<span id="cb20-330">    })<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb20-331">    Plot<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ruleY</span>([<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>])<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb20-332">    Plot<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">axisX</span>({<span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">ticks</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"5 years"</span>})</span>
+<span id="cb20-333">  ]<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb20-334">  <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">caption</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Data: Recording Industry Association of America (RIAA)"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb20-335">  <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">subtitle</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Disesuaikan dengan Inflasi, Nilai Dolar Tahun 2023"</span></span>
+<span id="cb20-336">})</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-3" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-obs-plot-dasar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Gambar&nbsp;5: Diagram batang yang dibuat dengan Observable Plot
+</figcaption></figure>
+</div>
+<p><em>Alright!</em> Kita mendapatkan Gambar&nbsp;5 yang secara fungsi serupa dengan Gambar&nbsp;4. Selanjutnya kita akan memodifikasi diagram tersebut dalam hal tampilan dan interaktivitasnya. Untuk tampilan, kita akan mengatur warnanya agar sama dengan diagram pada Gambar&nbsp;3 dan Gambar&nbsp;4. Kita juga akan menambahkan interaktivitas pada diagram tersebut dengan menambahkan beberapa input.</p>
+</section><section id="sec-interaktivitas-input-observable" class="level2"><h2 class="anchored" data-anchor-id="sec-interaktivitas-input-observable">Menambahkan Interaktivitas dengan Input Observable</h2>
+<p>Kita tambahkan interaktivitas terhadap Gambar&nbsp;5 dengan beberapa <a href="https://observablehq.com/documentation/inputs/overview" class="external" target="_blank">input Observable</a>. Ada empat input yang dapat kita tambahkan. Deskripsi keempat input tersebut adalah sebagai berikut.</p>
+<ul>
+<li><p>Input pendapatan. Input ini menyediakan pilihan bagi pengguna untuk memilih jenis pendapatan yang divisualisasikan—apakah yang disesuaikan dengan inflasi atau yang tidak.</p></li>
+<li><p>Input format. Input ini memberikan keleluasaan bagi pengguna untuk memilih format-format apa yang akan divisualisasikan.</p></li>
+<li><p>Input rentang tahun. Input ini dapat digunakan pengguna untuk memilih rentang tahun terhadap data yang divisualisasikan. Untuk melakukannya, kita sediakan dua input. Kedua input ini digunakan sebagai batas tahun pertama dan kedua.</p></li>
+</ul>
+<p>Setelah penambahan input-input tersebut, diagram batang interaktifnya disajikan pada Gambar&nbsp;6.</p>
+<details class="code-fold hidden"><summary>Kode</summary><div class="sourceCode cell-code hidden" id="cb21" data-startfrom="363" data-source-offset="-1" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 362;"><span id="cb21-363">viewof pendapatanTerpilih <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> Inputs<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">radio</span>(</span>
+<span id="cb21-364">  <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">new</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">Map</span>([</span>
+<span id="cb21-365">    [<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Tidak disesuaikan dengan inflasi"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"pendapatan"</span>]<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb21-366">    [<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Disesuaikan dengan inflasi"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"pendapatan_infl"</span>]</span>
+<span id="cb21-367">  ])<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb21-368">  {<span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">label</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Pendapatan"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">value</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"pendapatan_infl"</span>}</span>
+<span id="cb21-369">)</span>
+<span id="cb21-370">viewof formatTerpilih <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> Inputs<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">select</span>(daftarFormat<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> {</span>
+<span id="cb21-371">  <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">multiple</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">true</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> </span>
+<span id="cb21-372">  <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">label</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Format"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> </span>
+<span id="cb21-373">  <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">value</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> daftarFormat</span>
+<span id="cb21-374">})</span>
+<span id="cb21-375">viewof tahun1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> Inputs<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">range</span>([<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1973</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2023</span>]<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> {<span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">value</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1973</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">step</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">label</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Tahun (batas 1)"</span>})</span>
+<span id="cb21-376">viewof tahun2 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> Inputs<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">range</span>([<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1973</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2023</span>]<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> {<span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">value</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2023</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">step</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">label</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Tahun (batas 2)"</span>})</span></code></pre></div>
+</details><details class="code-fold hidden"><summary>Kode</summary><div class="sourceCode cell-code hidden" id="cb22" data-startfrom="383" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 382;"><span id="cb22-383">Plot<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">plot</span>({</span>
+<span id="cb22-384">  <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">x</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> {<span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">label</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Tahun"</span>}<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb22-385">  <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">y</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> {</span>
+<span id="cb22-386">    <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">grid</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">true</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb22-387">    <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">label</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Pendapatan (juta dolar AS)"</span></span>
+<span id="cb22-388">  }<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb22-389">  <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">color</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> {</span>
+<span id="cb22-390">    <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">legend</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">true</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb22-391">    <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">label</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Format"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb22-392">    <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">columns</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb22-393">    <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">domain</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> formatTerpilih<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb22-394">    <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">range</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> warnaTerpilih</span>
+<span id="cb22-395">  }<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb22-396">  <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">style</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> {<span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">width</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"100%"</span>}<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb22-397">  <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">marks</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> [</span>
+<span id="cb22-398">    Plot<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">barY</span>(dataTerpilih<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb22-399">      {<span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">y</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> pendapatanTerpilih<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">x</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"tahun"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">fill</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"format"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">tip</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">true</span>} </span>
+<span id="cb22-400">    )<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb22-401">    Plot<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ruleY</span>([<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>])<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb22-402">    Plot<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">axisX</span>({<span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">ticks</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"5 years"</span>})</span>
+<span id="cb22-403">  ]<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb22-404">  <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">caption</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Data: Recording Industry Association of America (RIAA)"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb22-405">  <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">subtitle</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> anakJudul</span>
+<span id="cb22-406">})</span></code></pre></div>
+</details><details class="code-fold hidden"><summary>Kode</summary><div class="sourceCode cell-code hidden" id="cb23" data-startfrom="414" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 413;"><span id="cb23-414">Inputs<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">table</span>(dataTerpilih<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> {</span>
+<span id="cb23-415">  <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">sort</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"tahun"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb23-416">  <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">columns</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> [</span>
+<span id="cb23-417">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"format"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb23-418">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"tahun"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb23-419">    pendapatanTerpilih</span>
+<span id="cb23-420">  ]<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb23-421">  <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">maxWidth</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"100%"</span></span>
+<span id="cb23-422">})</span></code></pre></div>
+</details><div id="fig-obs-input" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-obs-input-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell panel-input card bg-light p-2">
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-4-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-4-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-4-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-4-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs">
+<li class="nav-item"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" aria-controls="tabset-1-1" aria-selected="true">Plot</a></li>
+<li class="nav-item"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" aria-controls="tabset-1-2" aria-selected="false">Data</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-5" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-6" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-obs-input-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Gambar&nbsp;6: Diagram batang dan tabel interaktif yang dibuat dengan menggunakan Observable JS
+</figcaption></figure>
+</div>
+<p>Bagaimana membuat diagram batang yang disertai dengan tabel interaktif seperti yang ditunjukkan pada Gambar&nbsp;6? <em>Well</em>, kode lengkapnya dapat kamu lihat dan pelajari <a href="https://observablehq.com/d/39c7c69c68bb1302" class="external" target="_blank">di catatan ini</a>.</p>
+<div class="cell">
+<details class="code-fold hidden"><summary>Kode</summary><div class="sourceCode cell-code hidden" id="cb24" data-startfrom="434" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 433;"><span id="cb24-434">dataTerpilih <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> pendapatanMusik<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(<span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">function</span> (pendapatan) {</span>
+<span id="cb24-435">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> formatTerpilih<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">includes</span>(pendapatan<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">format</span>) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;&amp;</span></span>
+<span id="cb24-436">    tahunMin <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;=</span> pendapatan<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">tahun</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;&amp;</span></span>
+<span id="cb24-437">    tahunMaks <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;=</span> pendapatan<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">tahun</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb24-438">})</span></code></pre></div>
+</details><div class="cell-output cell-output-display">
+<div id="ojs-cell-7" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden"><summary>Kode</summary><div class="sourceCode cell-code hidden" id="cb25" data-startfrom="446" data-source-offset="-1" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 445;"><span id="cb25-446">tahun1Date <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">new</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">Date</span>(<span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">${</span>tahun1<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span>)</span>
+<span id="cb25-447">tahun2Date <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">new</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">Date</span>(<span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">${</span>tahun2<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span>)</span>
+<span id="cb25-448">tahunMin <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">new</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">Date</span>(<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">Math</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">min</span>(tahun1Date<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> tahun2Date))</span>
+<span id="cb25-449">tahunMaks <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">new</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">Date</span>(<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">Math</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">max</span>(tahun1Date<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> tahun2Date))</span>
+<span id="cb25-450">anakJudul <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> pendapatanTerpilih <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">===</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"pendapatan"</span> </span>
+<span id="cb25-451">  <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">?</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">null</span> </span>
+<span id="cb25-452">  <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> pendapatanTerpilih <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">===</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"pendapatan_infl"</span> </span>
+<span id="cb25-453">    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">?</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Disesuaikan dengan Inflasi, Nilai Dolar Tahun 2023"</span> </span>
+<span id="cb25-454">    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">null</span></span>
+<span id="cb25-455">warnaTerpilih <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> daftarFormat</span>
+<span id="cb25-456">  <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map</span>((f<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> i) <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> (formatTerpilih<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">includes</span>(f) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">?</span> warnaFormat[i] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">null</span>))</span>
+<span id="cb25-457">  <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>((color) <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">=&gt;</span> color <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">!==</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">null</span>)</span></code></pre></div>
+</details><div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-8-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-8-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-8-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-8-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-8-5" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-8-6" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden"><summary>Kode</summary><div class="sourceCode cell-code hidden" id="cb26" data-startfrom="461" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 460;"><span id="cb26-461">daftarFormat <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> [<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"LP/EP"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Vinyl Single"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"8 - Track"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Cassette"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Cassette Single"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb26-462">             <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Other Tapes"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Kiosk"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"CD"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"CD Single"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"SACD"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"DVD Audio"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb26-463">             <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Music Video (Physical)"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Download Album"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Download Single"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb26-464">             <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Ringtones &amp; Ringbacks"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Download Music Video"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Other Digital"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb26-465">             <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Synchronization"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Paid Subscription"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"On-Demand Streaming (Ad-Supported)"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb26-466">             <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Other Ad-Supported Streaming"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"SoundExchange Distributions"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span></span>
+<span id="cb26-467">             <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Limited Tier Paid Subscription"</span>]</span></code></pre></div>
+</details><div class="cell-output cell-output-display">
+<div id="ojs-cell-9" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden"><summary>Kode</summary><div class="sourceCode cell-code hidden" id="cb27" data-startfrom="473" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 472;"><span id="cb27-473">warnaFormat <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> [<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#2A5784"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#43719F"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#5B8DB8"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#7AAAD0"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#9BC7E4"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#BADDF1"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> </span>
+<span id="cb27-474">            <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#E1575A"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#EE7423"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#F59D3D"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#FFC686"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#9D7760"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#F1CF63"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> </span>
+<span id="cb27-475">            <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#7C4D79"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#9B6A97"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#BE89AC"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#D5A5C4"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#EFC9E6"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#BBB1AC"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> </span>
+<span id="cb27-476">            <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#24693D"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#398949"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#61AA57"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#7DC470"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#B4E0A7"</span>]</span></code></pre></div>
+</details><div class="cell-output cell-output-display">
+<div id="ojs-cell-10" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</section><section id="sec-catatan-akhir" class="level2"><h2 class="anchored" data-anchor-id="sec-catatan-akhir">Catatan Akhir</h2>
+<p>Kita telah memvisualisasikan data pendapatan industri musik dengan beragam cara. Pada Bagian&nbsp;2 dan Bagian&nbsp;3, kita melakukan visualisasi dengan pemrograman R. Bagian-bagian itu mendemonstrasikan bagaimana membuat diagram dengan menggunakan {ggplot2} dan {plotly}. Kedua paket tersebut sangat membantu untuk melakukan visualisasi data, baik statik maupun dinamis.</p>
+<p>Pada Bagian&nbsp;4, kita menggunakan Observable Plot untuk membuat diagram yang serupa. Pada Bagian&nbsp;5, kita lengkapi diagram tersebut dengan beberapa input untuk membuat diagramnya semakin dinamis. Teknik visualisasi data seperti ini sangat berguna jika kita ingin mempresentasikan data dengan media daring.</p>
+
+
+</section><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Catatan Kaki</h2>
+<ol>
+<li id="fn1"><p>Pada umumnya, diagram garis dipilih untuk menyajikan data yang menyatakan tren (sumbu horizontalnya menyatakan waktu).↩︎</p></li>
+</ol></section><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Penggunaan Kembali</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-copyright"><h2 class="anchored quarto-appendix-heading">Hak Cipta</h2><div class="quarto-appendix-contents"><div>© 2025 Yosep Dwi Kristanto</div></div></section></div> ]]></description>
+  <category>ekonomi</category>
+  <category>musik</category>
+  <category>tutorial</category>
+  <category>visualisasi data</category>
+  <guid>https://jelajahstatid.github.io/pos/2025-01-pendapatan-musik/</guid>
+  <pubDate>Sun, 12 Jan 2025 23:00:00 GMT</pubDate>
+  <media:content url="https://jelajahstatid.github.io/pos/2025-01-pendapatan-musik/pendapatan_musik.png" medium="image" type="image/png" height="108" width="144"/>
+</item>
 <item>
   <title>Gunung Agung, Bromo, Merapi, dan Semeru</title>
   <dc:creator>Yosep Dwi Kristanto</dc:creator>
@@ -14686,6 +16819,19 @@ Gambar&nbsp;10: Nilai RMSE keempat model.
   <guid>https://jelajahstatid.github.io/pos/2024-08-keanekaragaman-hayati-raja-ampat/</guid>
   <pubDate>Fri, 02 Aug 2024 22:00:00 GMT</pubDate>
   <media:content url="https://jelajahstatid.github.io/pos/2024-08-keanekaragaman-hayati-raja-ampat/keanekaragaman-hayati.png" medium="image" type="image/png" height="108" width="144"/>
+</item>
+<item>
+  <title></title>
+  <dc:creator>Yosep Dwi Kristanto</dc:creator>
+  <link>https://jelajahstatid.github.io/pos/2024-08-statistik-soal-cerita/</link>
+  <description><![CDATA[ undefined ]]></description>
+  <category>Biostatistika</category>
+  <category>matematika membumi</category>
+  <category>pendidikan</category>
+  <category>tutorial</category>
+  <guid>https://jelajahstatid.github.io/pos/2024-08-statistik-soal-cerita/</guid>
+  <pubDate>Fri, 02 Aug 2024 22:00:00 GMT</pubDate>
+  <media:content url="https://jelajahstatid.github.io/pos/2024-08-statistik-soal-cerita/keanekaragaman-hayati.png" medium="image" type="image/png"/>
 </item>
 <item>
   <title>Tren Suhu Planet Bumi</title>
