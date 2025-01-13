@@ -24,6 +24,7 @@ keywords:
   - JavaScript
   - musik
   - Observable JS
+  - Observable Plot
   - plotly
   - pendapatan
 copyright: "© 2025 Yosep Dwi Kristanto"
@@ -137,7 +138,7 @@ pendapatan_as_riaa |>
 
 Terkonfirmasi! Pendapatan dari kaset dan sejenisnya terus merosot setelah tahun 2000. Bahkan, pendapatan dari format tersebut menghilang mulai tahun 2009.
 
-## Visualisasi Data dengan {ggplot2} {#sec-visualisasi-data-dengan-ggplot2}
+## Memvisualisasikan Data dengan {ggplot2} {#sec-visualisasi-data-dengan-ggplot2}
 
 Kita telah akrab dengan data `pendapatan_as_riaa`. Sekarang waktunya untuk memvisualisasikannya. Untuk mendapatan diagram seperti pada @fig-riaa-music-revenue, kita gunakan `geom_col()` dengan `position = "stack"` dan `stat = "identity"`.
 
@@ -281,3 +282,56 @@ ggplotly(
 )
 
 ```
+
+Kita dapat menyorot batang-batang pada @fig-plotly untuk melihat informasi detailnya. Misalnya, kita dapat mengarahkan kursor ke batang berwarna ungu tua pada tahun 2010. Di situ kita dapat melihat bahwa besarnya pendapatan industri musik dari format download album pada tahun itu adalah 1219,1 juta dolar AS.
+
+Selain itu, kita dapat mengklik satu atau lebih item legenda untuk menghilangkan data yang bersangkutan dari diagram. Kita juga dapat mengklik dua kali item legenda untuk mengisolasinya. Fitur-fitur interaktivitas ini memudahkan kita dalam membaca dan menginterpretasi data.
+
+## Memvisualisasikan Data dengan Observable JS
+
+Pada @sec-visualisasi-data-dengan-ggplot2 dan @sec-menambahkan-interaktivitas-dengan-plotly kita telah memvisualisasikan data pendapatan industri musik dengan menggunakan pemrograman R. Sekarang, kita akan memvisualisasikannya dengan [Observable JS](https://observablehq.com/){.external target="_blank"}, khususnya [Plot](https://observablehq.com/plot/ "The JavaScript library for exploratory data visualization"){.external target="_blank"}.
+
+Pertama, kita impor data dengan menggunakan `d3.csv()`. Kita masukkan alamat url data kita ke dalam fungsi tersebut dan kita atur agar kolom `tahun` diinterpretasi sebagai Date. Kita simpan data tersebut dengan nama `pendapatanMusik`.
+
+```{ojs}
+//| code-fold: false
+
+csvUrl = "https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/refs/heads/main/pos/2025-01-pendapatan-musik/aset/pendapatan_as_riaa.csv"
+```
+
+```{ojs}
+//| code-fold: false
+
+pendapatanMusik = d3.csv(csvUrl, d => ({
+  ...d,
+  tahun: new Date(d.tahun) // Convert "tahun" to Date
+}))
+
+```
+
+Setelah itu, kita visualisasikan data tersebut dengan menggunakan tiga objek geometris: rectY, ruleY, dan axisX. Objek geometris rectY kita gunakan untuk membuat persegi panjang vertikal dengan `y: "pendapatan_infl"`, `x: "tahun"`, `fill: "format"`. Kita atur agar persegi panjang tersebut interaktif dengan menambahkan `tip: true`. Objek geometris ruleY kita gunakan untuk membuat garis horizontal yang memotong sumbu-$y$ di $y = 0$. Garis itu adalah sumbu-$x$. Terakhir, kita atur agar tik-tik pada sumbu-$x$ dibuat dengan selang lima tahunan. Pengaturan ini kita lakukan pada objek geometris axisX. Hasilnya disajikan pada @fig-obs-plot-dasar.
+
+```{ojs}
+//| code-fold: false
+//| label: fig-obs-plot-dasar
+//| fig-cap: "Diagram batang yang dibuat dengan Observable Plot"
+
+Plot.plot({
+  color: {
+    legend: true,
+    columns: 4
+},
+  marks: [
+    Plot.rectY(pendapatanMusik,{
+      y: "pendapatan_infl",
+      x: "tahun",
+      fill: "format",
+      tip: true
+    }),
+    Plot.ruleY([0]),
+    Plot.axisX({ticks: "5 years"})
+  ]
+})
+```
+
+
