@@ -304,9 +304,9 @@ pendapatanMusik = d3.csv(csvUrl, d3.autoType)
 
 ```
 
-Setelah itu, kita visualisasikan data tersebut dengan menggunakan tiga objek geometris: rectY, ruleY, dan axisX. Objek geometris rectY kita gunakan untuk membuat persegi panjang vertikal dengan `y: "pendapatan_infl"`, `x: "tahun"`, `fill: "format"`. Kita atur agar persegi panjang tersebut interaktif dengan menambahkan `tip: true`. Objek geometris ruleY kita gunakan untuk membuat garis horizontal yang memotong sumbu-$y$ di $y = 0$. Garis itu adalah sumbu-$x$. Terakhir, kita atur agar tik-tik pada sumbu-$x$ dibuat dengan selang lima tahunan. Pengaturan ini kita lakukan pada objek geometris axisX.
+Setelah itu, kita visualisasikan data tersebut dengan menggunakan tiga objek geometris: barY, ruleY, dan axisX. Objek geometris barY kita gunakan untuk membuat diagram batang vertikal dengan `y: "pendapatan_infl"`, `x: "tahun"`, `fill: "format"`. Kita atur agar persegi panjang tersebut interaktif dengan menambahkan `tip: true`. Objek geometris ruleY kita gunakan untuk membuat garis horizontal yang memotong sumbu-$y$ di $y = 0$. Garis itu adalah sumbu-$x$. Terakhir, kita atur agar tik-tik pada sumbu-$x$ dibuat dengan selang lima tahunan. Pengaturan ini kita lakukan pada objek geometris axisX.
 
-Kita dapat mengatur legenda warnanya pada `color`. Kita atur `legend: true` untuk menampilkan legendanya dan `columns: 4` untuk mengatur banyaknya kolom dalam penyajian item-item legenda tersebut. Kita juga dapat melakukan pengaturan lebih lanjut terhadap `x`, `y`, `caption`, `subtitle`, dan `title`. Hasilnya disajikan pada @fig-obs-plot-dasar.
+Kita dapat mengatur legenda warnanya pada `color`. Kita atur `legend: true` untuk menampilkan legendanya dan `columns: 4` untuk mengatur banyaknya kolom dalam penyajian item-item legenda tersebut. Kita juga dapat melakukan pengaturan lebih lanjut terhadap `x`, `y`, `caption`, dan `subtitle`. Hasilnya disajikan pada @fig-obs-plot-dasar.
 
 ::: {#fig-obs-plot-dasar}
 ```{ojs}
@@ -428,7 +428,7 @@ Inputs.table(dataTerpilih, {
 Diagram batang dan tabel interaktif yang dibuat dengan menggunakan Observable JS
 ::::
 
-Bagaimana membuat diagram batang yang disertai dengan tabel interaktif seperti yang ditunjukkan pada @fig-obs-input? *Well*, kode lengkapnya dapat kamu lihat dan pelajari [di catatan ini](https://observablehq.com/d/39c7c69c68bb1302){.external target="_blank"}.
+*Voila!* Kita mendapatkan diagram batang interaktif seperti pada situs webnya RIAA. Bagaimana membuat diagram batang seperti yang ditunjukkan pada @fig-obs-input? *Well*, kode lengkapnya dapat kamu lihat dan pelajari [di catatan ini](https://observablehq.com/d/39c7c69c68bb1302){.external target="_blank"}.
 
 ```{ojs}
 //| echo: false
