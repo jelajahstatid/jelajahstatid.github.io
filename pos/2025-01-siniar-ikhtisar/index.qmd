@@ -1,0 +1,34 @@
+---
+title: "Siniar Ikhtisar"
+draft: true
+subtitle: "Episode 1"
+description: "Siniar ikhtisar episode pertama ini merangkum pos-pos blog Jelajah Statistika dan Ilmu Data sejauh ini. Topik obrolan dalam siniar ini beragam, mulai dari gunung-gunung berapi di Indonesia, peringkat FIFA, pemodelan keanekaragaman hayati atau biodiversitas, sampai industri musik."
+author:
+  - name: Yosep Dwi Kristanto
+    url: https://people.usd.ac.id/~ydkristanto/
+    affiliation: Pendidikan Matematika, Universitas Sanata Dharma, Yogyakarta
+    affiliation-url: https://www.usd.ac.id/s1pmat
+    orcid: 0000-0003-1446-0422
+date: 2025-01-16
+categories:
+  - siniar
+image: "gelombang_audio_siniar.png"
+image-alt: |
+  Diagram yang memvisualisasikan gelombang bunyi siniar ikhtisar dari pos-pos blog Jelajah Statistika dan Ilmu Data
+keywords: 
+  - Ilmu Data
+  - podcast
+  - siniar
+  - Statistika
+copyright: "© 2025 Yosep Dwi Kristanto"
+license: "CC BY"
+code-annotations: select
+editor_options: 
+  chunk_output_type: console
+---
+
+```{=html}
+<div class="app" id="app"></div>
+<script src="//cdn.podlove.org/web-player/5.x/embed.js"></script>
+<script src="main.js"></script>
+```
