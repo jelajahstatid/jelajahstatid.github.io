@@ -26,6 +26,8 @@ editor_options:
   chunk_output_type: console
 ---
 
+Dari pembaca ke pendengar, itulah maksudku membuat siniar ini. Siniar ini dimaksudkan untuk merangkum konten-konten yang telah dipublikasikan di blog ini agar lebih mudah didengar dan dicerna. Siniar ini dibuat dengan [NotebookLM](https://notebooklm.google/){.external target="_blank"}. Selamat mendengarkan!
+
 ```{=html}
 <div id="podlove-web-player"></div>
 <script src="https://cdn.podlove.org/web-player/5.x/embed.js"></script>
