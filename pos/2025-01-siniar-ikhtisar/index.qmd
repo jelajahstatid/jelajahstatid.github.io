@@ -1,6 +1,5 @@
 ---
 title: "Siniar Ikhtisar"
-draft: true
 subtitle: "Episode 1"
 description: "Siniar ikhtisar episode pertama ini merangkum pos-pos blog Jelajah Statistika dan Ilmu Data sejauh ini. Topik obrolan dalam siniar ini beragam, mulai dari gunung-gunung berapi di Indonesia, peringkat FIFA, pemodelan keanekaragaman hayati atau biodiversitas, sampai industri musik."
 author:
@@ -35,13 +34,13 @@ editor_options:
     // Episode details
     const episode = {
       "show": {
-        "title": "Siniar Jelajah StatID",
+        "title": "Jelajah Statistika dan Ilmu Data",
         "subtitle": "Ikhtisar Statistik dan Data",
         "summary": "Ikuti podcast kami untuk memahami statistik dengan cara yang sederhana dan menyenangkan!",
-        "poster": "https://path/to/your-podcast-image.png", // Optional
+        "poster": "gelombang_audio_siniar.png", // Optional
         "link": "https://jelajahstatid.github.io" // Optional
       },
-      "title": "Siniar Jelajah StatID",
+      "title": "Siniar Ikhtisar: Episode 1",
       "subtitle": "Ikhtisar Statistik dan Data",
       "summary": "Ikuti podcast kami untuk memahami statistik dengan cara yang sederhana dan menyenangkan!",
       "audio": [{
@@ -58,7 +57,7 @@ editor_options:
   {
     "start": "00:00:45.000",
     "title": "Modeling Indonesian Volcanoes",
-    "href": "",
+    "href": "https://jelajahstatid.github.io/pos/2024-08-gunung-agung-bromo-merapi-dan-semeru/",
     "image": ""
   },
   {
@@ -70,13 +69,13 @@ editor_options:
   {
     "start": "00:03:17.000",
     "title": "Indonesia's Soccer Rankings Over Time",
-    "href": "",
+    "href": "https://jelajahstatid.github.io/pos/2024-08-peringkat-fifa-indonesia/",
     "image": ""
   },
   {
     "start": "00:04:41.000",
     "title": "Biodiversity in Raja Ampat",
-    "href": "",
+    "href": "https://jelajahstatid.github.io/pos/2024-08-keanekaragaman-hayati-raja-ampat/",
     "image": ""
   },
   {
@@ -88,7 +87,7 @@ editor_options:
   {
     "start": "00:06:57.000",
     "title": "The Evolution of the Music Industry",
-    "href": "",
+    "href": "https://jelajahstatid.github.io/pos/2025-01-pendapatan-musik/",
     "image": ""
   },
   {
@@ -100,13 +99,13 @@ editor_options:
   {
     "start": "00:09:13.000",
     "title": "Indonesia's Historical FIFA Success",
-    "href": "",
+    "href": "https://jelajahstatid.github.io/pos/2024-08-peringkat-fifa-indonesia/",
     "image": ""
   },
   {
     "start": "00:10:27.000",
     "title": "Protecting Biodiversity Through Data",
-    "href": "",
+    "href": "https://jelajahstatid.github.io/pos/2024-08-keanekaragaman-hayati-raja-ampat/",
     "image": ""
   },
   {
@@ -120,7 +119,7 @@ editor_options:
     {
       "id": "1",
       "name": "VizVera",
-      "avatar": "/assets/web-player/alexander-heimbuch.jpeg",
+      "avatar": "https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/refs/heads/main/pos/2025-01-siniar-ikhtisar/aset/VizVera.png",
       "role": {
         "id": "1",
         "slug": "team",
@@ -135,7 +134,7 @@ editor_options:
     {
       "id": "2",
       "name": "DataDan",
-      "avatar": "/assets/web-player/michaela-lehr.jpeg",
+      "avatar": "https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/refs/heads/main/pos/2025-01-siniar-ikhtisar/aset/DataDan.png",
       "role": {
         "id": "1",
         "slug": "team",
@@ -152,907 +151,895 @@ editor_options:
   {
     "start": "00:00:00.000",
     "end": "00:00:07.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Alright. So welcome to the deep dive, everybody. Today, we're gonna be taking a look at some really interesting stuff you sent our way. We're talking Indonesian volcanoes. "
   },
   {
     "start": "00:00:08.000",
     "end": "00:00:16.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " We've got global soccer rankings, biodiversity modeling, and even, how the music industry makes money nowadays. "
   },
   {
     "start": "00:00:16.000",
     "end": "00:00:17.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " Interesting mix. "
   },
   {
     "start": "00:00:17.000",
     "end": "00:00:24.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Yeah. And get this. All of the sources you sent are blog posts, but these aren't just, like, you know, your average blog post. They're packed with visuals. "
   },
   {
     "start": "00:00:24.000",
     "end": "00:00:31.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " They've got interactive data, and we're gonna unpack all of it so that you can walk away, knowing what's important, what's interesting. "
   },
   {
     "start": "00:00:31.000",
     "end": "00:00:45.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " Sounds good. It is really fascinating how these topics, you know, they might seem different at first glance. But when you really look at it, they all connect back to using data. Using data to make sense of the world around us. Right? "
   },
   {
     "start": "00:00:45.000",
     "end": "00:00:46.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Which one's got clear. "
   },
   {
     "start": "00:00:46.000",
     "end": "00:00:52.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " Whether that's natural phenomena or human behavior. Even cultural trends, we can look at it all through data. "
   },
   {
     "start": "00:00:52.000",
     "end": "00:00:59.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Yeah. Absolutely. Okay. So let's just jump right in. The first blog post that you sent is about modeling Indonesian volcanoes. "
   },
   {
     "start": "00:01:00.000",
     "end": "00:01:09.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Now the author starts off with this really cool analogy to a mythological figure named Hanuman, and get this, he moved mountains to find a cure. "
   },
   {
     "start": "00:01:09.000",
     "end": "00:01:12.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " I love that. That's a great way to introduce 3D modeling, right? "
   },
   {
     "start": "00:01:12.000",
     "end": "00:01:13.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Yeah. "
   },
   {
     "start": "00:01:13.000",
     "end": "00:01:19.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " And the blog post actually does a really good job of walking you through how to create a 3D model of a volcano, "
   },
   {
     "start": "00:01:19.000",
     "end": "00:01:20.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Oh, cool. "
   },
   {
     "start": "00:01:20.000",
     "end": "00:01:21.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " using elevation data. "
   },
   {
     "start": "00:01:21.000",
     "end": "00:01:21.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Okay. "
   },
   {
     "start": "00:01:21.000",
     "end": "00:01:29.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " And it they even include, like, a simplified example so you can really grasp the process. Even if you've never, you know, worked with 3D modeling before. "
   },
   {
     "start": "00:01:29.000",
     "end": "00:01:34.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " That's awesome. So the goal here is to compare four, pretty popular Indonesian volcanoes. "
   },
   {
     "start": "00:01:34.000",
     "end": "00:01:35.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " Okay. "
   },
   {
     "start": "00:01:35.000",
     "end": "00:01:42.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Agung, Bromo, Merapi, and Semeru. And they're looking at not just height, but volume as well. "
   },
   {
     "start": "00:01:42.000",
     "end": "00:01:42.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " Interesting. "
   },
   {
     "start": "00:01:42.000",
     "end": "00:01:49.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " And they're using R programming to create some really impressive visualizations both in 2D and 3D. What did those visualizations show? "
   },
   {
     "start": "00:01:49.000",
     "end": "00:01:53.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " Well, you can see right away the shape of each volcano, the features. "
   },
   {
     "start": "00:01:53.000",
     "end": "00:01:53.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Okay. "
   },
   {
     "start": "00:01:53.000",
     "end": "00:01:57.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " Really distinct. Much more engaging than just looking at numbers on a spreadsheet, I have to say. "
   },
   {
     "start": "00:01:57.000",
     "end": "00:01:57.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Yeah. Yeah. "
   },
   {
     "start": "00:01:57.000",
     "end": "00:02:02.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " And they found that Semeru is the tallest, but Bromo had the largest volume. "
   },
   {
     "start": "00:02:03.000",
     "end": "00:02:07.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Wow. Okay. So that's interesting. So it's not necessarily, like, the tallest one is the biggest one. "
   },
   {
     "start": "00:02:07.000",
     "end": "00:02:17.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " That's really neat, and it really shows you just how important it is to visualize data. Imagine if we could see other geographical features in 3D, like canyons, mountain ranges even. "
   },
   {
     "start": "00:02:17.000",
     "end": "00:02:22.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " Yeah. What if we could take this approach and represent abstract datasets this way? "
   },
   {
     "start": "00:02:22.000",
     "end": "00:02:23.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " That would be wild. "
   },
   {
     "start": "00:02:23.000",
     "end": "00:02:33.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " Yeah. The post makes you think about the possibilities of 3D modeling and how it can help us understand and engage with information in ways we never thought of before. "
   },
   {
     "start": "00:02:33.000",
     "end": "00:02:36.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Totally. Okay. Are you ready to switch gears a little bit? "
   },
   {
     "start": "00:02:36.000",
     "end": "00:02:36.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " Sure. "
   },
   {
     "start": "00:02:36.000",
     "end": "00:02:42.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " The next blog post that you sent analyzes how well Indonesia's national soccer team's been doing. "
   },
   {
     "start": "00:02:42.000",
     "end": "00:02:42.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " Okay. "
   },
   {
     "start": "00:02:42.000",
     "end": "00:02:50.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " And they connect it to the country's Independence Day celebrations, which adds this whole other layer of national pride to the whole thing. "
   },
   {
     "start": "00:02:50.000",
     "end": "00:03:03.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " Yeah. I love that. They used FIFA World ranking data to track Indonesia's performance over time, and they compare it to other Southeast Asian countries. What I thought was really cool was that they had this animated chart. "
   },
   {
     "start": "00:03:03.000",
     "end": "00:03:06.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " That showed how those rankings changed over time dynamically. "
   },
   {
     "start": "00:03:06.000",
     "end": "00:03:07.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Oh, wow. "
   },
   {
     "start": "00:03:07.000",
     "end": "00:03:10.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " You can actually see how Indonesia climbed into the top five recently. "
   },
   {
     "start": "00:03:10.000",
     "end": "00:03:15.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " That's incredible. It makes you wonder what they were doing differently that led to that climb. You know? "
   },
   {
     "start": "00:03:15.000",
     "end": "00:03:20.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " Yeah. The blog post points out that their lowest ranking was when there was a FIFA sanction. "
   },
   {
     "start": "00:03:20.000",
     "end": "00:03:21.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Oh, okay. "
   },
   {
     "start": "00:03:21.000",
     "end": "00:03:27.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " It makes you realize how outside events can affect a team. Even in sports, there's always a bigger context to consider. "
   },
   {
     "start": "00:03:27.000",
     "end": "00:03:41.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Yeah. There's always something else going on behind the scenes. To add even another layer to this, the blog post mentions that in 1998, Indonesia had its highest ever FIFA ranking. I wonder what contributed to that success. "
   },
   {
     "start": "00:03:41.000",
     "end": "00:03:50.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " It is fascinating, isn't it? What were the conditions back then? Were there certain strategies they were using, certain players? Data can help us uncover these stories. "
   },
   {
     "start": "00:03:50.000",
     "end": "00:03:52.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Yeah. Maybe learn from the past. "
   },
   {
     "start": "00:03:52.000",
     "end": "00:03:53.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " Exactly. "
   },
   {
     "start": "00:03:53.000",
     "end": "00:04:01.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Okay. Let's move on to your next source. This one dives into biodiversity modeling in Indonesia's Raja Ampat Islands. "
   },
   {
     "start": "00:04:01.000",
     "end": "00:04:02.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " These are the full part of the world. "
   },
   {
     "start": "00:04:02.000",
     "end": "00:04:06.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Oh, yeah. A region known for its, really stunning natural beauty. "
   },
   {
     "start": "00:04:06.000",
     "end": "00:04:16.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " Now this post is part of a larger project on sustainability education, all about using mathematical modeling to help us understand and protect these ecosystems. "
   },
   {
     "start": "00:04:16.000",
     "end": "00:04:24.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " And the author talks about how they found the data they needed for this whole thing. Right? They started with the scientific paper that didn't actually include the raw data. "
   },
   {
     "start": "00:04:24.000",
     "end": "00:04:25.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " Oh, interesting. "
   },
   {
     "start": "00:04:25.000",
     "end": "00:04:32.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " So they actually emailed one of the researchers and ended up getting access to a ton of information on plant diversity all on these small islands. "
   },
   {
     "start": "00:04:33.000",
     "end": "00:04:44.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " That's awesome. That's a great example of how, you know, a little initiative can go a long way. And once they had that data, they used it to figure out the connection between the size of the island and how many plant species are on it. "
   },
   {
     "start": "00:04:44.000",
     "end": "00:04:50.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Okay. So they used, like, linear models, power models, logarithmic models, even a Weibull model. "
   },
   {
     "start": "00:04:50.000",
     "end": "00:04:51.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " Wow. That's a lot. "
   },
   {
     "start": "00:04:51.000",
     "end": "00:04:56.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Yeah. They even used RMSE to figure out which model was the best fit for the data. "
   },
   {
     "start": "00:04:56.000",
     "end": "00:04:59.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " Now RMSE stands for root mean squared error. "
   },
   {
     "start": "00:04:59.000",
     "end": "00:04:59.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Okay. "
   },
   {
     "start": "00:04:59.000",
     "end": "00:05:13.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " And it basically tells you how well a model's predictions match up with the real data. The lower the RMSE, the more accurate the model is. I thought it was cool that they used a free online graphing calculator called Desmos, "
   },
   {
     "start": "00:05:13.000",
     "end": "00:05:14.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Oh, neat. "
   },
   {
     "start": "00:05:14.000",
     "end": "00:05:17.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " to refine the initial parameters for the Weibull model. "
   },
   {
     "start": "00:05:17.000",
     "end": "00:05:23.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Oh, that's a great tip. Shows you that you don't need, like, fancy software to do some really interesting data analysis. "
   },
   {
     "start": "00:05:24.000",
     "end": "00:05:33.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " Absolutely. And their key finding, island size is positively correlated to the number of plant species, bigger islands, more plant diversity. "
   },
   {
     "start": "00:05:33.000",
     "end": "00:05:33.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Okay. "
   },
   {
     "start": "00:05:33.000",
     "end": "00:05:35.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " But it's not simple relationship. "
   },
   {
     "start": "00:05:35.000",
     "end": "00:05:35.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Right. Right. "
   },
   {
     "start": "00:05:35.000",
     "end": "00:05:38.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " It's not just linear. That's where the Weibull model comes in. "
   },
   {
     "start": "00:05:38.000",
     "end": "00:05:48.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Okay. That makes sense. It makes you think about what this means for conservation efforts. You know? How can we use this knowledge to protect biodiversity in Raja Ampat and beyond? "
   },
   {
     "start": "00:05:48.000",
     "end": "00:05:55.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " Great point. It's a great example of how we can use data to make real world decisions and have a positive impact on the environment. "
   },
   {
     "start": "00:05:55.000",
     "end": "00:06:06.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Absolutely. Alright. So let's wrap up part one of this deep dive with your final source. This one's all about how the music industry makes money, and it starts with the author reminiscing about cassette tapes. Remember those? "
   },
   {
     "start": "00:06:06.000",
     "end": "00:06:08.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " Oh, of course. Takes me back. "
   },
   {
     "start": "00:06:08.000",
     "end": "00:06:25.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Yeah. Me too. But what really caught my eye was that the blog post focuses on this interactive chart from the Recording Industry Association of America, the RIAA. Which tracks how much money the US music industry makes over time and breaks it down by format. "
   },
   {
     "start": "00:06:25.000",
     "end": "00:06:26.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " Interesting. "
   },
   {
     "start": "00:06:26.000",
     "end": "00:06:31.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Yeah. It's amazing how much information they managed to pack into just this one chart. "
   },
   {
     "start": "00:06:31.000",
     "end": "00:06:38.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " What I thought was really impressive was how they managed to communicate these trends so well, even though it's, you know, kind of an unconventional approach. "
   },
   {
     "start": "00:06:38.000",
     "end": "00:06:39.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Yeah. "
   },
   {
     "start": "00:06:39.000",
     "end": "00:06:44.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " Using a bar chart with time on the x axis shows the power of good design. "
   },
   {
     "start": "00:06:44.000",
     "end": "00:06:49.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Yeah. For sure. So they don't just show you this chart. They actually tell you how to recreate it yourself. "
   },
   {
     "start": "00:06:49.000",
     "end": "00:06:52.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " Wow. Using R programming and Observable JS. "
   },
   {
     "start": "00:06:52.000",
     "end": "00:06:53.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " That's awesome. "
   },
   {
     "start": "00:06:53.000",
     "end": "00:06:56.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " It's a great resource for anybody who wants to learn more about data visualization. "
   },
   {
     "start": "00:06:57.000",
     "end": "00:07:14.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Definitely. They even explain how to add interactive elements so you can switch between inflation adjusted figures and nominal revenue figures. And, you can even select specific formats you wanna focus on or control the time period. It really puts the power of exploring the data in your hands. "
   },
   {
     "start": "00:07:14.000",
     "end": "00:07:19.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " It's like having backstage access to the music industry. You know, you get to see how it works, how it's changed. "
   },
   {
     "start": "00:07:20.000",
     "end": "00:07:20.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " How it's evolved. "
   },
   {
     "start": "00:07:21.000",
     "end": "00:07:22.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " And you get to play with the data yourself. "
   },
   {
     "start": "00:07:22.000",
     "end": "00:07:34.000",
-    "speaker": "VizVera",
-    "text": ""
-  },
-  {
-    "start": "00:07:22.000",
-    "end": "00:07:34.000",
-    "speaker": "You know what I find really interesting? Three out of those four blog posts you sent us, they're all about Indonesia",
-    "text": "volcanoes, soccer, even that biodiversity project in Raja Ampat. "
+    "speaker": "1",
+    "text": " You know what I find really interesting? Three out of those four blog posts you sent us, they're all about Indonesia: volcanoes, soccer, even that biodiversity project in Raja Ampat. "
   },
   {
     "start": "00:07:35.000",
     "end": "00:07:41.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " It makes you think. Maybe you're subconsciously drawn to Indonesia, or maybe it's just, like, a coincidence. "
   },
   {
     "start": "00:07:42.000",
     "end": "00:07:42.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Right. "
   },
   {
     "start": "00:07:42.000",
     "end": "00:07:46.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " But either way, it's cool that we get to explore one country from so many angles. "
   },
   {
     "start": "00:07:46.000",
     "end": "00:07:49.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Yeah. Through the lens of data, I like it. "
   },
   {
     "start": "00:07:49.000",
     "end": "00:07:49.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " Exactly. "
   },
   {
     "start": "00:07:49.000",
     "end": "00:07:56.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Okay. So speaking of multiple dimensions, let's go back to that volcano study. I mean, they didn't just create those cool models. Right? "
   },
   {
     "start": "00:07:56.000",
     "end": "00:07:57.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " Right. "
   },
   {
     "start": "00:07:57.000",
     "end": "00:08:00.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " They actually use them to measure the height and volume of the volcanoes. "
   },
   {
     "start": "00:08:01.000",
     "end": "00:08:04.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " And they compared their measurements to the data on Wikipedia. "
   },
   {
     "start": "00:08:05.000",
     "end": "00:08:07.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " No way. How did it stack up? "
   },
   {
     "start": "00:08:07.000",
     "end": "00:08:16.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " Well, the estimates from their 3D models were really close to the heights listed on Wikipedia. Like, for example, Sumeru, their model was almost spot on. "
   },
   {
     "start": "00:08:16.000",
     "end": "00:08:22.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Wow. That's impressive. Really highlights the accuracy of this kind of technique. "
   },
   {
     "start": "00:08:22.000",
     "end": "00:08:25.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " It's like imagine a virtual measuring tape for mountains. "
   },
   {
     "start": "00:08:25.000",
     "end": "00:08:33.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " I love that. And speaking of measurements, you know, we talked about how Bromo, even though it's not the tallest, has the biggest volume. "
   },
   {
     "start": "00:08:33.000",
     "end": "00:08:33.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " Right. "
   },
   {
     "start": "00:08:33.000",
     "end": "00:08:36.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Did they, like, quantify that volume? "
   },
   {
     "start": "00:08:36.000",
     "end": "00:08:39.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " They did. They used a pretty interesting method to estimate it, "
   },
   {
     "start": "00:08:39.000",
     "end": "00:08:39.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Uh-huh. "
   },
   {
     "start": "00:08:40.000",
     "end": "00:08:43.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " based on the area of each data point in that 3D model. "
   },
   {
     "start": "00:08:43.000",
     "end": "00:08:44.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Okay. "
   },
   {
     "start": "00:08:44.000",
     "end": "00:08:49.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " And they converted cubic meters into liters to give us a sense of scale. "
   },
   {
     "start": "00:08:49.000",
     "end": "00:08:56.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " I love the you know, sometimes those really massive numbers are just hard to wrap your head around. So how many liters are we talking about here? "
   },
   {
     "start": "00:08:56.000",
     "end": "00:09:02.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " Okay. Get ready. It's a big one. It's two point five eight times ten to the fourteenth liters. "
   },
   {
     "start": "00:09:02.000",
     "end": "00:09:04.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Woah. Okay. That's a lot of liters. "
   },
   {
     "start": "00:09:04.000",
     "end": "00:09:09.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " It's hard to picture. Right? Like, imagine a hundred and three million Olympic sized swimming pools. "
   },
   {
     "start": "00:09:09.000",
     "end": "00:09:13.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Okay. Now that's a comparison I can get behind. Bromo is suddenly even more impressive. "
   },
   {
     "start": "00:09:14.000",
     "end": "00:09:22.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " It's incredible. And, you know, that's just the part they were able to model. The The real thing is even bigger. I mean, talk about a humbling reminder of the power of nature, "
   },
   {
     "start": "00:09:23.000",
     "end": "00:09:27.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " makes you appreciate the work scientists do trying to understand it all. "
   },
   {
     "start": "00:09:27.000",
     "end": "00:09:30.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Absolutely. Alright. Ready for another change of pace? "
   },
   {
     "start": "00:09:30.000",
     "end": "00:09:30.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " Sure. "
   },
   {
     "start": "00:09:30.000",
     "end": "00:09:41.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Let's head back to the world of Indonesian soccer. That blog post on the team's FIFA ranking really got me thinking about all the different things that contribute to success, you know, not just in sports, but in anything. "
   },
   {
     "start": "00:09:42.000",
     "end": "00:09:45.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " Yeah. You're right. It's not just individual talent. Right? You need good coaches. "
   },
   {
     "start": "00:09:45.000",
     "end": "00:09:46.000",
-    "speaker": "VizVera",
-    "text": " Team dynamics. "
-  },
-  {
-    "start": "00:09:46.000",
-    "end": "00:09:46.000",
-    "speaker": "DataDan",
-    "text": " The fans. "
+    "speaker": "1",
+    "text": " Team dynamics. The fans. "
   },
   {
     "start": "00:09:47.000",
     "end": "00:09:52.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Even those external factors like that FIFA sanction they mentioned, all of it plays a role. "
   },
   {
     "start": "00:09:52.000",
     "end": "00:09:58.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " Absolutely. It's like a giant puzzle, all these interconnected pieces. And data helps us see how they all fit together. "
   },
   {
     "start": "00:09:58.000",
     "end": "00:10:09.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Exactly. Speaking of the bigger picture, I keep thinking back to that part about Indonesia's highest ever FIFA ranking back in ninety eight. What do you think led to that success? "
   },
   {
     "start": "00:10:10.000",
     "end": "00:10:27.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " It's hard to say for sure, but wouldn't it be awesome to go back and really analyze that time? Maybe it was the coaching style, or maybe there was just a group of really talented players at that time. Or maybe, you know, a surge in national pride. It's like, we could study a historical playbook to see what their secret was. "
   },
   {
     "start": "00:10:27.000",
     "end": "00:10:42.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " I love that. Okay. Let's take one last trip to those Raja Ampat Islands before we move on. You know, I really appreciated how transparent that biodiversity blog post was about their research. "
   },
   {
     "start": "00:10:42.000",
     "end": "00:10:45.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " Me too. They didn't just give us the results. Right? "
   },
   {
     "start": "00:10:45.000",
     "end": "00:10:45.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Right. "
   },
   {
     "start": "00:10:45.000",
     "end": "00:10:48.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " They walked us through the whole process, even the challenges and the setbacks. "
   },
   {
     "start": "00:10:49.000",
     "end": "00:10:53.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Totally. Like, they even mentioned how they had to reach out directly to the researcher to get the data. "
   },
   {
     "start": "00:10:53.000",
     "end": "00:10:57.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " Right. They had to use a more complex model to understand it. That Weibull model, remember? "
   },
   {
     "start": "00:10:57.000",
     "end": "00:11:02.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Yeah. Which basically means there are more things at play than just the size of the island. Right? "
   },
   {
     "start": "00:11:02.000",
     "end": "00:11:08.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " Exactly. It's like we're uncovering all these layers of the ecosystem, all these complex connections. And then we could use that knowledge to protect it. "
   },
   {
     "start": "00:11:09.000",
     "end": "00:11:14.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Exactly. Knowledge is power, especially when it comes to protecting the environment. "
   },
   {
     "start": "00:11:14.000",
     "end": "00:11:15.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " Couldn't agree more. "
   },
   {
     "start": "00:11:15.000",
     "end": "00:11:30.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Okay. Well, that wraps up part two of our deep dive. We've covered some serious ground. From the sheer volume of Indonesian volcanoes to the world of soccer rankings and those amazing ecosystems in Raja Ampat, but we're not done yet. "
   },
   {
     "start": "00:11:30.000",
     "end": "00:11:31.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " There's more to come. "
   },
   {
     "start": "00:11:31.000",
     "end": "00:11:47.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Stick around for part three where we'll uncover even more fascinating insights from these blog posts. Alright. So welcome back to the deep dive. We're wrapping up our exploration of these awesome sources you sent, and I think we saved some of the best for last. So let's jump right back into those Indonesian volcanoes. "
   },
   {
     "start": "00:11:49.000",
     "end": "00:11:54.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Remember how those researchers went above and beyond, not only creating those amazing 3D models, "
   },
   {
     "start": "00:11:54.000",
     "end": "00:11:54.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " Yeah. "
   },
   {
     "start": "00:11:54.000",
     "end": "00:11:57.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " but they actually compared their measurements to what's on Wikipedia. "
   },
   {
     "start": "00:11:57.000",
     "end": "00:12:07.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " They wanted to make sure their method was accurate. And the results were pretty impressive. Like, for Semeru, their model's height was almost exactly the same as the official height on the Wikipedia. "
   },
   {
     "start": "00:12:07.000",
     "end": "00:12:25.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " That is so cool. It really shows how powerful and precise these 3D modeling techniques can be. It's like science coming to life right in front of you. And, you know, speaking of size, we can't forget about Bromo, the volcano with the most volume. Did they actually put a number on how voluminous it is? "
   },
   {
     "start": "00:12:25.000",
     "end": "00:12:32.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " Oh, they did. And it's a big one. Get this. Two point five eight times ten to the fourteenth liters. That's a lot of liters. "
   },
   {
     "start": "00:12:32.000",
     "end": "00:12:37.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " I mean, honestly, that number is so huge. I can't even picture it. It's like trying to count all the stars in the sky. "
   },
   {
     "start": "00:12:37.000",
     "end": "00:12:43.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " Right. So try thinking of it this way. It's like a hundred and three million Olympic sized swimming pools. "
   },
   {
     "start": "00:12:43.000",
     "end": "00:12:51.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Okay. Now that I can understand, wow, it really puts the scale of these volcanoes into perspective, and that's just the part they were able to model. The real thing is even bigger. "
   },
   {
@@ -1064,139 +1051,139 @@ editor_options:
   {
     "start": "00:12:53.000",
     "end": "00:12:57.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Yeah. It does. It's a good reminder of just how powerful nature is. "
   },
   {
     "start": "00:12:57.000",
     "end": "00:12:59.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " And how much we still have to learn. "
   },
   {
     "start": "00:12:59.000",
     "end": "00:13:13.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " For sure. Alright. Let's switch gears one last time and go back to that blog post on Indonesian soccer. I'm still thinking about how they talked about that FIFA sanction and how it impacted the team's performance. It It really shows you that success in sports and anything, really, it's not just a one person show. "
   },
   {
     "start": "00:13:13.000",
     "end": "00:13:23.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " You got it. It's the team effort all the way, the players, the coaches, the staff, the fans even. Even things like rules and regulations, those external factors, everything's connected. "
   },
   {
     "start": "00:13:23.000",
     "end": "00:13:31.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " It's like this big complex ecosystem, and data helps us understand those connections, you know, see how they contribute to wins and losses. "
   },
   {
     "start": "00:13:31.000",
     "end": "00:13:39.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " Exactly. Speaking of wins, remember that Indonesia's highest FIFA ranking ever was back in 1998. What What do you think happened that year? "
   },
   {
     "start": "00:13:39.000",
     "end": "00:13:53.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " I know. Right? Was it some brilliant coaching strategy? Maybe they had an amazing group of players, or maybe it was, like, a wave of national pride that just pushed them to do their best. I wish we'd go back in time and analyze the data from that year. "
   },
   {
     "start": "00:13:53.000",
     "end": "00:13:56.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " Like, we could study their playbook, try to figure out their secret. "
   },
   {
     "start": "00:13:57.000",
     "end": "00:14:08.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Okay. One last stop on our deep dive adventure. Let's go back to those Raja Ampat Islands. I really liked how that biodiversity blog post gave us a look behind the scenes of research. "
   },
   {
     "start": "00:14:08.000",
     "end": "00:14:13.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " Me too. It wasn't just, here are the results. They actually walked us through the process. "
   },
   {
     "start": "00:14:13.000",
     "end": "00:14:21.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Yeah. You know, even the hard parts, like, when they had to email their researcher directly to get the data, it reminds me that science isn't always straightforward. "
   },
   {
     "start": "00:14:21.000",
     "end": "00:14:24.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " Definitely not. Sometimes you gotta be a little creative to get what you need. "
   },
   {
     "start": "00:14:24.000",
     "end": "00:14:29.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " And persistent. It it's a good reminder that science is about the journey. "
   },
   {
     "start": "00:14:29.000",
     "end": "00:14:32.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " About always learning, always asking new questions. "
   },
   {
     "start": "00:14:32.000",
     "end": "00:14:38.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " And sometimes, you know, those little detours, those unexpected twists and turns, those can lead to the most interesting discoveries. "
   },
   {
     "start": "00:14:39.000",
     "end": "00:14:40.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " Yeah. Exactly. "
   },
   {
     "start": "00:14:40.000",
     "end": "00:14:46.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Like, their findings about island size and plant diversity. It's not as simple as bigger island equals more plants. "
   },
   {
     "start": "00:14:46.000",
     "end": "00:14:49.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " Right. They needed a more complex model to really understand it. "
   },
   {
     "start": "00:14:49.000",
     "end": "00:14:52.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Exactly. It's like peeling back the layers of an onion. "
   },
   {
     "start": "00:14:52.000",
     "end": "00:14:55.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " And it helps us understand what we need to do to protect them. "
   },
   {
     "start": "00:14:56.000",
     "end": "00:15:17.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " Yeah. Knowledge is power, especially when it comes to protecting our environment. Well, it looks like we've reached the end of our deep dive. We've climbed those Indonesian volcanoes, explored the ups and downs of their soccer team, and we even took a look at how the music industry has changed over time. It's amazing how data can give us these insights into, well, pretty much everything. "
   },
   {
     "start": "00:15:17.000",
     "end": "00:15:22.000",
-    "speaker": "DataDan",
+    "speaker": "2",
     "text": " The natural world, human behavior, cultural trends, data is everywhere. "
   },
   {
     "start": "00:15:22.000",
     "end": "00:15:33.000",
-    "speaker": "VizVera",
+    "speaker": "1",
     "text": " It really is. And it all started with you and the fascinating sources you sent our way. So thank you. We can't wait to see what you send us next time. Until then, keep exploring, keep asking questions, and keep on diving deep."
   }
 ]
@@ -1205,7 +1192,7 @@ editor_options:
     // Player configuration
     const config = {
   version: 5, // Version of the Podlove Web Player
-  activeTab: "chapters",
+  activeTab: "transcripts",
   theme: "default"
 };
 
