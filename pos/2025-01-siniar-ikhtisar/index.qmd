@@ -26,7 +26,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-Dari pembaca ke pendengar, itulah maksudku membuat siniar ini. Siniar ini dimaksudkan untuk merangkum konten-konten yang telah dipublikasikan di blog ini agar lebih mudah didengar dan dicerna. Siniar ini dibuat dengan [NotebookLM](https://notebooklm.google/){.external target="_blank"}. Selamat mendengarkan!
+Dari pembaca ke pendengar, itulah maksudku membuat siniar ini. Siniar ini dimaksudkan untuk merangkum konten-konten yang telah dipublikasikan di blog ini agar lebih mudah didengar dan dicerna. Siniar ini dibuat dengan [NotebookLM](https://notebooklm.google/){.external target="_blank"}. Platform itu belum dapat membuat siniar berbahasa Indonesia. Oleh karena itu, siniar ini berbahasa Inggris. Selamat mendengarkan!
 
 ```{=html}
 <div id="podlove-web-player"></div>
@@ -57,7 +57,7 @@ Dari pembaca ke pendengar, itulah maksudku membuat siniar ini. Siniar ini dimaks
     "image": ""
   },
   {
-    "start": "00:00:45.000",
+    "start": "00:00:52.000",
     "title": "Modeling Indonesian Volcanoes",
     "href": "https://jelajahstatid.github.io/pos/2024-08-gunung-agung-bromo-merapi-dan-semeru/",
     "image": ""
@@ -75,7 +75,7 @@ Dari pembaca ke pendengar, itulah maksudku membuat siniar ini. Siniar ini dimaks
     "image": ""
   },
   {
-    "start": "00:04:41.000",
+    "start": "00:03:53.000",
     "title": "Biodiversity in Raja Ampat",
     "href": "https://jelajahstatid.github.io/pos/2024-08-keanekaragaman-hayati-raja-ampat/",
     "image": ""
