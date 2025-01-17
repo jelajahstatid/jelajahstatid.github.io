@@ -39,12 +39,12 @@ Dari pembaca ke pendengar, itulah maksudku membuat siniar ini. Siniar ini dimaks
         "title": "Jelajah Statistika dan Ilmu Data",
         "subtitle": "Ikhtisar Statistik dan Data",
         "summary": "Ikuti siniar kami untuk memahami statistik dengan cara yang sederhana dan menyenangkan!",
-        "poster": "gelombang_audio_siniar.png", // Optional
-        "link": "https://jelajahstatid.github.io" // Optional
+        "poster": "https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/refs/heads/main/pos/2025-01-siniar-ikhtisar/aset/siniar_ikhtisar.png",
+        "link": "https://jelajahstatid.github.io"
       },
       "title": "Siniar Ikhtisar: Episode 1",
       "subtitle": "Ikhtisar Statistik dan Data",
-      "summary": "Ikuti podcast kami untuk memahami statistik dengan cara yang sederhana dan menyenangkan!",
+      "summary": "Ikuti siniar kami untuk memahami statistik dengan cara yang sederhana dan menyenangkan!",
       "audio": [{
         "url": "https://github.com/jelajahstatid/jelajahstatid.github.io/raw/refs/heads/main/pos/2025-01-siniar-ikhtisar/aset/siniar_jelajahstatid.mp3",
         "mimeType": "audio/mp3"
