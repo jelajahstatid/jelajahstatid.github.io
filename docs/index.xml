@@ -38,10 +38,28 @@
       "title": "Siniar Ikhtisar: Episode 1",
       "subtitle": "Ikhtisar Statistik dan Data",
       "summary": "Ikuti siniar kami untuk memahami statistik dengan cara yang sederhana dan menyenangkan!",
-      "audio": [{
+      "audio": [
+        {
         "url": "https://github.com/jelajahstatid/jelajahstatid.github.io/raw/refs/heads/main/pos/2025-01-siniar-ikhtisar/aset/siniar_jelajahstatid.mp3",
+        "size": "11200000",
+        "title": "MP3 Audio",
         "mimeType": "audio/mp3"
-      }],
+      }
+      ],
+      "files": [
+        {
+        "url": "https://github.com/jelajahstatid/jelajahstatid.github.io/raw/refs/heads/main/pos/2025-01-siniar-ikhtisar/aset/siniar_jelajahstatid.mp3",
+        "size": "11200000",
+        "title": "MP3 Audio",
+        "mimeType": "audio/mp3"
+        },
+        {
+        "url": "https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/refs/heads/main/pos/2025-01-siniar-ikhtisar/aset/transcripts.json",
+        "size": "34800",
+        "title": "Transcript",
+        "mimeType": "text/plain"
+        }
+      ],
       "chapters": [
   {
     "start": "00:00:00.000",
