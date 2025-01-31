@@ -474,5 +474,33 @@
     "title": "Menemukan Koneksi Antarprodi",
     "section": "",
     "text": "Penggunaan KembaliCC BY 4.0Hak Cipta© 2025 Yosep Dwi Kristanto"
+  },
+  {
+    "objectID": "pos/2025-02-cerme14/index.html",
+    "href": "pos/2025-02-cerme14/index.html",
+    "title": "Mengantisipasi Bincang-Bincang Ilmiah",
+    "section": "",
+    "text": "[Pendahuluan]"
+  },
+  {
+    "objectID": "pos/2025-02-cerme14/index.html#kolaborasi-antarnegara",
+    "href": "pos/2025-02-cerme14/index.html#kolaborasi-antarnegara",
+    "title": "Mengantisipasi Bincang-Bincang Ilmiah",
+    "section": "Kolaborasi Antarnegara",
+    "text": "Kolaborasi Antarnegara"
+  },
+  {
+    "objectID": "pos/2025-02-cerme14/index.html#identifikasi-topik",
+    "href": "pos/2025-02-cerme14/index.html#identifikasi-topik",
+    "title": "Mengantisipasi Bincang-Bincang Ilmiah",
+    "section": "Identifikasi Topik",
+    "text": "Identifikasi Topik\nKL\n\nKodesigmajs() |&gt; \n  sg_nodes(nodes_keywords_sederhana, id, label, size, color, x, y) |&gt; \n  sg_edges(edgelist_keywords, id, source, target, color) |&gt; \n  sg_drag_nodes() |&gt; \n  sg_neighbors()"
+  },
+  {
+    "objectID": "pos/2025-02-cerme14/index.html#catatan-akhir",
+    "href": "pos/2025-02-cerme14/index.html#catatan-akhir",
+    "title": "Mengantisipasi Bincang-Bincang Ilmiah",
+    "section": "Catatan Akhir",
+    "text": "Catatan Akhir"
   }
 ]

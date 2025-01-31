@@ -62,9 +62,52 @@ library(sigmajs)
 #| echo: false
 
 edgelist_keywords <- read_csv(
-  "https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/refs/heads/main/pos/2025-02-cerme14/aset/edge_list_cerme14.csv",
+  "https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/refs/heads/main/pos/2025-02-cerme14/aset/edgelist_gephi.csv",
+  show_col_types = FALSE
+) |> 
+  select(Id, Source, Target, Weight) |> 
+  rename(
+    id = Id,
+    source = Source,
+    target = Target,
+    weight = Weight
+  ) |> 
+  mutate(
+    id = id + 1,
+    color = "#e5e5e5"
+  )
+nodes_keywords <- read_csv(
+  "https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/refs/heads/main/pos/2025-02-cerme14/aset/nodes_gephi.csv",
   show_col_types = FALSE
 )
+nodes_keywords_sederhana <- nodes_keywords |> 
+  select(
+    Id, Label, Degree, `Weighted Degree`, modularity_class,
+    Color, Size, X, Y
+  ) |> 
+  rename(
+    id = Id,
+    label = Label,
+    degree = Degree,
+    weighted_degree = `Weighted Degree`,
+    color = Color,
+    size = Size,
+    x = X,
+    y = Y
+  ) |> 
+  mutate(
+    size = 2 * size
+  )
+```
+
+KL
+
+```{r}
+sigmajs() |> 
+  sg_nodes(nodes_keywords_sederhana, id, label, size, color, x, y) |> 
+  sg_edges(edgelist_keywords, id, source, target, color) |> 
+  sg_drag_nodes() |> 
+  sg_neighbors()
 ```
 
 ## Catatan Akhir
