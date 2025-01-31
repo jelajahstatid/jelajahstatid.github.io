@@ -1,6 +1,6 @@
 ---
 title: "Mengantisipasi Bincang-Bincang Ilmiah"
-subtitle: "Dari Pemrograman R Sampai Observable JS"
+subtitle: "Menggunakan Analisis Jejaring untuk Menyingkap CERME 14"
 description: "Banyak cara untuk memvisualisasikan data secara efektif. Artikel ini mendemonstrasikan bagaimana memvisualisasikan data pendapatan industri musik di AS dengan menggunakan {ggplot2} dan {plotly}. Cara tersebut dilakukan dengan menggunakan pemrograman R. Tak hanya itu, artikel ini juga mendemonstrasikan bagaimana memvisualisasikan data tersebut secara interaktif dengan menggunakan Observable Plot."
 draft: true
 author:
@@ -56,10 +56,122 @@ library(sigmajs)
 
 ## Kolaborasi Antarnegara
 
+```{r}
+#| echo: false
+#| code-fold: false
+#| warning: false
+#| message: false
+
+# Impor data
+url_cerme14_metadata <- "https://github.com/jelajahstatid/jelajahstatid.github.io/raw/refs/heads/main/pos/2025-02-cerme14/aset/CERME14_metadata.xlsx"
+destfile <- "CERME14_metadata.xlsx"
+curl::curl_download(url_cerme14_metadata, destfile)
+data_cerme14 <- read_excel(destfile)
+
+# Memisah negara ke dalam barisnya sendiri
+data_cerme14_panjang <- data_cerme14 |> 
+  separate_rows(country, sep = "; ") |> 
+  mutate(country = trimws(country))
+
+# Menghitung banyaknya artikel/poster tiap negara
+n_negara <- data_cerme14_panjang |> 
+  count(country, sort = TRUE)
+
+# Membuat data kolaborasi antarnegara
+kolaborasi_antarnegara <- data_cerme14 |> 
+  filter(str_detect(country, ";")) |> 
+  separate_rows(country, sep = "; ") |> 
+  mutate(country = trimws(country)) |> 
+  select(id, country) |> 
+  group_by(id) |> 
+  reframe(
+    kolaborasi = combn(country, 2, FUN = paste, collapse = " - "),
+    .groups = "drop"
+  ) |> 
+  separate_rows(kolaborasi, sep = "\n") |> 
+  count(kolaborasi, sort = TRUE)
+
+# Memuat peta dunia
+peta_dunia <- ne_countries(scale = "medium", returnclass = "sf")
+
+# Menggabungkan `peta_dunia` dan `n_negara`
+data_peta <- peta_dunia |> 
+  left_join(n_negara, by = c("name" = "country"))
+
+# Membuat data posisi negara
+posisi_negara <- peta_dunia |> 
+  select(admin, geometry) |>
+  st_centroid() |> 
+  st_coordinates() |> 
+  as.data.frame() |> 
+  rename(lon = X, lat = Y) |> 
+  cbind(country = peta_dunia$admin)
+
+# Menggabungkan `kolaborasi_antarnegara` dan `posisi_negara`
+sisi <- kolaborasi_antarnegara |> 
+  separate(
+    kolaborasi,
+    into = c("negara1", "negara2"),
+    sep = " - "
+  ) |> 
+  left_join(
+    posisi_negara, by = c("negara1" = "country")
+  ) |> 
+  rename(lon1 = lon, lat1 = lat) |> 
+  left_join(posisi_negara, by = c("negara2" = "country")) |> 
+  rename(lon2 = lon, lat2 = lat)
+
+# Membersikan `sisi`
+sisi_rapi <- sisi |> 
+  drop_na(lon1, lat1, lon2, lat2) |> 
+  filter(negara1 != negara2)
+```
+
+KL
+
+```{r}
+#| echo: false
+#| code-fold: false
+#| label: fig-peta-kolaborasi
+#| fig-cap: "Kolaborasi antarnegara dalam penyusunan makalah dan poster CERME 14"
+#| fig-asp: .4
+
+ggplot() +
+  geom_sf(
+    data = data_peta, 
+    aes(fill = n),
+    color = "white"
+  ) + 
+  geom_curve(
+    data = sisi_rapi,
+    aes(
+      x = lon1, y = lat1,
+      xend = lon2, yend = lat2, 
+      linewidth = n
+    ), 
+    color = "#efb118",
+    curvature = 0.2, alpha = 0.3,
+    show.legend = FALSE
+  ) +
+  scale_linewidth(range = c(0.5, 2)) + 
+  scale_fill_gradient(
+    name = "Frekuensi",
+    high = "#4269D0",
+    low = "#A0B3E7",
+    na.value = "grey90"
+  ) + 
+  theme_minimal() + 
+  theme(
+    axis.title = element_blank(),
+    legend.position = "right"
+  )
+```
+
 ## Identifikasi Topik
 
 ```{r}
 #| echo: false
+#| code-fold: false
 
 edgelist_keywords <- read_csv(
   "https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/refs/heads/main/pos/2025-02-cerme14/aset/edgelist_gephi.csv",
@@ -103,11 +215,20 @@ nodes_keywords_sederhana <- nodes_keywords |>
 KL
 
 ```{r}
+#| code-fold: false
+#| echo: false
+
 sigmajs() |> 
   sg_nodes(nodes_keywords_sederhana, id, label, size, color, x, y) |> 
   sg_edges(edgelist_keywords, id, source, target, color) |> 
   sg_drag_nodes() |> 
   sg_neighbors()
+```
+
+## Fokus Tentang Kurikulum
+
+```{r}
+
 ```
 
 ## Catatan Akhir

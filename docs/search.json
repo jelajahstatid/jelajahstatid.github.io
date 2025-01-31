@@ -487,14 +487,14 @@
     "href": "pos/2025-02-cerme14/index.html#kolaborasi-antarnegara",
     "title": "Mengantisipasi Bincang-Bincang Ilmiah",
     "section": "Kolaborasi Antarnegara",
-    "text": "Kolaborasi Antarnegara"
+    "text": "Kolaborasi Antarnegara\nKL\n\n\n\n\n\n\n\nGambar 1: Kolaborasi antarnegara dalam penyusunan makalah dan poster CERME 14"
   },
   {
     "objectID": "pos/2025-02-cerme14/index.html#identifikasi-topik",
     "href": "pos/2025-02-cerme14/index.html#identifikasi-topik",
     "title": "Mengantisipasi Bincang-Bincang Ilmiah",
     "section": "Identifikasi Topik",
-    "text": "Identifikasi Topik\nKL\n\nKodesigmajs() |&gt; \n  sg_nodes(nodes_keywords_sederhana, id, label, size, color, x, y) |&gt; \n  sg_edges(edgelist_keywords, id, source, target, color) |&gt; \n  sg_drag_nodes() |&gt; \n  sg_neighbors()"
+    "text": "Identifikasi Topik\nKL"
   },
   {
     "objectID": "pos/2025-02-cerme14/index.html#catatan-akhir",
