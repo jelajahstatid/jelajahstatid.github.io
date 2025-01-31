@@ -1,0 +1,61 @@
+---
+title: "Mengantisipasi Bincang-Bincang Ilmiah"
+subtitle: "Dari Pemrograman R Sampai Observable JS"
+description: "Banyak cara untuk memvisualisasikan data secara efektif. Artikel ini mendemonstrasikan bagaimana memvisualisasikan data pendapatan industri musik di AS dengan menggunakan {ggplot2} dan {plotly}. Cara tersebut dilakukan dengan menggunakan pemrograman R. Tak hanya itu, artikel ini juga mendemonstrasikan bagaimana memvisualisasikan data tersebut secara interaktif dengan menggunakan Observable Plot."
+draft: true
+author:
+  - name: Yosep Dwi Kristanto
+    url: https://people.usd.ac.id/~ydkristanto/
+    affiliation: Pendidikan Matematika, Universitas Sanata Dharma, Yogyakarta
+    affiliation-url: https://www.usd.ac.id/s1pmat
+    orcid: 0000-0003-1446-0422
+date: 2025-01-13
+categories:
+  - ekonomi
+  - musik
+  - tutorial
+  - visualisasi data
+image: "pendapatan_musik.png"
+image-alt: |
+  Gambar yang menunjukkan pendapatan industri musik di AS berdasarkan format.
+keywords: 
+  - ekonomi
+  - ggplot2
+  - JavaScript
+  - musik
+  - Observable JS
+  - Observable Plot
+  - plotly
+  - pendapatan
+copyright: "© 2025 Yosep Dwi Kristanto"
+license: "CC BY"
+code-annotations: select
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+#| warning: false
+#| message: false
+#| echo: false
+
+library(readxl)
+library(tidyverse)
+library(sf)
+library(rnaturalearth)
+library(rnaturalearthdata)
+library(ggraph)
+library(igraph)
+library(ggtext)
+library(camcorder)
+library(scales)
+library(sigmajs)
+```
+
+\[Pendahuluan\]
+
+## Kolaborasi Antarnegara
+
+## Identifikasi Topik
+
+## Catatan Akhir

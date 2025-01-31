@@ -1,0 +1,4347 @@
+"Source","Target","Weight"
+"computational thinking","scratch",4
+"facilitators","professional development",4
+"mathematics education","professional development",4
+"mathematics education","programming",4
+"professional development","teacher education",4
+"algebra","variables",3
+"anthropological theory of the didactic","study and research paths",3
+"computational literacy","computational thinking",3
+"computational thinking","mathematics education",3
+"computational thinking","programming",3
+"lesson study","mathematics teaching",3
+"accumulation","integral",2
+"adaptation","fidelity",2
+"adaptation","implementation",2
+"algebra","letter-as-object misconception",2
+"anthropological theory of the didactic","mathematical modelling",2
+"anthropological theory of the didactic","statistics",2
+"argumentation","calculus",2
+"artificial intelligence","large language model",2
+"artificial intelligence","mathematics education",2
+"beliefs","professional development",2
+"beliefs","teacher education",2
+"block play","kindergarten",2
+"border","interdisciplinarity",2
+"boundary encounters","mathematicians",2
+"calculus","integration",2
+"collaboration","lesson study",2
+"communities of practice","professional identity",2
+"communities of practice","vocational education",2
+"computational thinking","design research",2
+"computational thinking","educational robots",2
+"computational thinking","primary school",2
+"computational thinking","simulation",2
+"computational thinking","stem education",2
+"didactic paradigm","epistemological model",2
+"education for sustainable development","primary education",2
+"education for sustainable development","sustainability",2
+"educational robots","primary school",2
+"educational robots","programming",2
+"evaluation","stack",2
+"facilitators","mathematics",2
+"facilitators","primary school",2
+"facilitators","professional learning",2
+"fidelity","implementation",2
+"functional thinking","functions",2
+"geometry","primary school",2
+"geometry","secondary school mathematics",2
+"inclusion","visual impairments",2
+"initial teacher education","lesson study",2
+"interactions","positioning theory",2
+"language","multilingualism",2
+"language","primary education",2
+"lesson study","whole-class discussion",2
+"letter-as-object misconception","variables",2
+"mathematical literacy","numeracy",2
+"mathematical modelling","study and research paths",2
+"mathematicians","secondary teacher education",2
+"mathematics","preschool",2
+"mathematics","primary school",2
+"mathematics","professional development",2
+"mathematics","programming",2
+"mathematics education","perceived difficulty",2
+"mathematics education","problem solving",2
+"mathematics education","research methods",2
+"mathematics education","sustainable development goals",2
+"mathematics education","teacher noticing",2
+"mathematics teacher educators","professional development",2
+"mathematics teaching","whole-class discussion",2
+"multilingualism","primary education",2
+"noticing","professional development",2
+"play-responsive teaching","preschool",2
+"preservice teachers","programming",2
+"preservice teachers","teacher education",2
+"primary education","sustainability",2
+"primary school","professional development",2
+"primary school","programming",2
+"professional development","task design",2
+"statistics education","teacher education",2
+"teacher noticing","video case",2
+"(pre-)structuralist praxeologies","calculus",1
+"(pre-)structuralist praxeologies","continuity",1
+"(pre-)structuralist praxeologies","path-connectedness",1
+"(pre-)structuralist praxeologies","real analysis",1
+"20th century","curricula",1
+"20th century","middle school",1
+"20th century","primary education",1
+"20th century","professional education",1
+"3d design","3d printing",1
+"3d design","curvature",1
+"3d design","intrinsic geometry",1
+"3d design","programming",1
+"3d design and printing","low achievers",1
+"3d design and printing","mathematical modelling",1
+"3d design and printing","opportunities to learn",1
+"3d printed manipulatives","geometry of solid figures",1
+"3d printed manipulatives","projections",1
+"3d printing","curvature",1
+"3d printing","intrinsic geometry",1
+"3d printing","programming",1
+"3d virtual models","animation",1
+"3d virtual models","geogebra",1
+"3d virtual models","straight-line helicoids",1
+"3d virtual models","visuospatial abilities",1
+"3d-printing","3dmp",1
+"3d-printing","debugging",1
+"3d-printing","design-based research",1
+"3d-printing","dynamic manipulation",1
+"3d-printing","interview",1
+"3d-printing","manipulatives",1
+"3d-printing","tpack",1
+"3d-techno-pedagogical integration matrix","mathematical quality of instruction",1
+"3d-techno-pedagogical integration matrix","pre-service mathematics teachers",1
+"3d-techno-pedagogical integration matrix","samr model",1
+"3d-techno-pedagogical integration matrix","tpack",1
+"3dmp","interview",1
+"3dmp","manipulatives",1
+"3dmp","tpack",1
+"6th grade students","mathematics education",1
+"6th grade students","programmable robots",1
+"6th grade students","programming",1
+"absolute value","conceptualization",1
+"absolute value","percentage",1
+"absolute value","relative value",1
+"abstraction","ar",1
+"abstraction","block-based programming",1
+"abstraction","computational thinking",1
+"abstraction","concretion",1
+"abstraction","craft",1
+"abstraction","ct",1
+"abstraction","embodied cognition",1
+"abstraction","experience",1
+"abstraction","field of promoted actions",1
+"abstraction","geometry",1
+"abstraction","making",1
+"abstraction","mathematical thinking",1
+"abstraction","scratch",1
+"abstraction","secondary mathematics education",1
+"academic motivation","collaborative problem solving",1
+"academic motivation","goal structures",1
+"academic motivation","lower secondary school",1
+"academic motivation","mathematics-related affect",1
+"accumulation","antiderivative",1
+"accumulation","compartmentalization",1
+"accumulation","extra-mathematical context",1
+"accumulation","meaning",1
+"achievement test","covid-19 pandemic",1
+"achievement test","mathematics achievement",1
+"achievement test","pre-course mathematics",1
+"achievement test","secondary school mathematics",1
+"action research","adult learning",1
+"action research","change agents",1
+"action research","disadvantaged communities",1
+"action research","mathematics teacher educator",1
+"action research","professional development",1
+"action research","re-engagement",1
+"active learning","commognition",1
+"active learning","communities of practice",1
+"active learning","inter-community partnerships",1
+"activity theory","inquiry-based learning",1
+"activity theory","manifestations of contradictions",1
+"activity theory","pre-service teachers",1
+"activity theory","problem posing",1
+"actual and designated identity","mathematics",1
+"actual and designated identity","preservice teachers",1
+"actual and designated identity","programming",1
+"adam ries","history of mathematics education",1
+"adam ries","numeracy",1
+"adam ries","textbook research",1
+"adaptation","early mathematics",1
+"adaptation","preschool",1
+"adaptive expertise","equations",1
+"adaptive expertise","eye-tracking",1
+"adaptive expertise","idiosyncratic structures",1
+"adaptive expertise","solving strategies",1
+"adaptive teaching","diagnostic judgment",1
+"adaptive teaching","early arithmetic education",1
+"adaptive teaching","teacher education",1
+"adaptive teaching","vignettes",1
+"adaptivity","asynchronous online pd",1
+"adaptivity","collaboration",1
+"adaptivity","representations of practice",1
+"adaptivity","teacher learning",1
+"addition","counting",1
+"addition","microgenetic",1
+"addition","subitising",1
+"addition","variability",1
+"addition and subtraction problems","elementary arithmetic",1
+"addition and subtraction problems","flexibility in mental calculation",1
+"addition and subtraction problems","number patterns",1
+"addition and subtraction problems","problem characteristics",1
+"additional educational needs","bilingualism",1
+"additional educational needs","clil",1
+"additional educational needs","summative mathematics assessments",1
+"additive problems","decision level",1
+"additive problems","decision-making",1
+"additive problems","preservice teachers",1
+"additive problems","semantic structure",1
+"additive word problems","quantitative relation",1
+"additive word problems","quantity",1
+"additive word problems","spatial visualization",1
+"additive word problems","visuospatial working memory",1
+"adult basic education","adults learning mathematics",1
+"adult basic education","numeracy",1
+"adult education","empowerment",1
+"adult education","experiential learning",1
+"adult education","gender differences",1
+"adult education","inclusion",1
+"adult education","informal mathematics education",1
+"adult education","prison context",1
+"adult education","problem solving",1
+"adult learning","disadvantaged communities",1
+"adult learning","re-engagement",1
+"adult skills","assessment",1
+"adult skills","numeracy",1
+"adult skills","piaac",1
+"adult skills","second cycle",1
+"adults","anxiety",1
+"adults","common european numeracy framework",1
+"adults","examinations",1
+"adults","instruments",1
+"adults","numeracy",1
+"adults","self-efficacy",1
+"adults learning mathematics","numeracy",1
+"aesthetic","ecological",1
+"aesthetic","embodiment",1
+"aesthetic","geological",1
+"aesthetic","materiality",1
+"aesthetic","political",1
+"aesthetics","covariational reasoning",1
+"aesthetics","educational technology",1
+"aesthetics","music",1
+"aesthetics","periodic functions",1
+"affect","beliefs",1
+"affect","beyond failure-and-success",1
+"affect","bodies",1
+"affect","cognition",1
+"affect","concepts",1
+"affect","creating together",1
+"affect","early mathematics education",1
+"affect","emotions",1
+"affect","graphing",1
+"affect","identification",1
+"affect","preservice primary teachers",1
+"affect","proof",1
+"affect","proof construction",1
+"affect","relations in affective variables",1
+"affect","sad affects",1
+"affect","secondary mathematics",1
+"affect","survey",1
+"affect","teacher education",1
+"affective system","algebra",1
+"affective system","high school",1
+"affective system","proof awareness",1
+"ai","attention",1
+"ai","epistemic logic",1
+"ai","interaction",1
+"ai","narrative analysis",1
+"ai","preservice teachers",1
+"ai","qualitative analysis",1
+"ai","secondary-tertiary transition",1
+"ai education","machine learning",1
+"ai education","mathematics education",1
+"ai education","support vector machine",1
+"aims of modelling","general education",1
+"aims of modelling","mathematical modelling",1
+"aims of modelling","problem situations",1
+"al-khwarizmi","algebra",1
+"al-khwarizmi","area",1
+"al-khwarizmi","diagrams",1
+"al-khwarizmi","quadratic",1
+"algebra","analytical tool",1
+"algebra","area",1
+"algebra","bi-institutional lesson study",1
+"algebra","conceptual understanding",1
+"algebra","diagrams",1
+"algebra","equations",1
+"algebra","equity",1
+"algebra","formative assessment",1
+"algebra","high school",1
+"algebra","institutional transition problem",1
+"algebra","language as a resource",1
+"algebra","latent transition analysis",1
+"algebra","learning",1
+"algebra","learning trajectories",1
+"algebra","lesson study",1
+"algebra","linear equations",1
+"algebra","mathematics education",1
+"algebra","methodology",1
+"algebra","online formative assessment",1
+"algebra","praxeology",1
+"algebra","proof awareness",1
+"algebra","quadratic",1
+"algebra","rem",1
+"algebra","sign language",1
+"algebra","sorting task",1
+"algebra","stem majors",1
+"algebra","structure sense",1
+"algebra","task design",1
+"algebra","tertiary students",1
+"algebra education","computer science",1
+"algebra education","lambda calculus",1
+"algebra education","reification",1
+"algebra education","type theory",1
+"algebraic discourse","commognition",1
+"algebraic discourse","digital learning environments",1
+"algebraic discourse","equations",1
+"algebraic errors","algebraic manipulation",1
+"algebraic errors","algebraic sense",1
+"algebraic errors","higher education",1
+"algebraic errors","structural sense",1
+"algebraic manipulation","algebraic sense",1
+"algebraic manipulation","higher education",1
+"algebraic manipulation","structural sense",1
+"algebraic reasoning","dialectic contradictions",1
+"algebraic reasoning","introductory algebra",1
+"algebraic reasoning","space of joint action",1
+"algebraic reasoning","togethering",1
+"algebraic sense","higher education",1
+"algebraic sense","structural sense",1
+"algebraic thinking","autistic students",1
+"algebraic thinking","digital formative assessment",1
+"algebraic thinking","early algebra",1
+"algebraic thinking","function aspects",1
+"algebraic thinking","functional thinking",1
+"algebraic thinking","functions",1
+"algebraic thinking","generalisations",1
+"algebraic thinking","inductive reasoning; deductive reasoning; variables",1
+"algebraic thinking","noticing",1
+"algebraic thinking","number series",1
+"algebraic thinking","pattern",1
+"algebraic thinking","patterns and structures",1
+"algebraic thinking","pre-service mathematics teachers",1
+"algebraic thinking","primary school",1
+"algebraic thinking","professional development",1
+"algebraic thinking","properties and relations",1
+"algebraic thinking","relationship",1
+"algebraic thinking","repeating patterns",1
+"algebraic thinking","representation-based proofs",1
+"algebraic thinking","seeds of algebraic thinking",1
+"algebraic thinking","understanding regularity",1
+"algebraic thinking","video clubs",1
+"algorithmic bias","kom-framework",1
+"algorithmic bias","mathematical models",1
+"algorithmic bias","stem education",1
+"algorithmic literacy","critical thinking",1
+"algorithmic literacy","learning processes",1
+"algorithmic literacy","reflection",1
+"algorithmic literacy","teacher education",1
+"algorithmic thinking","interdisciplinarity",1
+"algorithmic thinking","modular arithmetic",1
+"alternative proofs","boundary encounters",1
+"alternative proofs","mathematicians",1
+"alternative proofs","secondary teacher education",1
+"ambitious mathematics teaching","professional development",1
+"ambitious mathematics teaching","talk moves",1
+"ambitious mathematics teaching","teaching moves",1
+"ambitious teaching","coherent system",1
+"ambitious teaching","cooperative teaching",1
+"ambitious teaching","high-quality teaching",1
+"ambitious teaching","systematic literature review",1
+"analogical models","graphs",1
+"analogical models","mental image",1
+"analogical models","solution",1
+"analogical models","system of equations",1
+"analysis","continuity",1
+"analysis","didactic transposition",1
+"analysis","goals-actions model",1
+"analysis","mathematical worldviews",1
+"analysis","structuralist praxeologies",1
+"analysis","teaching approach",1
+"analysis","the derivative concept",1
+"analysis","topology",1
+"analysis of curriculum","conceptual fields",1
+"analysis of curriculum","integrated topics",1
+"analysis of teaching","lesson planning",1
+"analysis of teaching","mathematics education",1
+"analysis of teaching","teacher noticing",1
+"analytical thinking","mathematics teaching",1
+"analytical thinking","polya’s method",1
+"analytical thinking","reflection as a learning method",1
+"analytical thinking","systematic problem solving",1
+"analytical tool","methodology",1
+"analytical tool","praxeology",1
+"analytical tool","rem",1
+"angle","angle measurement",1
+"angle","gps",1
+"angle","protractor",1
+"angle","spatial navigation",1
+"angle","textual programming",1
+"angle measurement","gps",1
+"angle measurement","protractor",1
+"angle measurement","spatial navigation",1
+"angle measurement","textual programming",1
+"animation","geogebra",1
+"animation","straight-line helicoids",1
+"animation","visuospatial abilities",1
+"anthropological theory of didactic","didactic transposition",1
+"anthropological theory of didactic","mathematics for engineers",1
+"anthropological theory of didactic","numerical integration",1
+"anthropological theory of the didactic","biographical-narrative interviews",1
+"anthropological theory of the didactic","combinatorics",1
+"anthropological theory of the didactic","covariation",1
+"anthropological theory of the didactic","dialectics",1
+"anthropological theory of the didactic","dialectics and systems and models",1
+"anthropological theory of the didactic","didactic engineering",1
+"anthropological theory of the didactic","enculturation",1
+"anthropological theory of the didactic","fundamental didactics",1
+"anthropological theory of the didactic","inquiry-based learning",1
+"anthropological theory of the didactic","investigative questions",1
+"anthropological theory of the didactic","lesson observation",1
+"anthropological theory of the didactic","lesson study",1
+"anthropological theory of the didactic","networking of theories",1
+"anthropological theory of the didactic","praxeological equipment",1
+"anthropological theory of the didactic","praxeological reference model",1
+"anthropological theory of the didactic","reference materials",1
+"anthropological theory of the didactic","study and research path",1
+"anthropological theory of the didactic","theory of didactical situations",1
+"anthropological theory of the didactic","theory of transformative education",1
+"anthropological theory of the didactic (atd)","combinatorics",1
+"anthropological theory of the didactic (atd)","inquiry-based learning",1
+"anthropological theory of the didactic (atd)","klein’s second discontinuity",1
+"anthropological theory of the didactic (atd)","mathematics teacher practice",1
+"anthropological theory of the didactic (atd)","secondary schools",1
+"anthropological theory of the didactic (atd)","textbook analysis",1
+"anthropological theory of the didactic (atd)","university mathematics for prospective teachers",1
+"anthropological theory of the didactics","discontinuity",1
+"anthropological theory of the didactics","discourses",1
+"anthropological theory of the didactics","diversity",1
+"anthropological theory of the didactics","mathematics for other disciplines",1
+"anthropological theory of the didactics","mathematics teacher education",1
+"anthropological theory of the didactics","praxeologies.",1
+"anthropological theory of the didactics (atd)","college mathematics",1
+"anthropological theory of the didactics (atd)","differential calculus",1
+"anthropological theory of the didactics (atd)","mechanics",1
+"anthropological theory of the didactics (atd)","mixed praxeologies",1
+"anthropological theory of the didactics (atd)","paired courses",1
+"antiderivative","compartmentalization",1
+"antiderivative","integral",1
+"antiderivative","meaning",1
+"anxiety","educational resilience",1
+"anxiety","emotional self-awareness",1
+"anxiety","examinations",1
+"anxiety","prospective mathematics teachers",1
+"anxiety","self-efficacy",1
+"apos","calculus",1
+"apos","integration",1
+"apos","multivariable functions",1
+"apos theory","calculus",1
+"apos theory","infinite series",1
+"apos theory","partial sums",1
+"apos theory","schema",1
+"application tasks","conceptual knowledge",1
+"application tasks","mathematics teachers",1
+"application tasks","mathematics teacher’s specialised knowledge",1
+"application tasks","ratio",1
+"applied mathematics","problem solving",1
+"applied mathematics","pólya",1
+"applied mathematics","real-world problems",1
+"approximation of practice","mathematics teacher education",1
+"approximation of practice","online",1
+"approximation of practice","rehearsals",1
+"approximation of practice","role-playing",1
+"ar","block-based programming",1
+"ar","ct",1
+"ar","secondary mathematics education",1
+"area","computational thinking",1
+"area","diagrams",1
+"area","mathematical problem solving",1
+"area","quadratic",1
+"area","scratch",1
+"area","simulation",1
+"area of the disc","cognitive apprehension",1
+"area of the disc","geometry teaching sequence",1
+"argumentation","artificial intelligence",1
+"argumentation","comparative study",1
+"argumentation","concept formation",1
+"argumentation","continuous fractions",1
+"argumentation","debate",1
+"argumentation","density of q in r",1
+"argumentation","differential equations",1
+"argumentation","discourse analysis",1
+"argumentation","discussion",1
+"argumentation","empirical proof scheme",1
+"argumentation","explanatory function",1
+"argumentation","functions",1
+"argumentation","habermas’ rationality",1
+"argumentation","justification",1
+"argumentation","lakatos",1
+"argumentation","mathematical proof",1
+"argumentation","mathematics classrooms",1
+"argumentation","mediation",1
+"argumentation","paper-folding",1
+"argumentation","perception of shapes",1
+"argumentation","probability",1
+"argumentation","proof",1
+"argumentation","reasoning",1
+"argumentation","recipes",1
+"argumentation","spontaneous conceptions",1
+"argumentation","statistical reasoning",1
+"argumentation","toulmin’s model",1
+"argumentation","upper secondary school",1
+"argumentation","warrant",1
+"argumentations","necessary object-level narratives",1
+"argumentations","primary and middle school",1
+"argumentations","probability",1
+"argumentations","problem solving",1
+"argumentative dialogue","dialogic teaching",1
+"argumentative dialogue","mathematics education",1
+"argumentative dialogue","professional development",1
+"argumentative dialogue","task design",1
+"arithmetic","mathematics education",1
+"arithmetic","structure sense",1
+"arithmetic mean","conceptual focus",1
+"arithmetic mean","conversions",1
+"arithmetic mean","representations",1
+"arithmetic structure","quantitative reasoning",1
+"arithmetic structure","word problem",1
+"arithmetic support","first grade",1
+"arithmetic support","mathematical creativity",1
+"arithmetic support","social support",1
+"arithmetics","assessment",1
+"arithmetics","early mathematics education",1
+"arithmetics","word problems",1
+"arrangement","combinatorics",1
+"arrangement","conceptual understanding",1
+"arrangement","counting problems",1
+"arrangement","word problems",1
+"artefacts","numbers",1
+"artefacts","preschool",1
+"artefacts","teaching actions",1
+"artefacts","variation theory",1
+"artifact","fractions",1
+"artifact","instrument",1
+"artifact","visual representation",1
+"artificial intelligence","chatbots",1
+"artificial intelligence","debate",1
+"artificial intelligence","digital escape game",1
+"artificial intelligence","discussion",1
+"artificial intelligence","explaining",1
+"artificial intelligence","fermi problem",1
+"artificial intelligence","fermi problems",1
+"artificial intelligence","mediation",1
+"artificial intelligence","modelling",1
+"artificial intelligence","multimodality",1
+"artificial intelligence","pre-service teachers",1
+"artificial intelligence","problem posing",1
+"artificial intelligence","problem solving",1
+"artificial intelligence","prompts",1
+"artificial intelligence","semiotic system",1
+"artificial intelligence literacy","five big ideas in ai",1
+"artificial intelligence literacy","human-centered design",1
+"artificial intelligence literacy","instructional strategies",1
+"artificial intelligence literacy","integration methods",1
+"artificial intelligence literacy","mathematics education",1
+"assessment","digital tools",1
+"assessment","early mathematics education",1
+"assessment","embodied design",1
+"assessment","interview study",1
+"assessment","istem",1
+"assessment","mathematical folding",1
+"assessment","mathematical modelling",1
+"assessment","mathematics",1
+"assessment","modelling",1
+"assessment","numeracy",1
+"assessment","piaac",1
+"assessment","portfolio",1
+"assessment","praxeology",1
+"assessment","prison context",1
+"assessment","school algebra",1
+"assessment","second cycle",1
+"assessment","secondary school",1
+"assessment","standardised sssessment",1
+"assessment","students’ learning",1
+"assessment","teacher learning",1
+"assessment","teacher perspective",1
+"assessment","teacher practice",1
+"assessment","teachers beliefs",1
+"assessment","teachers knowledge",1
+"assessment","two-dimensional curriculum",1
+"assessment","word problems",1
+"assessment scoring approach","marking scheme",1
+"assessment scoring approach","mathematical literacy",1
+"assessment scoring approach","rasch analysis",1
+"asymptotes","computer-aided assessment",1
+"asymptotes","example-generation tasks",1
+"asymptotes","graphical assessment",1
+"asymptotes","mathematics education",1
+"asynchronous online pd","collaboration",1
+"asynchronous online pd","representations of practice",1
+"asynchronous online pd","teacher learning",1
+"asynchrony","digital mathematical discussion",1
+"asynchrony","written communication",1
+"atd","ecology",1
+"atd","mathematics lecturers",1
+"atd","task design",1
+"attention","epistemic logic",1
+"attention","interaction",1
+"attention","preservice teachers",1
+"attitudes","chat gpt",1
+"attitudes","llm",1
+"attitudes","numerical methods",1
+"attitudes","university mathematics education",1
+"attitudes towards statistics","growth mindset",1
+"attitudes towards statistics","statistics education",1
+"attitudes towards statistics","teacher education",1
+"attribute and measurement","collaborative research",1
+"attribute and measurement","concept of mass",1
+"attribute and measurement","elementary school",1
+"attribute and measurement","teachers’ professional development",1
+"attribution theory","feedback",1
+"attribution theory","mathematics achievement",1
+"attribution theory","self-efficacy",1
+"augmented reality","elementary school mathematics",1
+"augmented reality","embodied cognition",1
+"augmented reality","mathematics education",1
+"augmented reality","place value",1
+"augmented reality","representations",1
+"augmented reality artificial intelligence","mixed reality",1
+"augmented reality artificial intelligence","virtual reality",1
+"authentic aspects","communities of practice",1
+"authentic aspects","mathematics tasks",1
+"authentic aspects","students’ identity",1
+"authentic aspects","vocational education",1
+"autism spectrum disorder","generalisation",1
+"autism spectrum disorder","inclusion",1
+"autism spectrum disorder","problem-solving",1
+"autism spectrum disorder","teachers’ knowledge",1
+"autistic students","early algebra",1
+"autistic students","repeating patterns",1
+"automated feedback","digital textbooks",1
+"automated feedback","mathematics education",1
+"automated feedback","use of resources",1
+"autopoiesis","biology of cognition",1
+"autopoiesis","experimental epistemology",1
+"autopoiesis","mathematics education",1
+"autopoiesis","structural coupling",1
+"backwash effect","basic competences",1
+"backwash effect","mathematics",1
+"backwash effect","solutions",1
+"backwash effect","statewide exit exams",1
+"basic arithmetic skills","learning support",1
+"basic arithmetic skills","practices",1
+"basic arithmetic skills","prospective teachers",1
+"basic competences","mathematics",1
+"basic competences","solutions",1
+"basic competences","statewide exit exams",1
+"basic facts of multiplication","division",1
+"basic facts of multiplication","elementary school mathematics",1
+"basic facts of multiplication","multiplication",1
+"basic ideas","conceptions",1
+"basic ideas","conversion of units of measurement",1
+"basic ideas","representations",1
+"basic ideas","units of length and mass",1
+"basic mental model","concept image",1
+"basic mental model","conceptual knowledge",1
+"basic mental model","derivative",1
+"bayesian reasoning","risk literacy",1
+"bayesian reasoning","simulations",1
+"becoming a teacher","self-perception",1
+"becoming a teacher","teacher knowledge",1
+"becoming a teacher","teaching experience",1
+"beliefs","beliefs change",1
+"beliefs","cognition",1
+"beliefs","emotions",1
+"beliefs","expectancy-value theory",1
+"beliefs","inclusive education",1
+"beliefs","mathematical world views",1
+"beliefs","middle school",1
+"beliefs","motivation",1
+"beliefs","personal epistemology",1
+"beliefs","proof",1
+"beliefs","proof construction",1
+"beliefs","roles",1
+"beliefs","secondary mathematics",1
+"beliefs","secondary-tertiary transition",1
+"beliefs","special educational",1
+"beliefs","subjective relevance of mathematics education",1
+"beliefs","survey",1
+"beliefs","teachers'-knowledge",1
+"beliefs","values",1
+"beliefs","word problems",1
+"beliefs change","mathematical world views",1
+"beliefs change","teacher education",1
+"benchmarks","estimation",1
+"benchmarks","fermi problems",1
+"beyond failure-and-success","bodies",1
+"beyond failure-and-success","concepts",1
+"beyond failure-and-success","creating together",1
+"beyond failure-and-success","early mathematics education",1
+"beyond failure-and-success","sad affects",1
+"beyond failure-and-success","teacher education",1
+"bi-institutional lesson study","institutional transition problem",1
+"bi-institutional lesson study","lesson study",1
+"big data","informal statistical modeling",1
+"big data","predictive modeling",1
+"bilingual education","english (second language)",1
+"bilingual education","mathematical concepts",1
+"bilingualism","clil",1
+"bilingualism","croatian",1
+"bilingualism","language",1
+"bilingualism","multilingualism",1
+"bilingualism","primary education",1
+"bilingualism","summative mathematics assessments",1
+"bimanual movements","covariational thinking",1
+"bimanual movements","digital-embodied tasks",1
+"bimanual movements","mathematics education",1
+"bimanual movements","nomogram",1
+"biographical-narrative interviews","enculturation",1
+"biographical-narrative interviews","networking of theories",1
+"biographical-narrative interviews","theory of transformative education",1
+"biology of cognition","experimental epistemology",1
+"biology of cognition","mathematics education",1
+"biology of cognition","structural coupling",1
+"blindfolded mathematics","embodied cognition",1
+"blindfolded mathematics","embodied learning",1
+"blindfolded mathematics","learning definition",1
+"block models","solving steps",1
+"block models","teachers",1
+"block models","visual representation",1
+"block models","word problems",1
+"block play","crystallography",1
+"block play","geometric concepts",1
+"block play","mathematical language",1
+"block play","pedagogy",1
+"block play","symmetry-breaking",1
+"block-based programming","ct",1
+"block-based programming","secondary mathematics education",1
+"bodies","concepts",1
+"bodies","creating together",1
+"bodies","early mathematics education",1
+"bodies","sad affects",1
+"bodies","teacher education",1
+"body","diagrams",1
+"body","material",1
+"body","mathematics education",1
+"body","research methods",1
+"body-centred movement","elementary school mathematics",1
+"body-centred movement","mathematics activities",1
+"body-centred movement","modes of representation",1
+"body-centred movement","object-centred movement",1
+"bookcreator","generalization",1
+"bookcreator","numerical pattern",1
+"bookcreator","primary school",1
+"bookcreator","verbalization",1
+"border","category theory",1
+"border","fibonacci",1
+"border","mathematics",1
+"border","semiosphere",1
+"border","semiotic",1
+"border","ste(a)m",1
+"border","steam education",1
+"boundary crossing","function transformations",1
+"boundary crossing","graphical reasoning",1
+"boundary encounters","positioning theory",1
+"boundary encounters","secondary teacher education",1
+"boundary object artefact","co-disciplinarity",1
+"boundary object artefact","early school leaving",1
+"boundary object artefact","theory of semiotic mediation",1
+"boundary object artefact","vocational school",1
+"boxplot","dotplot",1
+"boxplot","hatplot",1
+"boxplot","histodot",1
+"boxplot","histogram",1
+"calculus","commognitive",1
+"calculus","concept formation",1
+"calculus","continuity",1
+"calculus","derivative",1
+"calculus","differential equations",1
+"calculus","discourse",1
+"calculus","functions",1
+"calculus","infinite series",1
+"calculus","lakatos",1
+"calculus","learning assistants",1
+"calculus","measurement",1
+"calculus","multiplication",1
+"calculus","multivariable functions",1
+"calculus","partial sums",1
+"calculus","path-connectedness",1
+"calculus","professional noticing",1
+"calculus","real analysis",1
+"calculus","reasoning",1
+"calculus","recipes",1
+"calculus","schema",1
+"calculus","symbolism",1
+"cardinality","mediating primary mathematics",1
+"cardinality","number sense",1
+"cardinality","play-responsive teaching",1
+"cardinality","preschool",1
+"case studies","mathematics teacher education",1
+"case studies","pedagogical content knowledge",1
+"case studies","teacher educators",1
+"case study","learning environments",1
+"case study","movement-based learning",1
+"case study","place value",1
+"category theory","interdisciplinarity",1
+"category theory","mathematics",1
+"category theory","semiosphere",1
+"category theory","ste(a)m",1
+"catenary and parabola","computational triangulation experimental mathematics using digital tools",1
+"catenary and parabola","critical thinking",1
+"catenary and parabola","mathematics teachers’ digital competences",1
+"central tendency","computational thinking",1
+"central tendency","mathematics",1
+"central tendency","spreadsheet",1
+"central tendency","statistics",1
+"challenges","knowledge",1
+"challenges","lesson study facilitator",1
+"challenges","skills",1
+"change agents","mathematics teacher educator",1
+"change agents","professional development",1
+"chat","design of digital artefacts",1
+"chat","mathematics tpd",1
+"chat gpt","llm",1
+"chat gpt","numerical methods",1
+"chat gpt","university mathematics education",1
+"chatbots","mathematics education",1
+"chatbots","problem posing",1
+"chatgpt","documentational approach to didactics",1
+"chatgpt","education for sustainable development",1
+"chatgpt","generative ai",1
+"chatgpt","geogebra",1
+"chatgpt","geometry",1
+"chatgpt","lesson plan",1
+"chatgpt","lesson scenario",1
+"chatgpt","problem-posing",1
+"chatgpt","scaffolding",1
+"chatgpt","stem",1
+"chatgpt","task design",1
+"chatgpt","teacher education",1
+"chatgpt","tpack. pre-service high school mathematics teachers",1
+"children","mathematics learning difficulties",1
+"children","parents",1
+"children","pre-school",1
+"children","teachers",1
+"china","geometry",1
+"china","information and communication technology (ict) competencies",1
+"china","mathematics teachers",1
+"china","secondary school",1
+"choropleth maps","conceptions",1
+"choropleth maps","geo-spatial data",1
+"choropleth maps","in-service teachers",1
+"chunking","graphical reasoning",1
+"chunking","titration experiment",1
+"civil engineering","definite integral",1
+"civil engineering","modelling",1
+"civil engineering","teaching and learning",1
+"class cohesion","cultural capital",1
+"class cohesion","hybrid research design",1
+"class cohesion","mathematical memes",1
+"class discussion","preservice teachers",1
+"class discussion","validity",1
+"classical logic","epistemic-logical model",1
+"classical logic","fallibilism",1
+"classical logic","intuitionistic existential graphs",1
+"classical logic","lakatos’ approach",1
+"classification of mistakes","combinatorial model and operation",1
+"classification of mistakes","combinatorics",1
+"classificatory thinking","geometrical definitions",1
+"classificatory thinking","mathematical discussion",1
+"classificatory thinking","non economical definitions",1
+"classificatory thinking","quadrilaterals",1
+"classroom cartoons","noticing",1
+"classroom cartoons","teacher noticing of student thinking",1
+"classroom cartoons","teachers’ analysis of classroom interaction",1
+"classroom cartoons","vignettes-based study",1
+"classroom communication","preservice teachers",1
+"classroom communication","questioning techniques",1
+"classroom communication","tutoring",1
+"classroom discourse","communication",1
+"classroom discourse","interaction",1
+"classroom discourse","interactions",1
+"classroom discourse","language-responsive teaching",1
+"classroom discourse","norms",1
+"classroom discourse","noticing",1
+"classroom discourse","positioning theory",1
+"classroom discussion","collaboration",1
+"classroom discussion","fermi problems",1
+"classroom discussion","lesson study",1
+"classroom discussion","mathematical modelling",1
+"classroom discussion","primary education",1
+"classroom discussion","teacher interventions",1
+"classroom discussion","teaching through problemsolving",1
+"classroom practice","literature review",1
+"classroom practice","mathematics teachers’ professional development",1
+"classroom quality","level of difficulty",1
+"classroom quality","mastery experiences",1
+"classroom quality","multilevel structural equation model",1
+"classroom quality","teacher-student interactions",1
+"classroom teaching practice","instrumental orchestration",1
+"classroom teaching practice","primary mathematics",1
+"classroom teaching practice","robot coding integration",1
+"classroom teaching practice","technology",1
+"classroom techniques","geometry",1
+"classroom techniques","secondary school mathematics",1
+"clean water and sanitation","hands-on",1
+"clean water and sanitation","mathematics education",1
+"clean water and sanitation","steam education",1
+"clean water and sanitation","sustainable development goals",1
+"clil","summative mathematics assessments",1
+"cluster analysis","higher education mathematics",1
+"cluster analysis","inequalities in education",1
+"cluster analysis","mathematics capital",1
+"cluster analysis","socio-political studies",1
+"cluster analysis","survey methods",1
+"co-disciplinarity","early school leaving",1
+"co-disciplinarity","theory of semiotic mediation",1
+"co-disciplinarity","vocational school",1
+"co-operative action","collaboration",1
+"co-operative action","geometry",1
+"co-operative action","groupworthy tasks",1
+"co-operative action","joint action",1
+"co-variational thinking","motion graphs",1
+"co-variational thinking","theory of objectification",1
+"coaching","guided participation",1
+"coaching","meta-coaching",1
+"coaching","problems of practice",1
+"coaching","professional development",1
+"coaching","responsive coaching",1
+"coaching","teacher learning",1
+"cognition","proof",1
+"cognition","proof construction",1
+"cognition","secondary mathematics",1
+"cognition","survey",1
+"cognitive activation","digital materials",1
+"cognitive activation","professional development",1
+"cognitive activation","task design",1
+"cognitive apprehension","generative mode of interaction",1
+"cognitive apprehension","geometric reasoning skills",1
+"cognitive apprehension","geometry teaching sequence",1
+"cognitive engagement","interactive video",1
+"cognitive engagement","student processes",1
+"cognitive load","mathematics",1
+"cognitive load","peer-to-peer dialogue",1
+"cognitive processes","preservice teacher education",1
+"cognitive processes","probability",1
+"cognitive processes","proportional reasoning",1
+"cognitive vs socio-cultural perspective","epistemological understanding",1
+"cognitive vs socio-cultural perspective","noticing",1
+"cognitive vs socio-cultural perspective","teacher noticing",1
+"coherence","professional development program",1
+"coherence","teacher educators",1
+"coherent system","cooperative teaching",1
+"coherent system","high-quality teaching",1
+"coherent system","systematic literature review",1
+"collaboration","computational thinking",1
+"collaboration","critical research",1
+"collaboration","geometry",1
+"collaboration","groupworthy tasks",1
+"collaboration","joint action",1
+"collaboration","kindergarten class",1
+"collaboration","mathematical awareness",1
+"collaboration","perceived ease of use",1
+"collaboration","perceived usefulness",1
+"collaboration","pre-service teachers",1
+"collaboration","representations of practice",1
+"collaboration","scratch",1
+"collaboration","teacher learning",1
+"collaboration","teaching practice",1
+"collaboration","teaching through problemsolving",1
+"collaborative design processes","community of interest",1
+"collaborative design processes","games",1
+"collaborative design processes","prototypes",1
+"collaborative discussion","mathematical discourse in teaching",1
+"collaborative discussion","noticing practices around teaching angles",1
+"collaborative discussion","secondary-school mathematics teachers",1
+"collaborative learning","embodied argumentation",1
+"collaborative learning","fraction comparison",1
+"collaborative learning","learning mathematics with technology",1
+"collaborative learning","preservice teachers",1
+"collaborative learning","spatial geometry",1
+"collaborative lesson study","inquiry stance",1
+"collaborative lesson study","praxeologies",1
+"collaborative lesson study","study and research paths",1
+"collaborative lesson study","the anthropological theory of the didactic",1
+"collaborative problem solving","goal structures",1
+"collaborative problem solving","higher-order thinking skills",1
+"collaborative problem solving","lower secondary school",1
+"collaborative problem solving","mathematics-related affect",1
+"collaborative problem solving","systematic literature review",1
+"collaborative problem-solving","teacher noticing",1
+"collaborative problem-solving","teacher-student interactions",1
+"collaborative research","concept of mass",1
+"collaborative research","elementary school",1
+"collaborative research","teachers’ professional development",1
+"collaborative teacher communities","engagement",1
+"collaborative teacher communities","foreground",1
+"collaborative teacher communities","historical awareness",1
+"collaborative teacher communities","idea generating processes",1
+"college mathematics","differential calculus",1
+"college mathematics","mechanics",1
+"college mathematics","mixed praxeologies",1
+"college mathematics","paired courses",1
+"combinatorial model and operation","combinatorics",1
+"combinatorics","conceptual understanding",1
+"combinatorics","counting",1
+"combinatorics","counting problems",1
+"combinatorics","dialectics and systems and models",1
+"combinatorics","discrete mathematics",1
+"combinatorics","enumeration",1
+"combinatorics","generalization",1
+"combinatorics","isomorphism",1
+"combinatorics","klein’s second discontinuity",1
+"combinatorics","lower secondary school pupils",1
+"combinatorics","mathematical modelling",1
+"combinatorics","problem solving",1
+"combinatorics","secondary school",1
+"combinatorics","study and research paths",1
+"combinatorics","textbook analysis",1
+"combinatorics","university mathematics for prospective teachers",1
+"combinatorics","word problems",1
+"combinatorics education","mathematics education",1
+"combinatorics education","problem-solving",1
+"combinatorics education","problem-solving strategies",1
+"combinatorics education","undergraduate students",1
+"commognition","communication strategies",1
+"commognition","communities of practice",1
+"commognition","complexity",1
+"commognition","de-ritualization",1
+"commognition","de-ritualization process",1
+"commognition","digital environments",1
+"commognition","digital learning environments",1
+"commognition","equations",1
+"commognition","identity",1
+"commognition","inclusion",1
+"commognition","inter-community partnerships",1
+"commognition","low-achievement",1
+"commognition","mathematical discourse",1
+"commognition","mathematical induction",1
+"commognition","mathematicians",1
+"commognition","remedial intervention",1
+"commognition","rituals",1
+"commognition","saming between realizations",1
+"commognition","teaching and learning activities",1
+"commognitive","derivative",1
+"commognitive","discourse",1
+"commognitive","symbolism",1
+"common european numeracy framework","instruments",1
+"common european numeracy framework","numeracy",1
+"common european numeracy framework (cenf)","lifelong learning",1
+"common european numeracy framework (cenf)","mathematical literacy",1
+"common european numeracy framework (cenf)","numeracy",1
+"common european numeracy framework (cenf)","social work education",1
+"communication","interaction",1
+"communication","norms",1
+"communication strategies","mathematicians",1
+"communicative rationality","design research",1
+"communicative rationality","disinformation",1
+"communicative rationality","social media",1
+"communicative rationality","statistical literacy",1
+"communities of practice","inter-community partnerships",1
+"communities of practice","mathematics tasks",1
+"communities of practice","mathematics teachers",1
+"communities of practice","patterns of participation",1
+"communities of practice","pre-service teachers",1
+"communities of practice","students’ identity",1
+"communities of practice","upper secondary school",1
+"community of interest","games",1
+"community of interest","prototypes",1
+"comparative education","germany",1
+"comparative education","mathematics curriculum research",1
+"comparative education","turkey",1
+"comparative research","curriculum research",1
+"comparative research","educational history",1
+"comparative research","mathematics education",1
+"comparative study","mathematics classrooms",1
+"comparative study","proof",1
+"comparative textbook analysis","mathematics workbooks",1
+"comparative textbook analysis","place value",1
+"comparative textbook analysis","role of zero",1
+"compartmentalization","integral",1
+"compartmentalization","meaning",1
+"competences","curriculum",1
+"competences","non-mathematics degrees",1
+"competences","transition",1
+"competency","inferentialism",1
+"competency","instructional design",1
+"competency","risk literacy",1
+"competency","statistics education",1
+"competition","dual-process theory",1
+"competition","exit exams",1
+"competition","multiple-choice",1
+"competition","task design",1
+"complex analysis","history of mathematics",1
+"complex analysis","mathematical justification",1
+"complex analysis","original sources",1
+"complex analysis","use of figures",1
+"complexity","identity",1
+"complexity","mathematical discourse",1
+"complexity","rituals",1
+"computational literacy","computer programming",1
+"computational literacy","innovation",1
+"computational literacy","mathematical competencies",1
+"computational literacy","mathematical problem-solving",1
+"computational literacy","mathematics",1
+"computational literacy","primary school",1
+"computational literacy","turtle geometry",1
+"computational problem-solving practices","computational thinking",1
+"computational problem-solving practices","geometry and measurement",1
+"computational problem-solving practices","scratch",1
+"computational thinking","evaluative thinking",1
+"computational thinking","geometry",1
+"computational thinking","geometry and measurement",1
+"computational thinking","higher education",1
+"computational thinking","innovation",1
+"computational thinking","interdisciplinary approaches",1
+"computational thinking","josephus problem",1
+"computational thinking","lego education",1
+"computational thinking","lesson study",1
+"computational thinking","linear functions",1
+"computational thinking","mathematical competencies",1
+"computational thinking","mathematical modeling",1
+"computational thinking","mathematical modelling",1
+"computational thinking","mathematical problem solving",1
+"computational thinking","mathematical problem-solving",1
+"computational thinking","mathematical thinking",1
+"computational thinking","mathematics",1
+"computational thinking","middle school",1
+"computational thinking","moonbase activity",1
+"computational thinking","problem solving",1
+"computational thinking","problem-solving",1
+"computational thinking","proportional reasoning",1
+"computational thinking","python",1
+"computational thinking","spatial reasoning",1
+"computational thinking","spreadsheet",1
+"computational thinking","statistics",1
+"computational thinking","student teachers",1
+"computational thinking","task design",1
+"computational thinking","teaching practice",1
+"computational thinking","turtle geometry",1
+"computational thinking","wedo 2.0 core set",1
+"computational triangulation experimental mathematics using digital tools","critical thinking",1
+"computational triangulation experimental mathematics using digital tools","mathematics teachers’ digital competences",1
+"computer assisted instruction","mathematical logic",1
+"computer assisted instruction","undergraduate education",1
+"computer programming","mathematics",1
+"computer programming","primary school",1
+"computer science","lambda calculus",1
+"computer science","reification",1
+"computer science","type theory",1
+"computer science education","polya",1
+"computer science education","problem-solving",1
+"computer science education","secondary education",1
+"computer-aided assessment","example-generation tasks",1
+"computer-aided assessment","graphical assessment",1
+"computer-aided assessment","mathematics education",1
+"computer-environment","objectification",1
+"computer-environment","probability",1
+"computer-supported collaborative learning","digital tools",1
+"computer-supported collaborative learning","mathematical communication",1
+"computer-supported collaborative learning","mathematical digital competency",1
+"computer-supported collaborative learning","university mathematics education",1
+"concept definition","concept image",1
+"concept definition","conceptual breaks",1
+"concept definition","sine",1
+"concept definition","trigonometry",1
+"concept formation","differential equations",1
+"concept formation","functions",1
+"concept image","conceptual breaks",1
+"concept image","conceptual knowledge",1
+"concept image","derivative",1
+"concept image","sine",1
+"concept image","trigonometry",1
+"concept introduction","teaching culture",1
+"concept introduction","tensions",1
+"concept introduction","university mathematics teaching",1
+"concept of mass","elementary school",1
+"concept of mass","teachers’ professional development",1
+"conceptions","conversion of units of measurement",1
+"conceptions","geo-spatial data",1
+"conceptions","geometric shapes",1
+"conceptions","in-service teachers",1
+"conceptions","prototypes",1
+"conceptions","representations",1
+"conceptions","units of length and mass",1
+"concepts","creating together",1
+"concepts","early mathematics education",1
+"concepts","sad affects",1
+"concepts","teacher education",1
+"conceptual blending","emerging embodied technology",1
+"conceptual blending","functions",1
+"conceptual blending","geogebra plus",1
+"conceptual blending","secondary education",1
+"conceptual breaks","sine",1
+"conceptual breaks","trigonometry",1
+"conceptual change","fraction division",1
+"conceptual change","fraction multiplication",1
+"conceptual change","teacher education",1
+"conceptual fields","integrated topics",1
+"conceptual focus","conversions",1
+"conceptual focus","representations",1
+"conceptual knowledge","derivative",1
+"conceptual knowledge","mathematics teachers",1
+"conceptual knowledge","mathematics teacher’s specialised knowledge",1
+"conceptual knowledge","ratio",1
+"conceptual understanding","counting problems",1
+"conceptual understanding","design research",1
+"conceptual understanding","differential equations",1
+"conceptual understanding","digital tools",1
+"conceptual understanding","discourse practices",1
+"conceptual understanding","discursive",1
+"conceptual understanding","equity",1
+"conceptual understanding","evaluation",1
+"conceptual understanding","fraction division",1
+"conceptual understanding","general solution",1
+"conceptual understanding","going beyond counting",1
+"conceptual understanding","language means",1
+"conceptual understanding","low-achieving students in mathematics",1
+"conceptual understanding","mental models",1
+"conceptual understanding","partitive division",1
+"conceptual understanding","professional development program",1
+"conceptual understanding","professional growth",1
+"conceptual understanding","quotative division",1
+"conceptual understanding","reasoning",1
+"conceptual understanding","relating registers",1
+"conceptual understanding","scalar product",1
+"conceptual understanding","stem majors",1
+"conceptual understanding","tertiary students",1
+"conceptual understanding","textbooks analysis",1
+"conceptual understanding","word problems",1
+"conceptualization","percentage",1
+"conceptualization","relative value",1
+"concretion","craft",1
+"concretion","experience",1
+"concretion","making",1
+"conditional statement","dge",1
+"conditional statement","paper folding",1
+"conditional statement","proof",1
+"conditional statement","synergy",1
+"confirmatory factor analysis","empirical study",1
+"confirmatory factor analysis","place value understanding",1
+"confirmatory factor analysis","representations of numbers",1
+"conjecturing process","generic example",1
+"conjecturing process","mathematical reasoning",1
+"conjecturing process","school mathematics",1
+"construction","diagram",1
+"construction","drawing",1
+"construction","dynamic geometry software",1
+"construction","figure",1
+"consumerism","dilemmas",1
+"consumerism","preservice teachers",1
+"consumerism","textile dilemmas",1
+"content-visual proving","instruction support",1
+"content-visual proving","primary education",1
+"content-visual proving","reasoning",1
+"context","individuality",1
+"context","professional development",1
+"context","situatedness",1
+"context","teacher education",1
+"continuity","didactic transposition",1
+"continuity","path-connectedness",1
+"continuity","real analysis",1
+"continuity","structuralist praxeologies",1
+"continuity","topology",1
+"continuous fractions","density of q in r",1
+"continuous fractions","spontaneous conceptions",1
+"continuous fractions","warrant",1
+"continuous quantity","curriculum",1
+"continuous quantity","design research",1
+"continuous quantity","length measurement",1
+"continuous quantity","number",1
+"conversion of units of measurement","representations",1
+"conversion of units of measurement","units of length and mass",1
+"conversions","representations",1
+"cooperative teaching","high-quality teaching",1
+"cooperative teaching","systematic literature review",1
+"coordinate geometry","correlation and regression",1
+"coordinate geometry","equation of a line",1
+"coordinate geometry","experimental teaching",1
+"coordinate geometry","slope of a line",1
+"correlation and regression","equation of a line",1
+"correlation and regression","experimental teaching",1
+"correlation and regression","slope of a line",1
+"correspondence and covariation approaches","mathematics teachers",1
+"correspondence and covariation approaches","quadratic functions",1
+"cost","expectancies for success",1
+"cost","problem posing",1
+"cost","task values",1
+"cost","task-based motivation",1
+"counting","discrete mathematics",1
+"counting","generalization",1
+"counting","microgenetic",1
+"counting","subitising",1
+"counting","variability",1
+"counting problems","word problems",1
+"covariation","didactic engineering",1
+"covariation","function graphs",1
+"covariation","inclusion",1
+"covariation","mathematical modelling",1
+"covariation","multimodality",1
+"covariation","study and research paths",1
+"covariation","visual impairments",1
+"covariational positioning","covariational reasoning",1
+"covariational positioning","taxicab trigonometry",1
+"covariational positioning","theoretical covariation",1
+"covariational positioning","theoretical representation",1
+"covariational reasoning","digital tool",1
+"covariational reasoning","educational technology",1
+"covariational reasoning","eye tracking",1
+"covariational reasoning","functional thinking",1
+"covariational reasoning","multimodality",1
+"covariational reasoning","music",1
+"covariational reasoning","periodic functions",1
+"covariational reasoning","slope",1
+"covariational reasoning","taxicab trigonometry",1
+"covariational reasoning","theoretical covariation",1
+"covariational reasoning","theoretical representation",1
+"covariational thinking","digital-embodied tasks",1
+"covariational thinking","mathematics education",1
+"covariational thinking","nomogram",1
+"covid-19 pandemic","mathematics achievement",1
+"covid-19 pandemic","pre-course mathematics",1
+"covid-19 pandemic","secondary school mathematics",1
+"craft","experience",1
+"craft","making",1
+"craft knowledge","mathematics education",1
+"craft knowledge","mathematics teaching",1
+"craft knowledge","programming",1
+"craft knowledge","structuring features of classroom practice",1
+"creating together","early mathematics education",1
+"creating together","sad affects",1
+"creating together","teacher education",1
+"creativity","didactic ends",1
+"creativity","didactic means",1
+"creativity","didactic paradigm",1
+"creativity","epistemological model",1
+"criterion-referenced approach","ditom",1
+"criterion-referenced approach","mathematical key skills",1
+"criterion-referenced approach","screening",1
+"critical attribute","inclusion relationships",1
+"critical attribute","mathematical events",1
+"critical attribute","prototype",1
+"critical mathematics education","figured worlds",1
+"critical mathematics education","positionality",1
+"critical mathematics education","pre-service teachers",1
+"critical research","kindergarten class",1
+"critical research","mathematical awareness",1
+"critical thinking","learning processes",1
+"critical thinking","mathematics teachers’ digital competences",1
+"critical thinking","reflection",1
+"critical thinking","teacher education",1
+"croatian","language",1
+"croatian","multilingualism",1
+"croatian","primary education",1
+"cross cultural studies","cultural differences",1
+"cross cultural studies","multicultural classrooms",1
+"cross cultural studies","task design",1
+"crystallization","doping",1
+"crystallization","embodiment",1
+"crystallization","radical embodiment",1
+"crystallography","kindergarten",1
+"crystallography","pedagogy",1
+"crystallography","symmetry-breaking",1
+"ct","secondary mathematics education",1
+"cultural awareness","lesson study",1
+"cultural awareness","socio-cultural practices",1
+"cultural awareness","translation",1
+"cultural capital","hybrid research design",1
+"cultural capital","mathematical memes",1
+"cultural differences","multicultural classrooms",1
+"cultural differences","task design",1
+"cultural historical activity theory","mathematics",1
+"cultural historical activity theory","mathematics education",1
+"cultural historical activity theory","programming",1
+"culturally relevant education","immigrants",1
+"culturally relevant education","indigenous knowledge",1
+"culturally relevant education","student diversity",1
+"culture","diversity of theories",1
+"culture","language",1
+"culture","research knowledge",1
+"culture","transposition",1
+"curricula","middle school",1
+"curricula","primary education",1
+"curricula","professional education",1
+"curricular development","geometry",1
+"curricular development","mathematics education",1
+"curricular development","textbook content",1
+"curricular noticing","preservice primary school teachers",1
+"curricular noticing","textbook",1
+"curricular noticing","three-dimensional geometry",1
+"curriculum","design research",1
+"curriculum","length measurement",1
+"curriculum","non-mathematics degrees",1
+"curriculum","number",1
+"curriculum","transition",1
+"curriculum analyses","didactic transposition",1
+"curriculum analyses","interdisciplinarity",1
+"curriculum analyses","modelling",1
+"curriculum analyses","technology",1
+"curriculum change","generalization",1
+"curriculum change","paths of reasoning",1
+"curriculum change","patterns",1
+"curriculum change","textbook analysis",1
+"curriculum design","inquiry",1
+"curriculum design","least squares",1
+"curriculum design","linear algebra",1
+"curriculum implementation","primary school mathematics",1
+"curriculum implementation","programming",1
+"curriculum mapping","intelligent environment",1
+"curriculum mapping","learning goals",1
+"curriculum mapping","secondary mathematics education",1
+"curriculum mapping","teacher autonomy",1
+"curriculum mapping","visual representation",1
+"curriculum research","educational history",1
+"curriculum research","mathematics education",1
+"curriculum resources","implementation",1
+"curriculum resources","instructional change",1
+"curriculum resources","laboratory of mathematics",1
+"curriculum resources","role of mathematics textbooks",1
+"curriculum resources","statistics",1
+"curvature","intrinsic geometry",1
+"curvature","programming",1
+"data","secondary school",1
+"data","sustainability",1
+"data analysis","fleiss' kappa",1
+"data analysis","mathematical activity",1
+"data analysis","problem",1
+"data analysis","reliability",1
+"data literacy","data use",1
+"data literacy","information",1
+"data literacy","modelling",1
+"data literacy","models",1
+"data representation","mathematical modelling",1
+"data representation","superfluous data",1
+"data science","machine learning",1
+"data science","model building",1
+"data science","model usability",1
+"data science education","preservice teacher education",1
+"data science education","steam education",1
+"data use","information",1
+"data use","modelling",1
+"data use","models",1
+"data-driven categories","mathematics teachers",1
+"data-driven categories","prison education",1
+"data-driven categories","swot analysis",1
+"data-driven categories","theory-driven categories",1
+"de-ritualization","mathematical induction",1
+"de-ritualization","teaching and learning activities",1
+"de-ritualization process","saming between realizations",1
+"debate","discussion",1
+"debate","mediation",1
+"debugging","design-based research",1
+"debugging","dynamic manipulation",1
+"decision level","preservice teachers",1
+"decision level","semantic structure",1
+"decision-making","decision level",1
+"decision-making","preservice teachers",1
+"decision-making","semantic structure",1
+"deductive geometry","demonstrations",1
+"deductive geometry","intuitive geometry",1
+"deductive geometry","secondary education",1
+"deductive geometry","two-column proofs",1
+"deductive proof scheme","dnr-based instruction in mathematics (dnr)",1
+"deductive proof scheme","individual teaching experiments",1
+"deductive proof scheme","learning through activity (lta)",1
+"deductive thinking","digital tools",1
+"deductive thinking","geometric proofs",1
+"deductive thinking","proof types",1
+"deductive thinking","toulmin scheme",1
+"definite integral","modelling",1
+"definite integral","teaching and learning",1
+"delphi method","genai and large language models",1
+"delphi method","university mathematics",1
+"demonstrations","intuitive geometry",1
+"demonstrations","secondary education",1
+"demonstrations","two-column proofs",1
+"density of q in r","spontaneous conceptions",1
+"density of q in r","warrant",1
+"density property","prospective mathematics teachers",1
+"density property","real numbers",1
+"density property","specialised knowledge",1
+"derivation strategies","interactive video",1
+"derivation strategies","multiplication",1
+"derivation strategies","primary school children",1
+"derivative","discourse",1
+"derivative","dynamic visualisations",1
+"derivative","extra-mathematical contexts",1
+"derivative","rate of change",1
+"derivative","static visualisations",1
+"derivative","symbolism",1
+"derivative","understanding",1
+"describing sets","early mathematics education",1
+"describing sets","perceiving structures",1
+"describing sets","preschool education",1
+"design","manipulatives",1
+"design","moral imagination",1
+"design","number concepts",1
+"design","teacher education",1
+"design aspects","digital learning environment",1
+"design aspects","discovery learning",1
+"design aspects","geometry learning",1
+"design of digital artefacts","mathematics tpd",1
+"design proposition","design requirements",1
+"design proposition","educational design research",1
+"design proposition","prison education",1
+"design requirements","educational design research",1
+"design requirements","prison education",1
+"design research","discursive",1
+"design research","disinformation",1
+"design research","educational robots",1
+"design research","evaluative thinking",1
+"design research","fraction division",1
+"design research","geometry",1
+"design research","instructional videos",1
+"design research","interactive features",1
+"design research","length measurement",1
+"design research","mathematics",1
+"design research","number",1
+"design research","primary school",1
+"design research","program implementation",1
+"design research","programming",1
+"design research","proportional reasoning",1
+"design research","relating registers",1
+"design research","semiotic bundle",1
+"design research","social media",1
+"design research","statistical literacy",1
+"design research","teacher education",1
+"design research","two-phase instructional designs",1
+"design research","variables as generalizers",1
+"design-based research","dynamic manipulation",1
+"design-based research","elementary mathematics education",1
+"design-based research","fractions",1
+"design-based research","meaning-related vocabulary",1
+"design-based research","translanguaging pedagogy",1
+"designated identity","narrative",1
+"designated identity","pre-service teachers",1
+"designated identity","teacher education program",1
+"deterministic model","discrete mathematics education",1
+"deterministic model","problem-solving",1
+"deterministic model","proving process",1
+"development at scale","in-service teacher training",1
+"development at scale","mathematical competencies",1
+"development at scale","stumbling stones",1
+"development of mathematical language","mathematical concepts",1
+"development of mathematical language","plane geometry",1
+"development of mathematical language","subject-matter didactics",1
+"dge","paper folding",1
+"dge","proof",1
+"dge","synergy",1
+"diagnosis","financial literacy",1
+"diagnosis","percentage calculation",1
+"diagnosis","vocational high schools",1
+"diagnostic competence","information processing",1
+"diagnostic competence","instructional competence",1
+"diagnostic competence","judgements",1
+"diagnostic competence","modelling instruction",1
+"diagnostic competence","open modelling problems",1
+"diagnostic competence","openness",1
+"diagnostic competence","scaffolding practices",1
+"diagnostic competence","teacher education",1
+"diagnostic competence","teacher training",1
+"diagnostic judgment","early arithmetic education",1
+"diagnostic judgment","teacher education",1
+"diagnostic judgment","vignettes",1
+"diagram","drawing",1
+"diagram","dynamic geometry software",1
+"diagram","figure",1
+"diagrams","material",1
+"diagrams","mathematics education",1
+"diagrams","quadratic",1
+"diagrams","research methods",1
+"dialectic contradictions","introductory algebra",1
+"dialectic contradictions","space of joint action",1
+"dialectic contradictions","togethering",1
+"dialectics","statistics",1
+"dialectics","study and research path",1
+"dialectics and systems and models","mathematical modelling",1
+"dialectics and systems and models","study and research paths",1
+"dialogic teaching","mathematics education",1
+"dialogic teaching","professional development",1
+"dialogic teaching","task design",1
+"dialogical moves","inquiry stem teaching",1
+"dialogical moves","mathematics teachers’ meanings",1
+"dialogism","ethics",1
+"dialogism","history of mathematics",1
+"dialogism","otherness",1
+"dialogism","social and political dimension of mathematics education",1
+"dialogism","teachers’ practices",1
+"didactic analysis","didactic paradigm",1
+"didactic analysis","epistemological model",1
+"didactic analysis","modality of study",1
+"didactic analysis","real numbers",1
+"didactic contract","expectations",1
+"didactic contract","secondary-tertiary transition",1
+"didactic contract","undergraduate mathematics education",1
+"didactic ends","didactic means",1
+"didactic ends","didactic paradigm",1
+"didactic ends","epistemological model",1
+"didactic engineering","mathematical modelling",1
+"didactic engineering","study and research paths",1
+"didactic means","didactic paradigm",1
+"didactic means","epistemological model",1
+"didactic paradigm","modality of study",1
+"didactic paradigm","real numbers",1
+"didactic paradigms","kyozai kenkyuu",1
+"didactic paradigms","lesson study",1
+"didactic paradigms","textbooks",1
+"didactic transposition","interdisciplinarity",1
+"didactic transposition","mathematical models",1
+"didactic transposition","mathematics for engineers",1
+"didactic transposition","modelling",1
+"didactic transposition","numerical integration",1
+"didactic transposition","praxeology",1
+"didactic transposition","structuralist praxeologies",1
+"didactic transposition","technology",1
+"didactic transposition","textbook content",1
+"didactic transposition","the anthropological theory of the didactic",1
+"didactic transposition","topology",1
+"didactic-specific courses","mathematics teacher educators",1
+"didactic-specific courses","modelling",1
+"didactic-specific courses","pedagogical content knowledge",1
+"didactical contract","facilitator",1
+"didactical contract","initial teacher education",1
+"didactical contract","lesson study",1
+"didactical contract","role",1
+"didactical decision making","multilingual classrooms",1
+"didactical decision making","teacher responsiveness",1
+"didactics and epistemology of mathematics","model-theoretic approach on proof and proving",1
+"didactics and epistemology of mathematics","proof by interpretation",1
+"didactics and epistemology of mathematics","semantics",1
+"didactics and epistemology of mathematics","syntax",1
+"difference","discourse",1
+"difference","inclusion",1
+"difference","practices",1
+"difference","representation",1
+"differential calculus","mechanics",1
+"differential calculus","mixed praxeologies",1
+"differential calculus","paired courses",1
+"differential equations","functions",1
+"differential equations","general solution",1
+"differential equations","textbooks analysis",1
+"differentiation","mathematical challenge",1
+"differentiation","teachers’ tensions",1
+"difficulties","errors",1
+"difficulties","fraction as an operator",1
+"difficulties","primary school students",1
+"difficulties","problem solving",1
+"difficulties in learning arithmetic","dyscalculia",1
+"difficulties in learning arithmetic","numeracy",1
+"difficulties in learning arithmetic","secondary school",1
+"digital","feedback",1
+"digital","mathematics learning",1
+"digital environments","inclusion",1
+"digital environments","low-achievement",1
+"digital environments","remedial intervention",1
+"digital escape game","explaining",1
+"digital escape game","large language model",1
+"digital escape games","llms",1
+"digital escape games","problem-solving",1
+"digital escape games","support-element",1
+"digital formative assessment","professional development",1
+"digital game-based learning","educational technology",1
+"digital game-based learning","instrumental genesis",1
+"digital learning environment","discovery learning",1
+"digital learning environment","geometry learning",1
+"digital learning environments","equations",1
+"digital literacy","instrumental approach",1
+"digital literacy","instrumental distance",1
+"digital literacy","instrumental genesis",1
+"digital literacy","instrumental orchestration",1
+"digital literacy","problem posing",1
+"digital literacy","reflection",1
+"digital materials","professional development",1
+"digital materials","task design",1
+"digital mathematical discussion","written communication",1
+"digital problem-solving","digital tools",1
+"digital problem-solving","mathematical problem-solving",1
+"digital problem-solving","quasi-experimental study",1
+"digital problem-solving","teaching experiment",1
+"digital resource","prospective mathematics teacher",1
+"digital resource","teacher design capacity",1
+"digital technologies","discourse analysis",1
+"digital technologies","early childhood education",1
+"digital technologies","open environments",1
+"digital technologies","preservice teachers",1
+"digital technologies","simulations",1
+"digital technologies","statistical modelling",1
+"digital technologies","study and research paths",1
+"digital technologies","task design",1
+"digital technologies","teaching",1
+"digital technologies","tertiary education",1
+"digital technology","embodiment",1
+"digital technology","formative assessment",1
+"digital technology","inclusive education",1
+"digital technology","instrumental orchestration",1
+"digital technology","low-achievement",1
+"digital technology","re-enactment",1
+"digital textbooks","mathematics education",1
+"digital textbooks","use of resources",1
+"digital tool","eye tracking",1
+"digital tool","multimodality",1
+"digital tools","discourse analysis",1
+"digital tools","early childhood education",1
+"digital tools","evaluation",1
+"digital tools","geometric proofs",1
+"digital tools","guardians",1
+"digital tools","interview study",1
+"digital tools","mathematical communication",1
+"digital tools","mathematical digital competency",1
+"digital tools","mathematical modelling",1
+"digital tools","mathematical problem-solving",1
+"digital tools","portfolio",1
+"digital tools","professional development program",1
+"digital tools","professional growth",1
+"digital tools","proof types",1
+"digital tools","quasi-experimental study",1
+"digital tools","questionnaire",1
+"digital tools","teaching experiment",1
+"digital tools","toulmin scheme",1
+"digital tools","university mathematics education",1
+"digital-embodied tasks","mathematics education",1
+"digital-embodied tasks","nomogram",1
+"dilemmas","preservice teachers",1
+"dilemmas","textile dilemmas",1
+"dimensions of conceptual knowledge","dynamic geometry",1
+"dimensions of conceptual knowledge","geometric constructions",1
+"dimensions of conceptual knowledge","properties of quadrilaterals",1
+"disadvantage","mixed-ability",1
+"disadvantage","secondary",1
+"disadvantage","universal design for learning (udl)",1
+"disadvantaged communities","re-engagement",1
+"disciplinary","lesson study",1
+"disciplinary","meta-disciplinary",1
+"disciplinary","noticing",1
+"disciplinary","prospective teacher education",1
+"disciplinary boundaries","identity",1
+"disciplinary boundaries","mathematics teacher educators",1
+"disciplinary boundaries","valsiner’s zone theory",1
+"discontinuity","mathematics for other disciplines",1
+"discourse","identifying",1
+"discourse","inclusion",1
+"discourse","mathematising",1
+"discourse","opportunities to learn",1
+"discourse","practices",1
+"discourse","representation",1
+"discourse","symbolism",1
+"discourse","university mathematics lectures",1
+"discourse analysis","early childhood education",1
+"discourse analysis","guardians",1
+"discourse analysis","justification",1
+"discourse analysis","mathematical ability",1
+"discourse analysis","open environments",1
+"discourse analysis","preservice support teachers",1
+"discourse analysis","questionnaire",1
+"discourse analysis","special education",1
+"discourse analysis","task design",1
+"discourse analysis","teaching",1
+"discourse practices","language means",1
+"discourse practices","scalar product",1
+"discourses","diversity",1
+"discourses","mathematics teacher education",1
+"discourses","praxeologies.",1
+"discovery learning","geometry learning",1
+"discovery learning","mathematical induction",1
+"discovery learning","pósa method",1
+"discovery learning","tournaments",1
+"discrete mathematics","generalization",1
+"discrete mathematics education","problem-solving",1
+"discrete mathematics education","proving process",1
+"discursive","fraction division",1
+"discursive","relating registers",1
+"discussion","mediation",1
+"discussion leading practice","noticing",1
+"discussion leading practice","professional development",1
+"disinformation","social media",1
+"disinformation","statistical literacy",1
+"ditom","mathematical key skills",1
+"ditom","screening",1
+"diversity","empowerment",1
+"diversity","inclusive education",1
+"diversity","mathematics education",1
+"diversity","mathematics teacher education",1
+"diversity","participation",1
+"diversity","praxeologies.",1
+"diversity of theories","language",1
+"diversity of theories","research knowledge",1
+"diversity of theories","transposition",1
+"division","elementary school mathematics",1
+"division","multiplication",1
+"dnr-based instruction in mathematics (dnr)","individual teaching experiments",1
+"dnr-based instruction in mathematics (dnr)","learning through activity (lta)",1
+"documentational approach to didactics","lesson plan",1
+"documentational approach to didactics","lesson scenario",1
+"doing mathematics","gender differences",1
+"doing mathematics","mathematics teachers’ conceptions",1
+"doing mathematics","mathematics teaching",1
+"doing mathematics","stem careers",1
+"doing mathematics","stem education",1
+"doing mathematics","students’ conceptions",1
+"domains of teaching","monitoring",1
+"domains of teaching","tasks of teaching",1
+"domains of teaching","work of teaching",1
+"doping","embodiment",1
+"doping","radical embodiment",1
+"dotplot","hatplot",1
+"dotplot","histodot",1
+"dotplot","histogram",1
+"double discontinuity","geometry",1
+"double discontinuity","secondary teacher education",1
+"double discontinuity","subject matter noticing",1
+"double discontinuity","university mathematics",1
+"double instrumental genesis","genai",1
+"double instrumental genesis","instrumental genesis",1
+"double instrumental genesis","mathematics teachers",1
+"double instrumental genesis","spreadsheets",1
+"double integrals","geogebra",1
+"double integrals","normal domain",1
+"double integrals","polar change of coordinates",1
+"double integrals","questionnaire",1
+"double integrals","teaching and learning mathematics for engineers",1
+"drawing","dynamic geometry software",1
+"drawing","figure",1
+"dual-process theory","exit exams",1
+"dual-process theory","multiple-choice",1
+"dual-process theory","task design",1
+"dynamic geometry","geometric constructions",1
+"dynamic geometry","properties of quadrilaterals",1
+"dynamic geometry software","figure",1
+"dynamic software tools","innovative practices",1
+"dynamic software tools","resources",1
+"dynamic software tools","statistics teaching",1
+"dynamic visualisations","static visualisations",1
+"dynamic visualisations","understanding",1
+"dyscalculia","numeracy",1
+"dyscalculia","secondary school",1
+"early algebra","programming",1
+"early algebra","repeating patterns",1
+"early algebra","scratch",1
+"early algebra","teaching algebra",1
+"early algebra","teaching experiment",1
+"early arithmetic","embodied cognition",1
+"early arithmetic","finger use",1
+"early arithmetic education","teacher education",1
+"early arithmetic education","vignettes",1
+"early arithmetic skills","learning study",1
+"early arithmetic skills","prospective teachers",1
+"early arithmetic skills","teacher education",1
+"early childhood","home-numeracy",1
+"early childhood","intellectual disabilities",1
+"early childhood","parental practices",1
+"early childhood education","economics education",1
+"early childhood education","elementary school children",1
+"early childhood education","guardians",1
+"early childhood education","itineraries",1
+"early childhood education","map-reading",1
+"early childhood education","monetary system",1
+"early childhood education","preservice teachers",1
+"early childhood education","programming",1
+"early childhood education","questionnaire",1
+"early childhood education","repeating patterns",1
+"early childhood education","robotics",1
+"early childhood education","structural awareness",1
+"early childhood education","variation theory",1
+"early childhood mathematics education","lct",1
+"early childhood mathematics education","screening",1
+"early childhood mathematics education","semantic waves",1
+"early learning","family maths",1
+"early learning","game-based learning",1
+"early learning","play-based learning",1
+"early learning","transition to school",1
+"early mathematics","fidelity",1
+"early mathematics","implementation",1
+"early mathematics","preschool",1
+"early mathematics education","perceiving structures",1
+"early mathematics education","preschool education",1
+"early mathematics education","sad affects",1
+"early mathematics education","teacher education",1
+"early mathematics education","word problems",1
+"early school leaving","theory of semiotic mediation",1
+"early school leaving","vocational school",1
+"early years education","mathematics discourse",1
+"early years education","mathematics textbook tasks",1
+"early years education","routines",1
+"early years education","visual mediators",1
+"early years mathematics","kindergarten teachers",1
+"early years mathematics","preschool education",1
+"early years mathematics","professional development",1
+"ecological","embodiment",1
+"ecological","geological",1
+"ecological","materiality",1
+"ecological","political",1
+"ecology","mathematics lecturers",1
+"ecology","task design",1
+"economics education","elementary school children",1
+"economics education","monetary system",1
+"education for sustainable development","mathematics education",1
+"education for sustainable development","mathematics tasks",1
+"education for sustainable development","stem",1
+"education for sustainable development","sustainability competences",1
+"education for sustainable development","task design",1
+"education for sustainable development","teacher education",1
+"education for sustainable development (esd)","mathematics education for sustainability",1
+"education for sustainable development (esd)","motivation",1
+"education for sustainable development (esd)","questionnaire",1
+"education for sustainable development (esd)","sustainability",1
+"educational design research","prison education",1
+"educational games","expressions",1
+"educational games","number theory",1
+"educational games","task design",1
+"educational history","mathematics education",1
+"educational policy","sociocultural factors",1
+"educational policy","textbook analysis",1
+"educational resilience","emotional self-awareness",1
+"educational resilience","prospective mathematics teachers",1
+"educational robotics","mathematics learning",1
+"educational robotics","multimodality",1
+"educational robotics","social robot’s acceptance",1
+"educational robots","spatial reasoning",1
+"educational technology","embodied learning",1
+"educational technology","geogebra",1
+"educational technology","instrumental genesis",1
+"educational technology","mathematical transformations",1
+"educational technology","music",1
+"educational technology","periodic functions",1
+"educational technology","spatial ability",1
+"educator noticing","in-service teacher education",1
+"educator noticing","teacher noticing",1
+"elementary","intervention",1
+"elementary","structural approach",1
+"elementary","two-digit subtraction",1
+"elementary","variation theory",1
+"elementary arithmetic","flexibility in mental calculation",1
+"elementary arithmetic","number patterns",1
+"elementary arithmetic","problem characteristics",1
+"elementary education","mathematical processes",1
+"elementary education","mathematics connections",1
+"elementary education","rural schools",1
+"elementary education","stem education",1
+"elementary education","teacher leadership",1
+"elementary education","teacher practice",1
+"elementary mathematics education","fractions",1
+"elementary mathematics education","meaning-related vocabulary",1
+"elementary mathematics education","translanguaging pedagogy",1
+"elementary school","teachers’ professional development",1
+"elementary school children","monetary system",1
+"elementary school mathematics","mathematics activities",1
+"elementary school mathematics","modes of representation",1
+"elementary school mathematics","multiplication",1
+"elementary school mathematics","object-centred movement",1
+"elementary school mathematics","place value",1
+"elementary school mathematics","professional development",1
+"elementary school mathematics","representations",1
+"elementary school mathematics","task analysis",1
+"elementary school mathematics","teacher education",1
+"elementary school students","interaction process analysis",1
+"elementary school students","manipulative materials",1
+"elementary school students","mathematical concepts",1
+"elementary school students","tablet computers",1
+"elicitation","feedback",1
+"elicitation","formative assessment",1
+"elicitation","professional development",1
+"embodied abstraction","geometry",1
+"embodied abstraction","primary school",1
+"embodied abstraction","teacher-researcher collaboration",1
+"embodied argumentation","preservice teachers",1
+"embodied argumentation","spatial geometry",1
+"embodied cognition","embodied learning",1
+"embodied cognition","enactive learning",1
+"embodied cognition","field of promoted actions",1
+"embodied cognition","finger use",1
+"embodied cognition","geometry",1
+"embodied cognition","implementation research",1
+"embodied cognition","learning definition",1
+"embodied cognition","mathematics education",1
+"embodied design","mathematical folding",1
+"embodied learning","eye movements",1
+"embodied learning","geogebra",1
+"embodied learning","learning definition",1
+"embodied learning","mathematical transformations",1
+"embodied learning","spatial ability",1
+"embodied learning","visuality",1
+"embodied representation","mathematics",1
+"embodied representation","spatial perspectives",1
+"embodiment","erotics",1
+"embodiment","geological",1
+"embodiment","inclusive education",1
+"embodiment","lecture",1
+"embodiment","low-achievement",1
+"embodiment","materiality",1
+"embodiment","political",1
+"embodiment","radical embodiment",1
+"embodiment","re-enactment",1
+"embodiment","resonance",1
+"embodiment","university mathematics education",1
+"emergent learning","informal mathematics education",1
+"emergent learning","museums",1
+"emergent learning","professional development",1
+"emerging embodied technology","functions",1
+"emerging embodied technology","geogebra plus",1
+"emerging embodied technology","secondary education",1
+"emotional self-awareness","prospective mathematics teachers",1
+"emotions","graphing",1
+"emotions","mathematics education",1
+"emotions","perceived difficulty",1
+"emotions","personal epistemology",1
+"emotions","primary school",1
+"emotions","qualitative study",1
+"emotions","secondary-tertiary transition",1
+"emotions","values",1
+"empirical proof scheme","mathematical proof",1
+"empirical proof scheme","paper-folding",1
+"empirical proof scheme","perception of shapes",1
+"empirical study","place value understanding",1
+"empirical study","representations of numbers",1
+"empowerment","experiential learning",1
+"empowerment","inclusive education",1
+"empowerment","informal mathematics education",1
+"empowerment","mathematics education",1
+"empowerment","participation",1
+"empowerment","problem solving",1
+"enactive learning","implementation research",1
+"enculturation","networking of theories",1
+"enculturation","theory of transformative education",1
+"engagement","foreground",1
+"engagement","historical awareness",1
+"engagement","idea generating processes",1
+"engineering mathematics","problem-based learning",1
+"engineering mathematics","vector cross product",1
+"engineering mathematics","virtual reality",1
+"english (second language)","mathematical concepts",1
+"enumeration","problem solving",1
+"enumeration","secondary school",1
+"epistemic emotions; control-value theory","linear algebra",1
+"epistemic emotions; control-value theory","mathematical working spaces",1
+"epistemic logic","interaction",1
+"epistemic logic","preservice teachers",1
+"epistemic obstacle","epistemological obstacle",1
+"epistemic obstacle","epistemology",1
+"epistemic obstacle","husserl",1
+"epistemic obstacle","obstacle",1
+"epistemic-logical model","fallibilism",1
+"epistemic-logical model","intuitionistic existential graphs",1
+"epistemic-logical model","lakatos’ approach",1
+"epistemological model","modality of study",1
+"epistemological model","real numbers",1
+"epistemological obstacle","epistemology",1
+"epistemological obstacle","husserl",1
+"epistemological obstacle","obstacle",1
+"epistemological understanding","noticing",1
+"epistemological understanding","teacher noticing",1
+"epistemology","husserl",1
+"epistemology","obstacle",1
+"equal distribution","number knowledge",1
+"equal distribution","partitioning",1
+"equal distribution","toddlers",1
+"equal distribution","units",1
+"equation","multiplicative concepts",1
+"equation","representation",1
+"equation","teachers",1
+"equation","units coordination",1
+"equation of a line","experimental teaching",1
+"equation of a line","slope of a line",1
+"equations","erroneous examples",1
+"equations","eye-tracking",1
+"equations","idiosyncratic structures",1
+"equations","inequalities",1
+"equations","phenomenal sign misconception",1
+"equations","sign language",1
+"equations","solving strategies",1
+"equations","variables",1
+"equity","stem majors",1
+"equity","tertiary students",1
+"equivocation","ontology",1
+"equivocation","perspectival anthropology",1
+"erotics","lecture",1
+"erotics","resonance",1
+"erotics","university mathematics education",1
+"erroneous examples","inequalities",1
+"erroneous examples","phenomenal sign misconception",1
+"errors","fraction as an operator",1
+"errors","geometric thinking",1
+"errors","geometry",1
+"errors","primary school",1
+"errors","primary school students",1
+"errors","problem solving",1
+"estimation","fermi problems",1
+"estimation","geometry",1
+"estimation","measurement",1
+"estimation","representations",1
+"estimation","strategies",1
+"ethics","history of mathematics",1
+"ethics","otherness",1
+"ethics","social and political dimension of mathematics education",1
+"ethics","teachers’ practices",1
+"european upper secondary teacher education","mathematical content knowledge",1
+"evaluation","instructional video",1
+"evaluation","professional development program",1
+"evaluation","professional growth",1
+"evaluation","student misconception",1
+"evaluation","task development",1
+"evaluation","techer education",1
+"evaluation","visualization",1
+"evaluative thinking","geometry",1
+"everyday language","language",1
+"everyday language","mathematical learning processes",1
+"everyday language","multilingualism",1
+"everyday language","primary education",1
+"examinations","self-efficacy",1
+"example-generation tasks","graphical assessment",1
+"example-generation tasks","mathematics education",1
+"exclusion","gender non-conforming",1
+"exclusion","mathematics identity",1
+"exclusion","queer",1
+"exclusion","trans",1
+"exit exams","multiple-choice",1
+"exit exams","task design",1
+"expectancies for success","problem posing",1
+"expectancies for success","task values",1
+"expectancies for success","task-based motivation",1
+"expectancy-value theory","mathematical self-concept",1
+"expectancy-value theory","mathematics teacher support",1
+"expectancy-value theory","motivation",1
+"expectancy-value theory","subjective relevance of mathematics education",1
+"expectancy-value theory","value",1
+"expectations","secondary-tertiary transition",1
+"expectations","undergraduate mathematics education",1
+"experience","making",1
+"experiential learning","informal mathematics education",1
+"experiential learning","problem solving",1
+"experimental epistemology","mathematics education",1
+"experimental epistemology","structural coupling",1
+"experimental teaching","slope of a line",1
+"expert teaching","improvisation",1
+"expert teaching","interactions",1
+"expert teaching","positioning theory",1
+"expert teaching","secondary school mathematics",1
+"explaining","large language model",1
+"explanation videos","fractions",1
+"explanation videos","gestures",1
+"explanation videos","scaffolding",1
+"explanatory function","probability",1
+"explanatory function","upper secondary school",1
+"expressions","number theory",1
+"expressions","task design",1
+"extra-mathematical context","integral",1
+"extra-mathematical contexts","rate of change",1
+"eye movements","multiplication",1
+"eye movements","rectangular arrays",1
+"eye movements","unconventional interpretation",1
+"eye movements","unitizing concept",1
+"eye movements","visuality",1
+"eye tracking","modelling",1
+"eye tracking","multimodality",1
+"eye tracking","non-routine problem",1
+"eye tracking","outdoor mathematics",1
+"eye tracking","primary school students",1
+"eye tracking","problem-solving",1
+"eye tracking","routine problem",1
+"eye tracking","situation model",1
+"eye-tracking","idiosyncratic structures",1
+"eye-tracking","linear overgeneralizations",1
+"eye-tracking","misinterpretation",1
+"eye-tracking","neuropedagogy",1
+"eye-tracking","non-linear geometry problems",1
+"eye-tracking","problem solving",1
+"eye-tracking","self-generated drawings",1
+"eye-tracking","solving strategies",1
+"eye-tracking","statistics education",1
+"eye-tracking","teacher education",1
+"eye-tracking","teacher identity",1
+"eye-tracking","teacher professional development",1
+"facilitator","initial teacher education",1
+"facilitator","lesson study",1
+"facilitator","role",1
+"facilitator learning","mathematics teacher educators",1
+"facilitator learning","professional development",1
+"facilitator practices","mathematics teacher educators",1
+"facilitator practices","professional development",1
+"facilitator role","lesson study",1
+"facilitator role","practice knowledge",1
+"facilitator role","study and research paths",1
+"facilitators","noticing",1
+"facilitators","pedagogical judgement",1
+"facilitators","planning phase",1
+"facilitators","teaching experiments",1
+"facilitators","teaching quality",1
+"facilitators’ professional development (fpd) programs","fpd characteristics",1
+"facilitators’ professional development (fpd) programs","support",1
+"fallibilism","intuitionistic existential graphs",1
+"fallibilism","lakatos’ approach",1
+"family engagement with learning","home environment",1
+"family engagement with learning","mathematics",1
+"family engagement with learning","preschool",1
+"family engagement with learning","written numbers",1
+"family maths","game-based learning",1
+"family maths","play-based learning",1
+"family maths","transition to school",1
+"feedback","formative assessment",1
+"feedback","fractions",1
+"feedback","intelligent tutoring systems",1
+"feedback","mathematics achievement",1
+"feedback","mathematics learning",1
+"feedback","primary school students",1
+"feedback","professional development",1
+"feedback","scaffolding",1
+"feedback","self-efficacy",1
+"feedback","task design",1
+"fermi problem","large language model",1
+"fermi problem","problem solving",1
+"fermi problems","graphs",1
+"fermi problems","mathematical modelling",1
+"fermi problems","mathematical models",1
+"fermi problems","modelling",1
+"fermi problems","pre-service teachers",1
+"fermi problems","primary education",1
+"fermi problems","primary school",1
+"fermi problems","prompts",1
+"fermi problems","secondary school",1
+"fermi problems","teacher interventions",1
+"fibonacci","interdisciplinarity",1
+"fibonacci","semiotic",1
+"fibonacci","steam education",1
+"fidelity","preschool",1
+"field of promoted actions","geometry",1
+"figured worlds","lesson study",1
+"figured worlds","mathematics teaching",1
+"figured worlds","positionality",1
+"figured worlds","pre-service teachers",1
+"figured worlds","social practice theory",1
+"figured worlds","teacher reflection",1
+"financial literacy","mathematical modelling",1
+"financial literacy","percentage calculation",1
+"financial literacy","pisa",1
+"financial literacy","qualitative content analysis",1
+"financial literacy","vocational high schools",1
+"first grade","mathematical creativity",1
+"first grade","social support",1
+"first- and second-order comparisons","proportional judgement",1
+"first- and second-order comparisons","replication study",1
+"five big ideas in ai","human-centered design",1
+"five big ideas in ai","instructional strategies",1
+"five big ideas in ai","integration methods",1
+"five big ideas in ai","mathematics education",1
+"fleiss' kappa","mathematical activity",1
+"fleiss' kappa","problem",1
+"fleiss' kappa","reliability",1
+"flexibility in mental calculation","number patterns",1
+"flexibility in mental calculation","problem characteristics",1
+"flexible learning","flexible learning path",1
+"flexible learning","instructional trajectory",1
+"flexible learning","personalised learning",1
+"flexible learning","self-regulation",1
+"flexible learning path","instructional trajectory",1
+"flexible learning path","personalised learning",1
+"flexible learning path","self-regulation",1
+"foreground","historical awareness",1
+"foreground","idea generating processes",1
+"formative","simulations",1
+"formative","teacher education-preservice",1
+"formative","teacher educator",1
+"formative assessment","instrumental orchestration",1
+"formative assessment","latent transition analysis",1
+"formative assessment","letter-as-object misconception",1
+"formative assessment","preservice teachers",1
+"formative assessment","professional development",1
+"formative assessment","summative assessment",1
+"formative assessment","teacher education",1
+"formative assessment","technology-enhanced classrooms",1
+"formative assessment","variables",1
+"foucault","in/equity",1
+"foucault","learning opportunities",1
+"foucault","pedagogical practices",1
+"foucault","systems of thought",1
+"fpd characteristics","support",1
+"fraction as an operator","primary school students",1
+"fraction as an operator","problem solving",1
+"fraction comparison","learning mathematics with technology",1
+"fraction division","fraction multiplication",1
+"fraction division","relating registers",1
+"fraction division","teacher education",1
+"fraction multiplication","teacher education",1
+"fractions","gestures",1
+"fractions","high-quality mathematics instruction",1
+"fractions","instrument",1
+"fractions","intelligent tutoring systems",1
+"fractions","intuitive conception",1
+"fractions","lesson plan",1
+"fractions","lesson study",1
+"fractions","mathematics education",1
+"fractions","mathematics teacher educator",1
+"fractions","meaning-related vocabulary",1
+"fractions","noticing",1
+"fractions","problem posing",1
+"fractions","problem solving",1
+"fractions","professional learning",1
+"fractions","proof based teaching",1
+"fractions","proving",1
+"fractions","representation",1
+"fractions","scaffolding",1
+"fractions","teacher collaboration",1
+"fractions","teacher knowledge",1
+"fractions","teachers’ mathematical knowledge",1
+"fractions","translanguaging pedagogy",1
+"fractions","variation theory",1
+"fractions","visual representation",1
+"frédérique papy-lenger","georges papy",1
+"frédérique papy-lenger","minicomputer",1
+"frédérique papy-lenger","modern mathematics",1
+"function","narrative analysis",1
+"function","preservice teacher",1
+"function","teacher competencies",1
+"function aspects","functional thinking",1
+"function aspects","functions",1
+"function aspects","primary school",1
+"function continuity","genai",1
+"function continuity","scaffolding",1
+"function graph","function table",1
+"function graph","linking representations of function",1
+"function graph","quadratic function",1
+"function graph","representations of function",1
+"function graphs","inclusion",1
+"function graphs","multimodality",1
+"function graphs","visual impairments",1
+"function limit","multivariable calculus",1
+"function limit","student misconceptions",1
+"function limit","student strategies",1
+"function table","linking representations of function",1
+"function table","quadratic function",1
+"function table","representations of function",1
+"function transformations","graphical reasoning",1
+"functional mathematics","socio-epistemology approach",1
+"functional mathematics","teacher professional development",1
+"functional thinking","misconceptions and difficulties",1
+"functional thinking","pre-service teachers",1
+"functional thinking","primary school",1
+"functional thinking","slope",1
+"functional thinking","teacher knowledge",1
+"functions","geogebra plus",1
+"functions","graphs",1
+"functions","inclusion",1
+"functions","inservice teachers",1
+"functions","mathematical tasks",1
+"functions","misconceptions and difficulties",1
+"functions","motion problem",1
+"functions","pre-service teachers",1
+"functions","preservice teachers",1
+"functions","primary school",1
+"functions","secondary education",1
+"functions","teacher knowledge",1
+"functions","visual impairments",1
+"functions of illustrations","problem solving",1
+"functions of illustrations","use of the illustrations",1
+"functions of illustrations","word problem",1
+"fundamental didactics","reference materials",1
+"fundamental didactics","theory of didactical situations",1
+"future scenarios","implementation",1
+"future scenarios","tarot cards",1
+"future scenarios","technology comprehension",1
+"future teachers","geometry",1
+"future teachers","reasoning and proof",1
+"future teachers","technological pedagogical content knowledge",1
+"game-based learning","multiplication",1
+"game-based learning","play-based learning",1
+"game-based learning","problem-solving",1
+"game-based learning","transition to school",1
+"games","prototypes",1
+"genai","instrumental genesis",1
+"genai","mathematics teachers",1
+"genai","scaffolding",1
+"genai","spreadsheets",1
+"genai and large language models","university mathematics",1
+"gender differences","inclusion",1
+"gender differences","learning strategies",1
+"gender differences","motivation",1
+"gender differences","prison context",1
+"gender differences","self-efficacy",1
+"gender differences","stem careers",1
+"gender differences","stem education",1
+"gender differences","value",1
+"gender gap","inclusion",1
+"gender gap","mathematics",1
+"gender gap","situated knowledge",1
+"gender gap","standardized assessment",1
+"gender non-conforming","mathematics identity",1
+"gender non-conforming","queer",1
+"gender non-conforming","trans",1
+"general education","mathematical modelling",1
+"general education","problem situations",1
+"general solution","textbooks analysis",1
+"generalisation","inclusion",1
+"generalisation","problem-solving",1
+"generalisation","teachers’ knowledge",1
+"generalisations","patterns and structures",1
+"generalisations","properties and relations",1
+"generalisations","representation-based proofs",1
+"generalization","numerical pattern",1
+"generalization","paths of reasoning",1
+"generalization","patterns",1
+"generalization","primary school",1
+"generalization","textbook analysis",1
+"generalization","verbalization",1
+"generative ai","problem-posing",1
+"generative ai","tpack. pre-service high school mathematics teachers",1
+"generative artificial intelligence (genai)","mathematics education",1
+"generative artificial intelligence (genai)","professional development",1
+"generative artificial intelligence (genai)","second level",1
+"generative mode of interaction","geometric reasoning skills",1
+"generic example","mathematical reasoning",1
+"generic example","school mathematics",1
+"geo-spatial data","in-service teachers",1
+"geogebra","geometric reasoning",1
+"geogebra","geometry",1
+"geogebra","mathematical transformations",1
+"geogebra","multi duo of artefacts",1
+"geogebra","normal domain",1
+"geogebra","polar change of coordinates",1
+"geogebra","questionnaire",1
+"geogebra","scaffolding",1
+"geogebra","spatial ability",1
+"geogebra","spatial skills",1
+"geogebra","straight-line helicoids",1
+"geogebra","tangible artefact",1
+"geogebra","teaching and learning mathematics for engineers",1
+"geogebra","virtual reality",1
+"geogebra","visuospatial abilities",1
+"geogebra plus","secondary education",1
+"geogebrization","improper elements",1
+"geogebrization","projective geometry",1
+"geogebrization","theory of objectification",1
+"geological","materiality",1
+"geological","political",1
+"geometric concepts","kindergarten",1
+"geometric concepts","mathematical language",1
+"geometric concepts","phenomenography",1
+"geometric concepts","vocational education",1
+"geometric constructions","properties of quadrilaterals",1
+"geometric proofs","proof types",1
+"geometric proofs","toulmin scheme",1
+"geometric reasoning","multi duo of artefacts",1
+"geometric reasoning","spatial skills",1
+"geometric reasoning","tangible artefact",1
+"geometric reasoning","virtual reality",1
+"geometric shapes","prototypes",1
+"geometric thinking","geometry",1
+"geometric thinking","primary school",1
+"geometric transformations","laboratory",1
+"geometric transformations","mathematical machines",1
+"geometric transformations","museum",1
+"geometrical definitions","mathematical discussion",1
+"geometrical definitions","non economical definitions",1
+"geometrical definitions","quadrilaterals",1
+"geometrical reasoning","geometry",1
+"geometrical reasoning","the use of physical and digital tools",1
+"geometrical reasoning","theoretical framework",1
+"geometry","groupworthy tasks",1
+"geometry","information and communication technology (ict) competencies",1
+"geometry","interdisciplinary",1
+"geometry","joint action",1
+"geometry","mathematics education",1
+"geometry","mathematics teachers",1
+"geometry","measurement",1
+"geometry","perceptual clues",1
+"geometry","proof",1
+"geometry","reasoning and proof",1
+"geometry","representations",1
+"geometry","scaffolding",1
+"geometry","secondary school",1
+"geometry","secondary teacher education",1
+"geometry","spatial reasoning",1
+"geometry","spatial structuring",1
+"geometry","strategies",1
+"geometry","subject matter noticing",1
+"geometry","task design",1
+"geometry","teacher-researcher collaboration",1
+"geometry","technological pedagogical content knowledge",1
+"geometry","textbook content",1
+"geometry","textbook research",1
+"geometry","thales’ theorem",1
+"geometry","the use of physical and digital tools",1
+"geometry","theoretical framework",1
+"geometry","university mathematics",1
+"geometry","visual arts",1
+"geometry","visualization",1
+"geometry and measurement","scratch",1
+"geometry curriculum","international comparative study",1
+"geometry curriculum","textbook analysis",1
+"geometry knowledge","preservice teacher",1
+"geometry knowledge","problem solving",1
+"geometry knowledge","students’ solutions",1
+"geometry of solid figures","projections",1
+"georges papy","minicomputer",1
+"georges papy","modern mathematics",1
+"germany","mathematics curriculum research",1
+"germany","turkey",1
+"gestures","scaffolding",1
+"gifted education","learning environment",1
+"gifted education","mathematical heterotopias",1
+"gifted education","mathematically gifted",1
+"gifted education","prison education",1
+"gifted education","secondary schools",1
+"gifted education","special needs education",1
+"gifted students","illusion of linearity",1
+"gifted students","problem-solving",1
+"gifted students","proportional reasoning",1
+"global model","knowledge model",1
+"global model","teachers’ knowledge",1
+"global model","technology",1
+"goal structures","lower secondary school",1
+"goal structures","mathematics-related affect",1
+"goals-actions model","mathematical worldviews",1
+"goals-actions model","teaching approach",1
+"goals-actions model","the derivative concept",1
+"going beyond counting","low-achieving students in mathematics",1
+"going beyond counting","reasoning",1
+"gps","protractor",1
+"gps","spatial navigation",1
+"gps","textual programming",1
+"gpt-4","instrumental genesis",1
+"gpt-4","problem solving",1
+"gpt-4","students’ perspective",1
+"graphical assessment","mathematics education",1
+"graphical reasoning","titration experiment",1
+"graphical representation","polynomial functions",1
+"graphical representation","rational numbers",1
+"graphical representation","secondary-tertiary transition",1
+"graphical representation","tree graph",1
+"graphical representation","word problem solving",1
+"graphs","inclusion",1
+"graphs","mathematical models",1
+"graphs","mental image",1
+"graphs","primary school",1
+"graphs","secondary school",1
+"graphs","solution",1
+"graphs","system of equations",1
+"graphs","visual impairments",1
+"group cognition","group work",1
+"group cognition","instrumental genesis",1
+"group dynamics","student motivation",1
+"group dynamics","student participation",1
+"group work","instrumental genesis",1
+"group work","interaction",1
+"group work","prompt",1
+"group work","teacher interventions",1
+"groupworthy tasks","joint action",1
+"growth mindset","mathematics achievement",1
+"growth mindset","mathematics anxiety",1
+"growth mindset","mathematics learning motivation",1
+"growth mindset","statistics education",1
+"growth mindset","teacher education",1
+"guardians","questionnaire",1
+"guided participation","problems of practice",1
+"guided participation","teacher learning",1
+"habermas’ construct of rationality","prospective teachers",1
+"habermas’ construct of rationality","proving and proof",1
+"habermas’ rationality","statistical reasoning",1
+"habermas’ rationality","toulmin’s model",1
+"habit formation","implementation research",1
+"habit formation","interleaved practice",1
+"habit formation","theory of change",1
+"hands-on","mathematics education",1
+"hands-on","steam education",1
+"hands-on","sustainable development goals",1
+"hatplot","histodot",1
+"hatplot","histogram",1
+"help-seeking","heuristic trees",1
+"help-seeking","primary school",1
+"help-seeking","problem-solving",1
+"help-seeking","student-teacher interaction",1
+"help-seeking","subject-specific support",1
+"heuristic strategies","primary school",1
+"heuristic strategies","problems solving",1
+"heuristic strategies","solving strategies",1
+"heuristic strategies","word problems",1
+"heuristic trees","problem-solving",1
+"high school","proof awareness",1
+"high school education","mathematical competence",1
+"high school education","mathematical process standards",1
+"high school education","steam",1
+"high stakes tests","irt",1
+"high stakes tests","relative importance analysis",1
+"high stakes tests","sub-scores",1
+"high stakes tests","test scores",1
+"high-quality mathematics instruction","lesson plan",1
+"high-quality mathematics instruction","variation theory",1
+"high-quality teaching","systematic literature review",1
+"higher education","mathematics",1
+"higher education","mathematics education",1
+"higher education","self-concept",1
+"higher education","stem",1
+"higher education","stem education",1
+"higher education","structural sense",1
+"higher education","women",1
+"higher education mathematics","inequalities in education",1
+"higher education mathematics","mathematics capital",1
+"higher education mathematics","socio-political studies",1
+"higher education mathematics","survey methods",1
+"higher-order thinking skills","systematic literature review",1
+"histodot","histogram",1
+"historical awareness","idea generating processes",1
+"history of education","mathematics education",1
+"history of education","textbook research",1
+"history of mathematics","mathematical justification",1
+"history of mathematics","mathematics education research",1
+"history of mathematics","original sources",1
+"history of mathematics","otherness",1
+"history of mathematics","primary historical sources",1
+"history of mathematics","social and political dimension of mathematics education",1
+"history of mathematics","teachers’ practices",1
+"history of mathematics","use of figures",1
+"history of mathematics education","numeracy",1
+"history of mathematics education","textbook research",1
+"home environment","mathematics",1
+"home environment","preschool",1
+"home environment","written numbers",1
+"home-numeracy","intellectual disabilities",1
+"home-numeracy","parental practices",1
+"horizontal mathematization","lower secondary school",1
+"horizontal mathematization","mathematical modelling",1
+"horizontal mathematization","mental representation",1
+"horizontal mathematization","teacher’s interventions",1
+"human-centered design","instructional strategies",1
+"human-centered design","integration methods",1
+"human-centered design","mathematics education",1
+"husserl","obstacle",1
+"hybrid research design","mathematical memes",1
+"ideational resource","mathematics teaching framework",1
+"ideational resource","pre-service teachers",1
+"ideational resource","situated abstraction",1
+"ideational resource","transparency",1
+"identification","preservice primary teachers",1
+"identification","relations in affective variables",1
+"identifying","mathematising",1
+"identifying","opportunities to learn",1
+"identifying","university mathematics lectures",1
+"identity","mathematical discourse",1
+"identity","mathematics teacher educators",1
+"identity","rituals",1
+"identity","valsiner’s zone theory",1
+"idiosyncratic structures","solving strategies",1
+"illusion of linearity","problem-solving",1
+"illusion of linearity","proportional reasoning",1
+"immigrants","indigenous knowledge",1
+"immigrants","student diversity",1
+"implementation","innovations",1
+"implementation","mathematics education",1
+"implementation","mathematics teacher knowledge for teaching problem solving",1
+"implementation","post-implementation",1
+"implementation","preschool",1
+"implementation","readiness to implement",1
+"implementation","scale",1
+"implementation","statistics",1
+"implementation","tarot cards",1
+"implementation","technology comprehension",1
+"implementation","voluntary professional development",1
+"implementation fidelity","mathematics teacher educator",1
+"implementation fidelity","mental mathematics",1
+"implementation fidelity","pre-service teachers",1
+"implementation fidelity","reflective practice",1
+"implementation research","influential factors",1
+"implementation research","innovation",1
+"implementation research","interleaved practice",1
+"implementation research","mist project",1
+"implementation research","theory of change",1
+"improper elements","projective geometry",1
+"improper elements","theory of objectification",1
+"improvisation","interactions",1
+"improvisation","positioning theory",1
+"improvisation","secondary school mathematics",1
+"in-service primary teachers’ knowledge","multidigit multiplication",1
+"in-service primary teachers’ knowledge","strategy flexibility",1
+"in-service teacher education","teacher noticing",1
+"in-service teacher training","mathematical competencies",1
+"in-service teacher training","stumbling stones",1
+"in-service teachers","mathematics education",1
+"in-service teachers","perceived difficulty",1
+"in-service teachers","pre-service teachers",1
+"in-service teachers","qualitative analysis",1
+"in-the-moment","preservice teacher",1
+"in-the-moment","student thinking",1
+"in-the-moment","teacher noticing",1
+"in-the-moment","video case",1
+"in/equity","learning opportunities",1
+"in/equity","pedagogical practices",1
+"in/equity","systems of thought",1
+"inclusion","low-achievement",1
+"inclusion","mathematics",1
+"inclusion","multimodality",1
+"inclusion","practices",1
+"inclusion","prison context",1
+"inclusion","problem-solving",1
+"inclusion","remedial intervention",1
+"inclusion","representation",1
+"inclusion","situated knowledge",1
+"inclusion","standardized assessment",1
+"inclusion","teachers’ knowledge",1
+"inclusion relationships","mathematical events",1
+"inclusion relationships","prototype",1
+"inclusive education","low-achievement",1
+"inclusive education","mathematics education",1
+"inclusive education","participation",1
+"inclusive education","professional development",1
+"inclusive education","re-enactment",1
+"inclusive education","special educational",1
+"inconsistency","problem posing",1
+"inconsistency","prospective primary teacher",1
+"inconsistency","teacher education",1
+"indigenous knowledge","student diversity",1
+"individual teaching experiments","learning through activity (lta)",1
+"individuality","professional development",1
+"individuality","situatedness",1
+"individuality","teacher education",1
+"inequalities","phenomenal sign misconception",1
+"inequalities in education","mathematics capital",1
+"inequalities in education","socio-political studies",1
+"inequalities in education","survey methods",1
+"inequality","practices in mathematics education",1
+"inequality","research framework",1
+"inferentialism","instructional design",1
+"inferentialism","risk literacy",1
+"inferentialism","statistics education",1
+"infinite series","partial sums",1
+"infinite series","schema",1
+"influential factors","innovation",1
+"influential factors","mist project",1
+"informal mathematics education","museums",1
+"informal mathematics education","problem solving",1
+"informal mathematics education","professional development",1
+"informal professionalization","online professional development",1
+"informal professionalization","self-directed learning",1
+"informal statistical modeling","predictive modeling",1
+"informal statistical modeling","probabilistic reasoning",1
+"informal statistical modeling","statistical modeling",1
+"information","modelling",1
+"information","models",1
+"information and communication technology (ict) competencies","mathematics teachers",1
+"information and communication technology (ict) competencies","secondary school",1
+"information processing","teacher training",1
+"initial teacher education","mathematical knowledge for teaching proof",1
+"initial teacher education","mathematics teaching",1
+"initial teacher education","proof",1
+"initial teacher education","role",1
+"initial teacher education","whole-class discussion",1
+"innovation","mist project",1
+"innovation","turtle geometry",1
+"innovations","mathematics education",1
+"innovations","scale",1
+"innovative practices","resources",1
+"innovative practices","statistics teaching",1
+"inquiry","least squares",1
+"inquiry","linear algebra",1
+"inquiry","mathematics teacher educator",1
+"inquiry","practice-based research",1
+"inquiry","professional learning",1
+"inquiry based learning","mathematics education",1
+"inquiry based learning","mathematics instruction",1
+"inquiry based learning","mathematics teachers collaboration",1
+"inquiry based learning","professional development",1
+"inquiry stance","praxeologies",1
+"inquiry stance","study and research paths",1
+"inquiry stance","the anthropological theory of the didactic",1
+"inquiry stem teaching","mathematics teachers’ meanings",1
+"inquiry-based learning","investigative questions",1
+"inquiry-based learning","manifestations of contradictions",1
+"inquiry-based learning","mathematics teacher practice",1
+"inquiry-based learning","pre-service teachers",1
+"inquiry-based learning","problem posing",1
+"inquiry-based learning","secondary schools",1
+"inquiry-based learning","statistics",1
+"inquiry-based learning","study and research paths",1
+"inservice teachers","mathematical tasks",1
+"inservice teachers","motion problem",1
+"inservice teachers","preservice teachers",1
+"instagram","integrated education",1
+"instagram","social media",1
+"instagram","stem education",1
+"instagram","world of work",1
+"institutional transition problem","lesson study",1
+"instruction support","primary education",1
+"instruction support","reasoning",1
+"instructional change","laboratory of mathematics",1
+"instructional change","role of mathematics textbooks",1
+"instructional competence","modelling instruction",1
+"instructional competence","scaffolding practices",1
+"instructional design","risk literacy",1
+"instructional design","statistics education",1
+"instructional interactions","linear algebra",1
+"instructional interactions","problem solving",1
+"instructional interactions","secondary-tertiary transition",1
+"instructional strategies","integration methods",1
+"instructional strategies","mathematics education",1
+"instructional trajectory","personalised learning",1
+"instructional trajectory","self-regulation",1
+"instructional video","stack",1
+"instructional video","student misconception",1
+"instructional video","techer education",1
+"instructional videos","interactive features",1
+"instructional videos","two-phase instructional designs",1
+"instructional videos","variables as generalizers",1
+"instrument","visual representation",1
+"instrumental approach","instrumental distance",1
+"instrumental approach","instrumental genesis",1
+"instrumental approach","instrumental orchestration",1
+"instrumental approach","problem posing",1
+"instrumental approach","reflection",1
+"instrumental distance","instrumental genesis",1
+"instrumental distance","instrumental orchestration",1
+"instrumental distance","problem posing",1
+"instrumental distance","reflection",1
+"instrumental genesis","instrumental orchestration",1
+"instrumental genesis","mathematics teachers",1
+"instrumental genesis","problem posing",1
+"instrumental genesis","problem solving",1
+"instrumental genesis","reflection",1
+"instrumental genesis","semiotic bundle",1
+"instrumental genesis","spreadsheets",1
+"instrumental genesis","students’ obstacles",1
+"instrumental genesis","students’ perspective",1
+"instrumental genesis","teacher’s aids",1
+"instrumental genesis","technologies",1
+"instrumental orchestration","primary mathematics",1
+"instrumental orchestration","problem posing",1
+"instrumental orchestration","reflection",1
+"instrumental orchestration","robot coding integration",1
+"instrumental orchestration","technology",1
+"instrumental orchestrations","orchestration chains",1
+"instrumental orchestrations","technology integration",1
+"instruments","numeracy",1
+"integral","meaning",1
+"integrated education","social media",1
+"integrated education","stem education",1
+"integrated education","world of work",1
+"integration","mathematics activities",1
+"integration","measurement",1
+"integration","middle school teachers",1
+"integration","multiplication",1
+"integration","multivariable functions",1
+"integration","primary grades",1
+"integration","stem",1
+"integration","stem education",1
+"integration methods","mathematics education",1
+"intellectual disabilities","parental practices",1
+"intelligent environment","learning goals",1
+"intelligent environment","secondary mathematics education",1
+"intelligent environment","teacher autonomy",1
+"intelligent environment","visual representation",1
+"intended learning outcomes","mathematics teacher education",1
+"intended learning outcomes","planning",1
+"intended learning outcomes","praxeologies",1
+"interaction","norms",1
+"interaction","preservice teachers",1
+"interaction","prompt",1
+"interaction","teacher interventions",1
+"interaction analysis","norms",1
+"interaction analysis","representation",1
+"interaction analysis","symbolic interactionism",1
+"interaction process analysis","manipulative materials",1
+"interaction process analysis","mathematical concepts",1
+"interaction process analysis","tablet computers",1
+"interactions","secondary school mathematics",1
+"interactive features","two-phase instructional designs",1
+"interactive features","variables as generalizers",1
+"interactive theorem prover","lecturer",1
+"interactive theorem prover","proof writing",1
+"interactive theorem prover","teaching with lean",1
+"interactive video","multiplication",1
+"interactive video","primary school children",1
+"interactive video","student processes",1
+"interdisciplinarity","mathematics",1
+"interdisciplinarity","modelling",1
+"interdisciplinarity","modular arithmetic",1
+"interdisciplinarity","semiosphere",1
+"interdisciplinarity","semiotic",1
+"interdisciplinarity","ste(a)m",1
+"interdisciplinarity","steam education",1
+"interdisciplinarity","technology",1
+"interdisciplinary","spatial reasoning",1
+"interdisciplinary","task design",1
+"interdisciplinary","visual arts",1
+"interdisciplinary approach","preservice teacher education",1
+"interdisciplinary approach","teacher expertise",1
+"interdisciplinary approach","textbooks",1
+"interdisciplinary approaches","josephus problem",1
+"interdisciplinary approaches","problem-solving",1
+"interface tasks","pre-service teachers",1
+"interface tasks","scriptwriting",1
+"interface tasks","symmetry",1
+"interleaved practice","theory of change",1
+"international comparative study","textbook analysis",1
+"interpretative knowledge","interpretative task",1
+"interpretative knowledge","mathematics teacher’s specialized knowledge",1
+"interpretative knowledge","translation geometric isometric transformation",1
+"interpretative task","mathematics teacher’s specialized knowledge",1
+"interpretative task","translation geometric isometric transformation",1
+"interschool communication","mathematical preparation",1
+"interschool communication","organization of studies",1
+"interschool communication","secondary-tertiary transition",1
+"interschool communication","teacher expectations of students",1
+"intervention","structural approach",1
+"intervention","two-digit subtraction",1
+"intervention","variation theory",1
+"interview","manipulatives",1
+"interview","tpack",1
+"interview study","mathematical modelling",1
+"interview study","portfolio",1
+"intra-action","mathematical discursive practices",1
+"intra-action","multilingual",1
+"intra-action","word problems",1
+"intrinsic geometry","programming",1
+"introductory algebra","space of joint action",1
+"introductory algebra","togethering",1
+"intuitionistic existential graphs","lakatos’ approach",1
+"intuitive conception","mathematics education",1
+"intuitive conception","problem solving",1
+"intuitive conception","representation",1
+"intuitive geometry","secondary education",1
+"intuitive geometry","two-column proofs",1
+"investigative questions","statistics",1
+"investigative questions","study and research paths",1
+"irt","relative importance analysis",1
+"irt","sub-scores",1
+"irt","test scores",1
+"isomorphism","lower secondary school pupils",1
+"istem","praxeology",1
+"istem","secondary school",1
+"itineraries","map-reading",1
+"itineraries","programming",1
+"itineraries","robotics",1
+"josephus problem","problem-solving",1
+"judgements","open modelling problems",1
+"judgements","openness",1
+"judgements","teacher education",1
+"justification ability","mathematical logic",1
+"justification ability","pre-service teacher",1
+"kindergarten","language",1
+"kindergarten","mathematical argumentation",1
+"kindergarten","mathematical language",1
+"kindergarten","multiplicative comparison",1
+"kindergarten","multiplicative problems",1
+"kindergarten","multiplicative reasoning",1
+"kindergarten","pedagogy",1
+"kindergarten","performance",1
+"kindergarten","representations",1
+"kindergarten","strategies",1
+"kindergarten","symmetry-breaking",1
+"kindergarten class","mathematical awareness",1
+"kindergarten teachers","preschool education",1
+"kindergarten teachers","professional development",1
+"klein’s second discontinuity","textbook analysis",1
+"klein’s second discontinuity","university mathematics for prospective teachers",1
+"knowledge","lesson study facilitator",1
+"knowledge","skills",1
+"knowledge model","teachers’ knowledge",1
+"knowledge model","technology",1
+"knowledgeable other","lesson study",1
+"knowledgeable other","mathematics",1
+"knowledgeable other","sharing contents",1
+"knowledgeable other","teacher education",1
+"kom-framework","mathematical models",1
+"kom-framework","stem education",1
+"kyozai kenkyuu","lesson study",1
+"kyozai kenkyuu","textbooks",1
+"laboratory","mathematical machines",1
+"laboratory","museum",1
+"laboratory of mathematics","role of mathematics textbooks",1
+"lakatos","reasoning",1
+"lakatos","recipes",1
+"lakatos-style investigation","primary school teachers",1
+"lakatos-style investigation","proof and proving",1
+"lakatos-style investigation","teacher views",1
+"lakatos-style investigation","value-cost-expectancy framework.",1
+"lambda calculus","reification",1
+"lambda calculus","type theory",1
+"language","mathematical learning processes",1
+"language","multiplicative comparison",1
+"language","representations",1
+"language","research knowledge",1
+"language","transposition",1
+"language as a resource","task design",1
+"language means","scalar product",1
+"language-responsive teaching","noticing",1
+"large language model","problem solving",1
+"large scale assessment","mtsk model",1
+"large scale assessment","secondary school teachers",1
+"large scale assessment","teacher education",1
+"large scale assessment","three-fold meta-didactical conflict",1
+"large-scale assessment (lsa)","mtsk model",1
+"large-scale assessment (lsa)","pre-service teacher education",1
+"latent transition analysis","letter-as-object misconception",1
+"latent transition analysis","variables",1
+"lct","screening",1
+"lct","semantic waves",1
+"learning","learning trajectories",1
+"learning","mathematics education",1
+"learning assistants","professional noticing",1
+"learning difficulties","pre-service teachers’ thinking",1
+"learning difficulties","subjective theory",1
+"learning difficulties","teacher education",1
+"learning disorders","mathematical creativity",1
+"learning disorders","teacher’s perceptions",1
+"learning environment","mathematically gifted",1
+"learning environment","secondary schools",1
+"learning environments","movement-based learning",1
+"learning environments","place value",1
+"learning goals","secondary mathematics education",1
+"learning goals","teacher autonomy",1
+"learning goals","visual representation",1
+"learning opportunities","pedagogical practices",1
+"learning opportunities","systems of thought",1
+"learning processes","reflection",1
+"learning processes","teacher education",1
+"learning strategies","motivation",1
+"learning strategies","self-efficacy",1
+"learning strategies","value",1
+"learning study","mathematical knowledge for teaching",1
+"learning study","preservice teacher education",1
+"learning study","prospective teachers",1
+"learning study","teacher education",1
+"learning study","variation theory",1
+"learning support","practices",1
+"learning support","prospective teachers",1
+"learning trajectories","mathematics education",1
+"learning trajectories","preservice teachers",1
+"learning trajectories","primary school",1
+"learning trajectories","teacher education",1
+"least squares","linear algebra",1
+"lecture","resonance",1
+"lecture","university mathematics education",1
+"lecturer","proof writing",1
+"lecturer","teaching with lean",1
+"lego education","moonbase activity",1
+"lego education","stem education",1
+"lego education","wedo 2.0 core set",1
+"length measurement","number",1
+"lesson observation","lesson study",1
+"lesson observation","praxeological equipment",1
+"lesson observation","praxeological reference model",1
+"lesson observation","teacher professional development",1
+"lesson observation","teaching performance",1
+"lesson observation","understanding",1
+"lesson plan","lesson scenario",1
+"lesson plan","variation theory",1
+"lesson planning","mathematics education",1
+"lesson planning","mathematics teaching",1
+"lesson planning","pre service elementary teachers",1
+"lesson planning","teacher noticing",1
+"lesson study","mathematical knowledge for teaching problem-solving",1
+"lesson study","mathematics",1
+"lesson study","meta-disciplinary",1
+"lesson study","noticing",1
+"lesson study","novice facilitator",1
+"lesson study","planification",1
+"lesson study","practice knowledge",1
+"lesson study","praxeological equipment",1
+"lesson study","praxeological reference model",1
+"lesson study","professional development",1
+"lesson study","professional learning",1
+"lesson study","prospective teacher education",1
+"lesson study","reflection",1
+"lesson study","role",1
+"lesson study","scratch",1
+"lesson study","sharing contents",1
+"lesson study","social practice theory",1
+"lesson study","socio-cultural practices",1
+"lesson study","study and research paths",1
+"lesson study","teacher collaboration",1
+"lesson study","teacher education",1
+"lesson study","teacher reflection",1
+"lesson study","teachers’ mathematical knowledge",1
+"lesson study","teaching practice",1
+"lesson study","teaching through problemsolving",1
+"lesson study","textbooks",1
+"lesson study","translation",1
+"lesson study","type of talk",1
+"lesson study facilitator","skills",1
+"letter-as-object misconception","online formative assessment",1
+"level of difficulty","mastery experiences",1
+"level of difficulty","multilevel structural equation model",1
+"level of difficulty","teacher-student interactions",1
+"lifelong learning","mathematical literacy",1
+"lifelong learning","numeracy",1
+"lifelong learning","social work education",1
+"linear algebra","linear independence",1
+"linear algebra","mathematical working spaces",1
+"linear algebra","problem solving",1
+"linear algebra","proof methods",1
+"linear algebra","reasoning",1
+"linear algebra","secondary-tertiary transition",1
+"linear algebra","undergraduates",1
+"linear equations","sorting task",1
+"linear equations","structure sense",1
+"linear functions","middle school",1
+"linear functions","proportional reasoning",1
+"linear functions","task design",1
+"linear independence","proof methods",1
+"linear independence","reasoning",1
+"linear independence","undergraduates",1
+"linear overgeneralizations","non-linear geometry problems",1
+"linear overgeneralizations","problem solving",1
+"linear overgeneralizations","self-generated drawings",1
+"linguistic perspective","novice secondary mathematics teachers",1
+"linguistic perspective","reasoning and proof",1
+"linking representations of function","quadratic function",1
+"linking representations of function","representations of function",1
+"literature review","mathematics teachers’ professional development",1
+"llm","numerical methods",1
+"llm","university mathematics education",1
+"llms","problem-solving",1
+"llms","support-element",1
+"low achievers","mathematical modelling",1
+"low achievers","opportunities to learn",1
+"low-achievement","re-enactment",1
+"low-achievement","remedial intervention",1
+"low-achieving students in mathematics","reasoning",1
+"lower secondary school","mathematical modelling",1
+"lower secondary school","mathematics-related affect",1
+"lower secondary school","mental representation",1
+"lower secondary school","teacher’s interventions",1
+"machine learning","mathematics education",1
+"machine learning","model building",1
+"machine learning","model usability",1
+"machine learning","support vector machine",1
+"manifestations of contradictions","pre-service teachers",1
+"manifestations of contradictions","problem posing",1
+"manipulative materials","mathematical concepts",1
+"manipulative materials","tablet computers",1
+"manipulatives","moral imagination",1
+"manipulatives","number concepts",1
+"manipulatives","teacher education",1
+"manipulatives","tpack",1
+"map-reading","programming",1
+"map-reading","robotics",1
+"marking scheme","mathematical literacy",1
+"marking scheme","rasch analysis",1
+"mastery experiences","multilevel structural equation model",1
+"mastery experiences","teacher-student interactions",1
+"material","mathematics education",1
+"material","research methods",1
+"materiality","political",1
+"mathematical ability","preservice support teachers",1
+"mathematical ability","special education",1
+"mathematical activity","problem",1
+"mathematical activity","reliability",1
+"mathematical challenge","teachers’ tensions",1
+"mathematical co-productivity chain","mathematical literacy",1
+"mathematical co-productivity chain","mathematical models",1
+"mathematical co-productivity chain","mathematics education",1
+"mathematical co-productivity chain","workplace mathematics",1
+"mathematical communication","mathematical digital competency",1
+"mathematical communication","university mathematics education",1
+"mathematical competence","mathematical process standards",1
+"mathematical competence","steam",1
+"mathematical competencies","stumbling stones",1
+"mathematical concepts","plane geometry",1
+"mathematical concepts","subject-matter didactics",1
+"mathematical concepts","tablet computers",1
+"mathematical creativity","social support",1
+"mathematical creativity","teacher’s perceptions",1
+"mathematical digital competency","university mathematics education",1
+"mathematical discourse","rituals",1
+"mathematical discourse in teaching","noticing practices around teaching angles",1
+"mathematical discourse in teaching","secondary-school mathematics teachers",1
+"mathematical discursive practices","multilingual",1
+"mathematical discursive practices","word problems",1
+"mathematical discussion","non economical definitions",1
+"mathematical discussion","quadrilaterals",1
+"mathematical events","prototype",1
+"mathematical exhibitions","new school movement",1
+"mathematical exhibitions","ovide decroly",1
+"mathematical exhibitions","paul libois",1
+"mathematical exploration","programming",1
+"mathematical exploration","secondary school mathematics",1
+"mathematical exploration","textbooks",1
+"mathematical heterotopias","prison education",1
+"mathematical heterotopias","special needs education",1
+"mathematical induction","pósa method",1
+"mathematical induction","teaching and learning activities",1
+"mathematical induction","tournaments",1
+"mathematical justification","original sources",1
+"mathematical justification","use of figures",1
+"mathematical key skills","screening",1
+"mathematical knowledge","mathematical modelling",1
+"mathematical knowledge","modeling projects",1
+"mathematical knowledge","prospective teachers",1
+"mathematical knowledge","teacher knowledge",1
+"mathematical knowledge for teaching","preservice teacher education",1
+"mathematical knowledge for teaching","preservice teachers",1
+"mathematical knowledge for teaching","student thinking",1
+"mathematical knowledge for teaching","teaching",1
+"mathematical knowledge for teaching","variation theory",1
+"mathematical knowledge for teaching","word problem",1
+"mathematical knowledge for teaching problem-solving","type of talk",1
+"mathematical knowledge for teaching proof","proof",1
+"mathematical learning processes","multilingualism",1
+"mathematical learning processes","primary education",1
+"mathematical literacy","mathematical models",1
+"mathematical literacy","mathematics education",1
+"mathematical literacy","model knowledge",1
+"mathematical literacy","model uncertainty",1
+"mathematical literacy","numeracy model",1
+"mathematical literacy","pisa framework",1
+"mathematical literacy","rasch analysis",1
+"mathematical literacy","social work education",1
+"mathematical literacy","stochastic modeling",1
+"mathematical literacy","workplace mathematics",1
+"mathematical logic","pre-service teacher",1
+"mathematical logic","undergraduate education",1
+"mathematical machines","museum",1
+"mathematical modeling","python",1
+"mathematical modelling","mathematics education",1
+"mathematical modelling","mental representation",1
+"mathematical modelling","modeling projects",1
+"mathematical modelling","models",1
+"mathematical modelling","multivariable functions",1
+"mathematical modelling","opportunities to learn",1
+"mathematical modelling","pisa",1
+"mathematical modelling","portfolio",1
+"mathematical modelling","pre-service teacher education",1
+"mathematical modelling","primary education",1
+"mathematical modelling","problem situations",1
+"mathematical modelling","prospective teachers",1
+"mathematical modelling","qualitative content analysis",1
+"mathematical modelling","simulation",1
+"mathematical modelling","study and research path",1
+"mathematical modelling","superfluous data",1
+"mathematical modelling","teacher interventions",1
+"mathematical modelling","teacher knowledge",1
+"mathematical modelling","teacher’s interventions",1
+"mathematical modelling","the anthropological theory of the didactic",1
+"mathematical modelling","theories",1
+"mathematical modelling","wheel of modelling",1
+"mathematical modelling","wheel of writing",1
+"mathematical models","mathematics education",1
+"mathematical models","modelling competence",1
+"mathematical models","outdoor education",1
+"mathematical models","praxeology",1
+"mathematical models","primary school",1
+"mathematical models","secondary school",1
+"mathematical models","stem education",1
+"mathematical models","student interests",1
+"mathematical models","textbook content",1
+"mathematical models","the anthropological theory of the didactic",1
+"mathematical models","workplace mathematics",1
+"mathematical preparation","organization of studies",1
+"mathematical preparation","secondary-tertiary transition",1
+"mathematical preparation","teacher expectations of students",1
+"mathematical problem solving","scratch",1
+"mathematical problem solving","simulation",1
+"mathematical problem-solving","quasi-experimental study",1
+"mathematical problem-solving","teaching experiment",1
+"mathematical process standards","steam",1
+"mathematical processes","mathematics connections",1
+"mathematical processes","teacher practice",1
+"mathematical proof","paper-folding",1
+"mathematical proof","perception of shapes",1
+"mathematical quality of instruction","pre-service mathematics teachers",1
+"mathematical quality of instruction","samr model",1
+"mathematical quality of instruction","tpack",1
+"mathematical reasoning","school mathematics",1
+"mathematical self-concept","mathematics teacher support",1
+"mathematical self-concept","value",1
+"mathematical tasks","motion problem",1
+"mathematical tasks","preservice teachers",1
+"mathematical thinking","scratch",1
+"mathematical transformations","spatial ability",1
+"mathematical world views","teacher education",1
+"mathematical worldviews","teaching approach",1
+"mathematical worldviews","the derivative concept",1
+"mathematically gifted","secondary schools",1
+"mathematicians","positioning theory",1
+"mathematicians","survey",1
+"mathematicians","the double discontinuity",1
+"mathematics","mathematics education",1
+"mathematics","peer-to-peer dialogue",1
+"mathematics","planning phase",1
+"mathematics","play-responsive teaching",1
+"mathematics","preservice teachers",1
+"mathematics","professional learning",1
+"mathematics","program implementation",1
+"mathematics","relationships",1
+"mathematics","self-concept",1
+"mathematics","semiosphere",1
+"mathematics","sharing contents",1
+"mathematics","situated knowledge",1
+"mathematics","social justice",1
+"mathematics","solutions",1
+"mathematics","spatial perspectives",1
+"mathematics","spreadsheet",1
+"mathematics","standardized assessment",1
+"mathematics","statewide exit exams",1
+"mathematics","statistics",1
+"mathematics","ste(a)m",1
+"mathematics","stem",1
+"mathematics","teacher education",1
+"mathematics","teacher learning",1
+"mathematics","teachers and learners",1
+"mathematics","teachers’ descriptions",1
+"mathematics","teaching",1
+"mathematics","teaching quality",1
+"mathematics","women",1
+"mathematics","written numbers",1
+"mathematics achievement","mathematics anxiety",1
+"mathematics achievement","mathematics learning motivation",1
+"mathematics achievement","pre-course mathematics",1
+"mathematics achievement","pre-existing knowledge",1
+"mathematics achievement","secondary school mathematics",1
+"mathematics achievement","self-efficacy",1
+"mathematics achievement","teacher education",1
+"mathematics activities","middle school teachers",1
+"mathematics activities","modes of representation",1
+"mathematics activities","object-centred movement",1
+"mathematics activities","stem education",1
+"mathematics anxiety","mathematics learning motivation",1
+"mathematics capital","socio-political studies",1
+"mathematics capital","survey methods",1
+"mathematics classrooms","proof",1
+"mathematics connections","teacher practice",1
+"mathematics curriculum research","turkey",1
+"mathematics discourse","mathematics textbook tasks",1
+"mathematics discourse","routines",1
+"mathematics discourse","visual mediators",1
+"mathematics displays","pre-school education",1
+"mathematics displays","representations of number",1
+"mathematics displays","whole numbers",1
+"mathematics education","mathematics instruction",1
+"mathematics education","mathematics teachers collaboration",1
+"mathematics education","mathematics teaching",1
+"mathematics education","multimodality",1
+"mathematics education","nomogram",1
+"mathematics education","participation",1
+"mathematics education","practices of teacher-researchers",1
+"mathematics education","pre-service teachers",1
+"mathematics education","primary education",1
+"mathematics education","primary school",1
+"mathematics education","prison education",1
+"mathematics education","problem posing",1
+"mathematics education","problem-solving",1
+"mathematics education","problem-solving strategies",1
+"mathematics education","programmable robots",1
+"mathematics education","qualitative analysis",1
+"mathematics education","qualitative study",1
+"mathematics education","representation",1
+"mathematics education","research problems",1
+"mathematics education","scale",1
+"mathematics education","second level",1
+"mathematics education","semiotic system",1
+"mathematics education","silent video task",1
+"mathematics education","simulation",1
+"mathematics education","steam education",1
+"mathematics education","stem education",1
+"mathematics education","structural coupling",1
+"mathematics education","structure sense",1
+"mathematics education","structuring features of classroom practice",1
+"mathematics education","student teachers",1
+"mathematics education","support vector machine",1
+"mathematics education","sustainability",1
+"mathematics education","sustainability competences",1
+"mathematics education","task design",1
+"mathematics education","teacher education",1
+"mathematics education","teacher identity",1
+"mathematics education","teacher views",1
+"mathematics education","textbook content",1
+"mathematics education","textbook research",1
+"mathematics education","theory use",1
+"mathematics education","undergraduate students",1
+"mathematics education","use of resources",1
+"mathematics education","workplace mathematics",1
+"mathematics education for sustainability","motivation",1
+"mathematics education for sustainability","questionnaire",1
+"mathematics education for sustainability","sustainability",1
+"mathematics education research","primary historical sources",1
+"mathematics for engineers","numerical integration",1
+"mathematics identity","queer",1
+"mathematics identity","trans",1
+"mathematics instruction","mathematics teachers collaboration",1
+"mathematics instruction","professional development",1
+"mathematics learning","multimodality",1
+"mathematics learning","social robot’s acceptance",1
+"mathematics learning difficulties","parents",1
+"mathematics learning difficulties","pre-school",1
+"mathematics learning difficulties","teachers",1
+"mathematics lecturers","task design",1
+"mathematics professional development","politics of education",1
+"mathematics professional development","teacher leaders in mathematics",1
+"mathematics tasks","primary education",1
+"mathematics tasks","students’ identity",1
+"mathematics tasks","sustainability",1
+"mathematics tasks","vocational education",1
+"mathematics teacher education","online",1
+"mathematics teacher education","pedagogical content knowledge",1
+"mathematics teacher education","planning",1
+"mathematics teacher education","praxeologies",1
+"mathematics teacher education","praxeologies.",1
+"mathematics teacher education","rehearsals",1
+"mathematics teacher education","role-playing",1
+"mathematics teacher education","teacher educators",1
+"mathematics teacher educator","mental mathematics",1
+"mathematics teacher educator","noticing",1
+"mathematics teacher educator","practice-based research",1
+"mathematics teacher educator","pre-service teachers",1
+"mathematics teacher educator","problem posing",1
+"mathematics teacher educator","professional development",1
+"mathematics teacher educator","professional learning",1
+"mathematics teacher educator","professional roles",1
+"mathematics teacher educator","reflective practice",1
+"mathematics teacher educator","teacher education",1
+"mathematics teacher educator","teaching practicum",1
+"mathematics teacher educators","modelling",1
+"mathematics teacher educators","pedagogical content knowledge",1
+"mathematics teacher educators","valsiner’s zone theory",1
+"mathematics teacher knowledge for teaching problem solving","post-implementation",1
+"mathematics teacher knowledge for teaching problem solving","readiness to implement",1
+"mathematics teacher knowledge for teaching problem solving","voluntary professional development",1
+"mathematics teacher practice","secondary schools",1
+"mathematics teacher support","value",1
+"mathematics teachers","prison education",1
+"mathematics teachers","professional identity",1
+"mathematics teachers","quadratic functions",1
+"mathematics teachers","ratio",1
+"mathematics teachers","secondary school",1
+"mathematics teachers","spreadsheets",1
+"mathematics teachers","swot analysis",1
+"mathematics teachers","theory-driven categories",1
+"mathematics teachers","vocational education",1
+"mathematics teachers collaboration","professional development",1
+"mathematics teachers specialised knowledge","numerical thinking",1
+"mathematics teachers specialised knowledge","tasks for teacher education",1
+"mathematics teachers’ conceptions","mathematics teaching",1
+"mathematics teachers’ conceptions","students’ conceptions",1
+"mathematics teacher’s specialised knowledge","mathematics teachers",1
+"mathematics teacher’s specialised knowledge","ratio",1
+"mathematics teacher’s specialized knowledge","translation geometric isometric transformation",1
+"mathematics teaching","planification",1
+"mathematics teaching","polya’s method",1
+"mathematics teaching","pre service elementary teachers",1
+"mathematics teaching","problem solving",1
+"mathematics teaching","professional development",1
+"mathematics teaching","programming",1
+"mathematics teaching","reflection",1
+"mathematics teaching","reflection as a learning method",1
+"mathematics teaching","social practice theory",1
+"mathematics teaching","structuring features of classroom practice",1
+"mathematics teaching","students’ conceptions",1
+"mathematics teaching","systematic problem solving",1
+"mathematics teaching","tasks",1
+"mathematics teaching","teacher reflection",1
+"mathematics teaching","tensions",1
+"mathematics teaching framework","pre-service teachers",1
+"mathematics teaching framework","situated abstraction",1
+"mathematics teaching framework","transparency",1
+"mathematics tests","natural language processing",1
+"mathematics tests","secondary school mathematics",1
+"mathematics textbook tasks","routines",1
+"mathematics textbook tasks","visual mediators",1
+"mathematics workbooks","place value",1
+"mathematics workbooks","role of zero",1
+"mathematising","opportunities to learn",1
+"mathematising","university mathematics lectures",1
+"meaning-related vocabulary","translanguaging pedagogy",1
+"measurement","multiplication",1
+"measurement","obligations",1
+"measurement","practical rationality",1
+"measurement","representations",1
+"measurement","resources and constraints",1
+"measurement","strategies",1
+"measurement","theorizing",1
+"mechanics","mixed praxeologies",1
+"mechanics","paired courses",1
+"mediating primary mathematics","number sense",1
+"mediating primary mathematics","play-responsive teaching",1
+"mediating primary mathematics","preschool",1
+"mental image","solution",1
+"mental image","system of equations",1
+"mental mathematics","pre-service teachers",1
+"mental mathematics","reflective practice",1
+"mental models","partitive division",1
+"mental models","quotative division",1
+"mental representation","teacher’s interventions",1
+"mentors","reflection process",1
+"mentors","stem education",1
+"mentors","teachers’ competencies",1
+"meta-coaching","professional development",1
+"meta-coaching","responsive coaching",1
+"meta-disciplinary","noticing",1
+"meta-disciplinary","prospective teacher education",1
+"methodology","praxeology",1
+"methodology","rem",1
+"microgenetic","subitising",1
+"microgenetic","variability",1
+"middle school","primary education",1
+"middle school","professional education",1
+"middle school","proportional reasoning",1
+"middle school","task design",1
+"middle school","teachers'-knowledge",1
+"middle school","word problems",1
+"middle school teachers","stem education",1
+"minicomputer","modern mathematics",1
+"misconceptions and difficulties","pre-service teachers",1
+"misconceptions and difficulties","teacher knowledge",1
+"misinterpretation","statistics education",1
+"misinterpretation","teacher education",1
+"mistaken conception","proof",1
+"mistaken conception","theorem prover",1
+"mistaken conception","undergraduate students",1
+"mixed methods","teacher certification",1
+"mixed methods","teacher motivation",1
+"mixed methods","teacher persistence",1
+"mixed praxeologies","paired courses",1
+"mixed reality","virtual reality",1
+"mixed-ability","secondary",1
+"mixed-ability","universal design for learning (udl)",1
+"modality of study","real numbers",1
+"model building","model usability",1
+"model knowledge","model uncertainty",1
+"model knowledge","stochastic modeling",1
+"model uncertainty","stochastic modeling",1
+"model-theoretic approach on proof and proving","proof by interpretation",1
+"model-theoretic approach on proof and proving","semantics",1
+"model-theoretic approach on proof and proving","syntax",1
+"modeling projects","prospective teachers",1
+"modeling projects","teacher knowledge",1
+"modelling","models",1
+"modelling","outdoor mathematics",1
+"modelling","pedagogical content knowledge",1
+"modelling","pre-service teachers",1
+"modelling","prompts",1
+"modelling","situation model",1
+"modelling","teaching and learning",1
+"modelling","technology",1
+"modelling","two-dimensional curriculum",1
+"modelling competence","outdoor education",1
+"modelling competence","student interests",1
+"modelling instruction","scaffolding practices",1
+"models","theories",1
+"models","wheel of modelling",1
+"models","wheel of writing",1
+"modes of representation","object-centred movement",1
+"monitoring","tasks of teaching",1
+"monitoring","work of teaching",1
+"moonbase activity","stem education",1
+"moonbase activity","wedo 2.0 core set",1
+"moral imagination","number concepts",1
+"moral imagination","teacher education",1
+"motion graphs","theory of objectification",1
+"motion problem","preservice teachers",1
+"motivation","questionnaire",1
+"motivation","self-efficacy",1
+"motivation","subjective relevance of mathematics education",1
+"motivation","sustainability",1
+"motivation","value",1
+"movement-based learning","place value",1
+"mtsk model","pre-service teacher education",1
+"mtsk model","secondary school teachers",1
+"mtsk model","teacher education",1
+"mtsk model","teachers’ beliefs",1
+"mtsk model","teachers’ knowledge",1
+"mtsk model","three-fold meta-didactical conflict",1
+"mtsk model","tpb model",1
+"multi duo of artefacts","spatial skills",1
+"multi duo of artefacts","tangible artefact",1
+"multi duo of artefacts","virtual reality",1
+"multicultural classrooms","task design",1
+"multidigit multiplication","strategy flexibility",1
+"multilevel structural equation model","teacher-student interactions",1
+"multilingual","word problems",1
+"multilingual classrooms","teacher responsiveness",1
+"multimodality","semiotic system",1
+"multimodality","social robot’s acceptance",1
+"multimodality","visual impairments",1
+"multiple representations","online professional development",1
+"multiple representations","professional learning",1
+"multiple-choice","task design",1
+"multiplication","primary school children",1
+"multiplication","problem-solving",1
+"multiplication","rectangular arrays",1
+"multiplication","unconventional interpretation",1
+"multiplication","unitizing concept",1
+"multiplicative comparison","representations",1
+"multiplicative concepts","representation",1
+"multiplicative concepts","teachers",1
+"multiplicative concepts","units coordination",1
+"multiplicative problems","multiplicative reasoning",1
+"multiplicative problems","performance",1
+"multiplicative problems","strategies",1
+"multiplicative reasoning","performance",1
+"multiplicative reasoning","strategies",1
+"multivariable calculus","student misconceptions",1
+"multivariable calculus","student strategies",1
+"multivariable functions","pre-service teacher education",1
+"multivariable functions","study and research path",1
+"multivariable functions","the anthropological theory of the didactic",1
+"museums","professional development",1
+"music","periodic functions",1
+"narrative","pre-service teachers",1
+"narrative","teacher education program",1
+"narrative analysis","preservice teacher",1
+"narrative analysis","qualitative analysis",1
+"narrative analysis","secondary-tertiary transition",1
+"narrative analysis","teacher competencies",1
+"natural language processing","secondary school mathematics",1
+"necessary object-level narratives","primary and middle school",1
+"necessary object-level narratives","probability",1
+"necessary object-level narratives","problem solving",1
+"negating competence","proof",1
+"negating competence","proof by contraposition (pbcp)",1
+"negating competence","undergraduate mathematics",1
+"negative numbers","numerical extensions",1
+"negative numbers","operator interpretation",1
+"negative numbers","states",1
+"negative numbers","transformations",1
+"networking of theories","theory of transformative education",1
+"neuropedagogy","teacher identity",1
+"neuropedagogy","teacher professional development",1
+"new materialism","paradigm",1
+"new materialism","participatory methodology",1
+"new materialism","radical embodiment",1
+"new materialism","transformative methodology",1
+"new school movement","ovide decroly",1
+"new school movement","paul libois",1
+"non economical definitions","quadrilaterals",1
+"non-linear geometry problems","problem solving",1
+"non-linear geometry problems","self-generated drawings",1
+"non-mathematics degrees","transition",1
+"non-routine problem","primary school students",1
+"non-routine problem","problem-solving",1
+"non-routine problem","routine problem",1
+"normal domain","polar change of coordinates",1
+"normal domain","questionnaire",1
+"normal domain","teaching and learning mathematics for engineers",1
+"norms","representation",1
+"norms","symbolic interactionism",1
+"noticing","pre-service mathematics teachers",1
+"noticing","problem posing",1
+"noticing","prospective teacher education",1
+"noticing","seeds of algebraic thinking",1
+"noticing","teacher noticing",1
+"noticing","teacher noticing of student thinking",1
+"noticing","teachers’ analysis of classroom interaction",1
+"noticing","video clubs",1
+"noticing","vignettes-based study",1
+"noticing practices around teaching angles","secondary-school mathematics teachers",1
+"novice facilitator","professional development",1
+"novice secondary mathematics teachers","reasoning and proof",1
+"number concepts","number word inversion",1
+"number concepts","place value",1
+"number concepts","teacher education",1
+"number knowledge","partitioning",1
+"number knowledge","toddlers",1
+"number knowledge","units",1
+"number patterns","problem characteristics",1
+"number sense","paper folding",1
+"number sense","play-responsive teaching",1
+"number sense","preschool",1
+"number sense","preservice elementary school teachers",1
+"number sense","real number",1
+"number sense","secondary education",1
+"number series","pattern",1
+"number series","relationship",1
+"number series","understanding regularity",1
+"number theory","task design",1
+"number word inversion","place value",1
+"numbers","preschool",1
+"numbers","teaching actions",1
+"numbers","variation theory",1
+"numeracy","numeracy model",1
+"numeracy","piaac",1
+"numeracy","pisa framework",1
+"numeracy","second cycle",1
+"numeracy","secondary school",1
+"numeracy","social work education",1
+"numeracy","textbook research",1
+"numeracy model","pisa framework",1
+"numerical extensions","operator interpretation",1
+"numerical extensions","states",1
+"numerical extensions","transformations",1
+"numerical methods","university mathematics education",1
+"numerical pattern","primary school",1
+"numerical pattern","verbalization",1
+"numerical thinking","tasks for teacher education",1
+"objectification","probability",1
+"obligations","practical rationality",1
+"obligations","resources and constraints",1
+"obligations","theorizing",1
+"online","rehearsals",1
+"online","role-playing",1
+"online formative assessment","variables",1
+"online professional development","professional learning",1
+"online professional development","self-directed learning",1
+"ontology","perspectival anthropology",1
+"open environments","task design",1
+"open environments","teaching",1
+"open modelling problems","openness",1
+"open modelling problems","teacher education",1
+"open problems","preservice teachers",1
+"open problems","problem posing",1
+"open-ended approach","task design",1
+"open-ended approach","teacher noticing",1
+"open-ended approach","technology",1
+"open-ended approach","video case",1
+"openness","teacher education",1
+"operator interpretation","states",1
+"operator interpretation","transformations",1
+"opportunities to learn","university mathematics lectures",1
+"orchestration chains","technology integration",1
+"organization of studies","secondary-tertiary transition",1
+"organization of studies","teacher expectations of students",1
+"original sources","use of figures",1
+"otherness","social and political dimension of mathematics education",1
+"otherness","teachers’ practices",1
+"outdoor education","student interests",1
+"outdoor mathematics","situation model",1
+"ovide decroly","paul libois",1
+"paper folding","preservice elementary school teachers",1
+"paper folding","proof",1
+"paper folding","synergy",1
+"paper-folding","perception of shapes",1
+"paradigm","participatory methodology",1
+"paradigm","radical embodiment",1
+"paradigm","transformative methodology",1
+"parents","pre-school",1
+"parents","teachers",1
+"partial sums","schema",1
+"participatory methodology","radical embodiment",1
+"participatory methodology","transformative methodology",1
+"partitioning","toddlers",1
+"partitioning","units",1
+"partitive division","quotative division",1
+"path-connectedness","real analysis",1
+"paths of reasoning","patterns",1
+"paths of reasoning","textbook analysis",1
+"pattern","relationship",1
+"pattern","understanding regularity",1
+"patterns","textbook analysis",1
+"patterns and structures","properties and relations",1
+"patterns and structures","representation-based proofs",1
+"patterns of participation","pre-service teachers",1
+"patterns of participation","professional identity",1
+"patterns of participation","upper secondary school",1
+"pedagogical content knowledge","teacher educators",1
+"pedagogical judgement","professional learning",1
+"pedagogical practices","systems of thought",1
+"pedagogy","symmetry-breaking",1
+"perceived difficulty","pre-service teachers",1
+"perceived difficulty","primary school",1
+"perceived difficulty","qualitative analysis",1
+"perceived difficulty","qualitative study",1
+"perceived ease of use","perceived usefulness",1
+"perceived ease of use","pre-service teachers",1
+"perceived usefulness","pre-service teachers",1
+"perceiving structures","preschool education",1
+"percentage","relative value",1
+"percentage calculation","vocational high schools",1
+"perceptual clues","spatial structuring",1
+"perceptual clues","visualization",1
+"performance","strategies",1
+"personal epistemology","secondary-tertiary transition",1
+"personal epistemology","values",1
+"personalised learning","self-regulation",1
+"phenomenography","vocational education",1
+"piaac","second cycle",1
+"pisa","qualitative content analysis",1
+"place value","representations",1
+"place value","role of zero",1
+"place value understanding","representations of numbers",1
+"plane geometry","subject-matter didactics",1
+"planification","reflection",1
+"planification","whole-class discussion",1
+"planning","praxeologies",1
+"planning phase","primary school",1
+"planning phase","professional development",1
+"play-based learning","transition to school",1
+"play-responsive teaching","teachers’ descriptions",1
+"play-responsive teaching","teaching",1
+"polar change of coordinates","questionnaire",1
+"polar change of coordinates","teaching and learning mathematics for engineers",1
+"politics of education","teacher leaders in mathematics",1
+"polya","problem-solving",1
+"polya","secondary education",1
+"polya’s method","reflection as a learning method",1
+"polya’s method","systematic problem solving",1
+"polynomial functions","secondary-tertiary transition",1
+"positionality","pre-service teachers",1
+"positioning theory","secondary school mathematics",1
+"post-implementation","readiness to implement",1
+"post-implementation","voluntary professional development",1
+"postsecondary mathematics","social justice",1
+"postsecondary mathematics","teacher preparation",1
+"postsecondary mathematics","technology",1
+"practical rationality","resources and constraints",1
+"practical rationality","theorizing",1
+"practice knowledge","study and research paths",1
+"practice-based research","professional learning",1
+"practices","prospective teachers",1
+"practices","representation",1
+"practices in mathematics education","research framework",1
+"practices of teacher-researchers","sustainable development goals",1
+"praxeological equipment","praxeological reference model",1
+"praxeologies","study and research paths",1
+"praxeologies","the anthropological theory of the didactic",1
+"praxeology","rem",1
+"praxeology","secondary school",1
+"praxeology","textbook content",1
+"praxeology","the anthropological theory of the didactic",1
+"pre-course mathematics","secondary school mathematics",1
+"pre-existing knowledge","teacher education",1
+"pre-school","teachers",1
+"pre-school education","representations of number",1
+"pre-school education","whole numbers",1
+"pre-service mathematics teachers","productive struggle",1
+"pre-service mathematics teachers","samr model",1
+"pre-service mathematics teachers","scriptwriting",1
+"pre-service mathematics teachers","seeds of algebraic thinking",1
+"pre-service mathematics teachers","teacher education",1
+"pre-service mathematics teachers","tpack",1
+"pre-service mathematics teachers","video clubs",1
+"pre-service teacher education","study and research path",1
+"pre-service teacher education","the anthropological theory of the didactic",1
+"pre-service teachers","problem posing",1
+"pre-service teachers","professional identity",1
+"pre-service teachers","prompts",1
+"pre-service teachers","qualitative analysis",1
+"pre-service teachers","reflective practice",1
+"pre-service teachers","scriptwriting",1
+"pre-service teachers","situated abstraction",1
+"pre-service teachers","symmetry",1
+"pre-service teachers","teacher education program",1
+"pre-service teachers","teacher knowledge",1
+"pre-service teachers","transparency",1
+"pre-service teachers","upper secondary school",1
+"pre-service teachers’ thinking","subjective theory",1
+"pre-service teachers’ thinking","teacher education",1
+"preschool","teachers’ descriptions",1
+"preschool","teaching",1
+"preschool","teaching actions",1
+"preschool","variation theory",1
+"preschool","written numbers",1
+"preschool education","professional development",1
+"preservice primary school teachers","textbook",1
+"preservice primary school teachers","three-dimensional geometry",1
+"preservice primary teachers","relations in affective variables",1
+"preservice support teachers","special education",1
+"preservice teacher","problem solving",1
+"preservice teacher","student thinking",1
+"preservice teacher","students’ solutions",1
+"preservice teacher","teacher competencies",1
+"preservice teacher","teacher noticing",1
+"preservice teacher","video case",1
+"preservice teacher education","probability",1
+"preservice teacher education","proportional reasoning",1
+"preservice teacher education","steam education",1
+"preservice teacher education","teacher expertise",1
+"preservice teacher education","textbooks",1
+"preservice teacher education","variation theory",1
+"preservice teachers","primary school",1
+"preservice teachers","problem posing",1
+"preservice teachers","professional instrumental genesis",1
+"preservice teachers","questioning techniques",1
+"preservice teachers","schemes",1
+"preservice teachers","semantic structure",1
+"preservice teachers","spatial geometry",1
+"preservice teachers","textile dilemmas",1
+"preservice teachers","tutoring",1
+"preservice teachers","validity",1
+"preservice teachers","word problem",1
+"primary and middle school","probability",1
+"primary and middle school","problem solving",1
+"primary education","professional education",1
+"primary education","reasoning",1
+"primary education","sustainability competences",1
+"primary education","teacher interventions",1
+"primary grades","stem",1
+"primary historical sources","primary source projects",1
+"primary historical sources","teaching and learning of analysis and calculus",1
+"primary historical sources","transgressions",1
+"primary historical sources","undergraduate mathematics education",1
+"primary mathematics","robot coding integration",1
+"primary mathematics","technology",1
+"primary school","problems solving",1
+"primary school","qualitative study",1
+"primary school","secondary school",1
+"primary school","solving strategies",1
+"primary school","spatial reasoning",1
+"primary school","student-teacher interaction",1
+"primary school","subject-specific support",1
+"primary school","teacher education",1
+"primary school","teacher-researcher collaboration",1
+"primary school","teaching experiments",1
+"primary school","verbalization",1
+"primary school","word problems",1
+"primary school mathematics","programming",1
+"primary school students","problem solving",1
+"primary school students","problem-solving",1
+"primary school students","routine problem",1
+"primary school students","scaffolding",1
+"primary school students","task design",1
+"primary school teachers","proof and proving",1
+"primary school teachers","teacher views",1
+"primary school teachers","value-cost-expectancy framework.",1
+"primary source projects","teaching and learning of analysis and calculus",1
+"primary source projects","transgressions",1
+"primary source projects","undergraduate mathematics education",1
+"prison context","teacher perspective",1
+"prison context","teacher practice",1
+"prison education","special needs education",1
+"prison education","swot analysis",1
+"prison education","teacher identity",1
+"prison education","teacher views",1
+"prison education","theory-driven categories",1
+"probabilistic reasoning","statistical modeling",1
+"probability","problem solving",1
+"probability","proportional reasoning",1
+"probability","upper secondary school",1
+"problem","reliability",1
+"problem posing","problem selection",1
+"problem posing","prospective elementary teachers",1
+"problem posing","prospective primary teacher",1
+"problem posing","reflection",1
+"problem posing","task values",1
+"problem posing","task-based motivation",1
+"problem posing","teacher education",1
+"problem selection","prospective elementary teachers",1
+"problem solving","professional development",1
+"problem solving","programming",1
+"problem solving","real-world problems",1
+"problem solving","representation",1
+"problem solving","secondary school",1
+"problem solving","secondary-tertiary transition",1
+"problem solving","self-generated drawings",1
+"problem solving","student teachers",1
+"problem solving","students’ perspective",1
+"problem solving","students’ solutions",1
+"problem solving","tasks",1
+"problem solving","tensions",1
+"problem solving","use of the illustrations",1
+"problem solving","word problem",1
+"problem-based learning","vector cross product",1
+"problem-based learning","virtual reality",1
+"problem-posing","tpack. pre-service high school mathematics teachers",1
+"problem-solving","problem-solving strategies",1
+"problem-solving","proportional reasoning",1
+"problem-solving","proving process",1
+"problem-solving","routine problem",1
+"problem-solving","secondary education",1
+"problem-solving","support-element",1
+"problem-solving","teacher education",1
+"problem-solving","teachers’ knowledge",1
+"problem-solving","teaching practice",1
+"problem-solving","undergraduate students",1
+"problem-solving strategies","undergraduate students",1
+"problems of practice","teacher learning",1
+"problems solving","solving strategies",1
+"problems solving","word problems",1
+"productive struggle","scriptwriting",1
+"productive struggle","teacher education",1
+"professional development","professional learning",1
+"professional development","responsive coaching",1
+"professional development","roles",1
+"professional development","second level",1
+"professional development","silent video task",1
+"professional development","situatedness",1
+"professional development","special educational",1
+"professional development","talk moves",1
+"professional development","task analysis",1
+"professional development","tasks",1
+"professional development","teacher noticing",1
+"professional development","teaching experiments",1
+"professional development","teaching moves",1
+"professional development","teaching quality",1
+"professional development","tensions",1
+"professional development program","professional growth",1
+"professional development program","teacher educators",1
+"professional identity","upper secondary school",1
+"professional identity","vocational education",1
+"professional instrumental genesis","programming",1
+"professional instrumental genesis","schemes",1
+"professional learning","teacher collaboration",1
+"professional learning","teachers’ mathematical knowledge",1
+"professional learning","teaching quality",1
+"professional learning communities","students’ mathematical writing",1
+"professional learning communities","teacher collaboration",1
+"professional roles","teacher education",1
+"professional roles","teaching practicum",1
+"programmable robots","programming",1
+"programming","robotics",1
+"programming","schemes",1
+"programming","scratch",1
+"programming","secondary school mathematics",1
+"programming","spatial reasoning",1
+"programming","structuring features of classroom practice",1
+"programming","student teachers",1
+"programming","teaching algebra",1
+"programming","teaching experiment",1
+"programming","textbooks",1
+"projective geometry","theory of objectification",1
+"prompt","teacher interventions",1
+"proof","proof by contraposition (pbcp)",1
+"proof","proof construction",1
+"proof","secondary mathematics",1
+"proof","secondary school mathematics",1
+"proof","survey",1
+"proof","synergy",1
+"proof","textbook research",1
+"proof","thales’ theorem",1
+"proof","theorem prover",1
+"proof","undergraduate mathematics",1
+"proof","undergraduate students",1
+"proof and proving","teacher views",1
+"proof and proving","value-cost-expectancy framework.",1
+"proof based teaching","proving",1
+"proof based teaching","teacher knowledge",1
+"proof by contraposition (pbcp)","undergraduate mathematics",1
+"proof by interpretation","semantics",1
+"proof by interpretation","syntax",1
+"proof construction","secondary mathematics",1
+"proof construction","survey",1
+"proof methods","reasoning",1
+"proof methods","undergraduates",1
+"proof types","toulmin scheme",1
+"proof writing","teaching with lean",1
+"properties and relations","representation-based proofs",1
+"proportional judgement","replication study",1
+"proportional reasoning","semiotic bundle",1
+"proportional reasoning","task design",1
+"proportional reasoning","teacher education",1
+"prospective mathematics teacher","teacher design capacity",1
+"prospective mathematics teachers","real numbers",1
+"prospective mathematics teachers","specialised knowledge",1
+"prospective primary teacher","teacher education",1
+"prospective teachers","proving and proof",1
+"prospective teachers","teacher education",1
+"prospective teachers","teacher knowledge",1
+"protractor","spatial navigation",1
+"protractor","textual programming",1
+"proving","teacher knowledge",1
+"pólya","problem solving",1
+"pólya","real-world problems",1
+"pósa method","tournaments",1
+"quadratic equations","research-based",1
+"quadratic equations","teacher guide",1
+"quadratic equations","upper-secondary",1
+"quadratic function","representations of function",1
+"qualitative analysis","secondary-tertiary transition",1
+"quantitative reasoning","word problem",1
+"quantitative relation","quantity",1
+"quantitative relation","spatial visualization",1
+"quantitative relation","visuospatial working memory",1
+"quantity","spatial visualization",1
+"quantity","visuospatial working memory",1
+"quasi-experimental study","teaching experiment",1
+"queer","trans",1
+"questioning techniques","tutoring",1
+"questionnaire","subject integrated team teaching",1
+"questionnaire","sustainability",1
+"questionnaire","teaching and learning mathematics for engineers",1
+"questionnaire","vocational education",1
+"questionnaire","vocational mathematics",1
+"radical embodiment","transformative methodology",1
+"rational numbers","tree graph",1
+"rational numbers","word problem solving",1
+"readiness to implement","voluntary professional development",1
+"reading levels","secondary education",1
+"reading levels","textbooks",1
+"real number","secondary education",1
+"real numbers","specialised knowledge",1
+"reasoning","recipes",1
+"reasoning","undergraduates",1
+"reasoning and proof","technological pedagogical content knowledge",1
+"rectangular arrays","unconventional interpretation",1
+"rectangular arrays","unitizing concept",1
+"reference materials","theory of didactical situations",1
+"reflection","teacher education",1
+"reflection","whole-class discussion",1
+"reflection as a learning method","systematic problem solving",1
+"reflection process","stem education",1
+"reflection process","teachers’ competencies",1
+"rehearsals","role-playing",1
+"reification","type theory",1
+"relationship","understanding regularity",1
+"relationships","social justice",1
+"relationships","teachers and learners",1
+"relative importance analysis","sub-scores",1
+"relative importance analysis","test scores",1
+"relevance dimensions of mathematics education","subjective relevance of mathematics education",1
+"repeating patterns","structural awareness",1
+"repeating patterns","variation theory",1
+"representation","symbolic interactionism",1
+"representation","teachers",1
+"representation","units coordination",1
+"representations","strategies",1
+"representations","units of length and mass",1
+"representations of number","whole numbers",1
+"representations of practice","teacher learning",1
+"research knowledge","transposition",1
+"research methods","research problems",1
+"research methods","theory use",1
+"research problems","theory use",1
+"research visualization","teacher learning",1
+"research visualization","teaching practices",1
+"research visualization","teaching representations",1
+"research-based","teacher guide",1
+"research-based","upper-secondary",1
+"resonance","university mathematics education",1
+"resources","statistics teaching",1
+"resources and constraints","theorizing",1
+"risk literacy","simulations",1
+"risk literacy","statistics education",1
+"robot coding integration","technology",1
+"roles","teacher education",1
+"routines","visual mediators",1
+"rural schools","stem education",1
+"rural schools","teacher leadership",1
+"sad affects","teacher education",1
+"samr model","tpack",1
+"scaffolding","task design",1
+"school algebra","students’ learning",1
+"scratch","simulation",1
+"scratch","teaching algebra",1
+"scratch","teaching experiment",1
+"scratch","teaching practice",1
+"screening","semantic waves",1
+"scriptwriting","symmetry",1
+"scriptwriting","teacher education",1
+"secondary","universal design for learning (udl)",1
+"secondary education","textbooks",1
+"secondary education","two-column proofs",1
+"secondary mathematics","survey",1
+"secondary mathematics education","teacher autonomy",1
+"secondary mathematics education","visual representation",1
+"secondary school","sustainability",1
+"secondary school mathematics","textbook research",1
+"secondary school mathematics","textbooks",1
+"secondary school mathematics","thales’ theorem",1
+"secondary school teachers","teacher education",1
+"secondary school teachers","three-fold meta-didactical conflict",1
+"secondary teacher education","subject matter noticing",1
+"secondary teacher education","survey",1
+"secondary teacher education","the double discontinuity",1
+"secondary teacher education","university mathematics",1
+"secondary-tertiary transition","teacher expectations of students",1
+"secondary-tertiary transition","teacher-researcher partnerships",1
+"secondary-tertiary transition","teaching design",1
+"secondary-tertiary transition","undergraduate mathematics education",1
+"secondary-tertiary transition","values",1
+"seeds of algebraic thinking","video clubs",1
+"self-assessment predictors","student perceptions",1
+"self-assessment predictors","undergraduate mathematics",1
+"self-concept","stem",1
+"self-concept","women",1
+"self-efficacy","value",1
+"self-perception","teacher knowledge",1
+"self-perception","teaching experience",1
+"semantics","syntax",1
+"semiosphere","ste(a)m",1
+"semiotic","steam education",1
+"semiotic bundle","students’ obstacles",1
+"semiotic bundle","teacher education",1
+"semiotic bundle","teacher’s aids",1
+"semiotic bundle","technologies",1
+"sharing contents","teacher education",1
+"sign language","variables",1
+"silent video task","teacher education",1
+"silent video task","teacher noticing",1
+"simulations","statistical modelling",1
+"simulations","study and research paths",1
+"simulations","teacher education-preservice",1
+"simulations","teacher educator",1
+"simulations","tertiary education",1
+"sine","trigonometry",1
+"situated abstraction","transparency",1
+"situated knowledge","standardized assessment",1
+"situatedness","teacher education",1
+"social and political dimension of mathematics education","teachers’ practices",1
+"social justice","teacher preparation",1
+"social justice","teachers and learners",1
+"social justice","technology",1
+"social media","statistical literacy",1
+"social media","stem education",1
+"social media","world of work",1
+"social practice theory","teacher reflection",1
+"socio-cultural practices","translation",1
+"socio-epistemology approach","teacher professional development",1
+"socio-political studies","survey methods",1
+"sociocultural factors","textbook analysis",1
+"solution","system of equations",1
+"solutions","statewide exit exams",1
+"solving steps","teachers",1
+"solving steps","visual representation",1
+"solving steps","word problems",1
+"solving strategies","word problems",1
+"sorting task","structure sense",1
+"space of joint action","togethering",1
+"spatial navigation","textual programming",1
+"spatial reasoning","task design",1
+"spatial reasoning","visual arts",1
+"spatial skills","tangible artefact",1
+"spatial skills","virtual reality",1
+"spatial structuring","visualization",1
+"spatial visualization","visuospatial working memory",1
+"spontaneous conceptions","warrant",1
+"spreadsheet","statistics",1
+"stack","student misconception",1
+"stack","task development",1
+"stack","techer education",1
+"stack","visualization",1
+"standardised sssessment","teachers beliefs",1
+"standardised sssessment","teachers knowledge",1
+"states","transformations",1
+"static visualisations","understanding",1
+"statistical modelling","study and research paths",1
+"statistical modelling","tertiary education",1
+"statistical reasoning","toulmin’s model",1
+"statistics","study and research path",1
+"statistics","study and research paths",1
+"steam education","sustainable development goals",1
+"stem","task design",1
+"stem","teacher education",1
+"stem","women",1
+"stem careers","stem education",1
+"stem education","teacher leadership",1
+"stem education","teachers’ competencies",1
+"stem education","wedo 2.0 core set",1
+"stem education","world of work",1
+"stem majors","tertiary students",1
+"straight-line helicoids","visuospatial abilities",1
+"structural approach","two-digit subtraction",1
+"structural approach","variation theory",1
+"structural awareness","variation theory",1
+"structuralist praxeologies","topology",1
+"student misconception","techer education",1
+"student misconceptions","student strategies",1
+"student motivation","student participation",1
+"student perceptions","undergraduate mathematics",1
+"student thinking","teacher noticing",1
+"student thinking","teaching",1
+"student thinking","video case",1
+"student-teacher interaction","subject-specific support",1
+"students’ identity","vocational education",1
+"students’ mathematical writing","teacher collaboration",1
+"students’ obstacles","teacher’s aids",1
+"students’ obstacles","technologies",1
+"study and research path","the anthropological theory of the didactic",1
+"study and research paths","tertiary education",1
+"study and research paths","the anthropological theory of the didactic",1
+"sub-scores","test scores",1
+"subitising","variability",1
+"subject integrated team teaching","vocational education",1
+"subject integrated team teaching","vocational mathematics",1
+"subject matter noticing","university mathematics",1
+"subjective theory","teacher education",1
+"summative assessment","technology-enhanced classrooms",1
+"survey","the double discontinuity",1
+"sustainability","sustainability competences",1
+"swot analysis","theory-driven categories",1
+"talk moves","teaching moves",1
+"tangible artefact","virtual reality",1
+"tarot cards","technology comprehension",1
+"task analysis","teacher education",1
+"task design","teacher education",1
+"task design","teacher noticing",1
+"task design","teaching",1
+"task design","technology",1
+"task design","video case",1
+"task design","visual arts",1
+"task development","visualization",1
+"task-based motivation","task values",1
+"tasks","tensions",1
+"tasks of teaching","work of teaching",1
+"taxicab trigonometry","theoretical covariation",1
+"taxicab trigonometry","theoretical representation",1
+"teacher autonomy","visual representation",1
+"teacher certification","teacher motivation",1
+"teacher certification","teacher persistence",1
+"teacher collaboration","teachers’ mathematical knowledge",1
+"teacher competencies","teacher induction",1
+"teacher competencies","technological pedagogical content knowledge",1
+"teacher competencies","workplace learning",1
+"teacher education","teacher noticing",1
+"teacher education","teaching practice",1
+"teacher education","teaching practicum",1
+"teacher education","three-fold meta-didactical conflict",1
+"teacher education","vignettes",1
+"teacher education-preservice","teacher educator",1
+"teacher expertise","textbooks",1
+"teacher guide","upper-secondary",1
+"teacher identity","teacher professional development",1
+"teacher identity","teacher views",1
+"teacher induction","technological pedagogical content knowledge",1
+"teacher induction","workplace learning",1
+"teacher knowledge","teaching experience",1
+"teacher learning","teaching practices",1
+"teacher learning","teaching representations",1
+"teacher motivation","teacher persistence",1
+"teacher noticing","technology",1
+"teacher noticing of student thinking","teachers’ analysis of classroom interaction",1
+"teacher noticing of student thinking","vignettes-based study",1
+"teacher perspective","teacher practice",1
+"teacher preparation","technology",1
+"teacher professional development","teaching performance",1
+"teacher professional development","understanding",1
+"teacher views","value-cost-expectancy framework.",1
+"teacher-researcher partnerships","teaching design",1
+"teacher-student interactions","teacher noticing",1
+"teachers","units coordination",1
+"teachers","visual representation",1
+"teachers","word problems",1
+"teachers beliefs","teachers knowledge",1
+"teachers'-knowledge","word problems",1
+"teachers’ analysis of classroom interaction","vignettes-based study",1
+"teachers’ beliefs","teachers’ knowledge",1
+"teachers’ beliefs","tpb model",1
+"teachers’ descriptions","teaching",1
+"teachers’ knowledge","technology",1
+"teachers’ knowledge","tpb model",1
+"teacher’s aids","technologies",1
+"teaching actions","variation theory",1
+"teaching algebra","teaching experiment",1
+"teaching and learning of analysis and calculus","transgressions",1
+"teaching and learning of analysis and calculus","undergraduate mathematics education",1
+"teaching approach","the derivative concept",1
+"teaching culture","tensions",1
+"teaching culture","university mathematics teaching",1
+"teaching performance","understanding",1
+"teaching practices","teaching representations",1
+"technological pedagogical content knowledge","workplace learning",1
+"technology","video case",1
+"tensions","university mathematics teaching",1
+"textbook","three-dimensional geometry",1
+"textbook analysis","university mathematics for prospective teachers",1
+"textbook content","the anthropological theory of the didactic",1
+"textbook research","thales’ theorem",1
+"the use of physical and digital tools","theoretical framework",1
+"theorem prover","undergraduate students",1
+"theoretical covariation","theoretical representation",1
+"theories","wheel of modelling",1
+"theories","wheel of writing",1
+"theory of semiotic mediation","vocational school",1
+"toddlers","units",1
+"transgressions","undergraduate mathematics education",1
+"tree graph","word problem solving",1
+"two-digit subtraction","variation theory",1
+"two-phase instructional designs","variables as generalizers",1
+"unconventional interpretation","unitizing concept",1
+"use of the illustrations","word problem",1
+"vector cross product","virtual reality",1
+"visual representation","word problems",1
+"vocational education","vocational mathematics",1
+"wheel of modelling","wheel of writing",1
+"école decroly","mathematical exhibitions",1
+"école decroly","new school movement",1
+"école decroly","ovide decroly",1
+"école decroly","paul libois",1
+"“blob tree”","anxiety",1
+"“blob tree”","educational resilience",1
+"“blob tree”","emotional self-awareness",1
+"“blob tree”","prospective mathematics teachers",1
+"“half”","first- and second-order comparisons",1
+"“half”","proportional judgement",1
+"“half”","replication study",1
