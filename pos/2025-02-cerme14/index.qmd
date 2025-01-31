@@ -374,6 +374,9 @@ ggplotly(plot_presenter)
 ```
 
 ```{r}
+#| echo: false
+#| code-fold: false
+
 edgelist_presenter <- read_csv(
   "https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/refs/heads/main/pos/2025-02-cerme14/aset/edgelist_presenter_gephi.csv",
   show_col_types = FALSE
@@ -387,13 +390,13 @@ edgelist_presenter <- read_csv(
   ) |> 
   mutate(
     id = id + 1,
-    color = "#e5e5e5"
+    color = "#333333"
   )
-nodes_keywords <- read_csv(
-  "https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/refs/heads/main/pos/2025-02-cerme14/aset/nodes_gephi.csv",
+nodes_presenter <- read_csv(
+  "https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/refs/heads/main/pos/2025-02-cerme14/aset/nodes_presenter_gephi.csv",
   show_col_types = FALSE
 )
-nodes_keywords_sederhana <- nodes_keywords |> 
+nodes_presenter_sederhana <- nodes_presenter |> 
   select(
     Id, Label, Degree, `Weighted Degree`, modularity_class,
     Color, Size, X, Y
@@ -409,8 +412,19 @@ nodes_keywords_sederhana <- nodes_keywords |>
     y = Y
   ) |> 
   mutate(
-    size = 2 * size
+    size = 1
   )
+```
+
+```{r}
+#| echo: false
+#| code-fold: false
+
+sigmajs() |> 
+  sg_nodes(nodes_presenter_sederhana, id, label, size, color, x, y) |> 
+  sg_edges(edgelist_presenter, id, source, target, color) |> 
+  sg_drag_nodes() |> 
+  sg_neighbors()
 ```
 
 ## Catatan Akhir
