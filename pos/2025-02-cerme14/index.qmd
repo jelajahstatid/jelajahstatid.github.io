@@ -50,6 +50,7 @@ library(ggtext)
 library(camcorder)
 library(scales)
 library(sigmajs)
+library(plotly)
 ```
 
 \[Pendahuluan\]
@@ -228,7 +229,188 @@ sigmajs() |>
 ## Fokus Tentang Kurikulum
 
 ```{r}
+#| echo: false
+#| code-fold: false
 
+# Impor data
+url_twg22_ref <- "https://github.com/jelajahstatid/jelajahstatid.github.io/raw/refs/heads/main/pos/2025-02-cerme14/aset/twg22_bib_coupling.xlsx"
+destfile_twg22 <- "twg22_ref.xlsx"
+curl::curl_download(url_twg22_ref, destfile_twg22)
+twg22_ref <- read_excel(destfile_twg22)
+
+# Mengelompokkan rujukan berdasarkan id
+rujukan_karya <- twg22_ref |> 
+  group_by(id) |> 
+  summarise(daftar_rujukan = list(unique(references)), .groups = "drop")
+
+# Membuat semua kemungkinan pasangan
+pasangan_karya <- expand.grid(
+  id1 = rujukan_karya$id,
+  id2 = rujukan_karya$id
+) |> 
+  filter(id1 < id2)
+
+# Fungsi untuk menghitung indeks Jaccard
+hitung_jaccard <- function(id1, id2, data) {
+  refs1 <- data$daftar_rujukan[data$id == id1][[1]]
+  refs2 <- data$daftar_rujukan[data$id == id2][[1]]
+  
+  irisan <- length(intersect(refs1, refs2))
+  gabungan <- length(unique(c(refs1, refs2)))
+  
+  if (gabungan == 0) return(0)
+  
+  return(irisan / gabungan)
+}
+
+# Menghitung indeks Jaccard untuk setiap pasangan
+indeks_jaccard_rujukan <- pasangan_karya |> 
+  rowwise() |> 
+  mutate(indeks_jaccard_r = hitung_jaccard(id1, id2, rujukan_karya)) |> 
+  ungroup() |> 
+  arrange(desc(indeks_jaccard_r))
+
+```
+
+KL
+
+```{r}
+#| echo: false
+#| code-fold: false
+
+# Mempersiapkan data keywords
+keywords_twg22 <- data_cerme14 |> 
+  select(id, keywords) |> 
+  filter(str_detect(id, "TWG 22")) |> 
+  separate(id, into = c("id_number", "twg_info"), sep = "/", fill = "right") |> 
+  rename(id = id_number) |> 
+  select(-twg_info) |> 
+  mutate(
+    id = as.numeric(str_trim(id)),
+    keywords = str_to_lower(keywords),
+    keywords = str_split(keywords, ", ")
+  )
+
+# Fungsi Jaccard keyword
+jaccard_keywords <- function(id1, id2, data) {
+  keywords1 <- unlist(data$keywords[data$id == id1])
+  keywords2 <- unlist(data$keywords[data$id == id2])
+  
+  irisan <- length(intersect(keywords1, keywords2))
+  gabungan <- length(union(keywords1, keywords2))
+  
+  if (gabungan == 0) return(0)
+  return(irisan / gabungan)
+}
+
+# Menerapkan fungsi untuk semua pasangan
+indeks_jaccard_keywords <- pasangan_karya |> 
+  rowwise() |> 
+  mutate(indeks_jaccard_k = jaccard_keywords(id1, id2, keywords_twg22)) |> 
+  ungroup() |> 
+  arrange(desc(indeks_jaccard_k))
+
+```
+
+```{r}
+#| echo: false
+#| code-fold: false
+
+data_indeks_jaccard <- indeks_jaccard_rujukan |> 
+  left_join(indeks_jaccard_keywords, by = c("id1", "id2")) |> 
+  mutate(
+    kemiripan = indeks_jaccard_r + indeks_jaccard_k
+  ) |> 
+  select(id1, id2, kemiripan) |> 
+  arrange(desc(kemiripan))
+
+twg22_presenter <- twg22_ref |> 
+  select(id, presenter) |> 
+  unique() |> 
+  arrange(id)
+
+twg22_pasangan_presenter <- data_indeks_jaccard |> 
+  left_join(twg22_presenter, by = c("id1" = "id")) |> 
+  rename(presenter1 = presenter) |> 
+  left_join(twg22_presenter, by = c("id2" = "id")) |> 
+  rename(presenter2 = presenter) |> 
+  select(presenter1, presenter2, kemiripan)
+
+twg22_pasangan_presenter_rev <- twg22_pasangan_presenter |> 
+  rename(
+    presenter1 = presenter2,
+    presenter2 = presenter1
+  ) |> 
+  select(presenter1, presenter2, kemiripan)
+
+twg22_pasangan_presenter_full <- bind_rows(
+  twg22_pasangan_presenter, twg22_pasangan_presenter_rev
+)
+
+```
+
+```{r}
+#| echo: false
+#| code-fold: false
+#| label: fig-matriks-koneksi
+#| fig-cap: "Matriks pasangan presenter berdasarkan kemiripan makalah atau posternya dilihat dari kata kunci atau daftar rujukannya"
+#| fig-asp: 0.75
+
+plot_presenter <- twg22_pasangan_presenter_full |> 
+  ggplot(aes(x = presenter1, y = presenter2, fill = kemiripan)) + 
+  geom_tile() + 
+  scale_fill_gradient(
+    high = "#4269D0",
+    low = "white"
+  ) + 
+  theme_minimal() + 
+  theme(
+    legend.position = "none",
+    axis.title = element_blank(),
+    axis.text.x = element_text(angle = 90, hjust = 1)
+  )
+
+ggplotly(plot_presenter)
+```
+
+```{r}
+edgelist_presenter <- read_csv(
+  "https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/refs/heads/main/pos/2025-02-cerme14/aset/edgelist_presenter_gephi.csv",
+  show_col_types = FALSE
+) |> 
+  select(Id, Source, Target, Weight) |> 
+  rename(
+    id = Id,
+    source = Source,
+    target = Target,
+    weight = Weight
+  ) |> 
+  mutate(
+    id = id + 1,
+    color = "#e5e5e5"
+  )
+nodes_keywords <- read_csv(
+  "https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/refs/heads/main/pos/2025-02-cerme14/aset/nodes_gephi.csv",
+  show_col_types = FALSE
+)
+nodes_keywords_sederhana <- nodes_keywords |> 
+  select(
+    Id, Label, Degree, `Weighted Degree`, modularity_class,
+    Color, Size, X, Y
+  ) |> 
+  rename(
+    id = Id,
+    label = Label,
+    degree = Degree,
+    weighted_degree = `Weighted Degree`,
+    color = Color,
+    size = Size,
+    x = X,
+    y = Y
+  ) |> 
+  mutate(
+    size = 2 * size
+  )
 ```
 
 ## Catatan Akhir
