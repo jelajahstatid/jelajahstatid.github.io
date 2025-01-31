@@ -58,4 +58,13 @@ library(sigmajs)
 
 ## Identifikasi Topik
 
+```{r}
+#| echo: false
+
+edgelist_keywords <- read_csv(
+  "https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/refs/heads/main/pos/2025-02-cerme14/aset/edge_list_cerme14.csv",
+  show_col_types = FALSE
+)
+```
+
 ## Catatan Akhir
