@@ -1,32 +1,30 @@
 ---
 title: "Mengantisipasi Bincang-Bincang Ilmiah"
-subtitle: "Menggunakan Analisis Jejaring untuk Menyingkap CERME 14"
-description: "Banyak cara untuk memvisualisasikan data secara efektif. Artikel ini mendemonstrasikan bagaimana memvisualisasikan data pendapatan industri musik di AS dengan menggunakan {ggplot2} dan {plotly}. Cara tersebut dilakukan dengan menggunakan pemrograman R. Tak hanya itu, artikel ini juga mendemonstrasikan bagaimana memvisualisasikan data tersebut secara interaktif dengan menggunakan Observable Plot."
-draft: true
+subtitle: "Menggunakan Analisis Jejaring untuk Menyingkap Forum Ilmiah"
+description: "Jejaring ada di mana-mana. Konferensi ilmiah pun tak terlewatkan. Artikel ini mendemonstrasikan bagaimana analisis jejaring dapat digunakan untuk menyingkap CERME 14, salah satu konferensi terbesar di bidang Pendidikan Matematika."
 author:
   - name: Yosep Dwi Kristanto
     url: https://people.usd.ac.id/~ydkristanto/
     affiliation: Pendidikan Matematika, Universitas Sanata Dharma, Yogyakarta
     affiliation-url: https://www.usd.ac.id/s1pmat
     orcid: 0000-0003-1446-0422
-date: 2025-01-13
+date: 2025-02-02
 categories:
-  - ekonomi
-  - musik
-  - tutorial
+  - analisis jejaring
+  - studi kasus
   - visualisasi data
-image: "pendapatan_musik.png"
+image: "jejaring_topik_penelitian.png"
 image-alt: |
-  Gambar yang menunjukkan pendapatan industri musik di AS berdasarkan format.
+  Graf jejaring kata kunci pada makalah dan poster yang dikirimkan ke CERME 14 (14th Congress of the European Society for Research in Mathematics Education).
 keywords: 
-  - ekonomi
-  - ggplot2
-  - JavaScript
-  - musik
-  - Observable JS
-  - Observable Plot
-  - plotly
-  - pendapatan
+  - analisis jejaring
+  - CERME 14
+  - Eropa
+  - kolaborasi
+  - konferensi
+  - kongres
+  - Pendidikan Matematika
+  - penelitian
 copyright: "© 2025 Yosep Dwi Kristanto"
 license: "CC BY"
 code-annotations: select
@@ -53,9 +51,15 @@ library(sigmajs)
 library(plotly)
 ```
 
-\[Pendahuluan\]
+Jejaring ada di mana-mana. Lingkungan sosial di sekitar kita, misalnya, dapat kita lihat sebagai sebuah jejaring. Orang adalah simpulnya dan relasi antarorang itu adalah sisinya. Jejaring juga dapat ditemukan di halte, seperti yang anakku perhatikan pada @fig-jejaring-kereta. Jejaring itu adalah jejaring jalur kereta. Stasiun adalah simpul dalam jejaring itu, jalur rel adalah sisinya. Pada artikel ini, aku akan memperlihatkan bagaimana bergunanya analisis jejaring untuk mengantisipasi apa yang dapat ditawarkan oleh sebuah forum ilmiah. Aku pilih forum ilmiah [CERME 14](https://www.cerme14.it/){.external target="_blank"} (14^th^ *Congress of the European Society for Research in Mathematics Education*). Hal ini karena ketika aku menulis artikel ini, aku berada dalam kereta jalur Linz - Innsbruck - Bolzano, sedang menyiapkan bahan diskusi di forum itu. Sekali merengkuh dayung, dua tiga pulau terlampaui.
 
-## Kolaborasi Antarnegara
+![Karuna memperhatikan secara seksama jejaring kereta di Linz](aset/Karuna_dan_jejaring_jalur_kereta.jpg){#fig-jejaring-kereta}
+
+Secara spesifik kita akan melihat bagaimana analisis jejaring dapat membantu untuk menyingkap tiga hal tentang CERME 14: kolaborasi antarnegara, koneksi antartopik, dan kedekatan antarpeneliti dalam forum ilmiah itu. Untuk mencapai ketiga hal itu, kita gunakan metadata artikel dan poster ilmiah yang telah diterima di forum tersebut. Metadata tersebut adalah identitas dokumen, pengarang, afiliasi pengarang, kata kunci, dan daftar pustaka artikel dan poster itu.
+
+## Kolaborasi Antarnegara {#sec-kolaborasi-antarnegara}
+
+Setiap artikel dan poster ilmiah pada umumnya memuat informasi siapa saja pengarangnya dan apa afiliasi pengarang tersebut. Data afiliasi tersebut, khususnya identitas negaranya, dapat digunakan untuk menyingkap kolaborasi antarnegara. Hasilnya ditunjukkan pada @fig-peta-kolaborasi.
 
 ```{r}
 #| echo: false
@@ -128,13 +132,11 @@ sisi_rapi <- sisi |>
   filter(negara1 != negara2)
 ```
 
-KL
-
 ```{r}
 #| echo: false
 #| code-fold: false
 #| label: fig-peta-kolaborasi
-#| fig-cap: "Kolaborasi antarnegara dalam penyusunan makalah dan poster CERME 14"
+#| fig-cap: "Kolaborasi antarnegara dalam kepengarangan artikel dan poster ilmiah CERME 14"
 #| fig-asp: .4
 
 ggplot() +
@@ -168,7 +170,11 @@ ggplot() +
   )
 ```
 
-## Identifikasi Topik
+@fig-peta-kolaborasi memperlihatkan bahwa CERME 14 tidak hanya melibatkan kontribusi peneliti dari negara-negara Eropa saja tetapi juga benua-benua lainnya. Mengetahui hal ini, kita dapat berharap akan adanya gagasan yang beragam tentang pendidikan matematika. Untuk mengkonfirmasi hal ini, kita akan melihat koneksi antartopik dalam CERME 14 pada @sec-koneksi-antartopik.
+
+## Koneksi Antartopik {#sec-koneksi-antartopik}
+
+Apa saja topik yang dibahas dalam artikel dan poster ilmiah dalam CERME 14? Bagaimana keterhubungan topik-topik itu? Pertanyaan-pertanyaan ini, salah satunya, dapat dijawab dengan menggunakan analisis jejaring terhadap kata-kata kunci pada setiap artikel dan poster. Hasilnya ditunjukkan pada gambar interaktif di bawah ini.
 
 ```{r}
 #| echo: false
@@ -213,8 +219,6 @@ nodes_keywords_sederhana <- nodes_keywords |>
   )
 ```
 
-KL
-
 ```{r}
 #| code-fold: false
 #| echo: false
@@ -226,7 +230,17 @@ sigmajs() |>
   sg_neighbors()
 ```
 
-## Fokus Tentang Kurikulum
+Pada gambar di atas, kita dapat melihat jejaring kata-kata kunci yang disediakan oleh pengarang artikel dan poster dalam CERME 14. Dalam jejaring itu, ukuran setiap simpulnya merepresentasikan banyaknya simpul lain yang terhubung dengan simpul tersebut. Dengan demikian, kita dapat melihat bahwa kata kunci *mathematics education*, *teacher education*, *professional development*, *mathematics*, dan *geometry* adalah lima kata kunci teratas yang paling terhubung dengan kata kunci lainnya.
+
+Kamu dapat menjelajah topik dalam CERME 14 dengan berinteraksi dengan gambar di atas. Apakah kamu menemukan topik yang familier di situ?
+
+## Kedekatan Antarpeneliti {#sec-kedekatan-antarpeneliti}
+
+Forum ilmiah pada dasarnya adalah wadah untuk bertukar pikiran satu sama lain. Tukar pikiran ini kadang berjalan dengan lancar karena topik perbincangannya menarik bagi orang yang terlibat. Kadang juga topik perbincangannya sangat spesifik sehingga orang lain butuh lebih lama waktu untuk mencernanya.
+
+Dua orang yang lebih "dekat" akan lebih mudah untuk bertukar pikiran. Kita maknai "dekat" di sini dengan seberapa mirip kata kunci dan daftar pustaka dalam artikel atau poster kedua orang tersebut. Semakin mirip kata kunci atau daftar pustakanya, kemungkinan besar kedua orang itu memiliki minat penelitian yang sama.
+
+Karena kedekatan antarpeneliti ini melibatkan daftar pustaka (yang sangat banyak), di sini aku akan menunjukkan kelompok peneliti di kelompok kerja tematik yang aku ikuti saja. Kelompok kerja tersebut temanya adalah sumber daya kurikulum dan desain aktivitas pembelajaran. Kedekatan peneliti yang tergabung dalam kelompok kerja ini disajikan pada @fig-matriks-koneksi.
 
 ```{r}
 #| echo: false
@@ -271,8 +285,6 @@ indeks_jaccard_rujukan <- pasangan_karya |>
   arrange(desc(indeks_jaccard_r))
 
 ```
-
-KL
 
 ```{r}
 #| echo: false
@@ -373,6 +385,8 @@ plot_presenter <- twg22_pasangan_presenter_full |>
 ggplotly(plot_presenter)
 ```
 
+Walaupun @fig-matriks-koneksi memberikan informasi kedekatan setiap pasang peneliti, gambar tersebut terlalu detail. Gambar tersebut dapat diubah menjadi sebuah jejaring pada gambar di bawah ini.
+
 ```{r}
 #| echo: false
 #| code-fold: false
@@ -414,6 +428,35 @@ nodes_presenter_sederhana <- nodes_presenter |>
   mutate(
     size = 1
   )
+
+gambar_presenter <- tribble(
+  ~id, ~url,
+  "Annika Volt", "https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/refs/heads/main/pos/2025-02-cerme14/aset/Annika-Volt.png",
+  "Burcu Nur Baştürk Şahin", "https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/refs/heads/main/pos/2025-02-cerme14/aset/Sahin.jpg",
+  "Carlotta Soldano", "https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/refs/heads/main/pos/2025-02-cerme14/aset/Carlotta-Soldano.jpg",
+  "Caterina Papa", "https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/refs/heads/main/pos/2025-02-cerme14/aset/presenter.png",
+  "Cristina Poli", "https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/refs/heads/main/pos/2025-02-cerme14/aset/Cristina-Poli.png",
+  "Dubravka Glasnović Gracin", "https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/refs/heads/main/pos/2025-02-cerme14/aset/Dubravka-Glasnovic-Gracin.jpg",
+  "Francesco Contel", "https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/refs/heads/main/pos/2025-02-cerme14/aset/Francesco-Contel.jpeg",
+  "Hyman Bass", "https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/refs/heads/main/pos/2025-02-cerme14/aset/Hyman_Bass.jpg",
+  "James Gray", "https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/refs/heads/main/pos/2025-02-cerme14/aset/James-Gray.jpg",
+  "Jana Višňovská", "https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/refs/heads/main/pos/2025-02-cerme14/aset/Jana-Visnovska.jpg",
+  "Kevin Larkin", "https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/refs/heads/main/pos/2025-02-cerme14/aset/Kevin-Larkin.jpg",
+  "Lorenzo Pollani", "https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/refs/heads/main/pos/2025-02-cerme14/aset/Lorenzo-Pollani.jpeg",
+  "Magdalini Lada", "https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/refs/heads/main/pos/2025-02-cerme14/aset/Magdalini-Lada.jpg",
+  "Marcus Gustafsson", "https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/refs/heads/main/pos/2025-02-cerme14/aset/Marcus-Gustafsson.jpg",
+  "Marzia Garzetti", "https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/refs/heads/main/pos/2025-02-cerme14/aset/presenter.png",
+  "Nataly Pincheira", "https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/refs/heads/main/pos/2025-02-cerme14/aset/Nataly-Pincheira.jpg",
+  "Patrick Ebers", "https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/refs/heads/main/pos/2025-02-cerme14/aset/Patrick-Ebers.png",
+  "Per Nilsson", "https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/refs/heads/main/pos/2025-02-cerme14/aset/Per-Nilsson.jpg",
+  "Sara Gagliani Caputo", "https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/refs/heads/main/pos/2025-02-cerme14/aset/Sara-Gagliani-Caputo.jpg",
+  "Sylvia Patricia Van Borkulo", "https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/refs/heads/main/pos/2025-02-cerme14/aset/Sylvia-Patricia-Van-Borkulo.jpg",
+  "Yosep Dwi Kristanto", "https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/refs/heads/main/pos/2025-02-cerme14/aset/Yosep-Dwi-Kristanto.jpg"
+)
+
+nodes_presenter_sederhana <- nodes_presenter_sederhana |> 
+  left_join(gambar_presenter, by = "id")
+
 ```
 
 ```{r}
@@ -428,3 +471,5 @@ sigmajs() |>
 ```
 
 ## Catatan Akhir
+
+Kita telah melihat bagaimana bermanfaatnya analisis jejaring untuk mengulik sebuah forum ilmiah. Pada @sec-kolaborasi-antarnegara, kita dapat melihat bahwa analisis jejaring mampu menunjukkan bagaimana kolaborasi antarpeneliti dalam CERME 14. Tak hanya itu, pada @sec-koneksi-antartopik kita telah melihat bagaimana analisis jejaring mampu menguak topik-topik penelitian dalam forum ilmiah itu. Terakhir, kita juga telah mengetahui bagaimana analisis jejaring juga dapat bermanfaat untuk melihat kedekatan antarpeneliti dalam hal topik kajiannya.
