@@ -231,6 +231,31 @@ window.Quarto = {
 
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
+<div class="listing-actions-group">
+   <div class="input-group input-group-sm quarto-listing-sort">
+     <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
+     <select id="listing-listing-sort" class="form-select" aria-label="Urutkan Dengan" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
+       <option value="" disabled="" selected="" hidden="">Urutkan Dengan</option>
+       <option value="index" data-direction="asc">Setelan Standar</option>
+         <option value="listing-title" data-direction="asc">
+          Judul
+        </option>
+         <option value="listing-date-sort" data-direction="asc">
+          Tanggal - Terlama
+        </option>
+         <option value="listing-date-sort" data-direction="desc">
+          Tanggal - Terbaru
+        </option>
+         <option value="listing-author" data-direction="asc">
+          Pengarang
+        </option>
+     </select>
+  </div>
+    <div class="input-group input-group-sm quarto-listing-filter">
+      <span class="input-group-text"><i class="bi bi-search"></i></span>
+      <input type="text" class="search form-control" placeholder="Filter">
+    </div>
+</div>
 <div class="list quarto-listing-default">
 <div class="quarto-post image-right" data-index="0" data-categories="analisis jejaring,studi kasus,visualisasi data" data-listing-date-sort="1738450800000" data-listing-file-modified-sort="1738500779856" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2072">
 <div class="thumbnail">
@@ -261,36 +286,7 @@ Yosep Dwi Kristanto
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="penelitian,studi kasus,visualisasi data" data-listing-date-sort="1738364400000" data-listing-file-modified-sort="1737367018116" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1">
-<div class="thumbnail">
-<p><a href="./pos/2025-02-koneksi-antarprodi/index.html" class="no-external"></a></p><a href="./pos/2025-02-koneksi-antarprodi/index.html" class="no-external">
-<p><img loading="lazy" src="./pos/2025-02-koneksi-antarprodi/koneksi_antarprodi.png" class="thumbnail-image" alt="Diagram yang menunjukkan seberapa kuat koneksi antarprodi di Fakultas Keguruan dan Ilmu Pendidikan, Universitas Sanata Dharma berdasarkan topik skripsi.
-"></p>
-</a><p><a href="./pos/2025-02-koneksi-antarprodi/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./pos/2025-02-koneksi-antarprodi/index.html" class="no-external">Menemukan Koneksi Antarprodi</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./pos/2025-02-koneksi-antarprodi/index.html" class="no-external">Penggunaan Analisis Jejaring Terhadap Topik Skripsi</a>
-</div>
-<div class="listing-description">
-<a href="./pos/2025-02-koneksi-antarprodi/index.html" class="no-external"><section class="quarto-appendix-contents" id="quarto-reuse"><div class="quarto-appendix-contents"><div>CC BY 4.0</div></div></section><section class="quarto-appendix-contents" id="quarto-copyright"><div class="quarto-appendix-contents"><div>© 2025 Yosep Dwi Kristanto</div></div></section></a>
-</div>
-</div>
-<div class="metadata">
-<a href="./pos/2025-02-koneksi-antarprodi/index.html" class="no-external">
-<div class="listing-date">
-Feb 1, 2025
-</div>
-<div class="listing-author">
-Yosep Dwi Kristanto
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="siniar" data-listing-date-sort="1736982000000" data-listing-file-modified-sort="1737075132832" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="42" data-listing-word-count-sort="8265">
+<div class="quarto-post image-right" data-index="1" data-categories="siniar" data-listing-date-sort="1736982000000" data-listing-file-modified-sort="1737075132832" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="42" data-listing-word-count-sort="8265">
 <div class="thumbnail">
 <p><a href="./pos/2025-01-siniar-ikhtisar/index.html" class="no-external"></a></p><a href="./pos/2025-01-siniar-ikhtisar/index.html" class="no-external">
 <p><img loading="lazy" src="./pos/2025-01-siniar-ikhtisar/gelombang_audio_siniar.png" class="thumbnail-image" alt="Diagram yang memvisualisasikan gelombang bunyi siniar ikhtisar dari pos-pos blog Jelajah Statistika dan Ilmu Data
@@ -319,7 +315,7 @@ Yosep Dwi Kristanto
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="3" data-categories="ekonomi,musik,tutorial,visualisasi data" data-listing-date-sort="1736722800000" data-listing-file-modified-sort="1736875130977" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="14" data-listing-word-count-sort="2624">
+<div class="quarto-post image-right" data-index="2" data-categories="ekonomi,musik,tutorial,visualisasi data" data-listing-date-sort="1736722800000" data-listing-file-modified-sort="1736875130977" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="14" data-listing-word-count-sort="2624">
 <div class="thumbnail">
 <p><a href="./pos/2025-01-pendapatan-musik/index.html" class="no-external"></a></p><a href="./pos/2025-01-pendapatan-musik/index.html" class="no-external">
 <p><img loading="lazy" src="./pos/2025-01-pendapatan-musik/pendapatan_musik.png" class="thumbnail-image" alt="Gambar yang menunjukkan pendapatan industri musik di AS berdasarkan format.
@@ -348,7 +344,7 @@ Yosep Dwi Kristanto
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="4" data-categories="Geostatistika,matematika membumi,tutorial,visualisasi data" data-listing-date-sort="1724536800000" data-listing-file-modified-sort="1725072626462" data-listing-date-modified-sort="1724796000000" data-listing-reading-time-sort="13" data-listing-word-count-sort="2431">
+<div class="quarto-post image-right" data-index="3" data-categories="Geostatistika,matematika membumi,tutorial,visualisasi data" data-listing-date-sort="1724536800000" data-listing-file-modified-sort="1725072626462" data-listing-date-modified-sort="1724796000000" data-listing-reading-time-sort="13" data-listing-word-count-sort="2431">
 <div class="thumbnail">
 <p><a href="./pos/2024-08-gunung-agung-bromo-merapi-dan-semeru/index.html" class="no-external"></a></p><a href="./pos/2024-08-gunung-agung-bromo-merapi-dan-semeru/index.html" class="no-external">
 <p><img loading="lazy" src="./pos/2024-08-gunung-agung-bromo-merapi-dan-semeru/empat_gunung.png" class="thumbnail-image" alt="Gambar 3D yang menunjukkan Gunung Agung, Bromo, Merapi, dan Semeru secara berdampingan.
@@ -377,7 +373,7 @@ Yosep Dwi Kristanto
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="5" data-categories="Geostatistika,matematika membumi,tutorial,visualisasi data" data-listing-date-sort="1724450400000" data-listing-file-modified-sort="1724960132544" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="16" data-listing-word-count-sort="3052">
+<div class="quarto-post image-right" data-index="4" data-categories="Geostatistika,matematika membumi,tutorial,visualisasi data" data-listing-date-sort="1724450400000" data-listing-file-modified-sort="1724960132544" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="16" data-listing-word-count-sort="3052">
 <div class="thumbnail">
 <p><a href="./pos/2024-08-curah-hujan-indonesia/index.html" class="no-external"></a></p><a href="./pos/2024-08-curah-hujan-indonesia/index.html" class="no-external">
 <p><img loading="lazy" src="./pos/2024-08-curah-hujan-indonesia/curah_hujan_indonesia_fitur.png" class="thumbnail-image" alt="Peta 3D yang menunjukkan sebaran rerata curah hujan di tiap-tiap wilayah di Indonesia.
@@ -406,7 +402,7 @@ Yosep Dwi Kristanto
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="6" data-categories="olahraga,statistik dunia,tutorial,visualisasi data" data-listing-date-sort="1723845600000" data-listing-file-modified-sort="1724957812356" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2047">
+<div class="quarto-post image-right" data-index="5" data-categories="olahraga,statistik dunia,tutorial,visualisasi data" data-listing-date-sort="1723845600000" data-listing-file-modified-sort="1724957812356" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2047">
 <div class="thumbnail">
 <p><a href="./pos/2024-08-indonesia-di-olimpiade/index.html" class="no-external"></a></p><a href="./pos/2024-08-indonesia-di-olimpiade/index.html" class="no-external">
 <p><img loading="lazy" src="./pos/2024-08-indonesia-di-olimpiade/indonesia-di-olimpiade.png" class="thumbnail-image" alt="Diagram alir yang menunjukkan perolehan medali Indonesia di olimpiade sejak tahun 1952 sampai 2024.
@@ -435,7 +431,7 @@ Yosep Dwi Kristanto
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="7" data-categories="olahraga,statistik dunia,studi kasus,visualisasi data" data-listing-date-sort="1723586400000" data-listing-file-modified-sort="1723655587728" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1441">
+<div class="quarto-post image-right" data-index="6" data-categories="olahraga,statistik dunia,studi kasus,visualisasi data" data-listing-date-sort="1723586400000" data-listing-file-modified-sort="1723655587728" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1441">
 <div class="thumbnail">
 <p><a href="./pos/2024-08-peringkat-fifa-indonesia/index.html" class="no-external"></a></p><a href="./pos/2024-08-peringkat-fifa-indonesia/index.html" class="no-external">
 <p><img loading="lazy" src="./pos/2024-08-peringkat-fifa-indonesia/peringkat-fifa-indonesia.png" class="thumbnail-image" alt="Diagram batang yang menunjukkan total poin sepak bola Indonesia dibandingkan dengan sepak bola negara-negara lain di Asia Tenggara.
@@ -464,7 +460,7 @@ Yosep Dwi Kristanto
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="8" data-categories="ekonomi,statistik nasional,tutorial,visualisasi data" data-listing-date-sort="1723413600000" data-listing-file-modified-sort="1724045686824" data-listing-date-modified-sort="1724018400000" data-listing-reading-time-sort="22" data-listing-word-count-sort="4202">
+<div class="quarto-post image-right" data-index="7" data-categories="ekonomi,statistik nasional,tutorial,visualisasi data" data-listing-date-sort="1723413600000" data-listing-file-modified-sort="1724045686824" data-listing-date-modified-sort="1724018400000" data-listing-reading-time-sort="22" data-listing-word-count-sort="4202">
 <div class="thumbnail">
 <p><a href="./pos/2024-08-dirgahayu-indonesia/index.html" class="no-external"></a></p><a href="./pos/2024-08-dirgahayu-indonesia/index.html" class="no-external">
 <p><img loading="lazy" src="./pos/2024-08-dirgahayu-indonesia/statistik-hut-ri-2024.png" class="thumbnail-image" alt="Diagram alir yang menunjukkan tren kenaikan realisasi penanaman modal asing di Indonesia.
@@ -493,7 +489,7 @@ Yosep Dwi Kristanto
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="9" data-categories="statistik dunia,tutorial,visualisasi data" data-listing-date-sort="1723240800000" data-listing-file-modified-sort="1723655623339" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13" data-listing-word-count-sort="2419">
+<div class="quarto-post image-right" data-index="8" data-categories="statistik dunia,tutorial,visualisasi data" data-listing-date-sort="1723240800000" data-listing-file-modified-sort="1723655623339" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13" data-listing-word-count-sort="2419">
 <div class="thumbnail">
 <p><a href="./pos/2024-08-statistik-dinamis-dan-interaktif/index.html" class="no-external"></a></p><a href="./pos/2024-08-statistik-dinamis-dan-interaktif/index.html" class="no-external">
 <p><img loading="lazy" src="./pos/2024-08-statistik-dinamis-dan-interaktif/statistik-interaktif.png" class="thumbnail-image" alt="Logo Shiny dengan latar belakang diagram pencar yang dibuat secara acak. Logo Shiny diperoleh dari Wikimedia.
@@ -522,7 +518,7 @@ Yosep Dwi Kristanto
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="10" data-categories="tutorial,visualisasi data" data-listing-date-sort="1722981600000" data-listing-file-modified-sort="1723655368084" data-listing-date-modified-sort="1723500000000" data-listing-reading-time-sort="5" data-listing-word-count-sort="930">
+<div class="quarto-post image-right" data-index="9" data-categories="tutorial,visualisasi data" data-listing-date-sort="1722981600000" data-listing-file-modified-sort="1723655368084" data-listing-date-modified-sort="1723500000000" data-listing-reading-time-sort="5" data-listing-word-count-sort="930">
 <div class="thumbnail">
 <p><a href="./pos/2024-08-animasi-diagram-statistik/index.html" class="no-external"></a></p><a href="./pos/2024-08-animasi-diagram-statistik/index.html" class="no-external">
 <p><img loading="lazy" src="./pos/2024-08-animasi-diagram-statistik/animasi.gif" class="thumbnail-image" alt="Animasi yang menunjukkan hubungan antara PDB per kapita dan angka harapan hidup setiap tahunnya.
@@ -551,7 +547,7 @@ Yosep Dwi Kristanto
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="11" data-categories="statistik dunia,tutorial,visualisasi data" data-listing-date-sort="1722808800000" data-listing-file-modified-sort="1736618507486" data-listing-date-modified-sort="1723240800000" data-listing-reading-time-sort="11" data-listing-word-count-sort="2154">
+<div class="quarto-post image-right" data-index="10" data-categories="statistik dunia,tutorial,visualisasi data" data-listing-date-sort="1722808800000" data-listing-file-modified-sort="1736618507486" data-listing-date-modified-sort="1723240800000" data-listing-reading-time-sort="11" data-listing-word-count-sort="2154">
 <div class="thumbnail">
 <p><a href="./pos/2024-08-statistik-jendela-dunia/index.html" class="no-external"></a></p><a href="./pos/2024-08-statistik-jendela-dunia/index.html" class="no-external">
 <p><img loading="lazy" src="./pos/2024-08-statistik-jendela-dunia/jendela-dunia.png" class="thumbnail-image" alt="Hubungan antara PDB per kapita dan angka harapan hidup pada tahun 1992, 1997, 2002, dan 2007
@@ -580,7 +576,7 @@ Yosep Dwi Kristanto
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="12" data-categories="Biostatistika,matematika membumi,pendidikan,tutorial" data-listing-date-sort="1722636000000" data-listing-file-modified-sort="1723655540040" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="14" data-listing-word-count-sort="2629">
+<div class="quarto-post image-right" data-index="11" data-categories="Biostatistika,matematika membumi,pendidikan,tutorial" data-listing-date-sort="1722636000000" data-listing-file-modified-sort="1723655540040" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="14" data-listing-word-count-sort="2629">
 <div class="thumbnail">
 <p><a href="./pos/2024-08-keanekaragaman-hayati-raja-ampat/index.html" class="no-external"></a></p><a href="./pos/2024-08-keanekaragaman-hayati-raja-ampat/index.html" class="no-external">
 <p><img loading="lazy" src="./pos/2024-08-keanekaragaman-hayati-raja-ampat/keanekaragaman-hayati.png" class="thumbnail-image" alt="Model linear dan nonlinear terhadap hubungan antara banyaknya spesies tanaman berpohon dan luas pulau-pulau kecil di Kepulauan Raja Ampat.
@@ -609,7 +605,7 @@ Yosep Dwi Kristanto
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="13" data-categories="matematika membumi,pendidikan,perubahan iklim,tutorial" data-listing-date-sort="1722376800000" data-listing-file-modified-sort="1723655267361" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1173">
+<div class="quarto-post image-right" data-index="12" data-categories="matematika membumi,pendidikan,perubahan iklim,tutorial" data-listing-date-sort="1722376800000" data-listing-file-modified-sort="1723655267361" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1173">
 <div class="thumbnail">
 <p><a href="./pos/2024-07-anomali-suhu-global/index.html" class="no-external"></a></p><a href="./pos/2024-07-anomali-suhu-global/index.html" class="no-external">
 <p><img loading="lazy" src="./pos/2024-07-anomali-suhu-global/anomali-suhu.png" class="thumbnail-image" alt="Tren anomali suhu planet bumi dari 1880 sampai 2024. Anomali suhu tersebut dihitung dengan garis dasar (baseline) rerata suhu pada periode 1951 - 1980. Secara umum, tren anomali suhu tersebut naik dari tahun ke tahun.
@@ -638,7 +634,7 @@ Yosep Dwi Kristanto
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="14" data-categories="pendidikan,statistik dunia,studi kasus" data-listing-date-sort="1722290400000" data-listing-file-modified-sort="1723062933426" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="982">
+<div class="quarto-post image-right" data-index="13" data-categories="pendidikan,statistik dunia,studi kasus" data-listing-date-sort="1722290400000" data-listing-file-modified-sort="1723062933426" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="982">
 <div class="thumbnail">
 <p><a href="./pos/2024-07-literasi-matematika-sosial-budaya/index.html" class="no-external"></a></p><a href="./pos/2024-07-literasi-matematika-sosial-budaya/index.html" class="no-external">
 <p><img loading="lazy" src="./pos/2024-07-literasi-matematika-sosial-budaya/literasi-matematika.png" class="thumbnail-image" alt="Model linear untuk hubungan antara status sosial ekonomi dan literasi matematika antarnegara yang mengikuti PISA 2022. Modelnya digambarkan sebagai dua garis lurus yang kurang lebih sejajar.
