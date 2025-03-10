@@ -4503,7 +4503,7 @@ font-style: inherit;">(</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">)</span></span></code></pre></div>
 <p>Hasil gambarnya seperti yang ditunjukkan pada Gambar&nbsp;5.</p>
-<div id="fig-empat-gunung-3d" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Model 3D Gunung Agung, Bromo, Merapi, dan Semeru" data-fig-align="center">
+<div id="fig-empat-gunung-3d" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Model 3D Gunung Agung, Bromo, Merapi, dan Semeru">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-empat-gunung-3d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-gunung-agung-bromo-merapi-dan-semeru/aset/empat_gunung_3d.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Model 3D Gunung Agung, Bromo, Merapi, dan Semeru">
 </div>
@@ -9028,7 +9028,7 @@ Gambar&nbsp;4: Distribusi medali olimpiade yang diperoleh Indonesia berdasarkan 
 <p>Prestasi-prestasi sepak bola Indonesia tersebut menambah cerita manis di tahun 2024. Mumpung masih di bulan Agustus yang penuh dengan sukacita <a href="../../pos/2024-08-dirgahayu-indonesia/index.html" title="Dirgahayu Kemerdekaan Republik Indonesia: Persembahan Untuk HUT Ke-79 RI">peringatan kemerdekaan</a>, mari kita lihat prestasi timnas Indonesia secara lebih mendalam. Kita akan melihatnya dengan menganalisis <a href="https://inside.fifa.com/fifa-world-ranking/men" class="external" target="_blank" title="Men's Ranking">data peringkat dunia FIFA</a>.</p>
 <section id="sec-indonesia-dan-asia-tenggara" class="level2"><h2 class="anchored" data-anchor-id="sec-indonesia-dan-asia-tenggara">Statistik Sepak Bola Indonesia</h2>
 <p>Kenaikan peringkat sepak bola Indonesia memang menjanjikan. Akan tetapi, bagaimana jika peringkat Indonesia dibandingkan dengan negara-negara Asia Tenggara lainnya? Animasi pada Gambar&nbsp;1 berikut menunjukkan perubahan peringkat sepak bola Indonesia dibandingkan dengan negara-negara tersebut.</p>
-<div id="fig-animasi-peringkat-indonesia" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Peringkat sepak bola Indonesia dibandingkan dengan negara-negara Asia Tenggara Lainnya">
+<div id="fig-animasi-peringkat-indonesia" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Peringkat sepak bola Indonesia dibandingkan dengan negara-negara Asia Tenggara Lainnya" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-animasi-peringkat-indonesia-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-peringkat-fifa-indonesia/aset/peringkat-fifa-aff.gif" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Peringkat sepak bola Indonesia dibandingkan dengan negara-negara Asia Tenggara Lainnya">
 </div>
@@ -13160,7 +13160,7 @@ font-style: inherit;">)</span></span></code></pre></div>
 <li><p>Baris kode yang terakhir, yaitu <code>shinyApp(ui = ui, server = server)</code>, berfungsi untuk membuat aplikasi Shiny berdasarkan antarmuka <code>ui</code> dan fungsi <code>server</code> dan kemudian menjalankannya.</p></li>
 </ol>
 <p>Apabila kamu sudah penasaran dengan aplikasi Shiny tersebut, kamu dapat menjalankannya. Untuk melakukannya di RStudio, klik tombol <strong>Run App</strong> yang terletak di bagian kanan-atas dokumen. Perhatikan Gambar&nbsp;4!</p>
-<div id="fig-run-app" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Tombol Run App dalam RStudio" data-fig-align="center">
+<div id="fig-run-app" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Tombol Run App dalam RStudio">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-run-app-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-statistik-dinamis-dan-interaktif/aset/Run-App-RStudio.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Tombol Run App dalam RStudio">
 </div>
@@ -17233,7 +17233,7 @@ font-style: inherit;">)</span></span></code></pre></div>
 <p>Apa yang salah? Kesalahannya terletak pada nilai-nilai awal <img src="https://latex.codecogs.com/png.latex?d">, <img src="https://latex.codecogs.com/png.latex?z">, dan <img src="https://latex.codecogs.com/png.latex?f"> yang kita berikan.</p>
 <p>Salah satu seni dalam menggunakan fungsi <code><a href="https://rdrr.io/r/stats/nls.html">nls()</a></code> adalah penentukan nilai-nilai awalnya. Nilai-nilai awal tersebut sebaiknya dipilih agar mendekati nilai-nilai yang sebenarnya. Untuk melakukannya, kita dapat memanfaatkan alat lain, misalnya kalkulator grafik Desmos.</p>
 <p>Dengan menginputkan data yang kita punya, yaitu <code>data_pulau</code>, ke dalam kalkulator grafik Desmos, kita dapat memodelkannya. Tangkapan layar hasil pemodelan tersebut ditunjukkan pada Gambar&nbsp;7.</p>
-<div id="fig-model-weibull-Desmos" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Diagram pencar yang menunjukkan hubungan antara luas pulau dan banyak spesies, disertai dengan model fungsi Weibull." data-fig-align="center">
+<div id="fig-model-weibull-Desmos" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Diagram pencar yang menunjukkan hubungan antara luas pulau dan banyak spesies, disertai dengan model fungsi Weibull.">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-model-weibull-Desmos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="https://jelajahstatid.github.io/pos/2024-08-keanekaragaman-hayati-raja-ampat/model-Weibull-Desmos.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Diagram pencar yang menunjukkan hubungan antara luas pulau dan banyak spesies, disertai dengan model fungsi Weibull.">
 </div>
