@@ -5,9 +5,11 @@ listing:
   contents: pos
   sort: "date desc"
   type: default
-  sort-ui: true
   filter-ui: true
-  feed: true
+  sort-ui: true
+  feed:
+    items: 10
+    type: partial
 page-layout: full
 title-block-banner: "#EBF7FE"
 ---
