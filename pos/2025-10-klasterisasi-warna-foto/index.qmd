@@ -14,8 +14,8 @@ categories:
   - klasterisasi
   - tutorial
   - fotografi
-image: ""
-image-alt: ""
+image: "sampul-klasterisasi-warna.png"
+image-alt: "Gambar yang menunjukkan sebuah foto asli dan hasil pereduksian warnanya dengan menggunakan klasterisasi k-rerata"
 keywords: 
   - fotografi
   - klasterisasi
@@ -33,9 +33,9 @@ editor_options:
 
 Apa yang kamu lihat dari sebuah foto? Mungkin kamu melihat kenangan yang tersimpan. Mungkin kamu juga ingin menggali pesan yang tersirat. Oke, mari kita melihat sebuah foto atau gambar dari sudut pandang yang berbeda! Kita dapat melihat sebuah gambar sebagai matriks. Perhatikan @fig-meme-epsilon!
 
-![Gambar epsilon yang terlalu kecil](aset/epsilon_terlalu_kecil-01.png){#fig-meme-epsilon}
+![Meme seseorang yang menatap selembar kertas mungil secara intens](aset/epsilon_terlalu_kecil-01.png){#fig-meme-epsilon fig-alt="Meme orang yang menatap selembar kertas mungil secara intens"}
 
-Mari kita fokus pada gambar kecil dalam meme pada @fig-meme-epsilon. Gambar apakah itu? Ya, itu adalah epsilon. Karena epsilonnya terlalu kecil, mari kita memperbesar gambar tersebut dan menaruhnya ke bidang koordinat Kartesius. Kita lakukan hal itu dengan pemrograman R. Untuk itu, kita panggil paket-paket yang kita perlukan.
+Apa yang dilihat oleh orang dalam meme pada @fig-meme-epsilon? Gambar tersebut terlalu kecil. Mari kita memperbesar gambar tersebut dan menaruhnya ke bidang koordinat Kartesius. Kita lakukan hal itu dengan pemrograman R. Untuk itu, kita panggil paket-paket yang kita perlukan.
 
 ```{r}
 #| code-fold: show
@@ -50,12 +50,12 @@ library(cowplot)
 
 ```
 
-Paket-paketnya telah siap. Kita lanjut memperbesar gambar epsilon tersebut dan memposisikannya dalam bidang koordinat Kartesius. Perhatikan @fig-matriks-epsilon!
+Paket-paketnya telah siap. Kita lanjut memperbesar gambar yang dilihat oleh orang dalam meme tersebut dan memposisikannya dalam bidang koordinat Kartesius. Perhatikan @fig-matriks-epsilon!
 
 ```{r}
 #| echo: false
 #| label: fig-matriks-epsilon
-#| fig-cap: "Gambar epsilon pada bidang koordinat Kartesius"
+#| fig-cap: "Gambar epsilon berukuran 8 piksel × 8 piksel pada bidang koordinat Kartesius"
 
 # Memuat dan mengatur skala
 gambar_epsilon <- image_read(
@@ -113,7 +113,7 @@ rgb_epsilon_terbalik_df |>
 
 ```
 
-Sekarang, apa yang kamu amati dari @fig-matriks-epsilon? Piksel-piksel dalam gambar tersebut tampak jelas. Setiap piksel berkorespondensi dengan satu warna. Warna tersebut dapat dinyatakan ke dalam tiga warna dasarnya, yaitu RGB (*red*, *green*, dan *blue*). Dengan demikian, kita dapat menyatakan gambar tersebut sebagai tiga matriks warna dasar: $R$, $G$, dan $B$.
+Sekarang, apa yang kamu amati dari @fig-matriks-epsilon? Ternyata itu adalah simbol epsilon. Meskipun tampak kabur, piksel-piksel epsilon tersebut tampak jelas. Setiap piksel berkorespondensi dengan satu warna. Warna tersebut dapat dinyatakan ke dalam tiga warna dasarnya, yaitu RGB (*red*, *green*, dan *blue*). Dengan demikian, kita dapat menyatakan gambar tersebut sebagai tiga matriks warna dasar: $R$, $G$, dan $B$.
 
 ```{r}
 #| echo: false
@@ -182,7 +182,7 @@ scatterplot3d(
 
 ```
 
-Nah, sekarang kita dapat melihat sebuah gambar atau foto dengan menggunakan matriks, yaitu tiga matriks warna dasarnya. Dari tiga matriks tersebut, kita dapat mengkonstruksi titik-titik yang merepresentasikan warna tersebut ke dalam ruang dimensi tiga. Kita gunakan perspektif seperti ini untuk memanipulasi sebuah foto sehingga variasi warnanya tereduksi. Tujuan kita berikutnya adalah untuk membuat foto di sebelah kiri pada @fig-foto-asli-dan-hasil-klasterisasi menjadi seperti yang sebelah kanan.
+Nah, sekarang kita dapat melihat sebuah gambar atau foto dengan menggunakan matriks, yaitu tiga matriks warna dasarnya. Dari tiga matriks tersebut, kita dapat mengkonstruksi titik-titik yang merepresentasikan warna tersebut ke dalam ruang dimensi tiga. Kita gunakan perspektif seperti ini untuk memanipulasi sebuah foto sehingga variasi warnanya tereduksi. Tujuan kita berikutnya adalah untuk membuat foto di sebelah kiri pada @fig-foto-asli-dan-hasil-klasterisasi menjadi seperti yang sebelah kanan. Hal ini telah dijanjikan pada [pos sebelumnya](pos/2025-09-klasterisasi-k-rerata/index.qmd "Klasterisasi K-Rerata: Langkah Demi Langkah Klasterisasi dengan Pemrograman R").
 
 ![Foto asli (kiri) dan foto dengan reduksi warna (kanan)](aset/klasterisasi_karuna_donau.png){#fig-foto-asli-dan-hasil-klasterisasi}
 
