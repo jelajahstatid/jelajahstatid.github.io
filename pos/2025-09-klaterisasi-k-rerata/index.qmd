@@ -1,0 +1,964 @@
+---
+title: "Klaterisasi K-Rerata"
+subtitle: "Langkah Demi Langkah Klasterisasi dengan Pemrograman R"
+description: "Mulai dari memanipulasi gambar sampai menghindari paradoks Simpson, itulah manfaat analisis klaster. Artikel ini membahas secara tuntas analisis klaster yang sederhana, yaitu klasterisasi k-rerata (k-means clustering), mulai dari menjelaskan algoritmanya seperti apa sampai mendemonstrasikan algoritma tersebut secara mendetail."
+author:
+  - name: Yosep Dwi Kristanto
+    url: https://people.usd.ac.id/~ydkristanto/
+    affiliation: Pendidikan Matematika, Universitas Sanata Dharma, Yogyakarta
+    affiliation-url: https://www.usd.ac.id/s1pmat
+    orcid: 0000-0003-1446-0422
+date: 2025-09-23
+categories: 
+  - klasterisasi
+  - tutorial
+  - visualisasi data
+image: "sampul-klasterisasi-k-rerata.png"
+image-alt: "Ilustrasi setiap iterasi dalam klasterisasi k-rerata"
+keywords: 
+  - analisis klaster
+  - klasterisasi
+  - k-rerata
+  - k-means clustering
+  - machine learning
+  - ilmu data
+  - paradoks Simpson
+  - pemelajaran mesin
+  - pemelajaran statistik
+  - statistical learning
+copyright: "© 2025 Yosep Dwi Kristanto"
+license: "CC BY"
+code-annotations: select
+editor_options: 
+  chunk_output_type: console
+---
+
+Ada banyak metode untuk memanipulasi sebuah gambar. Salah satunya ditunjukkan pada @fig-klaterisasi-gambar. Apa perbedaan gambar sebelah kiri dan kanan pada gambar tersebut?
+
+![Gambar asli (kiri) dan gambar setelah dimanipulasi (kanan)](aset/klasterisasi_karuna_donau.png){#fig-klaterisasi-gambar}
+
+*Yup*! Gambar sebelah kiri memiliki warna yang lebih bervariasi daripada yang kanan. Faktanya, gambar di sebelah kiri memiliki hampir 40 ribu warna sedangkan yang sebelah kanan hanya empat warna saja. Bagaimana cara melakukannya?
+
+Tentu ada banyak cara untuk melakukannya. Akan tetapi, salah satunya adalah dengan menggunakan klasterisasi $k$-rerata. Untuk itu, kita akan belajar teknik klasterisasi tersebut. Kita awali dengan (a) latar belakang perlunya klasterisasi, kemudian (b) kita belajar bagaimana algoritmanya bekerja, dan akhirnya (c) kita aplikasikan algoritma tersebut untuk membagi data menjadi beberapa klaster. Jangan khawatir, penerapan algoritmanya nanti kita lakukan secara langkah demi langkah. Kita lakukan semuanya dengan menggunakan [pemrograman R](https://www.R-project.org/){target="_blank"}. Untuk itu, kita buka paket-paket yang diperlukan.
+
+```{r}
+#| message: false
+#| warning: false
+#| code-fold: show
+
+library(tidyverse)
+library(cowplot)
+
+```
+
+## Paradoks Simpson {#sec-paradoks-simpson}
+
+Bayangkan kamu ingin menemukan model untuk datamu, misalnya `contoh_data`. Biasanya, kamu perlu memvisualisasikan data tersebut untuk melihat polanya. Diagram pencar data tersebut disajikan pada @fig-plot-contoh-data.
+
+```{r}
+#| label: fig-plot-contoh-data
+#| echo: false
+#| fig-asp: 0.5625
+#| fig-cap: Diagram pencar `contoh_data`
+
+set.seed(123)
+
+x1 <- rnorm(100, 5, 3)
+x2 <- rnorm(100, 15, 3)
+x3 <- rnorm(100, 25, 3)
+x4 <- rnorm(100, 35, 3)
+x5 <- rnorm(100, 45, 3)
+
+contoh_data <- tibble(
+  x = c(x1, x2, x3, x4, x5),
+  resid = rnorm(500, 0, 6),
+  y = c(
+    10 - x1,
+    30 - x2,
+    50 - x3,
+    70 - x4,
+    90 - x5
+  ) + resid,
+  klaster = c(
+    rep("Klaster 1", 100),
+    rep("Klaster 2", 100),
+    rep("Klaster 3", 100),
+    rep("Klaster 4", 100),
+    rep("Klaster 5", 100)
+  )
+)
+
+contoh_data |> 
+  ggplot(aes(x, y)) + 
+  geom_point() + 
+  theme_minimal()
+```
+
+Berdasarkan @fig-plot-contoh-data, kamu kemungkinan besar menduga bahwa hubungan antara `x` dan `y` dalam data tersebut mengikuti model linear dengan korelasi positif: semakin besar nilai `x`, semakin besar juga nilai `y`. Dengan demikian, kamu akan mendapatkan model seperti yang ditunjukkan pada @fig-model-contoh-data.
+
+```{r}
+#| label: fig-model-contoh-data
+#| echo: false
+#| fig-cap: "Model linear untuk variabel-variabel `x` dan `y` dalam `contoh_data`"
+#| fig-asp: 0.5625
+
+contoh_data |> 
+  ggplot(aes(x, y)) + 
+  geom_point() + 
+  geom_smooth(
+    method = "lm",
+    formula = "y ~ x",
+    se = FALSE
+  ) + 
+  theme_minimal()
+```
+
+Akan tetapi, setelah dicermati kembali, tampaknya `contoh_data` tersebut terbagi menjadi beberapa klaster. Berdasarkan pengamatan terhadap @fig-model-contoh-data saja, kita dapat melihat bahwa data tersebut memiliki lima klaster. Setelah mempertimbangkan klaster-klaster tersebut, kita mendapatkan model linear yang sama sekali berbeda. Perhatikan @fig-model-klaster-contoh-data!
+
+```{r}
+#| label: fig-model-klaster-contoh-data
+#| echo: false
+#| fig-cap: "Model linear untuk variabel-variabel `x` dan `y` setelah mempertimbangkan klaster-klaster dalam `contoh_data`"
+#| fig-asp: 0.5625
+
+contoh_data |> 
+  ggplot(aes(x = x, y = y, colour = klaster)) + 
+  geom_point() + 
+  geom_smooth(
+    method = "lm",
+    formula = "y ~ x",
+    se = FALSE
+  ) + 
+  scale_color_discrete(
+    name = ""
+  ) + 
+  theme_minimal() + 
+  theme(
+    legend.position = "top"
+  )
+```
+
+Fenomena yang baru saja kita alami tersebut dinamakan *paradoks Simpson*. Kita mendapatkan korelasi yang positif ketika kita tidak mempertimbangkan klaster, dan korelasinya negatif ketika kita mempertimbangkan klaster. Oleh karena itu, penting bagi kita untuk mencermati data secara lebih hati-hati, khususnya jika dalam data tersebut memuat beberapa klaster.
+
+Informasi tentang klaster-klaster tersebut mungkin sudah ada dalam data. Akan tetapi, informasi tersebut juga mungkin belum ada. Jika klaster-klaster tersebut belum ada, kita dapat melakukan analisis klaster dengan menggunakan klasterisasi $k$-rerata (atau $k$*-means clustering*). Bagaimana caranya? Mari kita bahas di bagian berikutnya, @sec-klasterisasi-k-rerata.
+
+## Klasterisasi $K$-Rerata {#sec-klasterisasi-k-rerata}
+
+Klasterisasi $k$-rerata merupakan algoritma pemelajaran mesin (*machine learning*) tanpa pengawasan yang membagi data tak berlabel menjadi $k$ klaster yang berbeda dan tak saling tumpang tindih. Sebelum dilakukan klasterisasi ini, banyaknya klaster $k$ perlu ditentukan terlebih dahulu. Algoritma klasterisasi ini adalah sebagai berikut.
+
+1.  **Inisialisasi:** Pertama, kita pilih banyaknya klaster, yaitu $k$. Setelah itu, algoritmanya akan memposisikan $k$ titik secara acak sebagai pusat klaster (*centroid*) yang pertama.
+
+2.  **Penugasan:** Setiap titik data dipasangkan ke pusat klaster terdekat. Proses ini menghasilkan $k$ klaster awal.
+
+3.  **Pembaruan:** Setelah semua titik masuk ke dalam klaster, algoritmanya kemudian menghitung kembali koordinat tiap-tiap pusat klasternya. Pusat klaster tersebut merupakan rerata dari semua titik dalam klaster tersebut.
+
+4.  **Ulangi:** Langkah 2 dan 3 diulangi kembali. Ketika pusat klaster berpindah, setiap titik datanya dipasangkan kembali dengan pusat klaster baru yang terdekat, kemudian pusat setiap klasternya dihitung kembali. Proses ini diulang secara terus menerus sampai pusat klasternya tidak berpindah secara signifikan atau banyak maksimum iterasinya tercapai.
+
+Penasaran dengan bagaimana algoritma tersebut bekerja? Pada bagian berikutnya, @sec-penerapan-algoritma-k-rerata, kita akan menerapkan algoritma tersebut kepada [Old Faithful Geyser](https://doi.org/10.2307/2347385){target="_blank"}.
+
+## Penerapan Algoritma $K$-Rerata {#sec-penerapan-algoritma-k-rerata}
+
+Kita terapkan algoritma $k$-rerata kepada data Old Faithful Geyser. Data ini sudah ada dalam R dengan nama `faithful`. Data ini memuat 272 baris dan dua variabel. Variabel `waiting` merupakan selang waktu antara dimulainya dua erupsi yang berurutan, sedangkan variabel `eruptions` merupakan lamanya erupsi yang kedua. Mari kita panggil data ini lihat beberapa barisnya dengan kode berikut.
+
+```{r}
+#| code-fold: show
+
+data("faithful")
+
+head(faithful)
+```
+
+Kita dapat mengenal data `faithful` tersebut secara lebih dekat dengan membuat diagram pencarnya. Perhatikan @fig-diagram-pencar-faithful!
+
+```{r}
+#| label: fig-diagram-pencar-faithful
+#| fig-cap: "Diagram pencar hubungan antara `eruptions` dan `waiting` dalam data `faithful`"
+#| fig-asp: 0.75
+
+faithful |> 
+  ggplot(aes(x = eruptions, y = waiting)) + 
+  geom_point() + 
+  theme_minimal()
+```
+
+Berdasarkan @fig-diagram-pencar-faithful, kita dapat melihat bahwa tampaknya data `faithful` memiliki dua klaster. Oleh karena itu, kita akan pilih $k=2$. Sebelum kita menerapkan algoritma $k$-rerata, terlebih dahulu kita normalbakukan variabel-variabel dalam data `faithful` tersebut. Mengapa demikian?
+
+Klasterisasi $k$-rerata menggunakan jarak untuk menentukan klaster tiap-tiap titik datanya. Jika variabel-variabelnya memiliki skala yang berbeda (variabel `eruptions` merentang dari 1.6 sampai 5.1 sedangkan `waiting` merentang dari 43 sampai 96), variabel yang jangkauannya lebih besar tentu memiliki dampak besar terhadap perhitungan jaraknya. Hal ini akan menyebabkan hasil klasterisasinya tidak akurat.
+
+Oleh karena itu, kita normalbakukan variabel-variabel `eruptions` dan `waiting` untuk membuat variabel-variabel baru, yaitu `eruptions_std` dan `waiting_std`. Untuk melihat hasilnya, kita dapat tampilkan beberapa baris pertamanya.
+
+```{r}
+#| code-fold: show
+
+faithful <- faithful |> 
+  mutate(
+    eruptions_std = scale(eruptions),
+    waiting_std = scale(waiting)
+  )
+
+head(faithful)
+```
+
+*Okay!* Data `faithful` telah siap dihidangkan untuk klasterisasi $k$-rerata dengan $k=2$. Tak usah berlama-lama, mari kita mulai ke iterasi yang pertama.
+
+### Iterasi 1 {#sec-iterasi-1}
+
+Kita telah menentukan $k=2$, sehingga algoritma tersebut selanjutnya menentukan dua titik secara acak sebagai pusat klaster-klaster awalnya. Untuk alasan demonstrasi, kita tentukan dua titik tersebut adalah $\left( -1.4, 1 \right)$ dan $\left( 1.4, -1 \right)$. Berikutnya, kita tentukan jarak setiap titik ke pusat klaster-klaster awal tersebut. Titik-titik yang lebih dekat ke $\left( -1.4, 1 \right)$ berarti masuk ke "Klaster 1", sedangkan titik-titik yang lebih dekat ke $\left( 1.4, -1 \right)$ berarti masuk ke "Klaster 2".
+
+```{r}
+#| code-fold: show
+
+faithful_1_1 <- faithful |> 
+  select(eruptions_std, waiting_std) |> 
+  mutate(
+    d1 = (eruptions_std - (-1.4))^2 + (waiting_std - 1)^2,
+    d2 = (eruptions_std - 1.4)^2 + (waiting_std - (-1))^2,
+    d = if_else(d1 <= d2, d1, d2),
+    klaster = if_else(d1 <= d2, "Klaster 1", "Klaster 2")
+  )
+
+head(faithful_1_1)
+```
+
+Agar dua klaster yang terbentuk dapat terlihat dengan jelas, mari kita visualisaskan titik-titik datanya, beserta dengan garis yang membagi titik-titik tersebut menjadi dua klaster. Perhatikan @fig-iterasi-1-1!
+
+```{r}
+#| label: fig-iterasi-1-1
+#| fig-cap: "Klaster-klaster yang terbentuk pada langkah pertama dalam iterasi pertama (Iterasi 1-1)"
+#| fig-asp: 0.5625
+
+plot_1_1 <- faithful_1_1 |> 
+  ggplot() + 
+  geom_point(
+    aes(
+      x = eruptions_std,
+      y = waiting_std,
+      color = klaster
+    )
+  ) + 
+  geom_point(
+    data = tibble(
+      x = c(-1.4, 1.4),
+      y = c(1, -1),
+      klaster = c("Klaster 1", "Klaster 2")
+    ),
+    aes(x, y),
+    shape = 4,
+    size = 5,
+    stroke = 3,
+    color = "white"
+  ) + 
+  geom_point(
+    data = tibble(
+      x = c(-1.4, 1.4),
+      y = c(1, -1),
+      klaster = c("Klaster 1", "Klaster 2")
+    ),
+    aes(x, y, color = klaster),
+    shape = 4,
+    size = 5,
+    stroke = 1.5
+  ) + 
+  geom_abline(
+    slope = 7/5,
+    intercept = 0,
+    color = "#00BA38"
+  ) + 
+  theme_minimal() + 
+  theme(
+    legend.position = "none"
+  )
+
+plot_1_1
+
+```
+
+Langkah kedua di iterasi pertama adalah menentukan pusat masing-masing klaster dengan cara menentukan reratanya.
+
+```{r}
+#| code-fold: show
+
+pusat_klaster_1_2 <- faithful_1_1 |> 
+  group_by(klaster) |> 
+  summarise(
+    x = mean(eruptions_std),
+    y = mean(waiting_std)
+  )
+
+pusat_klaster_1_2
+```
+
+Selanjutnya, kita plot pusat klaster-klaster yang baru tersebut ke diagram pencar sebelumnya, menggantikan pusat-pusat klaster yang lama. Hasilnya disajikan pada @fig-iterasi-1-2.
+
+```{r}
+#| label: fig-iterasi-1-2
+#| fig-cap: "Pusat dua klaster pada langkah kedua dalam iterasi pertama (Iterasi 1-2)"
+
+# Menyiapkan data `faithful_1_2`
+faithful_1_2 <- faithful_1_1 |> 
+  select(eruptions_std, waiting_std, klaster) |> 
+  mutate(
+    d1 = (eruptions_std - pusat_klaster_1_2[[1,2]])^2 + (waiting_std - pusat_klaster_1_2[[1,3]])^2,
+    d2 = (eruptions_std - pusat_klaster_1_2[[2,2]])^2 + (waiting_std - pusat_klaster_1_2[[2,3]])^2,
+    d = if_else(klaster == "Klaster 1", d1, d2)
+  )
+
+# Plot Iterasi 1-2
+plot_1_2 <- faithful_1_2 |> 
+  ggplot() + 
+  geom_point(
+    aes(
+      x = eruptions_std,
+      y = waiting_std,
+      color = klaster
+    )
+  ) + 
+  geom_point(
+    data = pusat_klaster_1_2,
+    aes(
+      x = x,
+      y = y
+    ),
+    shape = 4,
+    size = 5,
+    stroke = 3,
+    color = "white"
+  ) + 
+  geom_point(
+    data = pusat_klaster_1_2,
+    aes(
+      x = x,
+      y = y,
+      color = klaster
+    ),
+    shape = 4,
+    size = 5,
+    stroke = 1.5
+  ) + 
+  theme_minimal() + 
+  theme(
+    legend.position = "none"
+  )
+
+plot_1_2
+
+```
+
+Iterasi pertama telah selesai dilakukan. Sekarang kita lanjut ke @sec-iterasi-2.
+
+### Iterasi 2 {#sec-iterasi-2}
+
+Kita masuk ke iterasi yang kedua. Pada langkah pertama, kita gunakan pusat klaster-klaster sebelumnya untuk memasukkan titik-titik datanya ke klasternya masing-masing.
+
+```{r}
+#| code-fold: show
+
+faithful_2_1 <- faithful_1_2 |> 
+  select(-d, -klaster) |> 
+  mutate(
+    d = if_else(d1 <= d2, d1, d2),
+    klaster = if_else(d1 <= d2, "Klaster 1", "Klaster 2")
+  )
+
+head(faithful_2_1)
+```
+
+Kita visualisasikan titik-titik data dalam `faithful` beserta dengan klaster-klaster yang telah dihasilkan. Perhatikan @fig-iterasi-2-1!
+
+```{r}
+#| label: fig-iterasi-2-1
+#| fig-cap: "Klaster-klaster yang terbentuk pada langkah pertama dalam iterasi kedua (Iterasi 2-1)"
+#| fig-asp: 0.5625
+
+plot_2_1 <- faithful_2_1 |> 
+  ggplot() + 
+  geom_point(
+    aes(
+      x = eruptions_std,
+      y = waiting_std,
+      color = klaster
+    )
+  ) + 
+  geom_point(
+    data = pusat_klaster_1_2,
+    aes(
+      x = x,
+      y = y
+    ),
+    shape = 4,
+    size = 5,
+    stroke = 2,
+    color = "white"
+  ) + 
+  geom_point(
+    data = pusat_klaster_1_2,
+    aes(
+      x = x,
+      y = y,
+      color = klaster
+    ),
+    shape = 4,
+    size = 5,
+    stroke = 1.5
+  ) + 
+  geom_abline(
+    slope = -1.624589,
+    intercept = -0.058,
+    color = "#00BA38"
+  ) + 
+  theme_minimal() + 
+  theme(
+    legend.position = "none"
+  )
+
+plot_2_1
+
+```
+
+Berikutnya, kita tentukan pusat klaster-klaster yang baru. Caranya sama, yaitu kita tentukan rerata semua titik pada masing-masing klaster.
+
+```{r}
+#| code-fold: show
+
+pusat_klaster_2_2 <- 
+  faithful_2_1 |> 
+  group_by(klaster) |> 
+  summarise(
+    x = mean(eruptions_std),
+    y = mean(waiting_std)
+  )
+
+pusat_klaster_2_2
+```
+
+Apa selanjutnya? Kita plot pusat-pusat klaster yang baru beserta dengan titik-titik datanya. Hasilnya disajikan pada @fig-iterasi-2-2.
+
+```{r}
+#| label: fig-iterasi-2-2
+#| fig-cap: "Pusat-pusat klaster pada langkah kedua dalam iterasi kedua (Iterasi 2-2)"
+
+# Mempersiapkan `faithful_2_2`
+faithful_2_2 <- faithful_2_1 |> 
+  select(eruptions_std, waiting_std, klaster) |> 
+  mutate(
+    d1 = (eruptions_std - pusat_klaster_2_2[[1,2]])^2 + (waiting_std - pusat_klaster_2_2[[1,3]])^2,
+    d2 = (eruptions_std - pusat_klaster_2_2[[2,2]])^2 + (waiting_std - pusat_klaster_2_2[[2,3]])^2,
+    d = if_else(klaster == "Klaster 1", d1, d2)
+  )
+
+# Plot Iterasi 2-2
+plot_2_2 <- faithful_2_2 |> 
+  ggplot() + 
+  geom_point(
+    aes(
+      x = eruptions_std,
+      y = waiting_std,
+      color = klaster
+    )
+  ) + 
+  geom_point(
+    data = pusat_klaster_2_2,
+    aes(
+      x = x,
+      y = y
+    ),
+    shape = 4,
+    size = 5,
+    stroke = 3,
+    color = "white"
+  ) + 
+  geom_point(
+    data = pusat_klaster_2_2,
+    aes(
+      x = x,
+      y = y,
+      color = klaster
+    ),
+    shape = 4,
+    size = 5,
+    stroke = 1.5,
+  ) + 
+  theme_minimal() + 
+  theme(
+    legend.position = "none"
+  )
+
+plot_2_2
+
+```
+
+Mari kita lanjut ke iterasi berikutnya, @sec-iterasi-3.
+
+### Iterasi 3 {#sec-iterasi-3}
+
+Pada langkah pertama di iterasi ketiga, kita pasangkan setiap titik ke dalam klasternya masing-masing berdasarkan jaraknya terhadap pusat klaster-klaster yang baru.
+
+```{r}
+#| code-fold: show
+
+faithful_3_1 <- faithful_2_2 |> 
+  select(-d, -klaster) |> 
+  mutate(
+    d = if_else(d1 <= d2, d1, d2),
+    klaster = if_else(d1 <= d2, "Klaster 1", "Klaster 2")
+  )
+
+head(faithful_3_1)
+```
+
+Selanjutnya kita plot titik-titik yang telah masuk ke dalam klasternya masing-masing dengan menggunakan diagram pencar. Perhatikan @fig-iterasi-3-1!
+
+```{r}
+#| label: fig-iterasi-3-1
+#| fig-cap: "Klaster-klaster yang terbentuk pada langkah pertama dalam iterasi ketiga (Iterasi 3-1)"
+#| fig-asp: 0.5625
+
+plot_3_1 <- faithful_3_1 |> 
+  ggplot() + 
+  geom_point(
+    aes(
+      x = eruptions_std,
+      y = waiting_std,
+      color = klaster
+    )
+  ) + 
+  geom_point(
+    data = pusat_klaster_2_2,
+    aes(
+      x = x,
+      y = y
+    ),
+    shape = 4,
+    size = 5,
+    stroke = 3,
+    color = "white"
+  ) + 
+  geom_point(
+    data = pusat_klaster_2_2,
+    aes(
+      x = x,
+      y = y,
+      color = klaster
+    ),
+    shape = 4,
+    size = 5,
+    stroke = 1.5
+  ) + 
+  geom_abline(
+    slope = -1.0436,
+    intercept = -0.486595,
+    color = "#00BA38"
+  ) + 
+  theme_minimal() + 
+  theme(
+    legend.position = "none"
+  )
+
+plot_3_1
+
+```
+
+Pada langkah kedua, kita tentukan pusat-pusat klaster yang baru. Caranya adalah sebagai berikut.
+
+```{r}
+#| code-fold: show
+
+pusat_klaster_3_2 <- faithful_3_1 |> 
+  group_by(klaster) |> 
+  summarise(
+    x = mean(eruptions_std),
+    y = mean(waiting_std)
+  )
+
+pusat_klaster_3_2
+
+```
+
+Kita plot pusat klaster-klaster yang baru tersebut bersama dengan titik-titik data sebelumnya. Perhatikan @fig-iterasi-3-2!
+
+```{r}
+#| label: fig-iterasi-3-2
+#| fig-cap: "Pusat-pusat klaster pada langkah kedua dalam iterasi ketiga (Iterasi 2-2)"
+#| fig-asp: 0.5625
+
+# Mempersiapkan `faithful_3_2`
+faithful_3_2 <- faithful_3_1 |> 
+  select(eruptions_std, waiting_std, klaster) |> 
+  mutate(
+    d1 = (eruptions_std - pusat_klaster_3_2[[1,2]])^2 + (waiting_std - pusat_klaster_3_2[[1,3]])^2,
+    d2 = (eruptions_std - pusat_klaster_3_2[[2,2]])^2 + (waiting_std - pusat_klaster_3_2[[2,3]])^2,
+    d = if_else(klaster == "Klaster 1", d1, d2)
+  )
+
+# Plot Iterasi 3-2
+plot_3_2 <- faithful_3_2 |> 
+  ggplot() + 
+  geom_point(
+    aes(
+      x = eruptions_std,
+      y = waiting_std,
+      color = klaster
+    )
+  ) + 
+  geom_point(
+    data = pusat_klaster_3_2,
+    aes(
+      x = x,
+      y = y
+    ),
+    shape = 4,
+    size = 5,
+    stroke = 3,
+    color = "white"
+  ) + 
+  geom_point(
+    data = pusat_klaster_3_2,
+    aes(
+      x = x,
+      y = y,
+      color = klaster
+    ),
+    shape = 4,
+    size = 5,
+    stroke = 1.5,
+  ) +
+  theme_minimal() + 
+  theme(
+    legend.position = "none"
+  )
+
+plot_3_2
+
+```
+
+Kita telah menyelesaikan langkah kedua dalam iterasi ketiga. Sekarang, mari kita lanjut ke iterasi berikutnya!
+
+### Iterasi 4 {#sec-iterasi-4}
+
+Apa langkah pertama di iterasi keempat ini? Ya! Kita masukkan setiap titik ke dalam klasternya berdasarkan jaraknya ke pusat klaster-klaster yang terakhir.
+
+```{r}
+#| code-fold: show
+
+faithful_4_1 <- faithful_3_2 |> 
+  select(-d, -klaster) |> 
+  mutate(
+    d = if_else(d1 <= d2, d1, d2),
+    klaster = if_else(d1 <= d2, "Klaster 1", "Klaster 2")
+  )
+
+head(faithful_4_1)
+```
+
+Sekarang setiap titik telah memiliki klasternya masing-masing. Kita plot titik-titik tersebut ke dalam diagram pencar. Perhatikan @fig-iterasi-4-1!
+
+```{r}
+#| label: fig-iterasi-4-1
+#| fig-cap: "Klaster-klaster yang terbentuk pada langkah pertama dalam iterasi keempat (Iterasi 4-1)"
+#| fig-asp: 0.5625
+
+plot_4_1 <- faithful_4_1 |> 
+  ggplot() + 
+  geom_point(
+    aes(
+      x = eruptions_std,
+      y = waiting_std,
+      color = klaster
+    )
+  ) + 
+  geom_point(
+    data = pusat_klaster_3_2,
+    aes(
+      x = x,
+      y = y
+    ),
+    shape = 4,
+    size = 5,
+    stroke = 3,
+    color = "white"
+  ) + 
+  geom_point(
+    data = pusat_klaster_3_2,
+    aes(
+      x = x,
+      y = y,
+      color = klaster
+    ),
+    shape = 4,
+    size = 5,
+    stroke = 1.5
+  ) + 
+  geom_abline(
+    slope = -1.0508,
+    intercept = -0.534564,
+    color = "#00BA38"
+  ) + 
+  theme_minimal() + 
+  theme(
+    legend.position = "none"
+  )
+
+plot_4_1
+
+```
+
+Kita lanjut ke langkah kedua. Di langkah kedua ini, kita cari pusat klaster-klasternya yang baru.
+
+```{r}
+#| code-fold: false
+
+pusat_klaster_4_2 <- faithful_4_1 |> 
+  group_by(klaster) |> 
+  summarise(
+    x = mean(eruptions_std),
+    y = mean(waiting_std),
+    .groups = "drop"
+  )
+
+pusat_klaster_4_2
+```
+
+Berikutnya, kita plot pusat-pusat klaster yang baru tersebut bersama dengan titik-titik datanya. Perhatikan gambar berikut!
+
+```{r}
+#| label: fig-iterasi-4-2
+#| fig-cap: "Pusat-pusat klaster pada langkah kedua dalam iterasi keempat (Iterasi 4-2)"
+
+# Mempersiapkan `faithful_4_2`
+faithful_4_2 <- faithful_4_1 |> 
+  select(eruptions_std, waiting_std, klaster) |> 
+  mutate(
+    d1 = (eruptions_std - pusat_klaster_4_2[[1,2]])^2 + (waiting_std - pusat_klaster_4_2[[1,3]])^2,
+    d2 = (eruptions_std - pusat_klaster_4_2[[2,2]])^2 + (waiting_std - pusat_klaster_4_2[[2,3]])^2,
+    d = if_else(klaster == "Klaster 1", d1, d2)
+  )
+
+# Plot Iterasi 4-2
+plot_4_2 <- faithful_4_2 |> 
+  ggplot() + 
+  geom_point(
+    aes(
+      x = eruptions_std,
+      y = waiting_std,
+      color = klaster
+    )
+  ) + 
+  geom_point(
+    data = pusat_klaster_4_2,
+    aes(
+      x = x,
+      y = y
+    ),
+    shape = 4,
+    size = 5,
+    stroke = 3,
+    color = "white"
+  ) + 
+  geom_point(
+    data = pusat_klaster_4_2,
+    aes(
+      x = x,
+      y = y,
+      color = klaster
+    ),
+    shape = 4,
+    size = 5,
+    stroke = 1.5,
+  ) +
+  theme_minimal() + 
+  theme(
+    legend.position = "none"
+  )
+
+plot_4_2
+
+```
+
+### Kilas Balik {#sec-kilas-balik}
+
+Sampai di sini, kita telah melakukan empat kali iterasi. Apakah kita perlu melakukan iterasi lagi? Ataukah iterasinya sudah cukup? Untuk menjawab pertanyaan-pertanyaan tersebut, kita dapat menggunakan $WCSS$ (*Within-Cluster Sum of Squares*) atau jumlah kuadrat jarak setiap titik ke pusat klasternya. Dengan demikian, $WCSS$ ditentukan dengan @eq-wcss.
+
+$$
+WCSS=\sum_{j=1}^{k}\sum_{x_{i}\in C_{j}}^{}\left\| x_{i}-p_{j}\right\|^2
+$$ {#eq-wcss}
+
+Dengan rumus ini, kita dapat menentukan $WCSS$ pada langkah pertama dalam iterasi pertama sebagai berikut.
+
+```{r}
+#| code-fold: show
+
+wcss_1_1 <- faithful_1_1 |> 
+  summarise(
+    wcss = sum(d)
+  )
+
+wcss_1_1
+
+```
+
+Dengan cara yang serupa, kita dapat menentukan $WCSS$ untuk langkah pertama dan kedua dalam semua iterasi. Kita simpan nilai-nilai $WCSS$ tersebut ke dalam `wcss_df`.
+
+```{r}
+#| code-fold: show
+
+daftar_faithful <- list(
+  "1_1" = faithful_1_1,
+  "1_2" = faithful_1_2,
+  "2_1" = faithful_2_1,
+  "2_2" = faithful_2_2,
+  "3_1" = faithful_3_1,
+  "3_2" = faithful_3_2,
+  "4_1" = faithful_4_1,
+  "4_2" = faithful_4_2
+)
+
+wcss_df <- map_dfr(
+  daftar_faithful,
+  ~ summarise(.x, wcss = sum(d)),
+  .id = "faithful"
+) |> 
+  mutate(
+    iterasi = seq(from = 0.5, to = 4, by = 0.5),
+    group = as_factor(rep(c("M", "E"), 4))
+  )
+
+wcss_df
+
+```
+
+Kita telah memiliki untuk setiap langkahnya dalam `wcss_df`. Sekarang, kita dapat melihat tren nilai $WCSS$ tersebut. Perhatikan @fig-tren-wcss!
+
+```{r}
+#| label: fig-tren-wcss
+#| fig-cap: "Tren nilai WCSS dari langkah pertama iterasi pertama sampai langkah kedua iterasi keempat"
+#| fig-asp: 0.5625
+
+wcss_df |> 
+  ggplot(aes(x = iterasi, y = wcss)) + 
+  geom_line(
+    col = "#00BA38",
+    linewidth = 1
+  ) + 
+  geom_point(
+    aes(col = group),
+    shape = 1,
+    size = 3,
+    stroke = 1.5
+  ) + 
+  theme_minimal() + 
+  theme(
+    legend.position = "none"
+  )
+
+```
+
+Berdasarkan @fig-tren-wcss, kita dapat melihat bahwa nilai $WCSS$ sudah konvergen pada iterasi kedua. Bahkan, dari iterasi ketiga sampai keempat, perubahan anggota kluster sudah tidak signifikan. Oleh karena itu, iterasinya kita cukupkan sampai iterasi keempat. Untuk melihat kembali apa yang telah kita lakukan mulai iterasi pertama sampai keempat, perhatikan @fig-semua-iterasi!
+
+```{r}
+#| echo: false
+#| label: fig-semua-iterasi
+#| fig-cap: "Empat iterasi klasterasisasi k-rerata terhadap data `faithful` yang dinormalbakukan."
+#| fig-asp: 0.75
+
+plot_1 <- faithful |> 
+  ggplot() + 
+  geom_point(
+    aes(x = eruptions_std, y = waiting_std)
+  ) + 
+  geom_point(
+    data = data.frame(
+      x = c(-1.4, 1.4),
+      y = c(1, -1),
+      klaster = c("Klaster 1", "Klaster 2")
+    ),
+    aes(
+      x = x,
+      y = y,
+      color = klaster
+    ),
+    shape = 4,
+    size = 5,
+    stroke = 3,
+    color = "white"
+  ) + 
+  geom_point(
+    data = data.frame(
+      x = c(-1.4, 1.4),
+      y = c(1, -1),
+      klaster = c("Klaster 1", "Klaster 2")
+    ),
+    aes(
+      x = x,
+      y = y,
+      color = klaster
+    ),
+    shape = 4,
+    size = 5,
+    stroke = 1.5,
+  ) + 
+  theme_minimal() + 
+  theme(
+    legend.position = "none"
+  )
+
+plot_grid(
+  plot_1, plot_1_1, plot_1_2,
+  plot_2_1, plot_2_2, plot_3_1,
+  plot_3_2, plot_4_1, plot_4_2,
+  ncol = 3
+)
+  
+```
+
+## Klasterisasi $K$-Rerata dengan Fungsi `kmeans()` {#sec-klasterisasi-k-rerata-dengan-fungsi-kmeans}
+
+Pada @sec-penerapan-algoritma-k-rerata, kita telah melakukan klasterisasi $k$-rerata langkah demi langkah, dari iterasi pertama sampai keempat. Banyak hal yang telah kita lakukan. Apakah ada fungsi di R yang dapat melakukan klasterisasi $k$-rerata secara otomatis dan cepat? Tentu saja ada! Fungsi itu adalah `kmeans()`.
+
+Untuk membagi data kita sebelumnya, yaitu `faithful,` menjadi $k=2$ klaster, kita gunakan kode berikut.
+
+```{r}
+#| code-fold: show
+
+# Menyiapkan dataframe untuk `kmeans()`
+faithful_std <- faithful |> 
+  select(eruptions_std, waiting_std)
+
+# Menerapkan `kmeans()`
+cl <- kmeans(x = faithful_std, centers = 2)
+
+# Memasukkan klaster yang dihasilkan ke dalam `faithful`
+faithful <- faithful |> 
+  mutate(
+    klaster = cl$cluster
+  )
+```
+
+Ingin tahu bagaimana hasilnya? Mari kita plot diagram pencar data `faithful`. Perhatikan @fig-diagram-pencar-kmeans!
+
+```{r}
+#| label: fig-diagram-pencar-kmeans
+#| fig-cap: "Klaster-klaster dalam data `faithful` hasil klasterisasi k-rerata dengan fungsi `kmeans()`"
+#| fig-asp: 0.5625
+
+faithful |> 
+  mutate(
+    klaster = as_factor(3 - klaster)
+  ) |> 
+  ggplot(
+    aes(x = eruptions_std, y = waiting_std, color = klaster)
+  ) + 
+  geom_point() + 
+  theme_minimal() + 
+  theme(
+    legend.position = "none"
+  )
+
+```
+
+Apakah @fig-diagram-pencar-kmeans sama dengan @fig-iterasi-4-2? Ternyata sama hasilnya.
+
+## Catatan Akhir {#sec-catatan-akhir}
+
+Kita telah mempelajari klasterisasi $k$-rerata. Mengapa kita perlu mempelajari metode ini? Jawabannya telah kita pelajari pada @sec-paradoks-simpson. Setelah itu, bagaimana kerja algoritma $k$-rerata juga telah kita bahas di @sec-klasterisasi-k-rerata. Langkah-langkah rinci algoritma tersebut telah diilustrasikan pada @sec-penerapan-algoritma-k-rerata. Tak hanya itu, @sec-klasterisasi-k-rerata-dengan-fungsi-kmeans juga memberikan jalan cepat dengan fungsi `kmeans()`.
+
+Sekarang, kita kembali ke permasalahan awal. Bagian awal artikel ini menyebutkan bahwa klasterisasi $k$-means dapat digunakan untuk memanipulasi gambar sehingga menghasilkan @fig-klaterisasi-gambar. Bagaimana caranya? Tutorial selengkapnya dapat ditemukan pada pos berikutnya!

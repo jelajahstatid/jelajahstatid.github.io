@@ -1,0 +1,1647 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="author" content="Yosep Dwi Kristanto">
+<meta name="dcterms.date" content="2025-09-23">
+<meta name="keywords" content="analisis klaster, klasterisasi, k-rerata, k-means clustering, machine learning, ilmu data, paradoks Simpson, pemelajaran mesin, pemelajaran statistik, statistical learning">
+<meta name="description" content="Mulai dari memanipulasi gambar sampai menghindari paradoks Simpson, itulah manfaat analisis klaster. Artikel ini membahas secara tuntas analisis klaster yang sederhana, yaitu klasterisasi k-rerata (k-means clustering), mulai dari menjelaskan algoritmanya seperti apa sampai mendemonstrasikan algoritma tersebut secara mendetail.">
+<title>Klaterisasi K-Rerata – Jelajah Statistika dan Ilmu Data</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-dfb324f25d9b1687192fa8be62ac8f9c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Tak ada hasil",
+    "search-matching-documents-text": "dokumen yang cocok",
+    "search-copy-link-title": "Salin tautan untuk mencari",
+    "search-hide-matches-text": "Sembunyikan kecocokan tambahan",
+    "search-more-match-text": "kecocokan yang lebih banyak di dokumen ini",
+    "search-more-matches-text": "kecocokan yang lebih banyak di dokumen ini",
+    "search-clear-button-title": "Bersihkan",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Batal",
+    "search-submit-button-title": "Kirim",
+    "search-label": "Cari"
+  }
+}</script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-WTEJLB3562"></script><script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
+</script><style>
+
+      .quarto-title-block .quarto-title-banner {
+        background: #EBF7FE;
+      }
+</style>
+<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script><link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="Klaterisasi K-Rerata – Jelajah Statistika dan Ilmu Data">
+<meta property="og:description" content="Mulai dari memanipulasi gambar sampai menghindari paradoks Simpson, itulah manfaat analisis klaster. Artikel ini membahas secara tuntas analisis klaster yang sederhana, yaitu klasterisasi k-rerata (k-means clustering), mulai dari menjelaskan algoritmanya seperti apa sampai mendemonstrasikan algoritma tersebut secara mendetail.">
+<meta property="og:image" content="https://jelajahstatid.github.io/pos/2025-09-klaterisasi-k-rerata/sampul-klasterisasi-k-rerata.png">
+<meta property="og:site_name" content="Jelajah Statistika dan Ilmu Data">
+<meta property="og:image:height" content="600">
+<meta property="og:image:width" content="800">
+<meta property="og:image:alt" content="Ilustrasi setiap iterasi dalam klasterisasi k-rerata">
+<meta name="twitter:title" content="Klaterisasi K-Rerata – Jelajah Statistika dan Ilmu Data">
+<meta name="twitter:description" content="Mulai dari memanipulasi gambar sampai menghindari paradoks Simpson, itulah manfaat analisis klaster. Artikel ini membahas secara tuntas analisis klaster yang sederhana, yaitu klasterisasi k-rerata (k-means clustering), mulai dari menjelaskan algoritmanya seperti apa sampai mendemonstrasikan algoritma tersebut secara mendetail.">
+<meta name="twitter:image" content="https://jelajahstatid.github.io/pos/2025-09-klaterisasi-k-rerata/sampul-klasterisasi-k-rerata.png">
+<meta name="twitter:image-height" content="600">
+<meta name="twitter:image-width" content="800">
+<meta name="twitter:image:alt" content="Ilustrasi setiap iterasi dalam klasterisasi k-rerata">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+<body class="floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Jelajah Statistika dan Ilmu Data</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Cari"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+<li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../ihwal.html"> 
+<span class="menu-text">Ihwal</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/jelajahstatid/jelajahstatid.github.io"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../index.xml"> <i class="bi bi-rss" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+</div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav></header><!-- content --><header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full"><div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Klaterisasi K-Rerata</h1>
+            <p class="subtitle lead">Langkah Demi Langkah Klasterisasi dengan Pemrograman R</p>
+                  <div>
+        <div class="description">
+          Mulai dari memanipulasi gambar sampai menghindari paradoks Simpson, itulah manfaat analisis klaster. Artikel ini membahas secara tuntas analisis klaster yang sederhana, yaitu klasterisasi k-rerata (k-means clustering), mulai dari menjelaskan algoritmanya seperti apa sampai mendemonstrasikan algoritma tersebut secara mendetail.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">klasterisasi</div>
+                <div class="quarto-category">tutorial</div>
+                <div class="quarto-category">visualisasi data</div>
+              </div>
+                  </div>
+  </div>
+    
+  <div class="quarto-title-meta-author">
+    <div class="quarto-title-meta-heading">Pengarang</div>
+    <div class="quarto-title-meta-heading">Afiliasi</div>
+    
+      <div class="quarto-title-meta-contents">
+      <p class="author"><a href="https://people.usd.ac.id/~ydkristanto/">Yosep Dwi Kristanto</a> <a href="https://orcid.org/0000-0003-1446-0422" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+    </div>
+    <div class="quarto-title-meta-contents">
+          <p class="affiliation">
+              <a href="https://www.usd.ac.id/s1pmat">
+              Pendidikan Matematika, Universitas Sanata Dharma, Yogyakarta
+              </a>
+            </p>
+        </div>
+    </div>
+
+  <div class="quarto-title-meta">
+
+        
+      <div>
+      <div class="quarto-title-meta-heading">Terbit</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">September 23, 2025</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+
+  <div>
+    <div class="keywords">
+      <div class="block-title">Kata kunci</div>
+      <p>analisis klaster, klasterisasi, k-rerata, k-means clustering, machine learning, ilmu data, paradoks Simpson, pemelajaran mesin, pemelajaran statistik, statistical learning</p>
+    </div>
+  </div>
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Pada laman ini</h2>
+   
+  <ul>
+<li><a href="#sec-paradoks-simpson" id="toc-sec-paradoks-simpson" class="nav-link active" data-scroll-target="#sec-paradoks-simpson">Paradoks Simpson</a></li>
+  <li><a href="#sec-klasterisasi-k-rerata" id="toc-sec-klasterisasi-k-rerata" class="nav-link" data-scroll-target="#sec-klasterisasi-k-rerata">Klasterisasi <span class="math inline">\(K\)</span>-Rerata</a></li>
+  <li>
+<a href="#sec-penerapan-algoritma-k-rerata" id="toc-sec-penerapan-algoritma-k-rerata" class="nav-link" data-scroll-target="#sec-penerapan-algoritma-k-rerata">Penerapan Algoritma <span class="math inline">\(K\)</span>-Rerata</a>
+  <ul class="collapse">
+<li><a href="#sec-iterasi-1" id="toc-sec-iterasi-1" class="nav-link" data-scroll-target="#sec-iterasi-1">Iterasi 1</a></li>
+  <li><a href="#sec-iterasi-2" id="toc-sec-iterasi-2" class="nav-link" data-scroll-target="#sec-iterasi-2">Iterasi 2</a></li>
+  <li><a href="#sec-iterasi-3" id="toc-sec-iterasi-3" class="nav-link" data-scroll-target="#sec-iterasi-3">Iterasi 3</a></li>
+  <li><a href="#sec-iterasi-4" id="toc-sec-iterasi-4" class="nav-link" data-scroll-target="#sec-iterasi-4">Iterasi 4</a></li>
+  <li><a href="#sec-kilas-balik" id="toc-sec-kilas-balik" class="nav-link" data-scroll-target="#sec-kilas-balik">Kilas Balik</a></li>
+  </ul>
+</li>
+  <li><a href="#sec-klasterisasi-k-rerata-dengan-fungsi-kmeans" id="toc-sec-klasterisasi-k-rerata-dengan-fungsi-kmeans" class="nav-link" data-scroll-target="#sec-klasterisasi-k-rerata-dengan-fungsi-kmeans">Klasterisasi <span class="math inline">\(K\)</span>-Rerata dengan Fungsi <code>kmeans()</code></a></li>
+  <li><a href="#sec-catatan-akhir" id="toc-sec-catatan-akhir" class="nav-link" data-scroll-target="#sec-catatan-akhir">Catatan Akhir</a></li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/jelajahstatid/jelajahstatid.github.io/edit/main/pos/2025-09-klaterisasi-k-rerata/index.qmd" class="toc-action"><i class="bi bi-github"></i>Sunting laman ini</a></li><li><a href="https://github.com/jelajahstatid/jelajahstatid.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Laporkan sebuah isu</a></li></ul></div></nav>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content"><p>Ada banyak metode untuk memanipulasi sebuah gambar. Salah satunya ditunjukkan pada <a href="#fig-klaterisasi-gambar" class="quarto-xref">Gambar&nbsp;1</a>. Apa perbedaan gambar sebelah kiri dan kanan pada gambar tersebut?</p>
+<div id="fig-klaterisasi-gambar" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-klaterisasi-gambar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="aset/klasterisasi_karuna_donau.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-klaterisasi-gambar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Gambar&nbsp;1: Gambar asli (kiri) dan gambar setelah dimanipulasi (kanan)
+</figcaption></figure>
+</div>
+<p><em>Yup</em>! Gambar sebelah kiri memiliki warna yang lebih bervariasi daripada yang kanan. Faktanya, gambar di sebelah kiri memiliki hampir 40 ribu warna sedangkan yang sebelah kanan hanya empat warna saja. Bagaimana cara melakukannya?</p>
+<p>Tentu ada banyak cara untuk melakukannya. Akan tetapi, salah satunya adalah dengan menggunakan klasterisasi <span class="math inline">\(k\)</span>-rerata. Untuk itu, kita akan belajar teknik klasterisasi tersebut. Kita awali dengan (a) latar belakang perlunya klasterisasi, kemudian (b) kita belajar bagaimana algoritmanya bekerja, dan akhirnya (c) kita aplikasikan algoritma tersebut untuk membagi data menjadi beberapa klaster. Jangan khawatir, penerapan algoritmanya nanti kita lakukan secara langkah demi langkah. Kita lakukan semuanya dengan menggunakan <a href="https://www.R-project.org/" target="_blank">pemrograman R</a>. Untuk itu, kita buka paket-paket yang diperlukan.</p>
+<div class="cell">
+<details open="" class="code-fold"><summary>Kode</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://wilkelab.org/cowplot/">cowplot</a></span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="sec-paradoks-simpson" class="level2"><h2 class="anchored" data-anchor-id="sec-paradoks-simpson">Paradoks Simpson</h2>
+<p>Bayangkan kamu ingin menemukan model untuk datamu, misalnya <code>contoh_data</code>. Biasanya, kamu perlu memvisualisasikan data tersebut untuk melihat polanya. Diagram pencar data tersebut disajikan pada <a href="#fig-plot-contoh-data" class="quarto-xref">Gambar&nbsp;2</a>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-plot-contoh-data" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-plot-contoh-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-plot-contoh-data-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plot-contoh-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Gambar&nbsp;2: Diagram pencar <code>contoh_data</code>
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>Berdasarkan <a href="#fig-plot-contoh-data" class="quarto-xref">Gambar&nbsp;2</a>, kamu kemungkinan besar menduga bahwa hubungan antara <code>x</code> dan <code>y</code> dalam data tersebut mengikuti model linear dengan korelasi positif: semakin besar nilai <code>x</code>, semakin besar juga nilai <code>y</code>. Dengan demikian, kamu akan mendapatkan model seperti yang ditunjukkan pada <a href="#fig-model-contoh-data" class="quarto-xref">Gambar&nbsp;3</a>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-model-contoh-data" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-model-contoh-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-model-contoh-data-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-model-contoh-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Gambar&nbsp;3: Model linear untuk variabel-variabel <code>x</code> dan <code>y</code> dalam <code>contoh_data</code>
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>Akan tetapi, setelah dicermati kembali, tampaknya <code>contoh_data</code> tersebut terbagi menjadi beberapa klaster. Berdasarkan pengamatan terhadap <a href="#fig-model-contoh-data" class="quarto-xref">Gambar&nbsp;3</a> saja, kita dapat melihat bahwa data tersebut memiliki lima klaster. Setelah mempertimbangkan klaster-klaster tersebut, kita mendapatkan model linear yang sama sekali berbeda. Perhatikan <a href="#fig-model-klaster-contoh-data" class="quarto-xref">Gambar&nbsp;4</a>!</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-model-klaster-contoh-data" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-model-klaster-contoh-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-model-klaster-contoh-data-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-model-klaster-contoh-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Gambar&nbsp;4: Model linear untuk variabel-variabel <code>x</code> dan <code>y</code> setelah mempertimbangkan klaster-klaster dalam <code>contoh_data</code>
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>Fenomena yang baru saja kita alami tersebut dinamakan <em>paradoks Simpson</em>. Kita mendapatkan korelasi yang positif ketika kita tidak mempertimbangkan klaster, dan korelasinya negatif ketika kita mempertimbangkan klaster. Oleh karena itu, penting bagi kita untuk mencermati data secara lebih hati-hati, khususnya jika dalam data tersebut memuat beberapa klaster.</p>
+<p>Informasi tentang klaster-klaster tersebut mungkin sudah ada dalam data. Akan tetapi, informasi tersebut juga mungkin belum ada. Jika klaster-klaster tersebut belum ada, kita dapat melakukan analisis klaster dengan menggunakan klasterisasi <span class="math inline">\(k\)</span>-rerata (atau <span class="math inline">\(k\)</span><em>-means clustering</em>). Bagaimana caranya? Mari kita bahas di bagian berikutnya, <a href="#sec-klasterisasi-k-rerata" class="quarto-xref">Bagian&nbsp;2</a>.</p>
+</section><section id="sec-klasterisasi-k-rerata" class="level2"><h2 class="anchored" data-anchor-id="sec-klasterisasi-k-rerata">Klasterisasi <span class="math inline">\(K\)</span>-Rerata</h2>
+<p>Klasterisasi <span class="math inline">\(k\)</span>-rerata merupakan algoritma pemelajaran mesin (<em>machine learning</em>) tanpa pengawasan yang membagi data tak berlabel menjadi <span class="math inline">\(k\)</span> klaster yang berbeda dan tak saling tumpang tindih. Sebelum dilakukan klasterisasi ini, banyaknya klaster <span class="math inline">\(k\)</span> perlu ditentukan terlebih dahulu. Algoritma klasterisasi ini adalah sebagai berikut.</p>
+<ol type="1">
+<li><p><strong>Inisialisasi:</strong> Pertama, kita pilih banyaknya klaster, yaitu <span class="math inline">\(k\)</span>. Setelah itu, algoritmanya akan memposisikan <span class="math inline">\(k\)</span> titik secara acak sebagai pusat klaster (<em>centroid</em>) yang pertama.</p></li>
+<li><p><strong>Penugasan:</strong> Setiap titik data dipasangkan ke pusat klaster terdekat. Proses ini menghasilkan <span class="math inline">\(k\)</span> klaster awal.</p></li>
+<li><p><strong>Pembaruan:</strong> Setelah semua titik masuk ke dalam klaster, algoritmanya kemudian menghitung kembali koordinat tiap-tiap pusat klasternya. Pusat klaster tersebut merupakan rerata dari semua titik dalam klaster tersebut.</p></li>
+<li><p><strong>Ulangi:</strong> Langkah 2 dan 3 diulangi kembali. Ketika pusat klaster berpindah, setiap titik datanya dipasangkan kembali dengan pusat klaster baru yang terdekat, kemudian pusat setiap klasternya dihitung kembali. Proses ini diulang secara terus menerus sampai pusat klasternya tidak berpindah secara signifikan atau banyak maksimum iterasinya tercapai.</p></li>
+</ol>
+<p>Penasaran dengan bagaimana algoritma tersebut bekerja? Pada bagian berikutnya, <a href="#sec-penerapan-algoritma-k-rerata" class="quarto-xref">Bagian&nbsp;3</a>, kita akan menerapkan algoritma tersebut kepada <a href="https://doi.org/10.2307/2347385" target="_blank">Old Faithful Geyser</a>.</p>
+</section><section id="sec-penerapan-algoritma-k-rerata" class="level2"><h2 class="anchored" data-anchor-id="sec-penerapan-algoritma-k-rerata">Penerapan Algoritma <span class="math inline">\(K\)</span>-Rerata</h2>
+<p>Kita terapkan algoritma <span class="math inline">\(k\)</span>-rerata kepada data Old Faithful Geyser. Data ini sudah ada dalam R dengan nama <code>faithful</code>. Data ini memuat 272 baris dan dua variabel. Variabel <code>waiting</code> merupakan selang waktu antara dimulainya dua erupsi yang berurutan, sedangkan variabel <code>eruptions</code> merupakan lamanya erupsi yang kedua. Mari kita panggil data ini lihat beberapa barisnya dengan kode berikut.</p>
+<div class="cell">
+<details open="" class="code-fold"><summary>Kode</summary><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"faithful"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">faithful</span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code>  eruptions waiting
+1     3.600      79
+2     1.800      54
+3     3.333      74
+4     2.283      62
+5     4.533      85
+6     2.883      55</code></pre>
+</div>
+</div>
+<p>Kita dapat mengenal data <code>faithful</code> tersebut secara lebih dekat dengan membuat diagram pencarnya. Perhatikan <a href="#fig-diagram-pencar-faithful" class="quarto-xref">Gambar&nbsp;5</a>!</p>
+<div class="cell">
+<details class="code-fold"><summary>Kode</summary><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">faithful</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">eruptions</span>, y <span class="op">=</span> <span class="va">waiting</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div id="fig-diagram-pencar-faithful" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-diagram-pencar-faithful-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-diagram-pencar-faithful-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diagram-pencar-faithful-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Gambar&nbsp;5: Diagram pencar hubungan antara <code>eruptions</code> dan <code>waiting</code> dalam data <code>faithful</code>
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>Berdasarkan <a href="#fig-diagram-pencar-faithful" class="quarto-xref">Gambar&nbsp;5</a>, kita dapat melihat bahwa tampaknya data <code>faithful</code> memiliki dua klaster. Oleh karena itu, kita akan pilih <span class="math inline">\(k=2\)</span>. Sebelum kita menerapkan algoritma <span class="math inline">\(k\)</span>-rerata, terlebih dahulu kita normalbakukan variabel-variabel dalam data <code>faithful</code> tersebut. Mengapa demikian?</p>
+<p>Klasterisasi <span class="math inline">\(k\)</span>-rerata menggunakan jarak untuk menentukan klaster tiap-tiap titik datanya. Jika variabel-variabelnya memiliki skala yang berbeda (variabel <code>eruptions</code> merentang dari 1.6 sampai 5.1 sedangkan <code>waiting</code> merentang dari 43 sampai 96), variabel yang jangkauannya lebih besar tentu memiliki dampak besar terhadap perhitungan jaraknya. Hal ini akan menyebabkan hasil klasterisasinya tidak akurat.</p>
+<p>Oleh karena itu, kita normalbakukan variabel-variabel <code>eruptions</code> dan <code>waiting</code> untuk membuat variabel-variabel baru, yaitu <code>eruptions_std</code> dan <code>waiting_std</code>. Untuk melihat hasilnya, kita dapat tampilkan beberapa baris pertamanya.</p>
+<div class="cell">
+<details open="" class="code-fold"><summary>Kode</summary><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">faithful</span> <span class="op">&lt;-</span> <span class="va">faithful</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>    eruptions_std <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span><span class="op">(</span><span class="va">eruptions</span><span class="op">)</span>,</span>
+<span>    waiting_std <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span><span class="op">(</span><span class="va">waiting</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">faithful</span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code>  eruptions waiting eruptions_std waiting_std
+1     3.600      79    0.09831763   0.5960248
+2     1.800      54   -1.47873278  -1.2428901
+3     3.333      74   -0.13561152   0.2282418
+4     2.283      62   -1.05555759  -0.6544374
+5     4.533      85    0.91575542   1.0373644
+6     2.883      55   -0.52987412  -1.1693335</code></pre>
+</div>
+</div>
+<p><em>Okay!</em> Data <code>faithful</code> telah siap dihidangkan untuk klasterisasi <span class="math inline">\(k\)</span>-rerata dengan <span class="math inline">\(k=2\)</span>. Tak usah berlama-lama, mari kita mulai ke iterasi yang pertama.</p>
+<section id="sec-iterasi-1" class="level3"><h3 class="anchored" data-anchor-id="sec-iterasi-1">Iterasi 1</h3>
+<p>Kita telah menentukan <span class="math inline">\(k=2\)</span>, sehingga algoritma tersebut selanjutnya menentukan dua titik secara acak sebagai pusat klaster-klaster awalnya. Untuk alasan demonstrasi, kita tentukan dua titik tersebut adalah <span class="math inline">\(\left( -1.4, 1 \right)\)</span> dan <span class="math inline">\(\left( 1.4, -1 \right)\)</span>. Berikutnya, kita tentukan jarak setiap titik ke pusat klaster-klaster awal tersebut. Titik-titik yang lebih dekat ke <span class="math inline">\(\left( -1.4, 1 \right)\)</span> berarti masuk ke “Klaster 1”, sedangkan titik-titik yang lebih dekat ke <span class="math inline">\(\left( 1.4, -1 \right)\)</span> berarti masuk ke “Klaster 2”.</p>
+<div class="cell">
+<details open="" class="code-fold"><summary>Kode</summary><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">faithful_1_1</span> <span class="op">&lt;-</span> <span class="va">faithful</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">eruptions_std</span>, <span class="va">waiting_std</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>    d1 <span class="op">=</span> <span class="op">(</span><span class="va">eruptions_std</span> <span class="op">-</span> <span class="op">(</span><span class="op">-</span><span class="fl">1.4</span><span class="op">)</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span> <span class="op">+</span> <span class="op">(</span><span class="va">waiting_std</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span>,</span>
+<span>    d2 <span class="op">=</span> <span class="op">(</span><span class="va">eruptions_std</span> <span class="op">-</span> <span class="fl">1.4</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span> <span class="op">+</span> <span class="op">(</span><span class="va">waiting_std</span> <span class="op">-</span> <span class="op">(</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span>,</span>
+<span>    d <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">d1</span> <span class="op">&lt;=</span> <span class="va">d2</span>, <span class="va">d1</span>, <span class="va">d2</span><span class="op">)</span>,</span>
+<span>    klaster <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">d1</span> <span class="op">&lt;=</span> <span class="va">d2</span>, <span class="st">"Klaster 1"</span>, <span class="st">"Klaster 2"</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">faithful_1_1</span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code>  eruptions_std waiting_std       d1       d2        d   klaster
+1    0.09831763   0.5960248 2.408152 4.241672 2.408152 Klaster 1
+2   -1.47873278  -1.2428901 5.036755 8.346098 5.036755 Klaster 1
+3   -0.13561152   0.2282418 2.194289 3.866681 2.194289 Klaster 1
+4   -1.05555759  -0.6544374 2.855804 6.149177 2.855804 Klaster 1
+5    0.91575542   1.0373644 5.364119 4.385346 4.385346 Klaster 2
+6   -0.52987412  -1.1693335 5.463127 3.753088 3.753088 Klaster 2</code></pre>
+</div>
+</div>
+<p>Agar dua klaster yang terbentuk dapat terlihat dengan jelas, mari kita visualisaskan titik-titik datanya, beserta dengan garis yang membagi titik-titik tersebut menjadi dua klaster. Perhatikan <a href="#fig-iterasi-1-1" class="quarto-xref">Gambar&nbsp;6</a>!</p>
+<div class="cell">
+<details class="code-fold"><summary>Kode</summary><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">plot_1_1</span> <span class="op">&lt;-</span> <span class="va">faithful_1_1</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
+<span>      x <span class="op">=</span> <span class="va">eruptions_std</span>,</span>
+<span>      y <span class="op">=</span> <span class="va">waiting_std</span>,</span>
+<span>      color <span class="op">=</span> <span class="va">klaster</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span></span>
+<span>    data <span class="op">=</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
+<span>      x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1.4</span>, <span class="fl">1.4</span><span class="op">)</span>,</span>
+<span>      y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="op">-</span><span class="fl">1</span><span class="op">)</span>,</span>
+<span>      klaster <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Klaster 1"</span>, <span class="st">"Klaster 2"</span><span class="op">)</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span>,</span>
+<span>    shape <span class="op">=</span> <span class="fl">4</span>,</span>
+<span>    size <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>    stroke <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>    color <span class="op">=</span> <span class="st">"white"</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span></span>
+<span>    data <span class="op">=</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
+<span>      x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1.4</span>, <span class="fl">1.4</span><span class="op">)</span>,</span>
+<span>      y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="op">-</span><span class="fl">1</span><span class="op">)</span>,</span>
+<span>      klaster <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Klaster 1"</span>, <span class="st">"Klaster 2"</span><span class="op">)</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, color <span class="op">=</span> <span class="va">klaster</span><span class="op">)</span>,</span>
+<span>    shape <span class="op">=</span> <span class="fl">4</span>,</span>
+<span>    size <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>    stroke <span class="op">=</span> <span class="fl">1.5</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_abline</a></span><span class="op">(</span></span>
+<span>    slope <span class="op">=</span> <span class="fl">7</span><span class="op">/</span><span class="fl">5</span>,</span>
+<span>    intercept <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>    color <span class="op">=</span> <span class="st">"#00BA38"</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
+<span>    legend.position <span class="op">=</span> <span class="st">"none"</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="va">plot_1_1</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div id="fig-iterasi-1-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-iterasi-1-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-iterasi-1-1-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-iterasi-1-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Gambar&nbsp;6: Klaster-klaster yang terbentuk pada langkah pertama dalam iterasi pertama (Iterasi 1-1)
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>Langkah kedua di iterasi pertama adalah menentukan pusat masing-masing klaster dengan cara menentukan reratanya.</p>
+<div class="cell">
+<details open="" class="code-fold"><summary>Kode</summary><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pusat_klaster_1_2</span> <span class="op">&lt;-</span> <span class="va">faithful_1_1</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">klaster</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">eruptions_std</span><span class="op">)</span>,</span>
+<span>    y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">waiting_std</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="va">pusat_klaster_1_2</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 3
+  klaster        x      y
+  &lt;chr&gt;      &lt;dbl&gt;  &lt;dbl&gt;
+1 Klaster 1 -0.730 -0.449
+2 Klaster 2  0.678  0.418</code></pre>
+</div>
+</div>
+<p>Selanjutnya, kita plot pusat klaster-klaster yang baru tersebut ke diagram pencar sebelumnya, menggantikan pusat-pusat klaster yang lama. Hasilnya disajikan pada <a href="#fig-iterasi-1-2" class="quarto-xref">Gambar&nbsp;7</a>.</p>
+<div class="cell">
+<details class="code-fold"><summary>Kode</summary><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Menyiapkan data `faithful_1_2`</span></span>
+<span><span class="va">faithful_1_2</span> <span class="op">&lt;-</span> <span class="va">faithful_1_1</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">eruptions_std</span>, <span class="va">waiting_std</span>, <span class="va">klaster</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>    d1 <span class="op">=</span> <span class="op">(</span><span class="va">eruptions_std</span> <span class="op">-</span> <span class="va">pusat_klaster_1_2</span><span class="op">[[</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span> <span class="op">+</span> <span class="op">(</span><span class="va">waiting_std</span> <span class="op">-</span> <span class="va">pusat_klaster_1_2</span><span class="op">[[</span><span class="fl">1</span>,<span class="fl">3</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span>,</span>
+<span>    d2 <span class="op">=</span> <span class="op">(</span><span class="va">eruptions_std</span> <span class="op">-</span> <span class="va">pusat_klaster_1_2</span><span class="op">[[</span><span class="fl">2</span>,<span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span> <span class="op">+</span> <span class="op">(</span><span class="va">waiting_std</span> <span class="op">-</span> <span class="va">pusat_klaster_1_2</span><span class="op">[[</span><span class="fl">2</span>,<span class="fl">3</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span>,</span>
+<span>    d <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">klaster</span> <span class="op">==</span> <span class="st">"Klaster 1"</span>, <span class="va">d1</span>, <span class="va">d2</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Plot Iterasi 1-2</span></span>
+<span><span class="va">plot_1_2</span> <span class="op">&lt;-</span> <span class="va">faithful_1_2</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
+<span>      x <span class="op">=</span> <span class="va">eruptions_std</span>,</span>
+<span>      y <span class="op">=</span> <span class="va">waiting_std</span>,</span>
+<span>      color <span class="op">=</span> <span class="va">klaster</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span></span>
+<span>    data <span class="op">=</span> <span class="va">pusat_klaster_1_2</span>,</span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
+<span>      x <span class="op">=</span> <span class="va">x</span>,</span>
+<span>      y <span class="op">=</span> <span class="va">y</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    shape <span class="op">=</span> <span class="fl">4</span>,</span>
+<span>    size <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>    stroke <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>    color <span class="op">=</span> <span class="st">"white"</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span></span>
+<span>    data <span class="op">=</span> <span class="va">pusat_klaster_1_2</span>,</span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
+<span>      x <span class="op">=</span> <span class="va">x</span>,</span>
+<span>      y <span class="op">=</span> <span class="va">y</span>,</span>
+<span>      color <span class="op">=</span> <span class="va">klaster</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    shape <span class="op">=</span> <span class="fl">4</span>,</span>
+<span>    size <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>    stroke <span class="op">=</span> <span class="fl">1.5</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
+<span>    legend.position <span class="op">=</span> <span class="st">"none"</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="va">plot_1_2</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div id="fig-iterasi-1-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-iterasi-1-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-iterasi-1-2-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-iterasi-1-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Gambar&nbsp;7: Pusat dua klaster pada langkah kedua dalam iterasi pertama (Iterasi 1-2)
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>Iterasi pertama telah selesai dilakukan. Sekarang kita lanjut ke <a href="#sec-iterasi-2" class="quarto-xref">Bagian&nbsp;3.2</a>.</p>
+</section><section id="sec-iterasi-2" class="level3"><h3 class="anchored" data-anchor-id="sec-iterasi-2">Iterasi 2</h3>
+<p>Kita masuk ke iterasi yang kedua. Pada langkah pertama, kita gunakan pusat klaster-klaster sebelumnya untuk memasukkan titik-titik datanya ke klasternya masing-masing.</p>
+<div class="cell">
+<details open="" class="code-fold"><summary>Kode</summary><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">faithful_2_1</span> <span class="op">&lt;-</span> <span class="va">faithful_1_2</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">d</span>, <span class="op">-</span><span class="va">klaster</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>    d <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">d1</span> <span class="op">&lt;=</span> <span class="va">d2</span>, <span class="va">d1</span>, <span class="va">d2</span><span class="op">)</span>,</span>
+<span>    klaster <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">d1</span> <span class="op">&lt;=</span> <span class="va">d2</span>, <span class="st">"Klaster 1"</span>, <span class="st">"Klaster 2"</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">faithful_2_1</span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code>  eruptions_std waiting_std        d1        d2         d   klaster
+1    0.09831763   0.5960248 1.7796010 0.3683804 0.3683804 Klaster 2
+2   -1.47873278  -1.2428901 1.1897322 7.4106840 1.1897322 Klaster 1
+3   -0.13561152   0.2282418 0.8128978 0.6985503 0.6985503 Klaster 2
+4   -1.05555759  -0.6544374 0.1478379 4.1560559 0.1478379 Klaster 1
+5    0.91575542   1.0373644 4.9200217 0.4404101 0.4404101 Klaster 2
+6   -0.52987412  -1.1693335 0.5583201 3.9784302 0.5583201 Klaster 1</code></pre>
+</div>
+</div>
+<p>Kita visualisasikan titik-titik data dalam <code>faithful</code> beserta dengan klaster-klaster yang telah dihasilkan. Perhatikan <a href="#fig-iterasi-2-1" class="quarto-xref">Gambar&nbsp;8</a>!</p>
+<div class="cell">
+<details class="code-fold"><summary>Kode</summary><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">plot_2_1</span> <span class="op">&lt;-</span> <span class="va">faithful_2_1</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
+<span>      x <span class="op">=</span> <span class="va">eruptions_std</span>,</span>
+<span>      y <span class="op">=</span> <span class="va">waiting_std</span>,</span>
+<span>      color <span class="op">=</span> <span class="va">klaster</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span></span>
+<span>    data <span class="op">=</span> <span class="va">pusat_klaster_1_2</span>,</span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
+<span>      x <span class="op">=</span> <span class="va">x</span>,</span>
+<span>      y <span class="op">=</span> <span class="va">y</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    shape <span class="op">=</span> <span class="fl">4</span>,</span>
+<span>    size <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>    stroke <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>    color <span class="op">=</span> <span class="st">"white"</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span></span>
+<span>    data <span class="op">=</span> <span class="va">pusat_klaster_1_2</span>,</span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
+<span>      x <span class="op">=</span> <span class="va">x</span>,</span>
+<span>      y <span class="op">=</span> <span class="va">y</span>,</span>
+<span>      color <span class="op">=</span> <span class="va">klaster</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    shape <span class="op">=</span> <span class="fl">4</span>,</span>
+<span>    size <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>    stroke <span class="op">=</span> <span class="fl">1.5</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_abline</a></span><span class="op">(</span></span>
+<span>    slope <span class="op">=</span> <span class="op">-</span><span class="fl">1.624589</span>,</span>
+<span>    intercept <span class="op">=</span> <span class="op">-</span><span class="fl">0.058</span>,</span>
+<span>    color <span class="op">=</span> <span class="st">"#00BA38"</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
+<span>    legend.position <span class="op">=</span> <span class="st">"none"</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="va">plot_2_1</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div id="fig-iterasi-2-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-iterasi-2-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-iterasi-2-1-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-iterasi-2-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Gambar&nbsp;8: Klaster-klaster yang terbentuk pada langkah pertama dalam iterasi kedua (Iterasi 2-1)
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>Berikutnya, kita tentukan pusat klaster-klaster yang baru. Caranya sama, yaitu kita tentukan rerata semua titik pada masing-masing klaster.</p>
+<div class="cell">
+<details open="" class="code-fold"><summary>Kode</summary><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pusat_klaster_2_2</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="va">faithful_2_1</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">klaster</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">eruptions_std</span><span class="op">)</span>,</span>
+<span>    y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">waiting_std</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="va">pusat_klaster_2_2</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 3
+  klaster        x      y
+  &lt;chr&gt;      &lt;dbl&gt;  &lt;dbl&gt;
+1 Klaster 1 -1.21  -1.16 
+2 Klaster 2  0.729  0.698</code></pre>
+</div>
+</div>
+<p>Apa selanjutnya? Kita plot pusat-pusat klaster yang baru beserta dengan titik-titik datanya. Hasilnya disajikan pada <a href="#fig-iterasi-2-2" class="quarto-xref">Gambar&nbsp;9</a>.</p>
+<div class="cell">
+<details class="code-fold"><summary>Kode</summary><div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Mempersiapkan `faithful_2_2`</span></span>
+<span><span class="va">faithful_2_2</span> <span class="op">&lt;-</span> <span class="va">faithful_2_1</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">eruptions_std</span>, <span class="va">waiting_std</span>, <span class="va">klaster</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>    d1 <span class="op">=</span> <span class="op">(</span><span class="va">eruptions_std</span> <span class="op">-</span> <span class="va">pusat_klaster_2_2</span><span class="op">[[</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span> <span class="op">+</span> <span class="op">(</span><span class="va">waiting_std</span> <span class="op">-</span> <span class="va">pusat_klaster_2_2</span><span class="op">[[</span><span class="fl">1</span>,<span class="fl">3</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span>,</span>
+<span>    d2 <span class="op">=</span> <span class="op">(</span><span class="va">eruptions_std</span> <span class="op">-</span> <span class="va">pusat_klaster_2_2</span><span class="op">[[</span><span class="fl">2</span>,<span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span> <span class="op">+</span> <span class="op">(</span><span class="va">waiting_std</span> <span class="op">-</span> <span class="va">pusat_klaster_2_2</span><span class="op">[[</span><span class="fl">2</span>,<span class="fl">3</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span>,</span>
+<span>    d <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">klaster</span> <span class="op">==</span> <span class="st">"Klaster 1"</span>, <span class="va">d1</span>, <span class="va">d2</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Plot Iterasi 2-2</span></span>
+<span><span class="va">plot_2_2</span> <span class="op">&lt;-</span> <span class="va">faithful_2_2</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
+<span>      x <span class="op">=</span> <span class="va">eruptions_std</span>,</span>
+<span>      y <span class="op">=</span> <span class="va">waiting_std</span>,</span>
+<span>      color <span class="op">=</span> <span class="va">klaster</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span></span>
+<span>    data <span class="op">=</span> <span class="va">pusat_klaster_2_2</span>,</span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
+<span>      x <span class="op">=</span> <span class="va">x</span>,</span>
+<span>      y <span class="op">=</span> <span class="va">y</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    shape <span class="op">=</span> <span class="fl">4</span>,</span>
+<span>    size <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>    stroke <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>    color <span class="op">=</span> <span class="st">"white"</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span></span>
+<span>    data <span class="op">=</span> <span class="va">pusat_klaster_2_2</span>,</span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
+<span>      x <span class="op">=</span> <span class="va">x</span>,</span>
+<span>      y <span class="op">=</span> <span class="va">y</span>,</span>
+<span>      color <span class="op">=</span> <span class="va">klaster</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    shape <span class="op">=</span> <span class="fl">4</span>,</span>
+<span>    size <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>    stroke <span class="op">=</span> <span class="fl">1.5</span>,</span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
+<span>    legend.position <span class="op">=</span> <span class="st">"none"</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="va">plot_2_2</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div id="fig-iterasi-2-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-iterasi-2-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-iterasi-2-2-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-iterasi-2-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Gambar&nbsp;9: Pusat-pusat klaster pada langkah kedua dalam iterasi kedua (Iterasi 2-2)
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>Mari kita lanjut ke iterasi berikutnya, <a href="#sec-iterasi-3" class="quarto-xref">Bagian&nbsp;3.3</a>.</p>
+</section><section id="sec-iterasi-3" class="level3"><h3 class="anchored" data-anchor-id="sec-iterasi-3">Iterasi 3</h3>
+<p>Pada langkah pertama di iterasi ketiga, kita pasangkan setiap titik ke dalam klasternya masing-masing berdasarkan jaraknya terhadap pusat klaster-klaster yang baru.</p>
+<div class="cell">
+<details open="" class="code-fold"><summary>Kode</summary><div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">faithful_3_1</span> <span class="op">&lt;-</span> <span class="va">faithful_2_2</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">d</span>, <span class="op">-</span><span class="va">klaster</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>    d <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">d1</span> <span class="op">&lt;=</span> <span class="va">d2</span>, <span class="va">d1</span>, <span class="va">d2</span><span class="op">)</span>,</span>
+<span>    klaster <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">d1</span> <span class="op">&lt;=</span> <span class="va">d2</span>, <span class="st">"Klaster 1"</span>, <span class="st">"Klaster 2"</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">faithful_3_1</span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code>  eruptions_std waiting_std         d1        d2          d   klaster
+1    0.09831763   0.5960248 4.81663204 0.4075842 0.40758421 Klaster 2
+2   -1.47873278  -1.2428901 0.07632207 8.6381936 0.07632207 Klaster 1
+3   -0.13561152   0.2282418 3.09872776 0.9672434 0.96724344 Klaster 2
+4   -1.05555759  -0.6544374 0.28368178 5.0114795 0.28368178 Klaster 1
+5    0.91575542   1.0373644 9.37813119 0.1503982 0.15039817 Klaster 2
+6   -0.52987412  -1.1693335 0.46850713 5.0695722 0.46850713 Klaster 1</code></pre>
+</div>
+</div>
+<p>Selanjutnya kita plot titik-titik yang telah masuk ke dalam klasternya masing-masing dengan menggunakan diagram pencar. Perhatikan <a href="#fig-iterasi-3-1" class="quarto-xref">Gambar&nbsp;10</a>!</p>
+<div class="cell">
+<details class="code-fold"><summary>Kode</summary><div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">plot_3_1</span> <span class="op">&lt;-</span> <span class="va">faithful_3_1</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
+<span>      x <span class="op">=</span> <span class="va">eruptions_std</span>,</span>
+<span>      y <span class="op">=</span> <span class="va">waiting_std</span>,</span>
+<span>      color <span class="op">=</span> <span class="va">klaster</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span></span>
+<span>    data <span class="op">=</span> <span class="va">pusat_klaster_2_2</span>,</span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
+<span>      x <span class="op">=</span> <span class="va">x</span>,</span>
+<span>      y <span class="op">=</span> <span class="va">y</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    shape <span class="op">=</span> <span class="fl">4</span>,</span>
+<span>    size <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>    stroke <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>    color <span class="op">=</span> <span class="st">"white"</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span></span>
+<span>    data <span class="op">=</span> <span class="va">pusat_klaster_2_2</span>,</span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
+<span>      x <span class="op">=</span> <span class="va">x</span>,</span>
+<span>      y <span class="op">=</span> <span class="va">y</span>,</span>
+<span>      color <span class="op">=</span> <span class="va">klaster</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    shape <span class="op">=</span> <span class="fl">4</span>,</span>
+<span>    size <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>    stroke <span class="op">=</span> <span class="fl">1.5</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_abline</a></span><span class="op">(</span></span>
+<span>    slope <span class="op">=</span> <span class="op">-</span><span class="fl">1.0436</span>,</span>
+<span>    intercept <span class="op">=</span> <span class="op">-</span><span class="fl">0.486595</span>,</span>
+<span>    color <span class="op">=</span> <span class="st">"#00BA38"</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
+<span>    legend.position <span class="op">=</span> <span class="st">"none"</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="va">plot_3_1</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div id="fig-iterasi-3-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-iterasi-3-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-iterasi-3-1-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-iterasi-3-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Gambar&nbsp;10: Klaster-klaster yang terbentuk pada langkah pertama dalam iterasi ketiga (Iterasi 3-1)
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>Pada langkah kedua, kita tentukan pusat-pusat klaster yang baru. Caranya adalah sebagai berikut.</p>
+<div class="cell">
+<details open="" class="code-fold"><summary>Kode</summary><div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pusat_klaster_3_2</span> <span class="op">&lt;-</span> <span class="va">faithful_3_1</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">klaster</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">eruptions_std</span><span class="op">)</span>,</span>
+<span>    y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">waiting_std</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="va">pusat_klaster_3_2</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 3
+  klaster        x      y
+  &lt;chr&gt;      &lt;dbl&gt;  &lt;dbl&gt;
+1 Klaster 1 -1.25  -1.19 
+2 Klaster 2  0.715  0.680</code></pre>
+</div>
+</div>
+<p>Kita plot pusat klaster-klaster yang baru tersebut bersama dengan titik-titik data sebelumnya. Perhatikan <a href="#fig-iterasi-3-2" class="quarto-xref">Gambar&nbsp;11</a>!</p>
+<div class="cell">
+<details class="code-fold"><summary>Kode</summary><div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Mempersiapkan `faithful_3_2`</span></span>
+<span><span class="va">faithful_3_2</span> <span class="op">&lt;-</span> <span class="va">faithful_3_1</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">eruptions_std</span>, <span class="va">waiting_std</span>, <span class="va">klaster</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>    d1 <span class="op">=</span> <span class="op">(</span><span class="va">eruptions_std</span> <span class="op">-</span> <span class="va">pusat_klaster_3_2</span><span class="op">[[</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span> <span class="op">+</span> <span class="op">(</span><span class="va">waiting_std</span> <span class="op">-</span> <span class="va">pusat_klaster_3_2</span><span class="op">[[</span><span class="fl">1</span>,<span class="fl">3</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span>,</span>
+<span>    d2 <span class="op">=</span> <span class="op">(</span><span class="va">eruptions_std</span> <span class="op">-</span> <span class="va">pusat_klaster_3_2</span><span class="op">[[</span><span class="fl">2</span>,<span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span> <span class="op">+</span> <span class="op">(</span><span class="va">waiting_std</span> <span class="op">-</span> <span class="va">pusat_klaster_3_2</span><span class="op">[[</span><span class="fl">2</span>,<span class="fl">3</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span>,</span>
+<span>    d <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">klaster</span> <span class="op">==</span> <span class="st">"Klaster 1"</span>, <span class="va">d1</span>, <span class="va">d2</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Plot Iterasi 3-2</span></span>
+<span><span class="va">plot_3_2</span> <span class="op">&lt;-</span> <span class="va">faithful_3_2</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
+<span>      x <span class="op">=</span> <span class="va">eruptions_std</span>,</span>
+<span>      y <span class="op">=</span> <span class="va">waiting_std</span>,</span>
+<span>      color <span class="op">=</span> <span class="va">klaster</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span></span>
+<span>    data <span class="op">=</span> <span class="va">pusat_klaster_3_2</span>,</span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
+<span>      x <span class="op">=</span> <span class="va">x</span>,</span>
+<span>      y <span class="op">=</span> <span class="va">y</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    shape <span class="op">=</span> <span class="fl">4</span>,</span>
+<span>    size <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>    stroke <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>    color <span class="op">=</span> <span class="st">"white"</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span></span>
+<span>    data <span class="op">=</span> <span class="va">pusat_klaster_3_2</span>,</span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
+<span>      x <span class="op">=</span> <span class="va">x</span>,</span>
+<span>      y <span class="op">=</span> <span class="va">y</span>,</span>
+<span>      color <span class="op">=</span> <span class="va">klaster</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    shape <span class="op">=</span> <span class="fl">4</span>,</span>
+<span>    size <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>    stroke <span class="op">=</span> <span class="fl">1.5</span>,</span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
+<span>    legend.position <span class="op">=</span> <span class="st">"none"</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="va">plot_3_2</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div id="fig-iterasi-3-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-iterasi-3-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-iterasi-3-2-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-iterasi-3-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Gambar&nbsp;11: Pusat-pusat klaster pada langkah kedua dalam iterasi ketiga (Iterasi 2-2)
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>Kita telah menyelesaikan langkah kedua dalam iterasi ketiga. Sekarang, mari kita lanjut ke iterasi berikutnya!</p>
+</section><section id="sec-iterasi-4" class="level3"><h3 class="anchored" data-anchor-id="sec-iterasi-4">Iterasi 4</h3>
+<p>Apa langkah pertama di iterasi keempat ini? Ya! Kita masukkan setiap titik ke dalam klasternya berdasarkan jaraknya ke pusat klaster-klaster yang terakhir.</p>
+<div class="cell">
+<details open="" class="code-fold"><summary>Kode</summary><div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">faithful_4_1</span> <span class="op">&lt;-</span> <span class="va">faithful_3_2</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">d</span>, <span class="op">-</span><span class="va">klaster</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>    d <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">d1</span> <span class="op">&lt;=</span> <span class="va">d2</span>, <span class="va">d1</span>, <span class="va">d2</span><span class="op">)</span>,</span>
+<span>    klaster <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">d1</span> <span class="op">&lt;=</span> <span class="va">d2</span>, <span class="st">"Klaster 1"</span>, <span class="st">"Klaster 2"</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">faithful_4_1</span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code>  eruptions_std waiting_std         d1        d2          d   klaster
+1    0.09831763   0.5960248 4.99975759 0.3869199 0.38691994 Klaster 2
+2   -1.47873278  -1.2428901 0.05581732 8.5091284 0.05581732 Klaster 1
+3   -0.13561152   0.2282418 3.24674404 0.9271753 0.92717528 Klaster 2
+4   -1.05555759  -0.6544374 0.32272192 4.9148263 0.32272192 Klaster 1
+5    0.91575542   1.0373644 9.64038624 0.1680127 0.16801271 Klaster 2
+6   -0.52987412  -1.1693335 0.51720760 4.9695885 0.51720760 Klaster 1</code></pre>
+</div>
+</div>
+<p>Sekarang setiap titik telah memiliki klasternya masing-masing. Kita plot titik-titik tersebut ke dalam diagram pencar. Perhatikan <a href="#fig-iterasi-4-1" class="quarto-xref">Gambar&nbsp;12</a>!</p>
+<div class="cell">
+<details class="code-fold"><summary>Kode</summary><div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">plot_4_1</span> <span class="op">&lt;-</span> <span class="va">faithful_4_1</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
+<span>      x <span class="op">=</span> <span class="va">eruptions_std</span>,</span>
+<span>      y <span class="op">=</span> <span class="va">waiting_std</span>,</span>
+<span>      color <span class="op">=</span> <span class="va">klaster</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span></span>
+<span>    data <span class="op">=</span> <span class="va">pusat_klaster_3_2</span>,</span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
+<span>      x <span class="op">=</span> <span class="va">x</span>,</span>
+<span>      y <span class="op">=</span> <span class="va">y</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    shape <span class="op">=</span> <span class="fl">4</span>,</span>
+<span>    size <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>    stroke <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>    color <span class="op">=</span> <span class="st">"white"</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span></span>
+<span>    data <span class="op">=</span> <span class="va">pusat_klaster_3_2</span>,</span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
+<span>      x <span class="op">=</span> <span class="va">x</span>,</span>
+<span>      y <span class="op">=</span> <span class="va">y</span>,</span>
+<span>      color <span class="op">=</span> <span class="va">klaster</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    shape <span class="op">=</span> <span class="fl">4</span>,</span>
+<span>    size <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>    stroke <span class="op">=</span> <span class="fl">1.5</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_abline</a></span><span class="op">(</span></span>
+<span>    slope <span class="op">=</span> <span class="op">-</span><span class="fl">1.0508</span>,</span>
+<span>    intercept <span class="op">=</span> <span class="op">-</span><span class="fl">0.534564</span>,</span>
+<span>    color <span class="op">=</span> <span class="st">"#00BA38"</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
+<span>    legend.position <span class="op">=</span> <span class="st">"none"</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="va">plot_4_1</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div id="fig-iterasi-4-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-iterasi-4-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-iterasi-4-1-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-iterasi-4-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Gambar&nbsp;12: Klaster-klaster yang terbentuk pada langkah pertama dalam iterasi keempat (Iterasi 4-1)
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>Kita lanjut ke langkah kedua. Di langkah kedua ini, kita cari pusat klaster-klasternya yang baru.</p>
+<div class="cell">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pusat_klaster_4_2</span> <span class="op">&lt;-</span> <span class="va">faithful_4_1</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">klaster</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">eruptions_std</span><span class="op">)</span>,</span>
+<span>    y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">waiting_std</span><span class="op">)</span>,</span>
+<span>    .groups <span class="op">=</span> <span class="st">"drop"</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="va">pusat_klaster_4_2</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 3
+  klaster        x      y
+  &lt;chr&gt;      &lt;dbl&gt;  &lt;dbl&gt;
+1 Klaster 1 -1.26  -1.20 
+2 Klaster 2  0.708  0.675</code></pre>
+</div>
+</div>
+<p>Berikutnya, kita plot pusat-pusat klaster yang baru tersebut bersama dengan titik-titik datanya. Perhatikan gambar berikut!</p>
+<div class="cell">
+<details class="code-fold"><summary>Kode</summary><div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Mempersiapkan `faithful_4_2`</span></span>
+<span><span class="va">faithful_4_2</span> <span class="op">&lt;-</span> <span class="va">faithful_4_1</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">eruptions_std</span>, <span class="va">waiting_std</span>, <span class="va">klaster</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>    d1 <span class="op">=</span> <span class="op">(</span><span class="va">eruptions_std</span> <span class="op">-</span> <span class="va">pusat_klaster_4_2</span><span class="op">[[</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span> <span class="op">+</span> <span class="op">(</span><span class="va">waiting_std</span> <span class="op">-</span> <span class="va">pusat_klaster_4_2</span><span class="op">[[</span><span class="fl">1</span>,<span class="fl">3</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span>,</span>
+<span>    d2 <span class="op">=</span> <span class="op">(</span><span class="va">eruptions_std</span> <span class="op">-</span> <span class="va">pusat_klaster_4_2</span><span class="op">[[</span><span class="fl">2</span>,<span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span> <span class="op">+</span> <span class="op">(</span><span class="va">waiting_std</span> <span class="op">-</span> <span class="va">pusat_klaster_4_2</span><span class="op">[[</span><span class="fl">2</span>,<span class="fl">3</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span>,</span>
+<span>    d <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">klaster</span> <span class="op">==</span> <span class="st">"Klaster 1"</span>, <span class="va">d1</span>, <span class="va">d2</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Plot Iterasi 4-2</span></span>
+<span><span class="va">plot_4_2</span> <span class="op">&lt;-</span> <span class="va">faithful_4_2</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
+<span>      x <span class="op">=</span> <span class="va">eruptions_std</span>,</span>
+<span>      y <span class="op">=</span> <span class="va">waiting_std</span>,</span>
+<span>      color <span class="op">=</span> <span class="va">klaster</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span></span>
+<span>    data <span class="op">=</span> <span class="va">pusat_klaster_4_2</span>,</span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
+<span>      x <span class="op">=</span> <span class="va">x</span>,</span>
+<span>      y <span class="op">=</span> <span class="va">y</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    shape <span class="op">=</span> <span class="fl">4</span>,</span>
+<span>    size <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>    stroke <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>    color <span class="op">=</span> <span class="st">"white"</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span></span>
+<span>    data <span class="op">=</span> <span class="va">pusat_klaster_4_2</span>,</span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
+<span>      x <span class="op">=</span> <span class="va">x</span>,</span>
+<span>      y <span class="op">=</span> <span class="va">y</span>,</span>
+<span>      color <span class="op">=</span> <span class="va">klaster</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    shape <span class="op">=</span> <span class="fl">4</span>,</span>
+<span>    size <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>    stroke <span class="op">=</span> <span class="fl">1.5</span>,</span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
+<span>    legend.position <span class="op">=</span> <span class="st">"none"</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="va">plot_4_2</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div id="fig-iterasi-4-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-iterasi-4-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-iterasi-4-2-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-iterasi-4-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Gambar&nbsp;13: Pusat-pusat klaster pada langkah kedua dalam iterasi keempat (Iterasi 4-2)
+</figcaption></figure>
+</div>
+</div>
+</div>
+</section><section id="sec-kilas-balik" class="level3"><h3 class="anchored" data-anchor-id="sec-kilas-balik">Kilas Balik</h3>
+<p>Sampai di sini, kita telah melakukan empat kali iterasi. Apakah kita perlu melakukan iterasi lagi? Ataukah iterasinya sudah cukup? Untuk menjawab pertanyaan-pertanyaan tersebut, kita dapat menggunakan <span class="math inline">\(WCSS\)</span> (<em>Within-Cluster Sum of Squares</em>) atau jumlah kuadrat jarak setiap titik ke pusat klasternya. Dengan demikian, <span class="math inline">\(WCSS\)</span> ditentukan dengan <a href="#eq-wcss" class="quarto-xref">Persamaan&nbsp;1</a>.</p>
+<p><span id="eq-wcss"><span class="math display">\[
+WCSS=\sum_{j=1}^{k}\sum_{x_{i}\in C_{j}}^{}\left\| x_{i}-p_{j}\right\|^2
+\tag{1}\]</span></span></p>
+<p>Dengan rumus ini, kita dapat menentukan <span class="math inline">\(WCSS\)</span> pada langkah pertama dalam iterasi pertama sebagai berikut.</p>
+<div class="cell">
+<details open="" class="code-fold"><summary>Kode</summary><div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wcss_1_1</span> <span class="op">&lt;-</span> <span class="va">faithful_1_1</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span></span>
+<span>    wcss <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="va">wcss_1_1</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code>      wcss
+1 1046.952</code></pre>
+</div>
+</div>
+<p>Dengan cara yang serupa, kita dapat menentukan <span class="math inline">\(WCSS\)</span> untuk langkah pertama dan kedua dalam semua iterasi. Kita simpan nilai-nilai <span class="math inline">\(WCSS\)</span> tersebut ke dalam <code>wcss_df</code>.</p>
+<div class="cell">
+<details open="" class="code-fold"><summary>Kode</summary><div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">daftar_faithful</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<span>  <span class="st">"1_1"</span> <span class="op">=</span> <span class="va">faithful_1_1</span>,</span>
+<span>  <span class="st">"1_2"</span> <span class="op">=</span> <span class="va">faithful_1_2</span>,</span>
+<span>  <span class="st">"2_1"</span> <span class="op">=</span> <span class="va">faithful_2_1</span>,</span>
+<span>  <span class="st">"2_2"</span> <span class="op">=</span> <span class="va">faithful_2_2</span>,</span>
+<span>  <span class="st">"3_1"</span> <span class="op">=</span> <span class="va">faithful_3_1</span>,</span>
+<span>  <span class="st">"3_2"</span> <span class="op">=</span> <span class="va">faithful_3_2</span>,</span>
+<span>  <span class="st">"4_1"</span> <span class="op">=</span> <span class="va">faithful_4_1</span>,</span>
+<span>  <span class="st">"4_2"</span> <span class="op">=</span> <span class="va">faithful_4_2</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">wcss_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map_dfr.html">map_dfr</a></span><span class="op">(</span></span>
+<span>  <span class="va">daftar_faithful</span>,</span>
+<span>  <span class="op">~</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span><span class="va">.x</span>, wcss <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  .id <span class="op">=</span> <span class="st">"faithful"</span></span>
+<span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>    iterasi <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span>from <span class="op">=</span> <span class="fl">0.5</span>, to <span class="op">=</span> <span class="fl">4</span>, by <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>,</span>
+<span>    group <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/as_factor.html">as_factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"M"</span>, <span class="st">"E"</span><span class="op">)</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="va">wcss_df</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code>  faithful       wcss iterasi group
+1      1_1 1046.95159     0.5     M
+2      1_2  356.18666     1.0     E
+3      2_1  170.24221     1.5     M
+4      2_2   80.67025     2.0     E
+5      3_1   79.61314     2.5     M
+6      3_2   79.34288     3.0     E
+7      4_1   79.31314     3.5     M
+8      4_2   79.28340     4.0     E</code></pre>
+</div>
+</div>
+<p>Kita telah memiliki untuk setiap langkahnya dalam <code>wcss_df</code>. Sekarang, kita dapat melihat tren nilai <span class="math inline">\(WCSS\)</span> tersebut. Perhatikan <a href="#fig-tren-wcss" class="quarto-xref">Gambar&nbsp;14</a>!</p>
+<div class="cell">
+<details class="code-fold"><summary>Kode</summary><div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wcss_df</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">iterasi</span>, y <span class="op">=</span> <span class="va">wcss</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span></span>
+<span>    col <span class="op">=</span> <span class="st">"#00BA38"</span>,</span>
+<span>    linewidth <span class="op">=</span> <span class="fl">1</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>col <span class="op">=</span> <span class="va">group</span><span class="op">)</span>,</span>
+<span>    shape <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>    size <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>    stroke <span class="op">=</span> <span class="fl">1.5</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
+<span>    legend.position <span class="op">=</span> <span class="st">"none"</span></span>
+<span>  <span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div id="fig-tren-wcss" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-tren-wcss-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-tren-wcss-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tren-wcss-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Gambar&nbsp;14: Tren nilai WCSS dari langkah pertama iterasi pertama sampai langkah kedua iterasi keempat
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>Berdasarkan <a href="#fig-tren-wcss" class="quarto-xref">Gambar&nbsp;14</a>, kita dapat melihat bahwa nilai <span class="math inline">\(WCSS\)</span> sudah konvergen pada iterasi kedua. Bahkan, dari iterasi ketiga sampai keempat, perubahan anggota kluster sudah tidak signifikan. Oleh karena itu, iterasinya kita cukupkan sampai iterasi keempat. Untuk melihat kembali apa yang telah kita lakukan mulai iterasi pertama sampai keempat, perhatikan <a href="#fig-semua-iterasi" class="quarto-xref">Gambar&nbsp;15</a>!</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-semua-iterasi" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-semua-iterasi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-semua-iterasi-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-semua-iterasi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Gambar&nbsp;15: Empat iterasi klasterasisasi k-rerata terhadap data <code>faithful</code> yang dinormalbakukan.
+</figcaption></figure>
+</div>
+</div>
+</div>
+</section></section><section id="sec-klasterisasi-k-rerata-dengan-fungsi-kmeans" class="level2"><h2 class="anchored" data-anchor-id="sec-klasterisasi-k-rerata-dengan-fungsi-kmeans">Klasterisasi <span class="math inline">\(K\)</span>-Rerata dengan Fungsi <code>kmeans()</code>
+</h2>
+<p>Pada <a href="#sec-penerapan-algoritma-k-rerata" class="quarto-xref">Bagian&nbsp;3</a>, kita telah melakukan klasterisasi <span class="math inline">\(k\)</span>-rerata langkah demi langkah, dari iterasi pertama sampai keempat. Banyak hal yang telah kita lakukan. Apakah ada fungsi di R yang dapat melakukan klasterisasi <span class="math inline">\(k\)</span>-rerata secara otomatis dan cepat? Tentu saja ada! Fungsi itu adalah <code><a href="https://rdrr.io/r/stats/kmeans.html">kmeans()</a></code>.</p>
+<p>Untuk membagi data kita sebelumnya, yaitu <code>faithful,</code> menjadi <span class="math inline">\(k=2\)</span> klaster, kita gunakan kode berikut.</p>
+<div class="cell">
+<details open="" class="code-fold"><summary>Kode</summary><div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Menyiapkan dataframe untuk `kmeans()`</span></span>
+<span><span class="va">faithful_std</span> <span class="op">&lt;-</span> <span class="va">faithful</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">eruptions_std</span>, <span class="va">waiting_std</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Menerapkan `kmeans()`</span></span>
+<span><span class="va">cl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/kmeans.html">kmeans</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">faithful_std</span>, centers <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Memasukkan klaster yang dihasilkan ke dalam `faithful`</span></span>
+<span><span class="va">faithful</span> <span class="op">&lt;-</span> <span class="va">faithful</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>    klaster <span class="op">=</span> <span class="va">cl</span><span class="op">$</span><span class="va">cluster</span></span>
+<span>  <span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Ingin tahu bagaimana hasilnya? Mari kita plot diagram pencar data <code>faithful</code>. Perhatikan <a href="#fig-diagram-pencar-kmeans" class="quarto-xref">Gambar&nbsp;16</a>!</p>
+<div class="cell">
+<details class="code-fold"><summary>Kode</summary><div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">faithful</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>    klaster <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/as_factor.html">as_factor</a></span><span class="op">(</span><span class="fl">3</span> <span class="op">-</span> <span class="va">klaster</span><span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">eruptions_std</span>, y <span class="op">=</span> <span class="va">waiting_std</span>, color <span class="op">=</span> <span class="va">klaster</span><span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
+<span>    legend.position <span class="op">=</span> <span class="st">"none"</span></span>
+<span>  <span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div id="fig-diagram-pencar-kmeans" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-diagram-pencar-kmeans-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-diagram-pencar-kmeans-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diagram-pencar-kmeans-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Gambar&nbsp;16: Klaster-klaster dalam data <code>faithful</code> hasil klasterisasi k-rerata dengan fungsi <code><a href="https://rdrr.io/r/stats/kmeans.html">kmeans()</a></code>
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>Apakah <a href="#fig-diagram-pencar-kmeans" class="quarto-xref">Gambar&nbsp;16</a> sama dengan <a href="#fig-iterasi-4-2" class="quarto-xref">Gambar&nbsp;13</a>? Ternyata sama hasilnya.</p>
+</section><section id="sec-catatan-akhir" class="level2"><h2 class="anchored" data-anchor-id="sec-catatan-akhir">Catatan Akhir</h2>
+<p>Kita telah mempelajari klasterisasi <span class="math inline">\(k\)</span>-rerata. Mengapa kita perlu mempelajari metode ini? Jawabannya telah kita pelajari pada <a href="#sec-paradoks-simpson" class="quarto-xref">Bagian&nbsp;1</a>. Setelah itu, bagaimana kerja algoritma <span class="math inline">\(k\)</span>-rerata juga telah kita bahas di <a href="#sec-klasterisasi-k-rerata" class="quarto-xref">Bagian&nbsp;2</a>. Langkah-langkah rinci algoritma tersebut telah diilustrasikan pada <a href="#sec-penerapan-algoritma-k-rerata" class="quarto-xref">Bagian&nbsp;3</a>. Tak hanya itu, <a href="#sec-klasterisasi-k-rerata-dengan-fungsi-kmeans" class="quarto-xref">Bagian&nbsp;4</a> juga memberikan jalan cepat dengan fungsi <code><a href="https://rdrr.io/r/stats/kmeans.html">kmeans()</a></code>.</p>
+<p>Sekarang, kita kembali ke permasalahan awal. Bagian awal artikel ini menyebutkan bahwa klasterisasi <span class="math inline">\(k\)</span>-means dapat digunakan untuk memanipulasi gambar sehingga menghasilkan <a href="#fig-klaterisasi-gambar" class="quarto-xref">Gambar&nbsp;1</a>. Bagaimana caranya? Tutorial selengkapnya dapat ditemukan pada pos berikutnya!</p>
+
+
+</section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Kembali ke atas</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Penggunaan Kembali</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-copyright"><h2 class="anchored quarto-appendix-heading">Hak Cipta</h2><div class="quarto-appendix-contents"><div>© 2025 Yosep Dwi Kristanto</div></div></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Tersalin!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Tersalin!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/jelajahstatid\.github\.io");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+        for (let i=0; i<annoteTargets.length; i++) {
+          const annoteTarget = annoteTargets[i];
+          const targetCell = annoteTarget.getAttribute("data-target-cell");
+          const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+          const contentFn = () => {
+            const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+            if (content) {
+              const tipContent = content.cloneNode(true);
+              tipContent.classList.add("code-annotation-tip-content");
+              return tipContent.outerHTML;
+            }
+          }
+          const config = {
+            allowHTML: true,
+            content: contentFn,
+            onShow: (instance) => {
+              selectCodeLines(instance.reference);
+              instance.reference.classList.add('code-annotation-active');
+              window.tippy.hideAll();
+            },
+            onHide: (instance) => {
+              unselectCodeLines();
+              instance.reference.classList.remove('code-annotation-active');
+            },
+            maxWidth: 300,
+            delay: [50, 0],
+            duration: [200, 0],
+            offset: [5, 10],
+            arrow: true,
+            trigger: 'click',
+            appendTo: function(el) {
+              return el.parentElement.parentElement.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'quarto',
+            placement: 'right',
+            positionFixed: true,
+            popperOptions: {
+              modifiers: [
+              {
+                name: 'flip',
+                options: {
+                  flipVariations: false, // true by default
+                  allowedAutoPlacements: ['right'],
+                  fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+                },
+              },
+              {
+                name: 'preventOverflow',
+                options: {
+                  mainAxis: false,
+                  altAxis: false
+                }
+              }
+              ]        
+            }      
+          };
+          window.tippy(annoteTarget, config); 
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><input type="hidden" id="giscus-base-theme" value="light"><input type="hidden" id="giscus-alt-theme" value="dark"><script>
+  function loadGiscus() {
+    // Function to get the theme based on body class
+    const getTheme = () => {
+      let baseTheme = document.getElementById('giscus-base-theme').value;
+      let altTheme = document.getElementById('giscus-alt-theme').value;
+      return document.body.classList.contains('quarto-dark') ? altTheme : baseTheme;
+    };
+    const script = document.createElement("script");
+    script.src = "https://giscus.app/client.js";
+    script.async = true;
+    script.dataset.repo = "jelajahstatid/jelajahstatid.github.io";
+    script.dataset.repoId = "R_kgDOMcGEtw";
+    script.dataset.category = "Blog";
+    script.dataset.categoryId = "";
+    script.dataset.mapping = "title";
+    script.dataset.reactionsEnabled = "1";
+    script.dataset.emitMetadata = "0";
+    script.dataset.inputPosition = "top";
+    script.dataset.theme = getTheme();
+    script.dataset.lang = "en";
+    script.crossOrigin = "anonymous";
+    // Append the script to the desired div instead of at the end of the body
+    document.getElementById("quarto-content").appendChild(script);
+  }
+  loadGiscus();
+</script>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2025 Jelajah Statistika dan Ilmu Data</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/jelajahstatid/jelajahstatid.github.io/edit/main/pos/2025-09-klaterisasi-k-rerata/index.qmd" class="toc-action"><i class="bi bi-github"></i>Sunting laman ini</a></li><li><a href="https://github.com/jelajahstatid/jelajahstatid.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Laporkan sebuah isu</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Blog ini dikembangkan dengan <a href="https://quarto.org/" class="external" target="_blank">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+</body></html>
