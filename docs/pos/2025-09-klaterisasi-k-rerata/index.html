@@ -395,6 +395,7 @@ Gambar&nbsp;5: Diagram pencar hubungan antara <code>eruptions</code> dan <code>w
 <p><em>Okay!</em> Data <code>faithful</code> telah siap dihidangkan untuk klasterisasi <span class="math inline">\(k\)</span>-rerata dengan <span class="math inline">\(k=2\)</span>. Tak usah berlama-lama, mari kita mulai ke iterasi yang pertama.</p>
 <section id="sec-iterasi-1" class="level3"><h3 class="anchored" data-anchor-id="sec-iterasi-1">Iterasi 1</h3>
 <p>Kita telah menentukan <span class="math inline">\(k=2\)</span>, sehingga algoritma tersebut selanjutnya menentukan dua titik secara acak sebagai pusat klaster-klaster awalnya. Untuk alasan demonstrasi, kita tentukan dua titik tersebut adalah <span class="math inline">\(\left( -1.4, 1 \right)\)</span> dan <span class="math inline">\(\left( 1.4, -1 \right)\)</span>. Berikutnya, kita tentukan jarak setiap titik ke pusat klaster-klaster awal tersebut. Titik-titik yang lebih dekat ke <span class="math inline">\(\left( -1.4, 1 \right)\)</span> berarti masuk ke “Klaster 1”, sedangkan titik-titik yang lebih dekat ke <span class="math inline">\(\left( 1.4, -1 \right)\)</span> berarti masuk ke “Klaster 2”.</p>
+<p>Untuk data dengan dua variabel dan <span class="math inline">\(k=2\)</span>, penentuan klaster ini juga dapat dilakukan dengan menggunakan garis yang tegak lurus dengan ruas garis yang menghubungkan dua pusat klaster tersebut dan membagi ruas garis tersebut menjadi dua sama panjang. Titik-titik data yang berada pada sisi yang sama dengan pusat klaster pertama masuk ke “Klaster 1”, sedangkan sisanya masuk ke “Klaster 2”.</p>
 <div class="cell">
 <details open="" class="code-fold"><summary>Kode</summary><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">faithful_1_1</span> <span class="op">&lt;-</span> <span class="va">faithful</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">eruptions_std</span>, <span class="va">waiting_std</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -1022,6 +1023,12 @@ Gambar&nbsp;13: Pusat-pusat klaster pada langkah kedua dalam iterasi keempat (It
 <p><span id="eq-wcss"><span class="math display">\[
 WCSS=\sum_{j=1}^{k}\sum_{x_{i}\in C_{j}}^{}\left\| x_{i}-p_{j}\right\|^2
 \tag{1}\]</span></span></p>
+<ul>
+<li><p><span class="math inline">\(C_{j}\)</span> adalah klaster ke-<span class="math inline">\(j\)</span>.</p></li>
+<li><p><span class="math inline">\(x_{i}\)</span> adalah sebuah titik data dalam klaster <span class="math inline">\(C_{j}\)</span>.</p></li>
+<li><p><span class="math inline">\(p_{j}\)</span> adalah pusat klaster (<em>centroid</em>) dari <span class="math inline">\(C_{j}\)</span>.</p></li>
+<li><p><span class="math inline">\(\left\| x_{i} - p_{j} \right\|^2\)</span> adalah kuadrat jarak antara titik data dan pusat klasternya.</p></li>
+</ul>
 <p>Dengan rumus ini, kita dapat menentukan <span class="math inline">\(WCSS\)</span> pada langkah pertama dalam iterasi pertama sebagai berikut.</p>
 <div class="cell">
 <details open="" class="code-fold"><summary>Kode</summary><div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">wcss_1_1</span> <span class="op">&lt;-</span> <span class="va">faithful_1_1</span> <span class="op">|&gt;</span> </span>

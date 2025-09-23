@@ -205,6 +205,8 @@ head(faithful)
 
 Kita telah menentukan $k=2$, sehingga algoritma tersebut selanjutnya menentukan dua titik secara acak sebagai pusat klaster-klaster awalnya. Untuk alasan demonstrasi, kita tentukan dua titik tersebut adalah $\left( -1.4, 1 \right)$ dan $\left( 1.4, -1 \right)$. Berikutnya, kita tentukan jarak setiap titik ke pusat klaster-klaster awal tersebut. Titik-titik yang lebih dekat ke $\left( -1.4, 1 \right)$ berarti masuk ke "Klaster 1", sedangkan titik-titik yang lebih dekat ke $\left( 1.4, -1 \right)$ berarti masuk ke "Klaster 2".
 
+Untuk data dengan dua variabel dan $k=2$, penentuan klaster ini juga dapat dilakukan dengan menggunakan garis yang tegak lurus dengan ruas garis yang menghubungkan dua pusat klaster tersebut dan membagi ruas garis tersebut menjadi dua sama panjang. Titik-titik data yang berada pada sisi yang sama dengan pusat klaster pertama masuk ke "Klaster 1", sedangkan sisanya masuk ke "Klaster 2".
+
 ```{r}
 #| code-fold: show
 
@@ -781,6 +783,14 @@ Sampai di sini, kita telah melakukan empat kali iterasi. Apakah kita perlu melak
 $$
 WCSS=\sum_{j=1}^{k}\sum_{x_{i}\in C_{j}}^{}\left\| x_{i}-p_{j}\right\|^2
 $$ {#eq-wcss}
+
+-   $C_{j}$ adalah klaster ke-$j$.
+
+-   $x_{i}$ adalah sebuah titik data dalam klaster $C_{j}$.
+
+-   $p_{j}$ adalah pusat klaster (*centroid*) dari $C_{j}$.
+
+-   $\left\| x_{i} - p_{j} \right\|^2$ adalah kuadrat jarak antara titik data dan pusat klasternya.
 
 Dengan rumus ini, kita dapat menentukan $WCSS$ pada langkah pertama dalam iterasi pertama sebagai berikut.
 
