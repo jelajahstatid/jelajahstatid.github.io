@@ -31,11 +31,11 @@ editor_options:
   chunk_output_type: console
 ---
 
-Apa yang kamu lihat dari sebuah foto? Mungkin kamu melihat kenangan yang tersimpan. Mungkin kamu juga ingin menggali pesan yang tersirat. Oke, mari kita melihat sebuah foto atau gambar dari sudut pandang yang berbeda! Kita dapat melihat sebuah gambar sebagai matriks. Perhatikan @fig-meme-epsilon!
+Apa yang kamu lihat dari sebuah foto? Mungkin kamu melihat kenangan yang tersimpan. Mungkin kamu juga ingin menggali pesan yang tersirat. Oke, mari kita melihat sebuah foto atau gambar dari sudut pandang yang berbeda! Kita dapat melihat sebuah gambar sebagai matriks.
 
 ![Meme seseorang yang menatap selembar kertas mungil secara intens](aset/epsilon_terlalu_kecil-01.png){#fig-meme-epsilon fig-alt="Meme orang yang menatap selembar kertas mungil secara intens"}
 
-Apa yang dilihat oleh orang dalam meme pada @fig-meme-epsilon? Gambar tersebut terlalu kecil. Mari kita memperbesar gambar tersebut dan menaruhnya ke bidang koordinat Kartesius. Kita lakukan hal itu dengan pemrograman R. Untuk itu, kita panggil paket-paket yang kita perlukan.
+Perhatikan @fig-meme-epsilon! Apa yang dilihat oleh orang dalam meme pada @fig-meme-epsilon? Karena terlalu kecil, mari kita memperbesarnya dan menaruhnya ke bidang koordinat Kartesius. Kita lakukan hal itu dengan [pemrograman R](https://www.R-project.org/ "R: A Language and Environment for Statistical Computing"){target="_blank"}. Untuk itu, kita panggil paket-paket yang kita perlukan.
 
 ```{r}
 #| code-fold: show
@@ -194,7 +194,7 @@ Untuk menyerhanakan warna foto sebelah kiri pada @fig-foto-asli-dan-hasil-klaste
 
 -   Mengekstrak data warna R, G, dan B dari foto.
 
--   Klasterisasi $k$-rerata terhadap data data warna.
+-   Klasterisasi $k$-rerata terhadap data warna.
 
 -   Mengganti setiap warna pada foto asli dengan pusat klasternya.
 
@@ -304,11 +304,9 @@ hasil_krerata <- kmeans(
 
 ```
 
-Hasil klasterisasi tersebut kita simpan sebagai sebuah objek dengan nama `hasil_krerata`. Terdapat informasi penting yang terkandung dalam `hasil_krerata`, yaitu `cluster` (klaster) dan `centers` (pusat setiap klaster). Kita gunakan kedua informasi tersebut untuk menyederhanakan warna. Kita lakukan pada @sec-menyederhanakan-warna.
+Hasil klasterisasi tersebut kita simpan sebagai sebuah objek dengan nama `hasil_krerata`. Terdapat informasi penting yang terkandung dalam `hasil_krerata`, yaitu `cluster` (klaster) dan `centers` (pusat setiap klaster). Kedua informasi tersebut berguna untuk mengidentifikasi klaster-klaster warnanya dan menyederhanakan warna-warnanya dengan pusat klasternya.
 
-## Menyederhanakan Warna {#sec-menyederhanakan-warna}
-
-Tiba saatnya kita menyederhanakan warna. Caranya adalah dengan mengganti setiap warna dengan pusat klasternya. Oleh karena itu, kita akan menggunakan informasi `cluster` dan `centers` dari `hasil_krerata`. Hasil penyederhanaan warna ini kemudian kita namai dengan `rgb_foto_klaster_df`. Kita tampilkan juga baris-baris awal data tersebut agar kita dapat melihat hasilnya.
+Sekarang, kita membuat `rgb_foto_klaster_df` yang memuat informasi klaster dan pusatnya tersebut dalam kolom-kolom `klaster` dan `pusat_hex`. Untuk melihat beberapa baris awalnya, kita terapkan `head()` pada data tersebut.
 
 ```{r}
 #| code-fold: show
@@ -323,13 +321,97 @@ rgb_foto_klaster_df <- rgb_foto_df |>
   mutate(
     pusat_hex = rgb(pusat_R, pusat_G, pusat_B)
   ) |> 
-  select(koord_x, koord_y, R, G, B, klaster, pusat_hex)
+  select(koord_x, koord_y, R, G, B, warna_hex, klaster, pusat_hex)
 
 head(rgb_foto_klaster_df)
 
 ```
 
-Dari hasil di atas, kita dapat melihat bahwa `rgb_foto_klaster_df` lebih sederhana. Data ini hanya memuat $k=4$ warna, seperti yang ditunjukkan sebagai berikut.
+Dari data yang telah kita buat di atas, kita dapat memvisualisasikan warna-warna yang masuk ke dalam setiap klasternya. Perhatikan @fig-heatmap-klaster-warna!
+
+```{r}
+#| echo: false
+#| label: fig-heatmap-klaster-warna
+#| fig-cap: "Klaster dan warna-warna anggotanya"
+#| fig-subcap: 
+#|   - "Klaster 1"
+#|   - "Klaster 2"
+#|   - "Klaster 3"
+#|   - "Klaster 4"
+#| layout-ncol: 2
+
+plot_cluster_heatmap <- function(
+    df, cluster_col, color_col, centroid_col, id
+) {
+  # Capture column names
+  cluster_col <- enquo(cluster_col)
+  color_col   <- enquo(color_col)
+  centroid_col <- enquo(centroid_col)
+  
+  # Filter for chosen cluster
+  df_cluster <- df %>% filter(!!cluster_col == id)
+  
+  if (nrow(df_cluster) == 0) {
+    stop("No rows found for cluster id = ", id)
+  }
+  
+  # Extract colors + centroid
+  colors <- df_cluster %>% pull(!!color_col)
+  centroid <- df_cluster %>% pull(!!centroid_col) %>% unique()
+  
+  # Convert to LAB
+  rgb_vals <- t(col2rgb(colors)) / 255
+  lab_vals <- convertColor(rgb_vals, from = "sRGB", to = "Lab", scale.in = 1)
+  
+  # Convert centroid
+  centroid_rgb <- t(col2rgb(centroid)) / 255
+  centroid_lab <- convertColor(centroid_rgb, from = "sRGB", to = "Lab", scale.in = 1)
+  
+  # Distances
+  distances <- apply(lab_vals, 1, function(x) sqrt(sum((x - centroid_lab)^2)))
+  
+  dfc <- data.frame(color = colors, dist = distances) %>%
+    arrange(dist)
+  
+  # Force centroid as true center
+  dfc$color[1] <- centroid
+  
+  # Grid size
+  n <- ceiling(sqrt(nrow(dfc)))
+  total <- n^2
+  
+  # Pad if not full square
+  if (nrow(dfc) < total) {
+    dfc <- dfc %>% add_row(color = rep(NA, total - nrow(dfc)), dist = Inf)
+  }
+  
+  # Spiral coordinates
+  center <- ceiling(n/2)
+  coords <- expand.grid(x = 1:n, y = 1:n)
+  spiral_order <- order((coords$x - center)^2 + (coords$y - center)^2,
+                        atan2(coords$y - center, coords$x - center))
+  coords <- coords[spiral_order, ]
+  
+  dfc <- bind_cols(dfc, coords)
+  
+  # Plot
+  ggplot(dfc, aes(x, y, fill = color)) +
+    geom_tile(color = "white") +
+    scale_fill_identity(na.value = "grey90") +
+    coord_equal() +
+    theme_void()
+}
+
+plot_cluster_heatmap(rgb_foto_klaster_df, klaster, warna_hex, pusat_hex, 1)
+plot_cluster_heatmap(rgb_foto_klaster_df, klaster, warna_hex, pusat_hex, 2)
+plot_cluster_heatmap(rgb_foto_klaster_df, klaster, warna_hex, pusat_hex, 3)
+plot_cluster_heatmap(rgb_foto_klaster_df, klaster, warna_hex, pusat_hex, 4)
+
+```
+
+## Menyederhanakan Warna {#sec-menyederhanakan-warna}
+
+Tiba saatnya kita menyederhanakan warna. Caranya adalah dengan mengganti setiap warna dengan pusat klasternya. Mari kita lihat kembali `rgb_foto_klaster_df`. Data ini hanya memuat $k=4$ warna, seperti yang ditunjukkan sebagai berikut.
 
 ```{r}
 #| code-fold: show
@@ -389,7 +471,12 @@ Sampai di sini kita telah berhasil mereduksi variasi warna dari sebuah foto. Tek
 
 ```{r}
 #| label: fig-foto-asli-klaster-16-4-2
-#| fig-cap: "Foto asli dan hasil reduksi variasi warna foto dengan klasterisasi k-rerata dengan k = 16, 4, dan 2"
+#| fig-cap: "Perbandingan foto asli dan hasil reduksi warnanya dengan klasterisasi k-rerata"
+#| fig-subcap: 
+#|   - "Foto asli"
+#|   - "Klasterisasi dengan k = 16"
+#|   - "Klasterisasi dengan k = 4"
+#|   - "Klasterisasi dengan k = 2"
 #| echo: false
 
 # Klasterisasi
@@ -497,9 +584,10 @@ p4 <- rgb_3_klaster_df |>
     title = "Klasterisasi warna (k = 2)"
   )
 
-plot_grid(
-  p1, p2, p3, p4, ncol = 2
-)
+p1
+p2
+p3
+p4
 
 ```
 
