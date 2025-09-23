@@ -1,5 +1,5 @@
 ---
-title: "Klaterisasi K-Rerata"
+title: "Klasterisasi K-Rerata"
 subtitle: "Langkah Demi Langkah Klasterisasi dengan Pemrograman R"
 description: "Mulai dari memanipulasi gambar sampai menghindari paradoks Simpson, itulah manfaat analisis klaster. Artikel ini membahas secara tuntas analisis klaster yang sederhana, yaitu klasterisasi k-rerata (k-means clustering), mulai dari menjelaskan algoritmanya seperti apa sampai mendemonstrasikan algoritma tersebut secara mendetail."
 author:

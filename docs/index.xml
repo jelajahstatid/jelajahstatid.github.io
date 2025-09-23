@@ -12,7 +12,7 @@
 <generator>quarto-1.7.32</generator>
 <lastBuildDate>Mon, 22 Sep 2025 22:00:00 GMT</lastBuildDate>
 <item>
-  <title>Klaterisasi K-Rerata</title>
+  <title>Klasterisasi K-Rerata</title>
   <dc:creator>Yosep Dwi Kristanto</dc:creator>
   <link>https://jelajahstatid.github.io/pos/2025-09-klaterisasi-k-rerata/</link>
   <description><![CDATA[ Mulai dari memanipulasi gambar sampai menghindari paradoks Simpson, itulah manfaat analisis klaster. Artikel ini membahas secara tuntas analisis klaster yang sederhana, yaitu klasterisasi k-rerata (k-means clustering), mulai dari menjelaskan algoritmanya seperti apa sampai mendemonstrasikan algoritma tersebut secara mendetail. ]]></description>
