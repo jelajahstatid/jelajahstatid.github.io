@@ -39,7 +39,7 @@ Ada banyak metode untuk memanipulasi sebuah gambar. Salah satunya ditunjukkan pa
 
 *Yup*! Gambar sebelah kiri memiliki warna yang lebih bervariasi daripada yang kanan. Faktanya, gambar di sebelah kiri memiliki hampir 40 ribu warna sedangkan yang sebelah kanan hanya empat warna saja. Bagaimana cara melakukannya?
 
-Tentu ada banyak cara untuk melakukannya. Akan tetapi, salah satunya adalah dengan menggunakan klasterisasi $k$-rerata. Untuk itu, kita akan belajar teknik klasterisasi tersebut. Kita awali dengan (a) latar belakang perlunya klasterisasi, kemudian (b) kita belajar bagaimana algoritmanya bekerja, dan akhirnya (c) kita aplikasikan algoritma tersebut untuk membagi data menjadi beberapa klaster. Jangan khawatir, penerapan algoritmanya nanti kita lakukan secara langkah demi langkah. Kita lakukan semuanya dengan menggunakan [pemrograman R](https://www.R-project.org/){target="_blank"}. Untuk itu, kita buka paket-paket yang diperlukan.
+Tentu ada banyak cara untuk melakukannya. Akan tetapi, salah satunya adalah dengan menggunakan klasterisasi $k$-rerata. Untuk itu, kita akan belajar teknik klasterisasi tersebut. Kita awali dengan (a) latar belakang perlunya klasterisasi, kemudian (b) kita belajar bagaimana algoritmanya bekerja, dan akhirnya (c) kita aplikasikan algoritma tersebut untuk membagi data menjadi beberapa klaster. Jangan khawatir, penerapan algoritmanya nanti kita lakukan secara langkah demi langkah. Kita lakukan semuanya dengan menggunakan [pemrograman R](https://www.R-project.org/){.external target="_blank"}. Untuk itu, kita buka paket-paket yang diperlukan.
 
 ```{r}
 #| message: false
@@ -142,6 +142,10 @@ Fenomena yang baru saja kita alami tersebut dinamakan *paradoks Simpson*. Kita m
 
 Informasi tentang klaster-klaster tersebut mungkin sudah ada dalam data. Akan tetapi, informasi tersebut juga mungkin belum ada. Jika klaster-klaster tersebut belum ada, kita dapat melakukan analisis klaster dengan menggunakan klasterisasi $k$-rerata (atau $k$*-means clustering*). Bagaimana caranya? Mari kita bahas di bagian berikutnya, @sec-klasterisasi-k-rerata.
 
+::: {.callout-note appearance="simple" icon="false"}
+Jika kamu ingin menemukan ide mendasar algoritma $k$-rerata secara terbimbing, silakan kunjungi media interaktif di [tautan berikut](https://people.usd.ac.id/~ydkristanto/index.php/media-pengajaran/klasterisasi-k-rerata/ "Klasterisasi K-Rerata: Bagaimana Ide Dasarnya?"){.external target="_blank"}. Media interaktif itu akan memandumu menemukan algoritma tersebut secara mandiri.
+:::
+
 ## Klasterisasi $K$-Rerata {#sec-klasterisasi-k-rerata}
 
 Klasterisasi $k$-rerata merupakan algoritma pemelajaran mesin (*machine learning*) tanpa pengawasan yang membagi data tak berlabel menjadi $k$ klaster yang berbeda dan tak saling tumpang tindih. Sebelum dilakukan klasterisasi ini, banyaknya klaster $k$ perlu ditentukan terlebih dahulu. Algoritma klasterisasi ini adalah sebagai berikut.
@@ -154,7 +158,7 @@ Klasterisasi $k$-rerata merupakan algoritma pemelajaran mesin (*machine learning
 
 4.  **Ulangi:** Langkah 2 dan 3 diulangi kembali. Ketika pusat klaster berpindah, setiap titik datanya dipasangkan kembali dengan pusat klaster baru yang terdekat, kemudian pusat setiap klasternya dihitung kembali. Proses ini diulang secara terus menerus sampai pusat klasternya tidak berpindah secara signifikan atau banyak maksimum iterasinya tercapai.
 
-Penasaran dengan bagaimana algoritma tersebut bekerja? Pada bagian berikutnya, @sec-penerapan-algoritma-k-rerata, kita akan menerapkan algoritma tersebut kepada [Old Faithful Geyser](https://doi.org/10.2307/2347385){target="_blank"}.
+Penasaran dengan bagaimana algoritma tersebut bekerja? Pada bagian berikutnya, @sec-penerapan-algoritma-k-rerata, kita akan menerapkan algoritma tersebut kepada [Old Faithful Geyser](https://doi.org/10.2307/2347385){.external target="_blank"}.
 
 ## Penerapan Algoritma $K$-Rerata {#sec-penerapan-algoritma-k-rerata}
 

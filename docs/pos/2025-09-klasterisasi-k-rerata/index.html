@@ -281,7 +281,7 @@ Gambar&nbsp;1: Gambar asli (kiri) dan gambar setelah dimanipulasi (kanan)
 </figcaption></figure>
 </div>
 <p><em>Yup</em>! Gambar sebelah kiri memiliki warna yang lebih bervariasi daripada yang kanan. Faktanya, gambar di sebelah kiri memiliki hampir 40 ribu warna sedangkan yang sebelah kanan hanya empat warna saja. Bagaimana cara melakukannya?</p>
-<p>Tentu ada banyak cara untuk melakukannya. Akan tetapi, salah satunya adalah dengan menggunakan klasterisasi <span class="math inline">\(k\)</span>-rerata. Untuk itu, kita akan belajar teknik klasterisasi tersebut. Kita awali dengan (a) latar belakang perlunya klasterisasi, kemudian (b) kita belajar bagaimana algoritmanya bekerja, dan akhirnya (c) kita aplikasikan algoritma tersebut untuk membagi data menjadi beberapa klaster. Jangan khawatir, penerapan algoritmanya nanti kita lakukan secara langkah demi langkah. Kita lakukan semuanya dengan menggunakan <a href="https://www.R-project.org/" target="_blank">pemrograman R</a>. Untuk itu, kita buka paket-paket yang diperlukan.</p>
+<p>Tentu ada banyak cara untuk melakukannya. Akan tetapi, salah satunya adalah dengan menggunakan klasterisasi <span class="math inline">\(k\)</span>-rerata. Untuk itu, kita akan belajar teknik klasterisasi tersebut. Kita awali dengan (a) latar belakang perlunya klasterisasi, kemudian (b) kita belajar bagaimana algoritmanya bekerja, dan akhirnya (c) kita aplikasikan algoritma tersebut untuk membagi data menjadi beberapa klaster. Jangan khawatir, penerapan algoritmanya nanti kita lakukan secara langkah demi langkah. Kita lakukan semuanya dengan menggunakan <a href="https://www.R-project.org/" class="external" target="_blank">pemrograman R</a>. Untuk itu, kita buka paket-paket yang diperlukan.</p>
 <div class="cell">
 <details open="" class="code-fold"><summary>Kode</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://wilkelab.org/cowplot/">cowplot</a></span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -329,6 +329,16 @@ Gambar&nbsp;4: Model linear untuk variabel-variabel <code>x</code> dan <code>y</
 </div>
 <p>Fenomena yang baru saja kita alami tersebut dinamakan <em>paradoks Simpson</em>. Kita mendapatkan korelasi yang positif ketika kita tidak mempertimbangkan klaster, dan korelasinya negatif ketika kita mempertimbangkan klaster. Oleh karena itu, penting bagi kita untuk mencermati data secara lebih hati-hati, khususnya jika dalam data tersebut memuat beberapa klaster.</p>
 <p>Informasi tentang klaster-klaster tersebut mungkin sudah ada dalam data. Akan tetapi, informasi tersebut juga mungkin belum ada. Jika klaster-klaster tersebut belum ada, kita dapat melakukan analisis klaster dengan menggunakan klasterisasi <span class="math inline">\(k\)</span>-rerata (atau <span class="math inline">\(k\)</span><em>-means clustering</em>). Bagaimana caranya? Mari kita bahas di bagian berikutnya, <a href="#sec-klasterisasi-k-rerata" class="quarto-xref">Bagian&nbsp;2</a>.</p>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Jika kamu ingin menemukan ide mendasar algoritma <span class="math inline">\(k\)</span>-rerata secara terbimbing, silakan kunjungi media interaktif di <a href="https://people.usd.ac.id/~ydkristanto/index.php/media-pengajaran/klasterisasi-k-rerata/" class="external" target="_blank" title="Klasterisasi K-Rerata: Bagaimana Ide Dasarnya?">tautan berikut</a>. Media interaktif itu akan memandumu menemukan algoritma tersebut secara mandiri.</p>
+</div>
+</div>
+</div>
 </section><section id="sec-klasterisasi-k-rerata" class="level2"><h2 class="anchored" data-anchor-id="sec-klasterisasi-k-rerata">Klasterisasi <span class="math inline">\(K\)</span>-Rerata</h2>
 <p>Klasterisasi <span class="math inline">\(k\)</span>-rerata merupakan algoritma pemelajaran mesin (<em>machine learning</em>) tanpa pengawasan yang membagi data tak berlabel menjadi <span class="math inline">\(k\)</span> klaster yang berbeda dan tak saling tumpang tindih. Sebelum dilakukan klasterisasi ini, banyaknya klaster <span class="math inline">\(k\)</span> perlu ditentukan terlebih dahulu. Algoritma klasterisasi ini adalah sebagai berikut.</p>
 <ol type="1">
@@ -337,7 +347,7 @@ Gambar&nbsp;4: Model linear untuk variabel-variabel <code>x</code> dan <code>y</
 <li><p><strong>Pembaruan:</strong> Setelah semua titik masuk ke dalam klaster, algoritmanya kemudian menghitung kembali koordinat tiap-tiap pusat klasternya. Pusat klaster tersebut merupakan rerata dari semua titik dalam klaster tersebut.</p></li>
 <li><p><strong>Ulangi:</strong> Langkah 2 dan 3 diulangi kembali. Ketika pusat klaster berpindah, setiap titik datanya dipasangkan kembali dengan pusat klaster baru yang terdekat, kemudian pusat setiap klasternya dihitung kembali. Proses ini diulang secara terus menerus sampai pusat klasternya tidak berpindah secara signifikan atau banyak maksimum iterasinya tercapai.</p></li>
 </ol>
-<p>Penasaran dengan bagaimana algoritma tersebut bekerja? Pada bagian berikutnya, <a href="#sec-penerapan-algoritma-k-rerata" class="quarto-xref">Bagian&nbsp;3</a>, kita akan menerapkan algoritma tersebut kepada <a href="https://doi.org/10.2307/2347385" target="_blank">Old Faithful Geyser</a>.</p>
+<p>Penasaran dengan bagaimana algoritma tersebut bekerja? Pada bagian berikutnya, <a href="#sec-penerapan-algoritma-k-rerata" class="quarto-xref">Bagian&nbsp;3</a>, kita akan menerapkan algoritma tersebut kepada <a href="https://doi.org/10.2307/2347385" class="external" target="_blank">Old Faithful Geyser</a>.</p>
 </section><section id="sec-penerapan-algoritma-k-rerata" class="level2"><h2 class="anchored" data-anchor-id="sec-penerapan-algoritma-k-rerata">Penerapan Algoritma <span class="math inline">\(K\)</span>-Rerata</h2>
 <p>Kita terapkan algoritma <span class="math inline">\(k\)</span>-rerata kepada data Old Faithful Geyser. Data ini sudah ada dalam R dengan nama <code>faithful</code>. Data ini memuat 272 baris dan dua variabel. Variabel <code>waiting</code> merupakan selang waktu antara dimulainya dua erupsi yang berurutan, sedangkan variabel <code>eruptions</code> merupakan lamanya erupsi yang kedua. Mari kita panggil data ini lihat beberapa barisnya dengan kode berikut.</p>
 <div class="cell">
