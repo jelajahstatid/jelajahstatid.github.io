@@ -353,18 +353,39 @@ Gambar&nbsp;3: Titik-titik dalam ruang yang merepresentasikan warna dalam gambar
 </div>
 </div>
 </div>
-<p>Nah, sekarang kita dapat melihat sebuah gambar atau foto dengan menggunakan matriks, yaitu tiga matriks warna dasarnya. Dari tiga matriks tersebut, kita dapat mengkonstruksi titik-titik yang merepresentasikan warna tersebut ke dalam ruang dimensi tiga. Kita gunakan perspektif seperti ini untuk memanipulasi sebuah foto sehingga variasi warnanya tereduksi. Tujuan kita berikutnya adalah untuk membuat foto di sebelah kiri pada <a href="#fig-foto-asli-dan-hasil-klasterisasi" class="quarto-xref">Gambar&nbsp;4</a> menjadi seperti yang sebelah kanan. Hal ini telah dijanjikan pada <a href="pos/2025-09-klasterisasi-k-rerata/index.qmd" title="Klasterisasi K-Rerata: Langkah Demi Langkah Klasterisasi dengan Pemrograman R">pos sebelumnya</a>.</p>
-<div id="fig-foto-asli-dan-hasil-klasterisasi" class="quarto-float quarto-figure quarto-figure-center anchored">
+<p>Nah, sekarang kita dapat melihat sebuah gambar atau foto dengan menggunakan matriks, yaitu tiga matriks warna dasarnya. Dari tiga matriks tersebut, kita dapat mengkonstruksi titik-titik yang merepresentasikan warna tersebut ke dalam ruang dimensi tiga. Kita gunakan perspektif seperti ini untuk memanipulasi sebuah foto sehingga variasi warnanya tereduksi. Tujuan kita berikutnya adalah untuk membuat foto <a href="#fig-karuna-donau-asli" class="quarto-xref">Gambar&nbsp;4 (a)</a> menjadi <a href="#fig-karuna-donau-4-warna" class="quarto-xref">Gambar&nbsp;4 (b)</a>. Hal ini telah dijanjikan pada <a href="pos/2025-09-klasterisasi-k-rerata/index.qmd" title="Klasterisasi K-Rerata: Langkah Demi Langkah Klasterisasi dengan Pemrograman R">pos sebelumnya</a>.</p>
+<div id="fig-foto-asli-dan-hasil-klasterisasi" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-foto-asli-dan-hasil-klasterisasi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="aset/klasterisasi_karuna_donau.png" class="img-fluid figure-img">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-foto-asli-dan-hasil-klasterisasi" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-karuna-donau-asli" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-karuna-donau-asli-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="aset/karuna_donau_tile.png" class="img-fluid figure-img" data-ref-parent="fig-foto-asli-dan-hasil-klasterisasi">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-karuna-donau-asli-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Foto asli
+</figcaption></figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-foto-asli-dan-hasil-klasterisasi" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-karuna-donau-4-warna" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-karuna-donau-4-warna-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="aset/karuna_donau_4_warna.png" class="img-fluid figure-img" data-ref-parent="fig-foto-asli-dan-hasil-klasterisasi">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-karuna-donau-4-warna-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Hasil reduksi menjadi empat warna
+</figcaption></figure>
+</div>
+</div>
+</div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-foto-asli-dan-hasil-klasterisasi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Gambar&nbsp;4: Foto asli (kiri) dan foto dengan reduksi warna (kanan)
+Gambar&nbsp;4: Foto asli dan hasil reduksinya menjadi 4 warna
 </figcaption></figure>
 </div>
 <p>Bagaimana cara mencapai tujuan tersebut? Mari kita bahas gambaran umumnya terlebih dahulu pada bagian berikutnya.</p>
 <section id="sec-ide-dasar" class="level2"><h2 class="anchored" data-anchor-id="sec-ide-dasar">Ide Dasar</h2>
-<p>Untuk menyerhanakan warna foto sebelah kiri pada <a href="#fig-foto-asli-dan-hasil-klasterisasi" class="quarto-xref">Gambar&nbsp;4</a>, kita gunakan perspektif yang telah dibahas pada bagian sebelumnya. Setelah itu, kita terapkan klasterisasi <span class="math inline">\(k\)</span>-rerata terhadap titik-titik warna yang dihasilkan. Secara umum, tahapan-tahapan utama yang nanti kita lakukan adalah sebagai berikut.</p>
+<p>Untuk menyerhanakan warna foto pada <a href="#fig-karuna-donau-asli" class="quarto-xref">Gambar&nbsp;4 (a)</a>, kita gunakan perspektif yang telah dibahas pada bagian sebelumnya. Setelah itu, kita terapkan klasterisasi <span class="math inline">\(k\)</span>-rerata terhadap titik-titik warna yang dihasilkan. Secara umum, tahapan-tahapan utama yang nanti kita lakukan adalah sebagai berikut.</p>
 <ul>
 <li><p>Mengekstrak data warna R, G, dan B dari foto.</p></li>
 <li><p>Klasterisasi <span class="math inline">\(k\)</span>-rerata terhadap data warna.</p></li>
@@ -372,7 +393,7 @@ Gambar&nbsp;4: Foto asli (kiri) dan foto dengan reduksi warna (kanan)
 </ul>
 <p>Dengan cara seperti itu, kita akan mendapatkan sebuah foto yang hanya memuat <span class="math inline">\(k\)</span> warna. Warna-warna itu diperoleh dari pusat klaster-klaster yang terbentuk. Tak perlu berlama-lama, mari kita mulai tahapan pertamanya.</p>
 </section><section id="sec-mengekstrak-data-warna" class="level2"><h2 class="anchored" data-anchor-id="sec-mengekstrak-data-warna">Mengekstrak Data Warna</h2>
-<p>Tahapan pertamanya adalah mengestrak data warna dari sebuah foto. Foto awal yang kita gunakan adalah foto sebelah kiri pada <a href="#fig-foto-asli-dan-hasil-klasterisasi" class="quarto-xref">Gambar&nbsp;4</a>. Untuk melakukannya, kita gunakan kode berikut.</p>
+<p>Tahapan pertamanya adalah mengestrak data warna dari sebuah foto. Foto awal yang kita gunakan adalah foto pada <a href="#fig-karuna-donau-asli" class="quarto-xref">Gambar&nbsp;4 (a)</a>. Untuk melakukannya, kita gunakan kode berikut.</p>
 <div class="cell">
 <details open="" class="code-fold"><summary>Kode</summary><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Memuat dan menskala gambar</span></span>
 <span><span class="va">foto_ku</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/magick/reference/editing.html">image_read</a></span><span class="op">(</span></span>

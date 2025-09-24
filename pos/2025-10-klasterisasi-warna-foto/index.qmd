@@ -182,15 +182,21 @@ scatterplot3d(
 
 ```
 
-Nah, sekarang kita dapat melihat sebuah gambar atau foto dengan menggunakan matriks, yaitu tiga matriks warna dasarnya. Dari tiga matriks tersebut, kita dapat mengkonstruksi titik-titik yang merepresentasikan warna tersebut ke dalam ruang dimensi tiga. Kita gunakan perspektif seperti ini untuk memanipulasi sebuah foto sehingga variasi warnanya tereduksi. Tujuan kita berikutnya adalah untuk membuat foto di sebelah kiri pada @fig-foto-asli-dan-hasil-klasterisasi menjadi seperti yang sebelah kanan. Hal ini telah dijanjikan pada [pos sebelumnya](pos/2025-09-klasterisasi-k-rerata/index.qmd "Klasterisasi K-Rerata: Langkah Demi Langkah Klasterisasi dengan Pemrograman R").
+Nah, sekarang kita dapat melihat sebuah gambar atau foto dengan menggunakan matriks, yaitu tiga matriks warna dasarnya. Dari tiga matriks tersebut, kita dapat mengkonstruksi titik-titik yang merepresentasikan warna tersebut ke dalam ruang dimensi tiga. Kita gunakan perspektif seperti ini untuk memanipulasi sebuah foto sehingga variasi warnanya tereduksi. Tujuan kita berikutnya adalah untuk membuat foto @fig-karuna-donau-asli menjadi @fig-karuna-donau-4-warna. Hal ini telah dijanjikan pada [pos sebelumnya](pos/2025-09-klasterisasi-k-rerata/index.qmd "Klasterisasi K-Rerata: Langkah Demi Langkah Klasterisasi dengan Pemrograman R").
 
-![Foto asli (kiri) dan foto dengan reduksi warna (kanan)](aset/klasterisasi_karuna_donau.png){#fig-foto-asli-dan-hasil-klasterisasi}
+::: {#fig-foto-asli-dan-hasil-klasterisasi layout-ncol="2"}
+![Foto asli](aset/karuna_donau_tile.png){#fig-karuna-donau-asli}
+
+![Hasil reduksi menjadi empat warna](aset/karuna_donau_4_warna.png){#fig-karuna-donau-4-warna}
+
+Foto asli dan hasil reduksinya menjadi 4 warna
+:::
 
 Bagaimana cara mencapai tujuan tersebut? Mari kita bahas gambaran umumnya terlebih dahulu pada bagian berikutnya.
 
 ## Ide Dasar {#sec-ide-dasar}
 
-Untuk menyerhanakan warna foto sebelah kiri pada @fig-foto-asli-dan-hasil-klasterisasi, kita gunakan perspektif yang telah dibahas pada bagian sebelumnya. Setelah itu, kita terapkan klasterisasi $k$-rerata terhadap titik-titik warna yang dihasilkan. Secara umum, tahapan-tahapan utama yang nanti kita lakukan adalah sebagai berikut.
+Untuk menyerhanakan warna foto pada @fig-karuna-donau-asli, kita gunakan perspektif yang telah dibahas pada bagian sebelumnya. Setelah itu, kita terapkan klasterisasi $k$-rerata terhadap titik-titik warna yang dihasilkan. Secara umum, tahapan-tahapan utama yang nanti kita lakukan adalah sebagai berikut.
 
 -   Mengekstrak data warna R, G, dan B dari foto.
 
@@ -202,7 +208,7 @@ Dengan cara seperti itu, kita akan mendapatkan sebuah foto yang hanya memuat $k$
 
 ## Mengekstrak Data Warna {#sec-mengekstrak-data-warna}
 
-Tahapan pertamanya adalah mengestrak data warna dari sebuah foto. Foto awal yang kita gunakan adalah foto sebelah kiri pada @fig-foto-asli-dan-hasil-klasterisasi. Untuk melakukannya, kita gunakan kode berikut.
+Tahapan pertamanya adalah mengestrak data warna dari sebuah foto. Foto awal yang kita gunakan adalah foto pada @fig-karuna-donau-asli. Untuk melakukannya, kita gunakan kode berikut.
 
 ```{r}
 #| code-fold: show
