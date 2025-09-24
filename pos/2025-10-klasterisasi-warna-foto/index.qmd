@@ -182,7 +182,7 @@ scatterplot3d(
 
 ```
 
-Nah, sekarang kita dapat melihat sebuah gambar atau foto dengan menggunakan matriks, yaitu tiga matriks warna dasarnya. Dari tiga matriks tersebut, kita dapat mengkonstruksi titik-titik yang merepresentasikan warna tersebut ke dalam ruang dimensi tiga. Kita gunakan perspektif seperti ini untuk memanipulasi sebuah foto sehingga variasi warnanya tereduksi. Tujuan kita berikutnya adalah untuk membuat foto @fig-karuna-donau-asli menjadi @fig-karuna-donau-4-warna. Hal ini telah dijanjikan pada [pos sebelumnya](pos/2025-09-klasterisasi-k-rerata/index.qmd "Klasterisasi K-Rerata: Langkah Demi Langkah Klasterisasi dengan Pemrograman R").
+Nah, sekarang kita dapat melihat sebuah gambar atau foto dengan menggunakan matriks, yaitu tiga matriks warna dasarnya. Dari tiga matriks tersebut, kita dapat mengkonstruksi titik-titik yang merepresentasikan warna tersebut ke dalam ruang dimensi tiga. Kita gunakan perspektif seperti ini untuk memanipulasi sebuah foto sehingga variasi warnanya tereduksi. Tujuan kita berikutnya adalah untuk membuat foto @fig-karuna-donau-asli menjadi @fig-karuna-donau-4-warna. Hal ini telah dijanjikan pada [pos sebelumnya](/pos/2025-09-klasterisasi-k-rerata/index.qmd "Klasterisasi K-Rerata: Langkah Demi Langkah Klasterisasi dengan Pemrograman R").
 
 ::: {#fig-foto-asli-dan-hasil-klasterisasi layout-ncol="2"}
 ![Foto asli](aset/karuna_donau_tile.png){#fig-karuna-donau-asli}
