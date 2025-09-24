@@ -478,6 +478,7 @@ Sampai di sini kita telah berhasil mereduksi variasi warna dari sebuah foto. Tek
 #|   - "Klasterisasi dengan k = 4"
 #|   - "Klasterisasi dengan k = 2"
 #| echo: false
+#| layout-ncol: 2
 
 # Klasterisasi
 hasil_krerata2 <- kmeans(
@@ -596,8 +597,13 @@ Mungkin kamu penasaran bagaimana komposisi warna dalam foto yang variasi warnany
 ```{r}
 #| label: fig-komposisi-warna
 #| echo: false
-#| fig-cap: "Komposisi warna pada foto-foto yang warnanya tereduksi menjadi k = 2, 4, dan 16"
+#| fig-cap: "Komposisi warna pada foto"
+#| fig-subcap: 
+#|   - "Foto dengan k = 2"
+#|   - "Foto dengan k = 4"
+#|   - "Foto dengan k = 16"
 #| fig-asp: 0.75
+#| layout: "[[1,1], [1]]"
 
 # Menyiapkan ringkasan data
 ringkas_2 <- rgb_3_klaster_df |> 
@@ -629,9 +635,6 @@ pr2 <- ringkas_2 |>
   theme_minimal() + 
   theme(
     axis.title = element_blank()
-  ) + 
-  labs(
-    title = "Klasterisasi dengan k = 2"
   )
 
 pr4 <- ringkas_4 |> 
@@ -643,9 +646,6 @@ pr4 <- ringkas_4 |>
   theme_minimal() + 
   theme(
     axis.title = element_blank()
-  ) + 
-  labs(
-    title = "Klasterisasi dengan k = 4"
   )
 
 pr16 <- ringkas_16 |> 
@@ -658,19 +658,16 @@ pr16 <- ringkas_16 |>
   theme(
     axis.title = element_blank(),
     axis.text.x = element_text(angle = 60, hjust = .75)
-  ) + 
-  labs(
-    title = "Klasterisasi dengan k = 16"
   )
 
-plot_grid(
-  plot_grid(pr2, pr4, ncol = 2), # first row: two plots
-  pr16,                          # second row: one plot
-  ncol = 1                       # stack rows
-)
+pr2
+pr4
+pr16
 
 ```
 
 ## Catatan Akhir {#sec-catatan-akhir}
 
 Kita telah mereduksi variasi warna dalam sebuah foto dengan menggunakan [klasterisasi $k$-rerata](/pos/2025-09-klasterisasi-k-rerata/index.qmd). Untuk melakukannya, kita perlu mengetahui bagaimana sebuah foto atau gambar dapat direpresentasikan dengan matriks-matriks warna dasarnya. Setelah itu, kita ekstrak data warna piksel-piksel dalam gambar tersebut. Hal ini kita lakukan pada @sec-mengekstrak-data-warna. Setelah kita mendapatkan data warna tersebut, kita gunakan data tersebut untuk melakukan klasterisasi $k$-rerata (lihat @sec-klasterisasi-k-rerata). Di akhir, kita ubah warna tiap-tiap pikselnya dengan warna pusat klasternya. Dengan cara ini, kita mendapatkan gambar yang hanya tersusun dari $k$ warna. Hasil akhirnya dapat dilihat pada @fig-foto-asli-klaster-16-4-2.
+
+Sebagai catatan, kita menggunakan klasterisasi $k$-rerata terhadap titik-titik warna yang dinyatakan ke dalam RGB. Algoritma $k$-rerata tersebut mengandalkan jarak untuk membuat klaster-klaster. Akan tetapi, persepsi kita terhadap warna tidaklah linear di RGB. Dalam RGB, dua warna mungkin memiliki jarak yang dekat, tetapi secara intuitif kita menilai warna tersebut jauh berbeda. Sebaliknya, mungkin ada dua warna yang jauh secara numerik dalam ruang RGB, tetapi bagi kita dua warna itu dekat secara intuitif. Oleh karena itu, kita dapat memilih format warna yang lebih sesuai dengan persepsi kita, misalnya [Lab](https://en.wikipedia.org/wiki/CIELAB_color_space "CIELAB color space"){target="_blank"}. Silakan gunakan metode yang kamu pelajari di artikel ini, tetapi dengan menggunakan ruang warna Lab.
