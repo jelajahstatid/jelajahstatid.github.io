@@ -272,14 +272,21 @@ window.Quarto = {
 Gambar&nbsp;1: Meme seseorang yang menatap selembar kertas mungil secara intens
 </figcaption></figure>
 </div>
-<p>Perhatikan <a href="#fig-meme-epsilon" class="quarto-xref">Gambar&nbsp;1</a>! Apa yang dilihat oleh orang dalam meme pada <a href="#fig-meme-epsilon" class="quarto-xref">Gambar&nbsp;1</a>? Karena terlalu kecil, mari kita memperbesarnya dan menaruhnya ke bidang koordinat Kartesius. Kita lakukan hal itu dengan <a href="https://www.R-project.org/" class="external" target="_blank" title="R: A Language and Environment for Statistical Computing">pemrograman R</a>. Untuk itu, kita panggil paket-paket yang kita perlukan.</p>
+<p>Perhatikan <a href="#fig-meme-epsilon" class="quarto-xref">Gambar&nbsp;1</a>! Apa yang dilihat oleh orang dalam meme pada <a href="#fig-meme-epsilon" class="quarto-xref">Gambar&nbsp;1</a>? Karena terlalu kecil, mari kita memperbesarnya dan menaruhnya ke bidang koordinat Kartesius. Kita lakukan hal itu dengan <a href="https://www.R-project.org/" class="external" target="_blank" title="R: A Language and Environment for Statistical Computing">pemrograman R</a>. Untuk itu, kita panggil paket-paket yang kita perlukan seperti pada <a href="#lst-muat-paket" class="quarto-xref">Daftar&nbsp;1</a>.</p>
 <div class="cell">
+<div id="lst-muat-paket" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-fold="show">
+<figure class="quarto-float quarto-float-lst figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-muat-paket-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Daftar&nbsp;1: Memuat paket-paket yang diperlukan
+</figcaption><div aria-describedby="lst-muat-paket-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details open="" class="code-fold"><summary>Kode</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/magick/">magick</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">scatterplot3d</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://scales.r-lib.org">scales</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://wilkelab.org/cowplot/">cowplot</a></span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+</div>
+</figure>
+</div>
 </div>
 <p>Paket-paketnya telah siap. Kita lanjut memperbesar gambar yang dilihat oleh orang dalam meme tersebut dan memposisikannya dalam bidang koordinat Kartesius. Perhatikan <a href="#fig-matriks-epsilon" class="quarto-xref">Gambar&nbsp;2</a>!</p>
 <div class="cell">
@@ -393,8 +400,12 @@ Gambar&nbsp;4: Foto asli dan hasil reduksinya menjadi 4 warna
 </ul>
 <p>Dengan cara seperti itu, kita akan mendapatkan sebuah foto yang hanya memuat <span class="math inline">\(k\)</span> warna. Warna-warna itu diperoleh dari pusat klaster-klaster yang terbentuk. Tak perlu berlama-lama, mari kita mulai tahapan pertamanya.</p>
 </section><section id="sec-mengekstrak-data-warna" class="level2"><h2 class="anchored" data-anchor-id="sec-mengekstrak-data-warna">Mengekstrak Data Warna</h2>
-<p>Tahapan pertamanya adalah mengestrak data warna dari sebuah foto. Foto awal yang kita gunakan adalah foto pada <a href="#fig-karuna-donau-asli" class="quarto-xref">Gambar&nbsp;4 (a)</a>. Untuk melakukannya, kita gunakan kode berikut.</p>
+<p>Tahapan pertamanya adalah mengestrak data warna dari sebuah foto. Foto awal yang kita gunakan adalah foto pada <a href="#fig-karuna-donau-asli" class="quarto-xref">Gambar&nbsp;4 (a)</a>. Untuk melakukannya, kita gunakan kode pada <a href="#lst-ekstrak-warna" class="quarto-xref">Daftar&nbsp;2</a>.</p>
 <div class="cell">
+<div id="lst-ekstrak-warna" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-fold="show">
+<figure class="quarto-float quarto-float-lst figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-ekstrak-warna-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Daftar&nbsp;2: Membuat data warna dari foto
+</figcaption><div aria-describedby="lst-ekstrak-warna-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details open="" class="code-fold"><summary>Kode</summary><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Memuat dan menskala gambar</span></span>
 <span><span class="va">foto_ku</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/magick/reference/editing.html">image_read</a></span><span class="op">(</span></span>
 <span>  <span class="st">"aset/karuna_donau.png"</span></span>
@@ -434,7 +445,11 @@ Gambar&nbsp;4: Foto asli dan hasil reduksinya menjadi 4 warna
 <span>    warna_hex <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html">rgb</a></span><span class="op">(</span><span class="va">R_norm</span>, <span class="va">G_norm</span>, <span class="va">B_norm</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
 <span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">rgb_foto_df</span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output cell-output-stdout">
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 9
   koord_x koord_y     R     G     B R_norm G_norm B_norm warna_hex
     &lt;int&gt;   &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;    
@@ -461,15 +476,26 @@ Gambar&nbsp;5: Titik-titik dalam ruang yang merepresentasikan warna dalam foto
 </div>
 </div>
 </section><section id="sec-klasterisasi-k-rerata" class="level2"><h2 class="anchored" data-anchor-id="sec-klasterisasi-k-rerata">Klasterisasi <span class="math inline">\(K\)</span>-Rerata</h2>
-<p>Selanjutnya, kita lakukan klasterisasi terhadap <code>rgb_foto_df</code> dengan menggunakan variabel-variabel <code>R_norm</code>, <code>G_norm</code>, dan <code>B_norm</code>. Untuk melakukannya, kita menggunakan fungsi <code><a href="https://rdrr.io/r/stats/kmeans.html">kmeans()</a></code>. Fungsi ini menggunakan input sebuah matriks. Oleh karena itu, terlebih dahulu kita membuat matriks tersebut. Matriks tersebut memuat tiga kolom, yaitu <code>R_norm</code>, <code>G_norm</code>, dan <code>B_norm</code>.</p>
+<p>Selanjutnya, kita lakukan klasterisasi terhadap <code>rgb_foto_df</code> dengan menggunakan variabel-variabel <code>R_norm</code>, <code>G_norm</code>, dan <code>B_norm</code>. Untuk melakukannya, kita menggunakan fungsi <code><a href="https://rdrr.io/r/stats/kmeans.html">kmeans()</a></code>. Fungsi ini menggunakan input sebuah matriks. Oleh karena itu, terlebih dahulu kita membuat matriks tersebut. Matriks tersebut memuat tiga kolom, yaitu <code>R_norm</code>, <code>G_norm</code>, dan <code>B_norm</code>. Perhatikan <a href="#lst-matriks-foto" class="quarto-xref">Daftar&nbsp;3</a>!</p>
 <div class="cell">
+<div id="lst-matriks-foto" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-fold="show">
+<figure class="quarto-float quarto-float-lst figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-matriks-foto-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Daftar&nbsp;3: Membuat matriks
+</figcaption><div aria-describedby="lst-matriks-foto-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details open="" class="code-fold"><summary>Kode</summary><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">matriks_foto</span> <span class="op">&lt;-</span> <span class="va">rgb_foto_df</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">R_norm</span>, <span class="va">G_norm</span>, <span class="va">B_norm</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p>Kita telah memperoleh <code>matriks_foto</code>. Kita siap untuk melakukan klasterisasi <span class="math inline">\(k\)</span>-rerata dengan fungsi <code><a href="https://rdrr.io/r/stats/kmeans.html">kmeans()</a></code>.</p>
+</figure>
+</div>
+</div>
+<p>Kita telah memperoleh <code>matriks_foto</code>. Kita siap untuk melakukan klasterisasi <span class="math inline">\(k\)</span>-rerata dengan fungsi <code><a href="https://rdrr.io/r/stats/kmeans.html">kmeans()</a></code>. Perhatikan <a href="#lst-kmeans-foto" class="quarto-xref">Daftar&nbsp;4</a>.</p>
 <div class="cell">
+<div id="lst-kmeans-foto" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-fold="show">
+<figure class="quarto-float quarto-float-lst figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-kmeans-foto-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Daftar&nbsp;4: Klasterisasi k-rerata terhadap <code>matriks_foto</code>
+</figcaption><div aria-describedby="lst-kmeans-foto-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details open="" class="code-fold"><summary>Kode</summary><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Pilih nilai k</span></span>
@@ -482,9 +508,16 @@ Gambar&nbsp;5: Titik-titik dalam ruang yang merepresentasikan warna dalam foto
 <span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
+</figure>
+</div>
+</div>
 <p>Hasil klasterisasi tersebut kita simpan sebagai sebuah objek dengan nama <code>hasil_krerata</code>. Terdapat informasi penting yang terkandung dalam <code>hasil_krerata</code>, yaitu <code>cluster</code> (klaster) dan <code>centers</code> (pusat setiap klaster). Kedua informasi tersebut berguna untuk mengidentifikasi klaster-klaster warnanya dan menyederhanakan warna-warnanya dengan pusat klasternya.</p>
-<p>Sekarang, kita membuat <code>rgb_foto_klaster_df</code> yang memuat informasi klaster dan pusatnya tersebut dalam kolom-kolom <code>klaster</code> dan <code>pusat_hex</code>. Untuk melihat beberapa baris awalnya, kita terapkan <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code> pada data tersebut.</p>
+<p>Sekarang, kita membuat <code>rgb_foto_klaster_df</code> yang memuat informasi klaster dan pusatnya tersebut dalam kolom-kolom <code>klaster</code> dan <code>pusat_hex</code>. Perhatikan <a href="#lst-menyisipkan-klaster" class="quarto-xref">Daftar&nbsp;5</a>. Untuk melihat beberapa baris awalnya, kita terapkan <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code> pada data tersebut.</p>
 <div class="cell">
+<div id="lst-menyisipkan-klaster" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-fold="show">
+<figure class="quarto-float quarto-float-lst figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-menyisipkan-klaster-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Daftar&nbsp;5: Membuat data yang memuat informasi klaster dan warna pusat klaster
+</figcaption><div aria-describedby="lst-menyisipkan-klaster-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details open="" class="code-fold"><summary>Kode</summary><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">rgb_foto_klaster_df</span> <span class="op">&lt;-</span> <span class="va">rgb_foto_df</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
 <span>    klaster <span class="op">=</span> <span class="va">hasil_krerata</span><span class="op">$</span><span class="va">cluster</span>,</span>
@@ -498,7 +531,11 @@ Gambar&nbsp;5: Titik-titik dalam ruang yang merepresentasikan warna dalam foto
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">koord_x</span>, <span class="va">koord_y</span>, <span class="va">R</span>, <span class="va">G</span>, <span class="va">B</span>, <span class="va">warna_hex</span>, <span class="va">klaster</span>, <span class="va">pusat_hex</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">rgb_foto_klaster_df</span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output cell-output-stdout">
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 8
   koord_x koord_y     R     G     B warna_hex klaster pusat_hex
     &lt;int&gt;   &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;    
@@ -563,14 +600,22 @@ Gambar&nbsp;6: Klaster dan warna-warna anggotanya
 </figcaption></figure>
 </div>
 </section><section id="sec-menyederhanakan-warna" class="level2"><h2 class="anchored" data-anchor-id="sec-menyederhanakan-warna">Menyederhanakan Warna</h2>
-<p>Tiba saatnya kita menyederhanakan warna. Caranya adalah dengan mengganti setiap warna dengan pusat klasternya. Mari kita lihat kembali <code>rgb_foto_klaster_df</code>. Data ini hanya memuat <span class="math inline">\(k=4\)</span> warna, seperti yang ditunjukkan sebagai berikut.</p>
+<p>Tiba saatnya kita menyederhanakan warna. Caranya adalah dengan mengganti setiap warna dengan pusat klasternya. Mari kita lihat kembali <code>rgb_foto_klaster_df</code>. Data ini hanya memuat <span class="math inline">\(k=4\)</span> warna, seperti yang ditunjukkan pada luaran <a href="#lst-melihat-ringkasan" class="quarto-xref">Daftar&nbsp;6</a> berikut.</p>
 <div class="cell">
+<div id="lst-melihat-ringkasan" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-fold="show">
+<figure class="quarto-float quarto-float-lst figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-melihat-ringkasan-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Daftar&nbsp;6: Melihat warna pusat klaster unik dan banyaknya
+</figcaption><div aria-describedby="lst-melihat-ringkasan-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details open="" class="code-fold"><summary>Kode</summary><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">rgb_foto_klaster_df</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">pusat_hex</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span></span>
 <span>    n <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output cell-output-stdout">
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 2
   pusat_hex     n
   &lt;chr&gt;     &lt;int&gt;
@@ -593,8 +638,12 @@ Gambar&nbsp;7: Titik-titik dalam ruang yang merepresentasikan warna dalam foto s
 </div>
 </div>
 </div>
-<p>Sekarang, kita gambarkan kembali piksel-piksel dalam <code>rgb_foto_klaster_df</code> pada bidang koordinat Kartesius. Hasilnya ditunjukkan pada <a href="#fig-foto-warna-klaster" class="quarto-xref">Gambar&nbsp;8</a>.</p>
+<p>Sekarang, kita gambarkan kembali piksel-piksel dalam <code>rgb_foto_klaster_df</code> pada bidang koordinat Kartesius dengan kode pada <a href="#lst-klasterisasi-4-warna-foto" class="quarto-xref">Daftar&nbsp;7</a>. Hasilnya ditunjukkan pada <a href="#fig-foto-warna-klaster" class="quarto-xref">Gambar&nbsp;8</a>.</p>
 <div class="cell">
+<div id="lst-klasterisasi-4-warna-foto" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-fold="show">
+<figure class="quarto-float quarto-float-lst figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-klasterisasi-4-warna-foto-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Daftar&nbsp;7: Memplot piksel-piksel foto dengan pereduksian warna
+</figcaption><div aria-describedby="lst-klasterisasi-4-warna-foto-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details open="" class="code-fold"><summary>Kode</summary><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">rgb_foto_klaster_df</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">koord_x</span>, y <span class="op">=</span> <span class="va">koord_y</span>, fill <span class="op">=</span> <span class="va">pusat_hex</span><span class="op">)</span></span>
@@ -606,7 +655,11 @@ Gambar&nbsp;7: Titik-titik dalam ruang yang merepresentasikan warna dalam foto s
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
 <span>    axis.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-display">
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output-display">
 <div id="fig-foto-warna-klaster" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-foto-warna-klaster-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="index_files/figure-html/fig-foto-warna-klaster-1.png" class="img-fluid figure-img" width="672">

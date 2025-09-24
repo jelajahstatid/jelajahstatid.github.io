@@ -35,9 +35,11 @@ Apa yang kamu lihat dari sebuah foto? Mungkin kamu melihat kenangan yang tersimp
 
 ![Meme seseorang yang menatap selembar kertas mungil secara intens](aset/epsilon_terlalu_kecil-01.png){#fig-meme-epsilon fig-alt="Meme orang yang menatap selembar kertas mungil secara intens"}
 
-Perhatikan @fig-meme-epsilon! Apa yang dilihat oleh orang dalam meme pada @fig-meme-epsilon? Karena terlalu kecil, mari kita memperbesarnya dan menaruhnya ke bidang koordinat Kartesius. Kita lakukan hal itu dengan [pemrograman R](https://www.R-project.org/ "R: A Language and Environment for Statistical Computing"){.external target="_blank"}. Untuk itu, kita panggil paket-paket yang kita perlukan.
+Perhatikan @fig-meme-epsilon! Apa yang dilihat oleh orang dalam meme pada @fig-meme-epsilon? Karena terlalu kecil, mari kita memperbesarnya dan menaruhnya ke bidang koordinat Kartesius. Kita lakukan hal itu dengan [pemrograman R](https://www.R-project.org/ "R: A Language and Environment for Statistical Computing"){.external target="_blank"}. Untuk itu, kita panggil paket-paket yang kita perlukan seperti pada @lst-muat-paket.
 
 ```{r}
+#| lst-label: lst-muat-paket
+#| lst-cap: "Memuat paket-paket yang diperlukan"
 #| code-fold: show
 #| message: false
 #| warning: false
@@ -208,9 +210,11 @@ Dengan cara seperti itu, kita akan mendapatkan sebuah foto yang hanya memuat $k$
 
 ## Mengekstrak Data Warna {#sec-mengekstrak-data-warna}
 
-Tahapan pertamanya adalah mengestrak data warna dari sebuah foto. Foto awal yang kita gunakan adalah foto pada @fig-karuna-donau-asli. Untuk melakukannya, kita gunakan kode berikut.
+Tahapan pertamanya adalah mengestrak data warna dari sebuah foto. Foto awal yang kita gunakan adalah foto pada @fig-karuna-donau-asli. Untuk melakukannya, kita gunakan kode pada @lst-ekstrak-warna.
 
 ```{r}
+#| lst-label: lst-ekstrak-warna
+#| lst-cap: "Membuat data warna dari foto"
 #| code-fold: show
 
 # Memuat dan menskala gambar
@@ -281,9 +285,11 @@ scatterplot3d(
 
 ## Klasterisasi $K$-Rerata {#sec-klasterisasi-k-rerata}
 
-Selanjutnya, kita lakukan klasterisasi terhadap `rgb_foto_df` dengan menggunakan variabel-variabel `R_norm`, `G_norm`, dan `B_norm`. Untuk melakukannya, kita menggunakan fungsi `kmeans()`. Fungsi ini menggunakan input sebuah matriks. Oleh karena itu, terlebih dahulu kita membuat matriks tersebut. Matriks tersebut memuat tiga kolom, yaitu `R_norm`, `G_norm`, dan `B_norm`.
+Selanjutnya, kita lakukan klasterisasi terhadap `rgb_foto_df` dengan menggunakan variabel-variabel `R_norm`, `G_norm`, dan `B_norm`. Untuk melakukannya, kita menggunakan fungsi `kmeans()`. Fungsi ini menggunakan input sebuah matriks. Oleh karena itu, terlebih dahulu kita membuat matriks tersebut. Matriks tersebut memuat tiga kolom, yaitu `R_norm`, `G_norm`, dan `B_norm`. Perhatikan @lst-matriks-foto!
 
 ```{r}
+#| lst-label: lst-matriks-foto
+#| lst-cap: "Membuat matriks"
 #| code-fold: show
 
 matriks_foto <- rgb_foto_df |> 
@@ -292,9 +298,11 @@ matriks_foto <- rgb_foto_df |>
 
 ```
 
-Kita telah memperoleh `matriks_foto`. Kita siap untuk melakukan klasterisasi $k$-rerata dengan fungsi `kmeans()`.
+Kita telah memperoleh `matriks_foto`. Kita siap untuk melakukan klasterisasi $k$-rerata dengan fungsi `kmeans()`. Perhatikan @lst-kmeans-foto.
 
 ```{r}
+#| lst-label: lst-kmeans-foto
+#| lst-cap: "Klasterisasi k-rerata terhadap `matriks_foto`"
 #| code-fold: show
 
 set.seed(123)
@@ -312,9 +320,11 @@ hasil_krerata <- kmeans(
 
 Hasil klasterisasi tersebut kita simpan sebagai sebuah objek dengan nama `hasil_krerata`. Terdapat informasi penting yang terkandung dalam `hasil_krerata`, yaitu `cluster` (klaster) dan `centers` (pusat setiap klaster). Kedua informasi tersebut berguna untuk mengidentifikasi klaster-klaster warnanya dan menyederhanakan warna-warnanya dengan pusat klasternya.
 
-Sekarang, kita membuat `rgb_foto_klaster_df` yang memuat informasi klaster dan pusatnya tersebut dalam kolom-kolom `klaster` dan `pusat_hex`. Untuk melihat beberapa baris awalnya, kita terapkan `head()` pada data tersebut.
+Sekarang, kita membuat `rgb_foto_klaster_df` yang memuat informasi klaster dan pusatnya tersebut dalam kolom-kolom `klaster` dan `pusat_hex`. Perhatikan @lst-menyisipkan-klaster. Untuk melihat beberapa baris awalnya, kita terapkan `head()` pada data tersebut.
 
 ```{r}
+#| lst-label: lst-menyisipkan-klaster
+#| lst-cap: "Membuat data yang memuat informasi klaster dan warna pusat klaster"
 #| code-fold: show
 
 rgb_foto_klaster_df <- rgb_foto_df |> 
@@ -417,9 +427,11 @@ plot_cluster_heatmap(rgb_foto_klaster_df, klaster, warna_hex, pusat_hex, 4)
 
 ## Menyederhanakan Warna {#sec-menyederhanakan-warna}
 
-Tiba saatnya kita menyederhanakan warna. Caranya adalah dengan mengganti setiap warna dengan pusat klasternya. Mari kita lihat kembali `rgb_foto_klaster_df`. Data ini hanya memuat $k=4$ warna, seperti yang ditunjukkan sebagai berikut.
+Tiba saatnya kita menyederhanakan warna. Caranya adalah dengan mengganti setiap warna dengan pusat klasternya. Mari kita lihat kembali `rgb_foto_klaster_df`. Data ini hanya memuat $k=4$ warna, seperti yang ditunjukkan pada luaran @lst-melihat-ringkasan berikut.
 
 ```{r}
+#| lst-label: lst-melihat-ringkasan
+#| lst-cap: "Melihat warna pusat klaster unik dan banyaknya"
 #| code-fold: show
 
 rgb_foto_klaster_df |> 
@@ -452,10 +464,12 @@ scatterplot3d(
 
 ```
 
-Sekarang, kita gambarkan kembali piksel-piksel dalam `rgb_foto_klaster_df` pada bidang koordinat Kartesius. Hasilnya ditunjukkan pada @fig-foto-warna-klaster.
+Sekarang, kita gambarkan kembali piksel-piksel dalam `rgb_foto_klaster_df` pada bidang koordinat Kartesius dengan kode pada @lst-klasterisasi-4-warna-foto. Hasilnya ditunjukkan pada @fig-foto-warna-klaster.
 
 ```{r}
 #| label: fig-foto-warna-klaster
+#| lst-label: lst-klasterisasi-4-warna-foto
+#| lst-cap: "Memplot piksel-piksel foto dengan pereduksian warna"
 #| code-fold: show
 #| fig-cap: "Penyederhanaan foto asli yang awalnya memiliki hampir 40 ribu warna menjadi $k=4$."
 
