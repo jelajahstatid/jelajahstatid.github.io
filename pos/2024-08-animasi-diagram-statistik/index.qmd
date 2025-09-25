@@ -23,6 +23,7 @@ keywords:
   - harapan hidup
   - produk domestik bruto
   - PDB
+lightbox: true
 copyright: "© 2024 Yosep Dwi Kristanto"
 license: "CC BY"
 editor_options: 

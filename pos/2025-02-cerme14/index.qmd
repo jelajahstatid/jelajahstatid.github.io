@@ -25,6 +25,7 @@ keywords:
   - kongres
   - Pendidikan Matematika
   - penelitian
+lightbox: true
 copyright: "© 2025 Yosep Dwi Kristanto"
 license: "CC BY"
 code-annotations: select

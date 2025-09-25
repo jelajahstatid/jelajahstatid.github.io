@@ -25,6 +25,7 @@ keywords:
   - visualisasi data
   - diagram garis
   - Tujuan Pembangunan Berkelanjutan
+lightbox: true
 copyright: "© 2024 Yosep Dwi Kristanto"
 license: "CC BY"
 editor_options: 
@@ -40,6 +41,7 @@ Ide seperti itu sebenarnya sudah aku pikirkan dan implementasikan kurang lebih p
 <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FYosepDwiK%2Fposts%2Fpfbid02LvJ8WGjnXLe6SWTiBLNnTECkNXNAD6YtihSev81SbP8YfXdwd1mmSBoem2g1hVZ5l&show_text=true&width=500" width="500" height="601" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
 </p>
 ```
+
 Di artikel ini, kita tidak akan membahas desain pembelajaran tersebut. Melainkan, kita akan mengetahui bagaimana mendapatkan data tren suhu planet bumi tersebut, mengolahnya, dan memvisualisasikannya. Seluruh proses ini akan kita lakukan dengan menggunakan [R](https://www.R-project.org/){.external target="_blank"}.
 
 ## Data Tren Suhu Global {#sec-impor-data}
@@ -118,6 +120,7 @@ Sampai di sini, aku teringat terhadap salah satu adegan di sebuah serial TV yang
 <iframe src="https://giphy.com/embed/2OP9jbHFlFPW" width="480" height="307" style="" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
 </p>
 ```
+
 Perintah Ross tersebut juga dapat diterapkan terhadap data kita. Kita dapat mem-*pivot* (memutar) data kita dengan menggunakan fungsi `pivot_longer()`. Dengan fungsi tersebut, data kita yang awalnya melebar akan berubah bentuknya menjadi data yang memanjang. Oleh karena itu, di tahap kedua, kita perlu memutar data kita agar menjadi data yang memanjang.
 
 ```{r}

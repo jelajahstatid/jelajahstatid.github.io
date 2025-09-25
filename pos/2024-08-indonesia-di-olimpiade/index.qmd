@@ -26,9 +26,12 @@ keywords:
   - diagram batang
   - diagram garis
   - diagram alir
+lightbox: true
 copyright: "© 2024 Yosep Dwi Kristanto"
 license: "CC BY"
 code-annotations: select
+execute: 
+  freeze: true
 editor_options: 
   chunk_output_type: console
 ---
@@ -38,6 +41,7 @@ editor_options:
 ```{=html}
 <blockquote class="twitter-tweet" data-lang="id" data-dnt="true"><p lang="en" dir="ltr">The Olympic <a href="https://twitter.com/hashtag/shootingsport?src=hash&amp;ref_src=twsrc%5Etfw">#shootingsport</a> stars we didn’t know we needed.<br><br>🇰🇷 Kim Yeji 🤝 Yusuf Dikeç 🇹🇷 <a href="https://t.co/gfkyGjFg4I">pic.twitter.com/gfkyGjFg4I</a></p>&mdash; The Olympic Games (@Olympics) <a href="https://twitter.com/Olympics/status/1818909520661278729?ref_src=twsrc%5Etfw">1 Agustus 2024</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 ```
+
 Akan tetapi, kita tidak akan memperbincangkan kedua atlet itu. Di suasana [peringatan kemerdekaan Republik Indonesia ini](/pos/2024-08-dirgahayu-indonesia/index.qmd "Dirgahayu Kemerdekaan Republik Indonesia: Persembahan Untuk HUT Ke-79 RI"), kita akan melihat prestasi atlet-atlet Indonesia di Olimpiade Musim Panas. Pada Olimpiade Paris 2024, Indonesia berhasil menyabet dua medali emas dan satu perunggu. Dua medali emas tersebut disabet oleh [Veddriq Leonardo](https://olympics.com/en/paris-2024/athlete/veddriq-leonardo_1940329 "LEONARDO Veddriq"){.external target="_blank"} (panjat tebing) dan [Rizki Juniansyah](https://olympics.com/en/paris-2024/athlete/rizki-juniansyah_1941786 "JUNIANSYAH Rizki"){.external target="_blank"} (angkat besi) sedangkan medali perunggunya diraih oleh [Gregoria Mariska Tunjung](https://olympics.com/en/paris-2024/athlete/gregoria-mariska-tunjung_1926315 "TUNJUNG Gregoria Mariska"){.external target="_blank"} (bulu tangkis).
 
 Bagaimana dengan pagelaran olimpiade-olimpiade sebelumnya? Kita akan menjawab pertanyaan ini dengan menggunakan data yang tersedia di laman Wikipedia.

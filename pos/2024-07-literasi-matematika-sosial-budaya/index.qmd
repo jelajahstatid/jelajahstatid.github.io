@@ -24,6 +24,7 @@ keywords:
   - Membaca
   - regresi linear
   - jarak Cook
+lightbox: true
 copyright: "© 2024 Yosep Dwi Kristanto"
 license: "CC BY"
 google-scholar: true

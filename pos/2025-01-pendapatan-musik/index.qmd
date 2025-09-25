@@ -26,6 +26,7 @@ keywords:
   - Observable Plot
   - plotly
   - pendapatan
+lightbox: true
 copyright: "© 2025 Yosep Dwi Kristanto"
 license: "CC BY"
 code-annotations: select

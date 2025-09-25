@@ -28,6 +28,7 @@ keywords:
   - Asia Tenggara
   - diagram batang
   - diagram garis
+lightbox: true
 copyright: "© 2024 Yosep Dwi Kristanto"
 license: "CC BY"
 editor_options: 

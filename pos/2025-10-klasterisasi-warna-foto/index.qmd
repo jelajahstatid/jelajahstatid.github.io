@@ -24,6 +24,7 @@ keywords:
   - pemelajaran mesin
   - pemelajaran statistik
   - statistical learning
+lightbox: true
 copyright: "© 2025 Yosep Dwi Kristanto"
 license: "CC BY"
 code-annotations: select

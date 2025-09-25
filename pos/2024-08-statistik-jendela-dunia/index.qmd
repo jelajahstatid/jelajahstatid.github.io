@@ -24,9 +24,9 @@ keywords:
   - PDB
   - diagram pencar
   - diagram garis
+lightbox: true
 copyright: "© 2024 Yosep Dwi Kristanto"
 license: "CC BY"
-google-scholar: true
 editor_options: 
   chunk_output_type: console
 code-annotations: select
@@ -73,7 +73,7 @@ glimpse(gapminder)
 Ternyata data tersebut memiliki 1.704 baris dan 6 kolom. Keterangan lebih lanjut tentang keenam kolom tersebut disajikan pada @tbl-var-gapminder.
 
 | Variabel | Keterangan |
-|----|----|
+|------------------------------------|------------------------------------|
 | `country` | Negara |
 | `continent` | Benua |
 | `year` | Tahun |

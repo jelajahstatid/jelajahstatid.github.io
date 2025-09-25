@@ -29,6 +29,7 @@ keywords:
   - penanaman modal asing
   - diagram batang
   - diagram alir
+lightbox: true
 copyright: "© 2024 Yosep Dwi Kristanto"
 license: "CC BY"
 editor_options: 

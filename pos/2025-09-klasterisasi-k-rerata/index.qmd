@@ -26,6 +26,7 @@ keywords:
   - pemelajaran mesin
   - pemelajaran statistik
   - statistical learning
+lightbox: true
 copyright: "© 2025 Yosep Dwi Kristanto"
 license: "CC BY"
 code-annotations: select
@@ -944,7 +945,7 @@ hasil_krerata <- kmeans(x = faithful_std, centers = 2)
 
 ```
 
-Hasil klasterisasi $k$-rerata yang telah kita lakukan pada @lst-hasil-krerata disimpan dalam sebuah objek dengan nama `hasil_krerata`. Terdapat beberapa nilai yang dapat kita lihat dari `hasil_krerata` tersebut, di antaranya adalah `cluster` (sebuah vektor bilangan bulat dari 1 sampai $k$ yang mengindikasikan klaster-klaster setiap titiknya), `centers` (matriks pusat klaster-klaster yang terbentuk), `totss` (total dari jumlah kuadrat), `withinss` (vektor dari jumlah kuadrat dalam setiap klasternya), `tot.withinss` (total dari jumlah kuadrat dalam setiap klasternya, yaitu `sum(withinss)`), `betweenss` (jumlah kuadrat antarklasternya, yaitu `totss-tot.withinss`), `size` (banyaknya titik dalam setiap klaster), dan `iter` (banyaknya iterasi).
+Hasil klasterisasi $k$-rerata yang telah kita lakukan pada @lst-hasil-krerata disimpan dalam sebuah objek dengan nama `hasil_krerata`. Terdapat beberapa nilai yang dapat kita lihat dari `hasil_krerata` tersebut, di antaranya adalah `cluster` (sebuah vektor bilangan bulat dari 1 sampai $k$ yang mengindikasikan klaster-klaster setiap titiknya), `centers` (matriks pusat klaster-klaster yang terbentuk), `totss` (total dari jumlah kuadrat), `withinss` (vektor dari jumlah kuadrat dalam setiap klasternya), `tot.withinss` (total dari jumlah kuadrat dalam setiap klasternya, yaitu `sum(withinss)`, atau $WCSS$), `betweenss` (jumlah kuadrat antarklasternya, yaitu `totss-tot.withinss`), `size` (banyaknya titik dalam setiap klaster), dan `iter` (banyaknya iterasi).
 
 Sekarang kita masukkan informasi klaster dalam `hasil_krerata` tersebut (yaitu `hasil_kerata$cluster`) ke dalam data `faithful` dan kita lihat hasilnya.
 

@@ -26,6 +26,7 @@ keywords:
   - Gunung Bromo
   - Gunung Merapi
   - Gunung Semeru
+lightbox: true
 copyright: "© 2024 Yosep Dwi Kristanto"
 license: "CC BY"
 code-annotations: select
