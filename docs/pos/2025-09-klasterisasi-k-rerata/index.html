@@ -1133,25 +1133,46 @@ Gambar&nbsp;15: Empat iterasi klasterasisasi k-rerata terhadap data <code>faithf
 </section></section><section id="sec-klasterisasi-k-rerata-dengan-fungsi-kmeans" class="level2"><h2 class="anchored" data-anchor-id="sec-klasterisasi-k-rerata-dengan-fungsi-kmeans">Klasterisasi <span class="math inline">\(K\)</span>-Rerata dengan Fungsi <code>kmeans()</code>
 </h2>
 <p>Pada <a href="#sec-penerapan-algoritma-k-rerata" class="quarto-xref">Bagian&nbsp;3</a>, kita telah melakukan klasterisasi <span class="math inline">\(k\)</span>-rerata langkah demi langkah, dari iterasi pertama sampai keempat. Banyak hal yang telah kita lakukan. Apakah ada fungsi di R yang dapat melakukan klasterisasi <span class="math inline">\(k\)</span>-rerata secara otomatis dan cepat? Tentu saja ada! Fungsi itu adalah <code><a href="https://rdrr.io/r/stats/kmeans.html">kmeans()</a></code>.</p>
-<p>Untuk membagi data kita sebelumnya, yaitu <code>faithful,</code> menjadi <span class="math inline">\(k=2\)</span> klaster, kita gunakan kode berikut.</p>
+<p>Untuk membagi data kita sebelumnya, yaitu <code>faithful,</code> menjadi <span class="math inline">\(k=2\)</span> klaster, kita gunakan kode seperti pada <a href="#lst-hasil-krerata" class="quarto-xref">Daftar&nbsp;1</a>.</p>
 <div class="cell">
+<div id="lst-hasil-krerata" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-fold="show">
+<figure class="quarto-float quarto-float-lst figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-hasil-krerata-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Daftar&nbsp;1: Klusterasi krerata dengan <code><a href="https://rdrr.io/r/stats/kmeans.html">kmeans()</a></code>
+</figcaption><div aria-describedby="lst-hasil-krerata-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details open="" class="code-fold"><summary>Kode</summary><div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Menyiapkan dataframe untuk `kmeans()`</span></span>
 <span><span class="va">faithful_std</span> <span class="op">&lt;-</span> <span class="va">faithful</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">eruptions_std</span>, <span class="va">waiting_std</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Menerapkan `kmeans()`</span></span>
-<span><span class="va">cl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/kmeans.html">kmeans</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">faithful_std</span>, centers <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Memasukkan klaster yang dihasilkan ke dalam `faithful`</span></span>
-<span><span class="va">faithful</span> <span class="op">&lt;-</span> <span class="va">faithful</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
-<span>    klaster <span class="op">=</span> <span class="va">cl</span><span class="op">$</span><span class="va">cluster</span></span>
-<span>  <span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="va">hasil_krerata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/kmeans.html">kmeans</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">faithful_std</span>, centers <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p>Ingin tahu bagaimana hasilnya? Mari kita plot diagram pencar data <code>faithful</code>. Perhatikan <a href="#fig-diagram-pencar-kmeans" class="quarto-xref">Gambar&nbsp;16</a>!</p>
+</figure>
+</div>
+</div>
+<p>Hasil klasterisasi <span class="math inline">\(k\)</span>-rerata yang telah kita lakukan pada <a href="#lst-hasil-krerata" class="quarto-xref">Daftar&nbsp;1</a> disimpan dalam sebuah objek dengan nama <code>hasil_krerata</code>. Terdapat beberapa nilai yang dapat kita lihat dari <code>hasil_krerata</code> tersebut, di antaranya adalah <code>cluster</code> (sebuah vektor bilangan bulat dari 1 sampai <span class="math inline">\(k\)</span> yang mengindikasikan klaster-klaster setiap titiknya), <code>centers</code> (matriks pusat klaster-klaster yang terbentuk), <code>totss</code> (total dari jumlah kuadrat), <code>withinss</code> (vektor dari jumlah kuadrat dalam setiap klasternya), <code>tot.withinss</code> (total dari jumlah kuadrat dalam setiap klasternya, yaitu <code>sum(withinss)</code>), <code>betweenss</code> (jumlah kuadrat antarklasternya, yaitu <code>totss-tot.withinss</code>), <code>size</code> (banyaknya titik dalam setiap klaster), dan <code>iter</code> (banyaknya iterasi).</p>
+<p>Sekarang kita masukkan informasi klaster dalam <code>hasil_krerata</code> tersebut (yaitu <code>hasil_kerata$cluster</code>) ke dalam data <code>faithful</code> dan kita lihat hasilnya.</p>
 <div class="cell">
-<details class="code-fold"><summary>Kode</summary><div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">faithful</span> <span class="op">|&gt;</span> </span>
+<details open="" class="code-fold"><summary>Kode</summary><div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Memasukkan klaster yang dihasilkan ke dalam `faithful`</span></span>
+<span><span class="va">faithful</span> <span class="op">&lt;-</span> <span class="va">faithful</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>    klaster <span class="op">=</span> <span class="va">hasil_krerata</span><span class="op">$</span><span class="va">cluster</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">faithful</span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code>  eruptions waiting eruptions_std waiting_std klaster
+1     3.600      79    0.09831763   0.5960248       2
+2     1.800      54   -1.47873278  -1.2428901       1
+3     3.333      74   -0.13561152   0.2282418       2
+4     2.283      62   -1.05555759  -0.6544374       1
+5     4.533      85    0.91575542   1.0373644       2
+6     2.883      55   -0.52987412  -1.1693335       1</code></pre>
+</div>
+</div>
+<p>Ingin tahu bagaimana visualisasi hasilnya? Mari kita plot diagram pencar data <code>faithful</code>. Perhatikan <a href="#fig-diagram-pencar-kmeans" class="quarto-xref">Gambar&nbsp;16</a>!</p>
+<div class="cell">
+<details class="code-fold"><summary>Kode</summary><div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">faithful</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
 <span>    klaster <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/as_factor.html">as_factor</a></span><span class="op">(</span><span class="fl">3</span> <span class="op">-</span> <span class="va">klaster</span><span class="op">)</span></span>
 <span>  <span class="op">)</span> <span class="op">|&gt;</span> </span>

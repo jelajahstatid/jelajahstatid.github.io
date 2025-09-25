@@ -928,9 +928,11 @@ plot_grid(
 
 Pada @sec-penerapan-algoritma-k-rerata, kita telah melakukan klasterisasi $k$-rerata langkah demi langkah, dari iterasi pertama sampai keempat. Banyak hal yang telah kita lakukan. Apakah ada fungsi di R yang dapat melakukan klasterisasi $k$-rerata secara otomatis dan cepat? Tentu saja ada! Fungsi itu adalah `kmeans()`.
 
-Untuk membagi data kita sebelumnya, yaitu `faithful,` menjadi $k=2$ klaster, kita gunakan kode berikut.
+Untuk membagi data kita sebelumnya, yaitu `faithful,` menjadi $k=2$ klaster, kita gunakan kode seperti pada @lst-hasil-krerata.
 
 ```{r}
+#| lst-label: lst-hasil-krerata
+#| lst-cap: "Klusterasi krerata dengan `kmeans()`"
 #| code-fold: show
 
 # Menyiapkan dataframe untuk `kmeans()`
@@ -938,16 +940,28 @@ faithful_std <- faithful |>
   select(eruptions_std, waiting_std)
 
 # Menerapkan `kmeans()`
-cl <- kmeans(x = faithful_std, centers = 2)
+hasil_krerata <- kmeans(x = faithful_std, centers = 2)
+
+```
+
+Hasil klasterisasi $k$-rerata yang telah kita lakukan pada @lst-hasil-krerata disimpan dalam sebuah objek dengan nama `hasil_krerata`. Terdapat beberapa nilai yang dapat kita lihat dari `hasil_krerata` tersebut, di antaranya adalah `cluster` (sebuah vektor bilangan bulat dari 1 sampai $k$ yang mengindikasikan klaster-klaster setiap titiknya), `centers` (matriks pusat klaster-klaster yang terbentuk), `totss` (total dari jumlah kuadrat), `withinss` (vektor dari jumlah kuadrat dalam setiap klasternya), `tot.withinss` (total dari jumlah kuadrat dalam setiap klasternya, yaitu `sum(withinss)`), `betweenss` (jumlah kuadrat antarklasternya, yaitu `totss-tot.withinss`), `size` (banyaknya titik dalam setiap klaster), dan `iter` (banyaknya iterasi).
+
+Sekarang kita masukkan informasi klaster dalam `hasil_krerata` tersebut (yaitu `hasil_kerata$cluster`) ke dalam data `faithful` dan kita lihat hasilnya.
+
+```{r}
+#| code-fold: show
 
 # Memasukkan klaster yang dihasilkan ke dalam `faithful`
 faithful <- faithful |> 
   mutate(
-    klaster = cl$cluster
+    klaster = hasil_krerata$cluster
   )
+
+head(faithful)
+
 ```
 
-Ingin tahu bagaimana hasilnya? Mari kita plot diagram pencar data `faithful`. Perhatikan @fig-diagram-pencar-kmeans!
+Ingin tahu bagaimana visualisasi hasilnya? Mari kita plot diagram pencar data `faithful`. Perhatikan @fig-diagram-pencar-kmeans!
 
 ```{r}
 #| label: fig-diagram-pencar-kmeans
