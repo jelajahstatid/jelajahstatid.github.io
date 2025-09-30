@@ -10,7 +10,19 @@
 <atom:link href="https://jelajahstatid.github.io/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.7.32</generator>
-<lastBuildDate>Mon, 22 Sep 2025 22:00:00 GMT</lastBuildDate>
+<lastBuildDate>Tue, 30 Sep 2025 22:00:00 GMT</lastBuildDate>
+<item>
+  <title>Klasterisasi Warna Foto</title>
+  <dc:creator>Yosep Dwi Kristanto</dc:creator>
+  <link>https://jelajahstatid.github.io/pos/2025-10-klasterisasi-warna-foto/</link>
+  <description><![CDATA[ Bagaimana mengurangi variasi warna dalam sebuah foto? Salah satu caranya adalah dengan menerapkan klasterisasi k-rerata. Dengan metode ini, foto tersebut akan tersusun hanya dalam k warna. Ide dasar dan cara detailnya dijelaskan dalam artikel ini. ]]></description>
+  <category>klasterisasi</category>
+  <category>tutorial</category>
+  <category>fotografi</category>
+  <guid>https://jelajahstatid.github.io/pos/2025-10-klasterisasi-warna-foto/</guid>
+  <pubDate>Tue, 30 Sep 2025 22:00:00 GMT</pubDate>
+  <media:content url="https://jelajahstatid.github.io/pos/2025-10-klasterisasi-warna-foto/sampul-klasterisasi-warna.png" medium="image" type="image/png" height="108" width="144"/>
+</item>
 <item>
   <title>Klasterisasi K-Rerata</title>
   <dc:creator>Yosep Dwi Kristanto</dc:creator>
@@ -124,17 +136,6 @@
   <guid>https://jelajahstatid.github.io/pos/2024-08-statistik-dinamis-dan-interaktif/</guid>
   <pubDate>Fri, 09 Aug 2024 22:00:00 GMT</pubDate>
   <media:content url="https://jelajahstatid.github.io/pos/2024-08-statistik-dinamis-dan-interaktif/statistik-interaktif.png" medium="image" type="image/png" height="108" width="144"/>
-</item>
-<item>
-  <title>Membuat Diagram Lebih Hidup dengan Animasi</title>
-  <dc:creator>Yosep Dwi Kristanto</dc:creator>
-  <link>https://jelajahstatid.github.io/pos/2024-08-animasi-diagram-statistik/</link>
-  <description><![CDATA[ Bagaimana menganimasikan diagram statistik? Artikel ini mendemonstrasikan bagaimana menggunakan paket {gganimate} untuk membuat animasi dalam penyajian data yang efisien dan menarik. ]]></description>
-  <category>tutorial</category>
-  <category>visualisasi data</category>
-  <guid>https://jelajahstatid.github.io/pos/2024-08-animasi-diagram-statistik/</guid>
-  <pubDate>Tue, 06 Aug 2024 22:00:00 GMT</pubDate>
-  <media:content url="https://jelajahstatid.github.io/pos/2024-08-animasi-diagram-statistik/animasi.gif" medium="image" type="image/gif"/>
 </item>
 </channel>
 </rss>

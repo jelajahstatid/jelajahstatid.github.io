@@ -2,7 +2,6 @@
 title: "Klasterisasi Warna Foto"
 subtitle: "Manipulasi Foto dengan Klasterisasi K-Rerata"
 description: "Bagaimana mengurangi variasi warna dalam sebuah foto? Salah satu caranya adalah dengan menerapkan klasterisasi k-rerata. Dengan metode ini, foto tersebut akan tersusun hanya dalam k warna. Ide dasar dan cara detailnya dijelaskan dalam artikel ini."
-draft: true
 author:
   - name: Yosep Dwi Kristanto
     url: https://people.usd.ac.id/~ydkristanto/
