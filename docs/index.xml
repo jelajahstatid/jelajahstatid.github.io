@@ -10,7 +10,19 @@
 <atom:link href="https://jelajahstatid.github.io/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.7.32</generator>
-<lastBuildDate>Tue, 30 Sep 2025 22:00:00 GMT</lastBuildDate>
+<lastBuildDate>Sun, 05 Oct 2025 22:00:00 GMT</lastBuildDate>
+<item>
+  <title>Analisis Komponen Utama</title>
+  <dc:creator>Yosep Dwi Kristanto</dc:creator>
+  <link>https://jelajahstatid.github.io/pos/2025-10-analisis-komponen-utama/</link>
+  <description><![CDATA[ Analisis Komponen Utama (AKU) merupakan metode statistika multivariat yang ampuh untuk mereduksi dimensi data. Artikel ini mendemonstrasikan penggunaan metode tersebut untuk menyelidiki pola konsumsi pangan Indonesia yang awalnya memiliki delapan variabel kuantitatif. Dengan AKU, dimensi data tersebut tereduksi secara signifikan tetapi strukturnya relatif tidak banyak berubah. ]]></description>
+  <category>statistik nasional</category>
+  <category>studi kasus</category>
+  <category>pangan</category>
+  <guid>https://jelajahstatid.github.io/pos/2025-10-analisis-komponen-utama/</guid>
+  <pubDate>Sun, 05 Oct 2025 22:00:00 GMT</pubDate>
+  <media:content url="https://jelajahstatid.github.io/pos/2025-10-analisis-komponen-utama/sampul-aku.png" medium="image" type="image/png" height="108" width="144"/>
+</item>
 <item>
   <title>Klasterisasi Warna Foto</title>
   <dc:creator>Yosep Dwi Kristanto</dc:creator>
@@ -124,18 +136,6 @@
   <guid>https://jelajahstatid.github.io/pos/2024-08-dirgahayu-indonesia/</guid>
   <pubDate>Sun, 11 Aug 2024 22:00:00 GMT</pubDate>
   <media:content url="https://jelajahstatid.github.io/pos/2024-08-dirgahayu-indonesia/statistik-hut-ri-2024.png" medium="image" type="image/png" height="108" width="144"/>
-</item>
-<item>
-  <title>Membuat Statistik Menjadi Dinamis dan Interaktif</title>
-  <dc:creator>Yosep Dwi Kristanto</dc:creator>
-  <link>https://jelajahstatid.github.io/pos/2024-08-statistik-dinamis-dan-interaktif/</link>
-  <description><![CDATA[ Statistik bukan hanya untuk statistikawan tetapi juga untuk orang awam. Untuk itu, statistik perlu dikemas secara lebih menarik dan menawan. Shiny memungkinkan agar statistik disajikan secara dinamis dan interaktif agar menarik dan mudah dipelajari oleh orang awam. ]]></description>
-  <category>statistik dunia</category>
-  <category>tutorial</category>
-  <category>visualisasi data</category>
-  <guid>https://jelajahstatid.github.io/pos/2024-08-statistik-dinamis-dan-interaktif/</guid>
-  <pubDate>Fri, 09 Aug 2024 22:00:00 GMT</pubDate>
-  <media:content url="https://jelajahstatid.github.io/pos/2024-08-statistik-dinamis-dan-interaktif/statistik-interaktif.png" medium="image" type="image/png" height="108" width="144"/>
 </item>
 </channel>
 </rss>

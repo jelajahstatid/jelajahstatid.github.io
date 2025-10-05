@@ -1,8 +1,7 @@
 ---
 title: "Analisis Komponen Utama"
 subtitle: "Menyingkap Konsumsi Pangan Penduduk Indonesia"
-description: ""
-draft: true
+description: "Analisis Komponen Utama (AKU) merupakan metode statistika multivariat yang ampuh untuk mereduksi dimensi data. Artikel ini mendemonstrasikan penggunaan metode tersebut untuk menyelidiki pola konsumsi pangan Indonesia yang awalnya memiliki delapan variabel kuantitatif. Dengan AKU, dimensi data tersebut tereduksi secara signifikan tetapi strukturnya relatif tidak banyak berubah."
 author:
   - name: Yosep Dwi Kristanto
     url: https://people.usd.ac.id/~ydkristanto/
@@ -14,10 +13,15 @@ categories:
   - statistik nasional
   - studi kasus
   - pangan
+image: "sampul-aku.png"
+image-alt: "Visualisasi hasil analisis komponen utama (AKU)"
 keywords: 
+  - analisis data eksploratif
   - analisis komponen utama
   - reduksi dimensi
   - pangan
+  - statistika multivariat
+  - visualisasi data
 lightbox: true
 copyright: "© 2025 Yosep Dwi Kristanto"
 license: "CC BY"
@@ -26,7 +30,19 @@ editor_options:
   chunk_output_type: console
 ---
 
-Program Makan Bergizi Gratis menjadi topik hangat berita nasional ketika artikel ini ditulis. Namun, artikel ini tidak akan membahas program itu melainkan topik yang serupa, yaitu tentang pangan. Secara lebih khusus, artikel ini akan menyingkap perilaku konsumsi pangan penduduk Indonesia per provinsi dengan menggunakan analisis komponen utama (AKU) atau *principal component analysis* (PCA). Kita awali pembahasannya dengan mengenal apa itu AKU.
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(ggrepel)
+library(ggsci)
+library(scales)
+
+```
+
+Program Makan Bergizi Gratis menjadi topik hangat berita nasional ketika artikel ini ditulis. Namun, artikel ini tidak akan membahas program itu melainkan topik yang serupa, yaitu tentang pangan. Secara lebih khusus, artikel ini akan menyingkap pola konsumsi pangan penduduk Indonesia per provinsi dengan menggunakan analisis komponen utama (AKU) atau *principal component analysis* (PCA). Kita awali pembahasannya dengan mengenal apa itu AKU.
 
 ## Sekilas Tentang AKU {#sec-sekilas-tentang-analisis-komponen-utama}
 
@@ -50,8 +66,312 @@ Jika kamu ingin melihat bagaimana ide mendasar AKU, silakan kunjungi media-media
 
 ## Konsumsi Pangan Penduduk Indonesia {#sec-konsumsi-pangan-penduduk-indonesia}
 
-Kembali ke tujuan awal, selanjutkan kita mengaplikasikan AKU untuk menyingkap perilaku konsumsi penduduk Indonesia berdasarkan jenis pangan mulai dari tahun 2018 sampai 2024. Untuk melakukannya, kita menggunakan data dari Badan Pangan Nasional yang tersedia di [satudata.badanpangan.go.id](https://satudata.badanpangan.go.id/datasetpublications/gsp/konsumsi-provinsi "Rata-rata Konsumsi per Jenis Pangan Penduduk Indonesia Provinsi Update Tahun 2024"){.external target="_blank"}.
+Kembali ke tujuan awal, selanjutnya kita mengaplikasikan AKU untuk menyingkap pola konsumsi penduduk Indonesia berdasarkan jenis pangan mulai dari tahun 2018 sampai 2024. Untuk melakukannya, kita menggunakan data dari Badan Pangan Nasional yang tersedia di [satudata.badanpangan.go.id](https://satudata.badanpangan.go.id/datasetpublications/gsp/konsumsi-provinsi "Rata-rata Konsumsi per Jenis Pangan Penduduk Indonesia Provinsi Update Tahun 2024"){.external target="_blank"}. Data ini menunjukkan nilai rata-rata konsumsi, dalam kg/kapita/tahun, penduduk Indonesia tiap provinsi berdasarkan jenis pangan pada tahun 2018 sampai 2024. Jenis-jenis pangan tersebut merupakan variabel-variabel kuantitatif yang akan kita selidiki. Variabel tersebut ada delapan, yaitu `Buah/biji berminyak`, `Gula`, `Kacang-kacangan`, `Minyak dan Lemak`, `Padi-Padian`, `Pangan Hewani`, `Sayuran dan buah`, dan `Umbi-umbian`.
 
 ```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+# Impor dan transformasi data
+url_data <- "https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/refs/heads/main/pos/2025-10-analisis-komponen-utama/aset/1744360375.csv"
+
+dat_pangan <- read_csv(
+  file = url_data,
+  col_names = TRUE
+)
+
+dat_pangan <- dat_pangan |> 
+  rename(
+    tahun = Tahun,
+    prov = Provinsi,
+    bahan_pangan = `Kelompok Bahan Pangan`,
+    konsumsi = Konsumsi_Pangan
+  ) |> 
+  select(
+    tahun, prov, bahan_pangan,
+    Komoditas, konsumsi
+  ) |> 
+  group_by(
+    tahun, prov, bahan_pangan
+  ) |> 
+  summarise(
+    konsumsi = max(konsumsi),
+    .groups = "drop"
+  )
+
+dat_pangan_lebar <- dat_pangan |> 
+  pivot_wider(
+    names_from = bahan_pangan,
+    values_from = konsumsi
+  ) |> 
+  mutate(
+    tahun_prov = paste(tahun, prov, sep = "_")
+  ) |> 
+  select(-tahun, -prov) |> 
+  as.data.frame() |> 
+  column_to_rownames(var = "tahun_prov") |> 
+  drop_na()
+
+# Analisis komponen utama (AKU)
+hasil_aku <- prcomp(dat_pangan_lebar, scale. = TRUE)
+dat_aku <- hasil_aku$x |> 
+  as.data.frame() |> 
+  rownames_to_column(var = "tahun_prov") |> 
+  as_tibble() |> 
+  separate(tahun_prov, into = c("tahun", "prov"), sep = "_")
+dat_aku_rot <- hasil_aku$rotation |> 
+  as.data.frame() |> 
+  rownames_to_column(var = "bahan_pangan") |> 
+  as_tibble() |> 
+  mutate(
+    d2 = sqrt(PC1^2 + PC2^2)
+  )
+ringkasan_aku <- summary(hasil_aku)
+var_aku <- ringkasan_aku$importance |> 
+  t() |> 
+  as.data.frame() |> 
+  rownames_to_column(var = "PC") |> 
+  select(PC, `Proportion of Variance`) |> 
+  rename(
+    prop_var = `Proportion of Variance`,
+    KU = PC
+  ) |> 
+  mutate(
+    KU = paste0("KU", row_number())
+  )
+pst_pc1 <- round(ringkasan_aku$importance[2, "PC1"] * 100, 2)
+pst_pc2 <- round(ringkasan_aku$importance[2, "PC2"] * 100, 2)
 
 ```
+
+@fig-aku-awal menunjukkan visualisasi hasil AKU terhadap data tersebut. @fig-aku-awal-1 menunjukkan komponen-komponen utama yang dihasilkan beserta dengan besarnya variansi data yang dapat dijelaskan oleh masing-masing komponen tersebut. Dari gambar tersebut kita dapat melihat bahwa KU1 (komponen utama pertama) dapat menjelaskan variansi terbesar, diikuti dengan KU2. Dengan demikian, selanjutnya kita gunakan dua komponen utama ini untuk menginterpretasi data. Secara total, kedua komponen utama tersebut dapat menjelaskan 44,35% variansi dalam data.
+
+```{r}
+#| echo: false
+#| label: fig-aku-awal
+#| fig-cap: "Visualisasi hasil AKU"
+#| fig-subcap: 
+#|   - "Variansi yang dijelaskan oleh setiap komponen utama"
+#|   - "Hubungan antara variabel dan dua komponen utama dalam bidang AKU"
+#|   - "Proyeksi titik-titik data (provinsi per tahun) pada bidang AKU"
+#| layout: [[1,1], [1]]
+
+# Visualisasi AKU
+## Proyeksi data pada PC1 dan PC2
+p1 <- dat_aku |> 
+  mutate(tahun = as_factor(tahun)) |> 
+  ggplot(aes(x = PC1, y = PC2)) + 
+  geom_hline(
+    yintercept = 0,
+    linetype = "dashed",
+    linewidth = 1
+  ) + 
+  geom_vline(
+    xintercept = 0,
+    linetype = "dashed",
+    linewidth = 1
+  ) + 
+  geom_point(
+    aes(col = tahun),
+    size = 1,
+    shape = 1,
+    stroke = 2
+  ) + 
+  scale_color_npg(name = NULL) + 
+  theme_minimal() + 
+  theme(
+    legend.position = "bottom"
+  ) + 
+  guides(
+    color = guide_legend(nrow = 1)
+  ) + 
+  labs(
+    x = paste0("KU1 (", pst_pc1, "%)"),
+    y = paste0("KU2 (", pst_pc2, "%)")
+  )
+
+## Bobot setiap variabel
+p2 <- dat_aku_rot |> 
+  ggplot(aes(x = PC1, y = PC2)) + 
+  geom_segment(
+    aes(
+      x = 0, y = 0,
+      xend = PC1, yend = PC2,
+      col = d2
+    ),
+    linewidth = 1,
+    arrow = arrow(length = unit(0.3, "cm"))
+  ) + 
+  geom_text_repel(
+    aes(label = bahan_pangan)
+  ) + 
+  annotate(
+    "path",
+    x = 0 + 1*cos(seq(0, 2*pi,length.out = 100)),
+    y = 0 + 1*sin(seq(0, 2*pi,length.out = 100)),
+    alpha = .3
+  ) + 
+  scale_color_gradient(
+    low = "#4DBBD5",
+    high = "#3C5488"
+  ) + 
+  coord_fixed(
+    xlim = c(-1, 1),
+    ylim = c(-1, 1)
+  ) + 
+  theme_minimal() + 
+  theme(
+    legend.position = "none",
+    axis.title = element_blank()
+  )
+
+## Variansi yang dijelaskan setiap komponen utama
+p3 <- var_aku |> 
+  ggplot(aes(x = KU, y = prop_var)) + 
+  geom_col(
+    aes(fill = prop_var)
+  ) + 
+  geom_line(
+    aes(group = 1),
+    col = "#E64B35",
+    linewidth = 1
+  ) + 
+  geom_point(
+    col = "#E64B35",
+    size = 2,
+    shape = 1,
+    stroke = 2
+  ) + 
+  scale_y_continuous(labels = percent_format()) + 
+  scale_fill_gradient(
+    low = "#4DBBD5",
+    high = "#3C5488"
+  ) + 
+  theme_minimal() + 
+  theme(
+    legend.position = "none",
+    axis.title.x = element_blank()
+  ) + 
+  labs(
+    y = "Variansi yang dijelaskan"
+  )
+
+p3
+p2
+p1
+
+```
+
+@fig-aku-awal-2 menyajikan arah dan kekuatan hubungan antara variabel-variabel asli dan dua komponen utama yang pertama: KU1 dan KU2. Misalnya, variabel `Sayuran dan buah` mengarah ke kiri atas. Artinya, variabel ini memiliki korelasi negatif dengan UK1 tetapi positif dengan UK2. Panjang panah menunjukkan besarnya korelasi. Meskipun sama-sama berkorelasi negatif dengan KU1, `Sayuran dan buah` korelasi lebih kuat dibandingkan dengan `Kacang-kacangan`. Tanda-tanda panah variabel tersebut juga menunjukkan korelasi antarvariabel:
+
+-   jika tanda-tanda panahnya searah, variabel-variabel yang direpresentasikannya memiliki korelasi yang positif;
+
+-   jika berlawanan arah, variabel-variabelnya berkorelasi negatif; dan
+
+-   jika tegak lurus, variabel-variabelnya tidak berkorelasi.
+
+Selain untuk melihat korelasi, @fig-aku-awal-2 sangat berguna untuk menginterpretasi apa yang disajikan @fig-aku-awal-3. Gambar tersebut menyajikan proyeksi titik-titik data pada bidang AKU. Untuk menginterpretasi titik-titik data pada @fig-aku-awal-3 dengan @fig-aku-awal-2 secara lebih mudah, kita terlebih dahulu mengidentifikasi pencilan-pencilan datanya. Perhatikan @fig-aku-grup!
+
+```{r}
+#| echo: false
+#| label: fig-aku-grup
+#| fig-cap: "Proyeksi data pada bidang AKU dengan pemberian label untuk titik-titik pencilan"
+#| fig-asp: 0.5625
+
+dat_aku_grup <- dat_aku |> 
+  mutate(
+    grup = if_else(
+      PC1 >= 3 | PC2 >=2, 1, 0
+    ),
+    label = if_else(
+      PC1 >= 3 | PC2 >=2,
+      paste(tahun, prov, sep = "_"),
+      ""
+    )
+  )
+
+p4 <- dat_aku_grup |> 
+  ggplot(aes(x = PC1, y = PC2)) + 
+  geom_hline(
+    yintercept = 0,
+    linetype = "dashed",
+    linewidth = 1
+  ) + 
+  geom_vline(
+    xintercept = 0,
+    linetype = "dashed",
+    linewidth = 1
+  ) + 
+  geom_point(
+    aes(col = as_factor(grup)),
+    size = 1,
+    shape = 1,
+    stroke = 2
+  ) + 
+  geom_text_repel(
+    aes(label = label)
+  ) + 
+  scale_color_npg() + 
+  theme_minimal() + 
+  theme(
+    legend.position = "none"
+  ) + 
+  labs(
+    x = paste0("KU1 (", pst_pc1, "%)"),
+    y = paste0("KU2 (", pst_pc2, "%)")
+  )
+
+p4
+
+```
+
+Berdasarkan @fig-aku-grup, kita dapat melihat bahwa titik "2018_Kalimantan Tengah" berada jauh dari kumpulan titik-titik lainnya, sehingga titik tersebut merupakan pencilan. Selain itu, titik tersebut searah dengan tanda panah variabel-variabel `Gula` dan `Pangan Hewani`, perhatikan kembali @fig-aku-awal-2. Dengan demikian, Provinsi Kalimantan Tengah pada tahun 2018 konsumsi pangannya pada kategori `Gula` atau `Pangan Hewani` lebih tinggi dari rerata provinsi-provinsi lainnya. Interpretasi yang serupa dapat kita lakukan untuk titik "2023_Papua". Kita dapat menginterpretasi bahwa rerata konsumsi Provinsi Papua pada tahun 2023 untuk kategori `Umbi-umbian` lebih besar daripada provinsi-provinsi lainnya. Untuk mengkonfirmasi interpretasi tersebut, kita dapat membandingkannya dengan provinsi-provinsi lain yang bukan pencilan, misalnya "2020_Sumatera Barat" dan "2021_Jawa Timur". Perhatikan @fig-diagram-batang-perbandingan!
+
+```{r}
+#| echo: false
+#| label: fig-diagram-batang-perbandingan
+#| fig-cap: "Perbandingan konsumsi per jenis pangan"
+#| fig-asp: 0.5625
+
+p5 <- dat_pangan |> 
+  mutate(
+    tahun_prov = paste(tahun, prov, sep = "_")
+  ) |> 
+  filter(
+    tahun_prov %in% c(
+      "2020_Sumatera Barat", "2021_Jawa Timur",
+      "2018_Kalimantan Tengah", "2023_Papua"
+    )
+  ) |> 
+  ggplot(aes(x = konsumsi, y = bahan_pangan)) + 
+  geom_col(aes(fill = konsumsi)) + 
+  scale_y_discrete(labels = label_wrap(10)) + 
+  scale_fill_gradient(
+    low = "#4DBBD5",
+    high = "#3C5488"
+  ) + 
+  facet_wrap(~tahun_prov, ncol = 5) + 
+  theme_minimal() + 
+  theme(
+    legend.position = "none",
+    axis.title.y = element_blank()
+  ) + 
+  labs(
+    x = "Konsumsi pangan (kg/kapita/tahun)",
+    caption = "Data: Badan Pangan Nasional"
+  )
+
+p5
+
+```
+
+@fig-diagram-batang-perbandingan mengkonfirmasi interpretasi kita sebelumnya:
+
+-   Rata-rata konsumsi pangan Provinsi Kalimantan Tengah pada tahun 2018 di kategori `Pangan Hewani` dan `Gula` lebih besar dari provinsi-provinsi lainnya.
+
+-   Rata-rata konsumsi pangan Provinsi Papua pada tahun 2023 di kategori `Umbi-umbian` lebih besar dari provinsi-provinsi lainnya. Berdasarkan @fig-aku-grup, hal ini juga terjadi untuk tahun-tahun 2018, 2019, 2021, dan 2024.
+
+## Catatan Akhir {#sec-catatan-akhir}
+
+Kita telah mengenal metode statistika multivariat yang ampuh untuk mereduksi dimensi data, yaitu AKU. Hal ini kita lakukan pada @sec-sekilas-tentang-analisis-komponen-utama. Metode ini kita gunakan untuk mereduksi dimensi data rata-rata konsumsi penduduk Indonesia, yang awalnya memiliki delapan variabel kuantitatif menjadi dua komponen utama saja. Dengan hanya menggunakan dua komponen utama tersebut, kita tetap masih dapat melihat struktur titik-titik data dan variabel-variabelnya. Misalnya dalam @sec-konsumsi-pangan-penduduk-indonesia, kita menemukan hal-hal menarik tentang titik-titik pencilan dalam data, khususnya untuk Provinsi Kalimantan Tengah pada tahun 2018 dan Provinsi Papua pada Tahun 2023.
