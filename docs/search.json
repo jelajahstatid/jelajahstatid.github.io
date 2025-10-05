@@ -628,5 +628,26 @@
     "title": "Klasterisasi Warna Foto",
     "section": "Catatan Akhir",
     "text": "Catatan Akhir\nKita telah mereduksi variasi warna dalam sebuah foto dengan menggunakan klasterisasi \\(k\\)-rerata. Untuk melakukannya, kita perlu mengetahui bagaimana sebuah foto atau gambar dapat direpresentasikan dengan matriks-matriks warna dasarnya. Setelah itu, kita ekstrak data warna piksel-piksel dalam gambar tersebut. Hal ini kita lakukan pada Bagian 2. Setelah kita mendapatkan data warna tersebut, kita gunakan data tersebut untuk melakukan klasterisasi \\(k\\)-rerata (lihat Bagian 3). Di akhir, kita ubah warna tiap-tiap pikselnya dengan warna pusat klasternya. Dengan cara ini, kita mendapatkan gambar yang hanya tersusun dari \\(k\\) warna. Hasil akhirnya dapat dilihat pada Gambar 9.\nSebagai catatan, kita menggunakan klasterisasi \\(k\\)-rerata terhadap titik-titik warna yang dinyatakan ke dalam RGB. Algoritma \\(k\\)-rerata tersebut mengandalkan jarak untuk membuat klaster-klaster. Akan tetapi, persepsi kita terhadap warna tidaklah linear di RGB. Dalam RGB, dua warna mungkin memiliki jarak yang dekat, tetapi secara intuitif kita menilai warna tersebut jauh berbeda. Sebaliknya, mungkin ada dua warna yang jauh secara numerik dalam ruang RGB, tetapi bagi kita dua warna itu dekat secara intuitif. Oleh karena itu, kita dapat memilih format warna yang lebih sesuai dengan persepsi kita, misalnya Lab. Silakan gunakan metode yang kamu pelajari di artikel ini, tetapi dengan menggunakan ruang warna Lab."
+  },
+  {
+    "objectID": "pos/2025-10-analisis-komponen-utama/index.html",
+    "href": "pos/2025-10-analisis-komponen-utama/index.html",
+    "title": "Analisis Komponen Utama",
+    "section": "",
+    "text": "Program Makan Bergizi Gratis menjadi topik hangat berita nasional ketika artikel ini ditulis. Namun, artikel ini tidak akan membahas program itu melainkan topik yang serupa, yaitu tentang pangan. Secara lebih khusus, artikel ini akan menyingkap perilaku konsumsi pangan penduduk Indonesia per provinsi dengan menggunakan analisis komponen utama (AKU) atau principal component analysis (PCA). Kita awali pembahasannya dengan mengenal apa itu AKU."
+  },
+  {
+    "objectID": "pos/2025-10-analisis-komponen-utama/index.html#sec-sekilas-tentang-analisis-komponen-utama",
+    "href": "pos/2025-10-analisis-komponen-utama/index.html#sec-sekilas-tentang-analisis-komponen-utama",
+    "title": "Analisis Komponen Utama",
+    "section": "Sekilas Tentang AKU",
+    "text": "Sekilas Tentang AKU\nAKU merupakan sebuah metode untuk menganalisis data yang titik-titik datanya dideskripsikan dengan beberapa variabel kuantitatif yang saling berkorelasi. Tujuan AKU adalah untuk:\n\nmengekstrak informasi yang paling penting dari data;\nmemampatkan ukuran data dengan menyimpan informasi yang penting saja;\nmenyederhanakan deskripsi dari data; dan\nmenganalisis struktur dari titik-titik data dan variabel-variabelnya.\n\nUntuk mencapai tujuan-tujuan tersebut, AKU menghitung variabel-variabel baru yang dinamakan komponen utama (principal component). Komponen utama yang pertama dibuat agar memiliki variansi atau inersia sebesar mungkin. Alhasil, komponen ini akan menjelaskan atau mengekstrak sebagian besar dari variansi data. Komponen utama yang kedua dihitung agar tegak lurus dengan komponen utama yang pertama dan memiliki variansi sebesar mungkin. Komponen-komponen utama berikutnya dihitung dengan cara yang serupa. Ringkasnya, komponen utama yang pertama didesain agar dapat menjelaskan variansi data sebesar mungkin, sedangkan komponen-komponen utama berikutnya menjelaskan variansi sisanya (yang tidak dijelaskan komponen utama yang pertama).\n\n\n\n\n\n\nMenyingkap Ide Mendasar AKU\n\n\n\nJika kamu ingin melihat bagaimana ide mendasar AKU, silakan kunjungi media-media interaktif pada tautan berikut: https://wp.me/P93lma-ph atau https://wp.me/P93lma-oK. Media interaktif yang pertama akan memandumu untuk memahami AKU, khususnya terkait penentuan komponen-komponen utamanya, dengan pendekatan geometris. Media yang kedua mengajakmu untuk mengeksplorasi AKU secara lebih lanjut."
+  },
+  {
+    "objectID": "pos/2025-10-analisis-komponen-utama/index.html#sec-konsumsi-pangan-penduduk-indonesia",
+    "href": "pos/2025-10-analisis-komponen-utama/index.html#sec-konsumsi-pangan-penduduk-indonesia",
+    "title": "Analisis Komponen Utama",
+    "section": "Konsumsi Pangan Penduduk Indonesia",
+    "text": "Konsumsi Pangan Penduduk Indonesia"
   }
 ]

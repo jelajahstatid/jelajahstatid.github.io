@@ -5,7 +5,7 @@ library(ggrepel)
 # Impor data ----
 # Data diunduh dari https://satudata.badanpangan.go.id/datasetpublications/gsp/konsumsi-provinsi pada tanggal 1 Oktober 2025
 # Arsip: https://web.archive.org/web/20251001124310/https://satudata.badanpangan.go.id/datasetpublications/gsp/konsumsi-provinsi
-dat <- read_excel("rata-rata-konsumsi-per-jenis-pangan.xlsx")
+dat <- read_excel("pos/2025-10-analisis-komponen-utama/aset/rata-rata-konsumsi-per-jenis-pangan.xlsx")
 
 dat_kepr_gula <- dat |> 
   filter(
@@ -175,3 +175,4 @@ dat_pca_prov |>
     max.overlaps = 100
   ) + 
   theme_minimal()
+

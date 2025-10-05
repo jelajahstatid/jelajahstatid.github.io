@@ -1,0 +1,57 @@
+---
+title: "Analisis Komponen Utama"
+subtitle: "Menyingkap Konsumsi Pangan Penduduk Indonesia"
+description: ""
+draft: true
+author:
+  - name: Yosep Dwi Kristanto
+    url: https://people.usd.ac.id/~ydkristanto/
+    affiliation: Pendidikan Matematika, Universitas Sanata Dharma, Yogyakarta
+    affiliation-url: https://www.usd.ac.id/s1pmat
+    orcid: 0000-0003-1446-0422
+date: 2025-10-06
+categories:
+  - statistik nasional
+  - studi kasus
+  - pangan
+keywords: 
+  - analisis komponen utama
+  - reduksi dimensi
+  - pangan
+lightbox: true
+copyright: "© 2025 Yosep Dwi Kristanto"
+license: "CC BY"
+code-annotations: select
+editor_options: 
+  chunk_output_type: console
+---
+
+Program Makan Bergizi Gratis menjadi topik hangat berita nasional ketika artikel ini ditulis. Namun, artikel ini tidak akan membahas program itu melainkan topik yang serupa, yaitu tentang pangan. Secara lebih khusus, artikel ini akan menyingkap perilaku konsumsi pangan penduduk Indonesia per provinsi dengan menggunakan analisis komponen utama (AKU) atau *principal component analysis* (PCA). Kita awali pembahasannya dengan mengenal apa itu AKU.
+
+## Sekilas Tentang AKU {#sec-sekilas-tentang-analisis-komponen-utama}
+
+AKU merupakan sebuah metode untuk menganalisis data yang titik-titik datanya dideskripsikan dengan beberapa variabel kuantitatif yang saling berkorelasi. Tujuan AKU adalah untuk:
+
+-   mengekstrak informasi yang paling penting dari data;
+
+-   memampatkan ukuran data dengan menyimpan informasi yang penting saja;
+
+-   menyederhanakan deskripsi dari data; dan
+
+-   menganalisis struktur dari titik-titik data dan variabel-variabelnya.
+
+Untuk mencapai tujuan-tujuan tersebut, AKU menghitung variabel-variabel baru yang dinamakan komponen utama (*principal component*). Komponen utama yang pertama dibuat agar memiliki variansi atau inersia sebesar mungkin. Alhasil, komponen ini akan menjelaskan atau mengekstrak sebagian besar dari variansi data. Komponen utama yang kedua dihitung agar tegak lurus dengan komponen utama yang pertama dan memiliki variansi sebesar mungkin. Komponen-komponen utama berikutnya dihitung dengan cara yang serupa. Ringkasnya, komponen utama yang pertama didesain agar dapat menjelaskan variansi data sebesar mungkin, sedangkan komponen-komponen utama berikutnya menjelaskan variansi sisanya (yang tidak dijelaskan komponen utama yang pertama).
+
+::: {.callout-note appearance="simple"}
+## Menyingkap Ide Mendasar AKU
+
+Jika kamu ingin melihat bagaimana ide mendasar AKU, silakan kunjungi media-media interaktif pada tautan berikut: [https://wp.me/P93lma-ph](https://wp.me/P93lma-ph "Analisis Komponen Utama: Bagaimana Ide Dasarnya?"){.uri .external target="_blank"} atau [https://wp.me/P93lma-oK](https://wp.me/P93lma-oK "Eksplorasi Analisis Komponen Utama"){.uri .external target="_blank"}. Media interaktif yang pertama akan memandumu untuk memahami AKU, khususnya terkait penentuan komponen-komponen utamanya, dengan pendekatan geometris. Media yang kedua mengajakmu untuk mengeksplorasi AKU secara lebih lanjut.
+:::
+
+## Konsumsi Pangan Penduduk Indonesia {#sec-konsumsi-pangan-penduduk-indonesia}
+
+Kembali ke tujuan awal, selanjutkan kita mengaplikasikan AKU untuk menyingkap perilaku konsumsi penduduk Indonesia berdasarkan jenis pangan mulai dari tahun 2018 sampai 2024. Untuk melakukannya, kita menggunakan data dari Badan Pangan Nasional yang tersedia di [satudata.badanpangan.go.id](https://satudata.badanpangan.go.id/datasetpublications/gsp/konsumsi-provinsi "Rata-rata Konsumsi per Jenis Pangan Penduduk Indonesia Provinsi Update Tahun 2024"){.external target="_blank"}.
+
+```{r}
+
+```
