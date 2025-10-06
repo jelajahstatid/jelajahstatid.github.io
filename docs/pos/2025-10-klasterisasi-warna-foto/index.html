@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.7.32">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
 <meta name="author" content="Yosep Dwi Kristanto">
 <meta name="dcterms.date" content="2025-10-01">
 <meta name="keywords" content="fotografi, klasterisasi, klasterisasi k-rerata, machine learning, pemelajaran mesin, pemelajaran statistik, statistical learning">
 <meta name="description" content="Bagaimana mengurangi variasi warna dalam sebuah foto? Salah satu caranya adalah dengan menerapkan klasterisasi k-rerata. Dengan metode ini, foto tersebut akan tersusun hanya dalam k warna. Ide dasar dan cara detailnya dijelaskan dalam artikel ini.">
+
 <title>Klasterisasi Warna Foto – Jelajah Statistika dan Ilmu Data</title>
 <style>
 code{white-space: pre-wrap;}
@@ -58,6 +61,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
+
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
@@ -72,13 +76,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-2fef5ea3f8957b3e4ecc936fc74692ca.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-dfb324f25d9b1687192fa8be62ac8f9c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dfb324f25d9b1687192fa8be62ac8f9c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-2924e029ebab37202f18e9f746cd122d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-dfb324f25d9b1687192fa8be62ac8f9c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -104,19 +113,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Kirim",
     "search-label": "Cari"
   }
-}</script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-WTEJLB3562"></script><script type="text/javascript">
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-WTEJLB3562"></script>
+
+<script type="text/javascript">
 
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
-</script><style>
+</script>
+<style>
 
       .quarto-title-block .quarto-title-banner {
         background: #EBF7FE;
       }
 </style>
-<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
     // MathJax Typeset
@@ -141,7 +158,9 @@ const typesetMath = (el) => {
 window.Quarto = {
   typesetMath
 };
-</script><link rel="stylesheet" href="../../styles.css">
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
 <meta property="og:title" content="Klasterisasi Warna Foto – Jelajah Statistika dan Ilmu Data">
 <meta property="og:description" content="Bagaimana mengurangi variasi warna dalam sebuah foto? Salah satu caranya adalah dengan menerapkan klasterisasi k-rerata. Dengan metode ini, foto tersebut akan tersusun hanya dalam k warna. Ide dasar dan cara detailnya dijelaskan dalam artikel ini.">
 <meta property="og:image" content="https://jelajahstatid.github.io/pos/2025-10-klasterisasi-warna-foto/sampul-klasterisasi-warna.png">
@@ -157,10 +176,175 @@ window.Quarto = {
 <meta name="twitter:image:alt" content="Gambar yang menunjukkan sebuah foto asli dan hasil pereduksian warnanya dengan menggunakan klasterisasi k-rerata">
 <meta name="twitter:card" content="summary_large_image">
 </head>
-<body class="floating nav-fixed quarto-light">
+
+<body class="floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Jelajah Statistika dan Ilmu Data</span>
@@ -172,7 +356,7 @@ window.Quarto = {
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
-<li class="nav-item">
+  <li class="nav-item">
     <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
@@ -191,11 +375,16 @@ window.Quarto = {
 <span class="menu-text"></span></a>
   </li>  
 </ul>
-</div> <!-- /navcollapse -->
+          </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
-    </nav></header><!-- content --><header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full"><div class="quarto-title-banner page-columns page-full">
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
       <h1 class="title">Klasterisasi Warna Foto</h1>
             <p class="subtitle lead">Manipulasi Foto dengan Klasterisasi K-Rerata</p>
@@ -251,40 +440,57 @@ window.Quarto = {
   
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Pada laman ini</h2>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Pada laman ini</h2>
    
   <ul>
-<li><a href="#sec-ide-dasar" id="toc-sec-ide-dasar" class="nav-link active" data-scroll-target="#sec-ide-dasar">Ide Dasar</a></li>
+  <li><a href="#sec-ide-dasar" id="toc-sec-ide-dasar" class="nav-link active" data-scroll-target="#sec-ide-dasar">Ide Dasar</a></li>
   <li><a href="#sec-mengekstrak-data-warna" id="toc-sec-mengekstrak-data-warna" class="nav-link" data-scroll-target="#sec-mengekstrak-data-warna">Mengekstrak Data Warna</a></li>
   <li><a href="#sec-klasterisasi-k-rerata" id="toc-sec-klasterisasi-k-rerata" class="nav-link" data-scroll-target="#sec-klasterisasi-k-rerata">Klasterisasi <span class="math inline">\(K\)</span>-Rerata</a></li>
   <li><a href="#sec-menyederhanakan-warna" id="toc-sec-menyederhanakan-warna" class="nav-link" data-scroll-target="#sec-menyederhanakan-warna">Menyederhanakan Warna</a></li>
   <li><a href="#sec-catatan-akhir" id="toc-sec-catatan-akhir" class="nav-link" data-scroll-target="#sec-catatan-akhir">Catatan Akhir</a></li>
-  </ul><div class="toc-actions"><ul><li><a href="https://github.com/jelajahstatid/jelajahstatid.github.io/edit/main/pos/2025-10-klasterisasi-warna-foto/index.qmd" class="toc-action"><i class="bi bi-github"></i>Sunting laman ini</a></li><li><a href="https://github.com/jelajahstatid/jelajahstatid.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Laporkan sebuah isu</a></li></ul></div></nav>
-</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/jelajahstatid/jelajahstatid.github.io/edit/main/pos/2025-10-klasterisasi-warna-foto/index.qmd" class="toc-action"><i class="bi bi-github"></i>Sunting laman ini</a></li><li><a href="https://github.com/jelajahstatid/jelajahstatid.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Laporkan sebuah isu</a></li></ul></div></nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content"><p>Apa yang kamu lihat dari sebuah foto? Mungkin kamu melihat kenangan yang tersimpan. Mungkin kamu juga ingin menggali pesan yang tersirat. Oke, mari kita melihat sebuah foto atau gambar dari sudut pandang yang berbeda! Kita dapat melihat sebuah gambar sebagai matriks.</p>
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+
+<p>Apa yang kamu lihat dari sebuah foto? Mungkin kamu melihat kenangan yang tersimpan. Mungkin kamu juga ingin menggali pesan yang tersirat. Oke, mari kita melihat sebuah foto atau gambar dari sudut pandang yang berbeda! Kita dapat melihat sebuah gambar sebagai matriks.</p>
 <div id="fig-meme-epsilon" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Meme orang yang menatap selembar kertas mungil secara intens">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-meme-epsilon-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-meme-epsilon-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="aset/epsilon_terlalu_kecil-01.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Gambar&nbsp;1: Meme seseorang yang menatap selembar kertas mungil secara intens"><img src="aset/epsilon_terlalu_kecil-01.png" class="img-fluid figure-img" alt="Meme orang yang menatap selembar kertas mungil secara intens"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-meme-epsilon-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Gambar&nbsp;1: Meme seseorang yang menatap selembar kertas mungil secara intens
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 <p>Perhatikan <a href="#fig-meme-epsilon" class="quarto-xref">Gambar&nbsp;1</a>! Apa yang dilihat oleh orang dalam meme pada <a href="#fig-meme-epsilon" class="quarto-xref">Gambar&nbsp;1</a>? Karena terlalu kecil, mari kita memperbesarnya dan menaruhnya ke bidang koordinat Kartesius. Kita lakukan hal itu dengan <a href="https://www.R-project.org/" class="external" target="_blank" title="R: A Language and Environment for Statistical Computing">pemrograman R</a>. Untuk itu, kita panggil paket-paket yang kita perlukan seperti pada <a href="#lst-muat-paket" class="quarto-xref">Daftar&nbsp;1</a>.</p>
 <div class="cell">
 <div id="lst-muat-paket" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-fold="show">
-<figure class="quarto-float quarto-float-lst figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-muat-paket-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-muat-paket-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Daftar&nbsp;1: Memuat paket-paket yang diperlukan
-</figcaption><div aria-describedby="lst-muat-paket-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold"><summary>Kode</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/magick/">magick</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">scatterplot3d</span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://scales.r-lib.org">scales</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://wilkelab.org/cowplot/">cowplot</a></span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</figcaption>
+<div aria-describedby="lst-muat-paket-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details open="" class="code-fold">
+<summary>Kode</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magick)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scatterplot3d)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cowplot)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </figure>
@@ -294,12 +500,14 @@ Daftar&nbsp;1: Memuat paket-paket yang diperlukan
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-matriks-epsilon" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-matriks-epsilon-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-matriks-epsilon-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="index_files/figure-html/fig-matriks-epsilon-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Gambar&nbsp;2: Gambar epsilon berukuran 8 piksel × 8 piksel pada bidang koordinat Kartesius"><img src="index_files/figure-html/fig-matriks-epsilon-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-matriks-epsilon-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Gambar&nbsp;2: Gambar epsilon berukuran 8 piksel × 8 piksel pada bidang koordinat Kartesius
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 </div>
 </div>
@@ -353,47 +561,56 @@ Gambar&nbsp;2: Gambar epsilon berukuran 8 piksel × 8 piksel pada bidang koordin
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-ruang-warna-epsilon" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-ruang-warna-epsilon-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ruang-warna-epsilon-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="index_files/figure-html/fig-ruang-warna-epsilon-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Gambar&nbsp;3: Titik-titik dalam ruang yang merepresentasikan warna dalam gambar epsilon"><img src="index_files/figure-html/fig-ruang-warna-epsilon-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ruang-warna-epsilon-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Gambar&nbsp;3: Titik-titik dalam ruang yang merepresentasikan warna dalam gambar epsilon
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 </div>
 </div>
 <p>Nah, sekarang kita dapat melihat sebuah gambar atau foto dengan menggunakan matriks, yaitu tiga matriks warna dasarnya. Dari tiga matriks tersebut, kita dapat mengkonstruksi titik-titik yang merepresentasikan warna tersebut ke dalam ruang dimensi tiga. Kita gunakan perspektif seperti ini untuk memanipulasi sebuah foto sehingga variasi warnanya tereduksi. Tujuan kita berikutnya adalah untuk membuat foto <a href="#fig-karuna-donau-asli" class="quarto-xref">Gambar&nbsp;4 (a)</a> menjadi <a href="#fig-karuna-donau-4-warna" class="quarto-xref">Gambar&nbsp;4 (b)</a>. Hal ini telah dijanjikan pada <a href="../../pos/2025-09-klasterisasi-k-rerata/index.html" title="Klasterisasi K-Rerata: Langkah Demi Langkah Klasterisasi dengan Pemrograman R">pos sebelumnya</a>.</p>
 <div id="fig-foto-asli-dan-hasil-klasterisasi" class="quarto-layout-panel">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-foto-asli-dan-hasil-klasterisasi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-foto-asli-dan-hasil-klasterisasi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-foto-asli-dan-hasil-klasterisasi" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div id="fig-karuna-donau-asli" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-karuna-donau-asli-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-karuna-donau-asli-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="aset/karuna_donau_tile.png" class="lightbox" data-gallery="fig-foto-asli-dan-hasil-klasterisasi" title="Gambar&nbsp;4&nbsp;(a): Foto asli"><img src="aset/karuna_donau_tile.png" class="img-fluid figure-img" data-ref-parent="fig-foto-asli-dan-hasil-klasterisasi"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-karuna-donau-asli-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) Foto asli
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 </div>
 <div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-foto-asli-dan-hasil-klasterisasi" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div id="fig-karuna-donau-4-warna" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-karuna-donau-4-warna-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-karuna-donau-4-warna-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="aset/karuna_donau_4_warna.png" class="lightbox" data-gallery="fig-foto-asli-dan-hasil-klasterisasi" title="Gambar&nbsp;4&nbsp;(b): Hasil reduksi menjadi empat warna"><img src="aset/karuna_donau_4_warna.png" class="img-fluid figure-img" data-ref-parent="fig-foto-asli-dan-hasil-klasterisasi"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-karuna-donau-4-warna-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b) Hasil reduksi menjadi empat warna
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 </div>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-foto-asli-dan-hasil-klasterisasi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Gambar&nbsp;4: Foto asli dan hasil reduksinya menjadi 4 warna
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 <p>Bagaimana cara mencapai tujuan tersebut? Mari kita bahas gambaran umumnya terlebih dahulu pada bagian berikutnya.</p>
-<section id="sec-ide-dasar" class="level2"><h2 class="anchored" data-anchor-id="sec-ide-dasar">Ide Dasar</h2>
+<section id="sec-ide-dasar" class="level2">
+<h2 class="anchored" data-anchor-id="sec-ide-dasar">Ide Dasar</h2>
 <p>Untuk menyerhanakan warna foto pada <a href="#fig-karuna-donau-asli" class="quarto-xref">Gambar&nbsp;4 (a)</a>, kita gunakan perspektif yang telah dibahas pada bagian sebelumnya. Setelah itu, kita terapkan klasterisasi <span class="math inline">\(k\)</span>-rerata terhadap titik-titik warna yang dihasilkan. Secara umum, tahapan-tahapan utama yang nanti kita lakukan adalah sebagai berikut.</p>
 <ul>
 <li><p>Mengekstrak data warna R, G, dan B dari foto.</p></li>
@@ -401,52 +618,58 @@ Gambar&nbsp;4: Foto asli dan hasil reduksinya menjadi 4 warna
 <li><p>Mengganti setiap warna pada foto asli dengan pusat klasternya.</p></li>
 </ul>
 <p>Dengan cara seperti itu, kita akan mendapatkan sebuah foto yang hanya memuat <span class="math inline">\(k\)</span> warna. Warna-warna itu diperoleh dari pusat klaster-klaster yang terbentuk. Tak perlu berlama-lama, mari kita mulai tahapan pertamanya.</p>
-</section><section id="sec-mengekstrak-data-warna" class="level2"><h2 class="anchored" data-anchor-id="sec-mengekstrak-data-warna">Mengekstrak Data Warna</h2>
+</section>
+<section id="sec-mengekstrak-data-warna" class="level2">
+<h2 class="anchored" data-anchor-id="sec-mengekstrak-data-warna">Mengekstrak Data Warna</h2>
 <p>Tahapan pertamanya adalah mengestrak data warna dari sebuah foto. Foto awal yang kita gunakan adalah foto pada <a href="#fig-karuna-donau-asli" class="quarto-xref">Gambar&nbsp;4 (a)</a>. Untuk melakukannya, kita gunakan kode pada <a href="#lst-ekstrak-warna" class="quarto-xref">Daftar&nbsp;2</a>.</p>
 <div class="cell">
 <div id="lst-ekstrak-warna" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-fold="show">
-<figure class="quarto-float quarto-float-lst figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-ekstrak-warna-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-ekstrak-warna-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Daftar&nbsp;2: Membuat data warna dari foto
-</figcaption><div aria-describedby="lst-ekstrak-warna-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold"><summary>Kode</summary><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Memuat dan menskala gambar</span></span>
-<span><span class="va">foto_ku</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/magick/reference/editing.html">image_read</a></span><span class="op">(</span></span>
-<span>  <span class="st">"aset/karuna_donau.png"</span></span>
-<span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://docs.ropensci.org/magick/reference/transform.html">image_scale</a></span><span class="op">(</span><span class="st">"256x256!"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Ekstrak data mentah piksel</span></span>
-<span><span class="va">data_mentah_foto</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/magick/reference/editing.html">image_data</a></span><span class="op">(</span><span class="va">foto_ku</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Ukuran foto</span></span>
-<span><span class="va">lebar_foto</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">data_mentah_foto</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span></span>
-<span><span class="va">tinggi_foto</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">data_mentah_foto</span><span class="op">)</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span></span>
-<span></span>
-<span><span class="co"># Konversi ke data frame dan membalik koordinat y</span></span>
-<span><span class="va">rgb_foto_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html">as.data.frame.table</a></span><span class="op">(</span><span class="va">data_mentah_foto</span>, responseName <span class="op">=</span> <span class="st">"nilai"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
-<span>    kanal <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="va">Var1</span><span class="op">)</span>,</span>
-<span>    koord_x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="va">Var2</span><span class="op">)</span>,</span>
-<span>    koord_y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="va">Var3</span><span class="op">)</span>,</span>
-<span>    nilai   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="va">nilai</span><span class="op">)</span></span>
-<span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">kanal</span>, <span class="va">koord_x</span>, <span class="va">koord_y</span>, <span class="va">nilai</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider</a></span><span class="op">(</span></span>
-<span>    names_from <span class="op">=</span> <span class="va">kanal</span>,</span>
-<span>    values_from <span class="op">=</span> <span class="va">nilai</span>,</span>
-<span>    names_prefix <span class="op">=</span> <span class="st">"ch"</span></span>
-<span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/transmute.html">transmute</a></span><span class="op">(</span></span>
-<span>    <span class="va">koord_x</span>,</span>
-<span>    koord_y <span class="op">=</span> <span class="va">tinggi_foto</span> <span class="op">-</span> <span class="va">koord_y</span> <span class="op">+</span> <span class="fl">1</span>,</span>
-<span>    R <span class="op">=</span> <span class="va">ch1</span>,</span>
-<span>    G <span class="op">=</span> <span class="va">ch2</span>,</span>
-<span>    B <span class="op">=</span> <span class="va">ch3</span>,</span>
-<span>    R_norm <span class="op">=</span> <span class="va">R</span> <span class="op">/</span> <span class="fl">255</span>,</span>
-<span>    G_norm <span class="op">=</span> <span class="va">G</span> <span class="op">/</span> <span class="fl">255</span>,</span>
-<span>    B_norm <span class="op">=</span> <span class="va">B</span> <span class="op">/</span> <span class="fl">255</span>,</span>
-<span>    warna_hex <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html">rgb</a></span><span class="op">(</span><span class="va">R_norm</span>, <span class="va">G_norm</span>, <span class="va">B_norm</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span>
-<span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">rgb_foto_df</span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</figcaption>
+<div aria-describedby="lst-ekstrak-warna-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details open="" class="code-fold">
+<summary>Kode</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Memuat dan menskala gambar</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>foto_ku <span class="ot">&lt;-</span> <span class="fu">image_read</span>(</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"aset/karuna_donau.png"</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span> </span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">image_scale</span>(<span class="st">"256x256!"</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Ekstrak data mentah piksel</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>data_mentah_foto <span class="ot">&lt;-</span> <span class="fu">image_data</span>(foto_ku)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Ukuran foto</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>lebar_foto  <span class="ot">&lt;-</span> <span class="fu">dim</span>(data_mentah_foto)[<span class="dv">2</span>]</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>tinggi_foto <span class="ot">&lt;-</span> <span class="fu">dim</span>(data_mentah_foto)[<span class="dv">3</span>]</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Konversi ke data frame dan membalik koordinat y</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>rgb_foto_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame.table</span>(data_mentah_foto, <span class="at">responseName =</span> <span class="st">"nilai"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">kanal =</span> <span class="fu">as.integer</span>(Var1),</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">koord_x =</span> <span class="fu">as.integer</span>(Var2),</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">koord_y =</span> <span class="fu">as.integer</span>(Var3),</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">nilai   =</span> <span class="fu">as.integer</span>(nilai)</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(kanal, koord_x, koord_y, nilai) <span class="sc">|&gt;</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> kanal,</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> nilai,</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_prefix =</span> <span class="st">"ch"</span></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>    koord_x,</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">koord_y =</span> tinggi_foto <span class="sc">-</span> koord_y <span class="sc">+</span> <span class="dv">1</span>,</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">R =</span> ch1,</span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">G =</span> ch2,</span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">B =</span> ch3,</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">R_norm =</span> R <span class="sc">/</span> <span class="dv">255</span>,</span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">G_norm =</span> G <span class="sc">/</span> <span class="dv">255</span>,</span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">B_norm =</span> B <span class="sc">/</span> <span class="dv">255</span>,</span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">warna_hex =</span> <span class="fu">rgb</span>(R_norm, G_norm, B_norm)</span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a> <span class="fu">head</span>(rgb_foto_df)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </figure>
@@ -468,71 +691,87 @@ Daftar&nbsp;2: Membuat data warna dari foto
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-ruang-warna-foto" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-ruang-warna-foto-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ruang-warna-foto-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="index_files/figure-html/fig-ruang-warna-foto-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Gambar&nbsp;5: Titik-titik dalam ruang yang merepresentasikan warna dalam foto"><img src="index_files/figure-html/fig-ruang-warna-foto-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ruang-warna-foto-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Gambar&nbsp;5: Titik-titik dalam ruang yang merepresentasikan warna dalam foto
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 </div>
 </div>
-</section><section id="sec-klasterisasi-k-rerata" class="level2"><h2 class="anchored" data-anchor-id="sec-klasterisasi-k-rerata">Klasterisasi <span class="math inline">\(K\)</span>-Rerata</h2>
-<p>Selanjutnya, kita lakukan klasterisasi terhadap <code>rgb_foto_df</code> dengan menggunakan variabel-variabel <code>R_norm</code>, <code>G_norm</code>, dan <code>B_norm</code>. Untuk melakukannya, kita menggunakan fungsi <code><a href="https://rdrr.io/r/stats/kmeans.html">kmeans()</a></code>. Fungsi ini menggunakan input sebuah matriks. Oleh karena itu, terlebih dahulu kita membuat matriks tersebut. Matriks tersebut memuat tiga kolom, yaitu <code>R_norm</code>, <code>G_norm</code>, dan <code>B_norm</code>. Perhatikan <a href="#lst-matriks-foto" class="quarto-xref">Daftar&nbsp;3</a>!</p>
+</section>
+<section id="sec-klasterisasi-k-rerata" class="level2">
+<h2 class="anchored" data-anchor-id="sec-klasterisasi-k-rerata">Klasterisasi <span class="math inline">\(K\)</span>-Rerata</h2>
+<p>Selanjutnya, kita lakukan klasterisasi terhadap <code>rgb_foto_df</code> dengan menggunakan variabel-variabel <code>R_norm</code>, <code>G_norm</code>, dan <code>B_norm</code>. Untuk melakukannya, kita menggunakan fungsi <code>kmeans()</code>. Fungsi ini menggunakan input sebuah matriks. Oleh karena itu, terlebih dahulu kita membuat matriks tersebut. Matriks tersebut memuat tiga kolom, yaitu <code>R_norm</code>, <code>G_norm</code>, dan <code>B_norm</code>. Perhatikan <a href="#lst-matriks-foto" class="quarto-xref">Daftar&nbsp;3</a>!</p>
 <div class="cell">
 <div id="lst-matriks-foto" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-fold="show">
-<figure class="quarto-float quarto-float-lst figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-matriks-foto-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-matriks-foto-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Daftar&nbsp;3: Membuat matriks
-</figcaption><div aria-describedby="lst-matriks-foto-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold"><summary>Kode</summary><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">matriks_foto</span> <span class="op">&lt;-</span> <span class="va">rgb_foto_df</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">R_norm</span>, <span class="va">G_norm</span>, <span class="va">B_norm</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</figcaption>
+<div aria-describedby="lst-matriks-foto-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details open="" class="code-fold">
+<summary>Kode</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>matriks_foto <span class="ot">&lt;-</span> rgb_foto_df <span class="sc">|&gt;</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(R_norm, G_norm, B_norm) <span class="sc">|&gt;</span> </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.matrix</span>()</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </figure>
 </div>
 </div>
-<p>Kita telah memperoleh <code>matriks_foto</code>. Kita siap untuk melakukan klasterisasi <span class="math inline">\(k\)</span>-rerata dengan fungsi <code><a href="https://rdrr.io/r/stats/kmeans.html">kmeans()</a></code>. Perhatikan <a href="#lst-kmeans-foto" class="quarto-xref">Daftar&nbsp;4</a>.</p>
+<p>Kita telah memperoleh <code>matriks_foto</code>. Kita siap untuk melakukan klasterisasi <span class="math inline">\(k\)</span>-rerata dengan fungsi <code>kmeans()</code>. Perhatikan <a href="#lst-kmeans-foto" class="quarto-xref">Daftar&nbsp;4</a>.</p>
 <div class="cell">
 <div id="lst-kmeans-foto" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-fold="show">
-<figure class="quarto-float quarto-float-lst figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-kmeans-foto-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-kmeans-foto-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Daftar&nbsp;4: Klasterisasi k-rerata terhadap <code>matriks_foto</code>
-</figcaption><div aria-describedby="lst-kmeans-foto-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold"><summary>Kode</summary><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Pilih nilai k</span></span>
-<span><span class="va">k</span> <span class="op">&lt;-</span> <span class="fl">4</span></span>
-<span></span>
-<span><span class="co"># Lakukan klasterisasi k-rerata</span></span>
-<span><span class="va">hasil_krerata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/kmeans.html">kmeans</a></span><span class="op">(</span></span>
-<span>  x <span class="op">=</span> <span class="va">matriks_foto</span>,</span>
-<span>  centers <span class="op">=</span> <span class="va">k</span></span>
-<span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</figcaption>
+<div aria-describedby="lst-kmeans-foto-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details open="" class="code-fold">
+<summary>Kode</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Pilih nilai k</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">4</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Lakukan klasterisasi k-rerata</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>hasil_krerata <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> matriks_foto,</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">centers =</span> k</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </figure>
 </div>
 </div>
 <p>Hasil klasterisasi tersebut kita simpan sebagai sebuah objek dengan nama <code>hasil_krerata</code>. Terdapat informasi penting yang terkandung dalam <code>hasil_krerata</code>, yaitu <code>cluster</code> (klaster) dan <code>centers</code> (pusat setiap klaster). Kedua informasi tersebut berguna untuk mengidentifikasi klaster-klaster warnanya dan menyederhanakan warna-warnanya dengan pusat klasternya.</p>
-<p>Sekarang, kita membuat <code>rgb_foto_klaster_df</code> yang memuat informasi klaster dan pusatnya tersebut dalam kolom-kolom <code>klaster</code> dan <code>pusat_hex</code>. Perhatikan <a href="#lst-menyisipkan-klaster" class="quarto-xref">Daftar&nbsp;5</a>. Untuk melihat beberapa baris awalnya, kita terapkan <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code> pada data tersebut.</p>
+<p>Sekarang, kita membuat <code>rgb_foto_klaster_df</code> yang memuat informasi klaster dan pusatnya tersebut dalam kolom-kolom <code>klaster</code> dan <code>pusat_hex</code>. Perhatikan <a href="#lst-menyisipkan-klaster" class="quarto-xref">Daftar&nbsp;5</a>. Untuk melihat beberapa baris awalnya, kita terapkan <code>head()</code> pada data tersebut.</p>
 <div class="cell">
 <div id="lst-menyisipkan-klaster" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-fold="show">
-<figure class="quarto-float quarto-float-lst figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-menyisipkan-klaster-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-menyisipkan-klaster-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Daftar&nbsp;5: Membuat data yang memuat informasi klaster dan warna pusat klaster
-</figcaption><div aria-describedby="lst-menyisipkan-klaster-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold"><summary>Kode</summary><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">rgb_foto_klaster_df</span> <span class="op">&lt;-</span> <span class="va">rgb_foto_df</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
-<span>    klaster <span class="op">=</span> <span class="va">hasil_krerata</span><span class="op">$</span><span class="va">cluster</span>,</span>
-<span>    pusat_R <span class="op">=</span> <span class="va">hasil_krerata</span><span class="op">$</span><span class="va">centers</span><span class="op">[</span><span class="va">klaster</span>, <span class="st">"R_norm"</span><span class="op">]</span>,</span>
-<span>    pusat_G <span class="op">=</span> <span class="va">hasil_krerata</span><span class="op">$</span><span class="va">centers</span><span class="op">[</span><span class="va">klaster</span>, <span class="st">"G_norm"</span><span class="op">]</span>,</span>
-<span>    pusat_B <span class="op">=</span> <span class="va">hasil_krerata</span><span class="op">$</span><span class="va">centers</span><span class="op">[</span><span class="va">klaster</span>, <span class="st">"B_norm"</span><span class="op">]</span></span>
-<span>  <span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
-<span>    pusat_hex <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html">rgb</a></span><span class="op">(</span><span class="va">pusat_R</span>, <span class="va">pusat_G</span>, <span class="va">pusat_B</span><span class="op">)</span></span>
-<span>  <span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">koord_x</span>, <span class="va">koord_y</span>, <span class="va">R</span>, <span class="va">G</span>, <span class="va">B</span>, <span class="va">warna_hex</span>, <span class="va">klaster</span>, <span class="va">pusat_hex</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">rgb_foto_klaster_df</span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</figcaption>
+<div aria-describedby="lst-menyisipkan-klaster-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details open="" class="code-fold">
+<summary>Kode</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>rgb_foto_klaster_df <span class="ot">&lt;-</span> rgb_foto_df <span class="sc">|&gt;</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">klaster =</span> hasil_krerata<span class="sc">$</span>cluster,</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">pusat_R =</span> hasil_krerata<span class="sc">$</span>centers[klaster, <span class="st">"R_norm"</span>],</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">pusat_G =</span> hasil_krerata<span class="sc">$</span>centers[klaster, <span class="st">"G_norm"</span>],</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">pusat_B =</span> hasil_krerata<span class="sc">$</span>centers[klaster, <span class="st">"B_norm"</span>]</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">pusat_hex =</span> <span class="fu">rgb</span>(pusat_R, pusat_G, pusat_B)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(koord_x, koord_y, R, G, B, warna_hex, klaster, pusat_hex)</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rgb_foto_klaster_df)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </figure>
@@ -551,68 +790,84 @@ Daftar&nbsp;5: Membuat data yang memuat informasi klaster dan warna pusat klaste
 </div>
 <p>Dari data yang telah kita buat di atas, kita dapat memvisualisasikan warna-warna yang masuk ke dalam setiap klasternya. Perhatikan <a href="#fig-heatmap-klaster-warna" class="quarto-xref">Gambar&nbsp;6</a>!</p>
 <div id="fig-heatmap-klaster-warna" class="quarto-layout-panel">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-heatmap-klaster-warna-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-heatmap-klaster-warna-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-row">
 <div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-heatmap-klaster-warna" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div id="fig-heatmap-klaster-warna-1" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-heatmap-klaster-warna-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-heatmap-klaster-warna-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="index_files/figure-html/fig-heatmap-klaster-warna-1.png" class="lightbox" data-gallery="fig-heatmap-klaster-warna" title="Gambar&nbsp;6&nbsp;(a): Klaster 1"><img src="index_files/figure-html/fig-heatmap-klaster-warna-1.png" class="img-fluid figure-img" data-ref-parent="fig-heatmap-klaster-warna" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-heatmap-klaster-warna-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) Klaster 1
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 </div>
 <div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-heatmap-klaster-warna" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div id="fig-heatmap-klaster-warna-2" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-heatmap-klaster-warna-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-heatmap-klaster-warna-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="index_files/figure-html/fig-heatmap-klaster-warna-2.png" class="lightbox" data-gallery="fig-heatmap-klaster-warna" title="Gambar&nbsp;6&nbsp;(b): Klaster 2"><img src="index_files/figure-html/fig-heatmap-klaster-warna-2.png" class="img-fluid figure-img" data-ref-parent="fig-heatmap-klaster-warna" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-heatmap-klaster-warna-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b) Klaster 2
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 </div>
 </div>
 <div class="quarto-layout-row">
 <div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-heatmap-klaster-warna" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div id="fig-heatmap-klaster-warna-3" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-heatmap-klaster-warna-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-heatmap-klaster-warna-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="index_files/figure-html/fig-heatmap-klaster-warna-3.png" class="lightbox" data-gallery="fig-heatmap-klaster-warna" title="Gambar&nbsp;6&nbsp;(c): Klaster 3"><img src="index_files/figure-html/fig-heatmap-klaster-warna-3.png" class="img-fluid figure-img" data-ref-parent="fig-heatmap-klaster-warna" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-heatmap-klaster-warna-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (c) Klaster 3
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 </div>
 <div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-heatmap-klaster-warna" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div id="fig-heatmap-klaster-warna-4" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-heatmap-klaster-warna-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-heatmap-klaster-warna-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="index_files/figure-html/fig-heatmap-klaster-warna-4.png" class="lightbox" data-gallery="fig-heatmap-klaster-warna" title="Gambar&nbsp;6&nbsp;(d): Klaster 4"><img src="index_files/figure-html/fig-heatmap-klaster-warna-4.png" class="img-fluid figure-img" data-ref-parent="fig-heatmap-klaster-warna" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-heatmap-klaster-warna-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (d) Klaster 4
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 </div>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-heatmap-klaster-warna-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Gambar&nbsp;6: Klaster dan warna-warna anggotanya
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
-</section><section id="sec-menyederhanakan-warna" class="level2"><h2 class="anchored" data-anchor-id="sec-menyederhanakan-warna">Menyederhanakan Warna</h2>
+</section>
+<section id="sec-menyederhanakan-warna" class="level2">
+<h2 class="anchored" data-anchor-id="sec-menyederhanakan-warna">Menyederhanakan Warna</h2>
 <p>Tiba saatnya kita menyederhanakan warna. Caranya adalah dengan mengganti setiap warna dengan pusat klasternya. Mari kita lihat kembali <code>rgb_foto_klaster_df</code>. Data ini hanya memuat <span class="math inline">\(k=4\)</span> warna, seperti yang ditunjukkan pada luaran <a href="#lst-melihat-ringkasan" class="quarto-xref">Daftar&nbsp;6</a> berikut.</p>
 <div class="cell">
 <div id="lst-melihat-ringkasan" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-fold="show">
-<figure class="quarto-float quarto-float-lst figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-melihat-ringkasan-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-melihat-ringkasan-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Daftar&nbsp;6: Melihat warna pusat klaster unik dan banyaknya
-</figcaption><div aria-describedby="lst-melihat-ringkasan-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold"><summary>Kode</summary><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">rgb_foto_klaster_df</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">pusat_hex</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span></span>
-<span>    n <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</figcaption>
+<div aria-describedby="lst-melihat-ringkasan-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details open="" class="code-fold">
+<summary>Kode</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>rgb_foto_klaster_df <span class="sc">|&gt;</span> </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(pusat_hex) <span class="sc">|&gt;</span> </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>()</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </figure>
@@ -631,150 +886,194 @@ Daftar&nbsp;6: Melihat warna pusat klaster unik dan banyaknya
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-ruang-warna-klaster-foto" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-ruang-warna-klaster-foto-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ruang-warna-klaster-foto-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="index_files/figure-html/fig-ruang-warna-klaster-foto-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11" title="Gambar&nbsp;7: Titik-titik dalam ruang yang merepresentasikan warna dalam foto setelah klasterisasi"><img src="index_files/figure-html/fig-ruang-warna-klaster-foto-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ruang-warna-klaster-foto-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Gambar&nbsp;7: Titik-titik dalam ruang yang merepresentasikan warna dalam foto setelah klasterisasi
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 </div>
 </div>
 <p>Sekarang, kita gambarkan kembali piksel-piksel dalam <code>rgb_foto_klaster_df</code> pada bidang koordinat Kartesius dengan kode pada <a href="#lst-klasterisasi-4-warna-foto" class="quarto-xref">Daftar&nbsp;7</a>. Hasilnya ditunjukkan pada <a href="#fig-foto-warna-klaster" class="quarto-xref">Gambar&nbsp;8</a>.</p>
 <div class="cell">
 <div id="lst-klasterisasi-4-warna-foto" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-fold="show">
-<figure class="quarto-float quarto-float-lst figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-klasterisasi-4-warna-foto-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-klasterisasi-4-warna-foto-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Daftar&nbsp;7: Memplot piksel-piksel foto dengan pereduksian warna
-</figcaption><div aria-describedby="lst-klasterisasi-4-warna-foto-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details open="" class="code-fold"><summary>Kode</summary><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">rgb_foto_klaster_df</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">koord_x</span>, y <span class="op">=</span> <span class="va">koord_y</span>, fill <span class="op">=</span> <span class="va">pusat_hex</span><span class="op">)</span></span>
-<span>  <span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html">geom_tile</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_identity.html">scale_fill_identity</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html">coord_equal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
-<span>    axis.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</figcaption>
+<div aria-describedby="lst-klasterisasi-4-warna-foto-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details open="" class="code-fold">
+<summary>Kode</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>rgb_foto_klaster_df <span class="sc">|&gt;</span> </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> koord_x, <span class="at">y =</span> koord_y, <span class="at">fill =</span> pusat_hex)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>() <span class="sc">+</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_identity</span>() <span class="sc">+</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_equal</span>() <span class="sc">+</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </figure>
 </div>
 <div class="cell-output-display">
 <div id="fig-foto-warna-klaster" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-foto-warna-klaster-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-foto-warna-klaster-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="index_files/figure-html/fig-foto-warna-klaster-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12" title="Gambar&nbsp;8: Penyederhanaan foto asli yang awalnya memiliki hampir 40 ribu warna menjadi k=4."><img src="index_files/figure-html/fig-foto-warna-klaster-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-foto-warna-klaster-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Gambar&nbsp;8: Penyederhanaan foto asli yang awalnya memiliki hampir 40 ribu warna menjadi <span class="math inline">\(k=4\)</span>.
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 </div>
 </div>
 <p>Sampai di sini kita telah berhasil mereduksi variasi warna dari sebuah foto. Teknik yang telah kita lakukan tersebut tentu juga dapat diterapkan dengan <span class="math inline">\(k\)</span> yang berbeda. Misalnya, kita juga dapat melakukannya dengan <span class="math inline">\(k\)</span> = 16 dan 2. Hasilnya disajikan pada <a href="#fig-foto-asli-klaster-16-4-2" class="quarto-xref">Gambar&nbsp;9</a>.</p>
 <div id="fig-foto-asli-klaster-16-4-2" class="quarto-layout-panel">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-foto-asli-klaster-16-4-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-foto-asli-klaster-16-4-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-row">
 <div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-foto-asli-klaster-16-4-2" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div id="fig-foto-asli-klaster-16-4-2-1" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-foto-asli-klaster-16-4-2-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-foto-asli-klaster-16-4-2-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="index_files/figure-html/fig-foto-asli-klaster-16-4-2-1.png" class="lightbox" data-gallery="fig-foto-asli-klaster-16-4-2" title="Gambar&nbsp;9&nbsp;(a): Foto asli"><img src="index_files/figure-html/fig-foto-asli-klaster-16-4-2-1.png" class="img-fluid figure-img" data-ref-parent="fig-foto-asli-klaster-16-4-2" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-foto-asli-klaster-16-4-2-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) Foto asli
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 </div>
 <div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-foto-asli-klaster-16-4-2" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div id="fig-foto-asli-klaster-16-4-2-2" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-foto-asli-klaster-16-4-2-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-foto-asli-klaster-16-4-2-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="index_files/figure-html/fig-foto-asli-klaster-16-4-2-2.png" class="lightbox" data-gallery="fig-foto-asli-klaster-16-4-2" title="Gambar&nbsp;9&nbsp;(b): Klasterisasi dengan k = 16"><img src="index_files/figure-html/fig-foto-asli-klaster-16-4-2-2.png" class="img-fluid figure-img" data-ref-parent="fig-foto-asli-klaster-16-4-2" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-foto-asli-klaster-16-4-2-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b) Klasterisasi dengan k = 16
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 </div>
 </div>
 <div class="quarto-layout-row">
 <div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-foto-asli-klaster-16-4-2" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div id="fig-foto-asli-klaster-16-4-2-3" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-foto-asli-klaster-16-4-2-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-foto-asli-klaster-16-4-2-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="index_files/figure-html/fig-foto-asli-klaster-16-4-2-3.png" class="lightbox" data-gallery="fig-foto-asli-klaster-16-4-2" title="Gambar&nbsp;9&nbsp;(c): Klasterisasi dengan k = 4"><img src="index_files/figure-html/fig-foto-asli-klaster-16-4-2-3.png" class="img-fluid figure-img" data-ref-parent="fig-foto-asli-klaster-16-4-2" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-foto-asli-klaster-16-4-2-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (c) Klasterisasi dengan k = 4
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 </div>
 <div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-foto-asli-klaster-16-4-2" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div id="fig-foto-asli-klaster-16-4-2-4" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-foto-asli-klaster-16-4-2-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-foto-asli-klaster-16-4-2-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="index_files/figure-html/fig-foto-asli-klaster-16-4-2-4.png" class="lightbox" data-gallery="fig-foto-asli-klaster-16-4-2" title="Gambar&nbsp;9&nbsp;(d): Klasterisasi dengan k = 2"><img src="index_files/figure-html/fig-foto-asli-klaster-16-4-2-4.png" class="img-fluid figure-img" data-ref-parent="fig-foto-asli-klaster-16-4-2" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-foto-asli-klaster-16-4-2-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (d) Klasterisasi dengan k = 2
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 </div>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-foto-asli-klaster-16-4-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Gambar&nbsp;9: Perbandingan foto asli dan hasil reduksi warnanya dengan klasterisasi k-rerata
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 <p>Mungkin kamu penasaran bagaimana komposisi warna dalam foto yang variasi warnanya sudah berkurang tersebut. Mari kita selidiki dan hasilnya disajikan pada <a href="#fig-komposisi-warna" class="quarto-xref">Gambar&nbsp;10</a>.</p>
 <div class="cell" data-layout="[[1,1], [1]]">
 <div id="fig-komposisi-warna" class="quarto-layout-panel">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-komposisi-warna-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-komposisi-warna-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-row">
 <div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-komposisi-warna" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div id="fig-komposisi-warna-1" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-komposisi-warna-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-komposisi-warna-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="index_files/figure-html/fig-komposisi-warna-1.png" class="lightbox" data-gallery="fig-komposisi-warna" title="Gambar&nbsp;10&nbsp;(a): Foto dengan k = 2"><img src="index_files/figure-html/fig-komposisi-warna-1.png" class="img-fluid figure-img" data-ref-parent="fig-komposisi-warna" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-komposisi-warna-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) Foto dengan k = 2
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 </div>
 <div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-komposisi-warna" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div id="fig-komposisi-warna-2" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-komposisi-warna-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-komposisi-warna-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="index_files/figure-html/fig-komposisi-warna-2.png" class="lightbox" data-gallery="fig-komposisi-warna" title="Gambar&nbsp;10&nbsp;(b): Foto dengan k = 4"><img src="index_files/figure-html/fig-komposisi-warna-2.png" class="img-fluid figure-img" data-ref-parent="fig-komposisi-warna" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-komposisi-warna-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b) Foto dengan k = 4
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 </div>
 </div>
 <div class="quarto-layout-row">
 <div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-komposisi-warna" style="flex-basis: 100.0%;justify-content: flex-start;">
 <div id="fig-komposisi-warna-3" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-komposisi-warna-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-komposisi-warna-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="index_files/figure-html/fig-komposisi-warna-3.png" class="lightbox" data-gallery="fig-komposisi-warna" title="Gambar&nbsp;10&nbsp;(c): Foto dengan k = 16"><img src="index_files/figure-html/fig-komposisi-warna-3.png" class="img-fluid figure-img" data-ref-parent="fig-komposisi-warna" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-komposisi-warna-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (c) Foto dengan k = 16
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 </div>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-komposisi-warna-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Gambar&nbsp;10: Komposisi warna pada foto
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 </div>
-</section><section id="sec-catatan-akhir" class="level2"><h2 class="anchored" data-anchor-id="sec-catatan-akhir">Catatan Akhir</h2>
+</section>
+<section id="sec-catatan-akhir" class="level2">
+<h2 class="anchored" data-anchor-id="sec-catatan-akhir">Catatan Akhir</h2>
 <p>Kita telah mereduksi variasi warna dalam sebuah foto dengan menggunakan <a href="../../pos/2025-09-klasterisasi-k-rerata/index.html" title="Klasterisasi K-Rerata: Langkah Demi Langkah Klasterisasi dengan Pemrograman R">klasterisasi <span class="math inline">\(k\)</span>-rerata</a>. Untuk melakukannya, kita perlu mengetahui bagaimana sebuah foto atau gambar dapat direpresentasikan dengan matriks-matriks warna dasarnya. Setelah itu, kita ekstrak data warna piksel-piksel dalam gambar tersebut. Hal ini kita lakukan pada <a href="#sec-mengekstrak-data-warna" class="quarto-xref">Bagian&nbsp;2</a>. Setelah kita mendapatkan data warna tersebut, kita gunakan data tersebut untuk melakukan klasterisasi <span class="math inline">\(k\)</span>-rerata (lihat <a href="#sec-klasterisasi-k-rerata" class="quarto-xref">Bagian&nbsp;3</a>). Di akhir, kita ubah warna tiap-tiap pikselnya dengan warna pusat klasternya. Dengan cara ini, kita mendapatkan gambar yang hanya tersusun dari <span class="math inline">\(k\)</span> warna. Hasil akhirnya dapat dilihat pada <a href="#fig-foto-asli-klaster-16-4-2" class="quarto-xref">Gambar&nbsp;9</a>.</p>
 <p>Sebagai catatan, kita menggunakan klasterisasi <span class="math inline">\(k\)</span>-rerata terhadap titik-titik warna yang dinyatakan ke dalam RGB. Algoritma <span class="math inline">\(k\)</span>-rerata tersebut mengandalkan jarak untuk membuat klaster-klaster. Akan tetapi, persepsi kita terhadap warna tidaklah linear di RGB. Dalam RGB, dua warna mungkin memiliki jarak yang dekat, tetapi secara intuitif kita menilai warna tersebut jauh berbeda. Sebaliknya, mungkin ada dua warna yang jauh secara numerik dalam ruang RGB, tetapi bagi kita dua warna itu dekat secara intuitif. Oleh karena itu, kita dapat memilih format warna yang lebih sesuai dengan persepsi kita, misalnya <a href="https://en.wikipedia.org/wiki/CIELAB_color_space" class="external" target="_blank" title="CIELAB color space">Lab</a>. Silakan gunakan metode yang kamu pelajari di artikel ini, tetapi dengan menggunakan ruang warna Lab.</p>
 
 
-</section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Kembali ke atas</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Penggunaan Kembali</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-copyright"><h2 class="anchored quarto-appendix-heading">Hak Cipta</h2><div class="quarto-appendix-contents"><div>© 2025 Yosep Dwi Kristanto</div></div></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Kembali ke atas</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Penggunaan Kembali</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-copyright"><h2 class="anchored quarto-appendix-heading">Hak Cipta</h2><div class="quarto-appendix-contents"><div>© 2025 Yosep Dwi Kristanto</div></div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {
@@ -1212,12 +1511,18 @@ Gambar&nbsp;10: Komposisi warna pada foto
       }
     }
   });
-  </script><input type="hidden" id="giscus-base-theme" value="light"><input type="hidden" id="giscus-alt-theme" value="dark"><script>
+  </script>
+<input type="hidden" id="giscus-base-theme" value="light">
+<input type="hidden" id="giscus-alt-theme" value="dark">
+<script>
   function loadGiscus() {
     // Function to get the theme based on body class
     const getTheme = () => {
       let baseTheme = document.getElementById('giscus-base-theme').value;
       let altTheme = document.getElementById('giscus-alt-theme').value;
+      if (authorPrefersDark) {
+          [baseTheme, altTheme] = [altTheme, baseTheme];
+      }
       return document.body.classList.contains('quarto-dark') ? altTheme : baseTheme;
     };
     const script = document.createElement("script");
@@ -1240,7 +1545,8 @@ Gambar&nbsp;10: Komposisi warna pada foto
   loadGiscus();
 </script>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer">
+<footer class="footer">
+  <div class="nav-footer">
     <div class="nav-footer-left">
 <p>© 2025 Jelajah Statistika dan Ilmu Data</p>
 </div>   
@@ -1251,7 +1557,8 @@ Gambar&nbsp;10: Komposisi warna pada foto
 <p>Blog ini dikembangkan dengan <a href="https://quarto.org/" class="external" target="_blank">Quarto</a>.</p>
 </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+</footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {
@@ -1283,6 +1590,8 @@ Gambar&nbsp;10: Komposisi warna pada foto
   
 })();
           </script>
+
+
 
 
 </body></html>

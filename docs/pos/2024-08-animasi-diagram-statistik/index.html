@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.7.32">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
 <meta name="author" content="Yosep Dwi Kristanto">
 <meta name="dcterms.date" content="2024-08-07">
 <meta name="keywords" content="animasi, Gapminder, gganimate, harapan hidup, produk domestik bruto, PDB">
 <meta name="description" content="Bagaimana menganimasikan diagram statistik? Artikel ini mendemonstrasikan bagaimana menggunakan paket {gganimate} untuk membuat animasi dalam penyajian data yang efisien dan menarik.">
+
 <title>Membuat Diagram Lebih Hidup dengan Animasi – Jelajah Statistika dan Ilmu Data</title>
 <style>
 code{white-space: pre-wrap;}
@@ -58,6 +61,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
+
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
@@ -72,13 +76,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-2fef5ea3f8957b3e4ecc936fc74692ca.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-dfb324f25d9b1687192fa8be62ac8f9c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dfb324f25d9b1687192fa8be62ac8f9c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-2924e029ebab37202f18e9f746cd122d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-dfb324f25d9b1687192fa8be62ac8f9c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -104,18 +113,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Kirim",
     "search-label": "Cari"
   }
-}</script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-WTEJLB3562"></script><script type="text/javascript">
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-WTEJLB3562"></script>
+
+<script type="text/javascript">
 
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
-</script><style>
+</script>
+<style>
 
       .quarto-title-block .quarto-title-banner {
         background: #EBF7FE;
       }
 </style>
+
+
 <link rel="stylesheet" href="../../styles.css">
 <meta property="og:title" content="Membuat Diagram Lebih Hidup dengan Animasi – Jelajah Statistika dan Ilmu Data">
 <meta property="og:description" content="Bagaimana menganimasikan diagram statistik? Artikel ini mendemonstrasikan bagaimana menggunakan paket {gganimate} untuk membuat animasi dalam penyajian data yang efisien dan menarik.">
@@ -130,10 +145,175 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
 ">
 <meta name="twitter:card" content="summary_large_image">
 </head>
-<body class="floating nav-fixed quarto-light">
+
+<body class="floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Jelajah Statistika dan Ilmu Data</span>
@@ -145,7 +325,7 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
-<li class="nav-item">
+  <li class="nav-item">
     <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
@@ -164,11 +344,16 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
 <span class="menu-text"></span></a>
   </li>  
 </ul>
-</div> <!-- /navcollapse -->
+          </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
-    </nav></header><!-- content --><header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full"><div class="quarto-title-banner page-columns page-full">
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
       <h1 class="title">Membuat Diagram Lebih Hidup dengan Animasi</h1>
                   <div>
@@ -228,67 +413,83 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
   
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Pada laman ini</h2>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Pada laman ini</h2>
    
   <ul>
-<li><a href="#sec-kreasi-animasi" id="toc-sec-kreasi-animasi" class="nav-link active" data-scroll-target="#sec-kreasi-animasi">Mengkreasi Animasi</a></li>
+  <li><a href="#sec-kreasi-animasi" id="toc-sec-kreasi-animasi" class="nav-link active" data-scroll-target="#sec-kreasi-animasi">Mengkreasi Animasi</a></li>
   <li><a href="#sec-simpan-animasi" id="toc-sec-simpan-animasi" class="nav-link" data-scroll-target="#sec-simpan-animasi">Menyimpan Animasi</a></li>
   <li><a href="#catatan-akhir" id="toc-catatan-akhir" class="nav-link" data-scroll-target="#catatan-akhir">Catatan Akhir</a></li>
-  </ul><div class="toc-actions"><ul><li><a href="https://github.com/jelajahstatid/jelajahstatid.github.io/edit/main/pos/2024-08-animasi-diagram-statistik/index.qmd" class="toc-action"><i class="bi bi-github"></i>Sunting laman ini</a></li><li><a href="https://github.com/jelajahstatid/jelajahstatid.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Laporkan sebuah isu</a></li></ul></div></nav>
-</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/jelajahstatid/jelajahstatid.github.io/edit/main/pos/2024-08-animasi-diagram-statistik/index.qmd" class="toc-action"><i class="bi bi-github"></i>Sunting laman ini</a></li><li><a href="https://github.com/jelajahstatid/jelajahstatid.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Laporkan sebuah isu</a></li></ul></div></nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content"><p>Umumnya, diagram itu untuk menyampaikan pesan. Akibatnya, pembuatan diagram perlu disesuaikan dengan pesan yang perlu disampaikan. <em>Nah</em>, berdasarkan hal ini, mari kita tinjau kembali sebuah diagram pada <a href="../../pos/2024-08-statistik-jendela-dunia/index.html" title="Statistik Adalah Jendela Dunia">pos sebelumnya</a>. <a href="#fig-pdb-vs-ahh" class="quarto-xref">Gambar&nbsp;1</a> menyajikan diagram yang dimaksud.</p>
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+
+<p>Umumnya, diagram itu untuk menyampaikan pesan. Akibatnya, pembuatan diagram perlu disesuaikan dengan pesan yang perlu disampaikan. <em>Nah</em>, berdasarkan hal ini, mari kita tinjau kembali sebuah diagram pada <a href="../../pos/2024-08-statistik-jendela-dunia/index.html" title="Statistik Adalah Jendela Dunia">pos sebelumnya</a>. <a href="#fig-pdb-vs-ahh" class="quarto-xref">Gambar&nbsp;1</a> menyajikan diagram yang dimaksud.</p>
 <div id="fig-pdb-vs-ahh" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-pdb-vs-ahh-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pdb-vs-ahh-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="aset/pdb-vs-ahh.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Gambar&nbsp;1: Hubungan antara PDB per kapita dan angka harapan hidup setiap negara pada tahun 2007"><img src="aset/pdb-vs-ahh.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pdb-vs-ahh-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Gambar&nbsp;1: Hubungan antara PDB per kapita dan angka harapan hidup setiap negara pada tahun 2007
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 <p><a href="#fig-pdb-vs-ahh" class="quarto-xref">Gambar&nbsp;1</a> sudah baik dalam menunjukkan seperti apa relasi antara PDB per kapita dan angka harapan hidup setiap negara pada tahun 2007. Akan tetapi, bagaimana jika kita ingin menunjukkan relasi tersebut pada tahun-tahun lainnya?</p>
 <p>Mungkin kita langsung berpikir untuk memvisualisasikan relasi tersebut untuk setiap tahunnya. Dengan demikian, penyajian datanya seperti yang ditunjukkan pada <a href="#fig-semua-tahun" class="quarto-xref">Gambar&nbsp;2</a>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-semua-tahun" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-semua-tahun-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-semua-tahun-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="index_files/figure-html/fig-semua-tahun-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Gambar&nbsp;2: Relasi antara PDB per kapita dan angka harapan hidup setiap negara mulai tahun 1952 sampai 2007"><img src="index_files/figure-html/fig-semua-tahun-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-semua-tahun-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Gambar&nbsp;2: Relasi antara PDB per kapita dan angka harapan hidup setiap negara mulai tahun 1952 sampai 2007
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 </div>
 </div>
 <p><a href="#fig-semua-tahun" class="quarto-xref">Gambar&nbsp;2</a> tersebut tampak sudah sesuai dengan pesan yang ingin kita sampaikan. Akan tetapi, gambar tersebut kurang efisien karena terlalu banyak memuat informasi. Apakah ada metode yang lebih efisien?</p>
 <p>Penggunaan animasi adalah salah satu solusinya. Pembuatan animasi tersebut dapat dilakukan di <a href="https://www.R-project.org/" class="external" target="_blank" title="R: A Language and Environment for Statistical Computing">R</a> dengan menggunakan paket <a href="https://CRAN.R-project.org/package=gganimate" class="external" target="_blank" title="gganimate: A Grammar of Animated Graphics">{gganimate}</a>. Tak perlu berlama-lama, mari kita panggil paket tersebut bersamaan dengan paket <a href="https://www.tidyverse.org/" class="external" target="_blank" title="Welcome to the {tidyverse}">{tidyverse}</a>. Paket {tidyverse} tersebut berguna untuk mengimpor, mengolah, dan memvisualisasikan data. Sebagai tambahan, sebaiknya dalam R kita juga sudah terinstal paket <a href="https://CRAN.R-project.org/package=gifski" class="external" target="_blank" title="gifski: Highest Quality GIF Encoder">{gifski}</a>. Paket ini digunakan untuk merender animasi kita nanti menjadi fail gif.</p>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://gganimate.com">gganimate</a></span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gganimate)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="sec-kreasi-animasi" class="level2"><h2 class="anchored" data-anchor-id="sec-kreasi-animasi">Mengkreasi Animasi</h2>
+<section id="sec-kreasi-animasi" class="level2">
+<h2 class="anchored" data-anchor-id="sec-kreasi-animasi">Mengkreasi Animasi</h2>
 <p>Kita impor dan olah data Gapminder seperti pada <a href="../../pos/2024-08-statistik-jendela-dunia/index.html" title="Statistik Adalah Jendela Dunia">pos sebelumnya</a>. Baris kode yang digunakan adalah sebagai berikut.</p>
 <div class="cell">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Impor data `gapminder`</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/load.html">load</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/connections.html">url</a></span><span class="op">(</span><span class="st">"https://github.com/jennybc/gapminder/raw/main/data/gapminder.rdata"</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Menerjemahkan nama benua</span></span>
-<span><span class="va">terjemahan_benua</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
-<span>  <span class="st">"Asia"</span> <span class="op">=</span> <span class="st">"Asia"</span>,</span>
-<span>  <span class="st">"Europe"</span> <span class="op">=</span> <span class="st">"Eropa"</span>,</span>
-<span>  <span class="st">"Africa"</span> <span class="op">=</span> <span class="st">"Afrika"</span>,</span>
-<span>  <span class="st">"Americas"</span> <span class="op">=</span> <span class="st">"Amerika"</span>,</span>
-<span>  <span class="st">"Oceania"</span> <span class="op">=</span> <span class="st">"Oseania"</span></span>
-<span><span class="op">)</span></span>
-<span><span class="va">gapminder</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
-<span>    continent <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/recode.html">recode</a></span><span class="op">(</span><span class="va">continent</span>, <span class="op">!</span><span class="op">!</span><span class="op">!</span><span class="va">terjemahan_benua</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">gapminder</span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Impor data `gapminder`</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="fu">url</span>(<span class="st">"https://github.com/jennybc/gapminder/raw/main/data/gapminder.rdata"</span>))</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Menerjemahkan nama benua</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>terjemahan_benua <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Asia"</span> <span class="ot">=</span> <span class="st">"Asia"</span>,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Europe"</span> <span class="ot">=</span> <span class="st">"Eropa"</span>,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Africa"</span> <span class="ot">=</span> <span class="st">"Afrika"</span>,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Americas"</span> <span class="ot">=</span> <span class="st">"Amerika"</span>,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Oceania"</span> <span class="ot">=</span> <span class="st">"Oseania"</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>gapminder <span class="ot">&lt;-</span> gapminder <span class="sc">|&gt;</span> </span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">continent =</span> <span class="fu">recode</span>(continent, <span class="sc">!!!</span>terjemahan_benua)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(gapminder)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 6
   country     continent  year lifeExp      pop gdpPercap
@@ -303,68 +504,90 @@ Gambar&nbsp;2: Relasi antara PDB per kapita dan angka harapan hidup setiap negar
 </div>
 <p>Data <code>gapminder</code> sudah siap. Sekarang waktunya untuk membuat animasi. Berikut ini adalah baris kodenya.</p>
 <div class="cell">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">anim</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdpPercap</span>, y <span class="op">=</span> <span class="va">lifeExp</span><span class="op">)</span></span>
-<span>  <span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">continent</span>, size <span class="op">=</span> <span class="va">pop</span><span class="op">)</span>,</span>
-<span>    alpha <span class="op">=</span> <span class="fl">.6</span></span>
-<span>  <span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_size.html">scale_size</a></span><span class="op">(</span></span>
-<span>    range <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">20</span><span class="op">)</span>,</span>
-<span>    guide <span class="op">=</span> <span class="st">"none"</span></span>
-<span>  <span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_color_viridis_d</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Benua"</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
-<span>    legend.position <span class="op">=</span> <span class="st">"bottom"</span>,</span>
-<span>    plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>face <span class="op">=</span> <span class="st">"bold"</span><span class="op">)</span></span>
-<span>  <span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="co"># Penggunaan {gganimate} mulai dari sini</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
-<span>    title <span class="op">=</span> <span class="st">"Tahun: {frame_time}"</span>,</span>
-<span>    x <span class="op">=</span> <span class="st">"PDB per kapita"</span>,</span>
-<span>    y <span class="op">=</span> <span class="st">"Angka harapan hidup"</span></span>
-<span>  <span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu"><a href="https://gganimate.com/reference/transition_time.html">transition_time</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu"><a href="https://gganimate.com/reference/ease_aes.html">ease_aes</a></span><span class="op">(</span><span class="st">"linear"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">anim</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>anim <span class="ot">&lt;-</span> gapminder <span class="sc">|&gt;</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> gdpPercap, <span class="at">y =</span> lifeExp)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">color =</span> continent, <span class="at">size =</span> pop),</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> .<span class="dv">6</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size</span>(</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">range =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">20</span>),</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">guide =</span> <span class="st">"none"</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>(<span class="at">name =</span> <span class="st">"Benua"</span>) <span class="sc">+</span> </span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Penggunaan {gganimate} mulai dari sini</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Tahun: {frame_time}"</span>,</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"PDB per kapita"</span>,</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Angka harapan hidup"</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transition_time</span>(year) <span class="sc">+</span> </span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ease_aes</span>(<span class="st">"linear"</span>)</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>anim</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-animasi" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-animasi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-animasi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="index_files/figure-html/fig-animasi-1.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Gambar&nbsp;3: Relasi antara PDB per kapita dan angka harapan hidup setiap tahunnya, disajikan dengan animasi"><img src="index_files/figure-html/fig-animasi-1.gif" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-animasi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Gambar&nbsp;3: Relasi antara PDB per kapita dan angka harapan hidup setiap tahunnya, disajikan dengan animasi
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 </div>
 </div>
-<p>Dari baris kode di atas, kita menggunakan dua fungsi dari {gganimate}. Kedua fungsi tersebut adalah <code><a href="https://gganimate.com/reference/transition_time.html">transition_time()</a></code> dan <code><a href="https://gganimate.com/reference/ease_aes.html">ease_aes()</a></code>. Fungsi <code><a href="https://gganimate.com/reference/transition_time.html">transition_time()</a></code> berfungsi untuk membagi data kita berdasarkan kolom/variabel waktu tertentu. Karena data <code>gapminder</code> memiliki variabel waktu <code>year</code>, kita masukkan variabel ini ke dalam fungsi tersebut.</p>
-<p>Fungsi <code><a href="https://gganimate.com/reference/transition_time.html">transition_time()</a></code> menghasilkan variabel <code>frame_time</code>. Variabel ini kita masukkan ke dalam judul diagram agar judul tersebut berubah-ubah di sepanjang animasinya, perhatikan bagian kiri atas <a href="#fig-animasi" class="quarto-xref">Gambar&nbsp;3</a>. Penulisan variabel ini ke dalam judul perlu kita masukkan ke dalam kurung kurawal <code><a href="https://rdrr.io/r/base/Paren.html">{ }</a></code> agar terbaca sebagai variabel.</p>
-<p>Fungsi <code><a href="https://gganimate.com/reference/ease_aes.html">ease_aes()</a></code> mengatur bagaimana perubahan variabel <code>year</code>. Pilihan dalam fungsi ini antara lain <code>quadratic</code>, <code>cubic</code>, dan <code>quartic</code>. Bawaannya, argumen awal fungsi ini adalah <code>linear</code>.</p>
-</section><section id="sec-simpan-animasi" class="level2"><h2 class="anchored" data-anchor-id="sec-simpan-animasi">Menyimpan Animasi</h2>
-<p>Setelah animasi sudah jadi, saatnya kita simpan animasi tersebut. Sebelum kita menyimpannya, kita perlu merender animasi tersebut. Kita dapat merendernya dengan menggunakan <code><a href="https://gganimate.com/reference/animate.html">animate()</a></code> dan mengisikan argumen <code>renderer = gifski_renderer()</code> apabila ingin merendernya menjadi fail gif. Untuk menyimpan hasil animasinya, kita menggunakan fungsi <code><a href="https://gganimate.com/reference/anim_save.html">anim_save()</a></code>.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Merender animasi</span></span>
-<span><span class="fu"><a href="https://gganimate.com/reference/animate.html">animate</a></span><span class="op">(</span></span>
-<span>  plot <span class="op">=</span> <span class="va">anim</span>,</span>
-<span>  renderer <span class="op">=</span> <span class="fu"><a href="https://gganimate.com/reference/renderers.html">gifski_renderer</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Menyimpan animasi</span></span>
-<span><span class="fu"><a href="https://gganimate.com/reference/anim_save.html">anim_save</a></span><span class="op">(</span></span>
-<span>  file <span class="op">=</span> <span class="st">"anim_pdb_harapan_hidup.gif"</span></span>
-<span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Ketika menggunakan fungsi <code><a href="https://gganimate.com/reference/animate.html">animate()</a></code> dalam merender animasi, kita dapat mengatur beberapa argumen. Misalnya, <code>nframes</code>, <code>fps</code>, dan <code>duration</code>. Untuk lebih jelasnya, silakan kunjungi <a href="https://gganimate.com/reference/animate.html" class="external" target="_blank">laman referensinya</a>.</p>
-</section><section id="catatan-akhir" class="level2"><h2 class="anchored" data-anchor-id="catatan-akhir">Catatan Akhir</h2>
+<p>Dari baris kode di atas, kita menggunakan dua fungsi dari {gganimate}. Kedua fungsi tersebut adalah <code>transition_time()</code> dan <code>ease_aes()</code>. Fungsi <code>transition_time()</code> berfungsi untuk membagi data kita berdasarkan kolom/variabel waktu tertentu. Karena data <code>gapminder</code> memiliki variabel waktu <code>year</code>, kita masukkan variabel ini ke dalam fungsi tersebut.</p>
+<p>Fungsi <code>transition_time()</code> menghasilkan variabel <code>frame_time</code>. Variabel ini kita masukkan ke dalam judul diagram agar judul tersebut berubah-ubah di sepanjang animasinya, perhatikan bagian kiri atas <a href="#fig-animasi" class="quarto-xref">Gambar&nbsp;3</a>. Penulisan variabel ini ke dalam judul perlu kita masukkan ke dalam kurung kurawal <code>{ }</code> agar terbaca sebagai variabel.</p>
+<p>Fungsi <code>ease_aes()</code> mengatur bagaimana perubahan variabel <code>year</code>. Pilihan dalam fungsi ini antara lain <code>quadratic</code>, <code>cubic</code>, dan <code>quartic</code>. Bawaannya, argumen awal fungsi ini adalah <code>linear</code>.</p>
+</section>
+<section id="sec-simpan-animasi" class="level2">
+<h2 class="anchored" data-anchor-id="sec-simpan-animasi">Menyimpan Animasi</h2>
+<p>Setelah animasi sudah jadi, saatnya kita simpan animasi tersebut. Sebelum kita menyimpannya, kita perlu merender animasi tersebut. Kita dapat merendernya dengan menggunakan <code>animate()</code> dan mengisikan argumen <code>renderer = gifski_renderer()</code> apabila ingin merendernya menjadi fail gif. Untuk menyimpan hasil animasinya, kita menggunakan fungsi <code>anim_save()</code>.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Merender animasi</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">animate</span>(</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot =</span> anim,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">renderer =</span> <span class="fu">gifski_renderer</span>()</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Menyimpan animasi</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">anim_save</span>(</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">file =</span> <span class="st">"anim_pdb_harapan_hidup.gif"</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ketika menggunakan fungsi <code>animate()</code> dalam merender animasi, kita dapat mengatur beberapa argumen. Misalnya, <code>nframes</code>, <code>fps</code>, dan <code>duration</code>. Untuk lebih jelasnya, silakan kunjungi <a href="https://gganimate.com/reference/animate.html" class="external" target="_blank">laman referensinya</a>.</p>
+</section>
+<section id="catatan-akhir" class="level2">
+<h2 class="anchored" data-anchor-id="catatan-akhir">Catatan Akhir</h2>
 <p>Kita telah dapat menyajikan data yang kompleks secara sederhana dengan animasi. Dalam R, kita dapat menggunakan paket {gganimate}. Dengan paket tersebut, kita dapat membuat objek animasi. Hal ini telah didemonstrasikan pada <a href="#sec-kreasi-animasi" class="quarto-xref">Bagian&nbsp;1</a>. Selanjutnya, kita dapat merender objek animasi tersebut dan menyimpannya ke dalam sebuah fail. Hal ini telah dipaparkan pada <a href="#sec-simpan-animasi" class="quarto-xref">Bagian&nbsp;2</a>.</p>
 <p>Animasi tetap memiliki kekurangan. Kita hanya bisa melihat animasi tersebut, tanpa melakukan interaksi. Apakah kita dapat membuat diagram yang tak hanya efisien, tetapi juga interaktif? Iya, kita dapat membuat diagram yang interaktif dengan R. Untuk mengetahui caranya, silakan pantau <a href="../../pos/2024-08-statistik-dinamis-dan-interaktif/index.html" title="Membuat Statistik Menjadi Dinamis dan Interaktif">pos selanjutnya</a>.</p>
 
 
-</section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Kembali ke atas</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Penggunaan Kembali</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-copyright"><h2 class="anchored quarto-appendix-heading">Hak Cipta</h2><div class="quarto-appendix-contents"><div>© 2024 Yosep Dwi Kristanto</div></div></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Kembali ke atas</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Penggunaan Kembali</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-copyright"><h2 class="anchored quarto-appendix-heading">Hak Cipta</h2><div class="quarto-appendix-contents"><div>© 2024 Yosep Dwi Kristanto</div></div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {
@@ -802,12 +1025,18 @@ Gambar&nbsp;3: Relasi antara PDB per kapita dan angka harapan hidup setiap tahun
       }
     }
   });
-  </script><input type="hidden" id="giscus-base-theme" value="light"><input type="hidden" id="giscus-alt-theme" value="dark"><script>
+  </script>
+<input type="hidden" id="giscus-base-theme" value="light">
+<input type="hidden" id="giscus-alt-theme" value="dark">
+<script>
   function loadGiscus() {
     // Function to get the theme based on body class
     const getTheme = () => {
       let baseTheme = document.getElementById('giscus-base-theme').value;
       let altTheme = document.getElementById('giscus-alt-theme').value;
+      if (authorPrefersDark) {
+          [baseTheme, altTheme] = [altTheme, baseTheme];
+      }
       return document.body.classList.contains('quarto-dark') ? altTheme : baseTheme;
     };
     const script = document.createElement("script");
@@ -830,7 +1059,8 @@ Gambar&nbsp;3: Relasi antara PDB per kapita dan angka harapan hidup setiap tahun
   loadGiscus();
 </script>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer">
+<footer class="footer">
+  <div class="nav-footer">
     <div class="nav-footer-left">
 <p>© 2025 Jelajah Statistika dan Ilmu Data</p>
 </div>   
@@ -841,7 +1071,8 @@ Gambar&nbsp;3: Relasi antara PDB per kapita dan angka harapan hidup setiap tahun
 <p>Blog ini dikembangkan dengan <a href="https://quarto.org/" class="external" target="_blank">Quarto</a>.</p>
 </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+</footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {
@@ -873,6 +1104,8 @@ Gambar&nbsp;3: Relasi antara PDB per kapita dan angka harapan hidup setiap tahun
   
 })();
           </script>
+
+
 
 
 </body></html>
