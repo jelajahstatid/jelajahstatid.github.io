@@ -31,7 +31,7 @@ format:
   html:
     toc: true
     theme: 
-      light: cosmo
+      light: [cosmo, tema.scss]
       dark: [cosmo, tema-gelap.scss]
     respect-user-color-scheme: true
     code-fold: true
