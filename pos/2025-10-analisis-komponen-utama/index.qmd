@@ -16,11 +16,14 @@ categories:
 image: "sampul-aku.png"
 image-alt: "Visualisasi hasil analisis komponen utama (AKU) terhadap rata-rata konsumsi penduduk Indonesia berdasarkan jenis pangan pada tahun 2018 - 2024"
 keywords: 
+  - AKU
   - analisis data eksploratif
   - analisis komponen utama
   - Badan Pangan Nasional
   - makan bergizi gratis
   - MBG
+  - PCA
+  - principal component analysis
   - reduksi dimensi
   - pangan
   - statistika multivariat
