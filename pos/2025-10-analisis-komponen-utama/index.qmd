@@ -14,11 +14,13 @@ categories:
   - studi kasus
   - pangan
 image: "sampul-aku.png"
-image-alt: "Visualisasi hasil analisis komponen utama (AKU)"
+image-alt: "Visualisasi hasil analisis komponen utama (AKU) terhadap rata-rata konsumsi penduduk Indonesia berdasarkan jenis pangan pada tahun 2018 - 2024"
 keywords: 
   - analisis data eksploratif
   - analisis komponen utama
+  - Badan Pangan Nasional
   - makan bergizi gratis
+  - MBG
   - reduksi dimensi
   - pangan
   - statistika multivariat
@@ -482,3 +484,5 @@ dat_pangan |>
 ## Catatan Akhir {#sec-catatan-akhir}
 
 Kita telah mengenal metode statistika multivariat yang ampuh untuk mereduksi dimensi data, yaitu AKU. Hal ini kita lakukan pada @sec-sekilas-tentang-analisis-komponen-utama. Metode ini kita gunakan untuk mereduksi dimensi data rata-rata konsumsi penduduk Indonesia, yang awalnya memiliki delapan variabel kuantitatif menjadi dua komponen utama saja. Dengan hanya menggunakan dua komponen utama tersebut, kita tetap masih dapat melihat struktur titik-titik data dan variabel-variabelnya. Misalnya dalam @sec-konsumsi-pangan-penduduk-indonesia, kita menemukan hal-hal menarik tentang titik-titik pencilan dalam data, khususnya untuk Provinsi Kalimantan Tengah pada tahun 2018 dan Provinsi Papua pada Tahun 2023. Selain itu, dengan hanya dua komponen utama saja, kita dapat melihat perubahan konsumsi pangan Provinsi Kalimantan Timur dari tahun ke tahun, seperti yang ditunjukkan pada @fig-perubahan-kaltim dan @fig-konsumsi-kaltim-kategori.
+
+Apa selanjutnya? Untuk menjawab pertanyaan ini, baik kalau kita kembali ke bagian paling awal artikel ini, yaitu tentang program MBG. Mungkin 2 – 5 tahun ke depan kita dapat menggunakan AKU untuk menyelidiki dampak program tersebut terhadap konsumsi pangan penduduk Indonesia. Hal ini bukannya tanpa tantangan. Untuk melakukannya, kita memerlukan data yang lebih detail, khususnya terkait dengan penggolongan penduduk (misalnya dari segi usia) karena [tidak semua penduduk Indonesia terdampak (secara langsung) program tersebut](https://mediakeuangan.kemenkeu.go.id/article/show/pemerintah-salurkan-makan-bergizi-gratis-mbg-ini-sasaran-utama-penerimanya "Pemerintah Salurkan Makan Bergizi Gratis (MBG), Ini Sasaran Utama Penerimanya"){.external target="_blank"}. Meskipun demikian, menilik data [kependudukan dari BPS](https://www.bps.go.id/id/statistics-table/3/WVc0%20MGEyMXBkVFUxY25KeE9HdDZkbTQzWkVkb1p6MDkjMw==/jumlah-penduduk-menurut-kelompok-umur-dan-jenis-kelamin--2023.html "Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin, 2025"){.external target="_blank"}, sasaran program tersebut cukup besar. Dengan demikian, tak ada salahnya jika kita tetap melihat dampaknya meskipun kesulitan mengakses data yang lebih detail. Tak hanya melihat pola konsumsi berdasarkan jenis pangannya, tetapi baik juga jika kita melihat hal-hal lain yang lebih detail dan relevan, seperti konsumsi energi dan protein.
