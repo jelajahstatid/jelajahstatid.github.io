@@ -1,6 +1,6 @@
 freeze: auto
 toc-location: left
-title-block-banner: "#EBF7FE"
+title-block-banner: true
 comments:
   giscus:
     repo: jelajahstatid/jelajahstatid.github.io

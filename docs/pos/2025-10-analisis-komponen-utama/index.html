@@ -1,16 +1,13 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.7.32">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
 <meta name="author" content="Yosep Dwi Kristanto">
 <meta name="dcterms.date" content="2025-10-06">
 <meta name="keywords" content="AKU, analisis data eksploratif, analisis komponen utama, Badan Pangan Nasional, makan bergizi gratis, MBG, PCA, principal component analysis, reduksi dimensi, pangan, statistika multivariat, visualisasi data">
 <meta name="description" content="Analisis Komponen Utama (AKU) merupakan metode statistika multivariat yang ampuh untuk mereduksi dimensi data. Artikel ini mendemonstrasikan penggunaan metode tersebut untuk menyelidiki pola konsumsi pangan Indonesia yang awalnya memiliki delapan variabel kuantitatif. Dengan AKU, dimensi data tersebut tereduksi secara signifikan tetapi strukturnya relatif tidak banyak berubah.">
-
 <title>Analisis Komponen Utama – Jelajah Statistika dan Ilmu Data</title>
 <style>
 code{white-space: pre-wrap;}
@@ -25,7 +22,6 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 </style>
-
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/quarto-nav/headroom.min.js"></script>
@@ -47,12 +43,11 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-dfb324f25d9b1687192fa8be62ac8f9c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-08799928d293638fe9563d5c5a2794e5.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-dark-41753783fd3fa495d37dff3f6f142c11.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="../../site_libs/bootstrap/bootstrap-dfb324f25d9b1687192fa8be62ac8f9c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
-<script id="quarto-search-options" type="application/json">{
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -78,25 +73,13 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Kirim",
     "search-label": "Cari"
   }
-}</script>
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-WTEJLB3562"></script>
-
-<script type="text/javascript">
+}</script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-WTEJLB3562"></script><script type="text/javascript">
 
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
-</script>
-<style>
-
-      .quarto-title-block .quarto-title-banner {
-        background: #EBF7FE;
-      }
-</style>
-
-
-<link rel="stylesheet" href="../../styles.css">
+</script><link rel="stylesheet" href="../../styles.css">
 <meta property="og:title" content="Analisis Komponen Utama – Jelajah Statistika dan Ilmu Data">
 <meta property="og:description" content="Analisis Komponen Utama (AKU) merupakan metode statistika multivariat yang ampuh untuk mereduksi dimensi data. Artikel ini mendemonstrasikan penggunaan metode tersebut untuk menyelidiki pola konsumsi pangan Indonesia yang awalnya memiliki delapan variabel kuantitatif. Dengan AKU, dimensi data tersebut tereduksi secara signifikan tetapi strukturnya relatif tidak banyak berubah.">
 <meta property="og:image" content="https://jelajahstatid.github.io/pos/2025-10-analisis-komponen-utama/sampul-aku.png">
@@ -112,7 +95,6 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
 <meta name="twitter:image:alt" content="Visualisasi hasil analisis komponen utama (AKU) terhadap rata-rata konsumsi penduduk Indonesia berdasarkan jenis pangan pada tahun 2018 - 2024">
 <meta name="twitter:card" content="summary_large_image">
 </head>
-
 <body class="floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
@@ -287,9 +269,7 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
   </script>
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Jelajah Statistika dan Ilmu Data</span>
@@ -301,7 +281,7 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item">
+<li class="nav-item">
     <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
@@ -320,16 +300,12 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
 <span class="menu-text"></span></a>
   </li>  
 </ul>
-          </div> <!-- /navcollapse -->
+</div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
-    </nav>
-</header>
-<!-- content -->
-<header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
+    </nav></header><!-- content --><header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full"><div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
       <h1 class="title">Analisis Komponen Utama</h1>
             <p class="subtitle lead">Menyingkap Konsumsi Pangan Penduduk Indonesia</p>
@@ -385,32 +361,20 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
   
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Pada laman ini</h2>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Pada laman ini</h2>
    
   <ul>
-  <li><a href="#sec-sekilas-tentang-analisis-komponen-utama" id="toc-sec-sekilas-tentang-analisis-komponen-utama" class="nav-link active" data-scroll-target="#sec-sekilas-tentang-analisis-komponen-utama">Sekilas Tentang AKU</a></li>
+<li><a href="#sec-sekilas-tentang-analisis-komponen-utama" id="toc-sec-sekilas-tentang-analisis-komponen-utama" class="nav-link active" data-scroll-target="#sec-sekilas-tentang-analisis-komponen-utama">Sekilas Tentang AKU</a></li>
   <li><a href="#sec-konsumsi-pangan-penduduk-indonesia" id="toc-sec-konsumsi-pangan-penduduk-indonesia" class="nav-link" data-scroll-target="#sec-konsumsi-pangan-penduduk-indonesia">Konsumsi Pangan Penduduk Indonesia</a></li>
   <li><a href="#sec-catatan-akhir" id="toc-sec-catatan-akhir" class="nav-link" data-scroll-target="#sec-catatan-akhir">Catatan Akhir</a></li>
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/jelajahstatid/jelajahstatid.github.io/edit/main/pos/2025-10-analisis-komponen-utama/index.qmd" class="toc-action"><i class="bi bi-github"></i>Sunting laman ini</a></li><li><a href="https://github.com/jelajahstatid/jelajahstatid.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Laporkan sebuah isu</a></li></ul></div></nav>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/jelajahstatid/jelajahstatid.github.io/edit/main/pos/2025-10-analisis-komponen-utama/index.qmd" class="toc-action"><i class="bi bi-github"></i>Sunting laman ini</a></li><li><a href="https://github.com/jelajahstatid/jelajahstatid.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Laporkan sebuah isu</a></li></ul></div></nav>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
-
-
-
-
-
-
-<p>Program Makan Bergizi Gratis (MBG) menjadi topik hangat berita nasional ketika artikel ini ditulis. Namun, artikel ini tidak akan membahas program itu melainkan topik yang serupa, yaitu tentang pangan. Secara lebih khusus, artikel ini akan menyingkap pola konsumsi pangan penduduk Indonesia per provinsi dengan menggunakan analisis komponen utama (AKU) atau <em>principal component analysis</em> (PCA). Kita awali pembahasannya dengan mengenal apa itu AKU.</p>
-<section id="sec-sekilas-tentang-analisis-komponen-utama" class="level2">
-<h2 class="anchored" data-anchor-id="sec-sekilas-tentang-analisis-komponen-utama">Sekilas Tentang AKU</h2>
+<main class="content quarto-banner-title-block" id="quarto-document-content"><p>Program Makan Bergizi Gratis (MBG) menjadi topik hangat berita nasional ketika artikel ini ditulis. Namun, artikel ini tidak akan membahas program itu melainkan topik yang serupa, yaitu tentang pangan. Secara lebih khusus, artikel ini akan menyingkap pola konsumsi pangan penduduk Indonesia per provinsi dengan menggunakan analisis komponen utama (AKU) atau <em>principal component analysis</em> (PCA). Kita awali pembahasannya dengan mengenal apa itu AKU.</p>
+<section id="sec-sekilas-tentang-analisis-komponen-utama" class="level2"><h2 class="anchored" data-anchor-id="sec-sekilas-tentang-analisis-komponen-utama">Sekilas Tentang AKU</h2>
 <p>AKU merupakan sebuah metode untuk menganalisis data yang titik-titik datanya dideskripsikan dengan beberapa variabel kuantitatif yang saling berkorelasi. Tujuan AKU adalah untuk:</p>
 <ul>
 <li><p>mengekstrak informasi yang paling penting dari data;</p></li>
@@ -431,97 +395,81 @@ Menyingkap Ide Mendasar AKU
 <div class="callout-body-container callout-body">
 <p>Jika kamu ingin melihat bagaimana ide mendasar AKU, silakan kunjungi media-media interaktif pada laman berikut: <a href="https://people.usd.ac.id/~ydkristanto/index.php/media-pengajaran/analisis-komponen-utama/" class="external" target="_blank" title="Analisis Komponen Utama: Bagaimana Ide Dasarnya?">Analisis Komponen Utama: Bagaimana Ide Dasarnya?</a> dan <a href="https://people.usd.ac.id/~ydkristanto/index.php/media-pengajaran/eksplorasi-aku/" class="external" target="_blank" title="Eksplorasi Analisis Komponen Utama">Eksplorasi Analisis Komponen Utama</a>, lihat <a href="#fig-media-interaktif" class="quarto-xref">Gambar&nbsp;1</a>.</p>
 <div id="fig-media-interaktif" class="quarto-layout-panel">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-media-interaktif-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-media-interaktif-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-media-interaktif" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div id="fig-geometri-aku" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Tangkapan layar media interaktif untuk menemukan ide mendasar Analisis Komponen Utama (AKU) secara geometris.">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-geometri-aku-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-geometri-aku-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="aset/jelajah-aku-geometris.png" class="lightbox" data-gallery="fig-media-interaktif" title="Gambar&nbsp;1&nbsp;(a): Analisis Komponen Utama: Bagaimana Ide Dasarnya?"><img src="aset/jelajah-aku-geometris.png" class="img-fluid figure-img" data-ref-parent="fig-media-interaktif" alt="Tangkapan layar media interaktif untuk menemukan ide mendasar Analisis Komponen Utama (AKU) secara geometris."></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-geometri-aku-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) Analisis Komponen Utama: Bagaimana Ide Dasarnya?
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 </div>
 <div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-media-interaktif" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div id="fig-eksplorasi-aku" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Tangkapan layar media interaktif untuk mengeksplorasi Analisis Komponen Utama (AKU).">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-eksplorasi-aku-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-eksplorasi-aku-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="aset/jelajahi-aku.png" class="lightbox" data-gallery="fig-media-interaktif" title="Gambar&nbsp;1&nbsp;(b): Eksplorasi Analisis Komponen Utama"><img src="aset/jelajahi-aku.png" class="img-fluid figure-img" data-ref-parent="fig-media-interaktif" alt="Tangkapan layar media interaktif untuk mengeksplorasi Analisis Komponen Utama (AKU)."></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-eksplorasi-aku-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b) Eksplorasi Analisis Komponen Utama
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 </div>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-media-interaktif-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Gambar&nbsp;1: Media-media interaktif untuk mengenal AKU
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 <p>Media interaktif yang ditunjukkan pada <a href="#fig-geometri-aku" class="quarto-xref">Gambar&nbsp;1 (a)</a> akan memandumu untuk memahami AKU, khususnya terkait penentuan komponen-komponen utamanya, dengan pendekatan geometris. Media yang ditunjukkan pada <a href="#fig-eksplorasi-aku" class="quarto-xref">Gambar&nbsp;1 (b)</a> mengajakmu untuk mengeksplorasi AKU secara lebih lanjut.</p>
 </div>
 </div>
-</section>
-<section id="sec-konsumsi-pangan-penduduk-indonesia" class="level2">
-<h2 class="anchored" data-anchor-id="sec-konsumsi-pangan-penduduk-indonesia">Konsumsi Pangan Penduduk Indonesia</h2>
+</section><section id="sec-konsumsi-pangan-penduduk-indonesia" class="level2"><h2 class="anchored" data-anchor-id="sec-konsumsi-pangan-penduduk-indonesia">Konsumsi Pangan Penduduk Indonesia</h2>
 <p>Kembali ke tujuan awal, selanjutnya kita mengaplikasikan AKU untuk menyingkap pola konsumsi penduduk Indonesia berdasarkan jenis pangan mulai dari tahun 2018 sampai 2024. Untuk melakukannya, kita menggunakan data dari Badan Pangan Nasional yang tersedia di <a href="https://satudata.badanpangan.go.id/datasetpublications/gsp/konsumsi-provinsi" class="external" target="_blank" title="Rata-rata Konsumsi per Jenis Pangan Penduduk Indonesia Provinsi Update Tahun 2024">satudata.badanpangan.go.id</a>. Data ini menunjukkan nilai rata-rata konsumsi, dalam kg/kapita/tahun, penduduk Indonesia tiap provinsi berdasarkan jenis pangan pada tahun 2018 sampai 2024. Jenis-jenis pangan tersebut merupakan variabel-variabel kuantitatif yang akan kita selidiki. Variabel tersebut ada delapan, yaitu <code>Buah/biji berminyak</code>, <code>Gula</code>, <code>Kacang-kacangan</code>, <code>Minyak dan Lemak</code>, <code>Padi-Padian</code>, <code>Pangan Hewani</code>, <code>Sayuran dan buah</code>, dan <code>Umbi-umbian</code>.</p>
 <p><a href="#fig-aku-awal" class="quarto-xref">Gambar&nbsp;2</a> menunjukkan visualisasi hasil AKU terhadap data tersebut. <a href="#fig-aku-awal-1" class="quarto-xref">Gambar&nbsp;2 (a)</a> menunjukkan komponen-komponen utama yang dihasilkan beserta dengan besarnya variansi data yang dapat dijelaskan oleh masing-masing komponen tersebut. Dari gambar tersebut kita dapat melihat bahwa KU1 (komponen utama pertama) dapat menjelaskan variansi terbesar, diikuti dengan KU2. Dengan demikian, selanjutnya kita gunakan dua komponen utama ini untuk menginterpretasi data. Secara total, kedua komponen utama tersebut dapat menjelaskan 44,35% variansi dalam data.</p>
 <div class="cell" data-layout="[[1,1],[1]]">
 <div id="fig-aku-awal" class="quarto-layout-panel">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-aku-awal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-aku-awal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-row">
 <div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-aku-awal" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div id="fig-aku-awal-1" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-aku-awal-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-aku-awal-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="index_files/figure-html/fig-aku-awal-1.png" class="lightbox" data-gallery="fig-aku-awal" title="Gambar&nbsp;2&nbsp;(a): Variansi yang dijelaskan oleh setiap komponen utama"><img src="index_files/figure-html/fig-aku-awal-1.png" class="img-fluid figure-img" data-ref-parent="fig-aku-awal" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-aku-awal-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) Variansi yang dijelaskan oleh setiap komponen utama
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 </div>
 <div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-aku-awal" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div id="fig-aku-awal-2" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-aku-awal-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-aku-awal-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="index_files/figure-html/fig-aku-awal-2.png" class="lightbox" data-gallery="fig-aku-awal" title="Gambar&nbsp;2&nbsp;(b): Hubungan antara variabel dan dua komponen utama dalam bidang AKU"><img src="index_files/figure-html/fig-aku-awal-2.png" class="img-fluid figure-img" data-ref-parent="fig-aku-awal" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-aku-awal-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b) Hubungan antara variabel dan dua komponen utama dalam bidang AKU
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 </div>
 </div>
 <div class="quarto-layout-row">
 <div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-aku-awal" style="flex-basis: 100.0%;justify-content: flex-start;">
 <div id="fig-aku-awal-3" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-aku-awal-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-subfloat-fig figure"><div aria-describedby="fig-aku-awal-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="index_files/figure-html/fig-aku-awal-3.png" class="lightbox" data-gallery="fig-aku-awal" title="Gambar&nbsp;2&nbsp;(c): Proyeksi titik-titik data (provinsi per tahun) pada bidang AKU"><img src="index_files/figure-html/fig-aku-awal-3.png" class="img-fluid figure-img" data-ref-parent="fig-aku-awal" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-aku-awal-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (c) Proyeksi titik-titik data (provinsi per tahun) pada bidang AKU
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 </div>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-aku-awal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Gambar&nbsp;2: Visualisasi hasil AKU
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 </div>
 <p><a href="#fig-aku-awal-2" class="quarto-xref">Gambar&nbsp;2 (b)</a> menyajikan arah dan kekuatan hubungan antara variabel-variabel asli dan dua komponen utama yang pertama: KU1 dan KU2. Misalnya, variabel <code>Sayuran dan buah</code> mengarah ke kiri atas. Artinya, variabel ini memiliki korelasi negatif dengan UK1 tetapi positif dengan UK2. Panjang panah menunjukkan besarnya korelasi. Meskipun sama-sama berkorelasi negatif dengan KU1, <code>Sayuran dan buah</code> korelasi lebih kuat dibandingkan dengan <code>Kacang-kacangan</code>. Tanda-tanda panah variabel tersebut juga menunjukkan korelasi antarvariabel:</p>
@@ -534,14 +482,12 @@ Gambar&nbsp;2: Visualisasi hasil AKU
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-aku-grup" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-aku-grup-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-aku-grup-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="index_files/figure-html/fig-aku-grup-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Gambar&nbsp;3: Proyeksi data pada bidang AKU dengan pemberian label untuk titik-titik pencilan"><img src="index_files/figure-html/fig-aku-grup-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-aku-grup-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Gambar&nbsp;3: Proyeksi data pada bidang AKU dengan pemberian label untuk titik-titik pencilan
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 </div>
 </div>
@@ -549,14 +495,12 @@ Gambar&nbsp;3: Proyeksi data pada bidang AKU dengan pemberian label untuk titik-
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-diagram-batang-perbandingan" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-diagram-batang-perbandingan-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-diagram-batang-perbandingan-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="index_files/figure-html/fig-diagram-batang-perbandingan-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Gambar&nbsp;4: Perbandingan konsumsi per jenis pangan"><img src="index_files/figure-html/fig-diagram-batang-perbandingan-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diagram-batang-perbandingan-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Gambar&nbsp;4: Perbandingan konsumsi per jenis pangan
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 </div>
 </div>
@@ -569,14 +513,12 @@ Gambar&nbsp;4: Perbandingan konsumsi per jenis pangan
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-perubahan-kaltim" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-perubahan-kaltim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-perubahan-kaltim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="index_files/figure-html/fig-perubahan-kaltim-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Gambar&nbsp;5: Perubahan konsumsi pangan pada Provinsi Kalimantan Timur dari tahun 2018 sampai 2024"><img src="index_files/figure-html/fig-perubahan-kaltim-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-perubahan-kaltim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Gambar&nbsp;5: Perubahan konsumsi pangan pada Provinsi Kalimantan Timur dari tahun 2018 sampai 2024
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 </div>
 </div>
@@ -585,29 +527,22 @@ Gambar&nbsp;5: Perubahan konsumsi pangan pada Provinsi Kalimantan Timur dari tah
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-konsumsi-kaltim-kategori" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-konsumsi-kaltim-kategori-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-konsumsi-kaltim-kategori-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="index_files/figure-html/fig-konsumsi-kaltim-kategori-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9" title="Gambar&nbsp;6: Konsumsi pangan Provinsi Kalimantan Timur per kategorinya pada tahun 2019, 2023, dan 2024."><img src="index_files/figure-html/fig-konsumsi-kaltim-kategori-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-konsumsi-kaltim-kategori-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Gambar&nbsp;6: Konsumsi pangan Provinsi Kalimantan Timur per kategorinya pada tahun 2019, 2023, dan 2024.
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 </div>
 </div>
 <p><a href="#fig-konsumsi-kaltim-kategori" class="quarto-xref">Gambar&nbsp;6</a> menunjukkan secara jelas bahwa konsumsi penduduk Kalimantan Timur bertambah pada kategori <code>Minyak dan Lemak</code> tetapi berkurang pada kategori <code>Padi-Padian</code> mulai tahun 2023. Hal ini mengkonfirmasi interpretasi kita terhadap <a href="#fig-perubahan-kaltim" class="quarto-xref">Gambar&nbsp;5</a>.</p>
-</section>
-<section id="sec-catatan-akhir" class="level2">
-<h2 class="anchored" data-anchor-id="sec-catatan-akhir">Catatan Akhir</h2>
+</section><section id="sec-catatan-akhir" class="level2"><h2 class="anchored" data-anchor-id="sec-catatan-akhir">Catatan Akhir</h2>
 <p>Kita telah mengenal metode statistika multivariat yang ampuh untuk mereduksi dimensi data, yaitu AKU. Hal ini kita lakukan pada <a href="#sec-sekilas-tentang-analisis-komponen-utama" class="quarto-xref">Bagian&nbsp;1</a>. Metode ini kita gunakan untuk mereduksi dimensi data rata-rata konsumsi penduduk Indonesia, yang awalnya memiliki delapan variabel kuantitatif menjadi dua komponen utama saja. Dengan hanya menggunakan dua komponen utama tersebut, kita tetap masih dapat melihat struktur titik-titik data dan variabel-variabelnya. Misalnya dalam <a href="#sec-konsumsi-pangan-penduduk-indonesia" class="quarto-xref">Bagian&nbsp;2</a>, kita menemukan hal-hal menarik tentang titik-titik pencilan dalam data, khususnya untuk Provinsi Kalimantan Tengah pada tahun 2018 dan Provinsi Papua pada Tahun 2023. Selain itu, dengan hanya dua komponen utama saja, kita dapat melihat perubahan konsumsi pangan Provinsi Kalimantan Timur dari tahun ke tahun, seperti yang ditunjukkan pada <a href="#fig-perubahan-kaltim" class="quarto-xref">Gambar&nbsp;5</a> dan <a href="#fig-konsumsi-kaltim-kategori" class="quarto-xref">Gambar&nbsp;6</a>.</p>
 <p>Apa selanjutnya? Untuk menjawab pertanyaan ini, baik kalau kita kembali ke bagian paling awal artikel ini, yaitu tentang program MBG. Mungkin 2 – 5 tahun ke depan kita dapat menggunakan AKU untuk menyelidiki dampak program tersebut terhadap konsumsi pangan penduduk Indonesia. Hal ini bukannya tanpa tantangan. Untuk melakukannya, kita memerlukan data yang lebih detail, khususnya terkait dengan penggolongan penduduk (misalnya dari segi usia) karena <a href="https://mediakeuangan.kemenkeu.go.id/article/show/pemerintah-salurkan-makan-bergizi-gratis-mbg-ini-sasaran-utama-penerimanya" class="external" target="_blank" title="Pemerintah Salurkan Makan Bergizi Gratis (MBG), Ini Sasaran Utama Penerimanya">tidak semua penduduk Indonesia terdampak (secara langsung) program tersebut</a>. Meskipun demikian, menilik data <a href="https://www.bps.go.id/id/statistics-table/3/WVc0%20MGEyMXBkVFUxY25KeE9HdDZkbTQzWkVkb1p6MDkjMw==/jumlah-penduduk-menurut-kelompok-umur-dan-jenis-kelamin--2023.html" class="external" target="_blank" title="Jumlah Penduduk Menurut Kelompok Umur dan Jenis Kelamin, 2025">kependudukan dari BPS</a>, sasaran program tersebut cukup besar. Dengan demikian, tak ada salahnya jika kita tetap melihat dampaknya meskipun kesulitan mengakses data yang lebih detail. Tak hanya melihat pola konsumsi berdasarkan jenis pangannya, tetapi baik juga jika kita melihat hal-hal lain yang lebih detail dan relevan, seperti konsumsi energi dan protein.</p>
 
 
-</section>
-
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Kembali ke atas</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Penggunaan Kembali</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-copyright"><h2 class="anchored quarto-appendix-heading">Hak Cipta</h2><div class="quarto-appendix-contents"><div>© 2025 Yosep Dwi Kristanto</div></div></section></div></main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Kembali ke atas</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Penggunaan Kembali</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-copyright"><h2 class="anchored quarto-appendix-heading">Hak Cipta</h2><div class="quarto-appendix-contents"><div>© 2025 Yosep Dwi Kristanto</div></div></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
     if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -1059,10 +994,7 @@ Gambar&nbsp;6: Konsumsi pangan Provinsi Kalimantan Timur per kategorinya pada ta
       }
     }
   });
-  </script>
-<input type="hidden" id="giscus-base-theme" value="light">
-<input type="hidden" id="giscus-alt-theme" value="dark">
-<script>
+  </script><input type="hidden" id="giscus-base-theme" value="light"><input type="hidden" id="giscus-alt-theme" value="dark"><script>
   function loadGiscus() {
     // Function to get the theme based on body class
     const getTheme = () => {
@@ -1093,8 +1025,7 @@ Gambar&nbsp;6: Konsumsi pangan Provinsi Kalimantan Timur per kategorinya pada ta
   loadGiscus();
 </script>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
+<footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">
 <p>© 2025 Jelajah Statistika dan Ilmu Data</p>
 </div>   
@@ -1105,8 +1036,7 @@ Gambar&nbsp;6: Konsumsi pangan Provinsi Kalimantan Timur per kategorinya pada ta
 <p>Blog ini dikembangkan dengan <a href="https://quarto.org/" class="external" target="_blank">Quarto</a>.</p>
 </div>
   </div>
-</footer>
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {
@@ -1138,8 +1068,6 @@ Gambar&nbsp;6: Konsumsi pangan Provinsi Kalimantan Timur per kategorinya pada ta
   
 })();
           </script>
-
-
 
 
 </body></html>

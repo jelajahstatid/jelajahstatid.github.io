@@ -1,16 +1,13 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.7.32">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
 <meta name="author" content="Yosep Dwi Kristanto">
 <meta name="dcterms.date" content="2024-08-17">
 <meta name="keywords" content="kemerdekaan, Republik Indonesia, nusantara, olimpiade, Olimpiade Musim Panas 2024, Olimpiade Paris 2024, diagram batang, diagram garis, diagram alir">
 <meta name="description" content="Indonesia menyabet dua emas dan satu perunggu di Olimpiade Paris 2024. Prestasi itu diraih berkat performa ciamik Veddriq Leonardo, Rizki Juniansyah, dan Gregoria Mariska Tunjung. Bagaimana dengan performa Indonesia di semua perhelatan olimpiade yang pernah diikutinya?">
-
 <title>Prestasi Indonesia di Olimpiade – Jelajah Statistika dan Ilmu Data</title>
 <style>
 code{white-space: pre-wrap;}
@@ -61,7 +58,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
-
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
@@ -82,12 +78,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-dfb324f25d9b1687192fa8be62ac8f9c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-2924e029ebab37202f18e9f746cd122d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-dark-41753783fd3fa495d37dff3f6f142c11.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="../../site_libs/bootstrap/bootstrap-dfb324f25d9b1687192fa8be62ac8f9c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
-<script id="quarto-search-options" type="application/json">{
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -113,25 +108,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Kirim",
     "search-label": "Cari"
   }
-}</script>
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-WTEJLB3562"></script>
-
-<script type="text/javascript">
+}</script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-WTEJLB3562"></script><script type="text/javascript">
 
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
-</script>
-<style>
-
-      .quarto-title-block .quarto-title-banner {
-        background: #EBF7FE;
-      }
-</style>
-
-
-<link rel="stylesheet" href="../../styles.css">
+</script><link rel="stylesheet" href="../../styles.css">
 <meta property="og:title" content="Prestasi Indonesia di Olimpiade – Jelajah Statistika dan Ilmu Data">
 <meta property="og:description" content="Indonesia menyabet dua emas dan satu perunggu di Olimpiade Paris 2024. Prestasi itu diraih berkat performa ciamik Veddriq Leonardo, Rizki Juniansyah, dan Gregoria Mariska Tunjung. Bagaimana dengan performa Indonesia di semua perhelatan olimpiade yang pernah diikutinya?">
 <meta property="og:image" content="https://jelajahstatid.github.io/pos/2024-08-indonesia-di-olimpiade/indonesia-di-olimpiade.png">
@@ -149,7 +132,6 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
 ">
 <meta name="twitter:card" content="summary_large_image">
 </head>
-
 <body class="floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
@@ -293,7 +275,8 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
       }
     };
     const authorPrefersDark = false;
-    const darkModeDefault = authorPrefersDark;
+    const queryPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const darkModeDefault = queryPrefersDark.matches;
       document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
       document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
     let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
@@ -306,6 +289,14 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
       toggleGiscusIfUsed(toAlternate, darkModeDefault);
       window.dispatchEvent(new Event('resize'));
     };
+    queryPrefersDark.addEventListener("change", e => {
+      if(window.localStorage.getItem("quarto-color-scheme") !== null)
+        return;
+      const alternate = e.matches
+      toggleColorMode(alternate);
+      localAlternateSentinel = e.matches ? 'alternate' : 'default'; // this is used alongside local storage!
+      toggleGiscusIfUsed(alternate, darkModeDefault);
+    });
     // Switch to dark mode if need be
     if (hasAlternateSentinel()) {
       toggleColorMode(true);
@@ -315,9 +306,7 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
   </script>
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Jelajah Statistika dan Ilmu Data</span>
@@ -329,7 +318,7 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item">
+<li class="nav-item">
     <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
@@ -348,16 +337,12 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
 <span class="menu-text"></span></a>
   </li>  
 </ul>
-          </div> <!-- /navcollapse -->
+</div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
-    </nav>
-</header>
-<!-- content -->
-<header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
+    </nav></header><!-- content --><header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full"><div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
       <h1 class="title">Prestasi Indonesia di Olimpiade</h1>
                   <div>
@@ -413,60 +398,52 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
   
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Pada laman ini</h2>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Pada laman ini</h2>
    
   <ul>
-  <li><a href="#sec-mempersiapkan-data" id="toc-sec-mempersiapkan-data" class="nav-link active" data-scroll-target="#sec-mempersiapkan-data">Mempersiapkan Data</a>
+<li>
+<a href="#sec-mempersiapkan-data" id="toc-sec-mempersiapkan-data" class="nav-link active" data-scroll-target="#sec-mempersiapkan-data">Mempersiapkan Data</a>
   <ul class="collapse">
-  <li><a href="#sec-mengimpor-data" id="toc-sec-mengimpor-data" class="nav-link" data-scroll-target="#sec-mengimpor-data">Mengimpor Data</a></li>
+<li><a href="#sec-mengimpor-data" id="toc-sec-mengimpor-data" class="nav-link" data-scroll-target="#sec-mengimpor-data">Mengimpor Data</a></li>
   <li><a href="#sec-merapikan-data" id="toc-sec-merapikan-data" class="nav-link" data-scroll-target="#sec-merapikan-data">Merapikan Data</a></li>
-  </ul></li>
-  <li><a href="#sec-visualisasi-data" id="toc-sec-visualisasi-data" class="nav-link" data-scroll-target="#sec-visualisasi-data">Visualisasi Data</a>
-  <ul class="collapse">
-  <li><a href="#sec-medali-dan-perhelatan-olimpiade" id="toc-sec-medali-dan-perhelatan-olimpiade" class="nav-link" data-scroll-target="#sec-medali-dan-perhelatan-olimpiade">Medali dan Perhelatan Olimpiade</a></li>
-  <li><a href="#sec-medali-dan-cabang-olahraga" id="toc-sec-medali-dan-cabang-olahraga" class="nav-link" data-scroll-target="#sec-medali-dan-cabang-olahraga">Medali dan Cabang Olahraga</a></li>
-  </ul></li>
-  <li><a href="#sec-catatan-akhir" id="toc-sec-catatan-akhir" class="nav-link" data-scroll-target="#sec-catatan-akhir">Catatan Akhir</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/jelajahstatid/jelajahstatid.github.io/edit/main/pos/2024-08-indonesia-di-olimpiade/index.qmd" class="toc-action"><i class="bi bi-github"></i>Sunting laman ini</a></li><li><a href="https://github.com/jelajahstatid/jelajahstatid.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Laporkan sebuah isu</a></li></ul></div></nav>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+</li>
+  <li>
+<a href="#sec-visualisasi-data" id="toc-sec-visualisasi-data" class="nav-link" data-scroll-target="#sec-visualisasi-data">Visualisasi Data</a>
+  <ul class="collapse">
+<li><a href="#sec-medali-dan-perhelatan-olimpiade" id="toc-sec-medali-dan-perhelatan-olimpiade" class="nav-link" data-scroll-target="#sec-medali-dan-perhelatan-olimpiade">Medali dan Perhelatan Olimpiade</a></li>
+  <li><a href="#sec-medali-dan-cabang-olahraga" id="toc-sec-medali-dan-cabang-olahraga" class="nav-link" data-scroll-target="#sec-medali-dan-cabang-olahraga">Medali dan Cabang Olahraga</a></li>
+  </ul>
+</li>
+  <li><a href="#sec-catatan-akhir" id="toc-sec-catatan-akhir" class="nav-link" data-scroll-target="#sec-catatan-akhir">Catatan Akhir</a></li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/jelajahstatid/jelajahstatid.github.io/edit/main/pos/2024-08-indonesia-di-olimpiade/index.qmd" class="toc-action"><i class="bi bi-github"></i>Sunting laman ini</a></li><li><a href="https://github.com/jelajahstatid/jelajahstatid.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Laporkan sebuah isu</a></li></ul></div></nav>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
-
-
-
-
-
-
-<p><a href="https://olympics.com/en/paris-2024" class="external" target="_blank" title="Paris 2024 Olympics">Olimpiade Musim Panas 2024</a> telah usai. Olimpiade itu meninggalkan banyak cerita menarik. Salah satu yang banyak diperbincangkan adalah <a href="https://olympics.com/en/paris-2024/athlete/yeji-kim_1893930" class="external" target="_blank" title="KIM Yeji">Kim Yeji</a> dan <a href="https://olympics.com/en/paris-2024/athlete/yusuf-dikec_1564893" class="external" target="_blank" title="DIKEC Yusuf">Yusuf Dikeç</a>. Atlet yang secara berturut-turut membela negara Turki dan Korea Selatan tersebut tidak hanya mengukir prestasi, tetapi juga meninggalkan bekas karena gaya dan penampilannya.</p>
-<blockquote class="twitter-tweet blockquote" data-lang="id" data-dnt="true"><p lang="en" dir="ltr">The Olympic <a href="https://twitter.com/hashtag/shootingsport?src=hash&amp;ref_src=twsrc%5Etfw">#shootingsport</a> stars we didn’t know we needed.<br><br>🇰🇷 Kim Yeji 🤝 Yusuf Dikeç 🇹🇷 <a href="https://t.co/gfkyGjFg4I">pic.twitter.com/gfkyGjFg4I</a></p>— The Olympic Games (@Olympics) <a href="https://twitter.com/Olympics/status/1818909520661278729?ref_src=twsrc%5Etfw">1 Agustus 2024</a></blockquote> <script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-<p>Akan tetapi, kita tidak akan memperbincangkan kedua atlet itu. Di suasana <a href="../../pos/2024-08-dirgahayu-indonesia/index.html" title="Dirgahayu Kemerdekaan Republik Indonesia: Persembahan Untuk HUT Ke-79 RI">peringatan kemerdekaan Republik Indonesia ini</a>, kita akan melihat prestasi atlet-atlet Indonesia di Olimpiade Musim Panas. Pada Olimpiade Paris 2024, Indonesia berhasil menyabet dua medali emas dan satu perunggu. Dua medali emas tersebut disabet oleh <a href="https://olympics.com/en/paris-2024/athlete/veddriq-leonardo_1940329" class="external" target="_blank" title="LEONARDO Veddriq">Veddriq Leonardo</a> (panjat tebing) dan <a href="https://olympics.com/en/paris-2024/athlete/rizki-juniansyah_1941786" class="external" target="_blank" title="JUNIANSYAH Rizki">Rizki Juniansyah</a> (angkat besi) sedangkan medali perunggunya diraih oleh <a href="https://olympics.com/en/paris-2024/athlete/gregoria-mariska-tunjung_1926315" class="external" target="_blank" title="TUNJUNG Gregoria Mariska">Gregoria Mariska Tunjung</a> (bulu tangkis).</p>
+<main class="content quarto-banner-title-block" id="quarto-document-content"><p><a href="https://olympics.com/en/paris-2024" class="external" target="_blank" title="Paris 2024 Olympics">Olimpiade Musim Panas 2024</a> telah usai. Olimpiade itu meninggalkan banyak cerita menarik. Salah satu yang banyak diperbincangkan adalah <a href="https://olympics.com/en/paris-2024/athlete/yeji-kim_1893930" class="external" target="_blank" title="KIM Yeji">Kim Yeji</a> dan <a href="https://olympics.com/en/paris-2024/athlete/yusuf-dikec_1564893" class="external" target="_blank" title="DIKEC Yusuf">Yusuf Dikeç</a>. Atlet yang secara berturut-turut membela negara Turki dan Korea Selatan tersebut tidak hanya mengukir prestasi, tetapi juga meninggalkan bekas karena gaya dan penampilannya.</p>
+<blockquote class="twitter-tweet blockquote" data-lang="id" data-dnt="true">
+<p lang="en" dir="ltr">The Olympic <a href="https://twitter.com/hashtag/shootingsport?src=hash&amp;ref_src=twsrc%5Etfw">#shootingsport</a> stars we didn’t know we needed.<br><br>🇰🇷 Kim Yeji 🤝 Yusuf Dikeç 🇹🇷 <a href="https://t.co/gfkyGjFg4I">pic.twitter.com/gfkyGjFg4I</a></p>— The Olympic Games (@Olympics) <a href="https://twitter.com/Olympics/status/1818909520661278729?ref_src=twsrc%5Etfw">1 Agustus 2024</a>
+</blockquote> <script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script><p>Akan tetapi, kita tidak akan memperbincangkan kedua atlet itu. Di suasana <a href="../../pos/2024-08-dirgahayu-indonesia/index.html" title="Dirgahayu Kemerdekaan Republik Indonesia: Persembahan Untuk HUT Ke-79 RI">peringatan kemerdekaan Republik Indonesia ini</a>, kita akan melihat prestasi atlet-atlet Indonesia di Olimpiade Musim Panas. Pada Olimpiade Paris 2024, Indonesia berhasil menyabet dua medali emas dan satu perunggu. Dua medali emas tersebut disabet oleh <a href="https://olympics.com/en/paris-2024/athlete/veddriq-leonardo_1940329" class="external" target="_blank" title="LEONARDO Veddriq">Veddriq Leonardo</a> (panjat tebing) dan <a href="https://olympics.com/en/paris-2024/athlete/rizki-juniansyah_1941786" class="external" target="_blank" title="JUNIANSYAH Rizki">Rizki Juniansyah</a> (angkat besi) sedangkan medali perunggunya diraih oleh <a href="https://olympics.com/en/paris-2024/athlete/gregoria-mariska-tunjung_1926315" class="external" target="_blank" title="TUNJUNG Gregoria Mariska">Gregoria Mariska Tunjung</a> (bulu tangkis).</p>
 <p>Bagaimana dengan pagelaran olimpiade-olimpiade sebelumnya? Kita akan menjawab pertanyaan ini dengan menggunakan data yang tersedia di laman Wikipedia.</p>
-<section id="sec-mempersiapkan-data" class="level2">
-<h2 class="anchored" data-anchor-id="sec-mempersiapkan-data">Mempersiapkan Data</h2>
+<section id="sec-mempersiapkan-data" class="level2"><h2 class="anchored" data-anchor-id="sec-mempersiapkan-data">Mempersiapkan Data</h2>
 <p>Kita akan melakukan analisis dan visualisasi data dengan <a href="https://www.R-project.org/" class="external" target="_blank" title="R: A Language and Environment for Statistical Computing">pemrograman R</a>. Pertama, kita panggil paket-paket yang diperlukan. Kita gunakan <a href="https://CRAN.R-project.org/package=rvest" class="external" target="_blank" title="rvest: Easily Harvest (Scrape) Web Pages">{rvest}</a> untuk mengimpor data dari sebuah laman web, <a href="https://www.tidyverse.org/" class="external" target="_blank" title="R packages for data science">{tidyverse}</a> untuk menganalisis dan memvisualisasikan data, dan <a href="https://CRAN.R-project.org/package=ggstream" class="external" target="_blank" title="ggstream: Create Streamplots in 'ggplot2'">{ggstream}</a> untuk membuat diagram alir.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rvest)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggstream)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rvest.tidyverse.org/">rvest</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">ggstream</span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="sec-mengimpor-data" class="level3">
-<h3 class="anchored" data-anchor-id="sec-mengimpor-data">Mengimpor Data</h3>
+<section id="sec-mengimpor-data" class="level3"><h3 class="anchored" data-anchor-id="sec-mengimpor-data">Mengimpor Data</h3>
 <p>Sekarang kita mengimpor datanya. Data tersebut berasal dari laman <a href="https://id.wikipedia.org/w/index.php?title=Indonesia_pada_Olimpiade&amp;oldid=26147360" class="external" target="_blank" title="Indonesia pada Olimpiade">Wikipedia</a>. Data yang kita impor adalah data jumlah medali berdasarkan olimpiade dan cabang olahraganya. Untuk melakukannya, kita menggunakan baris kode seperti berikut.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>html <span class="ot">&lt;-</span> <span class="fu">read_html</span>(<span class="st">"https://id.wikipedia.org/w/index.php?title=Indonesia_pada_Olimpiade&amp;oldid=26147360"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>daftar_tabel <span class="ot">&lt;-</span> html <span class="sc">|&gt;</span> </span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_elements</span>(<span class="st">".wikitable"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_table</span>()</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(daftar_tabel)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">html</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://xml2.r-lib.org/reference/read_xml.html">read_html</a></span><span class="op">(</span><span class="st">"https://id.wikipedia.org/w/index.php?title=Indonesia_pada_Olimpiade&amp;oldid=26147360"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">daftar_tabel</span> <span class="op">&lt;-</span> <span class="va">html</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements</a></span><span class="op">(</span><span class="st">".wikitable"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_table.html">html_table</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">daftar_tabel</span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1]]
 # A tibble: 50 × 5
@@ -514,18 +491,16 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
 5 Total (4 cabang)           10    14       16    40</code></pre>
 </div>
 </div>
-<p>Apa yang dilakukan baris kode di atas? Pertama, kita membaca html pada laman Wikipedia tersebut dan menyimpannya sebagai sebuah objek dengan nama <code>html</code>. Setelah itu, objek <code>html</code> tersebut kita cari elemennya yang bernama <code>.wikitable</code>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Setelah elemen tersebut ditemukan, kita baca elemen tersebut sebagai tabel dengan fungsi <code>html_table()</code>. Hasil dari proses ini kemudian kita namai sebagai <code>daftar_tabel</code>. Untuk melihat apa isi <code>daftar_tabel</code> tersebut, kita dapat menggunakan fungsi <code>print()</code>.</p>
-<p>Setelah kita lihat dengan <code>print()</code>, ternyata <code>daftar_tabel</code> merupakan sebuah <a href="https://people.usd.ac.id/~ydkristanto/index.php/seri-belajar-statistika-dan-ilmu-data-dengan-r/pengantar-r/7/" class="external" target="_blank" title="Pengantar Pemrograman R">daftar (<em>list</em>)</a>. Data yang kita inginkan, yaitu data jumlah medali berdasarkan olimpiade dan cabang olahraganya, merupakan elemen kedua dan ketiga dari <code>daftar_tabel</code>. Untuk itu, kita dapat mengekstrak kedua data tersebut dengan <code>daftar_tabel[[1]]</code> dan <code>daftar_tabel[[2]]</code>. Kita namai hasilnya dengan <code>data_dsr_olimpiade</code> dan <code>data_dsr_cabang</code>.</p>
+<p>Apa yang dilakukan baris kode di atas? Pertama, kita membaca html pada laman Wikipedia tersebut dan menyimpannya sebagai sebuah objek dengan nama <code>html</code>. Setelah itu, objek <code>html</code> tersebut kita cari elemennya yang bernama <code>.wikitable</code>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Setelah elemen tersebut ditemukan, kita baca elemen tersebut sebagai tabel dengan fungsi <code><a href="https://rvest.tidyverse.org/reference/html_table.html">html_table()</a></code>. Hasil dari proses ini kemudian kita namai sebagai <code>daftar_tabel</code>. Untuk melihat apa isi <code>daftar_tabel</code> tersebut, kita dapat menggunakan fungsi <code><a href="https://rdrr.io/r/base/print.html">print()</a></code>.</p>
+<p>Setelah kita lihat dengan <code><a href="https://rdrr.io/r/base/print.html">print()</a></code>, ternyata <code>daftar_tabel</code> merupakan sebuah <a href="https://people.usd.ac.id/~ydkristanto/index.php/seri-belajar-statistika-dan-ilmu-data-dengan-r/pengantar-r/7/" class="external" target="_blank" title="Pengantar Pemrograman R">daftar (<em>list</em>)</a>. Data yang kita inginkan, yaitu data jumlah medali berdasarkan olimpiade dan cabang olahraganya, merupakan elemen kedua dan ketiga dari <code>daftar_tabel</code>. Untuk itu, kita dapat mengekstrak kedua data tersebut dengan <code>daftar_tabel[[1]]</code> dan <code>daftar_tabel[[2]]</code>. Kita namai hasilnya dengan <code>data_dsr_olimpiade</code> dan <code>data_dsr_cabang</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data_dsr_olimpiade <span class="ot">&lt;-</span> daftar_tabel[[<span class="dv">2</span>]]</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>data_dsr_cabang <span class="ot">&lt;-</span> daftar_tabel[[<span class="dv">3</span>]]</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">data_dsr_olimpiade</span> <span class="op">&lt;-</span> <span class="va">daftar_tabel</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span></span>
+<span><span class="va">data_dsr_cabang</span> <span class="op">&lt;-</span> <span class="va">daftar_tabel</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="sec-merapikan-data" class="level3">
-<h3 class="anchored" data-anchor-id="sec-merapikan-data">Merapikan Data</h3>
-<p>Saat ini kita telah memiliki dua data, yaitu <code>data_dsr_olimpiade</code> (data jumlah medali berdasarkan penyelenggaraan olimpiade) dan <code>data_dsr_cabang</code> (data jumlah medali berdasarkan cabang olahraga). Kita rapikan kedua data tersebut. Untuk merapikan <code>data_dsr_olimpiade</code>, kita lihat isi data tersebut dengan fungsi <code>print()</code>.</p>
+</section><section id="sec-merapikan-data" class="level3"><h3 class="anchored" data-anchor-id="sec-merapikan-data">Merapikan Data</h3>
+<p>Saat ini kita telah memiliki dua data, yaitu <code>data_dsr_olimpiade</code> (data jumlah medali berdasarkan penyelenggaraan olimpiade) dan <code>data_dsr_cabang</code> (data jumlah medali berdasarkan cabang olahraga). Kita rapikan kedua data tersebut. Untuk merapikan <code>data_dsr_olimpiade</code>, kita lihat isi data tersebut dengan fungsi <code><a href="https://rdrr.io/r/base/print.html">print()</a></code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(data_dsr_olimpiade)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">data_dsr_olimpiade</span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 22 × 9
    Olimpiade  `Jumlah atlet` `Pembawa bendera` Jumlah cabangolahrag…¹ `01 &nbsp;Emas`
@@ -546,9 +521,9 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
 #   Peringkat &lt;chr&gt;</code></pre>
 </div>
 </div>
-<p>Data tersebut memiliki 22 baris dan 9 variabel/kolom. Kita dapat melihat beberapa baris terakhirnya dengan fungsi <code>tail()</code>.</p>
+<p>Data tersebut memiliki 22 baris dan 9 variabel/kolom. Kita dapat melihat beberapa baris terakhirnya dengan fungsi <code><a href="https://rdrr.io/r/utils/head.html">tail()</a></code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(data_dsr_olimpiade)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span><span class="op">(</span><span class="va">data_dsr_olimpiade</span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 9
   Olimpiade   `Jumlah atlet` `Pembawa bendera` Jumlah cabangolahrag…¹ `01 &nbsp;Emas`
@@ -564,14 +539,14 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
 #   Peringkat &lt;chr&gt;</code></pre>
 </div>
 </div>
-<p>Ternyata, <code>data_dsr_olimpiade</code> tersebut juga memuat dua olimpiade yang belum terlaksana dan satu baris total. Kita hilangkan ketiga baris tersebut dengan menggunakan <code>slice_head()</code>. Dengan demikian, kita hanya menggunakan 22 - 3 = 19 barisnya saja.</p>
+<p>Ternyata, <code>data_dsr_olimpiade</code> tersebut juga memuat dua olimpiade yang belum terlaksana dan satu baris total. Kita hilangkan ketiga baris tersebut dengan menggunakan <code><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_head()</a></code>. Dengan demikian, kita hanya menggunakan 22 - 3 = 19 barisnya saja.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>data_dsr_olimpiade <span class="ot">&lt;-</span> data_dsr_olimpiade <span class="sc">|&gt;</span> </span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">19</span>)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">data_dsr_olimpiade</span> <span class="op">&lt;-</span> <span class="va">data_dsr_olimpiade</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">19</span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Untuk mengeceknya lagi, kita dapat menggunakan <code>tail()</code> lagi.</p>
+<p>Untuk mengeceknya lagi, kita dapat menggunakan <code><a href="https://rdrr.io/r/utils/head.html">tail()</a></code> lagi.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(data_dsr_olimpiade)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span><span class="op">(</span><span class="va">data_dsr_olimpiade</span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 9
   Olimpiade   `Jumlah atlet` `Pembawa bendera` Jumlah cabangolahrag…¹ `01 &nbsp;Emas`
@@ -587,9 +562,9 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
 #   Peringkat &lt;chr&gt;</code></pre>
 </div>
 </div>
-<p>Kita telah mengkonfirmasi bahwa <code>data_dsr_olimpiade</code> sudah berisi baris-baris yang kita butuhkan saja. Selanjutnya, kita lihat gambaran umum data tersebut dengan fungsi <code>glimpse()</code>.</p>
+<p>Kita telah mengkonfirmasi bahwa <code>data_dsr_olimpiade</code> sudah berisi baris-baris yang kita butuhkan saja. Selanjutnya, kita lihat gambaran umum data tersebut dengan fungsi <code><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse()</a></code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(data_dsr_olimpiade)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">data_dsr_olimpiade</span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 19
 Columns: 9
@@ -604,36 +579,36 @@ $ Total                                &lt;chr&gt; "0", "0", "0", "Tidak ikut", 
 $ Peringkat                            &lt;chr&gt; "", "", "", "Tidak ikut", "", "",…</code></pre>
 </div>
 </div>
-<p>Setelah melihat hasilnya, kita gunakan lima variabel dari <code>data_dsr_olimpiade</code> saja, yaitu <code>Olimpiade</code>, <code>01 &nbsp;Emas</code>, <code>02 &nbsp;Perak</code>, <code>03 &nbsp;Perunggu</code>, dan <code>Peringkat</code>. Setelah itu kita buat data tersebut menjadi data yang memanjang dengan <code>pivot_longer()</code> dan kita rapikan isinya. Untuk memudahkan analisis data selanjutnya, kita tambahkan variabel <code>tahun</code>. Variabel ini kita ekstrak dari variabel <code>Olimpiade</code> karena nilai-nilai variabel tersebut memuat tahun, misalnya “Helsinki 1952” dan “Melbourne 1956”.</p>
+<p>Setelah melihat hasilnya, kita gunakan lima variabel dari <code>data_dsr_olimpiade</code> saja, yaitu <code>Olimpiade</code>, <code>01 &nbsp;Emas</code>, <code>02 &nbsp;Perak</code>, <code>03 &nbsp;Perunggu</code>, dan <code>Peringkat</code>. Setelah itu kita buat data tersebut menjadi data yang memanjang dengan <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> dan kita rapikan isinya. Untuk memudahkan analisis data selanjutnya, kita tambahkan variabel <code>tahun</code>. Variabel ini kita ekstrak dari variabel <code>Olimpiade</code> karena nilai-nilai variabel tersebut memuat tahun, misalnya “Helsinki 1952” dan “Melbourne 1956”.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>data_dsr_olimpiade <span class="ot">&lt;-</span> data_dsr_olimpiade <span class="sc">|&gt;</span> </span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Olimpiade, <span class="st">`</span><span class="at">01 &nbsp;Emas</span><span class="st">`</span>, <span class="st">`</span><span class="at">02 &nbsp;Perak</span><span class="st">`</span>, <span class="st">`</span><span class="at">03 &nbsp;Perunggu</span><span class="st">`</span>, Peringkat) <span class="sc">|&gt;</span> </span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">contains</span>(<span class="st">"0"</span>),</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"medali"</span>,</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"banyak"</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">olimpiade =</span> Olimpiade,</span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">peringkat =</span> Peringkat</span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">tahun =</span> <span class="fu">as.integer</span>(<span class="fu">str_extract</span>(olimpiade, <span class="st">"</span><span class="sc">\\</span><span class="st">d{4}"</span>)),</span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">peringkat =</span> <span class="fu">ifelse</span>(</span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>      peringkat <span class="sc">==</span> <span class="st">""</span> <span class="sc">|</span> peringkat <span class="sc">==</span> <span class="st">"Tidak ikut"</span>,</span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>      <span class="cn">NA</span>, <span class="fu">as.integer</span>(peringkat)</span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">medali =</span> <span class="fu">substr</span>(medali, <span class="dv">5</span>, <span class="fu">nchar</span>(medali)),</span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">banyak =</span> <span class="fu">ifelse</span>(</span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>      banyak <span class="sc">==</span> <span class="st">"Tidak ikut"</span>,</span>
-<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>      <span class="cn">NA</span>, <span class="fu">as.integer</span>(banyak)</span>
-<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
-<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
-<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>    tahun, olimpiade, medali, banyak, peringkat</span>
-<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(data_dsr_olimpiade)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">data_dsr_olimpiade</span> <span class="op">&lt;-</span> <span class="va">data_dsr_olimpiade</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">Olimpiade</span>, <span class="va">`01 &nbsp;Emas`</span>, <span class="va">`02 &nbsp;Perak`</span>, <span class="va">`03 &nbsp;Perunggu`</span>, <span class="va">Peringkat</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span></span>
+<span>    cols <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">contains</a></span><span class="op">(</span><span class="st">"0"</span><span class="op">)</span>,</span>
+<span>    names_to <span class="op">=</span> <span class="st">"medali"</span>,</span>
+<span>    values_to <span class="op">=</span> <span class="st">"banyak"</span></span>
+<span>  <span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span></span>
+<span>    olimpiade <span class="op">=</span> <span class="va">Olimpiade</span>,</span>
+<span>    peringkat <span class="op">=</span> <span class="va">Peringkat</span></span>
+<span>  <span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>    tahun <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract</a></span><span class="op">(</span><span class="va">olimpiade</span>, <span class="st">"\\d{4}"</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    peringkat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span></span>
+<span>      <span class="va">peringkat</span> <span class="op">==</span> <span class="st">""</span> <span class="op">|</span> <span class="va">peringkat</span> <span class="op">==</span> <span class="st">"Tidak ikut"</span>,</span>
+<span>      <span class="cn">NA</span>, <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="va">peringkat</span><span class="op">)</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    medali <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/substr.html">substr</a></span><span class="op">(</span><span class="va">medali</span>, <span class="fl">5</span>, <span class="fu"><a href="https://rdrr.io/r/base/nchar.html">nchar</a></span><span class="op">(</span><span class="va">medali</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    banyak <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span></span>
+<span>      <span class="va">banyak</span> <span class="op">==</span> <span class="st">"Tidak ikut"</span>,</span>
+<span>      <span class="cn">NA</span>, <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="va">banyak</span><span class="op">)</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span></span>
+<span>    <span class="va">tahun</span>, <span class="va">olimpiade</span>, <span class="va">medali</span>, <span class="va">banyak</span>, <span class="va">peringkat</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">data_dsr_olimpiade</span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 57 × 5
    tahun olimpiade      medali   banyak peringkat
@@ -653,7 +628,7 @@ $ Peringkat                            &lt;chr&gt; "", "", "", "Tidak ikut", "",
 </div>
 <p><code>data_dsr_olimpiade</code> telah siap tersaji. Sekarang saatnya kita beralih ke <code>data_dsr_cabang</code>. Sebelum merapikan data ini, kita lihat datanya terlebih dahulu.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(data_dsr_cabang)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">data_dsr_cabang</span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 5
   Cabang                   Emas Perak Perunggu Total
@@ -667,20 +642,20 @@ $ Peringkat                            &lt;chr&gt; "", "", "", "Tidak ikut", "",
 </div>
 <p>Untuk merapikan data tersebut, kita dapat melakukan beberapa hal. Pertama, kita hapus baris dan kolom terakhirnya (baris dan kolom total). Kedua, kita rapikan isi dari variabel <code>Cabang</code>. Ketiga, kita buat data tersebut menjadi data yang memanjang. Terakhir, kita konsistenkan nama variabelnya.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>data_dsr_cabang <span class="ot">&lt;-</span> data_dsr_cabang <span class="sc">|&gt;</span> </span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>Total) <span class="sc">|&gt;</span> </span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Cabang <span class="sc">!=</span> <span class="st">"Total (4 cabang)"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Cabang =</span> <span class="fu">str_trim</span>(<span class="fu">str_remove</span>(Cabang, <span class="st">" </span><span class="sc">\\</span><span class="st">(detail</span><span class="sc">\\</span><span class="st">)"</span>))</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="sc">-</span>Cabang,</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"medali"</span>,</span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"banyak"</span></span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">cabang =</span> Cabang)</span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(data_dsr_cabang)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">data_dsr_cabang</span> <span class="op">&lt;-</span> <span class="va">data_dsr_cabang</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">Total</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Cabang</span> <span class="op">!=</span> <span class="st">"Total (4 cabang)"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>    Cabang <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_trim.html">str_trim</a></span><span class="op">(</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_remove.html">str_remove</a></span><span class="op">(</span><span class="va">Cabang</span>, <span class="st">" \\(detail\\)"</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span></span>
+<span>    cols <span class="op">=</span> <span class="op">-</span><span class="va">Cabang</span>,</span>
+<span>    names_to <span class="op">=</span> <span class="st">"medali"</span>,</span>
+<span>    values_to <span class="op">=</span> <span class="st">"banyak"</span></span>
+<span>  <span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>cabang <span class="op">=</span> <span class="va">Cabang</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">data_dsr_cabang</span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 12 × 3
    cabang        medali   banyak
@@ -700,228 +675,205 @@ $ Peringkat                            &lt;chr&gt; "", "", "", "Tidak ikut", "",
 </div>
 </div>
 <p><code>data_dsr_cabang</code> sekarang sudah rapi. Saatnya kita lanjut ke tahapan berikutnya—visualisasi data.</p>
-</section>
-</section>
-<section id="sec-visualisasi-data" class="level2">
-<h2 class="anchored" data-anchor-id="sec-visualisasi-data">Visualisasi Data</h2>
+</section></section><section id="sec-visualisasi-data" class="level2"><h2 class="anchored" data-anchor-id="sec-visualisasi-data">Visualisasi Data</h2>
 <p>Pada <a href="#sec-mempersiapkan-data" class="quarto-xref">Bagian&nbsp;1</a> kita telah mengimpor dan merapikan data tentang banyaknya medali yang diperoleh Indonesia berdasarkan perhelatan olimpiade dan cabang-cabang olahraganya. Selanjutnya, kita akan memvisualisasikan kedua data tersebut.</p>
-<section id="sec-medali-dan-perhelatan-olimpiade" class="level3">
-<h3 class="anchored" data-anchor-id="sec-medali-dan-perhelatan-olimpiade">Medali dan Perhelatan Olimpiade</h3>
+<section id="sec-medali-dan-perhelatan-olimpiade" class="level3"><h3 class="anchored" data-anchor-id="sec-medali-dan-perhelatan-olimpiade">Medali dan Perhelatan Olimpiade</h3>
 <p>Bagaimana perolehan medali Indonesia di setiap keikutsertaannya di olimpiade? Untuk menjawab pertanyaan ini, kita dapat membuat diagram batang dengan menggunakan <code>data_dsr_olimpiade</code>. Perhatikan <a href="#fig-diagram-batang" class="quarto-xref">Gambar&nbsp;1</a>!</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>data_dsr_olimpiade <span class="sc">|&gt;</span> </span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> tahun, <span class="at">y =</span> banyak, <span class="at">fill =</span> medali)) <span class="sc">+</span> </span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span> </span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">1952</span>, <span class="dv">2024</span>, <span class="dv">4</span>)</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">4.2</span>),</span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)</span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(</span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"Medali"</span>,</span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
-<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Emas"</span> <span class="ot">=</span> <span class="st">"#FCC861"</span>,</span>
-<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Perak"</span> <span class="ot">=</span> <span class="st">"#E5E5E5"</span>,</span>
-<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Perunggu"</span> <span class="ot">=</span> <span class="st">"#DCB386"</span></span>
-<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
-<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
-<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.minor.x =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.line.x =</span> <span class="fu">element_line</span>(),</span>
-<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.ticks.x =</span> <span class="fu">element_line</span>(),</span>
-<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(</span>
-<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>      <span class="at">angle =</span> <span class="dv">90</span>,</span>
-<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>      <span class="at">vjust =</span> .<span class="dv">5</span></span>
-<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>()</span>
-<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Banyak perolehan medali"</span></span>
-<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">data_dsr_olimpiade</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">tahun</span>, y <span class="op">=</span> <span class="va">banyak</span>, fill <span class="op">=</span> <span class="va">medali</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span>position <span class="op">=</span> <span class="st">"dodge"</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span></span>
+<span>    breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1952</span>, <span class="fl">2024</span>, <span class="fl">4</span><span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span></span>
+<span>    limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">4.2</span><span class="op">)</span>,</span>
+<span>    expand <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span></span>
+<span>    name <span class="op">=</span> <span class="st">"Medali"</span>,</span>
+<span>    values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>      <span class="st">"Emas"</span> <span class="op">=</span> <span class="st">"#FCC861"</span>,</span>
+<span>      <span class="st">"Perak"</span> <span class="op">=</span> <span class="st">"#E5E5E5"</span>,</span>
+<span>      <span class="st">"Perunggu"</span> <span class="op">=</span> <span class="st">"#DCB386"</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
+<span>    legend.position <span class="op">=</span> <span class="st">"bottom"</span>,</span>
+<span>    panel.grid.major.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>    panel.grid.minor.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>    axis.line.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_line</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>    axis.ticks.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_line</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>    axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span></span>
+<span>      angle <span class="op">=</span> <span class="fl">90</span>,</span>
+<span>      vjust <span class="op">=</span> <span class="fl">.5</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    axis.title.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
+<span>    y <span class="op">=</span> <span class="st">"Banyak perolehan medali"</span></span>
+<span>  <span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-diagram-batang" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-diagram-batang-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-diagram-batang-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="index_files/figure-html/fig-diagram-batang-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Gambar&nbsp;1: Banyaknya medali yang diperoleh Indonesia di setiap olimpiade yang diikutinya"><img src="index_files/figure-html/fig-diagram-batang-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diagram-batang-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Gambar&nbsp;1: Banyaknya medali yang diperoleh Indonesia di setiap olimpiade yang diikutinya
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 </div>
 </div>
 <p>Berdasarkan <a href="#fig-diagram-batang" class="quarto-xref">Gambar&nbsp;1</a> tersebut, Indonesia pertama kali meraih medali pada tahun 1988 meskipun telah ikut olimpiade sejak 1952. Selain itu, Indonesia dapat meraih medali emas sebanyak dua kali untuk pertama kalinya pada tahun 1992. Capaian ini diulang kembali pada olimpiade terakhir, yaitu pada tahun 2024.</p>
 <p>Bagaimana kalau kita ingin melihat tren perolehan medali emas, perak, dan perunggu setiap penyelenggaraan olimpiadenya? Perhatikan <a href="#fig-diagram-garis" class="quarto-xref">Gambar&nbsp;2</a>!</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>data_dsr_olimpiade <span class="sc">|&gt;</span> </span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> tahun, <span class="at">y =</span> banyak, <span class="at">col =</span> medali)) <span class="sc">+</span> </span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="dv">1</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">4.2</span>),</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)</span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(</span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"Medali"</span>,</span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Emas"</span> <span class="ot">=</span> <span class="st">"#FCC861"</span>,</span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Perak"</span> <span class="ot">=</span> <span class="st">"#E5E5E5"</span>,</span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Perunggu"</span> <span class="ot">=</span> <span class="st">"#DCB386"</span></span>
-<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="sc">~</span>medali) <span class="sc">+</span> </span>
-<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
-<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
-<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.minor.x =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.minor.y =</span> <span class="fu">element_blank</span>()</span>
-<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Tahun"</span>,</span>
-<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Banyak perolehan medali"</span></span>
-<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">data_dsr_olimpiade</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">tahun</span>, y <span class="op">=</span> <span class="va">banyak</span>, col <span class="op">=</span> <span class="va">medali</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span></span>
+<span>    linewidth <span class="op">=</span> <span class="fl">1</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span></span>
+<span>    limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">4.2</span><span class="op">)</span>,</span>
+<span>    expand <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_color_manual</a></span><span class="op">(</span></span>
+<span>    name <span class="op">=</span> <span class="st">"Medali"</span>,</span>
+<span>    values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>      <span class="st">"Emas"</span> <span class="op">=</span> <span class="st">"#FCC861"</span>,</span>
+<span>      <span class="st">"Perak"</span> <span class="op">=</span> <span class="st">"#E5E5E5"</span>,</span>
+<span>      <span class="st">"Perunggu"</span> <span class="op">=</span> <span class="st">"#DCB386"</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html">facet_grid</a></span><span class="op">(</span><span class="op">~</span><span class="va">medali</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
+<span>    legend.position <span class="op">=</span> <span class="st">"none"</span>,</span>
+<span>    panel.grid.major.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>    panel.grid.minor.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>    panel.grid.minor.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="st">"Tahun"</span>,</span>
+<span>    y <span class="op">=</span> <span class="st">"Banyak perolehan medali"</span></span>
+<span>  <span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-diagram-garis" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-diagram-garis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-diagram-garis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="index_files/figure-html/fig-diagram-garis-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Gambar&nbsp;2: Tren perolehan medali Indonesia di setiap olimpiade yang diikutinya"><img src="index_files/figure-html/fig-diagram-garis-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diagram-garis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Gambar&nbsp;2: Tren perolehan medali Indonesia di setiap olimpiade yang diikutinya
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 </div>
 </div>
 <p>Kita dapat menggabungkan fokus informasi yang disampaikan diagram batang pada <a href="#fig-diagram-batang" class="quarto-xref">Gambar&nbsp;1</a> dan diagram garis pada <a href="#fig-diagram-garis" class="quarto-xref">Gambar&nbsp;2</a> dengan menggunakan diagram alir.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>data_dsr_olimpiade <span class="sc">|&gt;</span> </span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> tahun, <span class="at">y =</span> banyak, <span class="at">fill =</span> medali)) <span class="sc">+</span> </span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">xintercept =</span> tahun),</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"grey"</span>,</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> .<span class="dv">25</span></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_stream</span>() <span class="sc">+</span> </span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_stream_label</span>(<span class="fu">aes</span>(<span class="at">label =</span> medali)) <span class="sc">+</span> </span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(</span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">label =</span> olimpiade),</span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="sc">-</span><span class="fl">4.9</span>,</span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">angle =</span> <span class="dv">90</span>,</span>
-<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">hjust =</span> <span class="dv">0</span>,</span>
-<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">nudge_x =</span> <span class="sc">-</span><span class="fl">1.2</span>,</span>
-<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"grey"</span></span>
-<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(</span>
-<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"Medali"</span>,</span>
-<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
-<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Emas"</span> <span class="ot">=</span> <span class="st">"#FCC861"</span>,</span>
-<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Perak"</span> <span class="ot">=</span> <span class="st">"#E5E5E5"</span>,</span>
-<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Perunggu"</span> <span class="ot">=</span> <span class="st">"#DCB386"</span></span>
-<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(</span>
-<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">1948</span>, <span class="dv">2026</span>),</span>
-<span id="cb22-28"><a href="#cb22-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)</span>
-<span id="cb22-29"><a href="#cb22-29" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb22-30"><a href="#cb22-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(</span>
-<span id="cb22-31"><a href="#cb22-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">3</span>),</span>
-<span id="cb22-32"><a href="#cb22-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)</span>
-<span id="cb22-33"><a href="#cb22-33" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb22-34"><a href="#cb22-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span> </span>
-<span id="cb22-35"><a href="#cb22-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb22-36"><a href="#cb22-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span></span>
-<span id="cb22-37"><a href="#cb22-37" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">data_dsr_olimpiade</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">tahun</span>, y <span class="op">=</span> <span class="va">banyak</span>, fill <span class="op">=</span> <span class="va">medali</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">tahun</span><span class="op">)</span>,</span>
+<span>    color <span class="op">=</span> <span class="st">"grey"</span>,</span>
+<span>    linewidth <span class="op">=</span> <span class="fl">.25</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggstream/man/geom_stream.html">geom_stream</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/ggstream/man/geom_stream_label.html">geom_stream_label</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">medali</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">olimpiade</span><span class="op">)</span>,</span>
+<span>    y <span class="op">=</span> <span class="op">-</span><span class="fl">4.9</span>,</span>
+<span>    angle <span class="op">=</span> <span class="fl">90</span>,</span>
+<span>    hjust <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>    nudge_x <span class="op">=</span> <span class="op">-</span><span class="fl">1.2</span>,</span>
+<span>    color <span class="op">=</span> <span class="st">"grey"</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span></span>
+<span>    name <span class="op">=</span> <span class="st">"Medali"</span>,</span>
+<span>    values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>      <span class="st">"Emas"</span> <span class="op">=</span> <span class="st">"#FCC861"</span>,</span>
+<span>      <span class="st">"Perak"</span> <span class="op">=</span> <span class="st">"#E5E5E5"</span>,</span>
+<span>      <span class="st">"Perunggu"</span> <span class="op">=</span> <span class="st">"#DCB386"</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span></span>
+<span>    limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1948</span>, <span class="fl">2026</span><span class="op">)</span>,</span>
+<span>    expand <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span></span>
+<span>    limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5</span>, <span class="fl">3</span><span class="op">)</span>,</span>
+<span>    expand <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_void</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
+<span>    legend.position <span class="op">=</span> <span class="st">"none"</span></span>
+<span>  <span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-diagram-alir" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-diagram-alir-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-diagram-alir-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="index_files/figure-html/fig-diagram-alir-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Gambar&nbsp;3: Tren perolehan medali emas, perak, dan perunggu Indonesia di setiap olimpiade yang diikutinya"><img src="index_files/figure-html/fig-diagram-alir-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diagram-alir-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Gambar&nbsp;3: Tren perolehan medali emas, perak, dan perunggu Indonesia di setiap olimpiade yang diikutinya
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 </div>
 </div>
 <p>Kita telah memvisualisasikan perolehan medali Indonesia di olimpiade. Selanjutnya kita akan memvisualisasikan distribusi medali untuk cabang-cabang olahraganya.</p>
-</section>
-<section id="sec-medali-dan-cabang-olahraga" class="level3">
-<h3 class="anchored" data-anchor-id="sec-medali-dan-cabang-olahraga">Medali dan Cabang Olahraga</h3>
+</section><section id="sec-medali-dan-cabang-olahraga" class="level3"><h3 class="anchored" data-anchor-id="sec-medali-dan-cabang-olahraga">Medali dan Cabang Olahraga</h3>
 <p>Cabang olahraga apa saja yang menyumbangkan medali bagi Indonesia? Bagaimana distribusinya? Untuk menjawab pertanyaan-pertanyaan ini, kita dapat menggambarkan distribusinya dengan diagram batang.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>data_dsr_cabang <span class="sc">|&gt;</span> </span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">cabang =</span> <span class="fu">fct_relevel</span>(</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>      cabang,</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Bulu tangkis"</span>, <span class="st">"Angkat besi"</span>, <span class="st">"Panjat tebing"</span>, <span class="st">"Panahan"</span></span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> cabang, <span class="at">y =</span> banyak)) <span class="sc">+</span> </span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill =</span> medali)) <span class="sc">+</span> </span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(</span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)</span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(</span>
-<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"Medali"</span>,</span>
-<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
-<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Emas"</span> <span class="ot">=</span> <span class="st">"#FCC861"</span>,</span>
-<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Perak"</span> <span class="ot">=</span> <span class="st">"#E5E5E5"</span>,</span>
-<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Perunggu"</span> <span class="ot">=</span> <span class="st">"#DCB386"</span></span>
-<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
-<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
-<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.line.x =</span> <span class="fu">element_line</span>(),</span>
-<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.minor.x =</span> <span class="fu">element_blank</span>()</span>
-<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Cabang olahraga"</span>,</span>
-<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Banyak perolehan medali"</span></span>
-<span id="cb23-31"><a href="#cb23-31" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">data_dsr_cabang</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>    cabang <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_relevel.html">fct_relevel</a></span><span class="op">(</span></span>
+<span>      <span class="va">cabang</span>,</span>
+<span>      <span class="st">"Bulu tangkis"</span>, <span class="st">"Angkat besi"</span>, <span class="st">"Panjat tebing"</span>, <span class="st">"Panahan"</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">cabang</span>, y <span class="op">=</span> <span class="va">banyak</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">medali</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span></span>
+<span>    expand <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span></span>
+<span>    name <span class="op">=</span> <span class="st">"Medali"</span>,</span>
+<span>    values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>      <span class="st">"Emas"</span> <span class="op">=</span> <span class="st">"#FCC861"</span>,</span>
+<span>      <span class="st">"Perak"</span> <span class="op">=</span> <span class="st">"#E5E5E5"</span>,</span>
+<span>      <span class="st">"Perunggu"</span> <span class="op">=</span> <span class="st">"#DCB386"</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
+<span>    legend.position <span class="op">=</span> <span class="st">"bottom"</span>,</span>
+<span>    axis.line.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_line</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>    panel.grid.major.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>    panel.grid.minor.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="st">"Cabang olahraga"</span>,</span>
+<span>    y <span class="op">=</span> <span class="st">"Banyak perolehan medali"</span></span>
+<span>  <span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-diagram-batang-olahraga" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-diagram-batang-olahraga-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-diagram-batang-olahraga-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="index_files/figure-html/fig-diagram-batang-olahraga-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Gambar&nbsp;4: Distribusi medali olimpiade yang diperoleh Indonesia berdasarkan cabang olahraganya"><img src="index_files/figure-html/fig-diagram-batang-olahraga-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diagram-batang-olahraga-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Gambar&nbsp;4: Distribusi medali olimpiade yang diperoleh Indonesia berdasarkan cabang olahraganya
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 </div>
 </div>
 <p>Berdasarkan <a href="#fig-diagram-batang-olahraga" class="quarto-xref">Gambar&nbsp;4</a>, kita dapat melihat bahwa ada empat cabang olahraga yang berkontribusi bagi perolehan medali Indonesia. Keempat cabang olahraga tersebut jika diurutkan berdasarkan perolehan medalinya adalah bulu tangkis, angkat besi, panjat tebing, dan panahan.</p>
-</section>
-</section>
-<section id="sec-catatan-akhir" class="level2">
-<h2 class="anchored" data-anchor-id="sec-catatan-akhir">Catatan Akhir</h2>
+</section></section><section id="sec-catatan-akhir" class="level2"><h2 class="anchored" data-anchor-id="sec-catatan-akhir">Catatan Akhir</h2>
 <p>Di suasana riuh rendah <a href="../../pos/2024-08-dirgahayu-indonesia/index.html" title="Dirgahayu Kemerdekaan Republik Indonesia: Persembahan Untuk HUT Ke-79 RI">peringatan HUT ke-79 kemerdekaan Republik Indonesia</a> dan Olimpiade Paris 2024 ini, bersama-sama kita telah melihat prestasi Indonesia di perhelatan olimpiade mulai tahun 1952 sampai 2024. Untuk melihatnya, kita awali dengan mempersiapkan data pada <a href="#sec-mempersiapkan-data" class="quarto-xref">Bagian&nbsp;1</a>. Di tahapan ini, kita melakukan impor data dari Wikipedia pada <a href="#sec-mengimpor-data" class="quarto-xref">Bagian&nbsp;1.1</a> dan merapikan datanya pada <a href="#sec-merapikan-data" class="quarto-xref">Bagian&nbsp;1.2</a>.</p>
 <p>Setelah data rapi, kita melakukan visualisasi data pada <a href="#sec-visualisasi-data" class="quarto-xref">Bagian&nbsp;2</a>. Terdapat dua macam informasi yang kita visualisasikan. Pertama adalah banyak medali di setiap pagelaran olimpiade yang Indonesia ikuti (<a href="#sec-medali-dan-perhelatan-olimpiade" class="quarto-xref">Bagian&nbsp;2.1</a>). Kedua adalah distribusi medali berdasarkan cabang olahraganya (<a href="#sec-medali-dan-cabang-olahraga" class="quarto-xref">Bagian&nbsp;2.2</a>).</p>
 
 
-</section>
-
-
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Kembali ke atas</a><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Catatan Kaki</h2>
-
+</section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Kembali ke atas</a><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Catatan Kaki</h2>
 <ol>
 <li id="fn1"><p>Bagaimana cara menemukan nama elemen dari objek yang ingin kita impor? Salah satunya adalah dengan membaca kode sumber laman webnya. Selain itu, jika kita menggunakan Google Chrome, kita juga dapat memanfaatkan <em>Developer tools</em>-nya.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Penggunaan Kembali</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-copyright"><h2 class="anchored quarto-appendix-heading">Hak Cipta</h2><div class="quarto-appendix-contents"><div>© 2024 Yosep Dwi Kristanto</div></div></section></div></main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</ol></section><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Penggunaan Kembali</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-copyright"><h2 class="anchored quarto-appendix-heading">Hak Cipta</h2><div class="quarto-appendix-contents"><div>© 2024 Yosep Dwi Kristanto</div></div></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
     if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -1373,10 +1325,7 @@ Gambar&nbsp;4: Distribusi medali olimpiade yang diperoleh Indonesia berdasarkan 
       }
     }
   });
-  </script>
-<input type="hidden" id="giscus-base-theme" value="light">
-<input type="hidden" id="giscus-alt-theme" value="dark">
-<script>
+  </script><input type="hidden" id="giscus-base-theme" value="light"><input type="hidden" id="giscus-alt-theme" value="dark"><script>
   function loadGiscus() {
     // Function to get the theme based on body class
     const getTheme = () => {
@@ -1407,8 +1356,7 @@ Gambar&nbsp;4: Distribusi medali olimpiade yang diperoleh Indonesia berdasarkan 
   loadGiscus();
 </script>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
+<footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">
 <p>© 2025 Jelajah Statistika dan Ilmu Data</p>
 </div>   
@@ -1419,8 +1367,7 @@ Gambar&nbsp;4: Distribusi medali olimpiade yang diperoleh Indonesia berdasarkan 
 <p>Blog ini dikembangkan dengan <a href="https://quarto.org/" class="external" target="_blank">Quarto</a>.</p>
 </div>
   </div>
-</footer>
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {
@@ -1452,8 +1399,6 @@ Gambar&nbsp;4: Distribusi medali olimpiade yang diperoleh Indonesia berdasarkan 
   
 })();
           </script>
-
-
 
 
 </body></html>

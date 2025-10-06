@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.7.32">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
 <title>Laman Tidak Ditemukan – Jelajah Statistika dan Ilmu Data</title>
 <style>
 code{white-space: pre-wrap;}
@@ -21,7 +18,6 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 </style>
-
 
 <script src="/site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="/site_libs/quarto-nav/headroom.min.js"></script>
@@ -43,9 +39,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="/site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="/site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="/site_libs/bootstrap/bootstrap-dfb324f25d9b1687192fa8be62ac8f9c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="/site_libs/bootstrap/bootstrap-dark-2924e029ebab37202f18e9f746cd122d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="/site_libs/bootstrap/bootstrap-dfb324f25d9b1687192fa8be62ac8f9c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
+<link href="/site_libs/bootstrap/bootstrap-dark-41753783fd3fa495d37dff3f6f142c11.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="/site_libs/bootstrap/bootstrap-dfb324f25d9b1687192fa8be62ac8f9c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -71,19 +66,13 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Kirim",
     "search-label": "Cari"
   }
-}</script>
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-WTEJLB3562"></script>
-
-<script type="text/javascript">
+}</script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-WTEJLB3562"></script><script type="text/javascript">
 
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
-</script>
-
-
-<link rel="stylesheet" href="/styles.css">
+</script><link rel="stylesheet" href="/styles.css">
 <meta property="og:title" content="Laman Tidak Ditemukan – Jelajah Statistika dan Ilmu Data">
 <meta property="og:description" content="">
 <meta property="og:image" content="https://jelajahstatid.github.io/404_files/figure-html/unnamed-chunk-1-1.svg">
@@ -95,7 +84,6 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
 <meta name="twitter:image:alt" content="Seratus selang kepercayaan yang tidak memuat nilai tertentu.">
 <meta name="twitter:card" content="summary_large_image">
 </head>
-
 <body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
@@ -239,7 +227,8 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
       }
     };
     const authorPrefersDark = false;
-    const darkModeDefault = authorPrefersDark;
+    const queryPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const darkModeDefault = queryPrefersDark.matches;
       document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
       document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
     let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
@@ -252,6 +241,14 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
       toggleGiscusIfUsed(toAlternate, darkModeDefault);
       window.dispatchEvent(new Event('resize'));
     };
+    queryPrefersDark.addEventListener("change", e => {
+      if(window.localStorage.getItem("quarto-color-scheme") !== null)
+        return;
+      const alternate = e.matches
+      toggleColorMode(alternate);
+      localAlternateSentinel = e.matches ? 'alternate' : 'default'; // this is used alongside local storage!
+      toggleGiscusIfUsed(alternate, darkModeDefault);
+    });
     // Switch to dark mode if need be
     if (hasAlternateSentinel()) {
       toggleColorMode(true);
@@ -261,9 +258,7 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
   </script>
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="/index.html">
     <span class="navbar-title">Jelajah Statistika dan Ilmu Data</span>
@@ -275,7 +270,7 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item">
+<li class="nav-item">
     <a class="nav-link" href="/index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
@@ -294,26 +289,19 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
 <span class="menu-text"></span></a>
   </li>  
 </ul>
-          </div> <!-- /navcollapse -->
+</div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
-    </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
         
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title">Laman Tidak Ditemukan</h1>
 </div>
 
@@ -328,14 +316,10 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
   
 
 
-</header>
-
-
-<div class="cell">
+</header><div class="cell">
 <div class="cell-output-display">
 <div>
-<figure class="figure">
-<p><img src="/404_files/figure-html/unnamed-chunk-1-1.svg" class="img-fluid figure-img" alt="Seratus selang kepercayaan yang tidak memuat nilai tertentu." width="672"></p>
+<figure class="figure"><p><img src="/404_files/figure-html/unnamed-chunk-1-1.svg" class="img-fluid figure-img" alt="Seratus selang kepercayaan yang tidak memuat nilai tertentu." width="672"></p>
 </figure>
 </div>
 </div>
@@ -345,8 +329,7 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
 
 
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Kembali ke atas</a></main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Kembali ke atas</a></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
     if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -759,8 +742,7 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
   });
   </script>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
+<footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">
 <p>© 2025 Jelajah Statistika dan Ilmu Data</p>
 </div>   
@@ -772,8 +754,6 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
 </div>
   </div>
 </footer>
-
-
 
 
 </body></html>

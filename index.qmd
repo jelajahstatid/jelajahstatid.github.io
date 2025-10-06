@@ -11,5 +11,5 @@ listing:
     items: 10
     type: partial
 page-layout: full
-title-block-banner: "#EBF7FE"
+title-block-banner: true
 ---

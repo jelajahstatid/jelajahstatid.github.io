@@ -1,16 +1,13 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.7.32">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
 <meta name="author" content="Yosep Dwi Kristanto">
 <meta name="dcterms.date" content="2024-08-10">
 <meta name="keywords" content="Shiny, Gapminder, harapan hidup, produk domestik bruto, PDB, diagram pencar">
 <meta name="description" content="Statistik bukan hanya untuk statistikawan tetapi juga untuk orang awam. Untuk itu, statistik perlu dikemas secara lebih menarik dan menawan. Shiny memungkinkan agar statistik disajikan secara dinamis dan interaktif agar menarik dan mudah dipelajari oleh orang awam.">
-
 <title>Membuat Statistik Menjadi Dinamis dan Interaktif – Jelajah Statistika dan Ilmu Data</title>
 <style>
 code{white-space: pre-wrap;}
@@ -61,7 +58,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
-
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
@@ -82,12 +78,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-dfb324f25d9b1687192fa8be62ac8f9c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-2924e029ebab37202f18e9f746cd122d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-dark-41753783fd3fa495d37dff3f6f142c11.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="../../site_libs/bootstrap/bootstrap-dfb324f25d9b1687192fa8be62ac8f9c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
-<script id="quarto-search-options" type="application/json">{
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -113,25 +108,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Kirim",
     "search-label": "Cari"
   }
-}</script>
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-WTEJLB3562"></script>
-
-<script type="text/javascript">
+}</script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-WTEJLB3562"></script><script type="text/javascript">
 
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
-</script>
-<style>
-
-      .quarto-title-block .quarto-title-banner {
-        background: #EBF7FE;
-      }
-</style>
-
-
-<link rel="stylesheet" href="../../styles.css">
+</script><link rel="stylesheet" href="../../styles.css">
 <meta property="og:title" content="Membuat Statistik Menjadi Dinamis dan Interaktif – Jelajah Statistika dan Ilmu Data">
 <meta property="og:description" content="Statistik bukan hanya untuk statistikawan tetapi juga untuk orang awam. Untuk itu, statistik perlu dikemas secara lebih menarik dan menawan. Shiny memungkinkan agar statistik disajikan secara dinamis dan interaktif agar menarik dan mudah dipelajari oleh orang awam.">
 <meta property="og:image" content="https://jelajahstatid.github.io/pos/2024-08-statistik-dinamis-dan-interaktif/statistik-interaktif.png">
@@ -149,7 +132,6 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
 ">
 <meta name="twitter:card" content="summary_large_image">
 </head>
-
 <body class="floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
@@ -293,7 +275,8 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
       }
     };
     const authorPrefersDark = false;
-    const darkModeDefault = authorPrefersDark;
+    const queryPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const darkModeDefault = queryPrefersDark.matches;
       document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
       document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
     let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
@@ -306,6 +289,14 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
       toggleGiscusIfUsed(toAlternate, darkModeDefault);
       window.dispatchEvent(new Event('resize'));
     };
+    queryPrefersDark.addEventListener("change", e => {
+      if(window.localStorage.getItem("quarto-color-scheme") !== null)
+        return;
+      const alternate = e.matches
+      toggleColorMode(alternate);
+      localAlternateSentinel = e.matches ? 'alternate' : 'default'; // this is used alongside local storage!
+      toggleGiscusIfUsed(alternate, darkModeDefault);
+    });
     // Switch to dark mode if need be
     if (hasAlternateSentinel()) {
       toggleColorMode(true);
@@ -315,9 +306,7 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
   </script>
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Jelajah Statistika dan Ilmu Data</span>
@@ -329,7 +318,7 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item">
+<li class="nav-item">
     <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
@@ -348,16 +337,12 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
 <span class="menu-text"></span></a>
   </li>  
 </ul>
-          </div> <!-- /navcollapse -->
+</div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
-    </nav>
-</header>
-<!-- content -->
-<header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
+    </nav></header><!-- content --><header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full"><div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
       <h1 class="title">Membuat Statistik Menjadi Dinamis dan Interaktif</h1>
                   <div>
@@ -412,111 +397,95 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
   
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Pada laman ini</h2>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Pada laman ini</h2>
    
   <ul>
-  <li><a href="#sec-mengapa-shiny" id="toc-sec-mengapa-shiny" class="nav-link active" data-scroll-target="#sec-mengapa-shiny">Mengapa Perlu Aplikasi Shiny?</a></li>
-  <li><a href="#sec-membuat-app-shiny" id="toc-sec-membuat-app-shiny" class="nav-link" data-scroll-target="#sec-membuat-app-shiny">Membuat Aplikasi Shiny</a>
+<li><a href="#sec-mengapa-shiny" id="toc-sec-mengapa-shiny" class="nav-link active" data-scroll-target="#sec-mengapa-shiny">Mengapa Perlu Aplikasi Shiny?</a></li>
+  <li>
+<a href="#sec-membuat-app-shiny" id="toc-sec-membuat-app-shiny" class="nav-link" data-scroll-target="#sec-membuat-app-shiny">Membuat Aplikasi Shiny</a>
   <ul class="collapse">
-  <li><a href="#sec-antarmuka" id="toc-sec-antarmuka" class="nav-link" data-scroll-target="#sec-antarmuka">Antarmuka Aplikasi Shiny</a></li>
+<li><a href="#sec-antarmuka" id="toc-sec-antarmuka" class="nav-link" data-scroll-target="#sec-antarmuka">Antarmuka Aplikasi Shiny</a></li>
   <li><a href="#sec-server" id="toc-sec-server" class="nav-link" data-scroll-target="#sec-server">Dapur Aplikasi Shiny</a></li>
-  </ul></li>
+  </ul>
+</li>
   <li><a href="#sec-sentuhan-akhir" id="toc-sec-sentuhan-akhir" class="nav-link" data-scroll-target="#sec-sentuhan-akhir">Sentuhan Akhir</a></li>
   <li><a href="#sec-catatan-akhir" id="toc-sec-catatan-akhir" class="nav-link" data-scroll-target="#sec-catatan-akhir">Catatan Akhir</a></li>
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/jelajahstatid/jelajahstatid.github.io/edit/main/pos/2024-08-statistik-dinamis-dan-interaktif/index.qmd" class="toc-action"><i class="bi bi-github"></i>Sunting laman ini</a></li><li><a href="https://github.com/jelajahstatid/jelajahstatid.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Laporkan sebuah isu</a></li></ul></div></nav>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/jelajahstatid/jelajahstatid.github.io/edit/main/pos/2024-08-statistik-dinamis-dan-interaktif/index.qmd" class="toc-action"><i class="bi bi-github"></i>Sunting laman ini</a></li><li><a href="https://github.com/jelajahstatid/jelajahstatid.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Laporkan sebuah isu</a></li></ul></div></nav>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
-
-
-
-
-
-
-<p>Jelajah data itu seringkali kompleks dan menantang. Apalagi yang kita jelajahi adalah data raya. Apakah penjelajahan data tersebut dapat kita buat menjadi lebih mudah dan menarik? Artikel blog ini akan mendemonstrasikan bagaimana mengembangkan aplikasi Shiny untuk menjelajah data dari <a href="../../pos/2024-08-statistik-jendela-dunia/index.html" title="Statistik Adalah Jendela Dunia">pos sebelumnya</a>.</p>
+<main class="content quarto-banner-title-block" id="quarto-document-content"><p>Jelajah data itu seringkali kompleks dan menantang. Apalagi yang kita jelajahi adalah data raya. Apakah penjelajahan data tersebut dapat kita buat menjadi lebih mudah dan menarik? Artikel blog ini akan mendemonstrasikan bagaimana mengembangkan aplikasi Shiny untuk menjelajah data dari <a href="../../pos/2024-08-statistik-jendela-dunia/index.html" title="Statistik Adalah Jendela Dunia">pos sebelumnya</a>.</p>
 <p>Kita berkenalan dengan Shiny terlebih dahulu. Shiny adalah sebuah cara yang memungkinkan kita untuk membuat aplikasi berbasis web dengan bahasa pemrograman R (atau Python). Shiny ini cocok bagi kamu yang baru awal-awal memelajari R maupun yang sudah lama dan lihai menggunakan bahasa pemrograman itu.</p>
-<section id="sec-mengapa-shiny" class="level2">
-<h2 class="anchored" data-anchor-id="sec-mengapa-shiny">Mengapa Perlu Aplikasi Shiny?</h2>
+<section id="sec-mengapa-shiny" class="level2"><h2 class="anchored" data-anchor-id="sec-mengapa-shiny">Mengapa Perlu Aplikasi Shiny?</h2>
 <p>Bayangkan kamu adalah seorang analis data. Kamu sedang menganalisis <a href="https://github.com/jennybc/gapminder" class="external" target="_blank">data Gapminder</a> dengan R. Tujuannya adalah untuk melihat hubungan antara PDB (Pendapatan Domestik Bruto) per kapita dan angka harapan hidup berbagai negara. Pertama, kamu panggil dulu paket yang diperlukan. Paket tersebut adalah <a href="https://www.tidyverse.org/" class="external" target="_blank">{tidyverse}</a>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Setelah itu, kamu impor data yang tersedia secara daring dengan menggunakan fungsi <code>load()</code> dan <code>url()</code>. Hasilnya, kamu mendapatkan data dengan nama <code>gapminder</code>.</p>
+<p>Setelah itu, kamu impor data yang tersedia secara daring dengan menggunakan fungsi <code><a href="https://rdrr.io/r/base/load.html">load()</a></code> dan <code><a href="https://rdrr.io/r/base/connections.html">url()</a></code>. Hasilnya, kamu mendapatkan data dengan nama <code>gapminder</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="fu">url</span>(<span class="st">"https://github.com/jennybc/gapminder/raw/main/data/gapminder.rdata"</span>))</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/load.html">load</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/connections.html">url</a></span><span class="op">(</span><span class="st">"https://github.com/jennybc/gapminder/raw/main/data/gapminder.rdata"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Data tersebut memiliki enam variabel, yaitu negara (<code>country</code>), benua (<code>continent</code>), tahun (<code>year</code>), angka harapan hidup (<code>lifeExp</code>), dan PDB per kapita (<code>gdpPercap</code>, dalam dolar internasional). Tak ingin berlama-lama, kamu langsung memvisualisasikan hubungan antara PDB per kapita dan angka harapan hidup dengan diagram pencar. Hasilnya ditunjukkan pada <a href="#fig-hub-pdb-ahh" class="quarto-xref">Gambar&nbsp;1</a>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">|&gt;</span> </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> gdpPercap, <span class="at">y =</span> lifeExp)) <span class="sc">+</span> </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gapminder</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdpPercap</span>, y <span class="op">=</span> <span class="va">lifeExp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-hub-pdb-ahh" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-hub-pdb-ahh-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-hub-pdb-ahh-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="index_files/figure-html/fig-hub-pdb-ahh-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Gambar&nbsp;1: Hubungan antara PDB per kapita dan angka harapan hidup berbagai negara"><img src="index_files/figure-html/fig-hub-pdb-ahh-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hub-pdb-ahh-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Gambar&nbsp;1: Hubungan antara PDB per kapita dan angka harapan hidup berbagai negara
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 </div>
 </div>
 <p>Sayangnya, <a href="#fig-hub-pdb-ahh" class="quarto-xref">Gambar&nbsp;1</a> menggambarkan semua titik datanya. Padahal, kamu ingin menggambarkan titik-titik pada tahun tertentu saja. Untuk itu, kamu perlu mengetahui tahun berapa saja yang tersedia dalam data.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(gapminder<span class="sc">$</span>year)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">gapminder</span><span class="op">$</span><span class="va">year</span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] 1952 1957 1962 1967 1972 1977 1982 1987 1992 1997 2002 2007</code></pre>
 </div>
 </div>
 <p>Tahunnya ternyata mulai dari 1952 sampai 2007 dengan interval lima tahun. Selanjutnya, kamu ingin menggambar seperti pada <a href="#fig-hub-pdb-ahh" class="quarto-xref">Gambar&nbsp;1</a> tetapi hanya untuk tahun 2007. Keinginanmu ini terwujud dengan menjalankan baris kode di bawah. Hasilnya tersaji pada <a href="#fig-hub-pdb-ahh-2007" class="quarto-xref">Gambar&nbsp;2</a>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">|&gt;</span> </span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2007</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> gdpPercap, <span class="at">y =</span> lifeExp)) <span class="sc">+</span> </span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">gapminder</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="fl">2007</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdpPercap</span>, y <span class="op">=</span> <span class="va">lifeExp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-hub-pdb-ahh-2007" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-hub-pdb-ahh-2007-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-hub-pdb-ahh-2007-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="index_files/figure-html/fig-hub-pdb-ahh-2007-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Gambar&nbsp;2: Hubungan antara PDB per kapita dan angka harapan hidup berbagai negara pada tahun 2007"><img src="index_files/figure-html/fig-hub-pdb-ahh-2007-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hub-pdb-ahh-2007-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Gambar&nbsp;2: Hubungan antara PDB per kapita dan angka harapan hidup berbagai negara pada tahun 2007
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 </div>
 </div>
 <p>Dalam baris kode di atas, terdapat perintah <code>filter(year == 2007)</code>. Kode tersebut berguna untuk memfilter datanya agar nilai variabel <code>year</code>-nya sama dengan 2007.</p>
-<p>Sekarang kamu ingin memvisualisasikan lagi data tersebut tetapi untuk tahun 2002. Caranya mudah. Kamu tinggal mengganti 2007 dengan 2002 dalam fungsi <code>filter()</code> di atas. Alternatifnya, kamu dapat membuat sebuah variabel baru, misalnya <code>tahun_int</code>, dan membuat nilainya menjadi 2002. Setelah itu, kamu ganti 2007 dalam fungsi <code>filter()</code> di atas dengan variabel tersebut. Alhasil, kamu mendapatkan diagram pencar seperti yang ditunjukkan <a href="#fig-hub-pdb-ahh-2002" class="quarto-xref">Gambar&nbsp;3</a>.</p>
+<p>Sekarang kamu ingin memvisualisasikan lagi data tersebut tetapi untuk tahun 2002. Caranya mudah. Kamu tinggal mengganti 2007 dengan 2002 dalam fungsi <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> di atas. Alternatifnya, kamu dapat membuat sebuah variabel baru, misalnya <code>tahun_int</code>, dan membuat nilainya menjadi 2002. Setelah itu, kamu ganti 2007 dalam fungsi <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> di atas dengan variabel tersebut. Alhasil, kamu mendapatkan diagram pencar seperti yang ditunjukkan <a href="#fig-hub-pdb-ahh-2002" class="quarto-xref">Gambar&nbsp;3</a>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Variabel `tahun_int` dan nilainya sama dengan 2002</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>tahun_int <span class="ot">&lt;-</span> <span class="dv">2002</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Memvisualisasikan data untuk tahun 2002</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">|&gt;</span> </span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> tahun_int) <span class="sc">|&gt;</span> </span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> gdpPercap, <span class="at">y =</span> lifeExp)) <span class="sc">+</span> </span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Variabel `tahun_int` dan nilainya sama dengan 2002</span></span>
+<span><span class="va">tahun_int</span> <span class="op">&lt;-</span> <span class="fl">2002</span></span>
+<span></span>
+<span><span class="co"># Memvisualisasikan data untuk tahun 2002</span></span>
+<span><span class="va">gapminder</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="va">tahun_int</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdpPercap</span>, y <span class="op">=</span> <span class="va">lifeExp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-hub-pdb-ahh-2002" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-hub-pdb-ahh-2002-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-hub-pdb-ahh-2002-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="index_files/figure-html/fig-hub-pdb-ahh-2002-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Gambar&nbsp;3: Hubungan antara PDB per kapita dan angka harapan hidup berbagai negara pada tahun 2002"><img src="index_files/figure-html/fig-hub-pdb-ahh-2002-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hub-pdb-ahh-2002-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Gambar&nbsp;3: Hubungan antara PDB per kapita dan angka harapan hidup berbagai negara pada tahun 2002
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 </div>
 </div>
@@ -527,162 +496,147 @@ Gambar&nbsp;3: Hubungan antara PDB per kapita dan angka harapan hidup berbagai n
 </ol>
 <p>Dua langkah tersebut perlu dilakukan agar kamu dapat memvisualisasikan data untuk tahun-tahun tertentu. Adakah cara yang lebih efisien? Adakah cara agar langkah kedua di atas otomatis dijalankan ketika kamu mengganti nilai variabel <code>tahun_int</code>? Tentu saja ada! Caranya adalah dengan menggunakan Shiny.</p>
 <p>Shiny menggunakan pemrograman yang reaktif. Artinya, Shiny akan secara otomatis menjalankan baris perintah untuk menghasilkan luaran ketika nilai inputnya diganti. Dalam kasusmu ini, inputnya adalah nilai variabel <code>tahun_int</code> dan luarannya adalah diagram pencar seperti pada <a href="#fig-hub-pdb-ahh-2007" class="quarto-xref">Gambar&nbsp;2</a> atau <a href="#fig-hub-pdb-ahh-2002" class="quarto-xref">Gambar&nbsp;3</a>. Dengan demikian, Shiny akan langsung membuat diagram pencar seperti itu ketika nilai variabel <code>tahun_int</code> kamu ganti.</p>
-</section>
-<section id="sec-membuat-app-shiny" class="level2">
-<h2 class="anchored" data-anchor-id="sec-membuat-app-shiny">Membuat Aplikasi Shiny</h2>
+</section><section id="sec-membuat-app-shiny" class="level2"><h2 class="anchored" data-anchor-id="sec-membuat-app-shiny">Membuat Aplikasi Shiny</h2>
 <p>Kamu telah mengenal Shiny. Sekarang kita akan membuat aplikasi Shiny berdasarkan proses analisis data yang dipaparkan pada <a href="#sec-mengapa-shiny" class="quarto-xref">Bagian&nbsp;1</a>. Karena kita akan menggunakan paket <a href="https://CRAN.R-project.org/package=shiny" class="external" target="_blank">{shiny}</a>, paket tersebut perlu terpasang di komputermu. Jika belum, kamu perlu memasangnya dengan perintah berikut.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"shiny"</span>)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"shiny"</span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Aku menyarankanmu untuk membuat aplikasi Shiny dengan <a href="https://posit.co/download/rstudio-desktop/" class="external" target="_blank">RStudio</a> agar lebih mudah. Di RStudio, kamu dapat membuat aplikasi Shiny dengan mengklik <strong>File | New File | Shiny Web App…</strong> Pada jendela <em>New Shiny Web Application</em>, tuliskan nama aplikasinya dan klik <strong>Create</strong>. Setelah itu, kamu akan mendapatkan fail <code>app.R</code> yang isinya seperti ini.</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>app.R</strong></pre>
 </div>
-<div class="sourceCode" id="cb9" data-filename="app.R"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This is a Shiny web application. You can run the application by clicking</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># the 'Run App' button above.</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Find out more about building applications with Shiny here:</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#    https://shiny.posit.co/</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shiny)</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Define UI for application that draws a histogram</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Application title</span></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">titlePanel</span>(<span class="st">"Old Faithful Geyser Data"</span>),</span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Sidebar with a slider input for number of bins </span></span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sidebarLayout</span>(</span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>        <span class="fu">sidebarPanel</span>(</span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>            <span class="fu">sliderInput</span>(<span class="st">"bins"</span>,</span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>                        <span class="st">"Number of bins:"</span>,</span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>                        <span class="at">min =</span> <span class="dv">1</span>,</span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>                        <span class="at">max =</span> <span class="dv">50</span>,</span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>                        <span class="at">value =</span> <span class="dv">30</span>)</span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>        ),</span>
-<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Show a plot of the generated distribution</span></span>
-<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mainPanel</span>(</span>
-<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>           <span class="fu">plotOutput</span>(<span class="st">"distPlot"</span>)</span>
-<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Define server logic required to draw a histogram</span></span>
-<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
-<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>    output<span class="sc">$</span>distPlot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
-<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>        <span class="co"># generate bins based on input$bins from ui.R</span></span>
-<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>        x    <span class="ot">&lt;-</span> faithful[, <span class="dv">2</span>]</span>
-<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>        bins <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fu">min</span>(x), <span class="fu">max</span>(x), <span class="at">length.out =</span> input<span class="sc">$</span>bins <span class="sc">+</span> <span class="dv">1</span>)</span>
-<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>        <span class="co"># draw the histogram with the specified number of bins</span></span>
-<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>        <span class="fu">hist</span>(x, <span class="at">breaks =</span> bins, <span class="at">col =</span> <span class="st">'darkgray'</span>, <span class="at">border =</span> <span class="st">'white'</span>,</span>
-<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>             <span class="at">xlab =</span> <span class="st">'Waiting time to next eruption (in mins)'</span>,</span>
-<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>             <span class="at">main =</span> <span class="st">'Histogram of waiting times'</span>)</span>
-<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>    })</span>
-<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a><span class="co"># Run the application </span></span>
-<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9" data-filename="app.R"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#</span></span>
+<span><span class="co"># This is a Shiny web application. You can run the application by clicking</span></span>
+<span><span class="co"># the 'Run App' button above.</span></span>
+<span><span class="co">#</span></span>
+<span><span class="co"># Find out more about building applications with Shiny here:</span></span>
+<span><span class="co">#</span></span>
+<span><span class="co">#    https://shiny.posit.co/</span></span>
+<span><span class="co">#</span></span>
+<span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.posit.co/">shiny</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Define UI for application that draws a histogram</span></span>
+<span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu">fluidPage</span><span class="op">(</span></span>
+<span></span>
+<span>    <span class="co"># Application title</span></span>
+<span>    <span class="fu">titlePanel</span><span class="op">(</span><span class="st">"Old Faithful Geyser Data"</span><span class="op">)</span>,</span>
+<span></span>
+<span>    <span class="co"># Sidebar with a slider input for number of bins </span></span>
+<span>    <span class="fu">sidebarLayout</span><span class="op">(</span></span>
+<span>        <span class="fu">sidebarPanel</span><span class="op">(</span></span>
+<span>            <span class="fu">sliderInput</span><span class="op">(</span><span class="st">"bins"</span>,</span>
+<span>                        <span class="st">"Number of bins:"</span>,</span>
+<span>                        min <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>                        max <span class="op">=</span> <span class="fl">50</span>,</span>
+<span>                        value <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span>
+<span>        <span class="op">)</span>,</span>
+<span></span>
+<span>        <span class="co"># Show a plot of the generated distribution</span></span>
+<span>        <span class="fu">mainPanel</span><span class="op">(</span></span>
+<span>           <span class="fu">plotOutput</span><span class="op">(</span><span class="st">"distPlot"</span><span class="op">)</span></span>
+<span>        <span class="op">)</span></span>
+<span>    <span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Define server logic required to draw a histogram</span></span>
+<span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span></span>
+<span></span>
+<span>    <span class="va">output</span><span class="op">$</span><span class="va">distPlot</span> <span class="op">&lt;-</span> <span class="fu">renderPlot</span><span class="op">(</span><span class="op">{</span></span>
+<span>        <span class="co"># generate bins based on input$bins from ui.R</span></span>
+<span>        <span class="va">x</span>    <span class="op">&lt;-</span> <span class="va">faithful</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span></span>
+<span>        <span class="va">bins</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, length.out <span class="op">=</span> <span class="va">input</span><span class="op">$</span><span class="va">bins</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span></span>
+<span></span>
+<span>        <span class="co"># draw the histogram with the specified number of bins</span></span>
+<span>        <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">x</span>, breaks <span class="op">=</span> <span class="va">bins</span>, col <span class="op">=</span> <span class="st">'darkgray'</span>, border <span class="op">=</span> <span class="st">'white'</span>,</span>
+<span>             xlab <span class="op">=</span> <span class="st">'Waiting time to next eruption (in mins)'</span>,</span>
+<span>             main <span class="op">=</span> <span class="st">'Histogram of waiting times'</span><span class="op">)</span></span>
+<span>    <span class="op">}</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="co"># Run the application </span></span>
+<span><span class="fu">shinyApp</span><span class="op">(</span>ui <span class="op">=</span> <span class="va">ui</span>, server <span class="op">=</span> <span class="va">server</span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Baris kode di atas adalah baris kode yang sudah lengkap untuk sebuah aplikasi. Tetapi, aplikasi tersebut tidak sesuai dengan tujuanmu, yaitu memvisualisasikan hubungan antara PDB per kapita dan angka harapan hidup. Untuk itu, hapus semua baris kode di atas dan ganti dengan baris kode seperti pada <a href="#lst-kode-app-shiny" class="quarto-xref">Daftar&nbsp;1</a> berikut.</p>
 <div id="lst-kode-app-shiny" class="r listing quarto-float quarto-figure quarto-figure-left anchored" data-filename="app.R">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-kode-app-shiny-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-lst figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-kode-app-shiny-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Daftar&nbsp;1: Baris kode di dalam app.R
-</figcaption>
-<div aria-describedby="lst-kode-app-shiny-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+</figcaption><div aria-describedby="lst-kode-app-shiny-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>app.R</strong></pre>
 </div>
-<div class="sourceCode" id="cb10" data-filename="app.R"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shiny)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="fu">url</span>(<span class="st">"https://github.com/jennybc/gapminder/raw/main/data/gapminder.rdata"</span>))</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sliderInput</span>(</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">inputId =</span> <span class="st">"tahun"</span>,</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="st">"Tahun"</span>,</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">min =</span> <span class="dv">1952</span>,</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">max =</span> <span class="dv">2007</span>,</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">value =</span> <span class="dv">2007</span>,</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">step =</span> <span class="dv">5</span></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plotOutput</span>(<span class="st">"diagram_pencar"</span>)</span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>diagram_pencar <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    tahun_int <span class="ot">&lt;-</span> input<span class="sc">$</span>tahun</span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>    gapminder <span class="sc">|&gt;</span> </span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(year <span class="sc">==</span> tahun_int) <span class="sc">|&gt;</span> </span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> gdpPercap, <span class="at">y =</span> lifeExp)) <span class="sc">+</span> </span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_point</span>()</span>
-<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10" data-filename="app.R"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.posit.co/">shiny</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/load.html">load</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/connections.html">url</a></span><span class="op">(</span><span class="st">"https://github.com/jennybc/gapminder/raw/main/data/gapminder.rdata"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu">fluidPage</span><span class="op">(</span></span>
+<span>  <span class="fu">sliderInput</span><span class="op">(</span></span>
+<span>    inputId <span class="op">=</span> <span class="st">"tahun"</span>,</span>
+<span>    label <span class="op">=</span> <span class="st">"Tahun"</span>,</span>
+<span>    min <span class="op">=</span> <span class="fl">1952</span>,</span>
+<span>    max <span class="op">=</span> <span class="fl">2007</span>,</span>
+<span>    value <span class="op">=</span> <span class="fl">2007</span>,</span>
+<span>    step <span class="op">=</span> <span class="fl">5</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  <span class="fu">plotOutput</span><span class="op">(</span><span class="st">"diagram_pencar"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">output</span><span class="op">$</span><span class="va">diagram_pencar</span> <span class="op">&lt;-</span> <span class="fu">renderPlot</span><span class="op">(</span><span class="op">{</span></span>
+<span>    <span class="va">tahun_int</span> <span class="op">&lt;-</span> <span class="va">input</span><span class="op">$</span><span class="va">tahun</span></span>
+<span>    </span>
+<span>    <span class="va">gapminder</span> <span class="op">|&gt;</span> </span>
+<span>      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="va">tahun_int</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdpPercap</span>, y <span class="op">=</span> <span class="va">lifeExp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>    </span>
+<span>  <span class="op">}</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="fu">shinyApp</span><span class="op">(</span>ui <span class="op">=</span> <span class="va">ui</span>, server <span class="op">=</span> <span class="va">server</span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </figure>
 </div>
 <p>Aplikasi <code>app.R</code> tersebut memuat baris kode yang melakukan empat hal sebagai berikut.</p>
 <ol type="1">
-<li><p>Baris kode tersebut memanggil paket {shiny} dan {tidyverse} melalui perintah <code>library(shiny)</code> dan <code>library(tidyverse)</code>. Selain itu, baris kode tersebut juga mengimpor data <code>gapminder</code> dengan perintah <code>load(url("https://github.com/jennybc/gapminder/raw/main/data/gapminder.rdata"))</code>.</p></li>
+<li><p>Baris kode tersebut memanggil paket {shiny} dan {tidyverse} melalui perintah <code><a href="https://shiny.posit.co/">library(shiny)</a></code> dan <code><a href="https://tidyverse.tidyverse.org">library(tidyverse)</a></code>. Selain itu, baris kode tersebut juga mengimpor data <code>gapminder</code> dengan perintah <code>load(url("https://github.com/jennybc/gapminder/raw/main/data/gapminder.rdata"))</code>.</p></li>
 <li><p>Baris kode tersebut membuat antarmuka (<code>ui</code>): laman yang menjadi tempat berinteraksinya pengguna. Ada tiga fungsi yang digunakan untuk membuat antarmuka tersebut, yaitu <code>fluidPage()</code>, <code>sliderInput()</code>, dan <code>plotOutput()</code>. Lebih lengkapnya akan dijelaskan pada <a href="#sec-antarmuka" class="quarto-xref">Bagian&nbsp;2.1</a>.</p></li>
 <li><p>Baris kode tersebut menentukan perilaku dari aplikasi tersebut dengan fungsi <code>server</code>. Pembahasan lebih lanjut dapat dilihat pada <a href="#sec-server" class="quarto-xref">Bagian&nbsp;2.2</a>.</p></li>
 <li><p>Baris kode yang terakhir, yaitu <code>shinyApp(ui = ui, server = server)</code>, berfungsi untuk membuat aplikasi Shiny berdasarkan antarmuka <code>ui</code> dan fungsi <code>server</code> dan kemudian menjalankannya.</p></li>
 </ol>
 <p>Apabila kamu sudah penasaran dengan aplikasi Shiny tersebut, kamu dapat menjalankannya. Untuk melakukannya di RStudio, klik tombol <strong>Run App</strong> yang terletak di bagian kanan-atas dokumen. Perhatikan <a href="#fig-run-app" class="quarto-xref">Gambar&nbsp;4</a>!</p>
-<div id="fig-run-app" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Tombol Run App dalam RStudio" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-run-app-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="fig-run-app" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Tombol Run App dalam RStudio">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-run-app-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="aset/Run-App-RStudio.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Gambar&nbsp;4: Tombol Run App yang dapat ditemukan di bagian kanan-atas dokumen"><img src="aset/Run-App-RStudio.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Tombol Run App dalam RStudio"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-run-app-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Gambar&nbsp;4: Tombol Run App yang dapat ditemukan di bagian kanan-atas dokumen
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 <p>Setelah kamu mengklik tombol tersebut, beberapa saat kamu dapat melihat aplikasi tersebut. Tampilannya ditunjukkan pada <a href="#fig-tampilan-app" class="quarto-xref">Gambar&nbsp;5</a>.</p>
 <div id="fig-tampilan-app" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-tampilan-app-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-tampilan-app-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="aset/tampilan-aplikasi-shiny.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Gambar&nbsp;5: Tampilan aplikasi Shiny"><img src="aset/tampilan-aplikasi-shiny.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tampilan-app-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Gambar&nbsp;5: Tampilan aplikasi Shiny
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 <p>Kamu dapat berinteraksi dengan aplikasi tersebut. Silakan geser-geser slidernya (bagian kiri-atas aplikasi dengan label “Tahun”) untuk mengubah tahunnya. Ketika tahun tersebut kamu ganti, kamu dapat melihat tampilan diagram pencarnya juga menyesuaikan. Untuk menutup aplikasi tersebut, klik tombol <strong>Close</strong> yang terletak di sebelah kanan-atas.</p>
-<section id="sec-antarmuka" class="level3">
-<h3 class="anchored" data-anchor-id="sec-antarmuka">Antarmuka Aplikasi Shiny</h3>
+<section id="sec-antarmuka" class="level3"><h3 class="anchored" data-anchor-id="sec-antarmuka">Antarmuka Aplikasi Shiny</h3>
 <p>Salah satu bagian baris kode aplikasi Shiny adalah kode antarmukanya. Pada baris kode <a href="#lst-kode-app-shiny" class="quarto-xref">Daftar&nbsp;1</a>, pendefinisian antarmukanya ada di <code>ui</code>. Terdapat tiga fungsi yang digunakan, yaitu <code>fluidPage()</code>, <code>sliderInput()</code>, dan <code>plotOutput()</code>.</p>
 <ul>
 <li><p><code>fluidPage()</code> merupakan fungsi tata letak. Fungsi ini mengatur tata letak dari tampilan aplikasi Shiny kita.</p></li>
 <li><p><code>sliderInput()</code> merupakan salah satu kontrol input. Fungsi ini memungkinkan pengguna untuk berinteraksi dengan aplikasi kita. Dengan menggeser-geser slidernya, pengguna menyediakan input bagi aplikasi kita. Terdapat enam argumen yang kita isikan dalam fungsi tersebut. Argumen <code>inputId = "tahun"</code> memberikan identitas terhadap slider tersebut. Identitas ini selanjutnya digunakan lagi dalam fungsi <code>server</code> nantinya. Argumen <code>label="Tahun"</code> berfungsi untuk memberikan label terhadap slider tersebut. Label ini ditampilkan dalam antarmuka aplikasi kita. Argumen <code>min = 1952</code> , <code>max = 2007</code>, dan <code>step = 5</code> memberikan nilai-nilai yang mungkin untuk inputnya, yaitu bilangan mulai dari 1952 sampai 2007 dengan interval 5. Terakhir, <code>value = 2007</code> memberikan nilai awal untuk slider tersebut.</p></li>
 <li><p><code>plotOutput()</code> merupakan salah satu kontrol luaran aplikasi Shiny. Fungsi ini memberitahu Shiny tempat meletakkan luaran plot yang memiliki identitas <code>diagram_pencar</code>.</p></li>
-</ul>
-</section>
-<section id="sec-server" class="level3">
-<h3 class="anchored" data-anchor-id="sec-server">Dapur Aplikasi Shiny</h3>
+</ul></section><section id="sec-server" class="level3"><h3 class="anchored" data-anchor-id="sec-server">Dapur Aplikasi Shiny</h3>
 <p><a href="#sec-antarmuka" class="quarto-xref">Bagian&nbsp;2.1</a> telah menunjukkan adanya input dan luaran dalam aplikasi Shiny kita. Dari input menjadi luaran, terdapat proses komputasi yang dilakukan di dapur Shiny. Proses ini kita tentukan di dalam fungsi <code>server</code>.</p>
 <p>Di dalam fungsi <code>server</code>, kita memberikan resep kepada Shiny untuk melakukan komputasi. Ruas kiri dari operator <code>&lt;-</code>, yaitu <code>output$diagram_pencar</code>, mengindikasikan bahwa kita memberikan resep untuk luaran dengan identitas <code>diagram_pencar</code>.</p>
 <p>Ruas kanan operator <code>&lt;-</code> merupakan fungsi render. Fungsi render ini bermacam-macam jenisnya, tergantung dari luarannya. Karena di antarmuka kita akan membuat plot dengan <code>plotOutput</code>, kita perlu menggunakan fungsi <code>renderPlot()</code> di sini.</p>
 <p>Logika di dalam fungsi <code>renderPlot()</code> sama dengan logika yang kita gunakan pada <a href="#sec-mengapa-shiny" class="quarto-xref">Bagian&nbsp;1</a>, tetapi dengan sedikit penambahan. Penambahannya adalah pada <code>tahun_int &lt;- input$tahun</code>. Kode ini berfungsi untuk memberikan nilai sebesar <code>input$tahun</code> kepada variabel <code>tahun_int</code>. Nilai <code>input$tahun</code> tersebut tergantung dari nilai yang diberikan oleh pengguna terhadap slider dengan identitas <code>tahun</code> pada antarmuka.</p>
 <p>Alur kerja aplikasi Shiny kita ringkasnya seperti ini. Pertama, pengguna melihat antarmuka aplikasi kita. Di situ dia dapat menggeser slider dengan identitas <code>tahun</code> untuk mengganti-ganti nilanya. Nilai ini kemudian dikirim ke dapur Shiny dalam rupa <code>input$tahun</code> untuk diolah di dalam fungsi render, yaitu <code>renderPlot()</code>. Olahan tersebut menghasilkan luaran yang disebut dengan <code>output$diagram_pencar</code>. Luaran ini kemudian dikirimkan lagi ke antarmuka agar dapat dilihat oleh pengguna. Di mana posisinya? Posisinya terletak di mana <code>plotOutput("diagram_pencar")</code> berada.</p>
-</section>
-</section>
-<section id="sec-sentuhan-akhir" class="level2">
-<h2 class="anchored" data-anchor-id="sec-sentuhan-akhir">Sentuhan Akhir</h2>
+</section></section><section id="sec-sentuhan-akhir" class="level2"><h2 class="anchored" data-anchor-id="sec-sentuhan-akhir">Sentuhan Akhir</h2>
 <p>Aplikasi Shiny kita masih sederhana dan seperlunya. Kita dapat memperindah aplikasi tersebut. Beberapa hal yang dapat kita lakukan antara lain</p>
 <ul>
 <li><p>menambahkan judul ke dalam antarmukanya,</p></li>
@@ -691,94 +645,85 @@ Gambar&nbsp;5: Tampilan aplikasi Shiny
 </ul>
 <p>Ketiga hal tersebut dapat kita penuhi dengan baris kode seperti pada <a href="#lst-app-shiny-baru" class="quarto-xref">Daftar&nbsp;2</a> berikut.</p>
 <div id="lst-app-shiny-baru" class="r listing quarto-float quarto-figure quarto-figure-left anchored" data-filename="app.R">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-app-shiny-baru-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-lst figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-app-shiny-baru-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Daftar&nbsp;2: Baris kode di dalam app.R
-</figcaption>
-<div aria-describedby="lst-app-shiny-baru-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+</figcaption><div aria-describedby="lst-app-shiny-baru-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>app.R</strong></pre>
 </div>
-<div class="sourceCode" id="cb11" data-filename="app.R"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shiny)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="fu">url</span>(<span class="st">"https://github.com/jennybc/gapminder/raw/main/data/gapminder.rdata"</span>))</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">titlePanel</span>(<span class="st">"PDB per Kapita vs. Angka Harapan Hidup"</span>),</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sliderInput</span>(</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">inputId =</span> <span class="st">"tahun"</span>,</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="st">"Tahun"</span>,</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">min =</span> <span class="dv">1952</span>,</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">max =</span> <span class="dv">2007</span>,</span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">value =</span> <span class="dv">2007</span>,</span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">step =</span> <span class="dv">5</span>,</span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">sep =</span> <span class="st">""</span></span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plotOutput</span>(<span class="st">"diagram_pencar"</span>)</span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
-<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>diagram_pencar <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
-<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>    tahun_int <span class="ot">&lt;-</span> input<span class="sc">$</span>tahun</span>
-<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>    gapminder <span class="sc">|&gt;</span> </span>
-<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(year <span class="sc">==</span> tahun_int) <span class="sc">|&gt;</span> </span>
-<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ggplot</span>(</span>
-<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>        <span class="fu">aes</span>(<span class="at">x =</span> gdpPercap, <span class="at">y =</span> lifeExp)</span>
-<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">+</span> </span>
-<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_point</span>(</span>
-<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>        <span class="fu">aes</span>(<span class="at">color =</span> continent, <span class="at">size =</span> pop),</span>
-<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>        <span class="at">alpha =</span> .<span class="dv">6</span></span>
-<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">+</span> </span>
-<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>      <span class="fu">scale_size</span>(</span>
-<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>        <span class="at">range =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">30</span>),</span>
-<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>        <span class="at">guide =</span> <span class="st">"none"</span></span>
-<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">+</span> </span>
-<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>      <span class="fu">scale_color_viridis_d</span>(<span class="at">name =</span> <span class="st">"Benua"</span>) <span class="sc">+</span> </span>
-<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">18</span>) <span class="sc">+</span> </span>
-<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme</span>(</span>
-<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
-<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>)</span>
-<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">+</span> </span>
-<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a>      <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="dv">200</span>, <span class="dv">60000</span>)) <span class="sc">+</span> </span>
-<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ylim</span>(<span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">90</span>)) <span class="sc">+</span> </span>
-<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a>      <span class="fu">labs</span>(</span>
-<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">"PDB per kapita"</span>,</span>
-<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">"Angka harapan hidup"</span>,</span>
-<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a>        <span class="at">caption =</span> <span class="st">"Data: Jenny Bryan dkk. / Github"</span></span>
-<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb11-52"><a href="#cb11-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-53"><a href="#cb11-53" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11" data-filename="app.R"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.posit.co/">shiny</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/load.html">load</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/connections.html">url</a></span><span class="op">(</span><span class="st">"https://github.com/jennybc/gapminder/raw/main/data/gapminder.rdata"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu">fluidPage</span><span class="op">(</span></span>
+<span>  <span class="fu">titlePanel</span><span class="op">(</span><span class="st">"PDB per Kapita vs. Angka Harapan Hidup"</span><span class="op">)</span>,</span>
+<span>  <span class="fu">sliderInput</span><span class="op">(</span></span>
+<span>    inputId <span class="op">=</span> <span class="st">"tahun"</span>,</span>
+<span>    label <span class="op">=</span> <span class="st">"Tahun"</span>,</span>
+<span>    min <span class="op">=</span> <span class="fl">1952</span>,</span>
+<span>    max <span class="op">=</span> <span class="fl">2007</span>,</span>
+<span>    value <span class="op">=</span> <span class="fl">2007</span>,</span>
+<span>    step <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>    sep <span class="op">=</span> <span class="st">""</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  <span class="fu">plotOutput</span><span class="op">(</span><span class="st">"diagram_pencar"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">output</span><span class="op">$</span><span class="va">diagram_pencar</span> <span class="op">&lt;-</span> <span class="fu">renderPlot</span><span class="op">(</span><span class="op">{</span></span>
+<span>    <span class="va">tahun_int</span> <span class="op">&lt;-</span> <span class="va">input</span><span class="op">$</span><span class="va">tahun</span></span>
+<span>    </span>
+<span>    <span class="va">gapminder</span> <span class="op">|&gt;</span> </span>
+<span>      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="va">tahun_int</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
+<span>        <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">gdpPercap</span>, y <span class="op">=</span> <span class="va">lifeExp</span><span class="op">)</span></span>
+<span>      <span class="op">)</span> <span class="op">+</span> </span>
+<span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span></span>
+<span>        <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">continent</span>, size <span class="op">=</span> <span class="va">pop</span><span class="op">)</span>,</span>
+<span>        alpha <span class="op">=</span> <span class="fl">.6</span></span>
+<span>      <span class="op">)</span> <span class="op">+</span> </span>
+<span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_size.html">scale_size</a></span><span class="op">(</span></span>
+<span>        range <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">30</span><span class="op">)</span>,</span>
+<span>        guide <span class="op">=</span> <span class="st">"none"</span></span>
+<span>      <span class="op">)</span> <span class="op">+</span> </span>
+<span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_color_viridis_d</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Benua"</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">18</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
+<span>        legend.position <span class="op">=</span> <span class="st">"bottom"</span>,</span>
+<span>        plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>face <span class="op">=</span> <span class="st">"bold"</span><span class="op">)</span></span>
+<span>      <span class="op">)</span> <span class="op">+</span> </span>
+<span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">xlim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">200</span>, <span class="fl">60000</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">ylim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">90</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
+<span>        x <span class="op">=</span> <span class="st">"PDB per kapita"</span>,</span>
+<span>        y <span class="op">=</span> <span class="st">"Angka harapan hidup"</span>,</span>
+<span>        caption <span class="op">=</span> <span class="st">"Data: Jenny Bryan dkk. / Github"</span></span>
+<span>      <span class="op">)</span></span>
+<span>    </span>
+<span>  <span class="op">}</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="fu">shinyApp</span><span class="op">(</span>ui <span class="op">=</span> <span class="va">ui</span>, server <span class="op">=</span> <span class="va">server</span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </figure>
 </div>
 <p>Bagaimana tampilan aplikasi Shiny kita sekarang? Tampilannya ditunjukkan pada <a href="#fig-tampilan-app-baru" class="quarto-xref">Gambar&nbsp;6</a>.</p>
 <div id="fig-tampilan-app-baru" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-tampilan-app-baru-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-tampilan-app-baru-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="aset/tampilan-aplikasi-shiny-baru.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Gambar&nbsp;6: Tampilan aplikasi Shiny setelah dilakukan sentuhan akhir"><img src="aset/tampilan-aplikasi-shiny-baru.gif" class="img-fluid quarto-figure quarto-figure-center figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tampilan-app-baru-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Gambar&nbsp;6: Tampilan aplikasi Shiny setelah dilakukan sentuhan akhir
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
-</section>
-<section id="sec-catatan-akhir" class="level2">
-<h2 class="anchored" data-anchor-id="sec-catatan-akhir">Catatan Akhir</h2>
+</section><section id="sec-catatan-akhir" class="level2"><h2 class="anchored" data-anchor-id="sec-catatan-akhir">Catatan Akhir</h2>
 <p>Kita telah mengenal Shiny. Kita secara bersama-sama juga telah membuat aplikasi Shiny sederhana pada <a href="#sec-membuat-app-shiny" class="quarto-xref">Bagian&nbsp;2</a> dan memberikan sentuhan akhir pada <a href="#sec-sentuhan-akhir" class="quarto-xref">Bagian&nbsp;3</a>. Aplikasi tersebut dapat menampilkan visualisasi data secara interaktif. Dengan cara demikian, harapannya statistik tidak hanya menjadi konsumsi statistikawan tetapi juga orang awam.</p>
 <p>Apa selanjutnya? Jika kamu tertarik untuk mengembangkan aplikasi Shiny, kamu dapat belajar dari contoh-contohnya. Contoh tersebut dapat kamu lihat di <a href="https://shiny.posit.co/r/gallery/" class="external" target="_blank" title="Shiny for R Gallery">laman galeri Shiny untuk R</a>. Selain itu, kamu juga dapat menjelajah <a href="https://people.usd.ac.id/~ydkristanto/index.php/media-pengajaran/shiny-stat-dan-id/" class="external" target="_blank" title="Aplikasi Shiny untuk Statistika dan Ilmu Data">beberapa aplikasi Shiny yang telah aku kembangkan</a>. <em>Have a shiny day!</em></p>
 
 
-</section>
-
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Kembali ke atas</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Penggunaan Kembali</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-copyright"><h2 class="anchored quarto-appendix-heading">Hak Cipta</h2><div class="quarto-appendix-contents"><div>© 2024 Yosep Dwi Kristanto</div></div></section></div></main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Kembali ke atas</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Penggunaan Kembali</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-copyright"><h2 class="anchored quarto-appendix-heading">Hak Cipta</h2><div class="quarto-appendix-contents"><div>© 2024 Yosep Dwi Kristanto</div></div></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
     if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -1230,10 +1175,7 @@ Gambar&nbsp;6: Tampilan aplikasi Shiny setelah dilakukan sentuhan akhir
       }
     }
   });
-  </script>
-<input type="hidden" id="giscus-base-theme" value="light">
-<input type="hidden" id="giscus-alt-theme" value="dark">
-<script>
+  </script><input type="hidden" id="giscus-base-theme" value="light"><input type="hidden" id="giscus-alt-theme" value="dark"><script>
   function loadGiscus() {
     // Function to get the theme based on body class
     const getTheme = () => {
@@ -1264,8 +1206,7 @@ Gambar&nbsp;6: Tampilan aplikasi Shiny setelah dilakukan sentuhan akhir
   loadGiscus();
 </script>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
+<footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">
 <p>© 2025 Jelajah Statistika dan Ilmu Data</p>
 </div>   
@@ -1276,8 +1217,7 @@ Gambar&nbsp;6: Tampilan aplikasi Shiny setelah dilakukan sentuhan akhir
 <p>Blog ini dikembangkan dengan <a href="https://quarto.org/" class="external" target="_blank">Quarto</a>.</p>
 </div>
   </div>
-</footer>
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {
@@ -1309,8 +1249,6 @@ Gambar&nbsp;6: Tampilan aplikasi Shiny setelah dilakukan sentuhan akhir
   
 })();
           </script>
-
-
 
 
 </body></html>

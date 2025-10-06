@@ -30,7 +30,10 @@ website:
 format:
   html:
     toc: true
-    theme: cosmo
+    theme: 
+      light: cosmo
+      dark: [cosmo, tema-gelap.scss]
+    respect-user-color-scheme: true
     code-fold: true
     code-link: true
     css: styles.css

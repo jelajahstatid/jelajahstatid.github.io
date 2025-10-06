@@ -1,16 +1,13 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.7.32">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
 <meta name="author" content="Yosep Dwi Kristanto">
 <meta name="dcterms.date" content="2024-07-31">
 <meta name="keywords" content="anomali suhu, perubahan iklim, pemanasan global, tidyverse, visualisasi data, diagram garis, Tujuan Pembangunan Berkelanjutan">
 <meta name="description" content="Bagaimana tren suhu planet bumi dari tahun ke tahun? Artikel ini mendemonstrasikan bagaimana mengimpor data tentang perubahan iklim dari sebuah situs web, mengolahnya, dan memvisualisasikannya ke dalam diagram garis. Proses seperti ini dapat diterapkan dalam menyusun desain pembelajaran Matematika yang ramah akan peserta didik dan relevan terhadap isu-isu penting planet bumi.">
-
 <title>Tren Suhu Planet Bumi – Jelajah Statistika dan Ilmu Data</title>
 <style>
 code{white-space: pre-wrap;}
@@ -61,7 +58,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
-
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
@@ -82,12 +78,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-dfb324f25d9b1687192fa8be62ac8f9c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-2924e029ebab37202f18e9f746cd122d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-dark-41753783fd3fa495d37dff3f6f142c11.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="../../site_libs/bootstrap/bootstrap-dfb324f25d9b1687192fa8be62ac8f9c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
-<script id="quarto-search-options" type="application/json">{
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -113,25 +108,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Kirim",
     "search-label": "Cari"
   }
-}</script>
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-WTEJLB3562"></script>
-
-<script type="text/javascript">
+}</script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-WTEJLB3562"></script><script type="text/javascript">
 
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
-</script>
-<style>
-
-      .quarto-title-block .quarto-title-banner {
-        background: #EBF7FE;
-      }
-</style>
-
-
-<link rel="stylesheet" href="../../styles.css">
+</script><link rel="stylesheet" href="../../styles.css">
 <meta property="og:title" content="Tren Suhu Planet Bumi – Jelajah Statistika dan Ilmu Data">
 <meta property="og:description" content="Bagaimana tren suhu planet bumi dari tahun ke tahun? Artikel ini mendemonstrasikan bagaimana mengimpor data tentang perubahan iklim dari sebuah situs web, mengolahnya, dan memvisualisasikannya ke dalam diagram garis. Proses seperti ini dapat diterapkan dalam menyusun desain pembelajaran Matematika yang ramah akan peserta didik dan relevan terhadap isu-isu penting planet bumi.">
 <meta property="og:image" content="https://jelajahstatid.github.io/pos/2024-07-anomali-suhu-global/anomali-suhu.png">
@@ -149,7 +132,6 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
 ">
 <meta name="twitter:card" content="summary_large_image">
 </head>
-
 <body class="floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
@@ -293,7 +275,8 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
       }
     };
     const authorPrefersDark = false;
-    const darkModeDefault = authorPrefersDark;
+    const queryPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const darkModeDefault = queryPrefersDark.matches;
       document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
       document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
     let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
@@ -306,6 +289,14 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
       toggleGiscusIfUsed(toAlternate, darkModeDefault);
       window.dispatchEvent(new Event('resize'));
     };
+    queryPrefersDark.addEventListener("change", e => {
+      if(window.localStorage.getItem("quarto-color-scheme") !== null)
+        return;
+      const alternate = e.matches
+      toggleColorMode(alternate);
+      localAlternateSentinel = e.matches ? 'alternate' : 'default'; // this is used alongside local storage!
+      toggleGiscusIfUsed(alternate, darkModeDefault);
+    });
     // Switch to dark mode if need be
     if (hasAlternateSentinel()) {
       toggleColorMode(true);
@@ -315,9 +306,7 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
   </script>
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Jelajah Statistika dan Ilmu Data</span>
@@ -329,7 +318,7 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item">
+<li class="nav-item">
     <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
@@ -348,16 +337,12 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
 <span class="menu-text"></span></a>
   </li>  
 </ul>
-          </div> <!-- /navcollapse -->
+</div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
-    </nav>
-</header>
-<!-- content -->
-<header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
+    </nav></header><!-- content --><header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full"><div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
       <h1 class="title">Tren Suhu Planet Bumi</h1>
                   <div>
@@ -413,54 +398,42 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
   
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Pada laman ini</h2>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Pada laman ini</h2>
    
   <ul>
-  <li><a href="#sec-impor-data" id="toc-sec-impor-data" class="nav-link active" data-scroll-target="#sec-impor-data">Data Tren Suhu Global</a></li>
+<li><a href="#sec-impor-data" id="toc-sec-impor-data" class="nav-link active" data-scroll-target="#sec-impor-data">Data Tren Suhu Global</a></li>
   <li><a href="#sec-gulat-data" id="toc-sec-gulat-data" class="nav-link" data-scroll-target="#sec-gulat-data">Bergulat dengan Data</a></li>
   <li><a href="#sec-visualisasi-data" id="toc-sec-visualisasi-data" class="nav-link" data-scroll-target="#sec-visualisasi-data">Visualisasi Data</a></li>
   <li><a href="#catatan-akhir" id="toc-catatan-akhir" class="nav-link" data-scroll-target="#catatan-akhir">Catatan Akhir</a></li>
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/jelajahstatid/jelajahstatid.github.io/edit/main/pos/2024-07-anomali-suhu-global/index.qmd" class="toc-action"><i class="bi bi-github"></i>Sunting laman ini</a></li><li><a href="https://github.com/jelajahstatid/jelajahstatid.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Laporkan sebuah isu</a></li></ul></div></nav>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/jelajahstatid/jelajahstatid.github.io/edit/main/pos/2024-07-anomali-suhu-global/index.qmd" class="toc-action"><i class="bi bi-github"></i>Sunting laman ini</a></li><li><a href="https://github.com/jelajahstatid/jelajahstatid.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Laporkan sebuah isu</a></li></ul></div></nav>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
-
-
-
-
-
-
-<p>Beberapa waktu lalu aku mendiskusikan ide Matematika Membumi. Diskusi dalam <a href="https://www.instagram.com/p/C8848fQSZzw/" class="external" target="_blank">webinar YPMIPA</a> tersebut membahas sebuah desain pembelajaran yang menggunakan data riil, yaitu data tren suhu global planet bumi dari tahun ke tahun.</p>
+<main class="content quarto-banner-title-block" id="quarto-document-content"><p>Beberapa waktu lalu aku mendiskusikan ide Matematika Membumi. Diskusi dalam <a href="https://www.instagram.com/p/C8848fQSZzw/" class="external" target="_blank">webinar YPMIPA</a> tersebut membahas sebuah desain pembelajaran yang menggunakan data riil, yaitu data tren suhu global planet bumi dari tahun ke tahun.</p>
 <p>Ide seperti itu sebenarnya sudah aku pikirkan dan implementasikan kurang lebih pada tahun 2019. Pada tahun itu, aku mencoba mengajak para mahasiswa calon pendidik matematika tak hanya untuk bermatematika saja, tetapi juga memiliki kesadaran akan pembangunan berkelanjutan. Keseruannya dapat dilihat pada pos media sosial berikut.</p>
 <p align="center">
 <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FYosepDwiK%2Fposts%2Fpfbid02LvJ8WGjnXLe6SWTiBLNnTECkNXNAD6YtihSev81SbP8YfXdwd1mmSBoem2g1hVZ5l&amp;show_text=true&amp;width=500" width="500" height="601" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
 </p>
 <p>Di artikel ini, kita tidak akan membahas desain pembelajaran tersebut. Melainkan, kita akan mengetahui bagaimana mendapatkan data tren suhu planet bumi tersebut, mengolahnya, dan memvisualisasikannya. Seluruh proses ini akan kita lakukan dengan menggunakan <a href="https://www.R-project.org/" class="external" target="_blank">R</a>.</p>
-<section id="sec-impor-data" class="level2">
-<h2 class="anchored" data-anchor-id="sec-impor-data">Data Tren Suhu Global</h2>
+<section id="sec-impor-data" class="level2"><h2 class="anchored" data-anchor-id="sec-impor-data">Data Tren Suhu Global</h2>
 <p>Banyak situs web yang menyediakan data tren suhu global. Salah satunya adalah <a href="https://data.giss.nasa.gov/gistemp/" class="external" target="_blank">GISTEMP</a>. Dari situs web itu, kita memilih data gabungan antara anomali suhu udara daratan dan anomali suhu air lautan. Apa itu anomali suhu? <a href="https://www.ncei.noaa.gov/access/monitoring/dyk/anomalies-vs-temperature/" class="external" target="_blank">Anomali suhu</a> merupakan selisih terhadap suhu rata-rata atau garis dasar. Di situs GISTEMP, garis dasar yang digunakan adalah rata-rata suhu pada periode 1951 - 1980.</p>
 <p>Langkah awal sebelum kita melakukan proses berikutnya adalah memanggil paket <a href="https://doi.org/10.32614/CRAN.package.tidyverse" class="external" target="_blank">{tidyverse}</a>. Paket tersebut menyediakan berbagai macam fungsi yang akan kita gunakan untuk mencapai tujuan kita.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Tak perlu berlama-lama, mari kita impor data tersebut dengan fungsi <code>read_csv()</code> dari paket {tidyverse}. Alamat fail yang akan kita impor adalah <code>https://data.giss.nasa.gov/gistemp/tabledata_v4/GLB.Ts+dSST.csv</code>. Baris pertama dalam fail tersebut merupakan keterangan “<em>Land-Ocean: Global Means</em>”. Dengan demikian, kita perlu menambahkan argumen <code>skip = 1</code> dalam fungsi <code>read_csv()</code> agar data kita tidak memuat baris tersebut. Fail tersebut juga menggunakan simbol *** sebagai penanda NA. Untuk itu, kita juga perlu menambahkan argumen <code>na = "***"</code> ke dalam fungsi tersebut. Kita namai data kita tersebut dengan <code>tren_suhu_global</code>.</p>
+<p>Tak perlu berlama-lama, mari kita impor data tersebut dengan fungsi <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> dari paket {tidyverse}. Alamat fail yang akan kita impor adalah <code>https://data.giss.nasa.gov/gistemp/tabledata_v4/GLB.Ts+dSST.csv</code>. Baris pertama dalam fail tersebut merupakan keterangan “<em>Land-Ocean: Global Means</em>”. Dengan demikian, kita perlu menambahkan argumen <code>skip = 1</code> dalam fungsi <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> agar data kita tidak memuat baris tersebut. Fail tersebut juga menggunakan simbol *** sebagai penanda NA. Untuk itu, kita juga perlu menambahkan argumen <code>na = "***"</code> ke dalam fungsi tersebut. Kita namai data kita tersebut dengan <code>tren_suhu_global</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>tren_suhu_global <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://data.giss.nasa.gov/gistemp/tabledata_v4/GLB.Ts+dSST.csv"</span>,</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">skip =</span> <span class="dv">1</span>,</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">na =</span> <span class="st">"***"</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tren_suhu_global</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span></span>
+<span>  <span class="st">"https://data.giss.nasa.gov/gistemp/tabledata_v4/GLB.Ts+dSST.csv"</span>,</span>
+<span>  skip <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  na <span class="op">=</span> <span class="st">"***"</span></span>
+<span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Sekarang kita memiliki data <code>tren_suhu_global</code>. Untuk melihat beberapa baris awal data tersebut, kita dapat menggunakan fungsi <code>head()</code>.</p>
+<p>Sekarang kita memiliki data <code>tren_suhu_global</code>. Untuk melihat beberapa baris awal data tersebut, kita dapat menggunakan fungsi <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(tren_suhu_global)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">tren_suhu_global</span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 19
    Year   Jan   Feb   Mar   Apr   May   Jun   Jul   Aug   Sep   Oct   Nov   Dec
@@ -475,9 +448,9 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
 #   JJA &lt;dbl&gt;, SON &lt;dbl&gt;</code></pre>
 </div>
 </div>
-<p>Kita juga dapat menggunakan fungsi <code>glimpse()</code> dari {tidyverse} untuk melihat gambaran umum dari data tersebut.</p>
+<p>Kita juga dapat menggunakan fungsi <code><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse()</a></code> dari {tidyverse} untuk melihat gambaran umum dari data tersebut.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(tren_suhu_global)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">tren_suhu_global</span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 146
 Columns: 19
@@ -503,17 +476,15 @@ $ SON   &lt;dbl&gt; -0.20, -0.18, -0.18, -0.18, -0.28, -0.25, -0.26, -0.29, -0.0
 </div>
 </div>
 <p>Dari luaran fungsi tersebut, kita dapat melihat bahwa data kita memuat 145 baris dan 19 kolom. Informasi ini berguna untuk proses berikutnya.</p>
-</section>
-<section id="sec-gulat-data" class="level2">
-<h2 class="anchored" data-anchor-id="sec-gulat-data">Bergulat dengan Data</h2>
+</section><section id="sec-gulat-data" class="level2"><h2 class="anchored" data-anchor-id="sec-gulat-data">Bergulat dengan Data</h2>
 <p>Gulat tidak hanya dilombakan di olimpiade <a href="https://twitter.com/hashtag/Paris2024" class="external" target="_blank">#Paris2024</a>, tetapi juga umum dilakukan terhadap data. Sekarang kita akan bergulat dengan data. Seperti olahraga gulat yang menantang, bergulat dengan data juga tak kalah menantang. Akan tetapi, tantangan itu akan menghasilkan data yang rapi. Kita lakukan pergulatan ini setahap demi setahap.</p>
-<p>Ketika kita menggunakan fungsi <code>glimpse()</code> sebelumnya, kita tahu bahwa data kita memuat 19 kolom. Kolom yang akan kita olah di sini adalah 13 kolom pertama. Untuk itu, pada tahap pertama, kita gunakan fungsi <code>select()</code> dari {tidyverse} untuk memilih ketigabelas kolom tersebut. Kita juga dapat mengganti nama kolom pertama yang awalnya <code>Year</code> menjadi <code>tahun</code> dengan menggunakan <code>rename()</code> dari {tidyverse}. Untuk melihat hasilnya kita dapat menggunakan fungsi <code>head()</code> lagi.</p>
+<p>Ketika kita menggunakan fungsi <code><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse()</a></code> sebelumnya, kita tahu bahwa data kita memuat 19 kolom. Kolom yang akan kita olah di sini adalah 13 kolom pertama. Untuk itu, pada tahap pertama, kita gunakan fungsi <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> dari {tidyverse} untuk memilih ketigabelas kolom tersebut. Kita juga dapat mengganti nama kolom pertama yang awalnya <code>Year</code> menjadi <code>tahun</code> dengan menggunakan <code><a href="https://dplyr.tidyverse.org/reference/rename.html">rename()</a></code> dari {tidyverse}. Untuk melihat hasilnya kita dapat menggunakan fungsi <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code> lagi.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>tren_suhu_global <span class="ot">&lt;-</span> tren_suhu_global <span class="sc">|&gt;</span> </span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">13</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">tahun =</span> Year)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(tren_suhu_global)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tren_suhu_global</span> <span class="op">&lt;-</span> <span class="va">tren_suhu_global</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">13</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>tahun <span class="op">=</span> <span class="va">Year</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">tren_suhu_global</span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 13
   tahun   Jan   Feb   Mar   Apr   May   Jun   Jul   Aug   Sep   Oct   Nov   Dec
@@ -531,16 +502,16 @@ $ SON   &lt;dbl&gt; -0.20, -0.18, -0.18, -0.18, -0.28, -0.25, -0.26, -0.29, -0.0
 <p align="center">
 <iframe src="https://giphy.com/embed/2OP9jbHFlFPW" width="480" height="307" style="" frameborder="0" class="giphy-embed" allowfullscreen=""></iframe>
 </p>
-<p>Perintah Ross tersebut juga dapat diterapkan terhadap data kita. Kita dapat mem-<em>pivot</em> (memutar) data kita dengan menggunakan fungsi <code>pivot_longer()</code>. Dengan fungsi tersebut, data kita yang awalnya melebar akan berubah bentuknya menjadi data yang memanjang. Oleh karena itu, di tahap kedua, kita perlu memutar data kita agar menjadi data yang memanjang.</p>
+<p>Perintah Ross tersebut juga dapat diterapkan terhadap data kita. Kita dapat mem-<em>pivot</em> (memutar) data kita dengan menggunakan fungsi <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code>. Dengan fungsi tersebut, data kita yang awalnya melebar akan berubah bentuknya menjadi data yang memanjang. Oleh karena itu, di tahap kedua, kita perlu memutar data kita agar menjadi data yang memanjang.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>tren_suhu_global <span class="ot">&lt;-</span> tren_suhu_global <span class="sc">|&gt;</span> </span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">13</span>,</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"bulan"</span>,</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"anomali_suhu"</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(tren_suhu_global)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tren_suhu_global</span> <span class="op">&lt;-</span> <span class="va">tren_suhu_global</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span></span>
+<span>    cols <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">13</span>,</span>
+<span>    names_to <span class="op">=</span> <span class="st">"bulan"</span>,</span>
+<span>    values_to <span class="op">=</span> <span class="st">"anomali_suhu"</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">tren_suhu_global</span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 3
   tahun bulan anomali_suhu
@@ -556,29 +527,29 @@ $ SON   &lt;dbl&gt; -0.20, -0.18, -0.18, -0.18, -0.28, -0.25, -0.26, -0.29, -0.0
 <p>Mengapa kita memerlukan data yang memanjang? Data memanjang tersebut akan memudahkan kita untuk mengolahnya pada tahapan berikutnya.</p>
 <p>Tahap ketiga, kita perlu menggabungkan nilai sel dalam kolom pertama dan kedua untuk membuat sebuah kolom baru, yaitu <code>tanggal</code>, yang formatnya <em>Date</em>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>pemetaan_bulan <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Jan"</span> <span class="ot">=</span> <span class="st">"01"</span>,</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Feb"</span> <span class="ot">=</span> <span class="st">"02"</span>,</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Mar"</span> <span class="ot">=</span> <span class="st">"03"</span>,</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Apr"</span> <span class="ot">=</span> <span class="st">"04"</span>,</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"May"</span> <span class="ot">=</span> <span class="st">"05"</span>,</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Jun"</span> <span class="ot">=</span> <span class="st">"06"</span>,</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Jul"</span> <span class="ot">=</span> <span class="st">"07"</span>,</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Aug"</span> <span class="ot">=</span> <span class="st">"08"</span>,</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Sep"</span> <span class="ot">=</span> <span class="st">"09"</span>,</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Oct"</span> <span class="ot">=</span> <span class="st">"10"</span>,</span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Nov"</span> <span class="ot">=</span> <span class="st">"11"</span>,</span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Dec"</span> <span class="ot">=</span> <span class="st">"12"</span></span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>tren_suhu_global <span class="ot">&lt;-</span> tren_suhu_global <span class="sc">|&gt;</span> </span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">tanggal =</span> <span class="fu">as.Date</span>(</span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste</span>(tahun, pemetaan_bulan[bulan], <span class="st">"01"</span>, <span class="at">sep =</span> <span class="st">"-"</span>)</span>
-<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(tren_suhu_global)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pemetaan_bulan</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>  <span class="st">"Jan"</span> <span class="op">=</span> <span class="st">"01"</span>,</span>
+<span>  <span class="st">"Feb"</span> <span class="op">=</span> <span class="st">"02"</span>,</span>
+<span>  <span class="st">"Mar"</span> <span class="op">=</span> <span class="st">"03"</span>,</span>
+<span>  <span class="st">"Apr"</span> <span class="op">=</span> <span class="st">"04"</span>,</span>
+<span>  <span class="st">"May"</span> <span class="op">=</span> <span class="st">"05"</span>,</span>
+<span>  <span class="st">"Jun"</span> <span class="op">=</span> <span class="st">"06"</span>,</span>
+<span>  <span class="st">"Jul"</span> <span class="op">=</span> <span class="st">"07"</span>,</span>
+<span>  <span class="st">"Aug"</span> <span class="op">=</span> <span class="st">"08"</span>,</span>
+<span>  <span class="st">"Sep"</span> <span class="op">=</span> <span class="st">"09"</span>,</span>
+<span>  <span class="st">"Oct"</span> <span class="op">=</span> <span class="st">"10"</span>,</span>
+<span>  <span class="st">"Nov"</span> <span class="op">=</span> <span class="st">"11"</span>,</span>
+<span>  <span class="st">"Dec"</span> <span class="op">=</span> <span class="st">"12"</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">tren_suhu_global</span> <span class="op">&lt;-</span> <span class="va">tren_suhu_global</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>    tanggal <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span></span>
+<span>      <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">tahun</span>, <span class="va">pemetaan_bulan</span><span class="op">[</span><span class="va">bulan</span><span class="op">]</span>, <span class="st">"01"</span>, sep <span class="op">=</span> <span class="st">"-"</span><span class="op">)</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">tren_suhu_global</span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 4
   tahun bulan anomali_suhu tanggal   
@@ -593,10 +564,10 @@ $ SON   &lt;dbl&gt; -0.20, -0.18, -0.18, -0.18, -0.28, -0.25, -0.26, -0.29, -0.0
 </div>
 <p>Karena kolom <code>tahun</code> dan <code>bulan</code> sudah diwakili oleh kolom <code>tanggal</code>, kita dapat mengabaikan kedua kolom tersebut.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>tren_suhu_global <span class="ot">&lt;-</span> tren_suhu_global <span class="sc">|&gt;</span> </span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(tanggal, anomali_suhu)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(tren_suhu_global)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tren_suhu_global</span> <span class="op">&lt;-</span> <span class="va">tren_suhu_global</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">tanggal</span>, <span class="va">anomali_suhu</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">tren_suhu_global</span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 2
   tanggal    anomali_suhu
@@ -610,70 +581,59 @@ $ SON   &lt;dbl&gt; -0.20, -0.18, -0.18, -0.18, -0.28, -0.25, -0.26, -0.29, -0.0
 </div>
 </div>
 <p><em>Nah</em>, sekarang kita mendapatkan data yang rapi. Data kita sekarang hanya memuat dua variabel, yaitu <code>tanggal</code> dan <code>anomali_suhu</code>. Selanjutnya kita akan memvisualisasikan <code>anomali_suhu</code> setiap <code>tanggal</code>-nya.</p>
-</section>
-<section id="sec-visualisasi-data" class="level2">
-<h2 class="anchored" data-anchor-id="sec-visualisasi-data">Visualisasi Data</h2>
-<p>Data yang rapi yang sudah di tangan. Selanjutnya, kita visualisasikan data tersebut ke dalam diagram garis untuk melihat tren <code>anomali_suhu</code> setiap <code>tanggal</code>-nya. Untuk melakukannya, kita dapat menggunakan fungsi <code>ggplot()</code> dan peranakannya. Hasilnya disajikan pada <a href="#fig-diagram-garis-v1" class="quarto-xref">Gambar&nbsp;1</a>.</p>
+</section><section id="sec-visualisasi-data" class="level2"><h2 class="anchored" data-anchor-id="sec-visualisasi-data">Visualisasi Data</h2>
+<p>Data yang rapi yang sudah di tangan. Selanjutnya, kita visualisasikan data tersebut ke dalam diagram garis untuk melihat tren <code>anomali_suhu</code> setiap <code>tanggal</code>-nya. Untuk melakukannya, kita dapat menggunakan fungsi <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> dan peranakannya. Hasilnya disajikan pada <a href="#fig-diagram-garis-v1" class="quarto-xref">Gambar&nbsp;1</a>.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>diagram_garis <span class="ot">&lt;-</span> tren_suhu_global <span class="sc">|&gt;</span> </span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> tanggal, <span class="at">y =</span> anomali_suhu)) <span class="sc">+</span> </span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(diagram_garis)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">diagram_garis</span> <span class="op">&lt;-</span> <span class="va">tren_suhu_global</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">tanggal</span>, y <span class="op">=</span> <span class="va">anomali_suhu</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">diagram_garis</span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-diagram-garis-v1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-diagram-garis-v1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-diagram-garis-v1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="index_files/figure-html/fig-diagram-garis-v1-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Gambar&nbsp;1: Tren anomali_suhu setiap tanggal-nya."><img src="index_files/figure-html/fig-diagram-garis-v1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diagram-garis-v1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Gambar&nbsp;1: Tren <code>anomali_suhu</code> setiap <code>tanggal</code>-nya.
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 </div>
 </div>
-<p>Diagram pada <a href="#fig-diagram-garis-v1" class="quarto-xref">Gambar&nbsp;1</a> dapat kita modifikasi. Misalnya, kita dapat mengubah judul sumbu-<em>x</em> dan <em>y</em> pada diagram tersebut. Kita juga dapat mengubah warna garis serta memberikan judul, anak judul, dan takarir pada diagram tersebut. Sentuhan terakhir, kita dapat memilih tema <code>theme_minimal()</code> dan menambahkan pola tren tersebut dengan <code>geom_smooth()</code>. Hasilnya ditunjukkan pada <a href="#fig-diagram-garis-v2" class="quarto-xref">Gambar&nbsp;2</a>.</p>
+<p>Diagram pada <a href="#fig-diagram-garis-v1" class="quarto-xref">Gambar&nbsp;1</a> dapat kita modifikasi. Misalnya, kita dapat mengubah judul sumbu-<em>x</em> dan <em>y</em> pada diagram tersebut. Kita juga dapat mengubah warna garis serta memberikan judul, anak judul, dan takarir pada diagram tersebut. Sentuhan terakhir, kita dapat memilih tema <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal()</a></code> dan menambahkan pola tren tersebut dengan <code><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth()</a></code>. Hasilnya ditunjukkan pada <a href="#fig-diagram-garis-v2" class="quarto-xref">Gambar&nbsp;2</a>.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>diagram_garis <span class="sc">+</span> </span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"#427D9D"</span>) <span class="sc">+</span> </span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">"gam"</span>,</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">formula =</span> y <span class="sc">~</span> <span class="fu">s</span>(x, <span class="at">bs =</span> <span class="st">"cs"</span>),</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"#164863"</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Tren Anomali Suhu Setiap Waktunya"</span>,</span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Anomali suhu relatif terhadap rerata suhu pada 1951 - 1980"</span>,</span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Waktu"</span>,</span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Anomali Suhu (°C)"</span>,</span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Data: GISTEMP"</span></span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">diagram_garis</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"#427D9D"</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span></span>
+<span>    method <span class="op">=</span> <span class="st">"gam"</span>,</span>
+<span>    formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="fu">s</span><span class="op">(</span><span class="va">x</span>, bs <span class="op">=</span> <span class="st">"cs"</span><span class="op">)</span>,</span>
+<span>    color <span class="op">=</span> <span class="st">"#164863"</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
+<span>    title <span class="op">=</span> <span class="st">"Tren Anomali Suhu Setiap Waktunya"</span>,</span>
+<span>    subtitle <span class="op">=</span> <span class="st">"Anomali suhu relatif terhadap rerata suhu pada 1951 - 1980"</span>,</span>
+<span>    x <span class="op">=</span> <span class="st">"Waktu"</span>,</span>
+<span>    y <span class="op">=</span> <span class="st">"Anomali Suhu (°C)"</span>,</span>
+<span>    caption <span class="op">=</span> <span class="st">"Data: GISTEMP"</span></span>
+<span>  <span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-diagram-garis-v2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-diagram-garis-v2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-diagram-garis-v2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="index_files/figure-html/fig-diagram-garis-v2-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Gambar&nbsp;2: Tren anomali_suhu setiap tanggal-nya yang sudah diperbaiki."><img src="index_files/figure-html/fig-diagram-garis-v2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diagram-garis-v2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Gambar&nbsp;2: Tren <code>anomali_suhu</code> setiap <code>tanggal</code>-nya yang sudah diperbaiki.
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 </div>
 </div>
-</section>
-<section id="catatan-akhir" class="level2">
-<h2 class="anchored" data-anchor-id="catatan-akhir">Catatan Akhir</h2>
+</section><section id="catatan-akhir" class="level2"><h2 class="anchored" data-anchor-id="catatan-akhir">Catatan Akhir</h2>
 <p>Kita telah memvisualisasikan tren suhu planet bumi dari tahun ke tahun, yaitu mulai 1880 sampai 2024. Untuk mendapatkan visualisasi pada <a href="#fig-diagram-garis-v2" class="quarto-xref">Gambar&nbsp;2</a>, pertama kita impor data dari situs web GISTEMP. Hal ini telah dipaparkan pada <a href="#sec-impor-data" class="quarto-xref">Bagian&nbsp;1</a>. Kedua, kita telah bergulat dengan data tersebut pada <a href="#sec-gulat-data" class="quarto-xref">Bagian&nbsp;2</a> untuk mendapatkan data yang rapi. Ketiga, data yang rapi tersebut selanjutnya kita gunakan untuk memvisualisasikan tren suhu planet bumi setiap waktunya pada <a href="#sec-visualisasi-data" class="quarto-xref">Bagian&nbsp;3</a>.</p>
 <p>Proses yang didemonstrasikan pada artikel ini dapat digunakan untuk menyusun desain pembelajaran Matematika yang menggunakan data riil, khususnya data tentang tema perubahan iklim. Penggunaan data perubahan iklim tersebut tidak hanya dapat memupuk kesadaran peserta didik akan isu planet bumi yang ditinggalinya, tetapi juga memudahkan mereka untuk bermatematika menggunakan konteks di sekitarnya.</p>
 
 
-</section>
-
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Kembali ke atas</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Penggunaan Kembali</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-copyright"><h2 class="anchored quarto-appendix-heading">Hak Cipta</h2><div class="quarto-appendix-contents"><div>© 2024 Yosep Dwi Kristanto</div></div></section></div></main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Kembali ke atas</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Penggunaan Kembali</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-copyright"><h2 class="anchored quarto-appendix-heading">Hak Cipta</h2><div class="quarto-appendix-contents"><div>© 2024 Yosep Dwi Kristanto</div></div></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
     if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -1084,10 +1044,7 @@ Gambar&nbsp;2: Tren <code>anomali_suhu</code> setiap <code>tanggal</code>-nya ya
       }
     }
   });
-  </script>
-<input type="hidden" id="giscus-base-theme" value="light">
-<input type="hidden" id="giscus-alt-theme" value="dark">
-<script>
+  </script><input type="hidden" id="giscus-base-theme" value="light"><input type="hidden" id="giscus-alt-theme" value="dark"><script>
   function loadGiscus() {
     // Function to get the theme based on body class
     const getTheme = () => {
@@ -1118,8 +1075,7 @@ Gambar&nbsp;2: Tren <code>anomali_suhu</code> setiap <code>tanggal</code>-nya ya
   loadGiscus();
 </script>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
+<footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">
 <p>© 2025 Jelajah Statistika dan Ilmu Data</p>
 </div>   
@@ -1130,8 +1086,7 @@ Gambar&nbsp;2: Tren <code>anomali_suhu</code> setiap <code>tanggal</code>-nya ya
 <p>Blog ini dikembangkan dengan <a href="https://quarto.org/" class="external" target="_blank">Quarto</a>.</p>
 </div>
   </div>
-</footer>
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {
@@ -1163,8 +1118,6 @@ Gambar&nbsp;2: Tren <code>anomali_suhu</code> setiap <code>tanggal</code>-nya ya
   
 })();
           </script>
-
-
 
 
 </body></html>
