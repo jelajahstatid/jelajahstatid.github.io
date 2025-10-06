@@ -388,10 +388,42 @@ Gambar&nbsp;4: Perbandingan konsumsi per jenis pangan
 <li><p>Rata-rata konsumsi pangan Provinsi Kalimantan Tengah pada tahun 2018 di kategori <code>Pangan Hewani</code> dan <code>Gula</code> lebih besar dari provinsi-provinsi lainnya. Karena kedua variabel tersebut berkorelasi negatif dengan <code>Sayuran dan buah</code> (lihat <a href="#fig-aku-awal-2" class="quarto-xref">Gambar&nbsp;2 (b)</a>), rata-rata konsumsi <code>Sayuran dan buah</code> provinsi ini di tahun 2018 lebih rendah dibandingkan provinsi-prinvinsi lainnya.</p></li>
 <li><p>Rata-rata konsumsi pangan Provinsi Papua pada tahun 2023 di kategori <code>Umbi-umbian</code> lebih besar dari provinsi-provinsi lainnya. Berdasarkan <a href="#fig-aku-grup" class="quarto-xref">Gambar&nbsp;3</a>, hal ini juga terjadi untuk tahun-tahun 2018, 2019, 2021, dan 2024. Karena variabel tersebut berkorelasi negatif dengan <code>Padi-Padian</code> (lihat <a href="#fig-aku-awal-2" class="quarto-xref">Gambar&nbsp;2 (b)</a>), konsumsi <code>Padi-Padian</code> provinsi Papua cenderung lebih rendah dibandingkan provinsi-provinsi lainnya.</p></li>
 </ul>
+<p>Lebih lanjut, kita dapat melihat perubahan pola konsumsi pangan dari tahun ke tahun untuk provinsi tertentu. Misalnya, mari kita selidiki pola konsumsi pangan untuk Provinsi Kalimantan Timur. Perubahannya dapat kita lihat pada <a href="#fig-perubahan-kaltim" class="quarto-xref">Gambar&nbsp;5</a>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-perubahan-kaltim" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-perubahan-kaltim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/fig-perubahan-kaltim-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Gambar&nbsp;5: Perubahan konsumsi pangan pada Provinsi Kalimantan Timur dari tahun 2018 sampai 2024"><img src="index_files/figure-html/fig-perubahan-kaltim-1.png" class="img-fluid figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-perubahan-kaltim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Gambar&nbsp;5: Perubahan konsumsi pangan pada Provinsi Kalimantan Timur dari tahun 2018 sampai 2024
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><a href="#fig-perubahan-kaltim" class="quarto-xref">Gambar&nbsp;5</a> memperlihatkan bagaimana titik yang merepresentasikan Provinsi Kalimantan Timur pada bidang AKU bergerak dari Kuadran III, kemudian ke Kuadran IV (yang searah dengan <code>Minyak dan Lemak</code>) pada tahun 2023, dan berhenti di Kuadran I (yang berlawanan arah dengan <code>Padi-Padian</code>, lihat kembali <a href="#fig-aku-awal-2" class="quarto-xref">Gambar&nbsp;2 (b)</a>) pada tahun 2024. Dengan demikian, kita dapat menginterpretasi bahwa konsumsi pangan provinsi ini pada kategori <code>Minyak dan Lemak</code> bertambah mulai tahun 2023, tetapi konsumsi pada kategori <code>Padi-Padian</code> berkurang.</p>
+<p>Untuk mengkonfirmasi interpretasi ini, kita dapat membuat diagram batang konsumsi pangan per kategorinya untuk Provinsi Kalimantan Timur pada tahun 2019 (sebagai perwakilan lima tahun pertama yang tersedia di data), 2023, dan 2024. Perhatikan <a href="#fig-konsumsi-kaltim-kategori" class="quarto-xref">Gambar&nbsp;6</a>!</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-konsumsi-kaltim-kategori" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-konsumsi-kaltim-kategori-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/fig-konsumsi-kaltim-kategori-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9" title="Gambar&nbsp;6: Konsumsi pangan Provinsi Kalimantan Timur per kategorinya pada tahun 2019, 2023, dan 2024."><img src="index_files/figure-html/fig-konsumsi-kaltim-kategori-1.png" class="img-fluid figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-konsumsi-kaltim-kategori-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Gambar&nbsp;6: Konsumsi pangan Provinsi Kalimantan Timur per kategorinya pada tahun 2019, 2023, dan 2024.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><a href="#fig-konsumsi-kaltim-kategori" class="quarto-xref">Gambar&nbsp;6</a> menunjukkan secara jelas bahwa konsumsi penduduk Kalimantan Timur bertambah pada kategori <code>Minyak dan Lemak</code> tetapi berkurang pada kategori <code>Padi-Padian</code> mulai tahun 2023. Hal ini mengkonfirmasi interpretasi kita terhadap <a href="#fig-perubahan-kaltim" class="quarto-xref">Gambar&nbsp;5</a>.</p>
 </section>
 <section id="sec-catatan-akhir" class="level2">
 <h2 class="anchored" data-anchor-id="sec-catatan-akhir">Catatan Akhir</h2>
-<p>Kita telah mengenal metode statistika multivariat yang ampuh untuk mereduksi dimensi data, yaitu AKU. Hal ini kita lakukan pada <a href="#sec-sekilas-tentang-analisis-komponen-utama" class="quarto-xref">Bagian&nbsp;1</a>. Metode ini kita gunakan untuk mereduksi dimensi data rata-rata konsumsi penduduk Indonesia, yang awalnya memiliki delapan variabel kuantitatif menjadi dua komponen utama saja. Dengan hanya menggunakan dua komponen utama tersebut, kita tetap masih dapat melihat struktur titik-titik data dan variabel-variabelnya. Misalnya dalam <a href="#sec-konsumsi-pangan-penduduk-indonesia" class="quarto-xref">Bagian&nbsp;2</a>, kita menemukan hal-hal menarik tentang titik-titik pencilan dalam data, khususnya untuk Provinsi Kalimantan Tengah pada tahun 2018 dan Provinsi Papua pada Tahun 2023.</p>
+<p>Kita telah mengenal metode statistika multivariat yang ampuh untuk mereduksi dimensi data, yaitu AKU. Hal ini kita lakukan pada <a href="#sec-sekilas-tentang-analisis-komponen-utama" class="quarto-xref">Bagian&nbsp;1</a>. Metode ini kita gunakan untuk mereduksi dimensi data rata-rata konsumsi penduduk Indonesia, yang awalnya memiliki delapan variabel kuantitatif menjadi dua komponen utama saja. Dengan hanya menggunakan dua komponen utama tersebut, kita tetap masih dapat melihat struktur titik-titik data dan variabel-variabelnya. Misalnya dalam <a href="#sec-konsumsi-pangan-penduduk-indonesia" class="quarto-xref">Bagian&nbsp;2</a>, kita menemukan hal-hal menarik tentang titik-titik pencilan dalam data, khususnya untuk Provinsi Kalimantan Tengah pada tahun 2018 dan Provinsi Papua pada Tahun 2023. Selain itu, dengan hanya dua komponen utama saja, kita dapat melihat perubahan konsumsi pangan Provinsi Kalimantan Timur dari tahun ke tahun, seperti yang ditunjukkan pada <a href="#fig-perubahan-kaltim" class="quarto-xref">Gambar&nbsp;5</a> dan <a href="#fig-konsumsi-kaltim-kategori" class="quarto-xref">Gambar&nbsp;6</a>.</p>
 
 
 </section>

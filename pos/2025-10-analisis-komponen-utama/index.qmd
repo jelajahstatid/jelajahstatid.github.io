@@ -383,6 +383,102 @@ p5
 
 -   Rata-rata konsumsi pangan Provinsi Papua pada tahun 2023 di kategori `Umbi-umbian` lebih besar dari provinsi-provinsi lainnya. Berdasarkan @fig-aku-grup, hal ini juga terjadi untuk tahun-tahun 2018, 2019, 2021, dan 2024. Karena variabel tersebut berkorelasi negatif dengan `Padi-Padian` (lihat @fig-aku-awal-2), konsumsi `Padi-Padian` provinsi Papua cenderung lebih rendah dibandingkan provinsi-provinsi lainnya.
 
+Lebih lanjut, kita dapat melihat perubahan pola konsumsi pangan dari tahun ke tahun untuk provinsi tertentu. Misalnya, mari kita selidiki pola konsumsi pangan untuk Provinsi Kalimantan Timur. Perubahannya dapat kita lihat pada @fig-perubahan-kaltim.
+
+```{r}
+#| echo: false
+#| label: fig-perubahan-kaltim
+#| fig-cap: "Perubahan konsumsi pangan pada Provinsi Kalimantan Timur dari tahun 2018 sampai 2024"
+#| fig-asp: 0.5625
+
+# Mengidentifikasi provinsi yang perubahannya besar
+dat_aku_jarak <- dat_aku |> 
+  group_by(prov) |> 
+  arrange(as.numeric(tahun), .by_group = TRUE) |> 
+  mutate(
+    jarak = sqrt((PC1 - lag(PC1, default = PC1[1]))^2 + (PC2 - lag(PC2, default = PC2[1]))^2)
+  ) |> 
+  ungroup()
+# dat_aku_jarak |>
+#   group_by(prov) |>
+#   summarise(rrt_jarak = mean(jarak), .groups = "drop") |>
+#   arrange(-rrt_jarak)
+
+# Visualisasi satu provinsi: Kalimantan Timur
+dat_aku |> 
+  mutate(tahun = as.numeric(tahun)) |> 
+  filter(
+    prov == "Kalimantan Timur"
+  ) |> 
+  ggplot(aes(x = PC1, y = PC2)) + 
+  geom_vline(
+    xintercept = 0,
+    linetype = "dashed"
+  ) + 
+  geom_hline(
+    yintercept = 0,
+    linetype = "dashed"
+  ) + 
+  geom_path(
+    col = "#4DBBD5",
+    linetype = "dotted",
+    linewidth = 1,
+    arrow = arrow(
+      length = unit(0.4, "cm"),
+      type = "closed"
+    )
+  ) + 
+  geom_point(
+    col = "#E64B35",
+    size = 1.5,
+    shape = 1,
+    stroke = 2
+  ) + 
+  geom_text_repel(aes(label = tahun)) + 
+  theme_minimal() + 
+  labs(
+    x = paste0("KU1 (", pst_pc1, "%)"),
+    y = paste0("KU2 (", pst_pc2, "%)")
+  )
+
+```
+
+@fig-perubahan-kaltim memperlihatkan bagaimana titik yang merepresentasikan Provinsi Kalimantan Timur pada bidang AKU bergerak dari Kuadran III, kemudian ke Kuadran IV (yang searah dengan `Minyak dan Lemak`) pada tahun 2023, dan berhenti di Kuadran I (yang berlawanan arah dengan `Padi-Padian`, lihat kembali @fig-aku-awal-2) pada tahun 2024. Dengan demikian, kita dapat menginterpretasi bahwa konsumsi pangan provinsi ini pada kategori `Minyak dan Lemak` bertambah mulai tahun 2023, tetapi konsumsi pada kategori `Padi-Padian` berkurang.
+
+Untuk mengkonfirmasi interpretasi ini, kita dapat membuat diagram batang konsumsi pangan per kategorinya untuk Provinsi Kalimantan Timur pada tahun 2019 (sebagai perwakilan lima tahun pertama yang tersedia di data), 2023, dan 2024. Perhatikan @fig-konsumsi-kaltim-kategori!
+
+```{r}
+#| echo: false
+#| label: fig-konsumsi-kaltim-kategori
+#| fig-cap: "Konsumsi pangan Provinsi Kalimantan Timur per kategorinya pada tahun 2019, 2023, dan 2024."
+#| fig-asp: 0.5625
+
+dat_pangan |> 
+  filter(
+    prov == "Kalimantan Timur",
+    tahun %in% c("2019", "2023", "2024")
+  ) |> 
+  ggplot(aes(x = konsumsi, y = bahan_pangan)) + 
+  geom_col(aes(fill = konsumsi)) + 
+  scale_y_discrete(labels = label_wrap(10)) + 
+  scale_fill_gradient(
+    low = "#4DBBD5",
+    high = "#3C5488"
+  ) + 
+  facet_wrap(~tahun, ncol = 3) + 
+  theme_minimal() + 
+  theme(
+    legend.position = "none",
+    axis.title.y = element_blank()
+  ) + 
+  labs(
+    x = "Konsumsi pangan (kg/kapita/tahun)",
+    caption = "Data: Badan Pangan Nasional"
+  )
+```
+
+@fig-konsumsi-kaltim-kategori menunjukkan secara jelas bahwa konsumsi penduduk Kalimantan Timur bertambah pada kategori `Minyak dan Lemak` tetapi berkurang pada kategori `Padi-Padian` mulai tahun 2023. Hal ini mengkonfirmasi interpretasi kita terhadap @fig-perubahan-kaltim.
+
 ## Catatan Akhir {#sec-catatan-akhir}
 
-Kita telah mengenal metode statistika multivariat yang ampuh untuk mereduksi dimensi data, yaitu AKU. Hal ini kita lakukan pada @sec-sekilas-tentang-analisis-komponen-utama. Metode ini kita gunakan untuk mereduksi dimensi data rata-rata konsumsi penduduk Indonesia, yang awalnya memiliki delapan variabel kuantitatif menjadi dua komponen utama saja. Dengan hanya menggunakan dua komponen utama tersebut, kita tetap masih dapat melihat struktur titik-titik data dan variabel-variabelnya. Misalnya dalam @sec-konsumsi-pangan-penduduk-indonesia, kita menemukan hal-hal menarik tentang titik-titik pencilan dalam data, khususnya untuk Provinsi Kalimantan Tengah pada tahun 2018 dan Provinsi Papua pada Tahun 2023.
+Kita telah mengenal metode statistika multivariat yang ampuh untuk mereduksi dimensi data, yaitu AKU. Hal ini kita lakukan pada @sec-sekilas-tentang-analisis-komponen-utama. Metode ini kita gunakan untuk mereduksi dimensi data rata-rata konsumsi penduduk Indonesia, yang awalnya memiliki delapan variabel kuantitatif menjadi dua komponen utama saja. Dengan hanya menggunakan dua komponen utama tersebut, kita tetap masih dapat melihat struktur titik-titik data dan variabel-variabelnya. Misalnya dalam @sec-konsumsi-pangan-penduduk-indonesia, kita menemukan hal-hal menarik tentang titik-titik pencilan dalam data, khususnya untuk Provinsi Kalimantan Tengah pada tahun 2018 dan Provinsi Papua pada Tahun 2023. Selain itu, dengan hanya dua komponen utama saja, kita dapat melihat perubahan konsumsi pangan Provinsi Kalimantan Timur dari tahun ke tahun, seperti yang ditunjukkan pada @fig-perubahan-kaltim dan @fig-konsumsi-kaltim-kategori.
