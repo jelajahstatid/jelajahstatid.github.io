@@ -1,0 +1,173 @@
+---
+title: "Simulasi Monte Carlo"
+subtitle: "Memvisualisasikan Masalah Jarum Buffon"
+description: "Bagaimana menggunakan simulasi Monte Carlo untuk menyelesaikan masalah jarum Buffon? Artikel ini akan mendemonstrasikan bagaimana memvisualisasikan dan menganimasikan simulasi Monte Carlo untuk masalah paling awal yang diajukan dan diselesaikan di Peluang Geometris, yaitu masalah jarum Buffon."
+draft: true
+author:
+  - name: Yosep Dwi Kristanto
+    url: https://people.usd.ac.id/~ydkristanto/
+    affiliation: Pendidikan Matematika, Universitas Sanata Dharma, Yogyakarta
+    affiliation-url: https://www.usd.ac.id/s1pmat
+    orcid: 0000-0003-1446-0422
+date: 2025-10-31
+categories:
+  - simulasi
+  - Peluang
+  - Geometri
+image: "sampul-masalah-jarum-buffon.png"
+image-alt: "Simulasi masalah jarum Buffon untuk memvisualisasikan peluang jarum melintasi garis"
+keywords: 
+  - eksperimen
+  - Hukum Bilangan Besar
+  - masalah jarum Buffon
+  - simulasi Monte Carlo
+lightbox: true
+copyright: "© 2025 Yosep Dwi Kristanto"
+license: "CC BY"
+code-annotations: below
+editor_options: 
+  chunk_output_type: console
+---
+
+Bayangkan kamu bermain sebuah gim. Dalam gim tersebut, kamu memiliki selembar kertas bergaris dan lidi. Panjang lidi tersebut sama dengan jarak antargaris pada kertas itu. Jika lidi tersebut dilemparkan secara acak ke kertas tersebut, kamu perlu menebak apakah lidi tersebut mengenai garis atau tidak. Jika tebakanmu benar, kamu menang. Tebakan mana yang kamu pilih?
+
+Gim itu adalah bentuk adaptasi dari sebuah masalah paling awal yang diajukan dan diselesaikan di [Peluang Geometris](https://doi.org/10.1007/s004070100038 "Nineteenth-Century Developments in Geometric Probability: J. J. Sylvester, M. W. Crofton, J.-É. Barbier, and J. Bertrand"){.external target="_blank"}, masalah jarum Buffon. Masalah ini menarik karena melibatkan peluang dan geometri. Dengan demikian, kita akan memvisualisasikan masalah ini secara geometris untuk dapat melihat berapa peluangnya. Untuk melakukannya, kita menggunakan simulasi Monte Carlo.
+
+## Simulasi Monte Carlo {#sec-simulasi-monte-carlo}
+
+Simulasi Monte Carlo, atau sering dikenal dengan metode Monte Carlo, merupakan sebuah teknik matematis yang digunakan untuk memperkirakan kemungkinan luaran dari kejadian yang tak pasti. Dengan demikian, kita dapat menggunakan simulasi ini terhadap masalah jarum Buffon. Tujuannya beberapa hal, yaitu untuk:
+
+-   membandingkan banyaknya jarum yang melintasi garis dan tidak dalam sebuah eksperimen;
+
+-   mengilustrasikan [Hukum Bilangan Besar](https://people.usd.ac.id/~ydkristanto/app/hukum-bil-besar/ "Hukum Bilangan Besar"){.external target="_blank"} terhadap peluang empiris kejadian jarum yang melintasi garis;
+
+-   memperkirakan nilai pi ($\pi$).
+
+Selanjutnya, mari kita melakukan tujuan yang pertama pada bagian berikutnya.
+
+## Simulasi Masalah Jarum Buffon {#sec-simulasi-masalah-jarum-buffon}
+
+Kita menggunakan [pemrograman R](https://www.R-project.org/ "R Foundation for Statistical Computing"){.external target="_blank"} untuk mensimulasikan masalah jarum Buffon. Untuk melakukannya, kita memanfaatkan tiga paket, yaitu [{tidyverse}](https://tidyverse.org/ "R packages for Data Science"){.external target="_blank"}, [{gganimate}](https://CRAN.R-project.org/package=gganimate "gganimate: A Grammar of Animated Graphics"){.external target="_blank"}, dan [{magick}](https://CRAN.R-project.org/package=magick "magick: Advanced Graphics and Image-Processing in R"){.external target="_blank"}. Mari terlebih dahulu kita memanggil ketiga paket tersebut.
+
+```{r}
+#| warning: false
+#| message: false
+#| code-fold: false
+
+library(tidyverse) # <1>
+library(gganimate) # <2>
+library(magick)    # <3>
+
+```
+
+1.  Kita menggunakan {tidyverse} untuk mempersiapkan data dalam mensimulasikan masalah jarum Buffon.
+2.  Paket {gganimate} kita gunakan untuk menganimasikan simulasi masalah jarum Buffon.
+3.  Kita memanfaatkan {magick} untuk menggabungkan gambar-gambar animasi ke dalam sebuah gambar animasi yang tersinkron.
+
+### Deskripsi Masalah {#sec-deskripsi-masalah}
+
+Masalah jarum Buffon kurang lebih deskripsinya adalah sebagai berikut.
+
+> Perhatikan selembar kertas bergaris-garis sejajar yang jarak antargaris berdekatannya $d$ satuan dan sebuah jarum yang panjangnya $l$, dengan $l = d$. Jika kita melemparkan jarum tersebut pada kertas itu secara acak, berapakah peluang jarum tersebut memotong garis pada kertas itu?
+
+Tanpa mengurangi generalisasi, kita dapat mengasumsikan bahwa garis-garis pada kertas itu adalah garis-garis yang horizontal dan jarak antargaris berdekatannya $d=1$ satuan. Dengan demikian, panjang jarumnya $l = d = 1$. Asumsi seperti ini akan memudahkan kita untuk mensimulasikan masalah tersebut.
+
+Terdapat dua elemen penting dalam memvisualisasikan masalah jarum Buffon tersebut, yaitu kertas bergaris dan jarumnya. Kedua elemen tersebut dapat kita visualisasikan dengan {ggplot2}, yang merupakan bagian dari {tidyverse}. Selanjutnya, kita bahas kedua elemen tersebut pada @sec-selembar-kertas dan @sec-sebuah-jarum.
+
+### Selembar Kertas {#sec-selembar-kertas}
+
+Kita memilih kertas yang berukuran 10 × 10. Karena kertas ini bergaris-garis horizontal dan jarak antargaris berdekatannya 1 satuan, kita dapat memvisualisasikannya dengan menggunakan kode pada @lst-kertas-bergaris. Hasilnya ditunjukkan pada @fig-kertas-bergaris.
+
+```{r}
+#| code-fold: false
+#| lst-label: lst-kertas-bergaris
+#| lst-cap: "Kode untuk membuat kertas bergaris"
+#| label: fig-kertas-bergaris
+#| fig-cap: "Kertas bergaris horizontal berukuran 10 × 10 yang jarak antargarisnya 1 satuan"
+
+kertas <- ggplot() + 
+  geom_hline(
+    yintercept = 0:10,
+    color = "gray80",
+    linewidth = 0.5
+  ) + 
+  coord_equal(
+    xlim = c(0, 10),
+    ylim = c(0, 10)
+  ) + 
+  scale_x_continuous(
+    breaks = 0:10
+  ) + 
+  scale_y_continuous(
+    breaks = 0:10
+  ) + 
+  theme_bw() + 
+  theme(
+    axis.title = element_blank(),
+    panel.grid = element_blank(),
+    plot.margin = unit(c(.5, .5, .5, .5), "cm")
+  )
+
+kertas
+
+```
+
+### Sebuah Jarum {#sec-sebuah-jarum}
+
+Bagaimana kita dapat membuat jarumnya? Kita dapat memvisualisasikan jarum dalam masalah ini dengan menggunakan ruas garis yang ujung-ujungnya adalah titik-titik $\left( x_{1}, y_{1} \right)$ dan $\left( x_{2}, y_{2} \right)$. Karena panjang ruas garis tersebut adalah 1 satuan, kita dapat menggunakan @eq-koord-titik-kedua untuk menyatakan koordinat titik kedua terhadap titik pertama.
+
+$$
+\begin{matrix}
+x_{2}=x_{1}+1\cdot\cos\left(\theta\right)\\
+y_{2}=y_{1}+1\cdot\sin\left(\theta\right)
+\end{matrix}
+$$ {#eq-koord-titik-kedua}
+
+Berdasarkan @eq-koord-titik-kedua, kita memerlukan tiga nilai, yaitu $x_{1}$, $y_{1}$, dan $\theta$, untuk membuat sebuah jarum pada kertas. Sebagai contoh, untuk $x_{1}=4$, $y_{1}=\text{5,5}$, dan $\theta=\frac{\pi}{3}$, jarumnya disajikan pada @fig-contoh-jarum.
+
+```{r}
+#| echo: false
+#| label: fig-contoh-jarum
+#| fig-cap: 'Sebuah jarum dengan $x_{1}=4$, $y_{1}=\text{5,5}$, dan $\theta=\frac{\pi}{3}$'
+
+contoh_jarum <- ggplot() + 
+  geom_hline(
+    yintercept = 0:10,
+    color = "gray80",
+    linewidth = 0.5
+  ) + 
+  annotate(
+    geom = "segment",
+    x = 4, xend = 4 + 1 * cos(pi / 3),
+    y = 5.5, yend = 5.5 + 1 * sin(pi / 3),
+    color = "#4269d0",
+    linewidth = 1.5
+  ) + 
+  coord_equal(
+    xlim = c(0, 10),
+    ylim = c(0, 10)
+  ) + 
+  scale_x_continuous(
+    breaks = 0:10
+  ) + 
+  scale_y_continuous(
+    breaks = 0:10
+  ) + 
+  theme_bw() + 
+  theme(
+    axis.title = element_blank(),
+    panel.grid = element_blank(),
+    plot.margin = unit(c(.5, .5, .5, .5), "cm")
+  )
+
+contoh_jarum
+
+```
+
+@fig-contoh-jarum memperlihatkan secara jelas bahwa jarumnya memotong sebuah garis. Namun bagaimana kita dapat mengetahui apakah sembarang jarum yang diketahui $x_{1}$, $y_{1}$, dan $\theta$-nya memotong garis atau tidak? Untuk menjawab pertanyaan ini, perhatikan @fig-jarum-dan-garis.
+
+![Jarum-jarum yang memotong garis dan yang tidak](aset/jarum-dan-garis-01.png){#fig-jarum-dan-garis}
+
+### Eksperimen Pelemparan Jarum {#sec-eksperimen-pelemparan-jarum}
+
+Sampai di sini kita telah dapat membuat selembar kertas dan sebuah jarum. Sekarang kita akan memvisualisasikan sebuah eksperimen pelemparan jarum sebanyak $n$ kali. Misalnya, kita memilih $n = 100$ kali. Setiap pelemparan tersebut kita perlu menyediakan tiga nilai, yaitu $x_{1}$, $y_{1}$, dan $\theta$, secara acak.
