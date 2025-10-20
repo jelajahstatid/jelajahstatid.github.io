@@ -114,7 +114,11 @@ kertas
 
 ### Sebuah Jarum {#sec-sebuah-jarum}
 
-Bagaimana kita dapat membuat jarumnya? Kita dapat memvisualisasikan jarum dalam masalah ini dengan menggunakan ruas garis yang ujung-ujungnya adalah titik-titik $\left( x_{1}, y_{1} \right)$ dan $\left( x_{2}, y_{2} \right)$. Karena panjang ruas garis tersebut adalah 1 satuan, kita dapat menggunakan @eq-koord-titik-kedua untuk menyatakan koordinat titik kedua terhadap titik pertama.
+Bagaimana kita dapat membuat jarumnya? Kita dapat memvisualisasikan jarum dalam masalah ini dengan menggunakan ruas garis yang ujung-ujungnya adalah titik-titik $\left( x_{1}, y_{1} \right)$ dan $\left( x_{2}, y_{2} \right)$, perhatikan @fig-sebuah-jarum.
+
+![Sebuah jarum yang direpresentasikan dengan sebuah ruas garis](aset/sebuah-jarum-01.png){#fig-sebuah-jarum}
+
+Koordinat kedua ujung ruas garis tersebut saling berkaitan karena jarak keduanya haruslah $l=1$ satuan. Jika $\theta$ adalah besar sebuah sudut yang dibentuk oleh garis horizontal dan ruas garis tersebut, koordinat $\left( x_{2}, y_{2} \right)$ dapat ditentukan dengan menggunakan @eq-koord-titik-kedua.
 
 $$
 \begin{matrix}
@@ -130,6 +134,10 @@ Berdasarkan @eq-koord-titik-kedua, kita memerlukan tiga nilai, yaitu $x_{1}$, $y
 #| label: fig-contoh-jarum
 #| fig-cap: 'Sebuah jarum dengan $x_{1}=4$, $y_{1}=\text{5,5}$, dan $\theta=\frac{\pi}{3}$'
 
+x_1 <- 4
+y_1 <- 5.5
+t_heta <- pi / 3
+
 contoh_jarum <- ggplot() + 
   geom_hline(
     yintercept = 0:10,
@@ -138,8 +146,8 @@ contoh_jarum <- ggplot() +
   ) + 
   annotate(
     geom = "segment",
-    x = 4, xend = 4 + 1 * cos(pi / 3),
-    y = 5.5, yend = 5.5 + 1 * sin(pi / 3),
+    x = x_1, xend = x_1 + 1 * cos(t_heta),
+    y = y_1, yend = y_1 + 1 * sin(t_heta),
     color = "#4269d0",
     linewidth = 1.5
   ) + 
@@ -168,7 +176,41 @@ contoh_jarum
 
 ![Jarum-jarum yang memotong garis dan yang tidak](aset/jarum-dan-garis-01.png){#fig-jarum-dan-garis}
 
-Berdasarkan @fig-jarum-dan-garis, kita dapat melihat bahwa jarum yang memotong garis nilai $\frac{1}{2}l\sin\left(\theta\right)$ lebih dari jarak vertikal titik tengahnya dengan garis horizontal terdekat.
+Berdasarkan @fig-jarum-dan-garis, kita dapat melihat bahwa jarum yang memotong garis pada kertas nilai $h$-nya lebih besar dari jarak vertikal antara titik tengah jarum tersebut dan garis terdekatnya, yaitu $d_{h}$. Padahal, $h=\frac{1}{2}\cdot\sin\left(\theta\right)$. Perhatikan juga bahwa garis-garis pada kertas yang kita buat pada @lst-kertas-bergaris memiliki koordinat-$y$ yang merupakan bilangan bulat. Dengan demikian, kita mendapatkan $d_{h}=\text{min}\left(\left | y_{t}-\left \lfloor y_{t}\right \rfloor\right |,\left | y_{t}-\left \lceil y_{t}\right \rceil\right |\right)$ dengan $y_{t}$ adalah koordinat-$y$ titik tengah jarum tersebut. Dengan demikian, sebuah jarum yang memotong garis memenuhi kondisi berikut.
+
+$$
+\frac{1}{2}\sin\left(\theta\right)\geq \text{min}\left(\left | y_{t}-\left \lfloor y_{t}\right \rfloor\right |,\left | y_{t}-\left \lceil y_{t}\right \rceil\right |\right)
+$$
+
+Kita gunakan kondisi tersebut terhadap jarum pada @fig-contoh-jarum untuk menentukan apakah jarum tersebut memotong garis atau tidak (walaupun faktanya kita telah mengetahuinya).
+
+```{r}
+#| code-fold: false
+#| lst-label: lst-uji-kondisi
+#| lst-cap: 'Menguji kondisi apakah jarumnya memotong garis'
+
+y_t <- (y_1 + (y_1 + sin(t_heta))) / 2 # <1>
+h <- 1 / 2 * sin(t_heta)               # <2>
+d_h <- min(                           # <3>
+  abs(y_t - floor(y_t)),              # <3>
+  abs(y_t - ceiling(y_t))             # <3>
+)
+
+potong_garis <- if_else(                # <4>
+  h >= d_h, "Memotong", "Tak memotong"  # <4>
+)                                       # <4>
+
+potong_garis                            # <5>
+
+```
+
+1.  Menghitung koordinat-$y$ titik tengah jarum, dan nilainya dinamai dengan `y_t`.
+2.  Menghitung nilai $h$.
+3.  Menghitung nilai $d_{h}$ dan hasilnya dinamai dengan `d_h`.
+4.  Mendefinisikan kondisi yang telah dibahas sebelumnya, dan hasilnya dinamai dengan `potong_garis`.
+5.  Mencetak nilai `potong_garis`.
+
+Kita telah berhasil menggunakan kondisi di atas untuk menentukan apakah jarum pada @fig-contoh-jarum memotong garis atau tidak. Hasilnya sesuai dengan pengamatan kita tentu saja.
 
 ### Eksperimen Pelemparan Jarum {#sec-eksperimen-pelemparan-jarum}
 
@@ -190,7 +232,7 @@ palet_warna <- c(      # <2>
   "#9c6b4e","#9498a0"  # <2>
 )                     # <2>
 
-data_eskperimen <- tibble(
+data_eksperimen <- tibble(
   x1 = runif(100, min = 1, max = 9),        # <3>
   y1 = runif(100, min = 1, max = 9),        # <3>
   theta = runif(100, min = 0, max = 2 * pi) # <3>
@@ -202,7 +244,7 @@ data_eskperimen <- tibble(
     warna = palet_warna[(percobaan %% 10) + 1] # <4>
   )
 
-head(data_eskperimen)
+head(data_eksperimen)
 
 ```
 
@@ -220,7 +262,7 @@ Kita telah memiliki `data_eksperimen`. Agar kita dapat melihat hasil eksperimen 
 #| label: fig-vis-hasil-eksperimen
 #| fig-cap: 'Hasil pelemparan secara acak 100 jarum pada selembar kertas'
 
-hasil_eksperimen <- data_eskperimen |> 
+hasil_eksperimen <- data_eksperimen |> 
   ggplot() + 
   geom_hline(
     yintercept = 0:10,
@@ -255,5 +297,72 @@ hasil_eksperimen <- data_eskperimen |>
   )
 
 hasil_eksperimen
+
+```
+
+Sekarang kita akan menentukan apakah setiap percobaan dalam `data_eksperimen` menghasilkan jarum yang memotong garis atau tidak. Untuk melakukannya, kita menerapkan ide pada @lst-uji-kondisi untuk membuat variabel baru, yaitu `potong`, dalam data tersebut. Perhatikan @lst-data-eksperimen-lengkap!
+
+```{r}
+#| code-fold: false
+#| lst-label: lst-data-eksperimen-lengkap
+#| lst-cap: 'Menambahkan informasi apakah jarumnya memotong garis atau tidak'
+
+data_eksperimen <- data_eksperimen |> 
+  mutate(
+    yt = (y1 + y2) / 2,
+    theta_l = abs(theta %% pi - pi/2),
+    potong = if_else(
+      1 / 2 * sin(theta_l) >= pmin(abs(yt - floor(yt)), abs(yt - ceiling(yt))),
+      "Memotong",
+      "Tak memotong"
+    )
+  )
+
+head(data_eksperimen)
+
+```
+
+Untuk mengetahui apakah lebih banyak jarum yang memotong garis ataukah yang tidak, kita dapat memvisualisasikan nilai-nilai dalam variabel `potong` dengan menggunakan diagram batang. Perhatikan @fig-diag-batang-potong!
+
+```{r}
+#| label: fig-diag-batang-potong
+#| fig-cap: 'Frekuensi jarum yang memotong atau tak memotong garis'
+#| fig-asp: 0.75
+
+data_eksperimen |> 
+  ggplot(aes(x = potong, fill = potong)) + 
+  geom_bar() + 
+  scale_fill_manual(
+    values = c(
+      "Memotong" = "#4269d0",
+      "Tak memotong" = "#ff725c"
+    )
+  ) + 
+  theme_minimal() + 
+  theme(
+    legend.position = "none",
+    axis.title.x = element_blank()
+  ) + 
+  labs(
+    y = "Frekuensi"
+  )
+
+```
+
+Berdasarkan eksperimen kita tersebut, berapakah peluang empiris (frekuensi relatif) jarum yang memotong garis? Kita dapat menjawabnya dengan kode pada @lst-peluang-empitis.
+
+```{r}
+#| lst-label: lst-peluang-empiris
+#| lst-cap: 'Menentukan peluang empiris'
+
+ringkasan_eksperimen <- data_eksperimen |> 
+  group_by(potong) |> 
+  summarise(
+    n = n(),
+    .groups = "drop"
+  )
+
+p_memotong <- ringkasan_eksperimen$n[1] / sum(ringkasan_eksperimen$n)
+print(p_memotong)
 
 ```
