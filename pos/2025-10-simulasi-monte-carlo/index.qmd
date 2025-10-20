@@ -360,11 +360,11 @@ data_eksperimen |>
 
 ```
 
-Berdasarkan eksperimen kita tersebut, berapakah peluang empiris (frekuensi relatif) jarum yang memotong garis? Kita dapat menjawabnya dengan kode pada @lst-peluang-empitis.
+Berdasarkan eksperimen kita tersebut, berapakah peluang empiris (frekuensi relatif) jarum yang memotong garis? Kita dapat menjawabnya dengan kode pada @lst-nilai-peluang-empiris.
 
 ```{r}
 #| code-fold: false
-#| lst-label: lst-peluang-empiris
+#| lst-label: lst-nilai-peluang-empiris
 #| lst-cap: 'Menentukan peluang empiris'
 
 ringkasan_eksperimen <- data_eksperimen |> 
@@ -452,4 +452,65 @@ data_eksperimen |>
     x = expression(theta[l]),
     y = expression(d[h])
   )
+```
+
+## Membuat Simulasi Menjadi Lebih Hidup {#sec-membuat-simulasi-menjadi-lebih-hidup}
+
+Pada @sec-simulasi-masalah-jarum-buffon kita telah memahami masalah jarum Buffon dengan simulasi Monte Carlo dan memvisualisasikan hasil eksperimennya. Kita dapat menjadikan simulasi masalah tersebut menjadi lebih hidup dengan menggunakan animasi. Teknik penggunaan animasi ini juga telah kita bahas pada [pos sebelumnya](pos/2024-08-animasi-diagram-statistik/index.qmd "Membuat Diagram Lebih Hidup dengan Animasi"). Selain itu, kita juga akan menambah banyak percobaannya menjadi $n=1000$ kali.
+
+Pertama yang kita lakukan adalah mempersiapkan datanya. Untuk melakukannya, kita menggunakan alur kerja yang serupa dengan yang telah kita lakukan dari @lst-data-eksperimen, @lst-data-eksperimen-lengkap, sampai @lst-peluang-empiris. Kita rangkum alur kerja tersebut untuk membuat fungsi `eksperimen_buffon()` pada @lst-fungsi-data-eksperimen.
+
+```{r}
+#| code-fold: false
+#| lst-label: lst-fungsi-data-eksperimen
+#| lst-cap: 'Membuat data eksperimen pelemparan jarum secara acak'
+
+eksperimen_buffon <- function(n = 100) {
+  set.seed(1234)
+  palet_warna <- c(
+  "#4269d0","#efb118",
+  "#ff725c","#6cc5b0",
+  "#3ca951","#ff8ab7",
+  "#a463f2","#97bbf5",
+  "#9c6b4e","#9498a0"
+)   
+  tibble(
+    x1 = runif(n, 1, 9),
+    y1 = runif(n, 1, 9),
+    theta = runif(n, 0, 2 * pi),
+    percobaan = 1:n
+  ) |> 
+    mutate(
+      x2 = x1 + 1 * cos(theta),
+      y2 = y1 + 1 * sin(theta),
+      warna = palet_warna[(percobaan %% length(palet_warna)) + 1],
+      yt = (y1 + y2) / 2,
+      theta_l = abs(theta %% pi - pi/2),
+      h = 1 / 2 * sin(theta_l),
+      d_h = pmin(
+        abs(yt - floor(yt)),
+        abs(yt - ceiling(yt))
+      ),
+      potong = if_else(
+        h >= d_h, "Memotong", "Tak memotong"
+      ),
+      potong_numerik = if_else(
+      potong == "Memotong", 1, 0
+    ),
+    peluang_empiris = cumsum(potong_numerik) / percobaan
+    )
+}
+
+```
+
+Fungsi `eksperimen_buffon()` dapat kita gunakan untuk membuat data hasil eksperimen masalah jarum Buffon dengan input `n`, yaitu banyaknya percobaan dalam eksperimen tersebut. Dengan demikian, jika kita ingin membuat `data_eksperimen` yang memuat $n=1000$ percobaan, kita manfaatkan fungsi tersebut seperti pada @lst-seribu-percobaan.
+
+```{r}
+#| code-fold: false
+#| lst-label: lst-seribu-percobaan
+#| lst-cap: 'Membuat `data_eksperimen` dengan 1000 percobaan'
+
+data_eksperimen <- eksperimen_buffon(1000)
+glimpse(data_eksperimen)
+
 ```

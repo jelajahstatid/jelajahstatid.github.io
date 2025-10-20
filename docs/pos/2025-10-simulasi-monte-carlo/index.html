@@ -457,6 +457,7 @@ window.Quarto = {
   <li><a href="#sec-eksperimen-pelemparan-jarum" id="toc-sec-eksperimen-pelemparan-jarum" class="nav-link" data-scroll-target="#sec-eksperimen-pelemparan-jarum">Eksperimen Pelemparan Jarum</a></li>
   <li><a href="#sec-visualisasi-hasil-eksperimen" id="toc-sec-visualisasi-hasil-eksperimen" class="nav-link" data-scroll-target="#sec-visualisasi-hasil-eksperimen">Visualisasi Hasil Eksperimen</a></li>
   </ul></li>
+  <li><a href="#sec-membuat-simulasi-menjadi-lebih-hidup" id="toc-sec-membuat-simulasi-menjadi-lebih-hidup" class="nav-link" data-scroll-target="#sec-membuat-simulasi-menjadi-lebih-hidup">Membuat Simulasi Menjadi Lebih Hidup</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/jelajahstatid/jelajahstatid.github.io/edit/main/pos/2025-10-simulasi-monte-carlo/index.qmd" class="toc-action"><i class="bi bi-github"></i>Sunting laman ini</a></li><li><a href="https://github.com/jelajahstatid/jelajahstatid.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Laporkan sebuah isu</a></li></ul></div></nav>
 </nav>
@@ -883,14 +884,14 @@ Gambar&nbsp;6: Frekuensi jarum yang memotong atau tak memotong garis
 </div>
 </div>
 </div>
-<p>Berdasarkan eksperimen kita tersebut, berapakah peluang empiris (frekuensi relatif) jarum yang memotong garis? Kita dapat menjawabnya dengan kode pada <strong>?@lst-peluang-empitis</strong>.</p>
+<p>Berdasarkan eksperimen kita tersebut, berapakah peluang empiris (frekuensi relatif) jarum yang memotong garis? Kita dapat menjawabnya dengan kode pada <a href="#lst-nilai-peluang-empiris" class="quarto-xref">Daftar&nbsp;6</a>.</p>
 <div class="cell">
-<div id="lst-peluang-empiris" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-fold="false">
+<div id="lst-nilai-peluang-empiris" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-fold="false">
 <figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-peluang-empiris-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-nilai-peluang-empiris-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Daftar&nbsp;6: Menentukan peluang empiris
 </figcaption>
-<div aria-describedby="lst-peluang-empiris-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="lst-nilai-peluang-empiris-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ringkasan_eksperimen <span class="ot">&lt;-</span> data_eksperimen <span class="sc">|&gt;</span> </span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(potong) <span class="sc">|&gt;</span> </span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
@@ -1021,9 +1022,92 @@ Gambar&nbsp;8: Hasil setiap percobaan dalam eksperimen
 </div>
 </div>
 </div>
-
-
 </section>
+</section>
+<section id="sec-membuat-simulasi-menjadi-lebih-hidup" class="level2">
+<h2 class="anchored" data-anchor-id="sec-membuat-simulasi-menjadi-lebih-hidup">Membuat Simulasi Menjadi Lebih Hidup</h2>
+<p>Pada <a href="#sec-simulasi-masalah-jarum-buffon" class="quarto-xref">Bagian&nbsp;2</a> kita telah memahami masalah jarum Buffon dengan simulasi Monte Carlo dan memvisualisasikan hasil eksperimennya. Kita dapat menjadikan simulasi masalah tersebut menjadi lebih hidup dengan menggunakan animasi. Teknik penggunaan animasi ini juga telah kita bahas pada <a href="pos/2024-08-animasi-diagram-statistik/index.qmd" title="Membuat Diagram Lebih Hidup dengan Animasi">pos sebelumnya</a>. Selain itu, kita juga akan menambah banyak percobaannya menjadi <span class="math inline">\(n=1000\)</span> kali.</p>
+<p>Pertama yang kita lakukan adalah mempersiapkan datanya. Untuk melakukannya, kita menggunakan alur kerja yang serupa dengan yang telah kita lakukan dari <a href="#lst-data-eksperimen" class="quarto-xref">Daftar&nbsp;3</a>, <a href="#lst-data-eksperimen-lengkap" class="quarto-xref">Daftar&nbsp;5</a>, sampai <a href="#lst-peluang-empiris" class="quarto-xref">Daftar&nbsp;7</a>. Kita rangkum alur kerja tersebut untuk membuat fungsi <code>eksperimen_buffon()</code> pada <a href="#lst-fungsi-data-eksperimen" class="quarto-xref">Daftar&nbsp;8</a>.</p>
+<div class="cell">
+<div id="lst-fungsi-data-eksperimen" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-fold="false">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-fungsi-data-eksperimen-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Daftar&nbsp;8: Membuat data eksperimen pelemparan jarum secara acak
+</figcaption>
+<div aria-describedby="lst-fungsi-data-eksperimen-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>eksperimen_buffon <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">n =</span> <span class="dv">100</span>) {</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  palet_warna <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#4269d0"</span>,<span class="st">"#efb118"</span>,</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#ff725c"</span>,<span class="st">"#6cc5b0"</span>,</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#3ca951"</span>,<span class="st">"#ff8ab7"</span>,</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#a463f2"</span>,<span class="st">"#97bbf5"</span>,</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"#9c6b4e"</span>,<span class="st">"#9498a0"</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>)   </span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">x1 =</span> <span class="fu">runif</span>(n, <span class="dv">1</span>, <span class="dv">9</span>),</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">y1 =</span> <span class="fu">runif</span>(n, <span class="dv">1</span>, <span class="dv">9</span>),</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">theta =</span> <span class="fu">runif</span>(n, <span class="dv">0</span>, <span class="dv">2</span> <span class="sc">*</span> pi),</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">percobaan =</span> <span class="dv">1</span><span class="sc">:</span>n</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">x2 =</span> x1 <span class="sc">+</span> <span class="dv">1</span> <span class="sc">*</span> <span class="fu">cos</span>(theta),</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">y2 =</span> y1 <span class="sc">+</span> <span class="dv">1</span> <span class="sc">*</span> <span class="fu">sin</span>(theta),</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">warna =</span> palet_warna[(percobaan <span class="sc">%%</span> <span class="fu">length</span>(palet_warna)) <span class="sc">+</span> <span class="dv">1</span>],</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>      <span class="at">yt =</span> (y1 <span class="sc">+</span> y2) <span class="sc">/</span> <span class="dv">2</span>,</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>      <span class="at">theta_l =</span> <span class="fu">abs</span>(theta <span class="sc">%%</span> pi <span class="sc">-</span> pi<span class="sc">/</span><span class="dv">2</span>),</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>      <span class="at">h =</span> <span class="dv">1</span> <span class="sc">/</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">sin</span>(theta_l),</span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>      <span class="at">d_h =</span> <span class="fu">pmin</span>(</span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>        <span class="fu">abs</span>(yt <span class="sc">-</span> <span class="fu">floor</span>(yt)),</span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>        <span class="fu">abs</span>(yt <span class="sc">-</span> <span class="fu">ceiling</span>(yt))</span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>      <span class="at">potong =</span> <span class="fu">if_else</span>(</span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>        h <span class="sc">&gt;=</span> d_h, <span class="st">"Memotong"</span>, <span class="st">"Tak memotong"</span></span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>      <span class="at">potong_numerik =</span> <span class="fu">if_else</span>(</span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>      potong <span class="sc">==</span> <span class="st">"Memotong"</span>, <span class="dv">1</span>, <span class="dv">0</span></span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">peluang_empiris =</span> <span class="fu">cumsum</span>(potong_numerik) <span class="sc">/</span> percobaan</span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</figure>
+</div>
+</div>
+<p>Fungsi <code>eksperimen_buffon()</code> dapat kita gunakan untuk membuat data hasil eksperimen masalah jarum Buffon dengan input <code>n</code>, yaitu banyaknya percobaan dalam eksperimen tersebut. Dengan demikian, jika kita ingin membuat <code>data_eksperimen</code> yang memuat <span class="math inline">\(n=1000\)</span> percobaan, kita manfaatkan fungsi tersebut seperti pada <a href="#lst-seribu-percobaan" class="quarto-xref">Daftar&nbsp;9</a>.</p>
+<div class="cell">
+<div id="lst-seribu-percobaan" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-fold="false">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-seribu-percobaan-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Daftar&nbsp;9: Membuat <code>data_eksperimen</code> dengan 1000 percobaan
+</figcaption>
+<div aria-describedby="lst-seribu-percobaan-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>data_eksperimen <span class="ot">&lt;-</span> <span class="fu">eksperimen_buffon</span>(<span class="dv">1000</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(data_eksperimen)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 1,000
+Columns: 14
+$ x1              &lt;dbl&gt; 1.909627, 5.978395, 5.874198, 5.987036, 7.887323, 6.12…
+$ y1              &lt;dbl&gt; 7.701071, 4.899730, 1.882696, 3.810904, 7.088504, 4.11…
+$ theta           &lt;dbl&gt; 0.7165175, 1.2076797, 3.8859660, 3.7640007, 0.3888313,…
+$ percobaan       &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,…
+$ x2              &lt;dbl&gt; 2.6637247, 6.3335846, 5.1386852, 5.1745586, 8.8126758,…
+$ y2              &lt;dbl&gt; 8.3578339, 5.8345244, 1.2051850, 3.2279108, 7.4676115,…
+$ warna           &lt;chr&gt; "#efb118", "#ff725c", "#6cc5b0", "#3ca951", "#ff8ab7",…
+$ yt              &lt;dbl&gt; 8.029453, 5.367127, 1.543940, 3.519407, 7.278058, 3.64…
+$ theta_l         &lt;dbl&gt; 0.854278785, 0.363116599, 0.826423019, 0.948388257, 1.…
+$ h               &lt;dbl&gt; 0.3770487226, 0.1775946664, 0.3677563190, 0.4062384624…
+$ d_h             &lt;dbl&gt; 0.02945260, 0.36712720, 0.45605951, 0.48059253, 0.2780…
+$ potong          &lt;chr&gt; "Memotong", "Tak memotong", "Tak memotong", "Tak memot…
+$ potong_numerik  &lt;dbl&gt; 1, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, …
+$ peluang_empiris &lt;dbl&gt; 1.0000000, 0.5000000, 0.3333333, 0.2500000, 0.4000000,…</code></pre>
+</div>
+</div>
+
+
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Kembali ke atas</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Penggunaan Kembali</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-copyright"><h2 class="anchored quarto-appendix-heading">Hak Cipta</h2><div class="quarto-appendix-contents"><div>© 2025 Yosep Dwi Kristanto</div></div></section></div></main> <!-- /main -->
