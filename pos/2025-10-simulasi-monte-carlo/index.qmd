@@ -118,7 +118,7 @@ Bagaimana kita dapat membuat jarumnya? Kita dapat memvisualisasikan jarum dalam 
 
 ![Sebuah jarum yang direpresentasikan dengan sebuah ruas garis](aset/sebuah-jarum-01.png){#fig-sebuah-jarum}
 
-Koordinat kedua ujung ruas garis tersebut saling berkaitan karena jarak keduanya haruslah $l=1$ satuan. Jika $\theta$ adalah besar sebuah sudut yang dibentuk oleh garis horizontal dan ruas garis tersebut, koordinat $\left( x_{2}, y_{2} \right)$ dapat ditentukan dengan menggunakan @eq-koord-titik-kedua.
+Koordinat kedua ujung ruas garis tersebut saling berkaitan karena jarak keduanya haruslah $l=1$ satuan. Jika $\theta$ adalah besar sebuah sudut yang dibentuk oleh sebuah sinar garis horizontal ke kanan yang pangkalnya $\left(x_{1},y_{1}\right)$ dan ruas garis tersebut, koordinat $\left( x_{2}, y_{2} \right)$ dapat ditentukan dengan menggunakan @eq-koord-titik-kedua.
 
 $$
 \begin{matrix}
@@ -127,16 +127,16 @@ y_{2}=y_{1}+1\cdot\sin\left(\theta\right)
 \end{matrix}
 $$ {#eq-koord-titik-kedua}
 
-Berdasarkan @eq-koord-titik-kedua, kita memerlukan tiga nilai, yaitu $x_{1}$, $y_{1}$, dan $\theta$, untuk membuat sebuah jarum pada kertas. Sebagai contoh, untuk $x_{1}=4$, $y_{1}=\text{5,5}$, dan $\theta=\frac{\pi}{3}$, jarumnya disajikan pada @fig-contoh-jarum.
+dengan $0 \leq \theta \leq 2\pi$. Berdasarkan @eq-koord-titik-kedua, kita memerlukan tiga nilai, yaitu $x_{1}$, $y_{1}$, dan $\theta$, untuk membuat sebuah jarum pada kertas. Sebagai contoh, untuk $x_{1}=6$, $y_{1}=\text{5,5}$, dan $\theta=\frac{4}{3}\pi$, jarumnya disajikan pada @fig-contoh-jarum.
 
 ```{r}
 #| echo: false
 #| label: fig-contoh-jarum
-#| fig-cap: 'Sebuah jarum dengan $x_{1}=4$, $y_{1}=\text{5,5}$, dan $\theta=\frac{\pi}{3}$'
+#| fig-cap: 'Sebuah jarum dengan $x_{1}=4$, $y_{1}=\text{5,5}$, dan $\theta=\frac{4}{3}\pi$'
 
-x_1 <- 4
+x_1 <- 6
 y_1 <- 5.5
-t_heta <- pi / 3
+t_heta <- 4 / 3 * pi
 
 contoh_jarum <- ggplot() + 
   geom_hline(
@@ -176,11 +176,13 @@ contoh_jarum
 
 ![Jarum-jarum yang memotong garis dan yang tidak](aset/jarum-dan-garis-01.png){#fig-jarum-dan-garis}
 
-Berdasarkan @fig-jarum-dan-garis, kita dapat melihat bahwa jarum yang memotong garis pada kertas nilai $h$-nya lebih besar dari jarak vertikal antara titik tengah jarum tersebut dan garis terdekatnya, yaitu $d_{h}$. Padahal, $h=\frac{1}{2}\cdot\sin\left(\theta\right)$. Perhatikan juga bahwa garis-garis pada kertas yang kita buat pada @lst-kertas-bergaris memiliki koordinat-$y$ yang merupakan bilangan bulat. Dengan demikian, kita mendapatkan $d_{h}=\text{min}\left(\left | y_{t}-\left \lfloor y_{t}\right \rfloor\right |,\left | y_{t}-\left \lceil y_{t}\right \rceil\right |\right)$ dengan $y_{t}$ adalah koordinat-$y$ titik tengah jarum tersebut. Dengan demikian, sebuah jarum yang memotong garis memenuhi kondisi berikut.
+Berdasarkan @fig-jarum-dan-garis, kita dapat melihat bahwa jarum yang memotong garis pada kertas nilai $h$-nya lebih besar dari jarak vertikal antara titik tengah jarum tersebut dan garis terdekatnya, yaitu $d_{h}$. Padahal, $h=\frac{1}{2}\cdot\sin\left(\theta_{l}\right)$ degan $\theta_{l}$ adalah sudut lancip yang dibentuk oleh jarum dan garis horizontal.
+
+Perhatikan juga bahwa garis-garis pada kertas yang kita buat pada @lst-kertas-bergaris memiliki koordinat-$y$ yang merupakan bilangan bulat. Dengan demikian, kita mendapatkan $d_{h}=\text{min}\left(\left | y_{t}-\left \lfloor y_{t}\right \rfloor\right |,\left | y_{t}-\left \lceil y_{t}\right \rceil\right |\right)$ dengan $y_{t}$ adalah koordinat-$y$ titik tengah jarum tersebut. Dengan demikian, sebuah jarum yang memotong garis memenuhi kondisi pada @eq-kondisi.
 
 $$
-\frac{1}{2}\sin\left(\theta\right)\geq \text{min}\left(\left | y_{t}-\left \lfloor y_{t}\right \rfloor\right |,\left | y_{t}-\left \lceil y_{t}\right \rceil\right |\right)
-$$
+\frac{1}{2}\sin\left(\theta_{l}\right)\geq \text{min}\left(\left | y_{t}-\left \lfloor y_{t}\right \rfloor\right |,\left | y_{t}-\left \lceil y_{t}\right \rceil\right |\right)
+$$ {#eq-kondisi}
 
 Kita gunakan kondisi tersebut terhadap jarum pada @fig-contoh-jarum untuk menentukan apakah jarum tersebut memotong garis atau tidak (walaupun faktanya kita telah mengetahuinya).
 
@@ -190,25 +192,27 @@ Kita gunakan kondisi tersebut terhadap jarum pada @fig-contoh-jarum untuk menent
 #| lst-cap: 'Menguji kondisi apakah jarumnya memotong garis'
 
 y_t <- (y_1 + (y_1 + sin(t_heta))) / 2 # <1>
-h <- 1 / 2 * sin(t_heta)               # <2>
-d_h <- min(                           # <3>
-  abs(y_t - floor(y_t)),              # <3>
-  abs(y_t - ceiling(y_t))             # <3>
+theta_l <- abs(t_heta %% pi - pi/2)   # <2>
+h <- 1 / 2 * sin(theta_l)             # <3>
+d_h <- min(                           # <4>
+  abs(y_t - floor(y_t)),              # <4>
+  abs(y_t - ceiling(y_t))             # <4>
 )
 
-potong_garis <- if_else(                # <4>
-  h >= d_h, "Memotong", "Tak memotong"  # <4>
-)                                       # <4>
+potong_garis <- if_else(                # <5>
+  h >= d_h, "Memotong", "Tak memotong"  # <5>
+)                                       # <5>
 
-potong_garis                            # <5>
+potong_garis                            # <6>
 
 ```
 
 1.  Menghitung koordinat-$y$ titik tengah jarum, dan nilainya dinamai dengan `y_t`.
-2.  Menghitung nilai $h$.
-3.  Menghitung nilai $d_{h}$ dan hasilnya dinamai dengan `d_h`.
-4.  Mendefinisikan kondisi yang telah dibahas sebelumnya, dan hasilnya dinamai dengan `potong_garis`.
-5.  Mencetak nilai `potong_garis`.
+2.  Menentukan sudut lancip $\theta_{l}$ dan hasilnya kita namai dengan `theta_l`.
+3.  Menghitung nilai $h$.
+4.  Menghitung nilai $d_{h}$ dan hasilnya dinamai dengan `d_h`.
+5.  Mendefinisikan kondisi yang telah dibahas sebelumnya, dan hasilnya dinamai dengan `potong_garis`.
+6.  Mencetak nilai `potong_garis`.
 
 Kita telah berhasil menggunakan kondisi di atas untuk menentukan apakah jarum pada @fig-contoh-jarum memotong garis atau tidak. Hasilnya sesuai dengan pengamatan kita tentu saja.
 
@@ -311,8 +315,13 @@ data_eksperimen <- data_eksperimen |>
   mutate(
     yt = (y1 + y2) / 2,
     theta_l = abs(theta %% pi - pi/2),
+    h = 1 / 2 * sin(theta_l),
+    d_h = pmin(
+      abs(yt - floor(yt)),
+      abs(yt - ceiling(yt))
+    ),
     potong = if_else(
-      1 / 2 * sin(theta_l) >= pmin(abs(yt - floor(yt)), abs(yt - ceiling(yt))),
+      h >= d_h,
       "Memotong",
       "Tak memotong"
     )
@@ -321,6 +330,8 @@ data_eksperimen <- data_eksperimen |>
 head(data_eksperimen)
 
 ```
+
+### Visualisasi Hasil Eksperimen {#sec-visualisasi-hasil-eksperimen}
 
 Untuk mengetahui apakah lebih banyak jarum yang memotong garis ataukah yang tidak, kita dapat memvisualisasikan nilai-nilai dalam variabel `potong` dengan menggunakan diagram batang. Perhatikan @fig-diag-batang-potong!
 
@@ -352,6 +363,7 @@ data_eksperimen |>
 Berdasarkan eksperimen kita tersebut, berapakah peluang empiris (frekuensi relatif) jarum yang memotong garis? Kita dapat menjawabnya dengan kode pada @lst-peluang-empitis.
 
 ```{r}
+#| code-fold: false
 #| lst-label: lst-peluang-empiris
 #| lst-cap: 'Menentukan peluang empiris'
 
@@ -365,4 +377,79 @@ ringkasan_eksperimen <- data_eksperimen |>
 p_memotong <- ringkasan_eksperimen$n[1] / sum(ringkasan_eksperimen$n)
 print(p_memotong)
 
+```
+
+Kita telah mengetahui bahwa peluang empirisnya adalah `r round(p_memotong, 2)`. Bagaimana dengan peluang empirisnya pada percobaan pertama, kedua, ketiga, dan seterusnya sampai ke-100? Untuk itu, kita hitung terlebih dahulu peluang empirisnya untuk setiap percobaannya dengan menggunakan kode pada @lst-peluang-empiris.
+
+```{r}
+#| code-fold: false
+#| lst-label: lst-peluang-empiris
+#| lst-cap: 'Menghitung peluang empiris untuk setiap percobaan'
+data_eksperimen <- data_eksperimen |> 
+  mutate(
+    potong_numerik = if_else(
+      potong == "Memotong", 1, 0
+    ),
+    peluang_empiris = cumsum(potong_numerik) / percobaan
+  )
+
+glimpse(data_eksperimen)
+
+```
+
+Sekarang, kita visualisaikan perubahan peluang empirisnya dari satu percobaan ke percobaan lainnya. Perhatikan @fig-tren-peluang-empiris!
+
+```{r}
+#| label: fig-tren-peluang-empiris
+#| fig-cap: 'Tren peluang empiris'
+#| fig-asp: 0.5625
+
+tren_p_empiris <- data_eksperimen |> 
+  ggplot(aes(x = percobaan, y = peluang_empiris)) +
+  geom_line(
+    color = "#4269d0",
+    linewidth = 1
+  ) +
+  theme_minimal() + 
+  labs(
+    x = "Percobaan",
+    y = "Peluang empiris"
+  )
+
+tren_p_empiris
+```
+
+Kita juga dapat memvisualisasikan apakah setiap percobaan dalam eksperimen tersebut menghasilkan jarum yang memotong garis atau tidak dengan menggunakan @eq-kondisi. Caranya, kita representasikan setiap percobaan dalam eksperimen tersebut dengan titik $\left(\theta_{l},d_{h}\right)$. Jika titik tersebut di atas kurva $y=\frac{1}{2}\sin\left(x\right)$, percobaannya menghasilkan jarum yang memotong garis. Dengan menggunakan ide seperti ini, kita mendapatkan visualisasi yang disajikan pada @fig-luaran-percobaan-sin.
+
+```{r}
+#| label: fig-luaran-percobaan-sin
+#| fig-cap: 'Hasil setiap percobaan dalam eksperimen'
+#| fig-asp: 0.5625
+
+data_eksperimen |> 
+  ggplot(aes(x = theta_l, y = d_h)) +
+  geom_function(
+    fun = function(x) 0.5 * sin(x),
+    color = "#efb118",
+    linewidth = 1
+  ) +
+  geom_point(
+    aes(color = potong),
+    size = 3
+  ) +
+  scale_color_manual(
+    values = c(
+      "Memotong" = "#ff725c",
+      "Tak memotong" = "#4269d0"
+    ),
+    name = "Hasil percobaan"
+  ) +
+  theme_minimal() + 
+  theme(
+    legend.position = "bottom"
+  ) + 
+  labs(
+    x = expression(theta[l]),
+    y = expression(d[h])
+  )
 ```
