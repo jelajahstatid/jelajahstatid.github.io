@@ -11,9 +11,9 @@ author:
     orcid: 0000-0003-1446-0422
 date: 2025-10-31
 categories:
-  - simulasi
   - Peluang
   - Geometri
+  - tutorial
 image: "sampul-masalah-jarum-buffon.png"
 image-alt: "Simulasi masalah jarum Buffon untuk memvisualisasikan peluang jarum melintasi garis"
 keywords: 
@@ -168,6 +168,92 @@ contoh_jarum
 
 ![Jarum-jarum yang memotong garis dan yang tidak](aset/jarum-dan-garis-01.png){#fig-jarum-dan-garis}
 
+Berdasarkan @fig-jarum-dan-garis, kita dapat melihat bahwa jarum yang memotong garis nilai $\frac{1}{2}l\sin\left(\theta\right)$ lebih dari jarak vertikal titik tengahnya dengan garis horizontal terdekat.
+
 ### Eksperimen Pelemparan Jarum {#sec-eksperimen-pelemparan-jarum}
 
-Sampai di sini kita telah dapat membuat selembar kertas dan sebuah jarum. Sekarang kita akan memvisualisasikan sebuah eksperimen pelemparan jarum sebanyak $n$ kali. Misalnya, kita memilih $n = 100$ kali. Setiap pelemparan tersebut kita perlu menyediakan tiga nilai, yaitu $x_{1}$, $y_{1}$, dan $\theta$, secara acak.
+Sampai di sini kita telah dapat membuat selembar kertas dan sebuah jarum. Kita juga telah mengetahui kondisi jarum tersebut untuk memotong garis pada kertas. Sekarang kita akan memvisualisasikan sebuah eksperimen pelemparan jarum sebanyak $n$ kali. Misalnya, kita memilih $n = 100$ kali. Setiap pelemparan tersebut kita perlu menyediakan tiga nilai, yaitu $x_{1}$, $y_{1}$, dan $\theta$, secara acak. Dalam R, kita dapat menggunakan fungsi `runif()`. Fungsi ini akan memberikan satu atau lebih nilai acak dari distribusi seragam dengan nilai minimum dan maksimum yang diberikan.
+
+Kita buat sebuah data dengan nama `data_eksperimen` untuk memuat hasil eksperimen pelemparan jarum sebanyak $n=100$ kali tersebut. Untuk melakukannya, kita gunakan kode berikut. Kita cetak beberapa baris awalnya dengan `head()`.
+
+```{r}
+#| code-fold: false
+#| lst-label: lst-data-eksperimen
+#| lst-cap: 'Membuat `data_eksperimen` yang memuat luaran setiap percobaan dalam eksperimen'
+
+set.seed(1234)         # <1>
+palet_warna <- c(      # <2>
+  "#4269d0","#efb118", # <2>
+  "#ff725c","#6cc5b0", # <2>
+  "#3ca951","#ff8ab7", # <2>
+  "#a463f2","#97bbf5", # <2>
+  "#9c6b4e","#9498a0"  # <2>
+)                     # <2>
+
+data_eskperimen <- tibble(
+  x1 = runif(100, min = 1, max = 9),        # <3>
+  y1 = runif(100, min = 1, max = 9),        # <3>
+  theta = runif(100, min = 0, max = 2 * pi) # <3>
+) |> 
+  mutate(                                      # <4>
+    percobaan = row_number(),                  # <4>
+    x2 = x1 + 1 * cos(theta),                  # <4>
+    y2 = y1 + 1 * sin(theta),                  # <4>
+    warna = palet_warna[(percobaan %% 10) + 1] # <4>
+  )
+
+head(data_eskperimen)
+
+```
+
+1.  Mengatur benih pengacakan agar hasilnya dapat diproduksi kembali.
+2.  Membuat palet warna sebagai warna setiap jarumnya.
+3.  Menyediakan bilangan-bilangan `x1`, `y1`, dan `theta` secara acak.
+4.  Menghitung `x2` dan `y2`, serta membuat variabel `percobaan` untuk memberikan identitas terhadap setiap percobaannya dan `warna` untuk memberikan warna terhadap setiap jarum yang dihasilkan.
+
+Kita telah memiliki `data_eksperimen`. Agar kita dapat melihat hasil eksperimen yang terdata dalam data tersebut, kita dapat memvisualisasikan hasil eksperimennya dengan kode pada @lst-vis-hasil-eksperimen. Hasilnya ditunjukkan pada @fig-vis-hasil-eksperimen.
+
+```{r}
+#| code-fold: false
+#| lst-label: lst-vis-hasil-eksperimen
+#| lst-cap: 'Memvisualisasikan setiap luaran dalam eksperimen'
+#| label: fig-vis-hasil-eksperimen
+#| fig-cap: 'Hasil pelemparan secara acak 100 jarum pada selembar kertas'
+
+hasil_eksperimen <- data_eskperimen |> 
+  ggplot() + 
+  geom_hline(
+    yintercept = 0:10,
+    color = "gray80",
+    linewidth = 0.5
+  ) + 
+  geom_segment(
+    aes(
+      x = x1, y = y1,
+      xend = x2, yend = y2,
+      color = warna
+    ),
+    linewidth = 1.5
+  ) + 
+  coord_equal(
+    xlim = c(0, 10),
+    ylim = c(0, 10)
+  ) + 
+  scale_x_continuous(
+    breaks = 0:10
+  ) + 
+  scale_y_continuous(
+    breaks = 0:10
+  ) + 
+  scale_color_identity() + 
+  theme_bw() + 
+  theme(
+    legend.position = "none",
+    axis.title = element_blank(),
+    panel.grid = element_blank(),
+    plot.margin = unit(c(.5, .5, .5, .5), "cm")
+  )
+
+hasil_eksperimen
+
+```
