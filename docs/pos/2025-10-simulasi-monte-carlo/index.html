@@ -457,7 +457,12 @@ window.Quarto = {
   <li><a href="#sec-eksperimen-pelemparan-jarum" id="toc-sec-eksperimen-pelemparan-jarum" class="nav-link" data-scroll-target="#sec-eksperimen-pelemparan-jarum">Eksperimen Pelemparan Jarum</a></li>
   <li><a href="#sec-visualisasi-hasil-eksperimen" id="toc-sec-visualisasi-hasil-eksperimen" class="nav-link" data-scroll-target="#sec-visualisasi-hasil-eksperimen">Visualisasi Hasil Eksperimen</a></li>
   </ul></li>
-  <li><a href="#sec-membuat-simulasi-menjadi-lebih-hidup" id="toc-sec-membuat-simulasi-menjadi-lebih-hidup" class="nav-link" data-scroll-target="#sec-membuat-simulasi-menjadi-lebih-hidup">Membuat Simulasi Menjadi Lebih Hidup</a></li>
+  <li><a href="#sec-membuat-simulasi-menjadi-lebih-hidup" id="toc-sec-membuat-simulasi-menjadi-lebih-hidup" class="nav-link" data-scroll-target="#sec-membuat-simulasi-menjadi-lebih-hidup">Membuat Simulasi Menjadi Lebih Hidup</a>
+  <ul class="collapse">
+  <li><a href="#sec-animasi-eksperimen-jarum-buffon" id="toc-sec-animasi-eksperimen-jarum-buffon" class="nav-link" data-scroll-target="#sec-animasi-eksperimen-jarum-buffon">Animasi Eksperimen Jarum Buffon</a></li>
+  <li><a href="#sec-animasi-peluang-empiris" id="toc-sec-animasi-peluang-empiris" class="nav-link" data-scroll-target="#sec-animasi-peluang-empiris">Animasi Peluang Empiris</a></li>
+  <li><a href="#sec-animasi-hasil-setiap-percobaan" id="toc-sec-animasi-hasil-setiap-percobaan" class="nav-link" data-scroll-target="#sec-animasi-hasil-setiap-percobaan">Animasi Hasil Setiap Percobaan</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/jelajahstatid/jelajahstatid.github.io/edit/main/pos/2025-10-simulasi-monte-carlo/index.qmd" class="toc-action"><i class="bi bi-github"></i>Sunting laman ini</a></li><li><a href="https://github.com/jelajahstatid/jelajahstatid.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Laporkan sebuah isu</a></li></ul></div></nav>
 </nav>
@@ -949,22 +954,38 @@ $ peluang_empiris &lt;dbl&gt; 1.0000000, 1.0000000, 0.6666667, 0.5000000, 0.6000
 </div>
 <p>Sekarang, kita visualisaikan perubahan peluang empirisnya dari satu percobaan ke percobaan lainnya. Perhatikan <a href="#fig-tren-peluang-empiris" class="quarto-xref">Gambar&nbsp;7</a>!</p>
 <div class="cell">
-<details class="code-fold">
+<div id="lst-tren-peluang-empiris" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-fold="show">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-tren-peluang-empiris-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Daftar&nbsp;8: Membuat visualisasi tren peluang empiris
+</figcaption>
+<div aria-describedby="lst-tren-peluang-empiris-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details open="" class="code-fold">
 <summary>Kode</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>tren_p_empiris <span class="ot">&lt;-</span> data_eksperimen <span class="sc">|&gt;</span> </span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> percobaan, <span class="at">y =</span> peluang_empiris)) <span class="sc">+</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"#4269d0"</span>,</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"gray80"</span>,</span>
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="dv">1</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Percobaan"</span>,</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Peluang empiris"</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>tren_p_empiris</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">color =</span> warna)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_identity</span>() <span class="sc">+</span> </span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Percobaan"</span>,</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Peluang empiris"</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>tren_p_empiris</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+</div>
+</figure>
+</div>
 <div class="cell-output-display">
 <div id="fig-tren-peluang-empiris" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -982,7 +1003,7 @@ Gambar&nbsp;7: Tren peluang empiris
 <div class="cell">
 <details class="code-fold">
 <summary>Kode</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>data_eksperimen <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>hasil_percobaan <span class="ot">&lt;-</span> data_eksperimen <span class="sc">|&gt;</span> </span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> theta_l, <span class="at">y =</span> d_h)) <span class="sc">+</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_function</span>(</span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">fun =</span> <span class="cf">function</span>(x) <span class="fl">0.5</span> <span class="sc">*</span> <span class="fu">sin</span>(x),</span>
@@ -1007,7 +1028,9 @@ Gambar&nbsp;7: Tren peluang empiris
 <span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
 <span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">expression</span>(theta[l]),</span>
 <span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">expression</span>(d[h])</span>
-<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>hasil_percobaan</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div id="fig-luaran-percobaan-sin" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1027,12 +1050,12 @@ Gambar&nbsp;8: Hasil setiap percobaan dalam eksperimen
 <section id="sec-membuat-simulasi-menjadi-lebih-hidup" class="level2">
 <h2 class="anchored" data-anchor-id="sec-membuat-simulasi-menjadi-lebih-hidup">Membuat Simulasi Menjadi Lebih Hidup</h2>
 <p>Pada <a href="#sec-simulasi-masalah-jarum-buffon" class="quarto-xref">Bagian&nbsp;2</a> kita telah memahami masalah jarum Buffon dengan simulasi Monte Carlo dan memvisualisasikan hasil eksperimennya. Kita dapat menjadikan simulasi masalah tersebut menjadi lebih hidup dengan menggunakan animasi. Teknik penggunaan animasi ini juga telah kita bahas pada <a href="pos/2024-08-animasi-diagram-statistik/index.qmd" title="Membuat Diagram Lebih Hidup dengan Animasi">pos sebelumnya</a>. Selain itu, kita juga akan menambah banyak percobaannya menjadi <span class="math inline">\(n=1000\)</span> kali.</p>
-<p>Pertama yang kita lakukan adalah mempersiapkan datanya. Untuk melakukannya, kita menggunakan alur kerja yang serupa dengan yang telah kita lakukan dari <a href="#lst-data-eksperimen" class="quarto-xref">Daftar&nbsp;3</a>, <a href="#lst-data-eksperimen-lengkap" class="quarto-xref">Daftar&nbsp;5</a>, sampai <a href="#lst-peluang-empiris" class="quarto-xref">Daftar&nbsp;7</a>. Kita rangkum alur kerja tersebut untuk membuat fungsi <code>eksperimen_buffon()</code> pada <a href="#lst-fungsi-data-eksperimen" class="quarto-xref">Daftar&nbsp;8</a>.</p>
+<p>Pertama yang kita lakukan adalah mempersiapkan datanya. Untuk melakukannya, kita menggunakan alur kerja yang serupa dengan yang telah kita lakukan dari <a href="#lst-data-eksperimen" class="quarto-xref">Daftar&nbsp;3</a>, <a href="#lst-data-eksperimen-lengkap" class="quarto-xref">Daftar&nbsp;5</a>, sampai <a href="#lst-peluang-empiris" class="quarto-xref">Daftar&nbsp;7</a>. Kita rangkum alur kerja tersebut untuk membuat fungsi <code>eksperimen_buffon()</code> pada <a href="#lst-fungsi-data-eksperimen" class="quarto-xref">Daftar&nbsp;9</a>.</p>
 <div class="cell">
 <div id="lst-fungsi-data-eksperimen" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-fold="false">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-fungsi-data-eksperimen-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Daftar&nbsp;8: Membuat data eksperimen pelemparan jarum secara acak
+Daftar&nbsp;9: Membuat data eksperimen pelemparan jarum secara acak
 </figcaption>
 <div aria-describedby="lst-fungsi-data-eksperimen-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>eksperimen_buffon <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">n =</span> <span class="dv">100</span>) {</span>
@@ -1074,12 +1097,12 @@ Daftar&nbsp;8: Membuat data eksperimen pelemparan jarum secara acak
 </figure>
 </div>
 </div>
-<p>Fungsi <code>eksperimen_buffon()</code> dapat kita gunakan untuk membuat data hasil eksperimen masalah jarum Buffon dengan input <code>n</code>, yaitu banyaknya percobaan dalam eksperimen tersebut. Dengan demikian, jika kita ingin membuat <code>data_eksperimen</code> yang memuat <span class="math inline">\(n=1000\)</span> percobaan, kita manfaatkan fungsi tersebut seperti pada <a href="#lst-seribu-percobaan" class="quarto-xref">Daftar&nbsp;9</a>.</p>
+<p>Fungsi <code>eksperimen_buffon()</code> dapat kita gunakan untuk membuat data hasil eksperimen masalah jarum Buffon dengan input <code>n</code>, yaitu banyaknya percobaan dalam eksperimen tersebut. Dengan demikian, jika kita ingin membuat <code>data_eksperimen</code> yang memuat <span class="math inline">\(n=1000\)</span> percobaan, kita manfaatkan fungsi tersebut seperti pada <a href="#lst-seribu-percobaan" class="quarto-xref">Daftar&nbsp;10</a>.</p>
 <div class="cell">
 <div id="lst-seribu-percobaan" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-fold="show">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-seribu-percobaan-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Daftar&nbsp;9: Membuat <code>data_eksperimen</code> dengan 1000 percobaan
+Daftar&nbsp;10: Membuat <code>data_eksperimen</code> dengan 1000 percobaan
 </figcaption>
 <div aria-describedby="lst-seribu-percobaan-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details open="" class="code-fold">
@@ -1095,7 +1118,7 @@ Daftar&nbsp;9: Membuat <code>data_eksperimen</code> dengan 1000 percobaan
 <div id="lst-glimpse-data-eksperimen" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-fold="show">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-glimpse-data-eksperimen-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Daftar&nbsp;10: Melihat gambaran umum <code>data_eksperimen</code>
+Daftar&nbsp;11: Melihat gambaran umum <code>data_eksperimen</code>
 </figcaption>
 <div aria-describedby="lst-glimpse-data-eksperimen-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details open="" class="code-fold">
@@ -1124,13 +1147,15 @@ $ potong_numerik  &lt;dbl&gt; 1, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0,
 $ peluang_empiris &lt;dbl&gt; 1.0000000, 0.5000000, 0.3333333, 0.2500000, 0.4000000,…</code></pre>
 </div>
 </div>
-<p>Berdasarkan luaran kode dari <a href="#lst-glimpse-data-eksperimen" class="quarto-xref">Daftar&nbsp;10</a>, kita dapat melihat bahwa <code>data_eksperimen</code> tersebut memiliki 14 variabel, mulai dari <code>x1</code>, <code>y1</code>, <code>theta</code>, sampai <code>peluang_empiris</code>. Data tersebut juga memuat 1000 baris yang setiap barisnya merupakan hasil percobaan dalam eksperimen. Dengan demikian, kita mendapatkan <code>data_eksperimen</code> yang kita kehendaki.</p>
-<p>Berikutnya, kita akan membuat visualisasi seperti pada <a href="#fig-vis-hasil-eksperimen" class="quarto-xref">Gambar&nbsp;5</a>, tetapi dengan menggunakan animasi. Dalam animasi tersebut, kita buat agar jarumnya tampak jatuh ke kertas secara bergiliran. Kita lakukan hal ini dengan kode pada <a href="#lst-animasi-jarum-jatuh" class="quarto-xref">Daftar&nbsp;11</a>.</p>
+<p>Berdasarkan luaran kode dari <a href="#lst-glimpse-data-eksperimen" class="quarto-xref">Daftar&nbsp;11</a>, kita dapat melihat bahwa <code>data_eksperimen</code> tersebut memiliki 14 variabel, mulai dari <code>x1</code>, <code>y1</code>, <code>theta</code>, sampai <code>peluang_empiris</code>. Data tersebut juga memuat 1000 baris yang setiap barisnya merupakan hasil percobaan dalam eksperimen. Dengan demikian, kita mendapatkan <code>data_eksperimen</code> yang kita kehendaki.</p>
+<section id="sec-animasi-eksperimen-jarum-buffon" class="level3">
+<h3 class="anchored" data-anchor-id="sec-animasi-eksperimen-jarum-buffon">Animasi Eksperimen Jarum Buffon</h3>
+<p>Data eksperimen 1000 percobaan telah siap. Berikutnya, kita akan membuat visualisasi seperti pada <a href="#fig-vis-hasil-eksperimen" class="quarto-xref">Gambar&nbsp;5</a>, tetapi dengan menggunakan animasi. Dalam animasi tersebut, kita buat agar jarumnya tampak jatuh ke kertas secara bergiliran. Kita lakukan hal ini dengan kode pada <a href="#lst-animasi-jarum-jatuh" class="quarto-xref">Daftar&nbsp;12</a>.</p>
 <div class="cell">
 <div id="lst-animasi-jarum-jatuh" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-fold="show">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-animasi-jarum-jatuh-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Daftar&nbsp;11: Menganimasikan jarum yang jatuh ke kertas
+Daftar&nbsp;12: Menganimasikan jarum yang jatuh ke kertas
 </figcaption>
 <div aria-describedby="lst-animasi-jarum-jatuh-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details open="" class="code-fold">
@@ -1175,7 +1200,10 @@ Daftar&nbsp;11: Menganimasikan jarum yang jatuh ke kertas
 </figure>
 </div>
 </div>
-<p>Sekarang kita telah memiliki objek <code>plot_anim_jarum</code>. Objek tersebut merupakan objek gganim yang menyajikan animasi eksperimen pelemparan jarum ke kertas. Kita cetak objek tersebut, dan hasilnya disajikan pada <a href="#fig-animasi-jarum-jatuh" class="quarto-xref">Gambar&nbsp;9</a>.</p>
+<p>Sekarang kita telah memiliki objek <code>plot_anim_jarum</code>. Objek tersebut merupakan objek gganim yang menyajikan animasi eksperimen pelemparan jarum ke kertas. Apabila kita perhatikan kode pada <a href="#lst-animasi-jarum-jatuh" class="quarto-xref">Daftar&nbsp;12</a> hampir sama persis dengan kode pada <a href="#lst-vis-hasil-eksperimen" class="quarto-xref">Daftar&nbsp;4</a> untuk membuat <a href="#fig-vis-hasil-eksperimen" class="quarto-xref">Gambar&nbsp;5</a>. Perbedaannya hanya pada penambahan <code>group = percobaan</code> pada pemetaan variabel dalam <code>geom_segment()</code> dan <code>transition_reveal()</code>.</p>
+<p>Fungsi <code>transition_reveal()</code> merupakan fungsi dari {gganimate} yang digunakan untuk membuat animasi yang menampilkan data secara bertahap berdasarkan urutan sebuah variabel. Agar animasinya memunculkan hasil percobaan 1; 1 dan 2; 1, 2, dan 3; dan seterusnya, kita perlu menambahkan argumen <code>along = percobaan</code> untuk membuat animasi tersebut dimunculkan berdasarkan nilai variabel <code>percobaan</code>.</p>
+<p>Selain itu, kita juga perlu menambahkan <code>group = percobaan</code> untuk memberitahu <code>ggplot()</code> agar setiap data jarum dalam satu percobaan adalah satu kelompok data sendiri. Hal ini untuk mencegah <code>ggplot()</code> agar tidak menyambungkan satu jarum dari suatu percobaan dengan jarum dari percobaan lainnya.</p>
+<p>Ingin tahu bagaimana animasinya? Untuk mengetahuinya, kita cetak objek <code>plot_anim_jarum</code>. Hasilnya disajikan pada <a href="#fig-animasi-jarum-jatuh" class="quarto-xref">Gambar&nbsp;9</a>.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Kode</summary>
@@ -1194,8 +1222,349 @@ Gambar&nbsp;9: Animasi yang mengilustrasikan eksperimen masalah jarum Buffon yan
 </div>
 </div>
 </div>
+<p><em>Voilà!</em> Kita telah berhasil menganimasikan eksperimen 1000 percobaan jarum Buffon.</p>
+</section>
+<section id="sec-animasi-peluang-empiris" class="level3">
+<h3 class="anchored" data-anchor-id="sec-animasi-peluang-empiris">Animasi Peluang Empiris</h3>
+<p>Kita dapat menganimasikan bagaimana perubahan peluang empiris eksperimen jarum Buffon, dari satu percobaan ke percobaan lainnya. Dengan kata lain, kita akan menganimasikan <a href="#fig-tren-peluang-empiris" class="quarto-xref">Gambar&nbsp;7</a>.</p>
+<p>Sebelum itu, kita perlu mengetahui bahwa peluang empiris untuk mendapatkan jarum yang memotong garis pada kertas akan mendekati peluang teoretisnya. Peluang teoretis ini adalah <span class="math inline">\(\frac{2}{\pi}\)</span>, atau bernilai sekitar 0,637. Kita dapat menambahkan informasi ini ke dalam animasi yang akan kita buat.</p>
+<p>Untuk melakukannya, kita tambahkan garis horizontal <span class="math inline">\(y=\frac{2}{\pi}\)</span> bersama dengan <code>transition_reveal(along = percobaan)</code> terhadap kode yang membuat <a href="#fig-tren-peluang-empiris" class="quarto-xref">Gambar&nbsp;7</a>, yaitu <a href="#lst-tren-peluang-empiris" class="quarto-xref">Daftar&nbsp;8</a>. Dengan demikian, kode untuk membuat animasi tersebut ditunjukkan pada <a href="#lst-anim-tren-p-empiris" class="quarto-xref">Daftar&nbsp;13</a>.</p>
+<div class="cell">
+<div id="lst-anim-tren-p-empiris" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-fold="show">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-anim-tren-p-empiris-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Daftar&nbsp;13: Membuat animasi tren peluang empiris
+</figcaption>
+<div aria-describedby="lst-anim-tren-p-empiris-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details open="" class="code-fold">
+<summary>Kode</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>plot_anim_p_empiris <span class="ot">&lt;-</span> data_eksperimen <span class="sc">|&gt;</span> </span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> percobaan, <span class="at">y =</span> peluang_empiris)) <span class="sc">+</span> </span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">yintercept =</span> <span class="dv">2</span> <span class="sc">/</span> pi,</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">linetype =</span> <span class="st">"dashed"</span>,</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"gray50"</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"gray80"</span>,</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="dv">1</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">color =</span> warna, <span class="at">group =</span> percobaan)</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_identity</span>() <span class="sc">+</span> </span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Percobaan"</span>,</span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Peluang empiris"</span></span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transition_reveal</span>(</span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">along =</span> percobaan</span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</figure>
+</div>
+</div>
+<p>Kita telah membuat objek gganim <code>plot_anim_p_empiris</code>. Bagaimana animasi yang terbentuk? Perhatikan <a href="#fig-anim-p-empiris" class="quarto-xref">Gambar&nbsp;10</a>!</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Kode</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>plot_anim_p_empiris</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-anim-p-empiris" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-anim-p-empiris-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/fig-anim-p-empiris-1.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-10" title="Gambar&nbsp;10: Ilustrasi perubahan peluang empiris dari satu percobaan ke percobaan berikutnya"><img src="index_files/figure-html/fig-anim-p-empiris-1.gif" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-anim-p-empiris-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Gambar&nbsp;10: Ilustrasi perubahan peluang empiris dari satu percobaan ke percobaan berikutnya
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="sec-animasi-hasil-setiap-percobaan" class="level3">
+<h3 class="anchored" data-anchor-id="sec-animasi-hasil-setiap-percobaan">Animasi Hasil Setiap Percobaan</h3>
+<p>Hasil setiap percobaan dalam eksperimen jarum Buffon juga dapat kita animasikan. Hal ini serupa dengan <a href="#fig-luaran-percobaan-sin" class="quarto-xref">Gambar&nbsp;8</a>. Dengan cara yang serupa dengan pembuatan animasi-animasi sebelumnya, kita dapat melakukannya dengan kode pada <a href="#lst-anim-hasil-percobaan" class="quarto-xref">Daftar&nbsp;14</a>.</p>
+<div class="cell">
+<div id="lst-anim-hasil-percobaan" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-fold="show">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-anim-hasil-percobaan-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Daftar&nbsp;14: Membuat animasi hasil setiap percobaan
+</figcaption>
+<div aria-describedby="lst-anim-hasil-percobaan-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details open="" class="code-fold">
+<summary>Kode</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>plot_anim_hasil_percobaan <span class="ot">&lt;-</span> data_eksperimen <span class="sc">|&gt;</span> </span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> theta_l, <span class="at">y =</span> d_h)) <span class="sc">+</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_function</span>(</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">group =</span> percobaan),</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">fun =</span> <span class="cf">function</span>(x) <span class="fl">0.5</span> <span class="sc">*</span> <span class="fu">sin</span>(x),</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"#efb118"</span>,</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="dv">1</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">color =</span> potong,</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">group =</span> percobaan</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">3</span></span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(</span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Memotong"</span> <span class="ot">=</span> <span class="st">"#4269d0"</span>,</span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Tak memotong"</span> <span class="ot">=</span> <span class="st">"#ff725c"</span></span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"Hasil percobaan"</span></span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span></span>
+<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb22-28"><a href="#cb22-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">expression</span>(theta[l]),</span>
+<span id="cb22-29"><a href="#cb22-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">expression</span>(d[h])</span>
+<span id="cb22-30"><a href="#cb22-30" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb22-31"><a href="#cb22-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transition_reveal</span>(</span>
+<span id="cb22-32"><a href="#cb22-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">along =</span> percobaan</span>
+<span id="cb22-33"><a href="#cb22-33" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</figure>
+</div>
+</div>
+<p>Untuk melihat hasilnya, kita dapat mencetak objek gganim <code>plot_anim_hasil_percobaan</code> yang dihasilkan pada <a href="#lst-anim-hasil-percobaan" class="quarto-xref">Daftar&nbsp;14</a>. Hasil animasinya disajikan pada <a href="#fig-anim-hasil-percobaan" class="quarto-xref">Gambar&nbsp;11</a>.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Kode</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>plot_anim_hasil_percobaan</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?
+Multiple drawing groups in `geom_function()`
+ℹ Did you use the correct group, colour, or fill aesthetics?</code></pre>
+</div>
+<div class="cell-output-display">
+<div id="fig-anim-hasil-percobaan" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-anim-hasil-percobaan-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/fig-anim-hasil-percobaan-1.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-11" title="Gambar&nbsp;11: Animasi hasil setiap percobaan dalam eksperimen jarum Buffon"><img src="index_files/figure-html/fig-anim-hasil-percobaan-1.gif" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-anim-hasil-percobaan-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Gambar&nbsp;11: Animasi hasil setiap percobaan dalam eksperimen jarum Buffon
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 
 
+</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Kembali ke atas</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Penggunaan Kembali</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-copyright"><h2 class="anchored quarto-appendix-heading">Hak Cipta</h2><div class="quarto-appendix-contents"><div>© 2025 Yosep Dwi Kristanto</div></div></section></div></main> <!-- /main -->

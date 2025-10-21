@@ -656,7 +656,7 @@ plot_anim_p_empiris
 
 ### Animasi Hasil Setiap Percobaan {#sec-animasi-hasil-setiap-percobaan}
 
-Hasil setiap percobaan dalam eksperimen jarum Buffon juga dapat kita animasikan. Hal ini serupa dengan @fig-luaran-percobaan-sin. Dengan cara yang serupa dengan pembuatan animasi-animasi sebelumnya, kita dapat melakukannya dengan kode pada
+Hasil setiap percobaan dalam eksperimen jarum Buffon juga dapat kita animasikan. Hal ini serupa dengan @fig-luaran-percobaan-sin. Dengan cara yang serupa dengan pembuatan animasi-animasi sebelumnya, kita dapat melakukannya dengan kode pada @lst-anim-hasil-percobaan.
 
 ```{r}
 #| code-fold: show
@@ -666,7 +666,7 @@ Hasil setiap percobaan dalam eksperimen jarum Buffon juga dapat kita animasikan.
 plot_anim_hasil_percobaan <- data_eksperimen |> 
   ggplot(aes(x = theta_l, y = d_h)) +
   geom_function(
-    aes(group = percobaan),
+    data = NULL,
     fun = function(x) 0.5 * sin(x),
     color = "#efb118",
     linewidth = 1
@@ -696,5 +696,16 @@ plot_anim_hasil_percobaan <- data_eksperimen |>
   transition_reveal(
     along = percobaan
   )
+
+```
+
+Untuk melihat hasilnya, kita dapat mencetak objek gganim `plot_anim_hasil_percobaan` yang dihasilkan pada @lst-anim-hasil-percobaan. Hasil animasinya disajikan pada @fig-anim-hasil-percobaan.
+
+```{r}
+#| label: fig-anim-hasil-percobaan
+#| fig-cap: 'Animasi hasil setiap percobaan dalam eksperimen jarum Buffon'
+#| fig-asp: 0.5625
+
+plot_anim_hasil_percobaan
 
 ```
