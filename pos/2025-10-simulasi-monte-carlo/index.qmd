@@ -400,6 +400,9 @@ glimpse(data_eksperimen)
 Sekarang, kita visualisaikan perubahan peluang empirisnya dari satu percobaan ke percobaan lainnya. Perhatikan @fig-tren-peluang-empiris!
 
 ```{r}
+#| code-fold: show
+#| lst-label: lst-tren-peluang-empiris
+#| lst-cap: 'Membuat visualisasi tren peluang empiris'
 #| label: fig-tren-peluang-empiris
 #| fig-cap: 'Tren peluang empiris'
 #| fig-asp: 0.5625
@@ -407,9 +410,16 @@ Sekarang, kita visualisaikan perubahan peluang empirisnya dari satu percobaan ke
 tren_p_empiris <- data_eksperimen |> 
   ggplot(aes(x = percobaan, y = peluang_empiris)) +
   geom_line(
-    color = "#4269d0",
+    color = "gray80",
     linewidth = 1
-  ) +
+  ) + 
+  geom_point(
+    aes(color = warna)
+  ) + 
+  coord_cartesian(
+    ylim = c(0, 1)
+  ) + 
+  scale_color_identity() + 
   theme_minimal() + 
   labs(
     x = "Percobaan",
@@ -426,7 +436,7 @@ Kita juga dapat memvisualisasikan apakah setiap percobaan dalam eksperimen terse
 #| fig-cap: 'Hasil setiap percobaan dalam eksperimen'
 #| fig-asp: 0.5625
 
-data_eksperimen |> 
+hasil_percobaan <- data_eksperimen |> 
   ggplot(aes(x = theta_l, y = d_h)) +
   geom_function(
     fun = function(x) 0.5 * sin(x),
@@ -452,6 +462,9 @@ data_eksperimen |>
     x = expression(theta[l]),
     y = expression(d[h])
   )
+
+hasil_percobaan
+
 ```
 
 ## Membuat Simulasi Menjadi Lebih Hidup {#sec-membuat-simulasi-menjadi-lebih-hidup}
@@ -525,7 +538,9 @@ glimpse(data_eksperimen)
 
 Berdasarkan luaran kode dari @lst-glimpse-data-eksperimen, kita dapat melihat bahwa `data_eksperimen` tersebut memiliki 14 variabel, mulai dari `x1`, `y1`, `theta`, sampai `peluang_empiris`. Data tersebut juga memuat 1000 baris yang setiap barisnya merupakan hasil percobaan dalam eksperimen. Dengan demikian, kita mendapatkan `data_eksperimen` yang kita kehendaki.
 
-Berikutnya, kita akan membuat visualisasi seperti pada @fig-vis-hasil-eksperimen, tetapi dengan menggunakan animasi. Dalam animasi tersebut, kita buat agar jarumnya tampak jatuh ke kertas secara bergiliran. Kita lakukan hal ini dengan kode pada @lst-animasi-jarum-jatuh.
+### Animasi Eksperimen Jarum Buffon {#sec-animasi-eksperimen-jarum-buffon}
+
+Data eksperimen 1000 percobaan telah siap. Berikutnya, kita akan membuat visualisasi seperti pada @fig-vis-hasil-eksperimen, tetapi dengan menggunakan animasi. Dalam animasi tersebut, kita buat agar jarumnya tampak jatuh ke kertas secara bergiliran. Kita lakukan hal ini dengan kode pada @lst-animasi-jarum-jatuh.
 
 ```{r}
 #| code-fold: show
@@ -570,11 +585,116 @@ plot_anim_jarum <- data_eksperimen |>
 
 ```
 
-Sekarang kita telah memiliki objek `plot_anim_jarum`. Objek tersebut merupakan objek gganim yang menyajikan animasi eksperimen pelemparan jarum ke kertas. Kita cetak objek tersebut, dan hasilnya disajikan pada @fig-animasi-jarum-jatuh.
+Sekarang kita telah memiliki objek `plot_anim_jarum`. Objek tersebut merupakan objek gganim yang menyajikan animasi eksperimen pelemparan jarum ke kertas. Apabila kita perhatikan kode pada @lst-animasi-jarum-jatuh hampir sama persis dengan kode pada @lst-vis-hasil-eksperimen untuk membuat @fig-vis-hasil-eksperimen. Perbedaannya hanya pada penambahan `group = percobaan` pada pemetaan variabel dalam `geom_segment()` dan `transition_reveal()`.
+
+Fungsi `transition_reveal()` merupakan fungsi dari {gganimate} yang digunakan untuk membuat animasi yang menampilkan data secara bertahap berdasarkan urutan sebuah variabel. Agar animasinya memunculkan hasil percobaan 1; 1 dan 2; 1, 2, dan 3; dan seterusnya, kita perlu menambahkan argumen `along = percobaan` untuk membuat animasi tersebut dimunculkan berdasarkan nilai variabel `percobaan`.
+
+Selain itu, kita juga perlu menambahkan `group = percobaan` untuk memberitahu `ggplot()` agar setiap data jarum dalam satu percobaan adalah satu kelompok data sendiri. Hal ini untuk mencegah `ggplot()` agar tidak menyambungkan satu jarum dari suatu percobaan dengan jarum dari percobaan lainnya.
+
+Ingin tahu bagaimana animasinya? Untuk mengetahuinya, kita cetak objek `plot_anim_jarum`. Hasilnya disajikan pada @fig-animasi-jarum-jatuh.
 
 ```{r}
 #| label: fig-animasi-jarum-jatuh
 #| fig-cap: 'Animasi yang mengilustrasikan eksperimen masalah jarum Buffon yang memuat 1000 percobaan'
 
 plot_anim_jarum
+```
+
+*Voilà!* Kita telah berhasil menganimasikan eksperimen 1000 percobaan jarum Buffon.
+
+### Animasi Peluang Empiris {#sec-animasi-peluang-empiris}
+
+Kita dapat menganimasikan bagaimana perubahan peluang empiris eksperimen jarum Buffon, dari satu percobaan ke percobaan lainnya. Dengan kata lain, kita akan menganimasikan @fig-tren-peluang-empiris.
+
+Sebelum itu, kita perlu mengetahui bahwa peluang empiris untuk mendapatkan jarum yang memotong garis pada kertas akan mendekati peluang teoretisnya. Peluang teoretis ini adalah $\frac{2}{\pi}$, atau bernilai sekitar 0,637. Kita dapat menambahkan informasi ini ke dalam animasi yang akan kita buat.
+
+Untuk melakukannya, kita tambahkan garis horizontal $y=\frac{2}{\pi}$ bersama dengan `transition_reveal(along = percobaan)` terhadap kode yang membuat @fig-tren-peluang-empiris, yaitu @lst-tren-peluang-empiris. Dengan demikian, kode untuk membuat animasi tersebut ditunjukkan pada @lst-anim-tren-p-empiris.
+
+```{r}
+#| code-fold: show
+#| lst-label: lst-anim-tren-p-empiris
+#| lst-cap: 'Membuat animasi tren peluang empiris'
+
+plot_anim_p_empiris <- data_eksperimen |> 
+  ggplot(aes(x = percobaan, y = peluang_empiris)) + 
+  geom_hline(
+    yintercept = 2 / pi,
+    linetype = "dashed",
+    color = "gray50"
+  ) + 
+  geom_line(
+    color = "gray80",
+    linewidth = 1
+  ) + 
+  geom_point(
+    aes(color = warna, group = percobaan)
+  ) + 
+  coord_cartesian(
+    ylim = c(0, 1)
+  ) + 
+  scale_color_identity() + 
+  theme_minimal() + 
+  labs(
+    x = "Percobaan",
+    y = "Peluang empiris"
+  ) + 
+  transition_reveal(
+    along = percobaan
+  )
+```
+
+Kita telah membuat objek gganim `plot_anim_p_empiris`. Bagaimana animasi yang terbentuk? Perhatikan @fig-anim-p-empiris!
+
+```{r}
+#| label: fig-anim-p-empiris
+#| fig-cap: 'Ilustrasi perubahan peluang empiris dari satu percobaan ke percobaan berikutnya'
+#| fig-asp: 0.5625
+
+plot_anim_p_empiris
+
+```
+
+### Animasi Hasil Setiap Percobaan {#sec-animasi-hasil-setiap-percobaan}
+
+Hasil setiap percobaan dalam eksperimen jarum Buffon juga dapat kita animasikan. Hal ini serupa dengan @fig-luaran-percobaan-sin. Dengan cara yang serupa dengan pembuatan animasi-animasi sebelumnya, kita dapat melakukannya dengan kode pada
+
+```{r}
+#| code-fold: show
+#| lst-label: lst-anim-hasil-percobaan
+#| lst-cap: 'Membuat animasi hasil setiap percobaan'
+
+plot_anim_hasil_percobaan <- data_eksperimen |> 
+  ggplot(aes(x = theta_l, y = d_h)) +
+  geom_function(
+    aes(group = percobaan),
+    fun = function(x) 0.5 * sin(x),
+    color = "#efb118",
+    linewidth = 1
+  ) +
+  geom_point(
+    aes(
+      color = potong,
+      group = percobaan
+    ),
+    size = 3
+  ) +
+  scale_color_manual(
+    values = c(
+      "Memotong" = "#4269d0",
+      "Tak memotong" = "#ff725c"
+    ),
+    name = "Hasil percobaan"
+  ) +
+  theme_minimal() + 
+  theme(
+    legend.position = "bottom"
+  ) + 
+  labs(
+    x = expression(theta[l]),
+    y = expression(d[h])
+  ) + 
+  transition_reveal(
+    along = percobaan
+  )
+
 ```
