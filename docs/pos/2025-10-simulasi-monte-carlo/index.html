@@ -462,6 +462,7 @@ window.Quarto = {
   <li><a href="#sec-animasi-eksperimen-jarum-buffon" id="toc-sec-animasi-eksperimen-jarum-buffon" class="nav-link" data-scroll-target="#sec-animasi-eksperimen-jarum-buffon">Animasi Eksperimen Jarum Buffon</a></li>
   <li><a href="#sec-animasi-peluang-empiris" id="toc-sec-animasi-peluang-empiris" class="nav-link" data-scroll-target="#sec-animasi-peluang-empiris">Animasi Peluang Empiris</a></li>
   <li><a href="#sec-animasi-hasil-setiap-percobaan" id="toc-sec-animasi-hasil-setiap-percobaan" class="nav-link" data-scroll-target="#sec-animasi-hasil-setiap-percobaan">Animasi Hasil Setiap Percobaan</a></li>
+  <li><a href="#sec-gabungan-animasi" id="toc-sec-gabungan-animasi" class="nav-link" data-scroll-target="#sec-gabungan-animasi">Gabungan Animasi</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/jelajahstatid/jelajahstatid.github.io/edit/main/pos/2025-10-simulasi-monte-carlo/index.qmd" class="toc-action"><i class="bi bi-github"></i>Sunting laman ini</a></li><li><a href="https://github.com/jelajahstatid/jelajahstatid.github.io/issues/new" class="toc-action"><i class="bi empty"></i>Laporkan sebuah isu</a></li></ul></div></nav>
@@ -1003,34 +1004,41 @@ Gambar&nbsp;7: Tren peluang empiris
 <div class="cell">
 <details class="code-fold">
 <summary>Kode</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>hasil_percobaan <span class="ot">&lt;-</span> data_eksperimen <span class="sc">|&gt;</span> </span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> theta_l, <span class="at">y =</span> d_h)) <span class="sc">+</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_function</span>(</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">fun =</span> <span class="cf">function</span>(x) <span class="fl">0.5</span> <span class="sc">*</span> <span class="fu">sin</span>(x),</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"#efb118"</span>,</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="dv">1</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">color =</span> potong),</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">3</span></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(</span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Memotong"</span> <span class="ot">=</span> <span class="st">"#4269d0"</span>,</span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Tak memotong"</span> <span class="ot">=</span> <span class="st">"#ff725c"</span></span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"Hasil percobaan"</span></span>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>data_kurva_sin <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">seq</span>(<span class="dv">0</span>, pi <span class="sc">/</span> <span class="dv">2</span>, <span class="at">length.out =</span> <span class="dv">400</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span> </span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">y =</span> <span class="fl">0.5</span> <span class="sc">*</span> <span class="fu">sin</span>(x))</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>hasil_percobaan <span class="ot">&lt;-</span> data_eksperimen <span class="sc">|&gt;</span> </span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> theta_l, <span class="at">y =</span> d_h)) <span class="sc">+</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> data_kurva_sin,</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y),</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"#efb118"</span>,</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="dv">1</span>,</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">inherit.aes =</span> <span class="cn">FALSE</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">color =</span> potong),</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">3</span></span>
 <span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span></span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">expression</span>(theta[l]),</span>
-<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">expression</span>(d[h])</span>
-<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>hasil_percobaan</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Memotong"</span> <span class="ot">=</span> <span class="st">"#4269d0"</span>,</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Tak memotong"</span> <span class="ot">=</span> <span class="st">"#ff725c"</span></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"Hasil percobaan"</span></span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span></span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">expression</span>(theta[l]),</span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">expression</span>(d[h])</span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>hasil_percobaan</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div id="fig-luaran-percobaan-sin" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1049,7 +1057,7 @@ Gambar&nbsp;8: Hasil setiap percobaan dalam eksperimen
 </section>
 <section id="sec-membuat-simulasi-menjadi-lebih-hidup" class="level2">
 <h2 class="anchored" data-anchor-id="sec-membuat-simulasi-menjadi-lebih-hidup">Membuat Simulasi Menjadi Lebih Hidup</h2>
-<p>Pada <a href="#sec-simulasi-masalah-jarum-buffon" class="quarto-xref">Bagian&nbsp;2</a> kita telah memahami masalah jarum Buffon dengan simulasi Monte Carlo dan memvisualisasikan hasil eksperimennya. Kita dapat menjadikan simulasi masalah tersebut menjadi lebih hidup dengan menggunakan animasi. Teknik penggunaan animasi ini juga telah kita bahas pada <a href="pos/2024-08-animasi-diagram-statistik/index.qmd" title="Membuat Diagram Lebih Hidup dengan Animasi">pos sebelumnya</a>. Selain itu, kita juga akan menambah banyak percobaannya menjadi <span class="math inline">\(n=1000\)</span> kali.</p>
+<p>Pada <a href="#sec-simulasi-masalah-jarum-buffon" class="quarto-xref">Bagian&nbsp;2</a> kita telah memahami masalah jarum Buffon dengan simulasi Monte Carlo dan memvisualisasikan hasil eksperimennya. Kita dapat menjadikan simulasi masalah tersebut menjadi lebih hidup dengan menggunakan animasi. Teknik penggunaan animasi ini juga telah kita bahas pada <a href="../../pos/2024-08-animasi-diagram-statistik/index.html" title="Membuat Diagram Lebih Hidup dengan Animasi">pos sebelumnya</a>. Selain itu, kita juga akan menambah banyak percobaannya menjadi <span class="math inline">\(n=1000\)</span> kali.</p>
 <p>Pertama yang kita lakukan adalah mempersiapkan datanya. Untuk melakukannya, kita menggunakan alur kerja yang serupa dengan yang telah kita lakukan dari <a href="#lst-data-eksperimen" class="quarto-xref">Daftar&nbsp;3</a>, <a href="#lst-data-eksperimen-lengkap" class="quarto-xref">Daftar&nbsp;5</a>, sampai <a href="#lst-peluang-empiris" class="quarto-xref">Daftar&nbsp;7</a>. Kita rangkum alur kerja tersebut untuk membuat fungsi <code>eksperimen_buffon()</code> pada <a href="#lst-fungsi-data-eksperimen" class="quarto-xref">Daftar&nbsp;9</a>.</p>
 <div class="cell">
 <div id="lst-fungsi-data-eksperimen" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-fold="false">
@@ -1303,37 +1311,38 @@ Daftar&nbsp;14: Membuat animasi hasil setiap percobaan
 <summary>Kode</summary>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>plot_anim_hasil_percobaan <span class="ot">&lt;-</span> data_eksperimen <span class="sc">|&gt;</span> </span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> theta_l, <span class="at">y =</span> d_h)) <span class="sc">+</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_function</span>(</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">group =</span> percobaan),</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">fun =</span> <span class="cf">function</span>(x) <span class="fl">0.5</span> <span class="sc">*</span> <span class="fu">sin</span>(x),</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> data_kurva_sin,</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y),</span>
 <span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"#efb118"</span>,</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="dv">1</span></span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">color =</span> potong,</span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">group =</span> percobaan</span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">3</span></span>
-<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(</span>
-<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
-<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Memotong"</span> <span class="ot">=</span> <span class="st">"#4269d0"</span>,</span>
-<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Tak memotong"</span> <span class="ot">=</span> <span class="st">"#ff725c"</span></span>
-<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"Hasil percobaan"</span></span>
-<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
-<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span></span>
-<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb22-28"><a href="#cb22-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">expression</span>(theta[l]),</span>
-<span id="cb22-29"><a href="#cb22-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">expression</span>(d[h])</span>
-<span id="cb22-30"><a href="#cb22-30" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb22-31"><a href="#cb22-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transition_reveal</span>(</span>
-<span id="cb22-32"><a href="#cb22-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">along =</span> percobaan</span>
-<span id="cb22-33"><a href="#cb22-33" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="dv">1</span>,</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">inherit.aes =</span> <span class="cn">FALSE</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">color =</span> potong,</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">group =</span> percobaan</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">3</span></span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(</span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Memotong"</span> <span class="ot">=</span> <span class="st">"#4269d0"</span>,</span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Tak memotong"</span> <span class="ot">=</span> <span class="st">"#ff725c"</span></span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"Hasil percobaan"</span></span>
+<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span></span>
+<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb22-28"><a href="#cb22-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb22-29"><a href="#cb22-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">expression</span>(theta[l]),</span>
+<span id="cb22-30"><a href="#cb22-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">expression</span>(d[h])</span>
+<span id="cb22-31"><a href="#cb22-31" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb22-32"><a href="#cb22-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transition_reveal</span>(</span>
+<span id="cb22-33"><a href="#cb22-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">along =</span> percobaan</span>
+<span id="cb22-34"><a href="#cb22-34" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </figure>
@@ -1345,210 +1354,6 @@ Daftar&nbsp;14: Membuat animasi hasil setiap percobaan
 <summary>Kode</summary>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>plot_anim_hasil_percobaan</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?
-Multiple drawing groups in `geom_function()`
-ℹ Did you use the correct group, colour, or fill aesthetics?</code></pre>
-</div>
 <div class="cell-output-display">
 <div id="fig-anim-hasil-percobaan" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1561,6 +1366,60 @@ Gambar&nbsp;11: Animasi hasil setiap percobaan dalam eksperimen jarum Buffon
 </figure>
 </div>
 </div>
+</div>
+</section>
+<section id="sec-gabungan-animasi" class="level3">
+<h3 class="anchored" data-anchor-id="sec-gabungan-animasi">Gabungan Animasi</h3>
+<p>Seringkali gabungan animasi memberikan informasi yang lebih kaya daripada animasi tunggal. Misalnya, bagaimana menurutmu jika kita dapat mengatur agar animasi pada <a href="#fig-animasi-jarum-jatuh" class="quarto-xref">Gambar&nbsp;9</a> dan <a href="#fig-anim-p-empiris" class="quarto-xref">Gambar&nbsp;10</a> berdampingan? Selain kita dapat melihat eksperimen jarum Buffon, secara simultan kita juga dapat mengamati tren peluang empirisnya. Itulah yang akan kita lakukan. Untuk melakukannya, kita menggunakan kode pada <strong>?@lst-gif-buffon-p-empiris</strong>.</p>
+<pre class="{r}}"><code>#| lst-label: lst-gif-buffon-p-empiris
+#| lst-cap: 'Menggabungkan animasi eksperimen jarum Buffon dan tren peluang empirisnya'
+
+gif_anim_jarum &lt;- animate(
+  plot_anim_jarum,
+  width = 240,
+  height = 240,
+  nframes = 200,
+  fps = 10
+)
+
+gif_anim_p_empiris &lt;- animate(
+  plot_anim_p_empiris,
+  width = 240,
+  height = 240,
+  nframes = 200,
+  fps = 10
+)
+
+mgif_anim_jarum &lt;- image_read(gif_anim_jarum)
+mgif_anim_p_empiris &lt;- image_read(gif_anim_p_empiris)
+
+gif_buffon_p_empiris &lt;- image_append(
+  c(mgif_anim_jarum[1], mgif_anim_p_empiris[1])
+)
+for(i in 2:200){
+  kombinasi &lt;- image_append(
+    c(mgif_anim_jarum[i], mgif_anim_p_empiris[i])
+  )
+  gif_buffon_p_empiris &lt;- c(
+    gif_buffon_p_empiris,
+    kombinasi
+  )
+}
+
+anim_save(
+  filename = "gif_buffon_p_empiris.gif",
+  animation = gif_buffon_p_empiris
+)</code></pre>
+<p>Hasilnya ditunjukkan pada <a href="#fig-gif-buffon-p-empiris" class="quarto-xref">Gambar&nbsp;12</a>.</p>
+<div id="fig-gif-buffon-p-empiris" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-gif-buffon-p-empiris-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="aset/gif_buffon_p_empiris.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-12" title="Gambar&nbsp;12: Ilustrasi eksperimen jarum Buffon dan peluang empirisnya"><img src="aset/gif_buffon_p_empiris.gif" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gif-buffon-p-empiris-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Gambar&nbsp;12: Ilustrasi eksperimen jarum Buffon dan peluang empirisnya
+</figcaption>
+</figure>
 </div>
 
 

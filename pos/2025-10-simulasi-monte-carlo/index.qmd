@@ -436,13 +436,20 @@ Kita juga dapat memvisualisasikan apakah setiap percobaan dalam eksperimen terse
 #| fig-cap: 'Hasil setiap percobaan dalam eksperimen'
 #| fig-asp: 0.5625
 
+data_kurva_sin <- tibble(
+  x = seq(0, pi / 2, length.out = 400)
+) |> 
+  mutate(y = 0.5 * sin(x))
+
 hasil_percobaan <- data_eksperimen |> 
   ggplot(aes(x = theta_l, y = d_h)) +
-  geom_function(
-    fun = function(x) 0.5 * sin(x),
+  geom_line(
+    data = data_kurva_sin,
+    aes(x = x, y = y),
     color = "#efb118",
-    linewidth = 1
-  ) +
+    linewidth = 1,
+    inherit.aes = FALSE
+  ) + 
   geom_point(
     aes(color = potong),
     size = 3
@@ -469,7 +476,7 @@ hasil_percobaan
 
 ## Membuat Simulasi Menjadi Lebih Hidup {#sec-membuat-simulasi-menjadi-lebih-hidup}
 
-Pada @sec-simulasi-masalah-jarum-buffon kita telah memahami masalah jarum Buffon dengan simulasi Monte Carlo dan memvisualisasikan hasil eksperimennya. Kita dapat menjadikan simulasi masalah tersebut menjadi lebih hidup dengan menggunakan animasi. Teknik penggunaan animasi ini juga telah kita bahas pada [pos sebelumnya](pos/2024-08-animasi-diagram-statistik/index.qmd "Membuat Diagram Lebih Hidup dengan Animasi"). Selain itu, kita juga akan menambah banyak percobaannya menjadi $n=1000$ kali.
+Pada @sec-simulasi-masalah-jarum-buffon kita telah memahami masalah jarum Buffon dengan simulasi Monte Carlo dan memvisualisasikan hasil eksperimennya. Kita dapat menjadikan simulasi masalah tersebut menjadi lebih hidup dengan menggunakan animasi. Teknik penggunaan animasi ini juga telah kita bahas pada [pos sebelumnya](/pos/2024-08-animasi-diagram-statistik/index.qmd "Membuat Diagram Lebih Hidup dengan Animasi"). Selain itu, kita juga akan menambah banyak percobaannya menjadi $n=1000$ kali.
 
 Pertama yang kita lakukan adalah mempersiapkan datanya. Untuk melakukannya, kita menggunakan alur kerja yang serupa dengan yang telah kita lakukan dari @lst-data-eksperimen, @lst-data-eksperimen-lengkap, sampai @lst-peluang-empiris. Kita rangkum alur kerja tersebut untuk membuat fungsi `eksperimen_buffon()` pada @lst-fungsi-data-eksperimen.
 
@@ -665,12 +672,13 @@ Hasil setiap percobaan dalam eksperimen jarum Buffon juga dapat kita animasikan.
 
 plot_anim_hasil_percobaan <- data_eksperimen |> 
   ggplot(aes(x = theta_l, y = d_h)) +
-  geom_function(
-    data = NULL,
-    fun = function(x) 0.5 * sin(x),
+  geom_line(
+    data = data_kurva_sin,
+    aes(x = x, y = y),
     color = "#efb118",
-    linewidth = 1
-  ) +
+    linewidth = 1,
+    inherit.aes = FALSE
+  ) + 
   geom_point(
     aes(
       color = potong,
@@ -709,3 +717,54 @@ Untuk melihat hasilnya, kita dapat mencetak objek gganim `plot_anim_hasil_percob
 plot_anim_hasil_percobaan
 
 ```
+
+### Gabungan Animasi {#sec-gabungan-animasi}
+
+Seringkali gabungan animasi memberikan informasi yang lebih kaya daripada animasi tunggal. Misalnya, bagaimana menurutmu jika kita dapat mengatur agar animasi pada @fig-animasi-jarum-jatuh dan @fig-anim-p-empiris berdampingan? Selain kita dapat melihat eksperimen jarum Buffon, secara simultan kita juga dapat mengamati tren peluang empirisnya. Itulah yang akan kita lakukan. Untuk melakukannya, kita menggunakan kode berikut.
+
+``` r
+gif_anim_jarum <- animate(
+  plot_anim_jarum,
+  width = 240,
+  height = 240,
+  nframes = 200,
+  fps = 10
+)
+
+gif_anim_p_empiris <- animate(
+  plot_anim_p_empiris,
+  width = 240,
+  height = 240,
+  nframes = 200,
+  fps = 10
+)
+
+mgif_anim_jarum <- image_read(gif_anim_jarum)
+mgif_anim_p_empiris <- image_read(gif_anim_p_empiris)
+
+gif_buffon_p_empiris <- image_append(
+  c(mgif_anim_jarum[1], mgif_anim_p_empiris[1])
+)
+for(i in 2:200){
+  kombinasi <- image_append(
+    c(mgif_anim_jarum[i], mgif_anim_p_empiris[i])
+  )
+  gif_buffon_p_empiris <- c(
+    gif_buffon_p_empiris,
+    kombinasi
+  )
+}
+
+anim_save(
+  filename = "gif_buffon_p_empiris.gif",
+  animation = gif_buffon_p_empiris
+)
+```
+
+Kode di atas menghasilkan animasi yang berupa gambar gif. Animasi tersebut ditunjukkan pada @fig-gif-buffon-p-empiris.
+
+![Ilustrasi eksperimen jarum Buffon dan peluang empirisnya](aset/gif_buffon_p_empiris.gif){#fig-gif-buffon-p-empiris}
+
+Dengan cara yang serupa, kita juga dapat menyandingkan animasi yang disajikan pada @fig-animasi-jarum-jatuh dan @fig-anim-hasil-percobaan. Animasi tersebut ditunjukkan pada @fig-gif-buffon-hasil-percobaan.
+
+![Ilustrasi eksperimen jarum Buffon dan hasil setiap percobaannya](aset/gif_buffon_hasil_percobaan.gif){#fig-gif-buffon-hasil-percobaan}
