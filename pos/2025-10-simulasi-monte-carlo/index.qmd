@@ -419,7 +419,7 @@ tren_p_empiris <- data_eksperimen |>
 tren_p_empiris
 ```
 
-Kita juga dapat memvisualisasikan apakah setiap percobaan dalam eksperimen tersebut menghasilkan jarum yang memotong garis atau tidak dengan menggunakan @eq-kondisi. Caranya, kita representasikan setiap percobaan dalam eksperimen tersebut dengan titik $\left(\theta_{l},d_{h}\right)$. Jika titik tersebut di atas kurva $y=\frac{1}{2}\sin\left(x\right)$, percobaannya menghasilkan jarum yang memotong garis. Dengan menggunakan ide seperti ini, kita mendapatkan visualisasi yang disajikan pada @fig-luaran-percobaan-sin.
+Kita juga dapat memvisualisasikan apakah setiap percobaan dalam eksperimen tersebut menghasilkan jarum yang memotong garis atau tidak dengan menggunakan @eq-kondisi. Caranya, kita representasikan setiap percobaan dalam eksperimen tersebut dengan titik $\left(\theta_{l},d_{h}\right)$. Jika titik tersebut di bawah kurva $y=\frac{1}{2}\sin\left(x\right)$, percobaannya menghasilkan jarum yang memotong garis. Dengan menggunakan ide seperti ini, kita mendapatkan visualisasi yang disajikan pada @fig-luaran-percobaan-sin.
 
 ```{r}
 #| label: fig-luaran-percobaan-sin
@@ -439,8 +439,8 @@ data_eksperimen |>
   ) +
   scale_color_manual(
     values = c(
-      "Memotong" = "#ff725c",
-      "Tak memotong" = "#4269d0"
+      "Memotong" = "#4269d0",
+      "Tak memotong" = "#ff725c"
     ),
     name = "Hasil percobaan"
   ) +
@@ -506,11 +506,75 @@ eksperimen_buffon <- function(n = 100) {
 Fungsi `eksperimen_buffon()` dapat kita gunakan untuk membuat data hasil eksperimen masalah jarum Buffon dengan input `n`, yaitu banyaknya percobaan dalam eksperimen tersebut. Dengan demikian, jika kita ingin membuat `data_eksperimen` yang memuat $n=1000$ percobaan, kita manfaatkan fungsi tersebut seperti pada @lst-seribu-percobaan.
 
 ```{r}
-#| code-fold: false
+#| code-fold: show
 #| lst-label: lst-seribu-percobaan
 #| lst-cap: 'Membuat `data_eksperimen` dengan 1000 percobaan'
 
 data_eksperimen <- eksperimen_buffon(1000)
-glimpse(data_eksperimen)
 
+```
+
+Untuk melihat secara sekilas hasil eksperimen yang dimuat dalam `data_eksperimen` tersebut, kita dapat menggunakan `glimpse()`.
+
+```{r}
+#| code-fold: show
+#| lst-label: lst-glimpse-data-eksperimen
+#| lst-cap: 'Melihat gambaran umum `data_eksperimen`'
+glimpse(data_eksperimen)
+```
+
+Berdasarkan luaran kode dari @lst-glimpse-data-eksperimen, kita dapat melihat bahwa `data_eksperimen` tersebut memiliki 14 variabel, mulai dari `x1`, `y1`, `theta`, sampai `peluang_empiris`. Data tersebut juga memuat 1000 baris yang setiap barisnya merupakan hasil percobaan dalam eksperimen. Dengan demikian, kita mendapatkan `data_eksperimen` yang kita kehendaki.
+
+Berikutnya, kita akan membuat visualisasi seperti pada @fig-vis-hasil-eksperimen, tetapi dengan menggunakan animasi. Dalam animasi tersebut, kita buat agar jarumnya tampak jatuh ke kertas secara bergiliran. Kita lakukan hal ini dengan kode pada @lst-animasi-jarum-jatuh.
+
+```{r}
+#| code-fold: show
+#| lst-label: lst-animasi-jarum-jatuh
+#| lst-cap: 'Menganimasikan jarum yang jatuh ke kertas'
+
+plot_anim_jarum <- data_eksperimen |> 
+  ggplot() + 
+  geom_hline(
+    yintercept = 0:10,
+    color = "gray80",
+    linewidth = 0.5
+  ) + 
+  geom_segment(
+    aes(
+      x = x1, y = y1,
+      xend = x2, yend = y2,
+      group = percobaan,
+      color = warna
+    ),
+    linewidth = 1.5
+  ) + 
+  coord_equal(
+    xlim = c(0, 10),
+    ylim = c(0, 10)
+  ) + 
+  scale_x_continuous(
+    breaks = 0:10
+  ) + 
+  scale_y_continuous(
+    breaks = 0:10
+  ) + 
+  scale_color_identity() + 
+  theme_bw() + 
+  theme(
+    legend.position = "none",
+    axis.title = element_blank(),
+    panel.grid = element_blank(),
+    plot.margin = unit(c(.5, .5, .5, .5), "cm")
+  ) + 
+  transition_reveal(along = percobaan)
+
+```
+
+Sekarang kita telah memiliki objek `plot_anim_jarum`. Objek tersebut merupakan objek gganim yang menyajikan animasi eksperimen pelemparan jarum ke kertas. Kita cetak objek tersebut, dan hasilnya disajikan pada @fig-animasi-jarum-jatuh.
+
+```{r}
+#| label: fig-animasi-jarum-jatuh
+#| fig-cap: 'Animasi yang mengilustrasikan eksperimen masalah jarum Buffon yang memuat 1000 percobaan'
+
+plot_anim_jarum
 ```
