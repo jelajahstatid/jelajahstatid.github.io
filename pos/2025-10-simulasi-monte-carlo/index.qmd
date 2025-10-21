@@ -720,8 +720,9 @@ plot_anim_hasil_percobaan
 
 ### Gabungan Animasi {#sec-gabungan-animasi}
 
-Seringkali gabungan animasi memberikan informasi yang lebih kaya daripada animasi tunggal. Misalnya, bagaimana menurutmu jika kita dapat mengatur agar animasi pada @fig-animasi-jarum-jatuh dan @fig-anim-p-empiris berdampingan? Selain kita dapat melihat eksperimen jarum Buffon, secara simultan kita juga dapat mengamati tren peluang empirisnya. Itulah yang akan kita lakukan. Untuk melakukannya, kita menggunakan kode berikut.
+Seringkali gabungan animasi memberikan informasi yang lebih kaya daripada animasi tunggal. Misalnya, bagaimana menurutmu jika kita dapat mengatur agar animasi pada @fig-animasi-jarum-jatuh dan @fig-anim-p-empiris berdampingan? Selain kita dapat melihat eksperimen jarum Buffon, secara simultan kita juga dapat mengamati tren peluang empirisnya. Itulah yang akan kita lakukan. Untuk melakukannya, kita dapat menggunakan kode pada @lst-gif-buffon-p-empiris.
 
+::: {#lst-gif-buffon-p-empiris}
 ``` r
 gif_anim_jarum <- animate(
   plot_anim_jarum,
@@ -761,7 +762,10 @@ anim_save(
 )
 ```
 
-Kode di atas menghasilkan animasi yang berupa gambar gif. Animasi tersebut ditunjukkan pada @fig-gif-buffon-p-empiris.
+Menyandingkan animasi eksperimen jarum Buffon dan peluang empirisnya
+:::
+
+Kode pada @lst-gif-buffon-p-empiris menghasilkan animasi yang berupa gambar gif. Animasi tersebut ditunjukkan pada @fig-gif-buffon-p-empiris.
 
 ![Ilustrasi eksperimen jarum Buffon dan peluang empirisnya](aset/gif_buffon_p_empiris.gif){#fig-gif-buffon-p-empiris}
 

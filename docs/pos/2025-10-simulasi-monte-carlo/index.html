@@ -1370,47 +1370,53 @@ Gambar&nbsp;11: Animasi hasil setiap percobaan dalam eksperimen jarum Buffon
 </section>
 <section id="sec-gabungan-animasi" class="level3">
 <h3 class="anchored" data-anchor-id="sec-gabungan-animasi">Gabungan Animasi</h3>
-<p>Seringkali gabungan animasi memberikan informasi yang lebih kaya daripada animasi tunggal. Misalnya, bagaimana menurutmu jika kita dapat mengatur agar animasi pada <a href="#fig-animasi-jarum-jatuh" class="quarto-xref">Gambar&nbsp;9</a> dan <a href="#fig-anim-p-empiris" class="quarto-xref">Gambar&nbsp;10</a> berdampingan? Selain kita dapat melihat eksperimen jarum Buffon, secara simultan kita juga dapat mengamati tren peluang empirisnya. Itulah yang akan kita lakukan. Untuk melakukannya, kita menggunakan kode pada <strong>?@lst-gif-buffon-p-empiris</strong>.</p>
-<pre class="{r}}"><code>#| lst-label: lst-gif-buffon-p-empiris
-#| lst-cap: 'Menggabungkan animasi eksperimen jarum Buffon dan tren peluang empirisnya'
-
-gif_anim_jarum &lt;- animate(
-  plot_anim_jarum,
-  width = 240,
-  height = 240,
-  nframes = 200,
-  fps = 10
-)
-
-gif_anim_p_empiris &lt;- animate(
-  plot_anim_p_empiris,
-  width = 240,
-  height = 240,
-  nframes = 200,
-  fps = 10
-)
-
-mgif_anim_jarum &lt;- image_read(gif_anim_jarum)
-mgif_anim_p_empiris &lt;- image_read(gif_anim_p_empiris)
-
-gif_buffon_p_empiris &lt;- image_append(
-  c(mgif_anim_jarum[1], mgif_anim_p_empiris[1])
-)
-for(i in 2:200){
-  kombinasi &lt;- image_append(
-    c(mgif_anim_jarum[i], mgif_anim_p_empiris[i])
-  )
-  gif_buffon_p_empiris &lt;- c(
-    gif_buffon_p_empiris,
-    kombinasi
-  )
-}
-
-anim_save(
-  filename = "gif_buffon_p_empiris.gif",
-  animation = gif_buffon_p_empiris
-)</code></pre>
-<p>Hasilnya ditunjukkan pada <a href="#fig-gif-buffon-p-empiris" class="quarto-xref">Gambar&nbsp;12</a>.</p>
+<p>Seringkali gabungan animasi memberikan informasi yang lebih kaya daripada animasi tunggal. Misalnya, bagaimana menurutmu jika kita dapat mengatur agar animasi pada <a href="#fig-animasi-jarum-jatuh" class="quarto-xref">Gambar&nbsp;9</a> dan <a href="#fig-anim-p-empiris" class="quarto-xref">Gambar&nbsp;10</a> berdampingan? Selain kita dapat melihat eksperimen jarum Buffon, secara simultan kita juga dapat mengamati tren peluang empirisnya. Itulah yang akan kita lakukan. Untuk melakukannya, kita dapat menggunakan kode pada <a href="#lst-gif-buffon-p-empiris" class="quarto-xref">Daftar&nbsp;15</a>.</p>
+<div id="lst-gif-buffon-p-empiris" class="listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-gif-buffon-p-empiris-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Daftar&nbsp;15: Menyandingkan animasi eksperimen jarum Buffon dan peluang empirisnya
+</figcaption>
+<div aria-describedby="lst-gif-buffon-p-empiris-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>gif_anim_jarum <span class="ot">&lt;-</span> <span class="fu">animate</span>(</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  plot_anim_jarum,</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">width =</span> <span class="dv">240</span>,</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">height =</span> <span class="dv">240</span>,</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">nframes =</span> <span class="dv">200</span>,</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">fps =</span> <span class="dv">10</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>gif_anim_p_empiris <span class="ot">&lt;-</span> <span class="fu">animate</span>(</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>  plot_anim_p_empiris,</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">width =</span> <span class="dv">240</span>,</span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">height =</span> <span class="dv">240</span>,</span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">nframes =</span> <span class="dv">200</span>,</span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">fps =</span> <span class="dv">10</span></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>mgif_anim_jarum <span class="ot">&lt;-</span> <span class="fu">image_read</span>(gif_anim_jarum)</span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>mgif_anim_p_empiris <span class="ot">&lt;-</span> <span class="fu">image_read</span>(gif_anim_p_empiris)</span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>gif_buffon_p_empiris <span class="ot">&lt;-</span> <span class="fu">image_append</span>(</span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(mgif_anim_jarum[<span class="dv">1</span>], mgif_anim_p_empiris[<span class="dv">1</span>])</span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">200</span>){</span>
+<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>  kombinasi <span class="ot">&lt;-</span> <span class="fu">image_append</span>(</span>
+<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">c</span>(mgif_anim_jarum[i], mgif_anim_p_empiris[i])</span>
+<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a>  gif_buffon_p_empiris <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a>    gif_buffon_p_empiris,</span>
+<span id="cb24-29"><a href="#cb24-29" aria-hidden="true" tabindex="-1"></a>    kombinasi</span>
+<span id="cb24-30"><a href="#cb24-30" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb24-31"><a href="#cb24-31" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb24-32"><a href="#cb24-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-33"><a href="#cb24-33" aria-hidden="true" tabindex="-1"></a><span class="fu">anim_save</span>(</span>
+<span id="cb24-34"><a href="#cb24-34" aria-hidden="true" tabindex="-1"></a>  <span class="at">filename =</span> <span class="st">"gif_buffon_p_empiris.gif"</span>,</span>
+<span id="cb24-35"><a href="#cb24-35" aria-hidden="true" tabindex="-1"></a>  <span class="at">animation =</span> gif_buffon_p_empiris</span>
+<span id="cb24-36"><a href="#cb24-36" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</figure>
+</div>
+<p>Kode pada <a href="#lst-gif-buffon-p-empiris" class="quarto-xref">Daftar&nbsp;15</a> menghasilkan animasi yang berupa gambar gif. Animasi tersebut ditunjukkan pada <a href="#fig-gif-buffon-p-empiris" class="quarto-xref">Gambar&nbsp;12</a>.</p>
 <div id="fig-gif-buffon-p-empiris" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-gif-buffon-p-empiris-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1418,6 +1424,17 @@ anim_save(
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gif-buffon-p-empiris-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Gambar&nbsp;12: Ilustrasi eksperimen jarum Buffon dan peluang empirisnya
+</figcaption>
+</figure>
+</div>
+<p>Dengan cara yang serupa, kita juga dapat menyandingkan animasi yang disajikan pada <a href="#fig-animasi-jarum-jatuh" class="quarto-xref">Gambar&nbsp;9</a> dan <a href="#fig-anim-hasil-percobaan" class="quarto-xref">Gambar&nbsp;11</a>. Animasi tersebut ditunjukkan pada <a href="#fig-gif-buffon-hasil-percobaan" class="quarto-xref">Gambar&nbsp;13</a>.</p>
+<div id="fig-gif-buffon-hasil-percobaan" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-gif-buffon-hasil-percobaan-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="aset/gif_buffon_hasil_percobaan.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-13" title="Gambar&nbsp;13: Ilustrasi eksperimen jarum Buffon dan hasil setiap percobaannya"><img src="aset/gif_buffon_hasil_percobaan.gif" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gif-buffon-hasil-percobaan-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Gambar&nbsp;13: Ilustrasi eksperimen jarum Buffon dan hasil setiap percobaannya
 </figcaption>
 </figure>
 </div>
