@@ -496,8 +496,9 @@ window.Quarto = {
 <p>Kita menggunakan <a href="https://www.R-project.org/" class="external" target="_blank" title="R Foundation for Statistical Computing">pemrograman R</a> untuk mensimulasikan masalah jarum Buffon. Untuk melakukannya, kita memanfaatkan tiga paket, yaitu <a href="https://tidyverse.org/" class="external" target="_blank" title="R packages for Data Science">{tidyverse}</a>, <a href="https://CRAN.R-project.org/package=gganimate" class="external" target="_blank" title="gganimate: A Grammar of Animated Graphics">{gganimate}</a>, dan <a href="https://CRAN.R-project.org/package=magick" class="external" target="_blank" title="magick: Advanced Graphics and Image-Processing in R">{magick}</a>. Mari terlebih dahulu kita memanggil ketiga paket tersebut.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-1-1" class="code-annotation-target"><a href="#annotated-cell-1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-1-2" class="code-annotation-target"><a href="#annotated-cell-1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gganimate)</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-1-3" class="code-annotation-target"><a href="#annotated-cell-1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magick)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-1-2" class="code-annotation-target"><a href="#annotated-cell-1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-1-3" class="code-annotation-target"><a href="#annotated-cell-1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gganimate)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-1-4" class="code-annotation-target"><a href="#annotated-cell-1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magick)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
@@ -506,11 +507,15 @@ window.Quarto = {
 </dd>
 <dt data-target-cell="annotated-cell-1" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-1" data-code-lines="2" data-code-annotation="2">Paket {gganimate} kita gunakan untuk menganimasikan simulasi masalah jarum Buffon.</span>
+<span data-code-cell="annotated-cell-1" data-code-lines="2" data-code-annotation="2">Paket {scales} kita pakai untuk mengatur skala diagram-diagram yang akan kita buat.</span>
 </dd>
 <dt data-target-cell="annotated-cell-1" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-cell="annotated-cell-1" data-code-lines="3" data-code-annotation="3">Kita memanfaatkan {magick} untuk menggabungkan gambar-gambar animasi ke dalam sebuah gambar animasi yang tersinkron.</span>
+<span data-code-cell="annotated-cell-1" data-code-lines="3" data-code-annotation="3">Paket {gganimate} kita gunakan untuk menganimasikan simulasi masalah jarum Buffon.</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="4" data-code-annotation="4">Kita memanfaatkan {magick} untuk menggabungkan gambar-gambar animasi ke dalam sebuah gambar animasi yang tersinkron.</span>
 </dd>
 </dl>
 </div>
@@ -687,7 +692,7 @@ Daftar&nbsp;2: Menguji kondisi apakah jarumnya memotong garis
 <section id="sec-eksperimen-pelemparan-jarum" class="level3">
 <h3 class="anchored" data-anchor-id="sec-eksperimen-pelemparan-jarum">Eksperimen Pelemparan Jarum</h3>
 <p>Sampai di sini kita telah dapat membuat selembar kertas dan sebuah jarum. Kita juga telah mengetahui kondisi jarum tersebut untuk memotong garis pada kertas. Sekarang kita akan memvisualisasikan sebuah eksperimen pelemparan jarum sebanyak <span class="math inline">\(n\)</span> kali. Misalnya, kita memilih <span class="math inline">\(n = 100\)</span> kali. Setiap pelemparan tersebut kita perlu menyediakan tiga nilai, yaitu <span class="math inline">\(x_{1}\)</span>, <span class="math inline">\(y_{1}\)</span>, dan <span class="math inline">\(\theta\)</span>, secara acak. Dalam R, kita dapat menggunakan fungsi <code>runif()</code>. Fungsi ini akan memberikan satu atau lebih nilai acak dari distribusi seragam dengan nilai minimum dan maksimum yang diberikan.</p>
-<p>Kita buat sebuah data dengan nama <code>data_eksperimen</code> untuk memuat hasil eksperimen pelemparan jarum sebanyak <span class="math inline">\(n=100\)</span> kali tersebut. Untuk melakukannya, kita gunakan kode berikut. Kita cetak beberapa baris awalnya dengan <code>head()</code>.</p>
+<p>Kita buat sebuah data dengan nama <code>data_eksperimen</code> untuk memuat hasil eksperimen pelemparan jarum sebanyak <span class="math inline">\(n=100\)</span> kali tersebut. Untuk melakukannya, kita gunakan kode pada <a href="#lst-data-eksperimen" class="quarto-xref">Daftar&nbsp;3</a>. Kita dapat melihat gambaran umum data ini dengan <code>glimpse()</code>.</p>
 <div class="cell">
 <div id="lst-data-eksperimen" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-fold="false">
 <figure class="quarto-float quarto-float-lst figure">
@@ -716,7 +721,7 @@ Daftar&nbsp;3: Membuat <code>data_eksperimen</code> yang memuat luaran setiap pe
 <span id="annotated-cell-4-19"><a href="#annotated-cell-4-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">warna =</span> palet_warna[(percobaan <span class="sc">%%</span> <span class="dv">10</span>) <span class="sc">+</span> <span class="dv">1</span>]</span>
 <span id="annotated-cell-4-20"><a href="#annotated-cell-4-20" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="annotated-cell-4-21"><a href="#annotated-cell-4-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="annotated-cell-4-22"><a href="#annotated-cell-4-22" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data_eksperimen)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="annotated-cell-4-22"><a href="#annotated-cell-4-22" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(data_eksperimen)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </figure>
 </div>
@@ -741,60 +746,136 @@ Daftar&nbsp;3: Membuat <code>data_eksperimen</code> yang memuat luaran setiap pe
 </dl>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 7
-     x1    y1 theta percobaan    x2    y2 warna  
-  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  
-1  1.91  1.28  4.15         1  1.38 0.437 #efb118
-2  5.98  5.52  3.32         2  4.99 5.34  #ff725c
-3  5.87  3.24  1.99         3  5.46 4.15  #6cc5b0
-4  5.99  2.63  4.82         4  6.10 1.64  #3ca951
-5  7.89  2.07  3.31         5  6.90 1.91  #ff8ab7
-6  6.12  3.61  4.60         6  6.01 2.61  #a463f2</code></pre>
+<pre><code>Rows: 100
+Columns: 7
+$ x1        &lt;dbl&gt; 1.909627, 5.978395, 5.874198, 5.987036, 7.887323, 6.122485, …
+$ y1        &lt;dbl&gt; 1.283654, 5.520609, 3.242062, 2.633571, 2.069911, 3.605455, …
+$ theta     &lt;dbl&gt; 4.1516438, 3.3197799, 1.9948725, 4.8245782, 3.3068938, 4.601…
+$ percobaan &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 1…
+$ x2        &lt;dbl&gt; 1.3778099, 4.9942286, 5.4627189, 6.0989896, 6.9009542, 6.011…
+$ y2        &lt;dbl&gt; 0.4367948, 5.3433631, 4.1534815, 1.6398571, 1.9053618, 2.611…
+$ warna     &lt;chr&gt; "#efb118", "#ff725c", "#6cc5b0", "#3ca951", "#ff8ab7", "#a46…</code></pre>
 </div>
 </div>
-<p>Kita telah memiliki <code>data_eksperimen</code>. Agar kita dapat melihat hasil eksperimen yang terdata dalam data tersebut, kita dapat memvisualisasikan hasil eksperimennya dengan kode pada <a href="#lst-vis-hasil-eksperimen" class="quarto-xref">Daftar&nbsp;4</a>. Hasilnya ditunjukkan pada <a href="#fig-vis-hasil-eksperimen" class="quarto-xref">Gambar&nbsp;5</a>.</p>
+<p>Kita telah memiliki <code>data_eksperimen</code> yang memiliki tujuh variabel dan 100 baris. Baris-baris tersebut menggambarkan hasil percobaannya.</p>
+<p>Selanjutnya, kita akan menentukan apakah setiap percobaan dalam <code>data_eksperimen</code> menghasilkan jarum yang memotong garis atau tidak. Untuk melakukannya, kita menerapkan ide pada <a href="#lst-uji-kondisi" class="quarto-xref">Daftar&nbsp;2</a> untuk membuat variabel baru, yaitu <code>potong</code>, dalam data tersebut. Perhatikan <a href="#lst-data-eksperimen-lengkap" class="quarto-xref">Daftar&nbsp;4</a>!</p>
+<div class="cell">
+<div id="lst-data-eksperimen-lengkap" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-fold="false">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-data-eksperimen-lengkap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Daftar&nbsp;4: Menambahkan informasi apakah jarumnya memotong garis atau tidak
+</figcaption>
+<div aria-describedby="lst-data-eksperimen-lengkap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data_eksperimen <span class="ot">&lt;-</span> data_eksperimen <span class="sc">|&gt;</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">yt =</span> (y1 <span class="sc">+</span> y2) <span class="sc">/</span> <span class="dv">2</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">theta_l =</span> <span class="fu">abs</span>(theta <span class="sc">%%</span> pi <span class="sc">-</span> pi<span class="sc">/</span><span class="dv">2</span>),</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">h =</span> <span class="dv">1</span> <span class="sc">/</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">sin</span>(theta_l),</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">d_h =</span> <span class="fu">pmin</span>(</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">abs</span>(yt <span class="sc">-</span> <span class="fu">floor</span>(yt)),</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">abs</span>(yt <span class="sc">-</span> <span class="fu">ceiling</span>(yt))</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">potong =</span> <span class="fu">if_else</span>(</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>      h <span class="sc">&gt;=</span> d_h,</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Memotong"</span>,</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Tak memotong"</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(data_eksperimen)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 100
+Columns: 12
+$ x1        &lt;dbl&gt; 1.909627, 5.978395, 5.874198, 5.987036, 7.887323, 6.122485, …
+$ y1        &lt;dbl&gt; 1.283654, 5.520609, 3.242062, 2.633571, 2.069911, 3.605455, …
+$ theta     &lt;dbl&gt; 4.1516438, 3.3197799, 1.9948725, 4.8245782, 3.3068938, 4.601…
+$ percobaan &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 1…
+$ x2        &lt;dbl&gt; 1.3778099, 4.9942286, 5.4627189, 6.0989896, 6.9009542, 6.011…
+$ y2        &lt;dbl&gt; 0.4367948, 5.3433631, 4.1534815, 1.6398571, 1.9053618, 2.611…
+$ warna     &lt;chr&gt; "#efb118", "#ff725c", "#6cc5b0", "#3ca951", "#ff8ab7", "#a46…
+$ yt        &lt;dbl&gt; 0.8602243, 5.4319860, 3.6977718, 2.1367138, 1.9876365, 3.108…
+$ theta_l   &lt;dbl&gt; 0.56074517, 1.39260910, 0.42407619, 0.11218922, 1.40549519, …
+$ h         &lt;dbl&gt; 0.26590870, 0.49208331, 0.20573949, 0.05597701, 0.49318442, …
+$ d_h       &lt;dbl&gt; 0.13977571, 0.43198600, 0.30222817, 0.13671384, 0.01236349, …
+$ potong    &lt;chr&gt; "Memotong", "Memotong", "Tak memotong", "Tak memotong", "Mem…</code></pre>
+</div>
+</div>
+<p>Data yang kita miliki telah memuat informasi yang kita perlukan. Kita dapat melakukan analisis sederhana terhadap <code>data_eksperimen</code> tersebut. Misalnya, kita dapat melihat berapa jarum yang memotong garis dan yang tidak dengan kode pada <a href="#lst-analisis-dasar-data-eksperimen" class="quarto-xref">Daftar&nbsp;5</a>.</p>
+<div class="cell">
+<div id="lst-analisis-dasar-data-eksperimen" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-analisis-dasar-data-eksperimen-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Daftar&nbsp;5: Menghitung banyak jarum yang memotong garis dan yang tidak
+</figcaption>
+<div aria-describedby="lst-analisis-dasar-data-eksperimen-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Kode</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>data_eksperimen <span class="sc">|&gt;</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(potong) <span class="sc">|&gt;</span> </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">frekuensi =</span> <span class="fu">n</span>()</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</figure>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  potong       frekuensi
+  &lt;chr&gt;            &lt;int&gt;
+1 Memotong            60
+2 Tak memotong        40</code></pre>
+</div>
+</div>
+</section>
+<section id="sec-visualisasi-hasil-eksperimen" class="level3">
+<h3 class="anchored" data-anchor-id="sec-visualisasi-hasil-eksperimen">Visualisasi Hasil Eksperimen</h3>
+<p>Kita dapat memvisualisasikan hasil 100 percobaan dalam <code>data_eksperimen</code>. Dengan menggunakan <code>x1</code>, <code>y1</code>, <code>x2</code>, dan <code>y2</code>, kita dapat menggambarkan jarum yang dihasilkan oleh setiap percobaan. Kita dapat melakukannya dengan kode pada <a href="#lst-vis-hasil-eksperimen" class="quarto-xref">Daftar&nbsp;6</a>. Hasilnya ditunjukkan pada <a href="#fig-vis-hasil-eksperimen" class="quarto-xref">Gambar&nbsp;5</a>.</p>
 <div class="cell">
 <div id="lst-vis-hasil-eksperimen" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-fold="false">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-vis-hasil-eksperimen-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Daftar&nbsp;4: Memvisualisasikan setiap luaran dalam eksperimen
+Daftar&nbsp;6: Memvisualisasikan setiap luaran dalam eksperimen
 </figcaption>
 <div aria-describedby="lst-vis-hasil-eksperimen-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>hasil_eksperimen <span class="ot">&lt;-</span> data_eksperimen <span class="sc">|&gt;</span> </span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">yintercept =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">10</span>,</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"gray80"</span>,</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="fl">0.5</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> x1, <span class="at">y =</span> y1,</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">xend =</span> x2, <span class="at">yend =</span> y2,</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">color =</span> warna</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="fl">1.5</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_equal</span>(</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">10</span>),</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">10</span>)</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">10</span></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(</span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">10</span></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_identity</span>() <span class="sc">+</span> </span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.margin =</span> <span class="fu">unit</span>(<span class="fu">c</span>(.<span class="dv">5</span>, .<span class="dv">5</span>, .<span class="dv">5</span>, .<span class="dv">5</span>), <span class="st">"cm"</span>)</span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>hasil_eksperimen</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>hasil_eksperimen <span class="ot">&lt;-</span> data_eksperimen <span class="sc">|&gt;</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">yintercept =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">10</span>,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"gray80"</span>,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="fl">0.5</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> x1, <span class="at">y =</span> y1,</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">xend =</span> x2, <span class="at">yend =</span> y2,</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">color =</span> warna</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="fl">1.5</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_equal</span>(</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">10</span>),</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">10</span>)</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_identity</span>() <span class="sc">+</span> </span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.margin =</span> <span class="fu">unit</span>(<span class="fu">c</span>(.<span class="dv">5</span>, .<span class="dv">5</span>, .<span class="dv">5</span>, .<span class="dv">5</span>), <span class="st">"cm"</span>)</span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>hasil_eksperimen</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </figure>
 </div>
@@ -811,110 +892,91 @@ Gambar&nbsp;5: Hasil pelemparan secara acak 100 jarum pada selembar kertas
 </div>
 </div>
 </div>
-<p>Sekarang kita akan menentukan apakah setiap percobaan dalam <code>data_eksperimen</code> menghasilkan jarum yang memotong garis atau tidak. Untuk melakukannya, kita menerapkan ide pada <a href="#lst-uji-kondisi" class="quarto-xref">Daftar&nbsp;2</a> untuk membuat variabel baru, yaitu <code>potong</code>, dalam data tersebut. Perhatikan <a href="#lst-data-eksperimen-lengkap" class="quarto-xref">Daftar&nbsp;5</a>!</p>
-<div class="cell">
-<div id="lst-data-eksperimen-lengkap" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-fold="false">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-data-eksperimen-lengkap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Daftar&nbsp;5: Menambahkan informasi apakah jarumnya memotong garis atau tidak
-</figcaption>
-<div aria-describedby="lst-data-eksperimen-lengkap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>data_eksperimen <span class="ot">&lt;-</span> data_eksperimen <span class="sc">|&gt;</span> </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">yt =</span> (y1 <span class="sc">+</span> y2) <span class="sc">/</span> <span class="dv">2</span>,</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">theta_l =</span> <span class="fu">abs</span>(theta <span class="sc">%%</span> pi <span class="sc">-</span> pi<span class="sc">/</span><span class="dv">2</span>),</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">h =</span> <span class="dv">1</span> <span class="sc">/</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">sin</span>(theta_l),</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">d_h =</span> <span class="fu">pmin</span>(</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">abs</span>(yt <span class="sc">-</span> <span class="fu">floor</span>(yt)),</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">abs</span>(yt <span class="sc">-</span> <span class="fu">ceiling</span>(yt))</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">potong =</span> <span class="fu">if_else</span>(</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>      h <span class="sc">&gt;=</span> d_h,</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Memotong"</span>,</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Tak memotong"</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data_eksperimen)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</figure>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 12
-     x1    y1 theta percobaan    x2    y2 warna      yt theta_l      h    d_h
-  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-1  1.91  1.28  4.15         1  1.38 0.437 #efb118 0.860   0.561 0.266  0.140 
-2  5.98  5.52  3.32         2  4.99 5.34  #ff725c 5.43    1.39  0.492  0.432 
-3  5.87  3.24  1.99         3  5.46 4.15  #6cc5b0 3.70    0.424 0.206  0.302 
-4  5.99  2.63  4.82         4  6.10 1.64  #3ca951 2.14    0.112 0.0560 0.137 
-5  7.89  2.07  3.31         5  6.90 1.91  #ff8ab7 1.99    1.41  0.493  0.0124
-6  6.12  3.61  4.60         6  6.01 2.61  #a463f2 3.11    0.111 0.0555 0.109 
-# ℹ 1 more variable: potong &lt;chr&gt;</code></pre>
-</div>
-</div>
-</section>
-<section id="sec-visualisasi-hasil-eksperimen" class="level3">
-<h3 class="anchored" data-anchor-id="sec-visualisasi-hasil-eksperimen">Visualisasi Hasil Eksperimen</h3>
-<p>Untuk mengetahui apakah lebih banyak jarum yang memotong garis ataukah yang tidak, kita dapat memvisualisasikan nilai-nilai dalam variabel <code>potong</code> dengan menggunakan diagram batang. Perhatikan <a href="#fig-diag-batang-potong" class="quarto-xref">Gambar&nbsp;6</a>!</p>
-<div class="cell">
+<p>Sebelumnya kita telah mengetahui berapa banyak jarum yang memotong garis dan yang tidak. Kita juga dapat mengetaui persentasenya juga. Kedua informasi ini dapat kita visualisasikan, seperti yang disajikan pada <a href="#fig-diag-batang-potong" class="quarto-xref">Gambar&nbsp;6</a>!</p>
 <details class="code-fold">
 <summary>Kode</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>data_eksperimen <span class="sc">|&gt;</span> </span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> potong, <span class="at">fill =</span> potong)) <span class="sc">+</span> </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span> </span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Memotong"</span> <span class="ot">=</span> <span class="st">"#4269d0"</span>,</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Tak memotong"</span> <span class="ot">=</span> <span class="st">"#ff725c"</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>()</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Frekuensi"</span></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>data_eksperimen <span class="sc">|&gt;</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> potong, <span class="at">fill =</span> potong)) <span class="sc">+</span> </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span> </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Memotong"</span> <span class="ot">=</span> <span class="st">"#4269d0"</span>,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Tak memotong"</span> <span class="ot">=</span> <span class="st">"#ff725c"</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Frekuensi"</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>data_eksperimen <span class="sc">|&gt;</span> </span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">potong =</span> <span class="fu">factor</span>(potong, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Tak memotong"</span>, <span class="st">"Memotong"</span>))</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span>, <span class="at">fill =</span> potong)) <span class="sc">+</span> </span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"fill"</span>) <span class="sc">+</span> </span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">percent_format</span>(),</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">1</span>, <span class="at">by =</span> .<span class="dv">1</span>)</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Tak memotong"</span> <span class="ot">=</span> <span class="st">"#ff725c"</span>,</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Memotong"</span> <span class="ot">=</span> <span class="st">"#4269d0"</span></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"Hasil percobaan"</span>,</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="st">"Memotong"</span>, <span class="st">"Tak memotong"</span>)</span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Frekuensi relatif"</span></span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output-display">
-<div id="fig-diag-batang-potong" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-diag-batang-potong" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-diag-batang-potong-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="index_files/figure-html/fig-diag-batang-potong-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Gambar&nbsp;6: Frekuensi jarum yang memotong atau tak memotong garis"><img src="index_files/figure-html/fig-diag-batang-potong-1.png" class="img-fluid figure-img" width="672"></a>
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-diag-batang-potong" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-diag-batang-potong-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-diag-batang-potong-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/fig-diag-batang-potong-1.png" class="lightbox" data-gallery="fig-diag-batang-potong" title="Gambar&nbsp;6&nbsp;(a): Frekuensi hasil setiap percobaan: Memotong dan Tak memotong"><img src="index_files/figure-html/fig-diag-batang-potong-1.png" class="img-fluid figure-img" data-ref-parent="fig-diag-batang-potong" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-diag-batang-potong-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Frekuensi hasil setiap percobaan: Memotong dan Tak memotong
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-diag-batang-potong" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-diag-batang-potong-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-diag-batang-potong-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/fig-diag-batang-potong-2.png" class="lightbox" data-gallery="fig-diag-batang-potong" title="Gambar&nbsp;6&nbsp;(b): Frekuensi relatif hasil setiap percobaan"><img src="index_files/figure-html/fig-diag-batang-potong-2.png" class="img-fluid figure-img" data-ref-parent="fig-diag-batang-potong" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-diag-batang-potong-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Frekuensi relatif hasil setiap percobaan
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diag-batang-potong-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Gambar&nbsp;6: Frekuensi jarum yang memotong atau tak memotong garis
+Gambar&nbsp;6: Hasil eksperimen jarum Buffon
 </figcaption>
 </figure>
 </div>
-</div>
-</div>
-<p>Berdasarkan eksperimen kita tersebut, berapakah peluang empiris (frekuensi relatif) jarum yang memotong garis? Kita dapat menjawabnya dengan kode pada <a href="#lst-nilai-peluang-empiris" class="quarto-xref">Daftar&nbsp;6</a>.</p>
-<div class="cell">
-<div id="lst-nilai-peluang-empiris" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-fold="false">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-nilai-peluang-empiris-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Daftar&nbsp;6: Menentukan peluang empiris
-</figcaption>
-<div aria-describedby="lst-nilai-peluang-empiris-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ringkasan_eksperimen <span class="ot">&lt;-</span> data_eksperimen <span class="sc">|&gt;</span> </span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(potong) <span class="sc">|&gt;</span> </span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>(),</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>p_memotong <span class="ot">&lt;-</span> ringkasan_eksperimen<span class="sc">$</span>n[<span class="dv">1</span>] <span class="sc">/</span> <span class="fu">sum</span>(ringkasan_eksperimen<span class="sc">$</span>n)</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(p_memotong)</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</figure>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.6</code></pre>
-</div>
-</div>
-<p>Kita telah mengetahui bahwa peluang empirisnya adalah 0.6. Bagaimana dengan peluang empirisnya pada percobaan pertama, kedua, ketiga, dan seterusnya sampai ke-100? Untuk itu, kita hitung terlebih dahulu peluang empirisnya untuk setiap percobaannya dengan menggunakan kode pada <a href="#lst-peluang-empiris" class="quarto-xref">Daftar&nbsp;7</a>.</p>
+<p>Berdasarkan <a href="#fig-diag-batang-potong-2" class="quarto-xref">Gambar&nbsp;6 (b)</a>, kita dapat mengetahui bahwa peluang empiris jarumnya memotong garis adalah 60% atau 0,6. Bagaimana dengan peluang empirisnya pada percobaan pertama, kedua, ketiga, dan seterusnya sampai ke-100? Untuk itu, kita hitung terlebih dahulu peluang empirisnya untuk setiap percobaannya dengan menggunakan kode pada <a href="#lst-peluang-empiris" class="quarto-xref">Daftar&nbsp;7</a>.</p>
 <div class="cell">
 <div id="lst-peluang-empiris" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-fold="false">
 <figure class="quarto-float quarto-float-lst figure">
@@ -991,7 +1053,7 @@ Daftar&nbsp;8: Membuat visualisasi tren peluang empiris
 <div id="fig-tren-peluang-empiris" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-tren-peluang-empiris-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="index_files/figure-html/fig-tren-peluang-empiris-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Gambar&nbsp;7: Tren peluang empiris"><img src="index_files/figure-html/fig-tren-peluang-empiris-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="index_files/figure-html/fig-tren-peluang-empiris-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Gambar&nbsp;7: Tren peluang empiris"><img src="index_files/figure-html/fig-tren-peluang-empiris-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tren-peluang-empiris-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Gambar&nbsp;7: Tren peluang empiris
@@ -1044,7 +1106,7 @@ Gambar&nbsp;7: Tren peluang empiris
 <div id="fig-luaran-percobaan-sin" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-luaran-percobaan-sin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="index_files/figure-html/fig-luaran-percobaan-sin-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Gambar&nbsp;8: Hasil setiap percobaan dalam eksperimen"><img src="index_files/figure-html/fig-luaran-percobaan-sin-1.png" class="img-fluid figure-img" width="672"></a>
+<a href="index_files/figure-html/fig-luaran-percobaan-sin-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9" title="Gambar&nbsp;8: Hasil setiap percobaan dalam eksperimen"><img src="index_files/figure-html/fig-luaran-percobaan-sin-1.png" class="img-fluid figure-img" width="672"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-luaran-percobaan-sin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Gambar&nbsp;8: Hasil setiap percobaan dalam eksperimen
@@ -1058,7 +1120,7 @@ Gambar&nbsp;8: Hasil setiap percobaan dalam eksperimen
 <section id="sec-membuat-simulasi-menjadi-lebih-hidup" class="level2">
 <h2 class="anchored" data-anchor-id="sec-membuat-simulasi-menjadi-lebih-hidup">Membuat Simulasi Menjadi Lebih Hidup</h2>
 <p>Pada <a href="#sec-simulasi-masalah-jarum-buffon" class="quarto-xref">Bagian&nbsp;2</a> kita telah memahami masalah jarum Buffon dengan simulasi Monte Carlo dan memvisualisasikan hasil eksperimennya. Kita dapat menjadikan simulasi masalah tersebut menjadi lebih hidup dengan menggunakan animasi. Teknik penggunaan animasi ini juga telah kita bahas pada <a href="../../pos/2024-08-animasi-diagram-statistik/index.html" title="Membuat Diagram Lebih Hidup dengan Animasi">pos sebelumnya</a>. Selain itu, kita juga akan menambah banyak percobaannya menjadi <span class="math inline">\(n=1000\)</span> kali.</p>
-<p>Pertama yang kita lakukan adalah mempersiapkan datanya. Untuk melakukannya, kita menggunakan alur kerja yang serupa dengan yang telah kita lakukan dari <a href="#lst-data-eksperimen" class="quarto-xref">Daftar&nbsp;3</a>, <a href="#lst-data-eksperimen-lengkap" class="quarto-xref">Daftar&nbsp;5</a>, sampai <a href="#lst-peluang-empiris" class="quarto-xref">Daftar&nbsp;7</a>. Kita rangkum alur kerja tersebut untuk membuat fungsi <code>eksperimen_buffon()</code> pada <a href="#lst-fungsi-data-eksperimen" class="quarto-xref">Daftar&nbsp;9</a>.</p>
+<p>Pertama yang kita lakukan adalah mempersiapkan datanya. Untuk melakukannya, kita menggunakan alur kerja yang serupa dengan yang telah kita lakukan dari <a href="#lst-data-eksperimen" class="quarto-xref">Daftar&nbsp;3</a>, <a href="#lst-data-eksperimen-lengkap" class="quarto-xref">Daftar&nbsp;4</a>, sampai <a href="#lst-peluang-empiris" class="quarto-xref">Daftar&nbsp;7</a>. Kita rangkum alur kerja tersebut untuk membuat fungsi <code>eksperimen_buffon()</code> pada <a href="#lst-fungsi-data-eksperimen" class="quarto-xref">Daftar&nbsp;9</a>.</p>
 <div class="cell">
 <div id="lst-fungsi-data-eksperimen" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-fold="false">
 <figure class="quarto-float quarto-float-lst figure">
@@ -1208,7 +1270,7 @@ Daftar&nbsp;12: Menganimasikan jarum yang jatuh ke kertas
 </figure>
 </div>
 </div>
-<p>Sekarang kita telah memiliki objek <code>plot_anim_jarum</code>. Objek tersebut merupakan objek gganim yang menyajikan animasi eksperimen pelemparan jarum ke kertas. Apabila kita perhatikan kode pada <a href="#lst-animasi-jarum-jatuh" class="quarto-xref">Daftar&nbsp;12</a> hampir sama persis dengan kode pada <a href="#lst-vis-hasil-eksperimen" class="quarto-xref">Daftar&nbsp;4</a> untuk membuat <a href="#fig-vis-hasil-eksperimen" class="quarto-xref">Gambar&nbsp;5</a>. Perbedaannya hanya pada penambahan <code>group = percobaan</code> pada pemetaan variabel dalam <code>geom_segment()</code> dan <code>transition_reveal()</code>.</p>
+<p>Sekarang kita telah memiliki objek <code>plot_anim_jarum</code>. Objek tersebut merupakan objek gganim yang menyajikan animasi eksperimen pelemparan jarum ke kertas. Apabila kita perhatikan kode pada <a href="#lst-animasi-jarum-jatuh" class="quarto-xref">Daftar&nbsp;12</a> hampir sama persis dengan kode pada <a href="#lst-vis-hasil-eksperimen" class="quarto-xref">Daftar&nbsp;6</a> untuk membuat <a href="#fig-vis-hasil-eksperimen" class="quarto-xref">Gambar&nbsp;5</a>. Perbedaannya hanya pada penambahan <code>group = percobaan</code> pada pemetaan variabel dalam <code>geom_segment()</code> dan <code>transition_reveal()</code>.</p>
 <p>Fungsi <code>transition_reveal()</code> merupakan fungsi dari {gganimate} yang digunakan untuk membuat animasi yang menampilkan data secara bertahap berdasarkan urutan sebuah variabel. Agar animasinya memunculkan hasil percobaan 1; 1 dan 2; 1, 2, dan 3; dan seterusnya, kita perlu menambahkan argumen <code>along = percobaan</code> untuk membuat animasi tersebut dimunculkan berdasarkan nilai variabel <code>percobaan</code>.</p>
 <p>Selain itu, kita juga perlu menambahkan <code>group = percobaan</code> untuk memberitahu <code>ggplot()</code> agar setiap data jarum dalam satu percobaan adalah satu kelompok data sendiri. Hal ini untuk mencegah <code>ggplot()</code> agar tidak menyambungkan satu jarum dari suatu percobaan dengan jarum dari percobaan lainnya.</p>
 <p>Ingin tahu bagaimana animasinya? Untuk mengetahuinya, kita cetak objek <code>plot_anim_jarum</code>. Hasilnya disajikan pada <a href="#fig-animasi-jarum-jatuh" class="quarto-xref">Gambar&nbsp;9</a>.</p>
@@ -1221,7 +1283,7 @@ Daftar&nbsp;12: Menganimasikan jarum yang jatuh ke kertas
 <div id="fig-animasi-jarum-jatuh" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-animasi-jarum-jatuh-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="index_files/figure-html/fig-animasi-jarum-jatuh-1.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-9" title="Gambar&nbsp;9: Animasi yang mengilustrasikan eksperimen masalah jarum Buffon yang memuat 1000 percobaan"><img src="index_files/figure-html/fig-animasi-jarum-jatuh-1.gif" class="img-fluid figure-img"></a>
+<a href="index_files/figure-html/fig-animasi-jarum-jatuh-1.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-10" title="Gambar&nbsp;9: Animasi yang mengilustrasikan eksperimen masalah jarum Buffon yang memuat 1000 percobaan"><img src="index_files/figure-html/fig-animasi-jarum-jatuh-1.gif" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-animasi-jarum-jatuh-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Gambar&nbsp;9: Animasi yang mengilustrasikan eksperimen masalah jarum Buffon yang memuat 1000 percobaan
@@ -1287,7 +1349,7 @@ Daftar&nbsp;13: Membuat animasi tren peluang empiris
 <div id="fig-anim-p-empiris" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-anim-p-empiris-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="index_files/figure-html/fig-anim-p-empiris-1.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-10" title="Gambar&nbsp;10: Ilustrasi perubahan peluang empiris dari satu percobaan ke percobaan berikutnya"><img src="index_files/figure-html/fig-anim-p-empiris-1.gif" class="img-fluid figure-img"></a>
+<a href="index_files/figure-html/fig-anim-p-empiris-1.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-11" title="Gambar&nbsp;10: Ilustrasi perubahan peluang empiris dari satu percobaan ke percobaan berikutnya"><img src="index_files/figure-html/fig-anim-p-empiris-1.gif" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-anim-p-empiris-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Gambar&nbsp;10: Ilustrasi perubahan peluang empiris dari satu percobaan ke percobaan berikutnya
@@ -1358,7 +1420,7 @@ Daftar&nbsp;14: Membuat animasi hasil setiap percobaan
 <div id="fig-anim-hasil-percobaan" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-anim-hasil-percobaan-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="index_files/figure-html/fig-anim-hasil-percobaan-1.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-11" title="Gambar&nbsp;11: Animasi hasil setiap percobaan dalam eksperimen jarum Buffon"><img src="index_files/figure-html/fig-anim-hasil-percobaan-1.gif" class="img-fluid figure-img"></a>
+<a href="index_files/figure-html/fig-anim-hasil-percobaan-1.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-12" title="Gambar&nbsp;11: Animasi hasil setiap percobaan dalam eksperimen jarum Buffon"><img src="index_files/figure-html/fig-anim-hasil-percobaan-1.gif" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-anim-hasil-percobaan-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Gambar&nbsp;11: Animasi hasil setiap percobaan dalam eksperimen jarum Buffon
@@ -1420,7 +1482,7 @@ Daftar&nbsp;15: Menyandingkan animasi eksperimen jarum Buffon dan peluang empiri
 <div id="fig-gif-buffon-p-empiris" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-gif-buffon-p-empiris-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="aset/gif_buffon_p_empiris.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-12" title="Gambar&nbsp;12: Ilustrasi eksperimen jarum Buffon dan peluang empirisnya"><img src="aset/gif_buffon_p_empiris.gif" class="img-fluid figure-img"></a>
+<a href="aset/gif_buffon_p_empiris.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-13" title="Gambar&nbsp;12: Ilustrasi eksperimen jarum Buffon dan peluang empirisnya"><img src="aset/gif_buffon_p_empiris.gif" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gif-buffon-p-empiris-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Gambar&nbsp;12: Ilustrasi eksperimen jarum Buffon dan peluang empirisnya
@@ -1431,7 +1493,7 @@ Gambar&nbsp;12: Ilustrasi eksperimen jarum Buffon dan peluang empirisnya
 <div id="fig-gif-buffon-hasil-percobaan" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-gif-buffon-hasil-percobaan-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="aset/gif_buffon_hasil_percobaan.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-13" title="Gambar&nbsp;13: Ilustrasi eksperimen jarum Buffon dan hasil setiap percobaannya"><img src="aset/gif_buffon_hasil_percobaan.gif" class="img-fluid figure-img"></a>
+<a href="aset/gif_buffon_hasil_percobaan.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-14" title="Gambar&nbsp;13: Ilustrasi eksperimen jarum Buffon dan hasil setiap percobaannya"><img src="aset/gif_buffon_hasil_percobaan.gif" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gif-buffon-hasil-percobaan-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Gambar&nbsp;13: Ilustrasi eksperimen jarum Buffon dan hasil setiap percobaannya

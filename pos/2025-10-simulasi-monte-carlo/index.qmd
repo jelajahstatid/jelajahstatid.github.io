@@ -55,14 +55,16 @@ Kita menggunakan [pemrograman R](https://www.R-project.org/ "R Foundation for St
 #| code-fold: false
 
 library(tidyverse) # <1>
-library(gganimate) # <2>
-library(magick)    # <3>
+library(scales)    # <2>
+library(gganimate) # <3>
+library(magick)    # <4>
 
 ```
 
 1.  Kita menggunakan {tidyverse} untuk mempersiapkan data dalam mensimulasikan masalah jarum Buffon.
-2.  Paket {gganimate} kita gunakan untuk menganimasikan simulasi masalah jarum Buffon.
-3.  Kita memanfaatkan {magick} untuk menggabungkan gambar-gambar animasi ke dalam sebuah gambar animasi yang tersinkron.
+2.  Paket {scales} kita pakai untuk mengatur skala diagram-diagram yang akan kita buat.
+3.  Paket {gganimate} kita gunakan untuk menganimasikan simulasi masalah jarum Buffon.
+4.  Kita memanfaatkan {magick} untuk menggabungkan gambar-gambar animasi ke dalam sebuah gambar animasi yang tersinkron.
 
 ### Deskripsi Masalah {#sec-deskripsi-masalah}
 
@@ -220,7 +222,7 @@ Kita telah berhasil menggunakan kondisi di atas untuk menentukan apakah jarum pa
 
 Sampai di sini kita telah dapat membuat selembar kertas dan sebuah jarum. Kita juga telah mengetahui kondisi jarum tersebut untuk memotong garis pada kertas. Sekarang kita akan memvisualisasikan sebuah eksperimen pelemparan jarum sebanyak $n$ kali. Misalnya, kita memilih $n = 100$ kali. Setiap pelemparan tersebut kita perlu menyediakan tiga nilai, yaitu $x_{1}$, $y_{1}$, dan $\theta$, secara acak. Dalam R, kita dapat menggunakan fungsi `runif()`. Fungsi ini akan memberikan satu atau lebih nilai acak dari distribusi seragam dengan nilai minimum dan maksimum yang diberikan.
 
-Kita buat sebuah data dengan nama `data_eksperimen` untuk memuat hasil eksperimen pelemparan jarum sebanyak $n=100$ kali tersebut. Untuk melakukannya, kita gunakan kode berikut. Kita cetak beberapa baris awalnya dengan `head()`.
+Kita buat sebuah data dengan nama `data_eksperimen` untuk memuat hasil eksperimen pelemparan jarum sebanyak $n=100$ kali tersebut. Untuk melakukannya, kita gunakan kode pada @lst-data-eksperimen. Kita dapat melihat gambaran umum data ini dengan `glimpse()`.
 
 ```{r}
 #| code-fold: false
@@ -248,7 +250,7 @@ data_eksperimen <- tibble(
     warna = palet_warna[(percobaan %% 10) + 1] # <4>
   )
 
-head(data_eksperimen)
+glimpse(data_eksperimen)
 
 ```
 
@@ -257,7 +259,52 @@ head(data_eksperimen)
 3.  Menyediakan bilangan-bilangan `x1`, `y1`, dan `theta` secara acak.
 4.  Menghitung `x2` dan `y2`, serta membuat variabel `percobaan` untuk memberikan identitas terhadap setiap percobaannya dan `warna` untuk memberikan warna terhadap setiap jarum yang dihasilkan.
 
-Kita telah memiliki `data_eksperimen`. Agar kita dapat melihat hasil eksperimen yang terdata dalam data tersebut, kita dapat memvisualisasikan hasil eksperimennya dengan kode pada @lst-vis-hasil-eksperimen. Hasilnya ditunjukkan pada @fig-vis-hasil-eksperimen.
+Kita telah memiliki `data_eksperimen` yang memiliki tujuh variabel dan 100 baris. Baris-baris tersebut menggambarkan hasil percobaannya.
+
+Selanjutnya, kita akan menentukan apakah setiap percobaan dalam `data_eksperimen` menghasilkan jarum yang memotong garis atau tidak. Untuk melakukannya, kita menerapkan ide pada @lst-uji-kondisi untuk membuat variabel baru, yaitu `potong`, dalam data tersebut. Perhatikan @lst-data-eksperimen-lengkap!
+
+```{r}
+#| code-fold: false
+#| lst-label: lst-data-eksperimen-lengkap
+#| lst-cap: 'Menambahkan informasi apakah jarumnya memotong garis atau tidak'
+
+data_eksperimen <- data_eksperimen |> 
+  mutate(
+    yt = (y1 + y2) / 2,
+    theta_l = abs(theta %% pi - pi/2),
+    h = 1 / 2 * sin(theta_l),
+    d_h = pmin(
+      abs(yt - floor(yt)),
+      abs(yt - ceiling(yt))
+    ),
+    potong = if_else(
+      h >= d_h,
+      "Memotong",
+      "Tak memotong"
+    )
+  )
+
+glimpse(data_eksperimen)
+
+```
+
+Data yang kita miliki telah memuat informasi yang kita perlukan. Kita dapat melakukan analisis sederhana terhadap `data_eksperimen` tersebut. Misalnya, kita dapat melihat berapa jarum yang memotong garis dan yang tidak dengan kode pada @lst-analisis-dasar-data-eksperimen.
+
+```{r}
+#| lst-label: lst-analisis-dasar-data-eksperimen
+#| lst-cap: 'Menghitung banyak jarum yang memotong garis dan yang tidak'
+
+data_eksperimen |> 
+  group_by(potong) |> 
+  summarise(
+    frekuensi = n()
+  )
+
+```
+
+### Visualisasi Hasil Eksperimen {#sec-visualisasi-hasil-eksperimen}
+
+Kita dapat memvisualisasikan hasil 100 percobaan dalam `data_eksperimen`. Dengan menggunakan `x1`, `y1`, `x2`, dan `y2`, kita dapat menggambarkan jarum yang dihasilkan oleh setiap percobaan. Kita dapat melakukannya dengan kode pada @lst-vis-hasil-eksperimen. Hasilnya ditunjukkan pada @fig-vis-hasil-eksperimen.
 
 ```{r}
 #| code-fold: false
@@ -304,41 +351,16 @@ hasil_eksperimen
 
 ```
 
-Sekarang kita akan menentukan apakah setiap percobaan dalam `data_eksperimen` menghasilkan jarum yang memotong garis atau tidak. Untuk melakukannya, kita menerapkan ide pada @lst-uji-kondisi untuk membuat variabel baru, yaitu `potong`, dalam data tersebut. Perhatikan @lst-data-eksperimen-lengkap!
-
-```{r}
-#| code-fold: false
-#| lst-label: lst-data-eksperimen-lengkap
-#| lst-cap: 'Menambahkan informasi apakah jarumnya memotong garis atau tidak'
-
-data_eksperimen <- data_eksperimen |> 
-  mutate(
-    yt = (y1 + y2) / 2,
-    theta_l = abs(theta %% pi - pi/2),
-    h = 1 / 2 * sin(theta_l),
-    d_h = pmin(
-      abs(yt - floor(yt)),
-      abs(yt - ceiling(yt))
-    ),
-    potong = if_else(
-      h >= d_h,
-      "Memotong",
-      "Tak memotong"
-    )
-  )
-
-head(data_eksperimen)
-
-```
-
-### Visualisasi Hasil Eksperimen {#sec-visualisasi-hasil-eksperimen}
-
-Untuk mengetahui apakah lebih banyak jarum yang memotong garis ataukah yang tidak, kita dapat memvisualisasikan nilai-nilai dalam variabel `potong` dengan menggunakan diagram batang. Perhatikan @fig-diag-batang-potong!
+Sebelumnya kita telah mengetahui berapa banyak jarum yang memotong garis dan yang tidak. Kita juga dapat mengetaui persentasenya juga. Kedua informasi ini dapat kita visualisasikan, seperti yang disajikan pada @fig-diag-batang-potong!
 
 ```{r}
 #| label: fig-diag-batang-potong
-#| fig-cap: 'Frekuensi jarum yang memotong atau tak memotong garis'
-#| fig-asp: 0.75
+#| fig-cap: 'Hasil eksperimen jarum Buffon'
+#| fig-subcap: 
+#|   - 'Frekuensi hasil setiap percobaan: Memotong dan Tak memotong'
+#|   - 'Frekuensi relatif hasil setiap percobaan'
+#| fig-asp: 1
+#| layout-ncol: 2
 
 data_eksperimen |> 
   ggplot(aes(x = potong, fill = potong)) + 
@@ -358,28 +380,37 @@ data_eksperimen |>
     y = "Frekuensi"
   )
 
-```
-
-Berdasarkan eksperimen kita tersebut, berapakah peluang empiris (frekuensi relatif) jarum yang memotong garis? Kita dapat menjawabnya dengan kode pada @lst-nilai-peluang-empiris.
-
-```{r}
-#| code-fold: false
-#| lst-label: lst-nilai-peluang-empiris
-#| lst-cap: 'Menentukan peluang empiris'
-
-ringkasan_eksperimen <- data_eksperimen |> 
-  group_by(potong) |> 
-  summarise(
-    n = n(),
-    .groups = "drop"
+data_eksperimen |> 
+  mutate(
+    potong = factor(potong, levels = c("Tak memotong", "Memotong"))
+  ) |> 
+  ggplot(aes(x = 1, fill = potong)) + 
+  geom_bar(position = "fill") + 
+  scale_y_continuous(
+    labels = percent_format(),
+    breaks = seq(from = 0, to = 1, by = .1)
+  ) + 
+  scale_fill_manual(
+    values = c(
+      "Tak memotong" = "#ff725c",
+      "Memotong" = "#4269d0"
+    ),
+    name = "Hasil percobaan",
+    breaks = c("Memotong", "Tak memotong")
+  ) + 
+  theme_minimal() + 
+  theme(
+    legend.position = "bottom",
+    axis.title.x = element_blank(),
+    axis.text.x = element_blank()
+  ) + 
+  labs(
+    y = "Frekuensi relatif"
   )
 
-p_memotong <- ringkasan_eksperimen$n[1] / sum(ringkasan_eksperimen$n)
-print(p_memotong)
-
 ```
 
-Kita telah mengetahui bahwa peluang empirisnya adalah `r round(p_memotong, 2)`. Bagaimana dengan peluang empirisnya pada percobaan pertama, kedua, ketiga, dan seterusnya sampai ke-100? Untuk itu, kita hitung terlebih dahulu peluang empirisnya untuk setiap percobaannya dengan menggunakan kode pada @lst-peluang-empiris.
+Berdasarkan @fig-diag-batang-potong-2, kita dapat mengetahui bahwa peluang empiris jarumnya memotong garis adalah 60% atau 0,6. Bagaimana dengan peluang empirisnya pada percobaan pertama, kedua, ketiga, dan seterusnya sampai ke-100? Untuk itu, kita hitung terlebih dahulu peluang empirisnya untuk setiap percobaannya dengan menggunakan kode pada @lst-peluang-empiris.
 
 ```{r}
 #| code-fold: false
