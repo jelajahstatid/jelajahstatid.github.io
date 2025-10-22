@@ -473,7 +473,7 @@ glimpse(data_eksperimen)
 1.  Kita tambahkan variabel `potong_numerik` yang nilainya 1 jika variabel `potong` bernilai "Memotong", dan nilainya 0 jika `potong` bernilai "Tak memotong".
 2.  Kita hitung peluang empiris memperoleh jarum yang memotong garis.
 
-Sekarang, kita dapat memvisualisaikan perubahan peluang empirisnya dari satu percobaan ke percobaan lainnya. Visualisasi semacam ini akan lebih membantu jika kita juga menambahkan peluang teoretisnya. Peluang teoretis tersebut adalah $\frac{2}{\pi}$. Kita gunakan informasi ini untuk membuat kode visualisasinya, seperti yang ditunjukkan pada @lst-tren-peluang-empiris.
+Sekarang, kita dapat memvisualisaikan perubahan peluang empirisnya dari satu percobaan ke percobaan lainnya. Visualisasi semacam ini akan lebih membantu jika kita juga menambahkan peluang teoretisnya. Peluang teoretis tersebut adalah $\frac{2}{\pi}$. Nanti kamu dapat melihat pembahasan tentang peluang teoretis ini pada @nte-peluang-teoretis. Kita gunakan informasi tersebut untuk membuat kode visualisasinya, seperti yang ditunjukkan pada @lst-tren-peluang-empiris.
 
 ```{r}
 #| code-fold: show
@@ -586,6 +586,22 @@ Dari kode pada @lst-luaran-percobaan-sin, kita mendapatkan visualisasi yang disa
 hasil_percobaan
 
 ```
+
+::: {#nte-peluang-teoretis .callout-note}
+## Peluang Teoretis
+
+@fig-luaran-percobaan-sin sangat intuitif untuk menentukan peluang teoretis kejadian mendapatkan jarum yang memotong garis pada kertas. Tentu untuk kasus kita di sini adalah $l=1=d$ karena gambar tersebut diperoleh dari asumsi tersebut.
+
+Perhatikan lagi @fig-luaran-percobaan-sin. Apa yang terjadi jika eksperimen yang kita lakukan memuat tak hingga percobaan? Di bawah kurva $y=\frac{1}{2}\sin\left(x\right)$ akan penuh dengan titik-titik biru, yang merepresentasikan kejadian mendapatkan jarum yang memotong garis. Secara lebih spesifif, sebanyak tak hingga titik biru tersebut akan mengisi daerah di bawah $y=\frac{1}{2}\sin\left(x\right)$ dan di atas $y=0$, serta di kanan $x=0$ dan di kiri $x=\frac{\pi}{2}$.
+
+Padahal, semua kemungkinan posisi titik-titik dalam eksperimen tersebut adalah daerah di dalam persegi panjang yang dibatasi oleh $y=\frac{1}{2}$, $y = 0$, $x=0$, dan $x=\frac{\pi}{2}$. Dengan demikian, peluang teoretis mendapatkan kejadian jarum yang melewati garis sama dengan membagi luas daerah yang mungkin ditempati oleh titik-titik biru dengan luas daerah persegi panjang tersebut. Secara matematis, hal ini dapat dihitung seperti berikut.
+
+$$
+\begin{aligned}P &= \frac{\displaystyle \int_{0}^{\frac{\pi}{2}} \frac{1}{2} \sin(x)\,dx}{\displaystyle \frac{\pi}{2} \cdot \frac{1}{2}} \\[6pt]  &= \frac{2}{\pi} \left[ -\cos(x) \right]_{0}^{\frac{\pi}{2}} \\[6pt]  &= \frac{2}{\pi} \bigl( -\cos(\tfrac{\pi}{2}) + \cos(0) \bigr) \\[6pt]  &= \frac{2}{\pi}\end{aligned}
+$$
+
+Dari perhitungan tersebut kita menemukan bahwa peluang teoretisnya adalah $\frac{2}{\pi}$. Untuk kasus-kasus lainnya, yaitu untuk sembarang $l$ dan $d$, kamu dapat mencari ide dari laman [Wikipedia](https://en.wikipedia.org/w/index.php?title=Buffon%27s_needle_problem&oldid=1314721513 "Buffon's needle problem"){.external target="_blank"} atau [Wolfram Mathworld](https://mathworld.wolfram.com/BuffonsNeedleProblem.html "Buffon's Needle Problem"){.external target="_blank"}, misalnya.
+:::
 
 ## Membuat Simulasi Menjadi Lebih Hidup {#sec-membuat-simulasi-menjadi-lebih-hidup}
 
