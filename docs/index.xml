@@ -10,7 +10,19 @@
 <atom:link href="https://jelajahstatid.github.io/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.7.32</generator>
-<lastBuildDate>Sun, 05 Oct 2025 22:00:00 GMT</lastBuildDate>
+<lastBuildDate>Tue, 21 Oct 2025 22:00:00 GMT</lastBuildDate>
+<item>
+  <title>Simulasi Monte Carlo</title>
+  <dc:creator>Yosep Dwi Kristanto</dc:creator>
+  <link>https://jelajahstatid.github.io/pos/2025-10-simulasi-monte-carlo/</link>
+  <description><![CDATA[ Bagaimana menggunakan simulasi Monte Carlo untuk menyelesaikan masalah jarum Buffon? Artikel ini akan mendemonstrasikan bagaimana memvisualisasikan dan menganimasikan simulasi Monte Carlo untuk masalah paling awal yang diajukan dan diselesaikan di Peluang Geometris, yaitu masalah jarum Buffon. ]]></description>
+  <category>Peluang</category>
+  <category>Geometri</category>
+  <category>tutorial</category>
+  <guid>https://jelajahstatid.github.io/pos/2025-10-simulasi-monte-carlo/</guid>
+  <pubDate>Tue, 21 Oct 2025 22:00:00 GMT</pubDate>
+  <media:content url="https://jelajahstatid.github.io/pos/2025-10-simulasi-monte-carlo/sampul-masalah-jarum-buffon.png" medium="image" type="image/png" height="108" width="144"/>
+</item>
 <item>
   <title>Analisis Komponen Utama</title>
   <dc:creator>Yosep Dwi Kristanto</dc:creator>
@@ -123,19 +135,6 @@
   <guid>https://jelajahstatid.github.io/pos/2024-08-peringkat-fifa-indonesia/</guid>
   <pubDate>Tue, 13 Aug 2024 22:00:00 GMT</pubDate>
   <media:content url="https://jelajahstatid.github.io/pos/2024-08-peringkat-fifa-indonesia/peringkat-fifa-indonesia.png" medium="image" type="image/png" height="108" width="144"/>
-</item>
-<item>
-  <title>Dirgahayu Kemerdekaan Republik Indonesia</title>
-  <dc:creator>Yosep Dwi Kristanto</dc:creator>
-  <link>https://jelajahstatid.github.io/pos/2024-08-dirgahayu-indonesia/</link>
-  <description><![CDATA[ Peringatan hari ulang tahun ke-79 Republik Indonesia menyimpan banyak harapan. Salah satunya adalah pertumbuhan ekonomi. Artikel ini memberikan persembahan visualisasi data dalam tema pertumbuhan ekonomi tersebut. ]]></description>
-  <category>ekonomi</category>
-  <category>statistik nasional</category>
-  <category>tutorial</category>
-  <category>visualisasi data</category>
-  <guid>https://jelajahstatid.github.io/pos/2024-08-dirgahayu-indonesia/</guid>
-  <pubDate>Sun, 11 Aug 2024 22:00:00 GMT</pubDate>
-  <media:content url="https://jelajahstatid.github.io/pos/2024-08-dirgahayu-indonesia/statistik-hut-ri-2024.png" medium="image" type="image/png" height="108" width="144"/>
 </item>
 </channel>
 </rss>

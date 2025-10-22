@@ -2,14 +2,13 @@
 title: "Simulasi Monte Carlo"
 subtitle: "Memvisualisasikan Masalah Jarum Buffon"
 description: "Bagaimana menggunakan simulasi Monte Carlo untuk menyelesaikan masalah jarum Buffon? Artikel ini akan mendemonstrasikan bagaimana memvisualisasikan dan menganimasikan simulasi Monte Carlo untuk masalah paling awal yang diajukan dan diselesaikan di Peluang Geometris, yaitu masalah jarum Buffon."
-draft: true
 author:
   - name: Yosep Dwi Kristanto
     url: https://people.usd.ac.id/~ydkristanto/
     affiliation: Pendidikan Matematika, Universitas Sanata Dharma, Yogyakarta
     affiliation-url: https://www.usd.ac.id/s1pmat
     orcid: 0000-0003-1446-0422
-date: 2025-10-31
+date: 2025-10-22
 categories:
   - Peluang
   - Geometri
@@ -21,6 +20,7 @@ keywords:
   - Hukum Bilangan Besar
   - masalah jarum Buffon
   - simulasi Monte Carlo
+  - trigonometri
 lightbox: true
 copyright: "© 2025 Yosep Dwi Kristanto"
 license: "CC BY"
@@ -248,11 +248,11 @@ potong_garis                            # <6>
 
 Kita telah berhasil menggunakan kondisi di atas untuk menentukan apakah jarum pada @fig-contoh-jarum memotong garis atau tidak. Hasilnya sesuai dengan pengamatan kita tentu saja.
 
-### Eksperimen Pelemparan Jarum {#sec-eksperimen-pelemparan-jarum}
+### Eksperimen Jarum Buffon {#sec-eksperimen-jarum-buffon}
 
-Sampai di sini kita telah dapat membuat selembar kertas dan sebuah jarum. Kita juga telah mengetahui kondisi jarum tersebut untuk memotong garis pada kertas. Sekarang kita akan memvisualisasikan sebuah eksperimen pelemparan jarum sebanyak $n$ kali. Misalnya, kita memilih $n = 100$ kali. Setiap pelemparan tersebut kita perlu menyediakan tiga nilai, yaitu $x_{1}$, $y_{1}$, dan $\theta$, secara acak. Dalam R, kita dapat menggunakan fungsi `runif()`. Fungsi ini akan memberikan satu atau lebih nilai acak dari distribusi seragam dengan nilai minimum dan maksimum yang diberikan.
+Sampai di sini kita telah dapat membuat selembar kertas dan sebuah jarum. Kita juga telah mengetahui kondisi jarum tersebut untuk memotong garis pada kertas. Sekarang kita akan memvisualisasikan sebuah eksperimen pelemparan jarum sebanyak $n$ kali, atau selanjutnya kita sebut sebagai eksperimen jarum Buffon. Misalnya, kita memilih $n = 100$ kali. Setiap pelemparan tersebut kita perlu menyediakan tiga nilai, yaitu $x_{1}$, $y_{1}$, dan $\theta$, secara acak. Dalam R, kita dapat menggunakan fungsi `runif()`. Fungsi ini akan memberikan satu atau lebih nilai acak dari distribusi seragam dengan nilai minimum dan maksimum yang diberikan.
 
-Kita buat sebuah data dengan nama `data_eksperimen` untuk memuat hasil eksperimen pelemparan jarum sebanyak $n=100$ kali tersebut. Untuk melakukannya, kita gunakan kode pada @lst-data-eksperimen. Kita dapat melihat gambaran umum data ini dengan `glimpse()`.
+Kita buat sebuah data dengan nama `data_eksperimen` untuk memuat hasil eksperimen jarum Buffon sebanyak $n=100$ percobaan. Untuk melakukannya, kita gunakan kode pada @lst-data-eksperimen.
 
 ```{r}
 #| code-fold: false
@@ -280,14 +280,18 @@ data_eksperimen <- tibble(
     warna = palet_warna[(percobaan %% 10) + 1] # <4>
   )
 
-glimpse(data_eksperimen)
-
 ```
 
 1.  Mengatur benih pengacakan agar hasilnya dapat diproduksi kembali.
 2.  Membuat palet warna sebagai warna setiap jarumnya.
 3.  Menyediakan bilangan-bilangan `x1`, `y1`, dan `theta` secara acak.
 4.  Menghitung `x2` dan `y2`, serta membuat variabel `percobaan` untuk memberikan identitas terhadap setiap percobaannya dan `warna` untuk memberikan warna terhadap setiap jarum yang dihasilkan.
+
+Kita dapat melihat gambaran umum `data_eksperimen` dengan fungsi `glimpse()`.
+
+```{r}
+glimpse(data_eksperimen)
+```
 
 Kita telah memiliki `data_eksperimen` yang memiliki tujuh variabel dan 100 baris. Baris-baris tersebut menggambarkan hasil percobaannya.
 
@@ -299,7 +303,7 @@ Selanjutnya, kita akan menentukan apakah setiap percobaan dalam `data_eksperimen
 #| lst-cap: 'Menambahkan informasi apakah jarumnya memotong garis atau tidak'
 
 data_eksperimen <- data_eksperimen |> 
-  mutate(
+  mutate(                                # <1>
     yt = (y1 + y2) / 2,
     theta_l = abs(theta %% pi - pi/2),
     h = 1 / 2 * sin(theta_l),
@@ -307,20 +311,28 @@ data_eksperimen <- data_eksperimen |>
       abs(yt - floor(yt)),
       abs(yt - ceiling(yt))
     ),
-    potong = if_else(
+    potong = if_else(                    # <2>
       h >= d_h,
       "Memotong",
       "Tak memotong"
     )
   )
 
-glimpse(data_eksperimen)
+```
 
+1.  Menggunakan ide pada @lst-uji-kondisi dengan menambahkan variabel-variabel `yt`, `theta_l`, `h`, `d_h` dan `potong` ke dalam `data_eksperimen`.
+2.  Variabel `potong` akan bernilai "Memotong" jika `h >= d_h`. Jika sebaliknya, variabel ini akan bernilai "Tak memotong".
+
+Kita cek apakah `data_eksperimen` saat ini telah memuat informasi jarumnya memotong garis atau tidak.
+
+```{r}
+glimpse(data_eksperimen)
 ```
 
 Data yang kita miliki telah memuat informasi yang kita perlukan. Kita dapat melakukan analisis sederhana terhadap `data_eksperimen` tersebut. Misalnya, kita dapat melihat berapa jarum yang memotong garis dan yang tidak dengan kode pada @lst-analisis-dasar-data-eksperimen.
 
 ```{r}
+#| code-fold: show
 #| lst-label: lst-analisis-dasar-data-eksperimen
 #| lst-cap: 'Menghitung banyak jarum yang memotong garis dan yang tidak'
 
@@ -337,7 +349,7 @@ data_eksperimen |>
 Kita dapat memvisualisasikan hasil 100 percobaan dalam `data_eksperimen`. Dengan menggunakan `x1`, `y1`, `x2`, dan `y2`, kita dapat menggambarkan jarum yang dihasilkan oleh setiap percobaan. Kita dapat melakukannya dengan kode pada @lst-vis-hasil-eksperimen. Hasilnya ditunjukkan pada @fig-vis-hasil-eksperimen.
 
 ```{r}
-#| code-fold: false
+#| code-fold: show
 #| lst-label: lst-vis-hasil-eksperimen
 #| lst-cap: 'Memvisualisasikan setiap luaran dalam eksperimen'
 #| label: fig-vis-hasil-eksperimen
@@ -447,37 +459,44 @@ Berdasarkan @fig-diag-batang-potong-2, kita dapat mengetahui bahwa peluang empir
 #| lst-label: lst-peluang-empiris
 #| lst-cap: 'Menghitung peluang empiris untuk setiap percobaan'
 data_eksperimen <- data_eksperimen |> 
-  mutate(
+  mutate(                                 # <1>
     potong_numerik = if_else(
       potong == "Memotong", 1, 0
     ),
-    peluang_empiris = cumsum(potong_numerik) / percobaan
+    peluang_empiris = cumsum(potong_numerik) / percobaan                                 # <2>
   )
 
 glimpse(data_eksperimen)
 
 ```
 
-Sekarang, kita visualisaikan perubahan peluang empirisnya dari satu percobaan ke percobaan lainnya. Perhatikan @fig-tren-peluang-empiris!
+1.  Kita tambahkan variabel `potong_numerik` yang nilainya 1 jika variabel `potong` bernilai "Memotong", dan nilainya 0 jika `potong` bernilai "Tak memotong".
+2.  Kita hitung peluang empiris memperoleh jarum yang memotong garis.
+
+Sekarang, kita dapat memvisualisaikan perubahan peluang empirisnya dari satu percobaan ke percobaan lainnya. Visualisasi semacam ini akan lebih membantu jika kita juga menambahkan peluang teoretisnya. Peluang teoretis tersebut adalah $\frac{2}{\pi}$. Kita gunakan informasi ini untuk membuat kode visualisasinya, seperti yang ditunjukkan pada @lst-tren-peluang-empiris.
 
 ```{r}
 #| code-fold: show
 #| lst-label: lst-tren-peluang-empiris
 #| lst-cap: 'Membuat visualisasi tren peluang empiris'
-#| label: fig-tren-peluang-empiris
-#| fig-cap: 'Tren peluang empiris'
-#| fig-asp: 0.5625
 
 tren_p_empiris <- data_eksperimen |> 
-  ggplot(aes(x = percobaan, y = peluang_empiris)) +
-  geom_line(
+  ggplot(
+    aes(x = percobaan, y = peluang_empiris)  # <1>
+  ) + 
+  geom_hline(                                # <2>
+    yintercept = 2 / pi,
+    linetype = "dashed",
+    color = "gray50"
+  ) + 
+  geom_line(                                 # <3>
     color = "gray80",
     linewidth = 1
   ) + 
-  geom_point(
+  geom_point(                                # <4>
     aes(color = warna)
   ) + 
-  coord_cartesian(
+  coord_cartesian(                           # <5>
     ylim = c(0, 1)
   ) + 
   scale_color_identity() + 
@@ -487,35 +506,53 @@ tren_p_empiris <- data_eksperimen |>
     y = "Peluang empiris"
   )
 
-tren_p_empiris
 ```
 
-Kita juga dapat memvisualisasikan apakah setiap percobaan dalam eksperimen tersebut menghasilkan jarum yang memotong garis atau tidak dengan menggunakan @eq-kondisi. Caranya, kita representasikan setiap percobaan dalam eksperimen tersebut dengan titik $\left(\theta_{l},d_{h}\right)$. Jika titik tersebut di bawah kurva $y=\frac{1}{2}\sin\left(x\right)$, percobaannya menghasilkan jarum yang memotong garis. Dengan menggunakan ide seperti ini, kita mendapatkan visualisasi yang disajikan pada @fig-luaran-percobaan-sin.
+1.  Kita atur pemetaan variabel-variabel dalam data ke grafik yang akan kita buat, yaitu `x = percobaan, y = peluang_empiris`.
+2.  Kita gunakan `geom_hline()` untuk membuat garis horizontal yang merepresentasikan peluang teoretisnya, yaitu `yintercept = 2 / pi`.
+3.  Kita gunakan `geom_line()` untuk membuat diagram garis yang berwarna `color = "gray80"` dan tebalnya `linewidth = 1`.
+4.  Kita gunakan `geom_point()` untuk membuat titik-titik yang merepresentasikan peluang empiris setiap percobaannya. Titik-titik ini kita atur agar warnanya `color = warna` agar sesuai dengan warna jarum-jarumnya.
+5.  Kita atur agar sumbu-$y$-nya menampilkan skala semua kemungkinan peluang empirisnya, yaitu mulai dari 0 sampai 1, dengan menginputkan argumen \``ylim = c(0, 1)` terhadap `coord_cartesian()`.
+
+Untuk melihat hasil @lst-tren-peluang-empiris, silakan perhatikan @fig-tren-peluang-empiris!
 
 ```{r}
-#| label: fig-luaran-percobaan-sin
-#| fig-cap: 'Hasil setiap percobaan dalam eksperimen'
+#| label: fig-tren-peluang-empiris
+#| fig-cap: 'Tren peluang empiris'
 #| fig-asp: 0.5625
 
-data_kurva_sin <- tibble(
+tren_p_empiris
+
+```
+
+Kita juga dapat memvisualisasikan apakah setiap percobaan dalam eksperimen tersebut menghasilkan jarum yang memotong garis atau tidak dengan menggunakan @eq-kondisi. Caranya, kita merepresentasikan setiap percobaan dalam eksperimen tersebut dengan titik $\left(\theta_{l},d_{h}\right)$. Jika titik tersebut di bawah kurva $y=\frac{1}{2}\sin\left(x\right)$, percobaannya menghasilkan jarum yang memotong garis. Kita gunakan ide seperti ini untuk membuat kode visualisasi pada @lst-luaran-percobaan-sin.
+
+```{r}
+#| code-fold: show
+#| lst-label: lst-luaran-percobaan-sin
+#| lst-cap: 'Memvisualisasikan hasil setiap percobaan dalam eksperimen'
+
+data_kurva_sin <- tibble(               # <1>
   x = seq(0, pi / 2, length.out = 400)
 ) |> 
   mutate(y = 0.5 * sin(x))
 
 hasil_percobaan <- data_eksperimen |> 
-  ggplot(aes(x = theta_l, y = d_h)) +
-  geom_line(
+  ggplot(
+    aes(x = theta_l, y = d_h)           # <2>
+  ) +
+  geom_line(                            # <3>
     data = data_kurva_sin,
     aes(x = x, y = y),
     color = "#efb118",
     linewidth = 1,
     inherit.aes = FALSE
   ) + 
-  geom_point(
+  geom_point(                           # <4>
     aes(color = potong),
     size = 3
   ) +
-  scale_color_manual(
+  scale_color_manual(                   # <5>
     values = c(
       "Memotong" = "#4269d0",
       "Tak memotong" = "#ff725c"
@@ -531,6 +568,21 @@ hasil_percobaan <- data_eksperimen |>
     y = expression(d[h])
   )
 
+```
+
+1.  Kita siapkan `data_kurva_sin` untuk selanjutnya digunakan untuk membuat kurva $y=\frac{1}{2} \sin \left( x \right)$.
+2.  Kita atur pemetaan data dan diagramnya, yaitu `x = theta_l, y = d_h`.
+3.  Kita menggunakan `geom_line()` untuk membuat kurva sinus dengan menggunakan `data_kurva_sin`.
+4.  Kita merepresentasikan setiap percobaannya dengan titik dan menggunakan pemetaan yang kita definisikan pada nomor 2.
+5.  Kita mengatur warna titik-titik yang merepresentasikan jarum yang "Memotong" dan "Tak memotong".
+
+Dari kode pada @lst-luaran-percobaan-sin, kita mendapatkan visualisasi yang disajikan pada @fig-luaran-percobaan-sin.
+
+```{r}
+#| label: fig-luaran-percobaan-sin
+#| fig-cap: 'Hasil setiap percobaan dalam eksperimen'
+#| fig-asp: 0.5625
+
 hasil_percobaan
 
 ```
@@ -542,7 +594,7 @@ Pada @sec-simulasi-masalah-jarum-buffon kita telah memahami masalah jarum Buffon
 Pertama yang kita lakukan adalah mempersiapkan datanya. Untuk melakukannya, kita menggunakan alur kerja yang serupa dengan yang telah kita lakukan dari @lst-data-eksperimen, @lst-data-eksperimen-lengkap, sampai @lst-peluang-empiris. Kita rangkum alur kerja tersebut untuk membuat fungsi `eksperimen_buffon()` pada @lst-fungsi-data-eksperimen.
 
 ```{r}
-#| code-fold: false
+#| code-fold: show
 #| lst-label: lst-fungsi-data-eksperimen
 #| lst-cap: 'Membuat data eksperimen pelemparan jarum secara acak'
 
@@ -598,13 +650,12 @@ data_eksperimen <- eksperimen_buffon(1000)
 Untuk melihat secara sekilas hasil eksperimen yang dimuat dalam `data_eksperimen` tersebut, kita dapat menggunakan `glimpse()`.
 
 ```{r}
-#| code-fold: show
-#| lst-label: lst-glimpse-data-eksperimen
-#| lst-cap: 'Melihat gambaran umum `data_eksperimen`'
+#| code-fold: true
+
 glimpse(data_eksperimen)
 ```
 
-Berdasarkan luaran kode dari @lst-glimpse-data-eksperimen, kita dapat melihat bahwa `data_eksperimen` tersebut memiliki 14 variabel, mulai dari `x1`, `y1`, `theta`, sampai `peluang_empiris`. Data tersebut juga memuat 1000 baris yang setiap barisnya merupakan hasil percobaan dalam eksperimen. Dengan demikian, kita mendapatkan `data_eksperimen` yang kita kehendaki.
+Berdasarkan luaran di atas, kita dapat melihat bahwa `data_eksperimen` tersebut memiliki 14 variabel, mulai dari `x1`, `y1`, `theta`, sampai `peluang_empiris`. Data tersebut juga memuat 1000 baris yang setiap barisnya merupakan hasil percobaan dalam eksperimen. Dengan demikian, kita mendapatkan `data_eksperimen` yang kita kehendaki.
 
 ### Animasi Eksperimen Jarum Buffon {#sec-animasi-eksperimen-jarum-buffon}
 
@@ -674,9 +725,7 @@ plot_anim_jarum
 
 Kita dapat menganimasikan bagaimana perubahan peluang empiris eksperimen jarum Buffon, dari satu percobaan ke percobaan lainnya. Dengan kata lain, kita akan menganimasikan @fig-tren-peluang-empiris.
 
-Sebelum itu, kita perlu mengetahui bahwa peluang empiris untuk mendapatkan jarum yang memotong garis pada kertas akan mendekati peluang teoretisnya. Peluang teoretis ini adalah $\frac{2}{\pi}$, atau bernilai sekitar 0,637. Kita dapat menambahkan informasi ini ke dalam animasi yang akan kita buat.
-
-Untuk melakukannya, kita tambahkan garis horizontal $y=\frac{2}{\pi}$ bersama dengan `transition_reveal(along = percobaan)` terhadap kode yang membuat @fig-tren-peluang-empiris, yaitu @lst-tren-peluang-empiris. Dengan demikian, kode untuk membuat animasi tersebut ditunjukkan pada @lst-anim-tren-p-empiris.
+Untuk melakukannya, kita tambahkan `transition_reveal(along = percobaan)` terhadap kode yang membuat @fig-tren-peluang-empiris, yaitu @lst-tren-peluang-empiris. Dengan demikian, kode untuk membuat animasi tersebut ditunjukkan pada @lst-anim-tren-p-empiris.
 
 ```{r}
 #| code-fold: show
@@ -721,6 +770,85 @@ Kita telah membuat objek gganim `plot_anim_p_empiris`. Bagaimana animasi yang te
 plot_anim_p_empiris
 
 ```
+
+### Animasi Estimasi Nilai $\pi$ {#sec-animasi-estimasi-nilai-pi}
+
+@fig-anim-p-empiris menunjukkan bahwa semakin besar percobaannya, nilai peluang empirisnya semakin mendekati nilai peluang teoretisnya, yaitu $\frac{2}{\pi}$. Jika $P_{\text{empiris}}$ menotasikan nilai peluang empiris tersebut, kita mendapatkan @eq-p-empiris.
+
+$$
+P_{\text{empiris}} \approx \frac{2}{\pi}
+$$ {#eq-p-empiris}
+
+Atau dengan kata lain, kita juga dapat menyatakan @eq-p-empiris menjadi @eq-pendekatan-pi.
+
+$$
+\pi \approx \frac{2}{P_{\text{empiris}}}
+$$ {#eq-pendekatan-pi}
+
+Nah, oleh karena itu kita dapat menggunakan nilai variabel dalam `p_empiris` dalam `data_eksperimen` untuk mendekati nilai $\pi$. Kita lakukan hal ini dengan kode pada @lst-mendekati-pi.
+
+```{r}
+#| code-fold: show
+#| lst-label: lst-mendekati-pi
+#| lst-cap: 'Membuat estimasi nilai $\pi$ dalam `data_eksperimen`'
+
+data_eksperimen <- data_eksperimen |> 
+  mutate(
+    estimasi_pi = 2 / peluang_empiris
+  )
+
+```
+
+Sekarang kita membuat animasi yang serupa dengan @fig-anim-p-empiris, tetapi yang akan kita plot adalah nilai-nilai variabel `estimasi_pi`. Kita melakukannya dengan kode pada @lst-anim-mendekati-pi.
+
+```{r}
+#| lst-label: lst-anim-mendekati-pi
+#| lst-cap: 'Membuat animasi estimasi nilai $\pi$'
+
+plot_anim_mendekati_pi <- data_eksperimen |> 
+  ggplot(aes(x = percobaan, y = estimasi_pi)) + 
+  geom_hline(
+    yintercept = pi,
+    linetype = "dashed",
+    color = "gray50"
+  ) + 
+  geom_line(
+    color = "gray80",
+    linewidth = 1
+  ) + 
+  geom_point(
+    aes(color = warna, group = percobaan)
+  ) + 
+  scale_color_identity() + 
+  theme_minimal() + 
+  labs(
+    x = "Percobaan",
+    y = "Estimasi pi"
+  ) + 
+  transition_reveal(
+    along = percobaan
+  )
+
+```
+
+@fig-anim-mendekati-pi mengilustrasikan bagaimana eksperimen jarum Buffon dapat digunakan untuk mengestimasi nilai $\pi$.
+
+```{r}
+#| label: fig-anim-mendekati-pi
+#| fig-cap: 'Eksperimen jarum Buffon untuk mendekati nilai $\pi$'
+#| fig-asp: 0.5625
+
+plot_anim_mendekati_pi
+```
+
+Berdasarkan hasil eksperimen jarum Buffon yang terdata dalam `data_eksperimen`, kita dapat melihat estimasi nilai $\pi$-nya pada percobaan yang terakhir, yaitu percobaan ke-1000. Berapa nilai estimasinya? Mari kita lihat bersama-sama.
+
+```{r}
+est_pi <- data_eksperimen$estimasi_pi[1000]
+est_pi
+```
+
+Ternyata, kita mendapatkan nilai estimasinya sekitar 3,1847. Nilai estimasi ini tentu akan semakin dekat ke nilai $\pi$ yang sebenarnya jika banyaknya percobaannya semakin besar.
 
 ### Animasi Hasil Setiap Percobaan {#sec-animasi-hasil-setiap-percobaan}
 
@@ -830,6 +958,16 @@ Kode pada @lst-gif-buffon-p-empiris menghasilkan animasi yang berupa gambar gif.
 
 ![Ilustrasi eksperimen jarum Buffon dan peluang empirisnya](aset/gif_buffon_p_empiris.gif){#fig-gif-buffon-p-empiris}
 
-Dengan cara yang serupa, kita juga dapat menyandingkan animasi yang disajikan pada @fig-animasi-jarum-jatuh dan @fig-anim-hasil-percobaan. Animasi tersebut ditunjukkan pada @fig-gif-buffon-hasil-percobaan.
+Dengan cara yang serupa, kita juga dapat menyandingkan animasi yang disajikan pada @fig-animasi-jarum-jatuh dan @fig-anim-mendekati-pi. Animasi tersebut ditunjukkan pada @fig-gif-buffon-mendekati-pi.
+
+![Ilustrasi eksperimen jarum Buffon untuk mendekati nilai pi](aset/gif_buffon_mendekati_pi.gif){#fig-gif-buffon-mendekati-pi}
+
+Kita juga dapat menyandingkan animasi yang disajikan pada @fig-animasi-jarum-jatuh dan @fig-anim-hasil-percobaan. Animasi tersebut ditunjukkan pada @fig-gif-buffon-hasil-percobaan.
 
 ![Ilustrasi eksperimen jarum Buffon dan hasil setiap percobaannya](aset/gif_buffon_hasil_percobaan.gif){#fig-gif-buffon-hasil-percobaan}
+
+## Catatan Akhir {#sec-catatan-akhir}
+
+Kita telah belajar banyak hal melalui masalah jarum Buffon. Pertama, kita telah mengetahui apa itu simulasi Monte Carlo pada @sec-simulasi-monte-carlo. Simulasi itu kita gunakan untuk mengilustrasikan masalah jarum Buffon pada @sec-simulasi-masalah-jarum-buffon. Pada bagian itu kita memahami secara detail masalah jarum Buffon, khususnya pada @sec-deskripsi-masalah. Pada @sec-selembar-kertas kita membuat "kanvas" untuk masalah tersebut, yaitu selembar kertas bergaris-garis. Pada @sec-sebuah-jarum kita memvisualisasikan sebuah jarum. Selain itu, kita juga menemukan kondisi agar jarumnya memotong garis pada kertas. Pada @sec-eksperimen-jarum-buffon dan @sec-visualisasi-hasil-eksperimen, kita melakukan eksperimen jarum Buffon dan memvisualisasikan hasilnya.
+
+Tak hanya itu. Kita juga membuat visualisasi hasil eksperimen jarum Buffon menjadi lebih hidup dengan memanfaatkan animasi. Hal ini kita lakukan pada @sec-membuat-simulasi-menjadi-lebih-hidup. Pada @sec-gabungan-animasi, kita menggabungkan animasi-animasi yang dihasilkan untuk menyampaikan pesan yang lebih efektif dan efisien. Misalnya, @fig-gif-buffon-p-empiris menampilkan pesan yang kuat bahwa peluang empirisnya semakin mendekati ke nilai tertentu, yaitu $\frac{2}{\pi}$, ketika percobaannya semakin banyak, sembari kita memantau apa yang terjadi dengan eksperimennya.
