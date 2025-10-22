@@ -37,13 +37,13 @@ Gim itu adalah bentuk adaptasi dari sebuah masalah paling awal yang diajukan dan
 
 Simulasi Monte Carlo, atau sering dikenal dengan metode Monte Carlo, merupakan sebuah teknik matematis yang digunakan untuk memperkirakan kemungkinan luaran dari kejadian yang tak pasti. Dengan demikian, kita dapat menggunakan simulasi ini terhadap masalah jarum Buffon. Tujuannya beberapa hal, yaitu untuk:
 
--   membandingkan banyaknya jarum yang melintasi garis dan tidak dalam sebuah eksperimen;
+-   membandingkan banyaknya jarum yang memotong garis dan yang tidak dalam sebuah eksperimen;
 
--   mengilustrasikan [Hukum Bilangan Besar](https://people.usd.ac.id/~ydkristanto/app/hukum-bil-besar/ "Hukum Bilangan Besar"){.external target="_blank"} terhadap peluang empiris kejadian jarum yang melintasi garis;
+-   menggunakan [Hukum Bilangan Besar](https://people.usd.ac.id/~ydkristanto/app/hukum-bil-besar/ "Hukum Bilangan Besar"){.external target="_blank"} dan peluang empiris untuk memperkirakan peluang kejadian mendapatkan jarum yang memotong garis;
 
 -   memperkirakan nilai pi ($\pi$).
 
-Selanjutnya, mari kita melakukan tujuan yang pertama pada bagian berikutnya.
+Selanjutnya, mari kita melakukan tujuan-tujuan tersebut pada bagian berikutnya.
 
 ## Simulasi Masalah Jarum Buffon {#sec-simulasi-masalah-jarum-buffon}
 
@@ -52,7 +52,7 @@ Kita menggunakan [pemrograman R](https://www.R-project.org/ "R Foundation for St
 ```{r}
 #| warning: false
 #| message: false
-#| code-fold: false
+#| code-fold: show
 
 library(tidyverse) # <1>
 library(scales)    # <2>
@@ -78,37 +78,51 @@ Terdapat dua elemen penting dalam memvisualisasikan masalah jarum Buffon tersebu
 
 ### Selembar Kertas {#sec-selembar-kertas}
 
-Kita memilih kertas yang berukuran 10 × 10. Karena kertas ini bergaris-garis horizontal dan jarak antargaris berdekatannya 1 satuan, kita dapat memvisualisasikannya dengan menggunakan kode pada @lst-kertas-bergaris. Hasilnya ditunjukkan pada @fig-kertas-bergaris.
+Kita memilih kertas yang berukuran 10 × 10. Karena kertas ini bergaris-garis horizontal dan jarak antargaris berdekatannya 1 satuan, kita dapat memvisualisasikannya dengan menggunakan kode pada @lst-kertas-bergaris.
 
 ```{r}
-#| code-fold: false
+#| code-fold: show
 #| lst-label: lst-kertas-bergaris
 #| lst-cap: "Kode untuk membuat kertas bergaris"
-#| label: fig-kertas-bergaris
-#| fig-cap: "Kertas bergaris horizontal berukuran 10 × 10 yang jarak antargarisnya 1 satuan"
 
 kertas <- ggplot() + 
-  geom_hline(
+  geom_hline(             # <1>
     yintercept = 0:10,
     color = "gray80",
-    linewidth = 0.5
+    linewidth = .5
   ) + 
-  coord_equal(
+  coord_equal(            # <2>
     xlim = c(0, 10),
     ylim = c(0, 10)
   ) + 
-  scale_x_continuous(
+  scale_x_continuous(     # <3>
     breaks = 0:10
   ) + 
-  scale_y_continuous(
+  scale_y_continuous(     # <4>
     breaks = 0:10
   ) + 
-  theme_bw() + 
-  theme(
+  theme_bw() +            # <5>
+  theme(                  # <6>
     axis.title = element_blank(),
     panel.grid = element_blank(),
     plot.margin = unit(c(.5, .5, .5, .5), "cm")
   )
+
+```
+
+1.  Menggunakan `geom_hline()` untuk membuat garis-garis horizontal yang memotong sumbu-$y$ di 0, 1, 2, ..., 10 (`yintercept = 0:10`), berwarna abu-abu (`color = "gray80"`), dan tebalnya 0,5 (`linewidth = .5`).
+2.  Mengatur agar skala-$x$ dan $y$ sama, serta jendela diagramnya menampilkan $0 \leq x \leq 10$ dan $0\leq y \leq 10$.
+3.  Mengatur agar skala pada sumbu-$x$ menampilkan 0, 1, 2, ..., 10.
+4.  Mengatur agar skala pada sumbu-$y$ menampilkan 0, 1, 2, ..., 10.
+5.  Memilih tema untuk diagram, yaitu yang kita pilih adalah `theme_bw()`.
+6.  Mengatur tema secara lebih lanjut: (1) tidak menampilkan judul pada semua sumbu (`axis.title = element_blank()`), tidak menampilkan kisi-kisi, baik horizontal maupun vertikal (`panel.grid = element_blank()`), dan mengatur pias atas, kanan, bawah, dan kiri (`plot.margin = unit(c(.5, .5, .5, .5), "cm")`).
+
+Selembar kertas yang telah kita buat ditunjukkan pada @fig-kertas-bergaris.
+
+```{r}
+#| label: fig-kertas-bergaris
+#| fig-cap: "Kertas bergaris horizontal berukuran 10 × 10 yang jarak antargarisnya 1 satuan"
+#| fig-asp: 1
 
 kertas
 
@@ -129,27 +143,30 @@ y_{2}=y_{1}+1\cdot\sin\left(\theta\right)
 \end{matrix}
 $$ {#eq-koord-titik-kedua}
 
-dengan $0 \leq \theta \leq 2\pi$. Berdasarkan @eq-koord-titik-kedua, kita memerlukan tiga nilai, yaitu $x_{1}$, $y_{1}$, dan $\theta$, untuk membuat sebuah jarum pada kertas. Sebagai contoh, untuk $x_{1}=6$, $y_{1}=\text{5,5}$, dan $\theta=\frac{4}{3}\pi$, jarumnya disajikan pada @fig-contoh-jarum.
+dengan $0 \leq \theta \leq 2\pi$. Berdasarkan @eq-koord-titik-kedua, kita memerlukan tiga nilai, yaitu $x_{1}$, $y_{1}$, dan $\theta$, untuk membuat sebuah jarum pada kertas. Sebagai contoh, untuk $x_{1}=6$, $y_{1}=\text{5,5}$, dan $\theta=\frac{4}{3}\pi$, jarumnya dapat dibuat dengan menggunakan kode pada @lst-contoh-jarum.
 
 ```{r}
-#| echo: false
-#| label: fig-contoh-jarum
-#| fig-cap: 'Sebuah jarum dengan $x_{1}=4$, $y_{1}=\text{5,5}$, dan $\theta=\frac{4}{3}\pi$'
+#| code-fold: show
+#| lst-label: lst-contoh-jarum
+#| lst-cap: 'Membuat sebuah jarum dengan $x_{1}=6$, $y_{1}=\text{5,5}$, dan $\theta=\frac{4}{3}\pi$'
 
-x_1 <- 6
-y_1 <- 5.5
-t_heta <- 4 / 3 * pi
+x_1 <- 6                # <1>
+y_1 <- 5.5              # <1>
+t_heta <- 4 / 3 * pi    # <1>
+
+x_2 <- x_1 + 1 * cos(t_heta) # <2>
+y_2 <- y_1 + 1 * sin(t_heta) # <2>
 
 contoh_jarum <- ggplot() + 
   geom_hline(
     yintercept = 0:10,
     color = "gray80",
-    linewidth = 0.5
+    linewidth = .5
   ) + 
-  annotate(
+  annotate(             # <3>
     geom = "segment",
-    x = x_1, xend = x_1 + 1 * cos(t_heta),
-    y = y_1, yend = y_1 + 1 * sin(t_heta),
+    x = x_1, xend = x_2,
+    y = y_1, yend = y_2,
     color = "#4269d0",
     linewidth = 1.5
   ) + 
@@ -169,6 +186,19 @@ contoh_jarum <- ggplot() +
     panel.grid = element_blank(),
     plot.margin = unit(c(.5, .5, .5, .5), "cm")
   )
+
+```
+
+1.  Mendefinisikan nilai-nilai yang diketahui, yaitu `x_1`, `y_1`, dan `t_heta`.
+2.  Menghitung nilai-nilai `x_2` dan `y_2` berdasarkan @eq-koord-titik-kedua.
+3.  Menggunakan `annotate()` untuk membuat representasi sebuah jarum sebagai sebuah ruas garis (`geom = "segment"`), yang ujung-ujungnya di $\left( x_{1}, y_{1} \right)$ dan $\left( x_{2}, y_{2} \right)$ (`x = x_1, xend = x_2, y = y_1, yend = y_2`), berwarna biru (`color = "#4269d0"`), dan tebalnya 1,5 (`linewidth = 1.5`).
+
+Jarum yang dihasilkan dari kode pada @lst-contoh-jarum ditunjukkan pada @fig-contoh-jarum.
+
+```{r}
+#| label: fig-contoh-jarum
+#| fig-cap: 'Sebuah jarum dengan $x_{1}=6$, $y_{1}=\text{5,5}$, dan $\theta=\frac{4}{3}\pi$'
+#| fig-asp: 1
 
 contoh_jarum
 
