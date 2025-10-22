@@ -354,6 +354,7 @@ Kita dapat memvisualisasikan hasil 100 percobaan dalam `data_eksperimen`. Dengan
 #| lst-cap: 'Memvisualisasikan setiap luaran dalam eksperimen'
 #| label: fig-vis-hasil-eksperimen
 #| fig-cap: 'Hasil pelemparan secara acak 100 jarum pada selembar kertas'
+#| fig-asp: 1
 
 hasil_eksperimen <- data_eksperimen |> 
   ggplot() + 
@@ -592,7 +593,7 @@ hasil_percobaan
 
 @fig-luaran-percobaan-sin sangat intuitif untuk menentukan peluang teoretis kejadian mendapatkan jarum yang memotong garis pada kertas. Tentu untuk kasus kita di sini adalah $l=1=d$ karena gambar tersebut diperoleh dari asumsi tersebut.
 
-Perhatikan lagi @fig-luaran-percobaan-sin. Apa yang terjadi jika eksperimen yang kita lakukan memuat tak hingga percobaan? Di bawah kurva $y=\frac{1}{2}\sin\left(x\right)$ akan penuh dengan titik-titik biru, yang merepresentasikan kejadian mendapatkan jarum yang memotong garis. Secara lebih spesifif, sebanyak tak hingga titik biru tersebut akan mengisi daerah di bawah $y=\frac{1}{2}\sin\left(x\right)$ dan di atas $y=0$, serta di kanan $x=0$ dan di kiri $x=\frac{\pi}{2}$.
+Perhatikan lagi @fig-luaran-percobaan-sin. Apa yang terjadi jika eksperimen yang kita lakukan memuat tak hingga percobaan? Di bawah kurva $y=\frac{1}{2}\sin\left(x\right)$ akan penuh dengan titik-titik biru, yang merepresentasikan kejadian mendapatkan jarum yang memotong garis. Secara lebih spesifik, sebanyak tak hingga titik biru tersebut akan mengisi daerah di bawah $y=\frac{1}{2}\sin\left(x\right)$ dan di atas $y=0$, serta di kanan $x=0$ dan di kiri $x=\frac{\pi}{2}$.
 
 Padahal, semua kemungkinan posisi titik-titik dalam eksperimen tersebut adalah daerah di dalam persegi panjang yang dibatasi oleh $y=\frac{1}{2}$, $y = 0$, $x=0$, dan $x=\frac{\pi}{2}$. Dengan demikian, peluang teoretis mendapatkan kejadian jarum yang melewati garis sama dengan membagi luas daerah yang mungkin ditempati oleh titik-titik biru dengan luas daerah persegi panjang tersebut. Secara matematis, hal ini dapat dihitung seperti berikut.
 
@@ -731,6 +732,7 @@ Ingin tahu bagaimana animasinya? Untuk mengetahuinya, kita cetak objek `plot_ani
 ```{r}
 #| label: fig-animasi-jarum-jatuh
 #| fig-cap: 'Animasi yang mengilustrasikan eksperimen masalah jarum Buffon yang memuat 1000 percobaan'
+#| fig-asp: 1
 
 plot_anim_jarum
 ```
