@@ -47,7 +47,7 @@ Selanjutnya, mari kita melakukan tujuan-tujuan tersebut pada bagian berikutnya.
 
 ## Simulasi Masalah Jarum Buffon {#sec-simulasi-masalah-jarum-buffon}
 
-Kita menggunakan [pemrograman R](https://www.R-project.org/ "R Foundation for Statistical Computing"){.external target="_blank"} untuk mensimulasikan masalah jarum Buffon. Untuk melakukannya, kita memanfaatkan tiga paket, yaitu [{tidyverse}](https://tidyverse.org/ "R packages for Data Science"){.external target="_blank"}, [{gganimate}](https://CRAN.R-project.org/package=gganimate "gganimate: A Grammar of Animated Graphics"){.external target="_blank"}, dan [{magick}](https://CRAN.R-project.org/package=magick "magick: Advanced Graphics and Image-Processing in R"){.external target="_blank"}. Mari terlebih dahulu kita memanggil ketiga paket tersebut.
+Kita menggunakan [pemrograman R](https://www.R-project.org/ "R Foundation for Statistical Computing"){.external target="_blank"} untuk mensimulasikan masalah jarum Buffon. Untuk melakukannya, kita memanfaatkan empat paket, yaitu [{tidyverse}](https://tidyverse.org/ "R packages for Data Science"){.external target="_blank"}, [{scales}](https://CRAN.R-project.org/package=scales "scales: Scale Functions for Visualization"){.external target="_blank"}, [{gganimate}](https://CRAN.R-project.org/package=gganimate "gganimate: A Grammar of Animated Graphics"){.external target="_blank"}, dan [{magick}](https://CRAN.R-project.org/package=magick "magick: Advanced Graphics and Image-Processing in R"){.external target="_blank"}. Mari terlebih dahulu kita memanggil keempat paket tersebut.
 
 ```{r}
 #| warning: false
@@ -474,7 +474,7 @@ glimpse(data_eksperimen)
 1.  Kita tambahkan variabel `potong_numerik` yang nilainya 1 jika variabel `potong` bernilai "Memotong", dan nilainya 0 jika `potong` bernilai "Tak memotong".
 2.  Kita hitung peluang empiris memperoleh jarum yang memotong garis.
 
-Sekarang, kita dapat memvisualisaikan perubahan peluang empirisnya dari satu percobaan ke percobaan lainnya. Visualisasi semacam ini akan lebih membantu jika kita juga menambahkan peluang teoretisnya. Peluang teoretis tersebut adalah $\frac{2}{\pi}$. Nanti kamu dapat melihat pembahasan tentang peluang teoretis ini pada @nte-peluang-teoretis. Kita gunakan informasi tersebut untuk membuat kode visualisasinya, seperti yang ditunjukkan pada @lst-tren-peluang-empiris.
+Sekarang, kita dapat memvisualisaikan perubahan peluang empirisnya dari satu percobaan ke percobaan lainnya. Visualisasi semacam ini akan lebih membantu jika kita juga menambahkan peluang teoretisnya. Peluang teoretis tersebut adalah $\frac{2}{\pi}$. Nanti kamu dapat melihat pembahasan tentang peluang teoretis ini pada [Catatan @nte-peluang-teoretis]. Kita gunakan informasi tersebut untuk membuat kode visualisasinya, seperti yang ditunjukkan pada @lst-tren-peluang-empiris.
 
 ```{r}
 #| code-fold: show
