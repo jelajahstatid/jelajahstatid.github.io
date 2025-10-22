@@ -913,28 +913,34 @@ Seringkali gabungan animasi memberikan informasi yang lebih kaya daripada animas
 
 ::: {#lst-gif-buffon-p-empiris}
 ``` r
+# Membuat animasi eksperimen jarum Buffon
 gif_anim_jarum <- animate(
   plot_anim_jarum,
-  width = 240,
-  height = 240,
+  width = 360,
+  height = 360,
   nframes = 200,
   fps = 10
 )
 
+# Membuat animasi tren peluang empiris
 gif_anim_p_empiris <- animate(
   plot_anim_p_empiris,
-  width = 240,
-  height = 240,
+  width = 360,
+  height = 360,
   nframes = 200,
   fps = 10
 )
 
+# Membaca animasi sebagai kumpulan frame gambar
 mgif_anim_jarum <- image_read(gif_anim_jarum)
 mgif_anim_p_empiris <- image_read(gif_anim_p_empiris)
 
+# Menggabungkan frame pertama dari kedua animasi secara berdampingan
 gif_buffon_p_empiris <- image_append(
   c(mgif_anim_jarum[1], mgif_anim_p_empiris[1])
 )
+
+# Menggabungkan semua frame berikutnya satu per satu
 for(i in 2:200){
   kombinasi <- image_append(
     c(mgif_anim_jarum[i], mgif_anim_p_empiris[i])
@@ -945,6 +951,7 @@ for(i in 2:200){
   )
 }
 
+# Menyimpan hasil gabungan sebagai satu fail gif
 anim_save(
   filename = "gif_buffon_p_empiris.gif",
   animation = gif_buffon_p_empiris
@@ -971,3 +978,5 @@ Kita juga dapat menyandingkan animasi yang disajikan pada @fig-animasi-jarum-jat
 Kita telah belajar banyak hal melalui masalah jarum Buffon. Pertama, kita telah mengetahui apa itu simulasi Monte Carlo pada @sec-simulasi-monte-carlo. Simulasi itu kita gunakan untuk mengilustrasikan masalah jarum Buffon pada @sec-simulasi-masalah-jarum-buffon. Pada bagian itu kita memahami secara detail masalah jarum Buffon, khususnya pada @sec-deskripsi-masalah. Pada @sec-selembar-kertas kita membuat "kanvas" untuk masalah tersebut, yaitu selembar kertas bergaris-garis. Pada @sec-sebuah-jarum kita memvisualisasikan sebuah jarum. Selain itu, kita juga menemukan kondisi agar jarumnya memotong garis pada kertas. Pada @sec-eksperimen-jarum-buffon dan @sec-visualisasi-hasil-eksperimen, kita melakukan eksperimen jarum Buffon dan memvisualisasikan hasilnya.
 
 Tak hanya itu. Kita juga membuat visualisasi hasil eksperimen jarum Buffon menjadi lebih hidup dengan memanfaatkan animasi. Hal ini kita lakukan pada @sec-membuat-simulasi-menjadi-lebih-hidup. Pada @sec-gabungan-animasi, kita menggabungkan animasi-animasi yang dihasilkan untuk menyampaikan pesan yang lebih efektif dan efisien. Misalnya, @fig-gif-buffon-p-empiris menampilkan pesan yang kuat bahwa peluang empirisnya semakin mendekati ke nilai tertentu, yaitu $\frac{2}{\pi}$, ketika percobaannya semakin banyak, sembari kita memantau apa yang terjadi dengan eksperimennya.
+
+Artikel ini memiliki keterbatasan. Pertama adalah penggunaan asumsi bahwa panjang jarumnya adalah $l = 1$ dan jarak antargaris pada kertasnya adalah $d = 1$. Kamu dapat mengeksplorasi lebih lanjut bagaimana jika panjang jarumnya lebih panjang daripada jarak antargarisnya, ataupun sebaliknya. Selain itu, pembuatan jarum dalam artikel ini menggunakan koordinat satu titik ujung dan besar sudut kemiringannya, untuk menentukan koordinat titik ujung lainnya. Kamu dapat menggunakan cara lain. Misalnya, diketahui koordinat titik tengah jarum dan besar sudutnya, lalu gunakan informasi tersebut untuk menentukan kedua titik ujung jarumnya. Selamat mencoba!
