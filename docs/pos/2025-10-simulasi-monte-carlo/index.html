@@ -8,7 +8,7 @@
 
 <meta name="author" content="Yosep Dwi Kristanto">
 <meta name="dcterms.date" content="2025-10-22">
-<meta name="keywords" content="eksperimen, Hukum Bilangan Besar, masalah jarum Buffon, simulasi Monte Carlo, trigonometri">
+<meta name="keywords" content="Hukum Bilangan Besar, kalkulus, masalah jarum Buffon, peluang empiris, peluang teoretis, simulasi Monte Carlo, trigonometri">
 <meta name="description" content="Bagaimana menggunakan simulasi Monte Carlo untuk menyelesaikan masalah jarum Buffon? Artikel ini akan mendemonstrasikan bagaimana memvisualisasikan dan menganimasikan simulasi Monte Carlo untuk masalah paling awal yang diajukan dan diselesaikan di Peluang Geometris, yaitu masalah jarum Buffon.">
 
 <title>Simulasi Monte Carlo – Jelajah Statistika dan Ilmu Data</title>
@@ -436,7 +436,7 @@ window.Quarto = {
   <div>
     <div class="keywords">
       <div class="block-title">Kata kunci</div>
-      <p>eksperimen, Hukum Bilangan Besar, masalah jarum Buffon, simulasi Monte Carlo, trigonometri</p>
+      <p>Hukum Bilangan Besar, kalkulus, masalah jarum Buffon, peluang empiris, peluang teoretis, simulasi Monte Carlo, trigonometri</p>
     </div>
   </div>
   
@@ -633,7 +633,7 @@ Gambar&nbsp;2: Sebuah jarum yang direpresentasikan dengan sebuah ruas garis
 </figcaption>
 </figure>
 </div>
-<p>Koordinat kedua ujung ruas garis tersebut saling berkaitan karena jarak keduanya haruslah <span class="math inline">\(l=1\)</span> satuan. Jika <span class="math inline">\(\theta\)</span> adalah besar sebuah sudut yang dibentuk oleh sebuah sinar garis horizontal ke kanan yang pangkalnya <span class="math inline">\(\left(x_{1},y_{1}\right)\)</span> dan ruas garis tersebut, koordinat <span class="math inline">\(\left( x_{2}, y_{2} \right)\)</span> dapat ditentukan dengan menggunakan <a href="#eq-koord-titik-kedua" class="quarto-xref">Persamaan&nbsp;1</a>.</p>
+<p>Koordinat kedua ujung ruas garis tersebut saling berkaitan karena jarak keduanya haruslah <span class="math inline">\(l=1\)</span> satuan. Jika <span class="math inline">\(\theta\)</span> adalah besar sebuah sudut yang dibentuk oleh sebuah sinar garis horizontal ke kanan yang pangkalnya <span class="math inline">\(\left(x_{1},y_{1}\right)\)</span> dan ruas garis tersebut, koordinat <span class="math inline">\(\left( x_{2}, y_{2} \right)\)</span> dapat ditentukan dengan menggunakan trigonometri, seperti yang dituliskan pada <a href="#eq-koord-titik-kedua" class="quarto-xref">Persamaan&nbsp;1</a>.</p>
 <p><span id="eq-koord-titik-kedua"><span class="math display">\[
 \begin{matrix}
 x_{2}=x_{1}+1\cdot\cos\left(\theta\right)\\
@@ -1368,7 +1368,7 @@ Catatan&nbsp;1: Peluang Teoretis
 <div class="callout-body-container callout-body">
 <p><a href="#fig-luaran-percobaan-sin" class="quarto-xref">Gambar&nbsp;8</a> sangat intuitif untuk menentukan peluang teoretis kejadian mendapatkan jarum yang memotong garis pada kertas. Tentu untuk kasus kita di sini adalah <span class="math inline">\(l=1=d\)</span> karena gambar tersebut diperoleh dari asumsi tersebut.</p>
 <p>Perhatikan lagi <a href="#fig-luaran-percobaan-sin" class="quarto-xref">Gambar&nbsp;8</a>. Apa yang terjadi jika eksperimen yang kita lakukan memuat tak hingga percobaan? Di bawah kurva <span class="math inline">\(y=\frac{1}{2}\sin\left(x\right)\)</span> akan penuh dengan titik-titik biru, yang merepresentasikan kejadian mendapatkan jarum yang memotong garis. Secara lebih spesifik, sebanyak tak hingga titik biru tersebut akan mengisi daerah di bawah <span class="math inline">\(y=\frac{1}{2}\sin\left(x\right)\)</span> dan di atas <span class="math inline">\(y=0\)</span>, serta di kanan <span class="math inline">\(x=0\)</span> dan di kiri <span class="math inline">\(x=\frac{\pi}{2}\)</span>.</p>
-<p>Padahal, semua kemungkinan posisi titik-titik dalam eksperimen tersebut adalah daerah di dalam persegi panjang yang dibatasi oleh <span class="math inline">\(y=\frac{1}{2}\)</span>, <span class="math inline">\(y = 0\)</span>, <span class="math inline">\(x=0\)</span>, dan <span class="math inline">\(x=\frac{\pi}{2}\)</span>. Dengan demikian, peluang teoretis mendapatkan kejadian jarum yang melewati garis sama dengan membagi luas daerah yang mungkin ditempati oleh titik-titik biru dengan luas daerah persegi panjang tersebut. Secara matematis, hal ini dapat dihitung seperti berikut.</p>
+<p>Padahal, semua kemungkinan posisi titik-titik dalam eksperimen tersebut adalah daerah di dalam persegi panjang yang dibatasi oleh <span class="math inline">\(y=\frac{1}{2}\)</span>, <span class="math inline">\(y = 0\)</span>, <span class="math inline">\(x=0\)</span>, dan <span class="math inline">\(x=\frac{\pi}{2}\)</span>. Dengan demikian, peluang teoretis mendapatkan kejadian jarum yang melewati garis sama dengan proporsi antara luas daerah yang mungkin ditempati oleh titik-titik biru dan luas daerah persegi panjang tersebut. Secara matematis, kita dapat menggunakan kalkulus untuk menentukan proporsi tersebut.</p>
 <p><span class="math display">\[
 \begin{aligned}P &amp;= \frac{\displaystyle \int_{0}^{\frac{\pi}{2}} \frac{1}{2} \sin(x)\,dx}{\displaystyle \frac{\pi}{2} \cdot \frac{1}{2}} \\[6pt]  &amp;= \frac{2}{\pi} \left[ -\cos(x) \right]_{0}^{\frac{\pi}{2}} \\[6pt]  &amp;= \frac{2}{\pi} \bigl( -\cos(\tfrac{\pi}{2}) + \cos(0) \bigr) \\[6pt]  &amp;= \frac{2}{\pi}\end{aligned}
 \]</span></p>
