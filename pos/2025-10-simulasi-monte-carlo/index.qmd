@@ -392,7 +392,7 @@ hasil_eksperimen <- data_eksperimen |>
 1.  Berbeda dengan yang kita lakukan pada @lst-contoh-jarum, kita sekarang menggunakan `geom_segment()` untuk membuat ruas-ruas garis. Hal ini dikarenakan kita membuat ruas-ruas garis tersebut berdasarkan setiap baris dalam `data_eksperimen`.
 2.  Kita menggunakan `scale_color_identity()` karena kita ingin agar pemetaan kita pada `geom_segment()` tentang warna, yaitu `color = warna`, bernilai persis sama dengan nilai variabel `warna`-nya (tanpa melalui penskalaan).
 
-Hasil 100 percobaan eksperimen jarum Buffon ditunjukkan pada @fig-vis-hasil-eksperimen.
+Visualisasi luaran 100 percobaan eksperimen jarum Buffon yang dihasilkan dari @lst-vis-hasil-eksperimen, ditunjukkan pada @fig-vis-hasil-eksperimen.
 
 ```{r}
 #| label: fig-vis-hasil-eksperimen
@@ -402,7 +402,7 @@ Hasil 100 percobaan eksperimen jarum Buffon ditunjukkan pada @fig-vis-hasil-eksp
 hasil_eksperimen
 ```
 
-Sebelumnya kita telah mengetahui berapa banyak jarum yang memotong garis dan yang tidak. Kita juga dapat mengetaui persentasenya juga. Kedua informasi ini dapat kita visualisasikan, seperti yang disajikan pada @fig-diag-batang-potong!
+Sebelumnya kita telah mengetahui berapa banyak jarum yang memotong garis dan yang tidak. Kita juga dapat mengetahui persentasenya juga. Kedua informasi ini dapat kita visualisasikan, seperti yang disajikan pada @fig-diag-batang-potong!
 
 ```{r}
 #| label: fig-diag-batang-potong
