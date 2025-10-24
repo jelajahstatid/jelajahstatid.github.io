@@ -828,6 +828,7 @@ data_eksperimen <- data_eksperimen |>
 Sekarang kita membuat animasi yang serupa dengan @fig-anim-p-empiris, tetapi yang akan kita plot adalah nilai-nilai variabel `estimasi_pi`. Kita melakukannya dengan kode pada @lst-anim-mendekati-pi.
 
 ```{r}
+#| code-fold: show
 #| lst-label: lst-anim-mendekati-pi
 #| lst-cap: 'Membuat animasi estimasi nilai $\pi$'
 
@@ -867,9 +868,13 @@ plot_anim_mendekati_pi <- data_eksperimen |>
 plot_anim_mendekati_pi
 ```
 
-Berdasarkan hasil eksperimen jarum Buffon yang terdata dalam `data_eksperimen`, kita dapat melihat estimasi nilai $\pi$-nya pada percobaan yang terakhir, yaitu percobaan ke-1000. Berapa nilai estimasinya? Mari kita lihat bersama-sama.
+Berdasarkan hasil eksperimen jarum Buffon yang terdata dalam `data_eksperimen`, kita dapat melihat estimasi nilai $\pi$-nya pada percobaan yang terakhir, yaitu percobaan ke-1000. Berapa nilai estimasinya? Mari kita menggunakan @lst-estimasi-pi-percobaan-1000 dan lihat luarannya.
 
 ```{r}
+#| code-fold: show
+#| lst-label: lst-estimasi-pi-percobaan-1000
+#| lst-cap: 'Menampilkan nilai `estimasi_pi` pada percobaan yang ke-1000'
+
 est_pi <- data_eksperimen$estimasi_pi[1000]
 est_pi
 ```

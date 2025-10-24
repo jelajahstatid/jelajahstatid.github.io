@@ -1643,13 +1643,13 @@ Daftar&nbsp;15: Membuat estimasi nilai <span class="math inline">\(\pi\)</span> 
 </div>
 <p>Sekarang kita membuat animasi yang serupa dengan <a href="#fig-anim-p-empiris" class="quarto-xref">Gambar&nbsp;10</a>, tetapi yang akan kita plot adalah nilai-nilai variabel <code>estimasi_pi</code>. Kita melakukannya dengan kode pada <a href="#lst-anim-mendekati-pi" class="quarto-xref">Daftar&nbsp;16</a>.</p>
 <div class="cell">
-<div id="lst-anim-mendekati-pi" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-anim-mendekati-pi" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-fold="show">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-anim-mendekati-pi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Daftar&nbsp;16: Membuat animasi estimasi nilai <span class="math inline">\(\pi\)</span>
 </figcaption>
 <div aria-describedby="lst-anim-mendekati-pi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Kode</summary>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>plot_anim_mendekati_pi <span class="ot">&lt;-</span> data_eksperimen <span class="sc">|&gt;</span> </span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> percobaan, <span class="at">y =</span> estimasi_pi)) <span class="sc">+</span> </span>
@@ -1698,13 +1698,22 @@ Gambar&nbsp;11: Eksperimen jarum Buffon untuk mendekati nilai <span class="math 
 </div>
 </div>
 </div>
-<p>Berdasarkan hasil eksperimen jarum Buffon yang terdata dalam <code>data_eksperimen</code>, kita dapat melihat estimasi nilai <span class="math inline">\(\pi\)</span>-nya pada percobaan yang terakhir, yaitu percobaan ke-1000. Berapa nilai estimasinya? Mari kita lihat bersama-sama.</p>
+<p>Berdasarkan hasil eksperimen jarum Buffon yang terdata dalam <code>data_eksperimen</code>, kita dapat melihat estimasi nilai <span class="math inline">\(\pi\)</span>-nya pada percobaan yang terakhir, yaitu percobaan ke-1000. Berapa nilai estimasinya? Mari kita menggunakan <a href="#lst-estimasi-pi-percobaan-1000" class="quarto-xref">Daftar&nbsp;17</a> dan lihat luarannya.</p>
 <div class="cell">
-<details class="code-fold">
+<div id="lst-estimasi-pi-percobaan-1000" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-fold="show">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-estimasi-pi-percobaan-1000-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Daftar&nbsp;17: Menampilkan nilai <code>estimasi_pi</code> pada percobaan yang ke-1000
+</figcaption>
+<div aria-describedby="lst-estimasi-pi-percobaan-1000-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details open="" class="code-fold">
 <summary>Kode</summary>
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>est_pi <span class="ot">&lt;-</span> data_eksperimen<span class="sc">$</span>estimasi_pi[<span class="dv">1000</span>]</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>est_pi</span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+</div>
+</figure>
+</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 3.184713</code></pre>
 </div>
@@ -1713,12 +1722,12 @@ Gambar&nbsp;11: Eksperimen jarum Buffon untuk mendekati nilai <span class="math 
 </section>
 <section id="sec-animasi-hasil-setiap-percobaan" class="level3">
 <h3 class="anchored" data-anchor-id="sec-animasi-hasil-setiap-percobaan">Animasi Hasil Setiap Percobaan</h3>
-<p>Hasil setiap percobaan dalam eksperimen jarum Buffon juga dapat kita animasikan. Hal ini serupa dengan <a href="#fig-luaran-percobaan-sin" class="quarto-xref">Gambar&nbsp;8</a>. Dengan cara yang serupa dengan pembuatan animasi-animasi sebelumnya, kita dapat melakukannya dengan kode pada <a href="#lst-anim-hasil-percobaan" class="quarto-xref">Daftar&nbsp;17</a>.</p>
+<p>Hasil setiap percobaan dalam eksperimen jarum Buffon juga dapat kita animasikan. Hal ini serupa dengan <a href="#fig-luaran-percobaan-sin" class="quarto-xref">Gambar&nbsp;8</a>. Dengan cara yang serupa dengan pembuatan animasi-animasi sebelumnya, kita dapat melakukannya dengan kode pada <a href="#lst-anim-hasil-percobaan" class="quarto-xref">Daftar&nbsp;18</a>.</p>
 <div class="cell">
 <div id="lst-anim-hasil-percobaan" class="r cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-fold="show">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-anim-hasil-percobaan-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Daftar&nbsp;17: Membuat animasi hasil setiap percobaan
+Daftar&nbsp;18: Membuat animasi hasil setiap percobaan
 </figcaption>
 <div aria-describedby="lst-anim-hasil-percobaan-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <details open="" class="code-fold">
@@ -1762,7 +1771,7 @@ Daftar&nbsp;17: Membuat animasi hasil setiap percobaan
 </figure>
 </div>
 </div>
-<p>Untuk melihat hasilnya, kita dapat mencetak objek gganim <code>plot_anim_hasil_percobaan</code> yang dihasilkan pada <a href="#lst-anim-hasil-percobaan" class="quarto-xref">Daftar&nbsp;17</a>. Hasil animasinya disajikan pada <a href="#fig-anim-hasil-percobaan" class="quarto-xref">Gambar&nbsp;12</a>.</p>
+<p>Untuk melihat hasilnya, kita dapat mencetak objek gganim <code>plot_anim_hasil_percobaan</code> yang dihasilkan pada <a href="#lst-anim-hasil-percobaan" class="quarto-xref">Daftar&nbsp;18</a>. Hasil animasinya disajikan pada <a href="#fig-anim-hasil-percobaan" class="quarto-xref">Gambar&nbsp;12</a>.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Kode</summary>
@@ -1784,11 +1793,11 @@ Gambar&nbsp;12: Animasi hasil setiap percobaan dalam eksperimen jarum Buffon
 </section>
 <section id="sec-gabungan-animasi" class="level3">
 <h3 class="anchored" data-anchor-id="sec-gabungan-animasi">Gabungan Animasi</h3>
-<p>Seringkali gabungan animasi memberikan informasi yang lebih kaya daripada animasi tunggal. Misalnya, bagaimana menurutmu jika kita dapat mengatur agar animasi pada <a href="#fig-animasi-jarum-jatuh" class="quarto-xref">Gambar&nbsp;9</a> dan <a href="#fig-anim-p-empiris" class="quarto-xref">Gambar&nbsp;10</a> berdampingan? Selain kita dapat melihat eksperimen jarum Buffon, secara simultan kita juga dapat mengamati tren peluang empirisnya. Itulah yang akan kita lakukan. Untuk melakukannya, kita dapat menggunakan kode pada <a href="#lst-gif-buffon-p-empiris" class="quarto-xref">Daftar&nbsp;18</a>.</p>
+<p>Seringkali gabungan animasi memberikan informasi yang lebih kaya daripada animasi tunggal. Misalnya, bagaimana menurutmu jika kita dapat mengatur agar animasi pada <a href="#fig-animasi-jarum-jatuh" class="quarto-xref">Gambar&nbsp;9</a> dan <a href="#fig-anim-p-empiris" class="quarto-xref">Gambar&nbsp;10</a> berdampingan? Selain kita dapat melihat eksperimen jarum Buffon, secara simultan kita juga dapat mengamati tren peluang empirisnya. Itulah yang akan kita lakukan. Untuk melakukannya, kita dapat menggunakan kode pada <a href="#lst-gif-buffon-p-empiris" class="quarto-xref">Daftar&nbsp;19</a>.</p>
 <div id="lst-gif-buffon-p-empiris" class="listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-gif-buffon-p-empiris-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Daftar&nbsp;18: Menyandingkan animasi eksperimen jarum Buffon dan peluang empirisnya
+Daftar&nbsp;19: Menyandingkan animasi eksperimen jarum Buffon dan peluang empirisnya
 </figcaption>
 <div aria-describedby="lst-gif-buffon-p-empiris-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="sourceCode" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Membuat animasi eksperimen jarum Buffon</span></span>
@@ -1837,7 +1846,7 @@ Daftar&nbsp;18: Menyandingkan animasi eksperimen jarum Buffon dan peluang empiri
 </div>
 </figure>
 </div>
-<p>Kode pada <a href="#lst-gif-buffon-p-empiris" class="quarto-xref">Daftar&nbsp;18</a> menghasilkan animasi yang berupa gambar gif. Animasi tersebut ditunjukkan pada <a href="#fig-gif-buffon-p-empiris" class="quarto-xref">Gambar&nbsp;13</a>.</p>
+<p>Kode pada <a href="#lst-gif-buffon-p-empiris" class="quarto-xref">Daftar&nbsp;19</a> menghasilkan animasi yang berupa gambar gif. Animasi tersebut ditunjukkan pada <a href="#fig-gif-buffon-p-empiris" class="quarto-xref">Gambar&nbsp;13</a>.</p>
 <div id="fig-gif-buffon-p-empiris" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-gif-buffon-p-empiris-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
