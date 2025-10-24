@@ -191,7 +191,7 @@ contoh_jarum <- ggplot() +
 
 1.  Mendefinisikan nilai-nilai yang diketahui, yaitu `x_1`, `y_1`, dan `t_heta`.
 2.  Menghitung nilai-nilai `x_2` dan `y_2` berdasarkan @eq-koord-titik-kedua.
-3.  Menggunakan `annotate()` untuk membuat representasi sebuah jarum sebagai sebuah ruas garis (`geom = "segment"`), yang ujung-ujungnya di $\left( x_{1}, y_{1} \right)$ dan $\left( x_{2}, y_{2} \right)$ (`x = x_1, xend = x_2, y = y_1, yend = y_2`), berwarna biru (`color = "#4269d0"`), dan tebalnya 1,5 (`linewidth = 1.5`).
+3.  Menggunakan `annotate()` untuk membuat representasi sebuah jarum sebagai sebuah ruas garis (`geom = "segment"`), yang ujung-ujungnya di $\left( x_{1}, y_{1} \right)$ dan $\left( x_{2}, y_{2} \right)$ (`x = x_1, xend = x_2, y = y_1, yend = y_2`), berwarna biru (`color = "#4269d0"`), dan tebalnya 1,5 (`linewidth = 1.5`). Kita membuat ruas garis dengan `annotate()` karena ruas garis tersebut tidak tergantung dari data, tetapi kita sediakan nilai-nilai untuk `x`, `y`, `xend`, dan `yend` secara manual.
 
 Jarum yang dihasilkan dari kode pada @lst-contoh-jarum ditunjukkan pada @fig-contoh-jarum.
 
@@ -346,15 +346,12 @@ data_eksperimen |>
 
 ### Visualisasi Hasil Eksperimen {#sec-visualisasi-hasil-eksperimen}
 
-Kita dapat memvisualisasikan hasil 100 percobaan dalam `data_eksperimen`. Dengan menggunakan `x1`, `y1`, `x2`, dan `y2`, kita dapat menggambarkan jarum yang dihasilkan oleh setiap percobaan. Kita dapat melakukannya dengan kode pada @lst-vis-hasil-eksperimen. Hasilnya ditunjukkan pada @fig-vis-hasil-eksperimen.
+Kita dapat memvisualisasikan hasil 100 percobaan dalam `data_eksperimen`. Dengan menggunakan `x1`, `y1`, `x2`, dan `y2`, kita dapat menggambarkan jarum yang dihasilkan oleh setiap percobaan. Kita dapat melakukannya dengan kode pada @lst-vis-hasil-eksperimen.
 
 ```{r}
 #| code-fold: show
 #| lst-label: lst-vis-hasil-eksperimen
 #| lst-cap: 'Memvisualisasikan setiap luaran dalam eksperimen'
-#| label: fig-vis-hasil-eksperimen
-#| fig-cap: 'Hasil pelemparan secara acak 100 jarum pada selembar kertas'
-#| fig-asp: 1
 
 hasil_eksperimen <- data_eksperimen |> 
   ggplot() + 
@@ -363,7 +360,7 @@ hasil_eksperimen <- data_eksperimen |>
     color = "gray80",
     linewidth = 0.5
   ) + 
-  geom_segment(
+  geom_segment(                # <1> 
     aes(
       x = x1, y = y1,
       xend = x2, yend = y2,
@@ -381,7 +378,7 @@ hasil_eksperimen <- data_eksperimen |>
   scale_y_continuous(
     breaks = 0:10
   ) + 
-  scale_color_identity() + 
+  scale_color_identity() +      # <2>
   theme_bw() + 
   theme(
     legend.position = "none",
@@ -390,8 +387,19 @@ hasil_eksperimen <- data_eksperimen |>
     plot.margin = unit(c(.5, .5, .5, .5), "cm")
   )
 
-hasil_eksperimen
+```
 
+1.  Berbeda dengan yang kita lakukan pada @lst-contoh-jarum, kita sekarang menggunakan `geom_segment()` untuk membuat ruas-ruas garis. Hal ini dikarenakan kita membuat ruas-ruas garis tersebut berdasarkan setiap baris dalam `data_eksperimen`.
+2.  Kita menggunakan `scale_color_identity()` karena kita ingin agar pemetaan kita pada `geom_segment()` tentang warna, yaitu `color = warna`, bernilai persis sama dengan nilai variabel `warna`-nya (tanpa melalui penskalaan).
+
+Hasil 100 percobaan eksperimen jarum Buffon ditunjukkan pada @fig-vis-hasil-eksperimen.
+
+```{r}
+#| label: fig-vis-hasil-eksperimen
+#| fig-cap: 'Hasil pelemparan secara acak 100 jarum pada selembar kertas'
+#| fig-asp: 1
+
+hasil_eksperimen
 ```
 
 Sebelumnya kita telah mengetahui berapa banyak jarum yang memotong garis dan yang tidak. Kita juga dapat mengetaui persentasenya juga. Kedua informasi ini dapat kita visualisasikan, seperti yang disajikan pada @fig-diag-batang-potong!
