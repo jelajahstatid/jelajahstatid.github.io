@@ -286,7 +286,7 @@ data_eksperimen <- tibble(
 
 1.  Mengatur benih pengacakan agar hasilnya dapat diproduksi kembali.
 2.  Membuat palet warna sebagai warna setiap jarumnya.
-3.  Menyediakan bilangan-bilangan `x1`, `y1`, dan `theta` secara acak.
+3.  Menyediakan bilangan-bilangan `x1`, `y1`, dan `theta` secara acak. Karena ketiga bilangan tersebut mengikuti distribusi seragam, kita menggunakan fungsi `runif()`. Dengan distribusi seragam ini, setiap bilangan dari nilai `min` sampai `max` memiliki kemungkinan yang sama untuk terpilih.
 4.  Menghitung `x2` dan `y2`, serta membuat variabel `percobaan` untuk memberikan identitas terhadap setiap percobaannya dan `warna` untuk memberikan warna terhadap setiap jarum yang dihasilkan.
 
 Kita dapat melihat gambaran umum `data_eksperimen` dengan fungsi `glimpse()`.
