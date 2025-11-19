@@ -340,7 +340,7 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
       </div> <!-- /container-fluid -->
     </nav></header><!-- content --><header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full"><div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Membuat Diagram Lebih Hidup dengan Animasi</h1>
+      <div class="quarto-title-block"><div><h1 class="title">Membuat Diagram Lebih Hidup dengan Animasi</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Kode</button></div></div>
                   <div>
         <div class="description">
           <p>Bagaimana menganimasikan diagram statistik? Artikel ini mendemonstrasikan bagaimana menggunakan paket {gganimate} untuk membuat animasi dalam penyajian data yang efisien dan menarik.</p>
@@ -497,8 +497,8 @@ Gambar&nbsp;2: Relasi antara PDB per kapita dan angka harapan hidup setiap negar
 <span>    x <span class="op">=</span> <span class="st">"PDB per kapita"</span>,</span>
 <span>    y <span class="op">=</span> <span class="st">"Angka harapan hidup"</span></span>
 <span>  <span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu">transition_time</span><span class="op">(</span><span class="va">year</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu">ease_aes</span><span class="op">(</span><span class="st">"linear"</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://gganimate.com/reference/transition_time.html">transition_time</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://gganimate.com/reference/ease_aes.html">ease_aes</a></span><span class="op">(</span><span class="st">"linear"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">anim</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -512,26 +512,28 @@ Gambar&nbsp;3: Relasi antara PDB per kapita dan angka harapan hidup setiap tahun
 </div>
 </div>
 </div>
-<p>Dari baris kode di atas, kita menggunakan dua fungsi dari {gganimate}. Kedua fungsi tersebut adalah <code>transition_time()</code> dan <code>ease_aes()</code>. Fungsi <code>transition_time()</code> berfungsi untuk membagi data kita berdasarkan kolom/variabel waktu tertentu. Karena data <code>gapminder</code> memiliki variabel waktu <code>year</code>, kita masukkan variabel ini ke dalam fungsi tersebut.</p>
-<p>Fungsi <code>transition_time()</code> menghasilkan variabel <code>frame_time</code>. Variabel ini kita masukkan ke dalam judul diagram agar judul tersebut berubah-ubah di sepanjang animasinya, perhatikan bagian kiri atas <a href="#fig-animasi" class="quarto-xref">Gambar&nbsp;3</a>. Penulisan variabel ini ke dalam judul perlu kita masukkan ke dalam kurung kurawal <code><a href="https://rdrr.io/r/base/Paren.html">{ }</a></code> agar terbaca sebagai variabel.</p>
-<p>Fungsi <code>ease_aes()</code> mengatur bagaimana perubahan variabel <code>year</code>. Pilihan dalam fungsi ini antara lain <code>quadratic</code>, <code>cubic</code>, dan <code>quartic</code>. Bawaannya, argumen awal fungsi ini adalah <code>linear</code>.</p>
+<p>Dari baris kode di atas, kita menggunakan dua fungsi dari {gganimate}. Kedua fungsi tersebut adalah <code><a href="https://gganimate.com/reference/transition_time.html">transition_time()</a></code> dan <code><a href="https://gganimate.com/reference/ease_aes.html">ease_aes()</a></code>. Fungsi <code><a href="https://gganimate.com/reference/transition_time.html">transition_time()</a></code> berfungsi untuk membagi data kita berdasarkan kolom/variabel waktu tertentu. Karena data <code>gapminder</code> memiliki variabel waktu <code>year</code>, kita masukkan variabel ini ke dalam fungsi tersebut.</p>
+<p>Fungsi <code><a href="https://gganimate.com/reference/transition_time.html">transition_time()</a></code> menghasilkan variabel <code>frame_time</code>. Variabel ini kita masukkan ke dalam judul diagram agar judul tersebut berubah-ubah di sepanjang animasinya, perhatikan bagian kiri atas <a href="#fig-animasi" class="quarto-xref">Gambar&nbsp;3</a>. Penulisan variabel ini ke dalam judul perlu kita masukkan ke dalam kurung kurawal <code><a href="https://rdrr.io/r/base/Paren.html">{ }</a></code> agar terbaca sebagai variabel.</p>
+<p>Fungsi <code><a href="https://gganimate.com/reference/ease_aes.html">ease_aes()</a></code> mengatur bagaimana perubahan variabel <code>year</code>. Pilihan dalam fungsi ini antara lain <code>quadratic</code>, <code>cubic</code>, dan <code>quartic</code>. Bawaannya, argumen awal fungsi ini adalah <code>linear</code>.</p>
 </section><section id="sec-simpan-animasi" class="level2"><h2 class="anchored" data-anchor-id="sec-simpan-animasi">Menyimpan Animasi</h2>
-<p>Setelah animasi sudah jadi, saatnya kita simpan animasi tersebut. Sebelum kita menyimpannya, kita perlu merender animasi tersebut. Kita dapat merendernya dengan menggunakan <code>animate()</code> dan mengisikan argumen <code>renderer = gifski_renderer()</code> apabila ingin merendernya menjadi fail gif. Untuk menyimpan hasil animasinya, kita menggunakan fungsi <code>anim_save()</code>.</p>
+<p>Setelah animasi sudah jadi, saatnya kita simpan animasi tersebut. Sebelum kita menyimpannya, kita perlu merender animasi tersebut. Kita dapat merendernya dengan menggunakan <code><a href="https://gganimate.com/reference/animate.html">animate()</a></code> dan mengisikan argumen <code>renderer = gifski_renderer()</code> apabila ingin merendernya menjadi fail gif. Untuk menyimpan hasil animasinya, kita menggunakan fungsi <code><a href="https://gganimate.com/reference/anim_save.html">anim_save()</a></code>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Merender animasi</span></span>
-<span><span class="fu">animate</span><span class="op">(</span></span>
+<span><span class="fu"><a href="https://gganimate.com/reference/animate.html">animate</a></span><span class="op">(</span></span>
 <span>  plot <span class="op">=</span> <span class="va">anim</span>,</span>
-<span>  renderer <span class="op">=</span> <span class="fu">gifski_renderer</span><span class="op">(</span><span class="op">)</span></span>
+<span>  renderer <span class="op">=</span> <span class="fu"><a href="https://gganimate.com/reference/renderers.html">gifski_renderer</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Menyimpan animasi</span></span>
-<span><span class="fu">anim_save</span><span class="op">(</span></span>
+<span><span class="fu"><a href="https://gganimate.com/reference/anim_save.html">anim_save</a></span><span class="op">(</span></span>
 <span>  file <span class="op">=</span> <span class="st">"anim_pdb_harapan_hidup.gif"</span></span>
 <span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Ketika menggunakan fungsi <code>animate()</code> dalam merender animasi, kita dapat mengatur beberapa argumen. Misalnya, <code>nframes</code>, <code>fps</code>, dan <code>duration</code>. Untuk lebih jelasnya, silakan kunjungi <a href="https://gganimate.com/reference/animate.html" class="external" target="_blank">laman referensinya</a>.</p>
+<p>Ketika menggunakan fungsi <code><a href="https://gganimate.com/reference/animate.html">animate()</a></code> dalam merender animasi, kita dapat mengatur beberapa argumen. Misalnya, <code>nframes</code>, <code>fps</code>, dan <code>duration</code>. Untuk lebih jelasnya, silakan kunjungi <a href="https://gganimate.com/reference/animate.html" class="external" target="_blank">laman referensinya</a>.</p>
 </section><section id="catatan-akhir" class="level2"><h2 class="anchored" data-anchor-id="catatan-akhir">Catatan Akhir</h2>
 <p>Kita telah dapat menyajikan data yang kompleks secara sederhana dengan animasi. Dalam R, kita dapat menggunakan paket {gganimate}. Dengan paket tersebut, kita dapat membuat objek animasi. Hal ini telah didemonstrasikan pada <a href="#sec-kreasi-animasi" class="quarto-xref">Bagian&nbsp;1</a>. Selanjutnya, kita dapat merender objek animasi tersebut dan menyimpannya ke dalam sebuah fail. Hal ini telah dipaparkan pada <a href="#sec-simpan-animasi" class="quarto-xref">Bagian&nbsp;2</a>.</p>
 <p>Animasi tetap memiliki kekurangan. Kita hanya bisa melihat animasi tersebut, tanpa melakukan interaksi. Apakah kita dapat membuat diagram yang tak hanya efisien, tetapi juga interaktif? Iya, kita dapat membuat diagram yang interaktif dengan R. Untuk mengetahui caranya, silakan pantau <a href="../../pos/2024-08-statistik-dinamis-dan-interaktif/index.html" title="Membuat Statistik Menjadi Dinamis dan Interaktif">pos selanjutnya</a>.</p>
 
+
+<!-- -->
 
 </section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Kembali ke atas</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Penggunaan Kembali</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-copyright"><h2 class="anchored quarto-appendix-heading">Hak Cipta</h2><div class="quarto-appendix-contents"><div>© 2024 Yosep Dwi Kristanto</div></div></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -615,6 +617,57 @@ Gambar&nbsp;3: Relasi antara PDB per kapita dan angka harapan hidup setiap tahun
         container: window.document.getElementById('quarto-embedded-source-code-modal')
       });
       clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
@@ -1014,7 +1067,219 @@ Gambar&nbsp;3: Relasi antara PDB per kapita dan angka harapan hidup setiap tahun
     document.getElementById("quarto-content").appendChild(script);
   }
   loadGiscus();
-</script>
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Kode Sumber</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb6" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Membuat Diagram Lebih Hidup dengan Animasi"</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> |</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">  Bagaimana menganimasikan diagram statistik? Artikel ini mendemonstrasikan bagaimana menggunakan paket {gganimate} untuk membuat animasi dalam penyajian data yang efisien dan menarik.</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: Yosep Dwi Kristanto</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">    url: https://people.usd.ac.id/~ydkristanto/</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation: Pendidikan Matematika, Universitas Sanata Dharma, Yogyakarta</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation-url: https://www.usd.ac.id/s1pmat</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">    orcid: 0000-0003-1446-0422</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> 2024-08-07</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="an">date-modified:</span><span class="co"> 2024-08-13</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co">  - tutorial</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co">  - visualisasi data</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="an">image:</span><span class="co"> "animasi.gif"</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="an">image-alt:</span><span class="co"> |</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co">  Animasi yang menunjukkan hubungan antara PDB per kapita dan angka harapan hidup setiap tahunnya.</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="an">keywords:</span><span class="co"> </span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co">  - animasi</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="co">  - Gapminder</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="co">  - gganimate</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="co">  - harapan hidup</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="co">  - produk domestik bruto</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="co">  - PDB</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="an">lightbox:</span><span class="co"> true</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="an">copyright:</span><span class="co"> "© 2024 Yosep Dwi Kristanto"</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a><span class="an">license:</span><span class="co"> "CC BY"</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a><span class="an">editor_options:</span><span class="co"> </span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a><span class="co">  chunk_output_type: console</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a><span class="an">code-annotations:</span><span class="co"> select</span></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>Umumnya, diagram itu untuk menyampaikan pesan. Akibatnya, pembuatan diagram perlu disesuaikan dengan pesan yang perlu disampaikan. *Nah*, berdasarkan hal ini, mari kita tinjau kembali sebuah diagram pada <span class="co">[</span><span class="ot">pos sebelumnya</span><span class="co">](/pos/2024-08-statistik-jendela-dunia/index.qmd "Statistik Adalah Jendela Dunia")</span>. @fig-pdb-vs-ahh menyajikan diagram yang dimaksud.</span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a><span class="al">![Hubungan antara PDB per kapita dan angka harapan hidup setiap negara pada tahun 2007](aset/pdb-vs-ahh.png)</span>{#fig-pdb-vs-ahh fig-align="center"}</span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>@fig-pdb-vs-ahh sudah baik dalam menunjukkan seperti apa relasi antara PDB per kapita dan angka harapan hidup setiap negara pada tahun 2007. Akan tetapi, bagaimana jika kita ingin menunjukkan relasi tersebut pada tahun-tahun lainnya?</span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>Mungkin kita langsung berpikir untuk memvisualisasikan relasi tersebut untuk setiap tahunnya. Dengan demikian, penyajian datanya seperti yang ditunjukkan pada @fig-semua-tahun.</span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-semua-tahun</span></span>
+<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Relasi antara PDB per kapita dan angka harapan hidup setiap negara mulai tahun 1952 sampai 2007"</span></span>
+<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-asp: 0.5625</span></span>
+<span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a><span class="co"># Impor data `gapminder`</span></span>
+<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="fu">url</span>(<span class="st">"https://github.com/jennybc/gapminder/raw/main/data/gapminder.rdata"</span>))</span>
+<span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a><span class="co"># Menyiapkan data</span></span>
+<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a>terjemahan_benua <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb6-65"><a href="#cb6-65" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Asia"</span> <span class="ot">=</span> <span class="st">"Asia"</span>,</span>
+<span id="cb6-66"><a href="#cb6-66" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Europe"</span> <span class="ot">=</span> <span class="st">"Eropa"</span>,</span>
+<span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Africa"</span> <span class="ot">=</span> <span class="st">"Afrika"</span>,</span>
+<span id="cb6-68"><a href="#cb6-68" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Americas"</span> <span class="ot">=</span> <span class="st">"Amerika"</span>,</span>
+<span id="cb6-69"><a href="#cb6-69" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Oceania"</span> <span class="ot">=</span> <span class="st">"Oseania"</span></span>
+<span id="cb6-70"><a href="#cb6-70" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-71"><a href="#cb6-71" aria-hidden="true" tabindex="-1"></a>gapminder <span class="ot">&lt;-</span> gapminder <span class="sc">|&gt;</span> </span>
+<span id="cb6-72"><a href="#cb6-72" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb6-73"><a href="#cb6-73" aria-hidden="true" tabindex="-1"></a>    <span class="at">continent =</span> <span class="fu">recode</span>(continent, <span class="sc">!!!</span>terjemahan_benua)</span>
+<span id="cb6-74"><a href="#cb6-74" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb6-75"><a href="#cb6-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-76"><a href="#cb6-76" aria-hidden="true" tabindex="-1"></a><span class="co"># Memplot data</span></span>
+<span id="cb6-77"><a href="#cb6-77" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">|&gt;</span> </span>
+<span id="cb6-78"><a href="#cb6-78" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(</span>
+<span id="cb6-79"><a href="#cb6-79" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> gdpPercap, <span class="at">y =</span> lifeExp)</span>
+<span id="cb6-80"><a href="#cb6-80" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb6-81"><a href="#cb6-81" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb6-82"><a href="#cb6-82" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">color =</span> continent, <span class="at">size =</span> pop),</span>
+<span id="cb6-83"><a href="#cb6-83" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> .<span class="dv">6</span></span>
+<span id="cb6-84"><a href="#cb6-84" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb6-85"><a href="#cb6-85" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size</span>(</span>
+<span id="cb6-86"><a href="#cb6-86" aria-hidden="true" tabindex="-1"></a>    <span class="at">range =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>),</span>
+<span id="cb6-87"><a href="#cb6-87" aria-hidden="true" tabindex="-1"></a>    <span class="at">guide =</span> <span class="st">"none"</span></span>
+<span id="cb6-88"><a href="#cb6-88" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb6-89"><a href="#cb6-89" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>(<span class="at">name =</span> <span class="st">"Benua"</span>) <span class="sc">+</span> </span>
+<span id="cb6-90"><a href="#cb6-90" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(</span>
+<span id="cb6-91"><a href="#cb6-91" aria-hidden="true" tabindex="-1"></a>    <span class="fu">vars</span>(year),</span>
+<span id="cb6-92"><a href="#cb6-92" aria-hidden="true" tabindex="-1"></a>    <span class="at">ncol =</span> <span class="dv">4</span></span>
+<span id="cb6-93"><a href="#cb6-93" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb6-94"><a href="#cb6-94" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb6-95"><a href="#cb6-95" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>) <span class="sc">+</span> </span>
+<span id="cb6-96"><a href="#cb6-96" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb6-97"><a href="#cb6-97" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"PDB per kapita"</span>,</span>
+<span id="cb6-98"><a href="#cb6-98" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Angka harapan hidup"</span></span>
+<span id="cb6-99"><a href="#cb6-99" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb6-100"><a href="#cb6-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-101"><a href="#cb6-101" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-102"><a href="#cb6-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-103"><a href="#cb6-103" aria-hidden="true" tabindex="-1"></a>@fig-semua-tahun tersebut tampak sudah sesuai dengan pesan yang ingin kita sampaikan. Akan tetapi, gambar tersebut kurang efisien karena terlalu banyak memuat informasi. Apakah ada metode yang lebih efisien?</span>
+<span id="cb6-104"><a href="#cb6-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-105"><a href="#cb6-105" aria-hidden="true" tabindex="-1"></a>Penggunaan animasi adalah salah satu solusinya. Pembuatan animasi tersebut dapat dilakukan di <span class="co">[</span><span class="ot">R</span><span class="co">](https://www.R-project.org/ "R: A Language and Environment for Statistical Computing")</span>{.external target="_blank"} dengan menggunakan paket <span class="co">[</span><span class="ot">{gganimate}</span><span class="co">](https://CRAN.R-project.org/package=gganimate "gganimate: A Grammar of Animated Graphics")</span>{.external target="_blank"}. Tak perlu berlama-lama, mari kita panggil paket tersebut bersamaan dengan paket <span class="co">[</span><span class="ot">{tidyverse}</span><span class="co">](https://www.tidyverse.org/ "Welcome to the {tidyverse}")</span>{.external target="_blank"}. Paket {tidyverse} tersebut berguna untuk mengimpor, mengolah, dan memvisualisasikan data. Sebagai tambahan, sebaiknya dalam R kita juga sudah terinstal paket <span class="co">[</span><span class="ot">{gifski}</span><span class="co">](https://CRAN.R-project.org/package=gifski "gifski: Highest Quality GIF Encoder")</span>{.external target="_blank"}. Paket ini digunakan untuk merender animasi kita nanti menjadi fail gif.</span>
+<span id="cb6-106"><a href="#cb6-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-109"><a href="#cb6-109" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb6-110"><a href="#cb6-110" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb6-111"><a href="#cb6-111" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb6-112"><a href="#cb6-112" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb6-113"><a href="#cb6-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-114"><a href="#cb6-114" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb6-115"><a href="#cb6-115" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gganimate)</span>
+<span id="cb6-116"><a href="#cb6-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-117"><a href="#cb6-117" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-118"><a href="#cb6-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-119"><a href="#cb6-119" aria-hidden="true" tabindex="-1"></a><span class="fu">## Mengkreasi Animasi {#sec-kreasi-animasi}</span></span>
+<span id="cb6-120"><a href="#cb6-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-121"><a href="#cb6-121" aria-hidden="true" tabindex="-1"></a>Kita impor dan olah data Gapminder seperti pada <span class="co">[</span><span class="ot">pos sebelumnya</span><span class="co">](/pos/2024-08-statistik-jendela-dunia/index.qmd "Statistik Adalah Jendela Dunia")</span>. Baris kode yang digunakan adalah sebagai berikut.</span>
+<span id="cb6-122"><a href="#cb6-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-125"><a href="#cb6-125" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb6-126"><a href="#cb6-126" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb6-127"><a href="#cb6-127" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb6-128"><a href="#cb6-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-129"><a href="#cb6-129" aria-hidden="true" tabindex="-1"></a><span class="co"># Impor data `gapminder`</span></span>
+<span id="cb6-130"><a href="#cb6-130" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="fu">url</span>(<span class="st">"https://github.com/jennybc/gapminder/raw/main/data/gapminder.rdata"</span>))</span>
+<span id="cb6-131"><a href="#cb6-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-132"><a href="#cb6-132" aria-hidden="true" tabindex="-1"></a><span class="co"># Menerjemahkan nama benua</span></span>
+<span id="cb6-133"><a href="#cb6-133" aria-hidden="true" tabindex="-1"></a>terjemahan_benua <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb6-134"><a href="#cb6-134" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Asia"</span> <span class="ot">=</span> <span class="st">"Asia"</span>,</span>
+<span id="cb6-135"><a href="#cb6-135" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Europe"</span> <span class="ot">=</span> <span class="st">"Eropa"</span>,</span>
+<span id="cb6-136"><a href="#cb6-136" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Africa"</span> <span class="ot">=</span> <span class="st">"Afrika"</span>,</span>
+<span id="cb6-137"><a href="#cb6-137" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Americas"</span> <span class="ot">=</span> <span class="st">"Amerika"</span>,</span>
+<span id="cb6-138"><a href="#cb6-138" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Oceania"</span> <span class="ot">=</span> <span class="st">"Oseania"</span></span>
+<span id="cb6-139"><a href="#cb6-139" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-140"><a href="#cb6-140" aria-hidden="true" tabindex="-1"></a>gapminder <span class="ot">&lt;-</span> gapminder <span class="sc">|&gt;</span> </span>
+<span id="cb6-141"><a href="#cb6-141" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb6-142"><a href="#cb6-142" aria-hidden="true" tabindex="-1"></a>    <span class="at">continent =</span> <span class="fu">recode</span>(continent, <span class="sc">!!!</span>terjemahan_benua)</span>
+<span id="cb6-143"><a href="#cb6-143" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb6-144"><a href="#cb6-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-145"><a href="#cb6-145" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(gapminder)</span>
+<span id="cb6-146"><a href="#cb6-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-147"><a href="#cb6-147" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-148"><a href="#cb6-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-149"><a href="#cb6-149" aria-hidden="true" tabindex="-1"></a>Data <span class="in">`gapminder`</span> sudah siap. Sekarang waktunya untuk membuat animasi. Berikut ini adalah baris kodenya.</span>
+<span id="cb6-150"><a href="#cb6-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-153"><a href="#cb6-153" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb6-154"><a href="#cb6-154" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb6-155"><a href="#cb6-155" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb6-156"><a href="#cb6-156" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-animasi</span></span>
+<span id="cb6-157"><a href="#cb6-157" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Relasi antara PDB per kapita dan angka harapan hidup setiap tahunnya, disajikan dengan animasi"</span></span>
+<span id="cb6-158"><a href="#cb6-158" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-asp: 0.5625</span></span>
+<span id="cb6-159"><a href="#cb6-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-160"><a href="#cb6-160" aria-hidden="true" tabindex="-1"></a>anim <span class="ot">&lt;-</span> gapminder <span class="sc">|&gt;</span> </span>
+<span id="cb6-161"><a href="#cb6-161" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(</span>
+<span id="cb6-162"><a href="#cb6-162" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> gdpPercap, <span class="at">y =</span> lifeExp)</span>
+<span id="cb6-163"><a href="#cb6-163" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb6-164"><a href="#cb6-164" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb6-165"><a href="#cb6-165" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">color =</span> continent, <span class="at">size =</span> pop),</span>
+<span id="cb6-166"><a href="#cb6-166" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> .<span class="dv">6</span></span>
+<span id="cb6-167"><a href="#cb6-167" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb6-168"><a href="#cb6-168" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size</span>(</span>
+<span id="cb6-169"><a href="#cb6-169" aria-hidden="true" tabindex="-1"></a>    <span class="at">range =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">20</span>),</span>
+<span id="cb6-170"><a href="#cb6-170" aria-hidden="true" tabindex="-1"></a>    <span class="at">guide =</span> <span class="st">"none"</span></span>
+<span id="cb6-171"><a href="#cb6-171" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb6-172"><a href="#cb6-172" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>(<span class="at">name =</span> <span class="st">"Benua"</span>) <span class="sc">+</span> </span>
+<span id="cb6-173"><a href="#cb6-173" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb6-174"><a href="#cb6-174" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb6-175"><a href="#cb6-175" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
+<span id="cb6-176"><a href="#cb6-176" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>)</span>
+<span id="cb6-177"><a href="#cb6-177" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb6-178"><a href="#cb6-178" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Penggunaan {gganimate} mulai dari sini</span></span>
+<span id="cb6-179"><a href="#cb6-179" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb6-180"><a href="#cb6-180" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Tahun: {frame_time}"</span>,</span>
+<span id="cb6-181"><a href="#cb6-181" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"PDB per kapita"</span>,</span>
+<span id="cb6-182"><a href="#cb6-182" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Angka harapan hidup"</span></span>
+<span id="cb6-183"><a href="#cb6-183" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb6-184"><a href="#cb6-184" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transition_time</span>(year) <span class="sc">+</span> </span>
+<span id="cb6-185"><a href="#cb6-185" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ease_aes</span>(<span class="st">"linear"</span>)</span>
+<span id="cb6-186"><a href="#cb6-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-187"><a href="#cb6-187" aria-hidden="true" tabindex="-1"></a>anim</span>
+<span id="cb6-188"><a href="#cb6-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-189"><a href="#cb6-189" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-190"><a href="#cb6-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-191"><a href="#cb6-191" aria-hidden="true" tabindex="-1"></a>Dari baris kode di atas, kita menggunakan dua fungsi dari {gganimate}. Kedua fungsi tersebut adalah <span class="in">`transition_time()`</span> dan <span class="in">`ease_aes()`</span>. Fungsi <span class="in">`transition_time()`</span> berfungsi untuk membagi data kita berdasarkan kolom/variabel waktu tertentu. Karena data <span class="in">`gapminder`</span> memiliki variabel waktu <span class="in">`year`</span>, kita masukkan variabel ini ke dalam fungsi tersebut.</span>
+<span id="cb6-192"><a href="#cb6-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-193"><a href="#cb6-193" aria-hidden="true" tabindex="-1"></a>Fungsi <span class="in">`transition_time()`</span> menghasilkan variabel <span class="in">`frame_time`</span>. Variabel ini kita masukkan ke dalam judul diagram agar judul tersebut berubah-ubah di sepanjang animasinya, perhatikan bagian kiri atas @fig-animasi. Penulisan variabel ini ke dalam judul perlu kita masukkan ke dalam kurung kurawal <span class="in">`{ }`</span> agar terbaca sebagai variabel.</span>
+<span id="cb6-194"><a href="#cb6-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-195"><a href="#cb6-195" aria-hidden="true" tabindex="-1"></a>Fungsi <span class="in">`ease_aes()`</span> mengatur bagaimana perubahan variabel <span class="in">`year`</span>. Pilihan dalam fungsi ini antara lain <span class="in">`quadratic`</span>, <span class="in">`cubic`</span>, dan <span class="in">`quartic`</span>. Bawaannya, argumen awal fungsi ini adalah <span class="in">`linear`</span>.</span>
+<span id="cb6-196"><a href="#cb6-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-197"><a href="#cb6-197" aria-hidden="true" tabindex="-1"></a><span class="fu">## Menyimpan Animasi {#sec-simpan-animasi}</span></span>
+<span id="cb6-198"><a href="#cb6-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-199"><a href="#cb6-199" aria-hidden="true" tabindex="-1"></a>Setelah animasi sudah jadi, saatnya kita simpan animasi tersebut. Sebelum kita menyimpannya, kita perlu merender animasi tersebut. Kita dapat merendernya dengan menggunakan <span class="in">`animate()`</span> dan mengisikan argumen <span class="in">`renderer = gifski_renderer()`</span> apabila ingin merendernya menjadi fail gif. Untuk menyimpan hasil animasinya, kita menggunakan fungsi <span class="in">`anim_save()`</span>.</span>
+<span id="cb6-200"><a href="#cb6-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-201"><a href="#cb6-201" aria-hidden="true" tabindex="-1"></a><span class="in">``` r</span></span>
+<span id="cb6-202"><a href="#cb6-202" aria-hidden="true" tabindex="-1"></a><span class="co"># Merender animasi</span></span>
+<span id="cb6-203"><a href="#cb6-203" aria-hidden="true" tabindex="-1"></a><span class="fu">animate</span>(</span>
+<span id="cb6-204"><a href="#cb6-204" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot =</span> anim,</span>
+<span id="cb6-205"><a href="#cb6-205" aria-hidden="true" tabindex="-1"></a>  <span class="at">renderer =</span> <span class="fu">gifski_renderer</span>()</span>
+<span id="cb6-206"><a href="#cb6-206" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-207"><a href="#cb6-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-208"><a href="#cb6-208" aria-hidden="true" tabindex="-1"></a><span class="co"># Menyimpan animasi</span></span>
+<span id="cb6-209"><a href="#cb6-209" aria-hidden="true" tabindex="-1"></a><span class="fu">anim_save</span>(</span>
+<span id="cb6-210"><a href="#cb6-210" aria-hidden="true" tabindex="-1"></a>  <span class="at">file =</span> <span class="st">"anim_pdb_harapan_hidup.gif"</span></span>
+<span id="cb6-211"><a href="#cb6-211" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-212"><a href="#cb6-212" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-213"><a href="#cb6-213" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-214"><a href="#cb6-214" aria-hidden="true" tabindex="-1"></a>Ketika menggunakan fungsi <span class="in">`animate()`</span> dalam merender animasi, kita dapat mengatur beberapa argumen. Misalnya, <span class="in">`nframes`</span>, <span class="in">`fps`</span>, dan <span class="in">`duration`</span>. Untuk lebih jelasnya, silakan kunjungi <span class="co">[</span><span class="ot">laman referensinya</span><span class="co">](https://gganimate.com/reference/animate.html)</span>{.external target="_blank"}.</span>
+<span id="cb6-215"><a href="#cb6-215" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-216"><a href="#cb6-216" aria-hidden="true" tabindex="-1"></a><span class="fu">## Catatan Akhir</span></span>
+<span id="cb6-217"><a href="#cb6-217" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-218"><a href="#cb6-218" aria-hidden="true" tabindex="-1"></a>Kita telah dapat menyajikan data yang kompleks secara sederhana dengan animasi. Dalam R, kita dapat menggunakan paket {gganimate}. Dengan paket tersebut, kita dapat membuat objek animasi. Hal ini telah didemonstrasikan pada @sec-kreasi-animasi. Selanjutnya, kita dapat merender objek animasi tersebut dan menyimpannya ke dalam sebuah fail. Hal ini telah dipaparkan pada @sec-simpan-animasi.</span>
+<span id="cb6-219"><a href="#cb6-219" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-220"><a href="#cb6-220" aria-hidden="true" tabindex="-1"></a>Animasi tetap memiliki kekurangan. Kita hanya bisa melihat animasi tersebut, tanpa melakukan interaksi. Apakah kita dapat membuat diagram yang tak hanya efisien, tetapi juga interaktif? Iya, kita dapat membuat diagram yang interaktif dengan R. Untuk mengetahui caranya, silakan pantau <span class="co">[</span><span class="ot">pos selanjutnya</span><span class="co">](/pos/2024-08-statistik-dinamis-dan-interaktif/index.qmd "Membuat Statistik Menjadi Dinamis dan Interaktif")</span>.</span>
+</code><button title="Salin ke Papan Klip" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">

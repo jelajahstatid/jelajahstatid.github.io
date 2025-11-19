@@ -344,7 +344,7 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
       </div> <!-- /container-fluid -->
     </nav></header><!-- content --><header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full"><div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Tren Suhu Planet Bumi</h1>
+      <div class="quarto-title-block"><div><h1 class="title">Tren Suhu Planet Bumi</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Kode</button></div></div>
                   <div>
         <div class="description">
           <p>Bagaimana tren suhu planet bumi dari tahun ke tahun? Artikel ini mendemonstrasikan bagaimana mengimpor data tentang perubahan iklim dari sebuah situs web, mengolahnya, dan memvisualisasikannya ke dalam diagram garis. Proses seperti ini dapat diterapkan dalam menyusun desain pembelajaran Matematika yang ramah akan peserta didik dan relevan terhadap isu-isu penting planet bumi.</p>
@@ -633,6 +633,8 @@ Gambar&nbsp;2: Tren <code>anomali_suhu</code> setiap <code>tanggal</code>-nya ya
 <p>Proses yang didemonstrasikan pada artikel ini dapat digunakan untuk menyusun desain pembelajaran Matematika yang menggunakan data riil, khususnya data tentang tema perubahan iklim. Penggunaan data perubahan iklim tersebut tidak hanya dapat memupuk kesadaran peserta didik akan isu planet bumi yang ditinggalinya, tetapi juga memudahkan mereka untuk bermatematika menggunakan konteks di sekitarnya.</p>
 
 
+<!-- -->
+
 </section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Kembali ke atas</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Penggunaan Kembali</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-copyright"><h2 class="anchored quarto-appendix-heading">Hak Cipta</h2><div class="quarto-appendix-contents"><div>© 2024 Yosep Dwi Kristanto</div></div></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
@@ -715,6 +717,57 @@ Gambar&nbsp;2: Tren <code>anomali_suhu</code> setiap <code>tanggal</code>-nya ya
         container: window.document.getElementById('quarto-embedded-source-code-modal')
       });
       clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
@@ -1073,7 +1126,253 @@ Gambar&nbsp;2: Tren <code>anomali_suhu</code> setiap <code>tanggal</code>-nya ya
     document.getElementById("quarto-content").appendChild(script);
   }
   loadGiscus();
-</script>
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Kode Sumber</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb17" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Tren Suhu Planet Bumi"</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> |</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co">  Bagaimana tren suhu planet bumi dari tahun ke tahun? Artikel ini mendemonstrasikan bagaimana mengimpor data tentang perubahan iklim dari sebuah situs web, mengolahnya, dan memvisualisasikannya ke dalam diagram garis. Proses seperti ini dapat diterapkan dalam menyusun desain pembelajaran Matematika yang ramah akan peserta didik dan relevan terhadap isu-isu penting planet bumi.</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: Yosep Dwi Kristanto</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co">    url: https://people.usd.ac.id/~ydkristanto/</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation: Pendidikan Matematika, Universitas Sanata Dharma, Yogyakarta</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation-url: https://www.usd.ac.id/s1pmat</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co">    orcid: 0000-0003-1446-0422</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> 2024-07-31</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="co">  - matematika membumi</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="co">  - pendidikan</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="co">  - perubahan iklim</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="co">  - tutorial</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a><span class="an">image:</span><span class="co"> "anomali-suhu.png"</span></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a><span class="an">image-alt:</span><span class="co"> |</span></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="co">  Tren anomali suhu planet bumi dari 1880 sampai 2024. Anomali suhu tersebut dihitung dengan garis dasar (baseline) rerata suhu pada periode 1951 - 1980. Secara umum, tren anomali suhu tersebut naik dari tahun ke tahun.</span></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a><span class="an">keywords:</span><span class="co"> </span></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a><span class="co">  - anomali suhu</span></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a><span class="co">  - perubahan iklim</span></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a><span class="co">  - pemanasan global</span></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a><span class="co">  - tidyverse</span></span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a><span class="co">  - visualisasi data</span></span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a><span class="co">  - diagram garis</span></span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a><span class="co">  - Tujuan Pembangunan Berkelanjutan</span></span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a><span class="an">lightbox:</span><span class="co"> true</span></span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a><span class="an">copyright:</span><span class="co"> "© 2024 Yosep Dwi Kristanto"</span></span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a><span class="an">license:</span><span class="co"> "CC BY"</span></span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a><span class="an">editor_options:</span><span class="co"> </span></span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a><span class="co">  chunk_output_type: console</span></span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a>Beberapa waktu lalu aku mendiskusikan ide Matematika Membumi. Diskusi dalam <span class="co">[</span><span class="ot">webinar YPMIPA</span><span class="co">](https://www.instagram.com/p/C8848fQSZzw/)</span>{.external target="_blank"} tersebut membahas sebuah desain pembelajaran yang menggunakan data riil, yaitu data tren suhu global planet bumi dari tahun ke tahun.</span>
+<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a>Ide seperti itu sebenarnya sudah aku pikirkan dan implementasikan kurang lebih pada tahun 2019. Pada tahun itu, aku mencoba mengajak para mahasiswa calon pendidik matematika tak hanya untuk bermatematika saja, tetapi juga memiliki kesadaran akan pembangunan berkelanjutan. Keseruannya dapat dilihat pada pos media sosial berikut.</span>
+<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a><span class="in">```{=html}</span></span>
+<span id="cb17-40"><a href="#cb17-40" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;p align="center"&gt;</span></span>
+<span id="cb17-41"><a href="#cb17-41" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FYosepDwiK%2Fposts%2Fpfbid02LvJ8WGjnXLe6SWTiBLNnTECkNXNAD6YtihSev81SbP8YfXdwd1mmSBoem2g1hVZ5l&amp;show_text=true&amp;width=500" width="500" height="601" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"&gt;&lt;/iframe&gt;</span></span>
+<span id="cb17-42"><a href="#cb17-42" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/p&gt;</span></span>
+<span id="cb17-43"><a href="#cb17-43" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-44"><a href="#cb17-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-45"><a href="#cb17-45" aria-hidden="true" tabindex="-1"></a>Di artikel ini, kita tidak akan membahas desain pembelajaran tersebut. Melainkan, kita akan mengetahui bagaimana mendapatkan data tren suhu planet bumi tersebut, mengolahnya, dan memvisualisasikannya. Seluruh proses ini akan kita lakukan dengan menggunakan <span class="co">[</span><span class="ot">R</span><span class="co">](https://www.R-project.org/)</span>{.external target="_blank"}.</span>
+<span id="cb17-46"><a href="#cb17-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-47"><a href="#cb17-47" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data Tren Suhu Global {#sec-impor-data}</span></span>
+<span id="cb17-48"><a href="#cb17-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-49"><a href="#cb17-49" aria-hidden="true" tabindex="-1"></a>Banyak situs web yang menyediakan data tren suhu global. Salah satunya adalah <span class="co">[</span><span class="ot">GISTEMP</span><span class="co">](https://data.giss.nasa.gov/gistemp/)</span>{.external target="_blank"}. Dari situs web itu, kita memilih data gabungan antara anomali suhu udara daratan dan anomali suhu air lautan. Apa itu anomali suhu? <span class="co">[</span><span class="ot">Anomali suhu</span><span class="co">](https://www.ncei.noaa.gov/access/monitoring/dyk/anomalies-vs-temperature/)</span>{.external target="_blank"} merupakan selisih terhadap suhu rata-rata atau garis dasar. Di situs GISTEMP, garis dasar yang digunakan adalah rata-rata suhu pada periode 1951 - 1980.</span>
+<span id="cb17-50"><a href="#cb17-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-51"><a href="#cb17-51" aria-hidden="true" tabindex="-1"></a>Langkah awal sebelum kita melakukan proses berikutnya adalah memanggil paket <span class="co">[</span><span class="ot">{tidyverse}</span><span class="co">](https://doi.org/10.32614/CRAN.package.tidyverse)</span>{.external target="_blank"}. Paket tersebut menyediakan berbagai macam fungsi yang akan kita gunakan untuk mencapai tujuan kita.</span>
+<span id="cb17-52"><a href="#cb17-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-55"><a href="#cb17-55" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-56"><a href="#cb17-56" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb17-57"><a href="#cb17-57" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb17-58"><a href="#cb17-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-59"><a href="#cb17-59" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb17-60"><a href="#cb17-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-61"><a href="#cb17-61" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-62"><a href="#cb17-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-63"><a href="#cb17-63" aria-hidden="true" tabindex="-1"></a>Tak perlu berlama-lama, mari kita impor data tersebut dengan fungsi <span class="in">`read_csv()`</span> dari paket {tidyverse}. Alamat fail yang akan kita impor adalah <span class="in">`https://data.giss.nasa.gov/gistemp/tabledata_v4/GLB.Ts+dSST.csv`</span>. Baris pertama dalam fail tersebut merupakan keterangan "*Land-Ocean: Global Means*". Dengan demikian, kita perlu menambahkan argumen `skip = 1` dalam fungsi `read_csv()` agar data kita tidak memuat baris tersebut. Fail tersebut juga menggunakan simbol \*\*\* sebagai penanda NA. Untuk itu, kita juga perlu menambahkan argumen `na = "***"<span class="in">` ke dalam fungsi tersebut. Kita namai data kita tersebut dengan `</span>tren_suhu_global`.</span>
+<span id="cb17-64"><a href="#cb17-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-67"><a href="#cb17-67" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-68"><a href="#cb17-68" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb17-69"><a href="#cb17-69" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb17-70"><a href="#cb17-70" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb17-71"><a href="#cb17-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-72"><a href="#cb17-72" aria-hidden="true" tabindex="-1"></a>tren_suhu_global <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
+<span id="cb17-73"><a href="#cb17-73" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://data.giss.nasa.gov/gistemp/tabledata_v4/GLB.Ts+dSST.csv"</span>,</span>
+<span id="cb17-74"><a href="#cb17-74" aria-hidden="true" tabindex="-1"></a>  <span class="at">skip =</span> <span class="dv">1</span>,</span>
+<span id="cb17-75"><a href="#cb17-75" aria-hidden="true" tabindex="-1"></a>  <span class="at">na =</span> <span class="st">"***"</span></span>
+<span id="cb17-76"><a href="#cb17-76" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-77"><a href="#cb17-77" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-78"><a href="#cb17-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-79"><a href="#cb17-79" aria-hidden="true" tabindex="-1"></a>Sekarang kita memiliki data <span class="in">`tren_suhu_global`</span>. Untuk melihat beberapa baris awal data tersebut, kita dapat menggunakan fungsi <span class="in">`head()`</span>.</span>
+<span id="cb17-80"><a href="#cb17-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-83"><a href="#cb17-83" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-84"><a href="#cb17-84" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb17-85"><a href="#cb17-85" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb17-86"><a href="#cb17-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-87"><a href="#cb17-87" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(tren_suhu_global)</span>
+<span id="cb17-88"><a href="#cb17-88" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-89"><a href="#cb17-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-90"><a href="#cb17-90" aria-hidden="true" tabindex="-1"></a>Kita juga dapat menggunakan fungsi <span class="in">`glimpse()`</span> dari {tidyverse} untuk melihat gambaran umum dari data tersebut.</span>
+<span id="cb17-91"><a href="#cb17-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-94"><a href="#cb17-94" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-95"><a href="#cb17-95" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb17-96"><a href="#cb17-96" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb17-97"><a href="#cb17-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-98"><a href="#cb17-98" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(tren_suhu_global)</span>
+<span id="cb17-99"><a href="#cb17-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-100"><a href="#cb17-100" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-101"><a href="#cb17-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-102"><a href="#cb17-102" aria-hidden="true" tabindex="-1"></a>Dari luaran fungsi tersebut, kita dapat melihat bahwa data kita memuat 145 baris dan 19 kolom. Informasi ini berguna untuk proses berikutnya.</span>
+<span id="cb17-103"><a href="#cb17-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-104"><a href="#cb17-104" aria-hidden="true" tabindex="-1"></a><span class="fu">## Bergulat dengan Data {#sec-gulat-data}</span></span>
+<span id="cb17-105"><a href="#cb17-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-106"><a href="#cb17-106" aria-hidden="true" tabindex="-1"></a>Gulat tidak hanya dilombakan di olimpiade <span class="co">[</span><span class="ot">#Paris2024</span><span class="co">](https://twitter.com/hashtag/Paris2024)</span>{.external target="_blank"}, tetapi juga umum dilakukan terhadap data. Sekarang kita akan bergulat dengan data. Seperti olahraga gulat yang menantang, bergulat dengan data juga tak kalah menantang. Akan tetapi, tantangan itu akan menghasilkan data yang rapi. Kita lakukan pergulatan ini setahap demi setahap.</span>
+<span id="cb17-107"><a href="#cb17-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-108"><a href="#cb17-108" aria-hidden="true" tabindex="-1"></a>Ketika kita menggunakan fungsi <span class="in">`glimpse()`</span> sebelumnya, kita tahu bahwa data kita memuat 19 kolom. Kolom yang akan kita olah di sini adalah 13 kolom pertama. Untuk itu, pada tahap pertama, kita gunakan fungsi <span class="in">`select()`</span> dari {tidyverse} untuk memilih ketigabelas kolom tersebut. Kita juga dapat mengganti nama kolom pertama yang awalnya <span class="in">`Year`</span> menjadi <span class="in">`tahun`</span> dengan menggunakan <span class="in">`rename()`</span> dari {tidyverse}. Untuk melihat hasilnya kita dapat menggunakan fungsi <span class="in">`head()`</span> lagi.</span>
+<span id="cb17-109"><a href="#cb17-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-112"><a href="#cb17-112" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-113"><a href="#cb17-113" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb17-114"><a href="#cb17-114" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb17-115"><a href="#cb17-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-116"><a href="#cb17-116" aria-hidden="true" tabindex="-1"></a>tren_suhu_global <span class="ot">&lt;-</span> tren_suhu_global <span class="sc">|&gt;</span> </span>
+<span id="cb17-117"><a href="#cb17-117" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">13</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb17-118"><a href="#cb17-118" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">tahun =</span> Year)</span>
+<span id="cb17-119"><a href="#cb17-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-120"><a href="#cb17-120" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(tren_suhu_global)</span>
+<span id="cb17-121"><a href="#cb17-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-122"><a href="#cb17-122" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-123"><a href="#cb17-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-124"><a href="#cb17-124" aria-hidden="true" tabindex="-1"></a>Sekarang kita mendapatkan data yang memuat 13 kolom. Kolom pertama merupakan tahun, kolom kedua sampai ketiga belas merupakan bulan Januari sampai Desember. Isi sel kolom kedua sampai ketigabelas merupakan anomali suhu.</span>
+<span id="cb17-125"><a href="#cb17-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-126"><a href="#cb17-126" aria-hidden="true" tabindex="-1"></a>Sampai di sini, aku teringat terhadap salah satu adegan di sebuah serial TV yang berjudul <span class="co">[</span><span class="ot">Friends</span><span class="co">](https://www.imdb.com/title/tt0108778/)</span>{.external target="_blank"}. Dalam episode yang berjudul "*The One with the Cop*", Ross meminta Chandler untuk mem-*pivot* sofa yang mereka angkat.</span>
+<span id="cb17-127"><a href="#cb17-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-128"><a href="#cb17-128" aria-hidden="true" tabindex="-1"></a><span class="in">```{=html}</span></span>
+<span id="cb17-129"><a href="#cb17-129" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;p align="center"&gt;</span></span>
+<span id="cb17-130"><a href="#cb17-130" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;iframe src="https://giphy.com/embed/2OP9jbHFlFPW" width="480" height="307" style="" frameBorder="0" class="giphy-embed" allowFullScreen&gt;&lt;/iframe&gt;</span></span>
+<span id="cb17-131"><a href="#cb17-131" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/p&gt;</span></span>
+<span id="cb17-132"><a href="#cb17-132" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-133"><a href="#cb17-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-134"><a href="#cb17-134" aria-hidden="true" tabindex="-1"></a>Perintah Ross tersebut juga dapat diterapkan terhadap data kita. Kita dapat mem-*pivot* (memutar) data kita dengan menggunakan fungsi <span class="in">`pivot_longer()`</span>. Dengan fungsi tersebut, data kita yang awalnya melebar akan berubah bentuknya menjadi data yang memanjang. Oleh karena itu, di tahap kedua, kita perlu memutar data kita agar menjadi data yang memanjang.</span>
+<span id="cb17-135"><a href="#cb17-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-138"><a href="#cb17-138" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-139"><a href="#cb17-139" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb17-140"><a href="#cb17-140" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb17-141"><a href="#cb17-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-142"><a href="#cb17-142" aria-hidden="true" tabindex="-1"></a>tren_suhu_global <span class="ot">&lt;-</span> tren_suhu_global <span class="sc">|&gt;</span> </span>
+<span id="cb17-143"><a href="#cb17-143" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb17-144"><a href="#cb17-144" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">13</span>,</span>
+<span id="cb17-145"><a href="#cb17-145" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"bulan"</span>,</span>
+<span id="cb17-146"><a href="#cb17-146" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"anomali_suhu"</span></span>
+<span id="cb17-147"><a href="#cb17-147" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb17-148"><a href="#cb17-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-149"><a href="#cb17-149" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(tren_suhu_global)</span>
+<span id="cb17-150"><a href="#cb17-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-151"><a href="#cb17-151" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-152"><a href="#cb17-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-153"><a href="#cb17-153" aria-hidden="true" tabindex="-1"></a>Mengapa kita memerlukan data yang memanjang? Data memanjang tersebut akan memudahkan kita untuk mengolahnya pada tahapan berikutnya.</span>
+<span id="cb17-154"><a href="#cb17-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-155"><a href="#cb17-155" aria-hidden="true" tabindex="-1"></a>Tahap ketiga, kita perlu menggabungkan nilai sel dalam kolom pertama dan kedua untuk membuat sebuah kolom baru, yaitu <span class="in">`tanggal`</span>, yang formatnya *Date*.</span>
+<span id="cb17-156"><a href="#cb17-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-159"><a href="#cb17-159" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-160"><a href="#cb17-160" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb17-161"><a href="#cb17-161" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb17-162"><a href="#cb17-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-163"><a href="#cb17-163" aria-hidden="true" tabindex="-1"></a>pemetaan_bulan <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb17-164"><a href="#cb17-164" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Jan"</span> <span class="ot">=</span> <span class="st">"01"</span>,</span>
+<span id="cb17-165"><a href="#cb17-165" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Feb"</span> <span class="ot">=</span> <span class="st">"02"</span>,</span>
+<span id="cb17-166"><a href="#cb17-166" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Mar"</span> <span class="ot">=</span> <span class="st">"03"</span>,</span>
+<span id="cb17-167"><a href="#cb17-167" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Apr"</span> <span class="ot">=</span> <span class="st">"04"</span>,</span>
+<span id="cb17-168"><a href="#cb17-168" aria-hidden="true" tabindex="-1"></a>  <span class="st">"May"</span> <span class="ot">=</span> <span class="st">"05"</span>,</span>
+<span id="cb17-169"><a href="#cb17-169" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Jun"</span> <span class="ot">=</span> <span class="st">"06"</span>,</span>
+<span id="cb17-170"><a href="#cb17-170" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Jul"</span> <span class="ot">=</span> <span class="st">"07"</span>,</span>
+<span id="cb17-171"><a href="#cb17-171" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Aug"</span> <span class="ot">=</span> <span class="st">"08"</span>,</span>
+<span id="cb17-172"><a href="#cb17-172" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Sep"</span> <span class="ot">=</span> <span class="st">"09"</span>,</span>
+<span id="cb17-173"><a href="#cb17-173" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Oct"</span> <span class="ot">=</span> <span class="st">"10"</span>,</span>
+<span id="cb17-174"><a href="#cb17-174" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Nov"</span> <span class="ot">=</span> <span class="st">"11"</span>,</span>
+<span id="cb17-175"><a href="#cb17-175" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Dec"</span> <span class="ot">=</span> <span class="st">"12"</span></span>
+<span id="cb17-176"><a href="#cb17-176" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-177"><a href="#cb17-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-178"><a href="#cb17-178" aria-hidden="true" tabindex="-1"></a>tren_suhu_global <span class="ot">&lt;-</span> tren_suhu_global <span class="sc">|&gt;</span> </span>
+<span id="cb17-179"><a href="#cb17-179" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb17-180"><a href="#cb17-180" aria-hidden="true" tabindex="-1"></a>    <span class="at">tanggal =</span> <span class="fu">as.Date</span>(</span>
+<span id="cb17-181"><a href="#cb17-181" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste</span>(tahun, pemetaan_bulan[bulan], <span class="st">"01"</span>, <span class="at">sep =</span> <span class="st">"-"</span>)</span>
+<span id="cb17-182"><a href="#cb17-182" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb17-183"><a href="#cb17-183" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb17-184"><a href="#cb17-184" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-185"><a href="#cb17-185" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(tren_suhu_global)</span>
+<span id="cb17-186"><a href="#cb17-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-187"><a href="#cb17-187" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-188"><a href="#cb17-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-189"><a href="#cb17-189" aria-hidden="true" tabindex="-1"></a>Karena kolom <span class="in">`tahun`</span> dan <span class="in">`bulan`</span> sudah diwakili oleh kolom <span class="in">`tanggal`</span>, kita dapat mengabaikan kedua kolom tersebut.</span>
+<span id="cb17-190"><a href="#cb17-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-193"><a href="#cb17-193" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-194"><a href="#cb17-194" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb17-195"><a href="#cb17-195" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb17-196"><a href="#cb17-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-197"><a href="#cb17-197" aria-hidden="true" tabindex="-1"></a>tren_suhu_global <span class="ot">&lt;-</span> tren_suhu_global <span class="sc">|&gt;</span> </span>
+<span id="cb17-198"><a href="#cb17-198" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(tanggal, anomali_suhu)</span>
+<span id="cb17-199"><a href="#cb17-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-200"><a href="#cb17-200" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(tren_suhu_global)</span>
+<span id="cb17-201"><a href="#cb17-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-202"><a href="#cb17-202" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-203"><a href="#cb17-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-204"><a href="#cb17-204" aria-hidden="true" tabindex="-1"></a>*Nah*, sekarang kita mendapatkan data yang rapi. Data kita sekarang hanya memuat dua variabel, yaitu <span class="in">`tanggal`</span> dan <span class="in">`anomali_suhu`</span>. Selanjutnya kita akan memvisualisasikan <span class="in">`anomali_suhu`</span> setiap <span class="in">`tanggal`</span>-nya.</span>
+<span id="cb17-205"><a href="#cb17-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-206"><a href="#cb17-206" aria-hidden="true" tabindex="-1"></a><span class="fu">## Visualisasi Data {#sec-visualisasi-data}</span></span>
+<span id="cb17-207"><a href="#cb17-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-208"><a href="#cb17-208" aria-hidden="true" tabindex="-1"></a>Data yang rapi yang sudah di tangan. Selanjutnya, kita visualisasikan data tersebut ke dalam diagram garis untuk melihat tren <span class="in">`anomali_suhu`</span> setiap <span class="in">`tanggal`</span>-nya. Untuk melakukannya, kita dapat menggunakan fungsi <span class="in">`ggplot()`</span> dan peranakannya. Hasilnya disajikan pada @fig-diagram-garis-v1.</span>
+<span id="cb17-209"><a href="#cb17-209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-212"><a href="#cb17-212" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-213"><a href="#cb17-213" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb17-214"><a href="#cb17-214" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb17-215"><a href="#cb17-215" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-diagram-garis-v1</span></span>
+<span id="cb17-216"><a href="#cb17-216" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: Tren `anomali_suhu` setiap `tanggal`-nya.</span></span>
+<span id="cb17-217"><a href="#cb17-217" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-align: center</span></span>
+<span id="cb17-218"><a href="#cb17-218" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-asp: 0.5625</span></span>
+<span id="cb17-219"><a href="#cb17-219" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb17-220"><a href="#cb17-220" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-221"><a href="#cb17-221" aria-hidden="true" tabindex="-1"></a>diagram_garis <span class="ot">&lt;-</span> tren_suhu_global <span class="sc">|&gt;</span> </span>
+<span id="cb17-222"><a href="#cb17-222" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> tanggal, <span class="at">y =</span> anomali_suhu)) <span class="sc">+</span> </span>
+<span id="cb17-223"><a href="#cb17-223" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span>
+<span id="cb17-224"><a href="#cb17-224" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-225"><a href="#cb17-225" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(diagram_garis)</span>
+<span id="cb17-226"><a href="#cb17-226" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-227"><a href="#cb17-227" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-228"><a href="#cb17-228" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-229"><a href="#cb17-229" aria-hidden="true" tabindex="-1"></a>Diagram pada @fig-diagram-garis-v1 dapat kita modifikasi. Misalnya, kita dapat mengubah judul sumbu-*x* dan *y* pada diagram tersebut. Kita juga dapat mengubah warna garis serta memberikan judul, anak judul, dan takarir pada diagram tersebut. Sentuhan terakhir, kita dapat memilih tema <span class="in">`theme_minimal()`</span> dan menambahkan pola tren tersebut dengan <span class="in">`geom_smooth()`</span>. Hasilnya ditunjukkan pada @fig-diagram-garis-v2.</span>
+<span id="cb17-230"><a href="#cb17-230" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-233"><a href="#cb17-233" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb17-234"><a href="#cb17-234" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb17-235"><a href="#cb17-235" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb17-236"><a href="#cb17-236" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-diagram-garis-v2</span></span>
+<span id="cb17-237"><a href="#cb17-237" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: Tren `anomali_suhu` setiap `tanggal`-nya yang sudah diperbaiki.</span></span>
+<span id="cb17-238"><a href="#cb17-238" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-align: center</span></span>
+<span id="cb17-239"><a href="#cb17-239" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-asp: 0.5625</span></span>
+<span id="cb17-240"><a href="#cb17-240" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb17-241"><a href="#cb17-241" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-242"><a href="#cb17-242" aria-hidden="true" tabindex="-1"></a>diagram_garis <span class="sc">+</span> </span>
+<span id="cb17-243"><a href="#cb17-243" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"#427D9D"</span>) <span class="sc">+</span> </span>
+<span id="cb17-244"><a href="#cb17-244" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(</span>
+<span id="cb17-245"><a href="#cb17-245" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">"gam"</span>,</span>
+<span id="cb17-246"><a href="#cb17-246" aria-hidden="true" tabindex="-1"></a>    <span class="at">formula =</span> y <span class="sc">~</span> <span class="fu">s</span>(x, <span class="at">bs =</span> <span class="st">"cs"</span>),</span>
+<span id="cb17-247"><a href="#cb17-247" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"#164863"</span></span>
+<span id="cb17-248"><a href="#cb17-248" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb17-249"><a href="#cb17-249" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb17-250"><a href="#cb17-250" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb17-251"><a href="#cb17-251" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Tren Anomali Suhu Setiap Waktunya"</span>,</span>
+<span id="cb17-252"><a href="#cb17-252" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Anomali suhu relatif terhadap rerata suhu pada 1951 - 1980"</span>,</span>
+<span id="cb17-253"><a href="#cb17-253" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Waktu"</span>,</span>
+<span id="cb17-254"><a href="#cb17-254" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Anomali Suhu (°C)"</span>,</span>
+<span id="cb17-255"><a href="#cb17-255" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Data: GISTEMP"</span></span>
+<span id="cb17-256"><a href="#cb17-256" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb17-257"><a href="#cb17-257" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-258"><a href="#cb17-258" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb17-259"><a href="#cb17-259" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-260"><a href="#cb17-260" aria-hidden="true" tabindex="-1"></a><span class="fu">## Catatan Akhir</span></span>
+<span id="cb17-261"><a href="#cb17-261" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-262"><a href="#cb17-262" aria-hidden="true" tabindex="-1"></a>Kita telah memvisualisasikan tren suhu planet bumi dari tahun ke tahun, yaitu mulai 1880 sampai 2024. Untuk mendapatkan visualisasi pada @fig-diagram-garis-v2, pertama kita impor data dari situs web GISTEMP. Hal ini telah dipaparkan pada @sec-impor-data. Kedua, kita telah bergulat dengan data tersebut pada @sec-gulat-data untuk mendapatkan data yang rapi. Ketiga, data yang rapi tersebut selanjutnya kita gunakan untuk memvisualisasikan tren suhu planet bumi setiap waktunya pada @sec-visualisasi-data.</span>
+<span id="cb17-263"><a href="#cb17-263" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-264"><a href="#cb17-264" aria-hidden="true" tabindex="-1"></a>Proses yang didemonstrasikan pada artikel ini dapat digunakan untuk menyusun desain pembelajaran Matematika yang menggunakan data riil, khususnya data tentang tema perubahan iklim. Penggunaan data perubahan iklim tersebut tidak hanya dapat memupuk kesadaran peserta didik akan isu planet bumi yang ditinggalinya, tetapi juga memudahkan mereka untuk bermatematika menggunakan konteks di sekitarnya.</span>
+</code><button title="Salin ke Papan Klip" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">

@@ -36,6 +36,7 @@ format:
     respect-user-color-scheme: true
     code-fold: true
     code-link: true
+    code-tools: true
 
 editor: visual
 

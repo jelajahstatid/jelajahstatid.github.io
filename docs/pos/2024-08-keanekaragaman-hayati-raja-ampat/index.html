@@ -369,7 +369,7 @@ window.Quarto = {
       </div> <!-- /container-fluid -->
     </nav></header><!-- content --><header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full"><div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Pemodelan Keanekaragaman Hayati di Kepulauan Raja Ampat</h1>
+      <div class="quarto-title-block"><div><h1 class="title">Pemodelan Keanekaragaman Hayati di Kepulauan Raja Ampat</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Kode</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Tampilkan Semua Kode</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Sembunyikan Semua Kode</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">Lihat Sumber</a></li></ul></div></div>
                   <div>
         <div class="description">
           <p>Kepulauan Raja Ampat kaya akan keanekaragaman hayatinya. Bagaimana kita dapat mengetahui keanekaragaman tersebut? Apakah kita dapat memodelkannya?</p>
@@ -764,7 +764,7 @@ y = d \left( 1 - e^{-z x^f} \right)
 <p>Apa yang salah? Kesalahannya terletak pada nilai-nilai awal <span class="math inline">\(d\)</span>, <span class="math inline">\(z\)</span>, dan <span class="math inline">\(f\)</span> yang kita berikan.</p>
 <p>Salah satu seni dalam menggunakan fungsi <code><a href="https://rdrr.io/r/stats/nls.html">nls()</a></code> adalah penentukan nilai-nilai awalnya. Nilai-nilai awal tersebut sebaiknya dipilih agar mendekati nilai-nilai yang sebenarnya. Untuk melakukannya, kita dapat memanfaatkan alat lain, misalnya kalkulator grafik Desmos.</p>
 <p>Dengan menginputkan data yang kita punya, yaitu <code>data_pulau</code>, ke dalam kalkulator grafik Desmos, kita dapat memodelkannya. Tangkapan layar hasil pemodelan tersebut ditunjukkan pada <a href="#fig-model-weibull-Desmos" class="quarto-xref">Gambar&nbsp;7</a>.</p>
-<div id="fig-model-weibull-Desmos" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Diagram pencar yang menunjukkan hubungan antara luas pulau dan banyak spesies, disertai dengan model fungsi Weibull.">
+<div id="fig-model-weibull-Desmos" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Diagram pencar yang menunjukkan hubungan antara luas pulau dan banyak spesies, disertai dengan model fungsi Weibull." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-model-weibull-Desmos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="model-Weibull-Desmos.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Gambar&nbsp;7: Pemodelan dengan fungsi Weibull dengan kalkulator grafik Desmos."><img src="model-Weibull-Desmos.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Diagram pencar yang menunjukkan hubungan antara luas pulau dan banyak spesies, disertai dengan model fungsi Weibull."></a>
 </div>
@@ -968,6 +968,8 @@ Gambar&nbsp;10: Nilai RMSE keempat model.
 <p>Pemodelan data juga telah didemonstrasikan pada <a href="#sec-model-linear" class="quarto-xref">Bagian&nbsp;3</a> dan <a href="#sec-model-nonlinear" class="quarto-xref">Bagian&nbsp;4</a>. Meskipun pemodelan dalam bagian itu dipaparkan secara ringkas, pemaparan tersebut diharapkan dapat memberikan gambaran umum tentang bagaimana memodelkan data, khususnya ketika kita menggunakan R. Terakhir, evaluasi model-model yang diperoleh juga telah didemonstrasikan secara sederhana di <a href="#sec-evaluasi-model" class="quarto-xref">Bagian&nbsp;5</a>.</p>
 
 
+<!-- -->
+
 </section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Kembali ke atas</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Penggunaan Kembali</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-copyright"><h2 class="anchored quarto-appendix-heading">Hak Cipta</h2><div class="quarto-appendix-contents"><div>© 2024 Yosep Dwi Kristanto</div></div></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
@@ -1050,6 +1052,57 @@ Gambar&nbsp;10: Nilai RMSE keempat model.
         container: window.document.getElementById('quarto-embedded-source-code-modal')
       });
       clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
@@ -1449,7 +1502,531 @@ Gambar&nbsp;10: Nilai RMSE keempat model.
     document.getElementById("quarto-content").appendChild(script);
   }
   loadGiscus();
-</script>
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Kode Sumber</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb33" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Pemodelan Keanekaragaman Hayati di Kepulauan Raja Ampat"</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> |</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="co">  Kepulauan Raja Ampat kaya akan keanekaragaman hayatinya. Bagaimana kita dapat mengetahui keanekaragaman tersebut? Apakah kita dapat memodelkannya?</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: Yosep Dwi Kristanto</span></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="co">    url: https://people.usd.ac.id/~ydkristanto/</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation: Pendidikan Matematika, Universitas Sanata Dharma, Yogyakarta</span></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation-url: https://www.usd.ac.id/s1pmat</span></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a><span class="co">    orcid: 0000-0003-1446-0422</span></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> 2024-08-03</span></span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a><span class="co">  - Biostatistika</span></span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a><span class="co">  - matematika membumi</span></span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a><span class="co">  - pendidikan</span></span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a><span class="co">  - tutorial</span></span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a><span class="an">image:</span><span class="co"> "keanekaragaman-hayati.png"</span></span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a><span class="an">image-alt:</span><span class="co"> |</span></span>
+<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a><span class="co">  Model linear dan nonlinear terhadap hubungan antara banyaknya spesies tanaman berpohon dan luas pulau-pulau kecil di Kepulauan Raja Ampat.</span></span>
+<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a><span class="an">keywords:</span><span class="co"> </span></span>
+<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a><span class="co">  - Biostatistika</span></span>
+<span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a><span class="co">  - keanekaragaman hayati</span></span>
+<span id="cb33-23"><a href="#cb33-23" aria-hidden="true" tabindex="-1"></a><span class="co">  - Raja Ampat</span></span>
+<span id="cb33-24"><a href="#cb33-24" aria-hidden="true" tabindex="-1"></a><span class="co">  - pemodelan</span></span>
+<span id="cb33-25"><a href="#cb33-25" aria-hidden="true" tabindex="-1"></a><span class="co">  - model linear</span></span>
+<span id="cb33-26"><a href="#cb33-26" aria-hidden="true" tabindex="-1"></a><span class="co">  - model nonlinear</span></span>
+<span id="cb33-27"><a href="#cb33-27" aria-hidden="true" tabindex="-1"></a><span class="co">  - Tujuan Pembangunan Berkelanjutan</span></span>
+<span id="cb33-28"><a href="#cb33-28" aria-hidden="true" tabindex="-1"></a><span class="an">lightbox:</span><span class="co"> true</span></span>
+<span id="cb33-29"><a href="#cb33-29" aria-hidden="true" tabindex="-1"></a><span class="an">copyright:</span><span class="co"> "© 2024 Yosep Dwi Kristanto"</span></span>
+<span id="cb33-30"><a href="#cb33-30" aria-hidden="true" tabindex="-1"></a><span class="an">license:</span><span class="co"> "CC BY"</span></span>
+<span id="cb33-31"><a href="#cb33-31" aria-hidden="true" tabindex="-1"></a><span class="an">editor_options:</span><span class="co"> </span></span>
+<span id="cb33-32"><a href="#cb33-32" aria-hidden="true" tabindex="-1"></a><span class="co">  chunk_output_type: console</span></span>
+<span id="cb33-33"><a href="#cb33-33" aria-hidden="true" tabindex="-1"></a><span class="an">code-annotations:</span><span class="co"> select</span></span>
+<span id="cb33-34"><a href="#cb33-34" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb33-35"><a href="#cb33-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-36"><a href="#cb33-36" aria-hidden="true" tabindex="-1"></a>Pada tahun 2024, aku dan tiga kolega dari University of Auckland, Universitas Pendidikan Indonesia, dan SMA Negeri 7 Yogyakarta merevisi buku teks kami, baik <span class="co">[</span><span class="ot">buku siswa</span><span class="co">](https://buku.kemdikbud.go.id/katalog/matematika-tingkat-lanjut-untuk-sma-kelas-xi)</span>{.external target="_blank"} maupun <span class="co">[</span><span class="ot">buku panduan guru</span><span class="co">](https://buku.kemdikbud.go.id/katalog/buku-panduan-guru-matematika-tingkat-lanjut-untuk-sma-kelas-xi)</span>{.external target="_blank"}. Dalam edisi revisi buku-buku tersebut, kami mencoba untuk mempromosikan tema Tujuan Pembangunan Berkelanjutan.</span>
+<span id="cb33-37"><a href="#cb33-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-38"><a href="#cb33-38" aria-hidden="true" tabindex="-1"></a>Salah satu aktivitas pembelajaran dalam edisi revisi tersebut adalah pemodelan keanekaragaman spesies tanaman berpohon di Kepulauan Raja Ampat. Dengan aktivitas pembelajaran ini, peserta didik diharapkan dapat menggunakan berbagai macam fungsi matematika untuk melakukan pemodelan serta menginterpretasi dan mengevaluasi model-model yang mereka hasilkan. Tak hanya itu, mereka juga diharapkan menyadari betapa kayanya bumi Kepulauan Raja Ampat.</span>
+<span id="cb33-39"><a href="#cb33-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-40"><a href="#cb33-40" aria-hidden="true" tabindex="-1"></a>Di artikel ini, aku akan bercerita tentang bagaimana menemukan data keanekaragaman hayati di Kepulauan Raja Ampat tersebut. Selain itu, aku juga akan mendemonstrasikan bagaimana mengolah dan memodelkan data tersebut dengan model linear maupun nonlinear.</span>
+<span id="cb33-41"><a href="#cb33-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-42"><a href="#cb33-42" aria-hidden="true" tabindex="-1"></a><span class="fu">## Petulangan Menemukan Data {#sec-menemukan-data}</span></span>
+<span id="cb33-43"><a href="#cb33-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-44"><a href="#cb33-44" aria-hidden="true" tabindex="-1"></a>Salah satu hobiku adalah membaca. Meskipun bidang pekerjaanku adalah Pendidikan Matematika, tak jarang aku "tersesat" dan membaca berbagai bahan bacaan di luar bidang itu. Suatu ketika, aku menemukan <span class="co">[</span><span class="ot">sebuah artikel</span><span class="co">](https://doi.org/10.1111/ecog.04512)</span>{.external target="_blank"} menarik di <span class="co">[</span><span class="ot">*Ecography*</span><span class="co">](https://nsojournals.onlinelibrary.wiley.com/journal/16000587)</span>{.external target="_blank"}. Artikel yang dikarang oleh tim peneliti dari University of Göttingen, Universitas Papua, dan University of South Australia tersebut membahas tentang dampak perbedaan pengambilan sampel terhadap hubungan antara keanekaragaman spesies tanaman berkayu dan luas pulau-pulau kecil di Kepulauan Raja Ampat.</span>
+<span id="cb33-45"><a href="#cb33-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-46"><a href="#cb33-46" aria-hidden="true" tabindex="-1"></a>Menurutku artikel tersebut menarik. Namun, artikel tersebut tidak melampirkan data mentah yang digunakan. Oleh karena itu, aku langsung berkirim surel ke salah satu pengarangnya untuk meminta data mentahnya dan sekalian meminta izin untuk menggunakannya sebagai bahan ajar ke dalam buku-buku kami. Dengan ramah pengarang tersebut menunjukkan <span class="co">[</span><span class="ot">sebuah artikel</span><span class="co">](https://doi.org/10.3897/BDJ.8.e55275)</span>{.external target="_blank"} yang memuat data mentah tersebut. Ia juga dengan senang memberikan izin penggunaan data tersebut asalkan dibarengi dengan pemberian atribusi yang tepat.</span>
+<span id="cb33-47"><a href="#cb33-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-48"><a href="#cb33-48" aria-hidden="true" tabindex="-1"></a>Data mentah yang aku perlukan letaknya ada di bagian lampiran artikel tersebut. Agar pembahasannya nanti sederhana, kita akan menggunakan data dalam bagian <span class="co">[</span><span class="ot">Suppl. material 1: Island Data</span><span class="co">](https://doi.org/10.3897/BDJ.8.e55275.suppl1)</span>{.external target="_blank"} saja. Kita nanti hanya akan mengolah data yang terkait dengan variabel luas pulau dan banyaknya spesies tanaman berkayu dalam pulau tersebut untuk memodelkan hubungan antara kedua variabel itu.</span>
+<span id="cb33-49"><a href="#cb33-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-50"><a href="#cb33-50" aria-hidden="true" tabindex="-1"></a>::: callout-note</span>
+<span id="cb33-51"><a href="#cb33-51" aria-hidden="true" tabindex="-1"></a><span class="fu">## Catatan</span></span>
+<span id="cb33-52"><a href="#cb33-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-53"><a href="#cb33-53" aria-hidden="true" tabindex="-1"></a>Selain hubungan antara luas pulau dan banyaknya spesies, data dalam artikel tersebut juga memungkinkan untuk dilakukan analisis sampai level transek dan subtransek. Analisis tentang transek dan subtransek tersebut pada umumnya digunakan untuk mengidentifikasi kepadatan spesies dalam pulau-pulau yang ada. Analisis pada level transek dan subtransek tersebut tidak dilakukan dalam artikel ini. Jika pembaca ingin mengetahui analisis semacam itu, silakan kunjungi <span class="co">[</span><span class="ot">aplikasi Shiny</span><span class="co">](https://people.usd.ac.id/~ydkristanto/app/jelajah-raja-ampat/)</span>{.external target="_blank"} yang telah aku kembangkan. Aplikasi inilah yang digunakan sebagai bahan ajar penunjang dalam buku-buku yang kami revisi.</span>
+<span id="cb33-54"><a href="#cb33-54" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb33-55"><a href="#cb33-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-56"><a href="#cb33-56" aria-hidden="true" tabindex="-1"></a><span class="fu">## Menjelajah Data {#sec-jelajah-data}</span></span>
+<span id="cb33-57"><a href="#cb33-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-58"><a href="#cb33-58" aria-hidden="true" tabindex="-1"></a>Petualangan kita lanjutkan. Karena data sudah ada, sekarang kita siap untuk mengeksplorasinya dengan <span class="co">[</span><span class="ot">R</span><span class="co">](https://www.R-project.org/)</span>{.external target="_blank"}. Pertama-tama, kita panggil paket yang diperlukan. Paket <span class="co">[</span><span class="ot">{tidyverse}</span><span class="co">](https://www.tidyverse.org/)</span>{.external target="_blank"} kita gunakan untuk mengimpor, mengolah, dan memvisualisasikan data. Paket <span class="co">[</span><span class="ot">{ggtext}</span><span class="co">](https://CRAN.R-project.org/package=ggtext)</span>{.external target="_blank"} kita gunakan untuk menyesuaikan label/teks pada diagram yang akan kita buat nantinya.</span>
+<span id="cb33-59"><a href="#cb33-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-62"><a href="#cb33-62" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-63"><a href="#cb33-63" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb33-64"><a href="#cb33-64" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb33-65"><a href="#cb33-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-66"><a href="#cb33-66" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb33-67"><a href="#cb33-67" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggtext)</span>
+<span id="cb33-68"><a href="#cb33-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-69"><a href="#cb33-69" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-70"><a href="#cb33-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-71"><a href="#cb33-71" aria-hidden="true" tabindex="-1"></a>Agar datanya nanti mudah kita impor, aku unduh fail data tersebut, kemudian aku hapus bagian yang tidak kita perlukan (seperti keterangan fail dan deskripsi variabelnya) dan aku simpan kembali menjadi fail csv. Fail data yang baru tersebut dapat diakses di <span class="co">[</span><span class="ot">tautan ini</span><span class="co">](https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/main/pos/2024-08-keanekaragaman-hayati-raja-ampat/data/oo_444807.csv)</span>{.external target="_blank"}.</span>
+<span id="cb33-72"><a href="#cb33-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-73"><a href="#cb33-73" aria-hidden="true" tabindex="-1"></a>Kita impor data tersebut dengan fungsi <span class="in">`read_csv()`</span>. Untuk melihat gambaran umum data tersebut, kita dapat menggunakan fungsi <span class="in">`glimpse()`</span>.</span>
+<span id="cb33-74"><a href="#cb33-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-77"><a href="#cb33-77" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-78"><a href="#cb33-78" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb33-79"><a href="#cb33-79" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb33-80"><a href="#cb33-80" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb33-81"><a href="#cb33-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-82"><a href="#cb33-82" aria-hidden="true" tabindex="-1"></a>data_pulau <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/main/pos/2024-08-keanekaragaman-hayati-raja-ampat/data/oo_444807.csv"</span>)</span>
+<span id="cb33-83"><a href="#cb33-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-84"><a href="#cb33-84" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(data_pulau)</span>
+<span id="cb33-85"><a href="#cb33-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-86"><a href="#cb33-86" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-87"><a href="#cb33-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-88"><a href="#cb33-88" aria-hidden="true" tabindex="-1"></a>Data tersebut memuat 60 baris dan 12 kolom. Dari keduabelas kolom tersebut, kita hanya akan menganalisis dua di antaranya, yaitu <span class="in">`island_area`</span> (luas pulau dalam m^2^) dan <span class="in">`species_number`</span> (banyaknya spesies). Untuk itu, kita pilih kedua variabel tersebut dengan fungsi <span class="in">`select()`</span>. Kita ganti nama kedua variabel tersebut menjadi <span class="in">`luas_pulau`</span> dan <span class="in">`banyak_spesies`</span> dengan fungsi <span class="in">`rename()`</span>.</span>
+<span id="cb33-89"><a href="#cb33-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-92"><a href="#cb33-92" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-93"><a href="#cb33-93" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb33-94"><a href="#cb33-94" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb33-95"><a href="#cb33-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-96"><a href="#cb33-96" aria-hidden="true" tabindex="-1"></a>data_pulau <span class="ot">&lt;-</span> data_pulau <span class="sc">|&gt;</span> </span>
+<span id="cb33-97"><a href="#cb33-97" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(island_area, species_number) <span class="sc">|&gt;</span> </span>
+<span id="cb33-98"><a href="#cb33-98" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(</span>
+<span id="cb33-99"><a href="#cb33-99" aria-hidden="true" tabindex="-1"></a>    <span class="at">luas_pulau =</span> island_area,</span>
+<span id="cb33-100"><a href="#cb33-100" aria-hidden="true" tabindex="-1"></a>    <span class="at">banyak_spesies =</span> species_number</span>
+<span id="cb33-101"><a href="#cb33-101" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb33-102"><a href="#cb33-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-103"><a href="#cb33-103" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data_pulau)</span>
+<span id="cb33-104"><a href="#cb33-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-105"><a href="#cb33-105" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-106"><a href="#cb33-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-107"><a href="#cb33-107" aria-hidden="true" tabindex="-1"></a>Sekarang kita mendapatkan <span class="in">`data_pulau`</span> yang lebih sederhana dan rapi. Kita lihat distribusi <span class="in">`luas_pulau`</span>-nya seperti apa. Perhatikan @fig-dist-luas.</span>
+<span id="cb33-108"><a href="#cb33-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-111"><a href="#cb33-111" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-112"><a href="#cb33-112" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb33-113"><a href="#cb33-113" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb33-114"><a href="#cb33-114" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb33-115"><a href="#cb33-115" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-dist-luas</span></span>
+<span id="cb33-116"><a href="#cb33-116" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: Distribusi `luas_pulau`.</span></span>
+<span id="cb33-117"><a href="#cb33-117" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-asp: 0.5625</span></span>
+<span id="cb33-118"><a href="#cb33-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-119"><a href="#cb33-119" aria-hidden="true" tabindex="-1"></a>data_pulau <span class="sc">|&gt;</span> </span>
+<span id="cb33-120"><a href="#cb33-120" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> luas_pulau)) <span class="sc">+</span> </span>
+<span id="cb33-121"><a href="#cb33-121" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(</span>
+<span id="cb33-122"><a href="#cb33-122" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"#427D9D"</span>,</span>
+<span id="cb33-123"><a href="#cb33-123" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"white"</span></span>
+<span id="cb33-124"><a href="#cb33-124" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb33-125"><a href="#cb33-125" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb33-126"><a href="#cb33-126" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb33-127"><a href="#cb33-127" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_markdown</span>()</span>
+<span id="cb33-128"><a href="#cb33-128" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb33-129"><a href="#cb33-129" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb33-130"><a href="#cb33-130" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Luas pulau (m^2^)"</span>,</span>
+<span id="cb33-131"><a href="#cb33-131" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Frekuensi"</span></span>
+<span id="cb33-132"><a href="#cb33-132" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb33-133"><a href="#cb33-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-134"><a href="#cb33-134" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-135"><a href="#cb33-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-136"><a href="#cb33-136" aria-hidden="true" tabindex="-1"></a>Bagaimana dengan distribusi <span class="in">`banyak_spesies`</span>-nya? Silakan cermati @fig-dist-spesies.</span>
+<span id="cb33-137"><a href="#cb33-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-140"><a href="#cb33-140" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-141"><a href="#cb33-141" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb33-142"><a href="#cb33-142" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb33-143"><a href="#cb33-143" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb33-144"><a href="#cb33-144" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-dist-spesies</span></span>
+<span id="cb33-145"><a href="#cb33-145" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: Distribusi `banyak_spesies`.</span></span>
+<span id="cb33-146"><a href="#cb33-146" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-asp: 0.5625</span></span>
+<span id="cb33-147"><a href="#cb33-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-148"><a href="#cb33-148" aria-hidden="true" tabindex="-1"></a>data_pulau <span class="sc">|&gt;</span> </span>
+<span id="cb33-149"><a href="#cb33-149" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> banyak_spesies)) <span class="sc">+</span> </span>
+<span id="cb33-150"><a href="#cb33-150" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(</span>
+<span id="cb33-151"><a href="#cb33-151" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"#9BBEC8"</span>,</span>
+<span id="cb33-152"><a href="#cb33-152" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"white"</span></span>
+<span id="cb33-153"><a href="#cb33-153" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb33-154"><a href="#cb33-154" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb33-155"><a href="#cb33-155" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb33-156"><a href="#cb33-156" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Banyak spesies"</span>,</span>
+<span id="cb33-157"><a href="#cb33-157" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Frekuensi"</span></span>
+<span id="cb33-158"><a href="#cb33-158" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb33-159"><a href="#cb33-159" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-160"><a href="#cb33-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-161"><a href="#cb33-161" aria-hidden="true" tabindex="-1"></a>Apakah terdapat hubungan antara luas sebuah pulau dengan banyaknya spesies yang tinggal di pulau tersebut? Untuk mengetahuinya, kita buat diagram pencar yang merepresentasikan hubungan antara <span class="in">`luas_pulau`</span> dan <span class="in">`banyak_spesies`</span>.</span>
+<span id="cb33-162"><a href="#cb33-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-165"><a href="#cb33-165" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-166"><a href="#cb33-166" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb33-167"><a href="#cb33-167" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb33-168"><a href="#cb33-168" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb33-169"><a href="#cb33-169" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-relasi-luas-spesies</span></span>
+<span id="cb33-170"><a href="#cb33-170" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: Hubungan antara `luas_wilayah` dan `banyak_spesies`.</span></span>
+<span id="cb33-171"><a href="#cb33-171" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-asp: 0.5625</span></span>
+<span id="cb33-172"><a href="#cb33-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-173"><a href="#cb33-173" aria-hidden="true" tabindex="-1"></a>diagram_pencar <span class="ot">&lt;-</span> data_pulau <span class="sc">|&gt;</span> </span>
+<span id="cb33-174"><a href="#cb33-174" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(</span>
+<span id="cb33-175"><a href="#cb33-175" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> luas_pulau, <span class="at">y =</span> banyak_spesies)</span>
+<span id="cb33-176"><a href="#cb33-176" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb33-177"><a href="#cb33-177" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb33-178"><a href="#cb33-178" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"#427D9D"</span>,</span>
+<span id="cb33-179"><a href="#cb33-179" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">3</span></span>
+<span id="cb33-180"><a href="#cb33-180" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb33-181"><a href="#cb33-181" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb33-182"><a href="#cb33-182" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb33-183"><a href="#cb33-183" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_markdown</span>()</span>
+<span id="cb33-184"><a href="#cb33-184" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb33-185"><a href="#cb33-185" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb33-186"><a href="#cb33-186" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Luas pulau (m^2^)"</span>,</span>
+<span id="cb33-187"><a href="#cb33-187" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Banyak spesies"</span></span>
+<span id="cb33-188"><a href="#cb33-188" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb33-189"><a href="#cb33-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-190"><a href="#cb33-190" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(diagram_pencar)</span>
+<span id="cb33-191"><a href="#cb33-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-192"><a href="#cb33-192" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-193"><a href="#cb33-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-194"><a href="#cb33-194" aria-hidden="true" tabindex="-1"></a>@fig-relasi-luas-spesies menunjukkan adanya hubungan antara <span class="in">`luas_pulau`</span> dan <span class="in">`banyak_spesies`</span>. Semakin luas sebuah pulau, semakin banyak spesies yang tinggal di pulau tersebut. Lalu, bagaimana hubungan tersebut? Pertanyaan ini akan dijawab dengan melakukan pemodelan. Model yang akan kita pakai adalah fungsi linear, pangkat, logaritma, dan Weibull kumulatif. Keempat model tersebut masuk ke dalam dua kategori, yaitu model linear dan nonlinear.</span>
+<span id="cb33-195"><a href="#cb33-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-196"><a href="#cb33-196" aria-hidden="true" tabindex="-1"></a>Mengapa model linear digunakan di sini? Padahal titik-titik data pada @fig-relasi-luas-spesies jelas-jelas tidak mengikuti pola linear. Model linear dimasukkan di sini untuk memberikan contoh pemodelan yang paling sederhana.</span>
+<span id="cb33-197"><a href="#cb33-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-198"><a href="#cb33-198" aria-hidden="true" tabindex="-1"></a><span class="fu">## Pemodelan Linear {#sec-model-linear}</span></span>
+<span id="cb33-199"><a href="#cb33-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-200"><a href="#cb33-200" aria-hidden="true" tabindex="-1"></a>Model linear merupakan model yang sederhana dan mudah dilakukan. Untuk melakukan pemodelan linear, kita menggunakan fungsi <span class="in">`lm()`</span>.</span>
+<span id="cb33-201"><a href="#cb33-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-204"><a href="#cb33-204" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-205"><a href="#cb33-205" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb33-206"><a href="#cb33-206" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb33-207"><a href="#cb33-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-208"><a href="#cb33-208" aria-hidden="true" tabindex="-1"></a>model_linear <span class="ot">&lt;-</span> <span class="fu">lm</span>(</span>
+<span id="cb33-209"><a href="#cb33-209" aria-hidden="true" tabindex="-1"></a>  <span class="at">formula =</span> banyak_spesies <span class="sc">~</span> luas_pulau,</span>
+<span id="cb33-210"><a href="#cb33-210" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> data_pulau</span>
+<span id="cb33-211"><a href="#cb33-211" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb33-212"><a href="#cb33-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-213"><a href="#cb33-213" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(model_linear)</span>
+<span id="cb33-214"><a href="#cb33-214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-215"><a href="#cb33-215" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-216"><a href="#cb33-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-217"><a href="#cb33-217" aria-hidden="true" tabindex="-1"></a>Berdasarkan pemodelan linear tersebut, kita mendapatkan persamaan dengan konstanta 3,662650 dan koefisien variabel <span class="in">`luas_pulau`</span> sebesar 0,002549. Visualisasi model linear tersebut disajikan pada @fig-model-linear!</span>
+<span id="cb33-218"><a href="#cb33-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-221"><a href="#cb33-221" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-222"><a href="#cb33-222" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb33-223"><a href="#cb33-223" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb33-224"><a href="#cb33-224" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-model-linear</span></span>
+<span id="cb33-225"><a href="#cb33-225" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: Model linear untuk hubungan antara `luas_wilayah` dan `banyak_spesies`.</span></span>
+<span id="cb33-226"><a href="#cb33-226" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-asp: 0.5625</span></span>
+<span id="cb33-227"><a href="#cb33-227" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-228"><a href="#cb33-228" aria-hidden="true" tabindex="-1"></a>diagram_pencar <span class="sc">+</span> </span>
+<span id="cb33-229"><a href="#cb33-229" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(</span>
+<span id="cb33-230"><a href="#cb33-230" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">"lm"</span>,</span>
+<span id="cb33-231"><a href="#cb33-231" aria-hidden="true" tabindex="-1"></a>    <span class="at">formula =</span> y <span class="sc">~</span> x,</span>
+<span id="cb33-232"><a href="#cb33-232" aria-hidden="true" tabindex="-1"></a>    <span class="at">se =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb33-233"><a href="#cb33-233" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"#164863"</span></span>
+<span id="cb33-234"><a href="#cb33-234" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb33-235"><a href="#cb33-235" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_richtext</span>(</span>
+<span id="cb33-236"><a href="#cb33-236" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="dv">9000</span>,</span>
+<span id="cb33-237"><a href="#cb33-237" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="dv">30</span>,</span>
+<span id="cb33-238"><a href="#cb33-238" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="st">"*y* = 3,662650 + 0,002549*x*"</span>,</span>
+<span id="cb33-239"><a href="#cb33-239" aria-hidden="true" tabindex="-1"></a>    <span class="at">hjust =</span> <span class="dv">1</span>,</span>
+<span id="cb33-240"><a href="#cb33-240" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"#164863"</span></span>
+<span id="cb33-241"><a href="#cb33-241" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb33-242"><a href="#cb33-242" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-243"><a href="#cb33-243" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-244"><a href="#cb33-244" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-245"><a href="#cb33-245" aria-hidden="true" tabindex="-1"></a><span class="fu">## Pemodelan Nonlinear {#sec-model-nonlinear}</span></span>
+<span id="cb33-246"><a href="#cb33-246" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-247"><a href="#cb33-247" aria-hidden="true" tabindex="-1"></a>Pada @sec-model-linear, kita telah memodelkan hubungan antara <span class="in">`luas_pulau`</span> dan <span class="in">`banyak_spesies`</span> dengan model linear. Sekarang, kita akan memodelkan hubungan kedua variabel tersebut dengan model nonlinear. Model nonlinear pertama kita adalah fungsi pangkat. Persamaan umum untuk fungsi pangkat ditunjukkan pada @eq-model-pangkat.</span>
+<span id="cb33-248"><a href="#cb33-248" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-249"><a href="#cb33-249" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb33-250"><a href="#cb33-250" aria-hidden="true" tabindex="-1"></a>y = c x^z</span>
+<span id="cb33-251"><a href="#cb33-251" aria-hidden="true" tabindex="-1"></a>$$ {#eq-model-pangkat}</span>
+<span id="cb33-252"><a href="#cb33-252" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-253"><a href="#cb33-253" aria-hidden="true" tabindex="-1"></a>Untuk melakukan pemodelan nonlinear, kita dapat menggunakan fungsi <span class="in">`nls()`</span>. Fungsi ini membutuhkan nilai awal untuk $c$ dan $z$ pada @eq-model-pangkat. Agar sederhana, kita pilih nilai-nilai awalnya $a = 1$ dan $z = 1$.</span>
+<span id="cb33-254"><a href="#cb33-254" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-257"><a href="#cb33-257" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-258"><a href="#cb33-258" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb33-259"><a href="#cb33-259" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb33-260"><a href="#cb33-260" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-261"><a href="#cb33-261" aria-hidden="true" tabindex="-1"></a>model_pangkat <span class="ot">&lt;-</span> <span class="fu">nls</span>(</span>
+<span id="cb33-262"><a href="#cb33-262" aria-hidden="true" tabindex="-1"></a>  <span class="at">formula =</span> banyak_spesies <span class="sc">~</span> a <span class="sc">*</span> luas_pulau<span class="sc">^</span>z,</span>
+<span id="cb33-263"><a href="#cb33-263" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> data_pulau,</span>
+<span id="cb33-264"><a href="#cb33-264" aria-hidden="true" tabindex="-1"></a>  <span class="at">start =</span> <span class="fu">c</span>(<span class="at">a =</span> <span class="dv">1</span>, <span class="at">z =</span> <span class="dv">1</span>)</span>
+<span id="cb33-265"><a href="#cb33-265" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb33-266"><a href="#cb33-266" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-267"><a href="#cb33-267" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(model_pangkat)</span>
+<span id="cb33-268"><a href="#cb33-268" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-269"><a href="#cb33-269" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-270"><a href="#cb33-270" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-271"><a href="#cb33-271" aria-hidden="true" tabindex="-1"></a>Dengan demikian, kita mendapatkan $a\approx\text{0,9239}$ dan $z\approx\text{0,3574}$. Model ini dapat ditunjukkan pada @fig-model-pangkat.</span>
+<span id="cb33-272"><a href="#cb33-272" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-275"><a href="#cb33-275" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-276"><a href="#cb33-276" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb33-277"><a href="#cb33-277" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb33-278"><a href="#cb33-278" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-model-pangkat</span></span>
+<span id="cb33-279"><a href="#cb33-279" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: Model fungsi pangkat untuk hubungan antara `luas_wilayah` dan `banyak_spesies`.</span></span>
+<span id="cb33-280"><a href="#cb33-280" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-asp: 0.5625</span></span>
+<span id="cb33-281"><a href="#cb33-281" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-282"><a href="#cb33-282" aria-hidden="true" tabindex="-1"></a>a_pangkat <span class="ot">&lt;-</span> <span class="fu">coef</span>(model_pangkat)[<span class="st">"a"</span>]</span>
+<span id="cb33-283"><a href="#cb33-283" aria-hidden="true" tabindex="-1"></a>z_pangkat <span class="ot">&lt;-</span> <span class="fu">coef</span>(model_pangkat)[<span class="st">"z"</span>]</span>
+<span id="cb33-284"><a href="#cb33-284" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-285"><a href="#cb33-285" aria-hidden="true" tabindex="-1"></a>diagram_pencar <span class="sc">+</span> </span>
+<span id="cb33-286"><a href="#cb33-286" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_function</span>(</span>
+<span id="cb33-287"><a href="#cb33-287" aria-hidden="true" tabindex="-1"></a>    <span class="at">fun =</span> <span class="cf">function</span>(x) a_pangkat <span class="sc">*</span> x<span class="sc">^</span>z_pangkat,</span>
+<span id="cb33-288"><a href="#cb33-288" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"#164863"</span>,</span>
+<span id="cb33-289"><a href="#cb33-289" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="dv">1</span></span>
+<span id="cb33-290"><a href="#cb33-290" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb33-291"><a href="#cb33-291" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_richtext</span>(</span>
+<span id="cb33-292"><a href="#cb33-292" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="dv">8000</span>,</span>
+<span id="cb33-293"><a href="#cb33-293" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="dv">26</span>,</span>
+<span id="cb33-294"><a href="#cb33-294" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="st">"*y* = 0,9239*x*&lt;sup&gt;0,3574&lt;/sup&gt;"</span>,</span>
+<span id="cb33-295"><a href="#cb33-295" aria-hidden="true" tabindex="-1"></a>    <span class="at">hjust =</span> .<span class="dv">5</span></span>
+<span id="cb33-296"><a href="#cb33-296" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb33-297"><a href="#cb33-297" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-298"><a href="#cb33-298" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-299"><a href="#cb33-299" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-300"><a href="#cb33-300" aria-hidden="true" tabindex="-1"></a>Kita lanjutkan pemodelannya dengan menggunakan model logaritma. Persamaan fungsi logaritma yang kita gunakan ditunjukkan pada @eq-model-log.</span>
+<span id="cb33-301"><a href="#cb33-301" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-302"><a href="#cb33-302" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb33-303"><a href="#cb33-303" aria-hidden="true" tabindex="-1"></a>y = c + z\log{x}</span>
+<span id="cb33-304"><a href="#cb33-304" aria-hidden="true" tabindex="-1"></a>$$ {#eq-model-log}</span>
+<span id="cb33-305"><a href="#cb33-305" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-306"><a href="#cb33-306" aria-hidden="true" tabindex="-1"></a>Kita menggunakan metode yang serupa dengan sebelumnya. Kita memanfaatkan fungsi <span class="in">`nls()`</span> dengan nilai-nilai awal $c=1$ dan $z=1$.</span>
+<span id="cb33-307"><a href="#cb33-307" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-310"><a href="#cb33-310" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-311"><a href="#cb33-311" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb33-312"><a href="#cb33-312" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb33-313"><a href="#cb33-313" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-314"><a href="#cb33-314" aria-hidden="true" tabindex="-1"></a>model_log <span class="ot">&lt;-</span> <span class="fu">nls</span>(</span>
+<span id="cb33-315"><a href="#cb33-315" aria-hidden="true" tabindex="-1"></a>  <span class="at">formula =</span> banyak_spesies <span class="sc">~</span> c <span class="sc">+</span> z <span class="sc">*</span> <span class="fu">log10</span>(luas_pulau),</span>
+<span id="cb33-316"><a href="#cb33-316" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> data_pulau,</span>
+<span id="cb33-317"><a href="#cb33-317" aria-hidden="true" tabindex="-1"></a>  <span class="at">start =</span> <span class="fu">c</span>(<span class="at">c =</span> <span class="dv">1</span>, <span class="at">z =</span> <span class="dv">1</span>)</span>
+<span id="cb33-318"><a href="#cb33-318" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb33-319"><a href="#cb33-319" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-320"><a href="#cb33-320" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(model_log)</span>
+<span id="cb33-321"><a href="#cb33-321" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-322"><a href="#cb33-322" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-323"><a href="#cb33-323" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-324"><a href="#cb33-324" aria-hidden="true" tabindex="-1"></a>Berdasarkan pemodelan tersebut, kita mendapatkan $c\approx\text{-5,347}$ dan $z\approx\text{6,228}$. Untuk melihat visualisasi model ini, silakan perhatikan @fig-model-log!</span>
+<span id="cb33-325"><a href="#cb33-325" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-328"><a href="#cb33-328" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-329"><a href="#cb33-329" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb33-330"><a href="#cb33-330" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb33-331"><a href="#cb33-331" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-model-log</span></span>
+<span id="cb33-332"><a href="#cb33-332" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: Model fungsi logaritma untuk hubungan antara `luas_wilayah` dan `banyak_spesies`.</span></span>
+<span id="cb33-333"><a href="#cb33-333" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-asp: 0.5625</span></span>
+<span id="cb33-334"><a href="#cb33-334" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-335"><a href="#cb33-335" aria-hidden="true" tabindex="-1"></a>c_log <span class="ot">&lt;-</span> <span class="fu">coef</span>(model_log)[<span class="st">"c"</span>]</span>
+<span id="cb33-336"><a href="#cb33-336" aria-hidden="true" tabindex="-1"></a>z_log <span class="ot">&lt;-</span> <span class="fu">coef</span>(model_log)[<span class="st">"z"</span>]</span>
+<span id="cb33-337"><a href="#cb33-337" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-338"><a href="#cb33-338" aria-hidden="true" tabindex="-1"></a>diagram_pencar <span class="sc">+</span> </span>
+<span id="cb33-339"><a href="#cb33-339" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_function</span>(</span>
+<span id="cb33-340"><a href="#cb33-340" aria-hidden="true" tabindex="-1"></a>    <span class="at">fun =</span> <span class="cf">function</span>(x) c_log <span class="sc">+</span> z_log <span class="sc">*</span> <span class="fu">log10</span>(x),</span>
+<span id="cb33-341"><a href="#cb33-341" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"#164863"</span>,</span>
+<span id="cb33-342"><a href="#cb33-342" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="dv">1</span></span>
+<span id="cb33-343"><a href="#cb33-343" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb33-344"><a href="#cb33-344" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_richtext</span>(</span>
+<span id="cb33-345"><a href="#cb33-345" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="dv">12000</span>,</span>
+<span id="cb33-346"><a href="#cb33-346" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="dv">24</span>,</span>
+<span id="cb33-347"><a href="#cb33-347" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="st">"*y* = -5,347 + 6,228 log(*x*)"</span>,</span>
+<span id="cb33-348"><a href="#cb33-348" aria-hidden="true" tabindex="-1"></a>    <span class="at">hjust =</span> <span class="dv">1</span></span>
+<span id="cb33-349"><a href="#cb33-349" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb33-350"><a href="#cb33-350" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-351"><a href="#cb33-351" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-352"><a href="#cb33-352" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-353"><a href="#cb33-353" aria-hidden="true" tabindex="-1"></a>Sekarang kita melakukan pemodelan yang terakhir. Model yang kita gunakan adalah fungsi Weibull kumulatif. Persamaan fungsi ini ditunjukkan pada @eq-model-weibull.</span>
+<span id="cb33-354"><a href="#cb33-354" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-355"><a href="#cb33-355" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb33-356"><a href="#cb33-356" aria-hidden="true" tabindex="-1"></a>y = d \left( 1 - e^{-z x^f} \right)</span>
+<span id="cb33-357"><a href="#cb33-357" aria-hidden="true" tabindex="-1"></a>$$ {#eq-model-weibull}</span>
+<span id="cb33-358"><a href="#cb33-358" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-359"><a href="#cb33-359" aria-hidden="true" tabindex="-1"></a>Untuk menggunakan <span class="in">`nls()`</span>, kita gunakan nilai-nilai awal $d=1$, $z = 1$, dan $f = 1$.</span>
+<span id="cb33-360"><a href="#cb33-360" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-361"><a href="#cb33-361" aria-hidden="true" tabindex="-1"></a><span class="in">``` r</span></span>
+<span id="cb33-362"><a href="#cb33-362" aria-hidden="true" tabindex="-1"></a>model_weibull <span class="ot">&lt;-</span> <span class="fu">nls</span>(</span>
+<span id="cb33-363"><a href="#cb33-363" aria-hidden="true" tabindex="-1"></a>  <span class="at">formula =</span> banyak_spesies <span class="sc">~</span> d <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">exp</span>(<span class="sc">-</span>z <span class="sc">*</span> luas_pulau<span class="sc">^</span>f)),</span>
+<span id="cb33-364"><a href="#cb33-364" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> data_pulau,</span>
+<span id="cb33-365"><a href="#cb33-365" aria-hidden="true" tabindex="-1"></a>  <span class="at">start =</span> <span class="fu">c</span>(<span class="at">d =</span> <span class="dv">1</span>, <span class="at">z =</span> <span class="dv">1</span>, <span class="at">f =</span> <span class="dv">1</span>)</span>
+<span id="cb33-366"><a href="#cb33-366" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb33-367"><a href="#cb33-367" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-368"><a href="#cb33-368" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(model_weibull)</span>
+<span id="cb33-369"><a href="#cb33-369" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-370"><a href="#cb33-370" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-371"><a href="#cb33-371" aria-hidden="true" tabindex="-1"></a>Uh oh! Kita mendapatkan pesan *error* setelah menjalankan perintah-perintah di atas. Pesannya seperti ini.</span>
+<span id="cb33-372"><a href="#cb33-372" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-373"><a href="#cb33-373" aria-hidden="true" tabindex="-1"></a><span class="in">``` {style="background-color: white;"}</span></span>
+<span id="cb33-374"><a href="#cb33-374" aria-hidden="true" tabindex="-1"></a><span class="in">Error in nls(formula = banyak_spesies ~ d * (1 - exp(-z * luas_pulau^f)),  :</span></span>
+<span id="cb33-375"><a href="#cb33-375" aria-hidden="true" tabindex="-1"></a><span class="in">    singular gradient</span></span>
+<span id="cb33-376"><a href="#cb33-376" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-377"><a href="#cb33-377" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-378"><a href="#cb33-378" aria-hidden="true" tabindex="-1"></a>Apa yang salah? Kesalahannya terletak pada nilai-nilai awal $d$, $z$, dan $f$ yang kita berikan.</span>
+<span id="cb33-379"><a href="#cb33-379" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-380"><a href="#cb33-380" aria-hidden="true" tabindex="-1"></a>Salah satu seni dalam menggunakan fungsi <span class="in">`nls()`</span> adalah penentukan nilai-nilai awalnya. Nilai-nilai awal tersebut sebaiknya dipilih agar mendekati nilai-nilai yang sebenarnya. Untuk melakukannya, kita dapat memanfaatkan alat lain, misalnya kalkulator grafik Desmos.</span>
+<span id="cb33-381"><a href="#cb33-381" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-382"><a href="#cb33-382" aria-hidden="true" tabindex="-1"></a>Dengan menginputkan data yang kita punya, yaitu <span class="in">`data_pulau`</span>, ke dalam kalkulator grafik Desmos, kita dapat memodelkannya. Tangkapan layar hasil pemodelan tersebut ditunjukkan pada @fig-model-weibull-Desmos.</span>
+<span id="cb33-383"><a href="#cb33-383" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-384"><a href="#cb33-384" aria-hidden="true" tabindex="-1"></a><span class="al">![Pemodelan dengan fungsi Weibull dengan kalkulator grafik Desmos.](model-Weibull-Desmos.png)</span>{#fig-model-weibull-Desmos fig-alt="Diagram pencar yang menunjukkan hubungan antara luas pulau dan banyak spesies, disertai dengan model fungsi Weibull." fig-align="center"}</span>
+<span id="cb33-385"><a href="#cb33-385" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-386"><a href="#cb33-386" aria-hidden="true" tabindex="-1"></a>Pemodelan dengan kalkulator grafik Desmos tersebut menghasilkan $d\approx\text{21,9586}$, $z\approx\text{0,0125515}$, dan $f\approx\text{0,608648}$. (Pemodelan tersebut dapat diakses melalui <span class="co">[</span><span class="ot">tautan ini</span><span class="co">](https://www.desmos.com/calculator/ngfsx3dlfu)</span>{.external target="_blank"}.) Kita gunakan nilai-nilai tersebut sebagai nilai-nilai awal untuk <span class="in">`nls()`</span>.</span>
+<span id="cb33-387"><a href="#cb33-387" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-390"><a href="#cb33-390" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-391"><a href="#cb33-391" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb33-392"><a href="#cb33-392" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb33-393"><a href="#cb33-393" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-394"><a href="#cb33-394" aria-hidden="true" tabindex="-1"></a>model_weibull <span class="ot">&lt;-</span> <span class="fu">nls</span>(</span>
+<span id="cb33-395"><a href="#cb33-395" aria-hidden="true" tabindex="-1"></a>  <span class="at">formula =</span> banyak_spesies <span class="sc">~</span> d <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">exp</span>(<span class="sc">-</span>z <span class="sc">*</span> luas_pulau<span class="sc">^</span>f)),</span>
+<span id="cb33-396"><a href="#cb33-396" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> data_pulau,</span>
+<span id="cb33-397"><a href="#cb33-397" aria-hidden="true" tabindex="-1"></a>  <span class="at">start =</span> <span class="fu">c</span>(<span class="at">d =</span> <span class="fl">21.9586</span>, <span class="at">z =</span> <span class="fl">0.0125515</span>, <span class="at">f =</span> <span class="fl">0.608648</span>)</span>
+<span id="cb33-398"><a href="#cb33-398" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb33-399"><a href="#cb33-399" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-400"><a href="#cb33-400" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(model_weibull)</span>
+<span id="cb33-401"><a href="#cb33-401" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-402"><a href="#cb33-402" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-403"><a href="#cb33-403" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-404"><a href="#cb33-404" aria-hidden="true" tabindex="-1"></a>Untuk melihat visualisasi hasil pemodelan dengan fungsi Weibull tersebut, silakan perhatikan @fig-model-weibull.</span>
+<span id="cb33-405"><a href="#cb33-405" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-408"><a href="#cb33-408" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-409"><a href="#cb33-409" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb33-410"><a href="#cb33-410" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb33-411"><a href="#cb33-411" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-model-weibull</span></span>
+<span id="cb33-412"><a href="#cb33-412" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: Model fungsi Weibull untuk hubungan antara `luas_wilayah` dan `banyak_spesies`.</span></span>
+<span id="cb33-413"><a href="#cb33-413" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-asp: 0.5625</span></span>
+<span id="cb33-414"><a href="#cb33-414" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-415"><a href="#cb33-415" aria-hidden="true" tabindex="-1"></a>d_weibull <span class="ot">&lt;-</span> <span class="fu">coef</span>(model_weibull)[<span class="st">"d"</span>]</span>
+<span id="cb33-416"><a href="#cb33-416" aria-hidden="true" tabindex="-1"></a>z_weibull <span class="ot">&lt;-</span> <span class="fu">coef</span>(model_weibull)[<span class="st">"z"</span>]</span>
+<span id="cb33-417"><a href="#cb33-417" aria-hidden="true" tabindex="-1"></a>f_weibull <span class="ot">&lt;-</span> <span class="fu">coef</span>(model_weibull)[<span class="st">"f"</span>]</span>
+<span id="cb33-418"><a href="#cb33-418" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-419"><a href="#cb33-419" aria-hidden="true" tabindex="-1"></a>diagram_pencar <span class="sc">+</span> </span>
+<span id="cb33-420"><a href="#cb33-420" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_function</span>(</span>
+<span id="cb33-421"><a href="#cb33-421" aria-hidden="true" tabindex="-1"></a>    <span class="at">fun =</span> <span class="cf">function</span>(x) d_weibull <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">exp</span>(<span class="sc">-</span>z_weibull <span class="sc">*</span> x<span class="sc">^</span>f_weibull)),</span>
+<span id="cb33-422"><a href="#cb33-422" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"#164863"</span>,</span>
+<span id="cb33-423"><a href="#cb33-423" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="dv">1</span></span>
+<span id="cb33-424"><a href="#cb33-424" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb33-425"><a href="#cb33-425" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_richtext</span>(</span>
+<span id="cb33-426"><a href="#cb33-426" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="dv">12000</span>,</span>
+<span id="cb33-427"><a href="#cb33-427" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="dv">24</span>,</span>
+<span id="cb33-428"><a href="#cb33-428" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="st">"*y* = 21,95860(1 - *e*&lt;sup&gt;-0,01255*x*&lt;sup&gt;0,60865&lt;/sup&gt;&lt;/sup&gt;)"</span>,</span>
+<span id="cb33-429"><a href="#cb33-429" aria-hidden="true" tabindex="-1"></a>    <span class="at">hjust =</span> <span class="dv">1</span></span>
+<span id="cb33-430"><a href="#cb33-430" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb33-431"><a href="#cb33-431" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-432"><a href="#cb33-432" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-433"><a href="#cb33-433" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-434"><a href="#cb33-434" aria-hidden="true" tabindex="-1"></a><span class="fu">## Mengevaluasi Model {#sec-evaluasi-model}</span></span>
+<span id="cb33-435"><a href="#cb33-435" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-436"><a href="#cb33-436" aria-hidden="true" tabindex="-1"></a>Pada @sec-model-linear dan @sec-model-nonlinear, kita telah mendapatkan empat model untuk memodelkan hubungan antara <span class="in">`luas_pulau`</span> dan <span class="in">`banyak_spesies`</span>. Keempat model tersebut diringkas pada @tbl-ringkasan-model.</span>
+<span id="cb33-437"><a href="#cb33-437" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-438"><a href="#cb33-438" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Model <span class="pp">|</span> Persamaan <span class="pp">|</span></span>
+<span id="cb33-439"><a href="#cb33-439" aria-hidden="true" tabindex="-1"></a><span class="pp">|---------------|---------------------------------------------------------|</span></span>
+<span id="cb33-440"><a href="#cb33-440" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Linear <span class="pp">|</span> $y = \text{3,662650} + \text{0,002549}x$ <span class="pp">|</span></span>
+<span id="cb33-441"><a href="#cb33-441" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Pangkat <span class="pp">|</span> $y = \text{0,9239}x^\text{0,3574}$ <span class="pp">|</span></span>
+<span id="cb33-442"><a href="#cb33-442" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Logaritma <span class="pp">|</span> $y = -\text{5,347} + \text{6,228} \log{x}$ <span class="pp">|</span></span>
+<span id="cb33-443"><a href="#cb33-443" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Weibull <span class="pp">|</span> $\text{21,95860}\left(1 - e^{-\text{0,01255}x^\text{0,60865}}\right)$ <span class="pp">|</span></span>
+<span id="cb33-444"><a href="#cb33-444" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-445"><a href="#cb33-445" aria-hidden="true" tabindex="-1"></a>: Model-model untuk <span class="in">`luas_pulau`</span> vs. <span class="in">`banyak_spesies`</span>. {#tbl-ringkasan-model .striped .hover}</span>
+<span id="cb33-446"><a href="#cb33-446" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-447"><a href="#cb33-447" aria-hidden="true" tabindex="-1"></a>Dari keempat model tersebut, manakah yang paling baik untuk memodelkan hubungan antara <span class="in">`luas_pulau`</span> dan <span class="in">`banyak_spesies`</span>? Untuk menjawab ini, kita dapat menggunakan akar kuadrat dari rerata galat kuadrat (*root mean square error*, RMSE).</span>
+<span id="cb33-448"><a href="#cb33-448" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-449"><a href="#cb33-449" aria-hidden="true" tabindex="-1"></a>Untuk memahami RMSE tersebut, kita perlu mengetahui apa itu galat dari sebuah model. Galat merupakan selisih antara nilai sebenarnya dengan nilai hasil estimasi dari model. Untuk model linear pada @tbl-ringkasan-model, galat-galatnya direpresentasikan sebagai panjang ruas-ruas garis vertikal pada @fig-model-linear-galat. Galatnya positif jika titik datanya berada di atas modelnya. Sebaliknya, galatnya negatif jika titik datanya berada di bawah modelnya.</span>
+<span id="cb33-450"><a href="#cb33-450" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-453"><a href="#cb33-453" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-454"><a href="#cb33-454" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb33-455"><a href="#cb33-455" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb33-456"><a href="#cb33-456" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-model-linear-galat</span></span>
+<span id="cb33-457"><a href="#cb33-457" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: Galat-galat yang direpresentasikan sebagai panjang ruas-ruas garis vertikal.</span></span>
+<span id="cb33-458"><a href="#cb33-458" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-asp: 0.5625</span></span>
+<span id="cb33-459"><a href="#cb33-459" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-460"><a href="#cb33-460" aria-hidden="true" tabindex="-1"></a>est_spesies <span class="ot">&lt;-</span> <span class="fu">fitted.values</span>(model_linear)</span>
+<span id="cb33-461"><a href="#cb33-461" aria-hidden="true" tabindex="-1"></a>galat_linear <span class="ot">&lt;-</span> <span class="fu">resid</span>(model_linear)</span>
+<span id="cb33-462"><a href="#cb33-462" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-463"><a href="#cb33-463" aria-hidden="true" tabindex="-1"></a>data_pulau_linear <span class="ot">&lt;-</span> data_pulau <span class="sc">|&gt;</span> </span>
+<span id="cb33-464"><a href="#cb33-464" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb33-465"><a href="#cb33-465" aria-hidden="true" tabindex="-1"></a>    <span class="at">est_spesies =</span> est_spesies,</span>
+<span id="cb33-466"><a href="#cb33-466" aria-hidden="true" tabindex="-1"></a>    <span class="at">galat =</span> galat_linear</span>
+<span id="cb33-467"><a href="#cb33-467" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb33-468"><a href="#cb33-468" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-469"><a href="#cb33-469" aria-hidden="true" tabindex="-1"></a>diagram_pencar <span class="sc">+</span> </span>
+<span id="cb33-470"><a href="#cb33-470" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb33-471"><a href="#cb33-471" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> data_pulau_linear,</span>
+<span id="cb33-472"><a href="#cb33-472" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> luas_pulau, <span class="at">y =</span> banyak_spesies, <span class="at">yend =</span> est_spesies),</span>
+<span id="cb33-473"><a href="#cb33-473" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"#9BBEC8"</span></span>
+<span id="cb33-474"><a href="#cb33-474" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb33-475"><a href="#cb33-475" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(</span>
+<span id="cb33-476"><a href="#cb33-476" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">"lm"</span>,</span>
+<span id="cb33-477"><a href="#cb33-477" aria-hidden="true" tabindex="-1"></a>    <span class="at">formula =</span> y <span class="sc">~</span> x,</span>
+<span id="cb33-478"><a href="#cb33-478" aria-hidden="true" tabindex="-1"></a>    <span class="at">se =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb33-479"><a href="#cb33-479" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"#164863"</span></span>
+<span id="cb33-480"><a href="#cb33-480" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb33-481"><a href="#cb33-481" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_richtext</span>(</span>
+<span id="cb33-482"><a href="#cb33-482" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="dv">9000</span>,</span>
+<span id="cb33-483"><a href="#cb33-483" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="dv">30</span>,</span>
+<span id="cb33-484"><a href="#cb33-484" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="st">"*y* = 3,662650 + 0,002549*x*"</span>,</span>
+<span id="cb33-485"><a href="#cb33-485" aria-hidden="true" tabindex="-1"></a>    <span class="at">hjust =</span> <span class="dv">1</span>,</span>
+<span id="cb33-486"><a href="#cb33-486" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"#164863"</span></span>
+<span id="cb33-487"><a href="#cb33-487" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb33-488"><a href="#cb33-488" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-489"><a href="#cb33-489" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-490"><a href="#cb33-490" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-491"><a href="#cb33-491" aria-hidden="true" tabindex="-1"></a>Untuk mendapatkan galat-galat dari sebuah model, kita dapat menggunakan fungsi <span class="in">`resid()`</span> atau <span class="in">`residuals()`</span>. Dengan demikian, RMSE dari keempat model dalam @tbl-ringkasan-model dapat ditentukan seperti berikut.</span>
+<span id="cb33-492"><a href="#cb33-492" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-495"><a href="#cb33-495" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-496"><a href="#cb33-496" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb33-497"><a href="#cb33-497" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb33-498"><a href="#cb33-498" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-499"><a href="#cb33-499" aria-hidden="true" tabindex="-1"></a>RMSE_linear <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>(<span class="fu">resid</span>(model_linear)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb33-500"><a href="#cb33-500" aria-hidden="true" tabindex="-1"></a>RMSE_pangkat <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>(<span class="fu">resid</span>(model_pangkat)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb33-501"><a href="#cb33-501" aria-hidden="true" tabindex="-1"></a>RMSE_log <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>(<span class="fu">resid</span>(model_log)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb33-502"><a href="#cb33-502" aria-hidden="true" tabindex="-1"></a>RMSE_weibull <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>(<span class="fu">resid</span>(model_weibull)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb33-503"><a href="#cb33-503" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-504"><a href="#cb33-504" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(RMSE_linear)</span>
+<span id="cb33-505"><a href="#cb33-505" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(RMSE_pangkat)</span>
+<span id="cb33-506"><a href="#cb33-506" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(RMSE_log)</span>
+<span id="cb33-507"><a href="#cb33-507" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(RMSE_weibull)</span>
+<span id="cb33-508"><a href="#cb33-508" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-509"><a href="#cb33-509" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-510"><a href="#cb33-510" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-511"><a href="#cb33-511" aria-hidden="true" tabindex="-1"></a>Untuk lebih mudah dalam membandingkan RMSE keempat model tersebut, kita visualisasikan nilai-nilai RMSE tersebut. Perhatikan @fig-rmse!</span>
+<span id="cb33-512"><a href="#cb33-512" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-515"><a href="#cb33-515" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb33-516"><a href="#cb33-516" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb33-517"><a href="#cb33-517" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb33-518"><a href="#cb33-518" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-rmse</span></span>
+<span id="cb33-519"><a href="#cb33-519" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: Nilai RMSE keempat model.</span></span>
+<span id="cb33-520"><a href="#cb33-520" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-asp: 0.5625</span></span>
+<span id="cb33-521"><a href="#cb33-521" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-522"><a href="#cb33-522" aria-hidden="true" tabindex="-1"></a>rmse <span class="ot">&lt;-</span> <span class="fu">c</span>(RMSE_linear, RMSE_pangkat, RMSE_log, RMSE_weibull)</span>
+<span id="cb33-523"><a href="#cb33-523" aria-hidden="true" tabindex="-1"></a>nama_model <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Linear"</span>, <span class="st">"Pangkat"</span>, <span class="st">"Logaritma"</span>, <span class="st">"Weibull"</span>)</span>
+<span id="cb33-524"><a href="#cb33-524" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-525"><a href="#cb33-525" aria-hidden="true" tabindex="-1"></a>data_rmse <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb33-526"><a href="#cb33-526" aria-hidden="true" tabindex="-1"></a>  <span class="at">model =</span> nama_model,</span>
+<span id="cb33-527"><a href="#cb33-527" aria-hidden="true" tabindex="-1"></a>  <span class="at">rmse =</span> rmse</span>
+<span id="cb33-528"><a href="#cb33-528" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb33-529"><a href="#cb33-529" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-530"><a href="#cb33-530" aria-hidden="true" tabindex="-1"></a>data_rmse <span class="sc">|&gt;</span> </span>
+<span id="cb33-531"><a href="#cb33-531" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb33-532"><a href="#cb33-532" aria-hidden="true" tabindex="-1"></a>    <span class="at">model =</span> <span class="fu">fct_reorder</span>(model, <span class="sc">-</span>rmse)</span>
+<span id="cb33-533"><a href="#cb33-533" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb33-534"><a href="#cb33-534" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> model, <span class="at">y =</span> rmse)) <span class="sc">+</span> </span>
+<span id="cb33-535"><a href="#cb33-535" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(</span>
+<span id="cb33-536"><a href="#cb33-536" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">fill =</span> rmse),</span>
+<span id="cb33-537"><a href="#cb33-537" aria-hidden="true" tabindex="-1"></a>    <span class="at">show.legend =</span> <span class="cn">FALSE</span></span>
+<span id="cb33-538"><a href="#cb33-538" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb33-539"><a href="#cb33-539" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradient</span>(<span class="at">low =</span> <span class="st">"#9BBEC8"</span>, <span class="at">high =</span> <span class="st">"#164863"</span>) <span class="sc">+</span> </span>
+<span id="cb33-540"><a href="#cb33-540" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb33-541"><a href="#cb33-541" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb33-542"><a href="#cb33-542" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Model"</span>,</span>
+<span id="cb33-543"><a href="#cb33-543" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"RMSE"</span></span>
+<span id="cb33-544"><a href="#cb33-544" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb33-545"><a href="#cb33-545" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-546"><a href="#cb33-546" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-547"><a href="#cb33-547" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-548"><a href="#cb33-548" aria-hidden="true" tabindex="-1"></a>Model yang baik memiliki galat yang lebih kecil. Dengan demikian, semakin kecil RMSE sebuah model, semakin baik model tersebut. Berdasarkan @fig-rmse, kita dapat melihat bahwa model Weibull merupakan model yang paling baik dibandingkan ketiga model lainnya.</span>
+<span id="cb33-549"><a href="#cb33-549" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-550"><a href="#cb33-550" aria-hidden="true" tabindex="-1"></a><span class="fu">## Catatan Akhir</span></span>
+<span id="cb33-551"><a href="#cb33-551" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-552"><a href="#cb33-552" aria-hidden="true" tabindex="-1"></a>Banyak sekali set data riil yang dapat dimanfaatkan untuk keperluan pembelajaran Matematika. Artikel ini memperlihatkan bahwa set data tentang keanekaragaman tanaman berpohon di Kepulauan Raja Ampat merupakan salah satunya. Set data seperti ini tidak hanya berpotensi untuk membuat matematika semakin membumi, tetapi juga dapat menyadarkan peserta didik terhadap kekayaan alam Kepulauan Raja Ampat.</span>
+<span id="cb33-553"><a href="#cb33-553" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-554"><a href="#cb33-554" aria-hidden="true" tabindex="-1"></a>Secara lebih khusus, artikel ini mendemonstrasikan strategi untuk mendapatkan dan mengolah data tersebut hingga siap pakai. Strategi tersebut diceritakan mulai dari bagaimana proses penemuan data tersebut. Proses tersebut diceritakan pada @sec-menemukan-data. Setelah itu, data yang diperoleh juga perlu dikenali struktur dan isinya agar memudahkan kita dalam mengolahnya. Hal ini dipaparkan pada @sec-jelajah-data.</span>
+<span id="cb33-555"><a href="#cb33-555" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-556"><a href="#cb33-556" aria-hidden="true" tabindex="-1"></a>Pemodelan data juga telah didemonstrasikan pada @sec-model-linear dan @sec-model-nonlinear. Meskipun pemodelan dalam bagian itu dipaparkan secara ringkas, pemaparan tersebut diharapkan dapat memberikan gambaran umum tentang bagaimana memodelkan data, khususnya ketika kita menggunakan R. Terakhir, evaluasi model-model yang diperoleh juga telah didemonstrasikan secara sederhana di @sec-evaluasi-model.</span>
+</code><button title="Salin ke Papan Klip" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">

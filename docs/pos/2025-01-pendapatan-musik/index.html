@@ -373,7 +373,7 @@ window.Quarto = {
       </div> <!-- /container-fluid -->
     </nav></header><!-- content --><header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full"><div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Visualisasi Data Pendapatan Industri Musik</h1>
+      <div class="quarto-title-block"><div><h1 class="title">Visualisasi Data Pendapatan Industri Musik</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Kode</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Tampilkan Semua Kode</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Sembunyikan Semua Kode</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">Lihat Sumber</a></li></ul></div></div>
             <p class="subtitle lead">Dari Pemrograman R Sampai Observable JS</p>
                   <div>
         <div class="description">
@@ -1020,6 +1020,8 @@ Gambar&nbsp;6: Diagram batang dan tabel interaktif yang dibuat dengan menggunaka
 <p>Apa selanjutnya? Teknik visualisasi yang didemonstrasikan dalam artikel ini tentu dapat dikembangkan lagi. Misalnya, jika kamu ingin berfokus untuk membuat animasi, kamu dapat menggunakan <a href="../../pos/2024-08-animasi-diagram-statistik/index.html" title="Membuat Diagram Lebih Hidup dengan Animasi">{gganimate}</a>. Kamu ingin menyelam lebih dalam tentang interaktivitas dengan R? Kamu dapat mencoba <a href="../../pos/2024-08-statistik-dinamis-dan-interaktif/index.html" title="Membuat Statistik Menjadi Dinamis dan Interaktif">{shiny}</a>. Terakhir, jika kamu ingin belajar lebih lanjut tentang visualisasi data dengan Observable JS, kamu patut mencoba <a href="https://d3js.org/" class="external" target="_blank">D3</a>.</p>
 
 
+<!-- -->
+
 </section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Kembali ke atas</a><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Catatan Kaki</h2>
 <ol>
 <li id="fn1"><p>Pada umumnya, diagram garis dipilih untuk menyajikan data yang menyatakan tren (sumbu horizontalnya menyatakan waktu).<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
@@ -1114,6 +1116,57 @@ window._ojs.runtime.interpretFromScriptTags();
         container: window.document.getElementById('quarto-embedded-source-code-modal')
       });
       clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
@@ -1513,7 +1566,497 @@ window._ojs.runtime.interpretFromScriptTags();
     document.getElementById("quarto-content").appendChild(script);
   }
   loadGiscus();
-</script>
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Kode Sumber</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb28" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Visualisasi Data Pendapatan Industri Musik"</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "Dari Pemrograman R Sampai Observable JS"</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> "Banyak cara untuk memvisualisasikan data secara efektif. Artikel ini mendemonstrasikan bagaimana memvisualisasikan data pendapatan industri musik di AS dengan menggunakan {ggplot2} dan {plotly}. Cara tersebut dilakukan dengan menggunakan pemrograman R. Tak hanya itu, artikel ini juga mendemonstrasikan bagaimana memvisualisasikan data tersebut secara interaktif dengan menggunakan Observable Plot."</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: Yosep Dwi Kristanto</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="co">    url: https://people.usd.ac.id/~ydkristanto/</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation: Pendidikan Matematika, Universitas Sanata Dharma, Yogyakarta</span></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation-url: https://www.usd.ac.id/s1pmat</span></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="co">    orcid: 0000-0003-1446-0422</span></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> 2025-01-13</span></span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a><span class="co">  - ekonomi</span></span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a><span class="co">  - musik</span></span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a><span class="co">  - tutorial</span></span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a><span class="co">  - visualisasi data</span></span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a><span class="an">image:</span><span class="co"> "pendapatan_musik.png"</span></span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a><span class="an">image-alt:</span><span class="co"> |</span></span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a><span class="co">  Gambar yang menunjukkan pendapatan industri musik di AS berdasarkan format.</span></span>
+<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a><span class="an">keywords:</span><span class="co"> </span></span>
+<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a><span class="co">  - ekonomi</span></span>
+<span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a><span class="co">  - ggplot2</span></span>
+<span id="cb28-23"><a href="#cb28-23" aria-hidden="true" tabindex="-1"></a><span class="co">  - JavaScript</span></span>
+<span id="cb28-24"><a href="#cb28-24" aria-hidden="true" tabindex="-1"></a><span class="co">  - musik</span></span>
+<span id="cb28-25"><a href="#cb28-25" aria-hidden="true" tabindex="-1"></a><span class="co">  - Observable JS</span></span>
+<span id="cb28-26"><a href="#cb28-26" aria-hidden="true" tabindex="-1"></a><span class="co">  - Observable Plot</span></span>
+<span id="cb28-27"><a href="#cb28-27" aria-hidden="true" tabindex="-1"></a><span class="co">  - plotly</span></span>
+<span id="cb28-28"><a href="#cb28-28" aria-hidden="true" tabindex="-1"></a><span class="co">  - pendapatan</span></span>
+<span id="cb28-29"><a href="#cb28-29" aria-hidden="true" tabindex="-1"></a><span class="an">lightbox:</span><span class="co"> true</span></span>
+<span id="cb28-30"><a href="#cb28-30" aria-hidden="true" tabindex="-1"></a><span class="an">copyright:</span><span class="co"> "© 2025 Yosep Dwi Kristanto"</span></span>
+<span id="cb28-31"><a href="#cb28-31" aria-hidden="true" tabindex="-1"></a><span class="an">license:</span><span class="co"> "CC BY"</span></span>
+<span id="cb28-32"><a href="#cb28-32" aria-hidden="true" tabindex="-1"></a><span class="an">code-annotations:</span><span class="co"> select</span></span>
+<span id="cb28-33"><a href="#cb28-33" aria-hidden="true" tabindex="-1"></a><span class="an">editor_options:</span><span class="co"> </span></span>
+<span id="cb28-34"><a href="#cb28-34" aria-hidden="true" tabindex="-1"></a><span class="co">  chunk_output_type: console</span></span>
+<span id="cb28-35"><a href="#cb28-35" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb28-36"><a href="#cb28-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-37"><a href="#cb28-37" aria-hidden="true" tabindex="-1"></a>Aku menulis paragraf ini diringi dengan salah satu lagu hits Sheila On 7, Dan... Tak hanya karena lagu itu enak didengar tetapi juga lagu itu menggiringku untuk bernostalgia ke masa kejayaan kaset. Aku masih ingat betul bagaimana dulu aku merengek minta diantar ke kota untuk berbelanja kaset orisinal album Sheila On 7. Sesampai di rumah aku mainkan kaset itu berulang-ulang, khususnya pada lagu pertama side B itu. Beberapa hari kemudian, kasetnya sudah *ngelokor* tak karuan.</span>
+<span id="cb28-38"><a href="#cb28-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-39"><a href="#cb28-39" aria-hidden="true" tabindex="-1"></a>Sekarang aku jadi bertanya-tanya, apakah kamu paham apa yang aku ceritakan di atas? Dugaanku, hanya sedikit yang memahaminya—khususnya tentang kaset dan fenomena *ngelokor*-nya. Paling tidak, dugaanku itu sejalan dengan temuanku ketika tersesat di laman <span class="co">[</span><span class="ot">pangkalan data pendapatan industri musik di Amerika Serika (AS)</span><span class="co">](https://www.riaa.com/u-s-sales-database/)</span>{.external target="_blank"}. Di laman itu, aku mendapati sebuah diagram interaktif nan apik. Silakan amati diagram itu pada @fig-riaa-music-revenue.</span>
+<span id="cb28-40"><a href="#cb28-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-41"><a href="#cb28-41" aria-hidden="true" tabindex="-1"></a><span class="al">![Pendapatan industri musik di AS berdasarkan format](aset/revenues_by_format.png)</span>{#fig-riaa-music-revenue fig-alt="Pendapatan industri musik di AS berdasarkan format"}</span>
+<span id="cb28-42"><a href="#cb28-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-43"><a href="#cb28-43" aria-hidden="true" tabindex="-1"></a>Meskipun kurang begitu jelas, dari @fig-riaa-music-revenue kita dapat melihat bahwa setelah tahun 2000 pendapatan industri musik dari format kaset dan sejenisnya terus menurun. Bahkan, tak ada lagi pendapatan yang sumbernya dari penjualan kaset dan sejenisnya setelah tahun 2008. Tapi, stop! Kita hentikan sampai di sini interpretasi datanya. Kita apresiasi bagaimana data tersebut dipresentasikan.</span>
+<span id="cb28-44"><a href="#cb28-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-45"><a href="#cb28-45" aria-hidden="true" tabindex="-1"></a>Diagram tersebut memberikan contoh penggunaan diagram batang yang efektif, meskipun sumbu horizontalnya menyatakan waktu.<span class="ot">[^1]</span> Pemilihan warnanya secara efektif menunjukkan tren dalam data. Misalnya, kita dapat melihat pada @fig-riaa-music-revenue bahwa dari kiri ke kanan warna biru semakin mengecil ketika warna oranye semakin membesar. Hal ini menunjukkan pendapatan industri musik di AS dari format kaset dan sejenisnya semakin menurun seiring adanya format CD.</span>
+<span id="cb28-46"><a href="#cb28-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-47"><a href="#cb28-47" aria-hidden="true" tabindex="-1"></a><span class="ot">[^1]: </span>Pada umumnya, diagram garis dipilih untuk menyajikan data yang menyatakan tren (sumbu horizontalnya menyatakan waktu).</span>
+<span id="cb28-48"><a href="#cb28-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-49"><a href="#cb28-49" aria-hidden="true" tabindex="-1"></a>Tak hanya itu. Jika kamu mengunjungi <span class="co">[</span><span class="ot">situs web RIAA</span><span class="co">](https://www.riaa.com/u-s-sales-database/)</span>{.external target="_blank"}, kamu dapat berinteraksi dengan diagram tersebut. Kamu dapat memilih pendapatan seperti apa yang ditampilkan—apakah yang disesuaikan dengan inflasi ataukah tidak. Kamu dapat mengatur batasan tahun untuk data yang disajikan. Kamu juga dapat memilih format-format apa saja yang perlu dipresentasikan dalam diagram. Terakhir, kamu dapat menyorot dan mengklik setiap batangnya untuk melihat informasi yang disajikan batang tersebut.</span>
+<span id="cb28-50"><a href="#cb28-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-51"><a href="#cb28-51" aria-hidden="true" tabindex="-1"></a>Bisakah kita membuat visualisasi data seperti itu? Tentu bisa! Kita akan membuat visualisasi data itu dengan menggunakan <span class="co">[</span><span class="ot">pemrograman R</span><span class="co">](https://www.R-project.org/)</span>{.external target="_blank"}, khususnya dengan paket <span class="co">[</span><span class="ot">{ggplot2}</span><span class="co">](https://ggplot2.tidyverse.org)</span>{.external target="_blank"} dan <span class="co">[</span><span class="ot">{plotly}</span><span class="co">](https://plotly-r.com)</span>{.external target="_blank"}, dan <span class="co">[</span><span class="ot">Observable JS</span><span class="co">](https://observablehq.com/)</span>{.external target="_blank"}. Untuk melakukan visualisasi data di R, terlebih dahulu kita panggil paket-paket yang kita perlukan.</span>
+<span id="cb28-52"><a href="#cb28-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-55"><a href="#cb28-55" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb28-56"><a href="#cb28-56" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb28-57"><a href="#cb28-57" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb28-58"><a href="#cb28-58" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb28-59"><a href="#cb28-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-60"><a href="#cb28-60" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># Paket {ggplot2} masuk dalam {tidyverse}</span></span>
+<span id="cb28-61"><a href="#cb28-61" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb28-62"><a href="#cb28-62" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb28-63"><a href="#cb28-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-64"><a href="#cb28-64" aria-hidden="true" tabindex="-1"></a><span class="fu">## Mempersiapkan dan Menjelajah Data {#sec-mempersiapkan-dan-menjelajah-data}</span></span>
+<span id="cb28-65"><a href="#cb28-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-66"><a href="#cb28-66" aria-hidden="true" tabindex="-1"></a>Kita siapkan datanya terlebih dahulu. Data tersebut dapat kita peroleh dari situs web RIAA. Data dari situs itu yang sudah aku rapikan dapat diakses di <span class="co">[</span><span class="ot">GitHub</span><span class="co">](https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/refs/heads/main/pos/2025-01-pendapatan-musik/aset/pendapatan_as_riaa.csv)</span>{.external target="_blank"}. Mari kita impor data tersebut dengan <span class="in">`read_csv()`</span>.</span>
+<span id="cb28-67"><a href="#cb28-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-70"><a href="#cb28-70" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb28-71"><a href="#cb28-71" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb28-72"><a href="#cb28-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-73"><a href="#cb28-73" aria-hidden="true" tabindex="-1"></a>url_fail <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/refs/heads/main/pos/2025-01-pendapatan-musik/aset/pendapatan_as_riaa.csv"</span></span>
+<span id="cb28-74"><a href="#cb28-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-75"><a href="#cb28-75" aria-hidden="true" tabindex="-1"></a>pendapatan_as_riaa <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
+<span id="cb28-76"><a href="#cb28-76" aria-hidden="true" tabindex="-1"></a>  <span class="at">file =</span> url_fail,</span>
+<span id="cb28-77"><a href="#cb28-77" aria-hidden="true" tabindex="-1"></a>  <span class="at">show_col_types =</span> <span class="cn">FALSE</span></span>
+<span id="cb28-78"><a href="#cb28-78" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb28-79"><a href="#cb28-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-80"><a href="#cb28-80" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(pendapatan_as_riaa)</span>
+<span id="cb28-81"><a href="#cb28-81" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb28-82"><a href="#cb28-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-83"><a href="#cb28-83" aria-hidden="true" tabindex="-1"></a>Kita mendapatkan sebuah tibble <span class="in">`pendapatan_as_riaa`</span> yang memiliki lima variabel dan 508 baris. Variabel-variabel tersebut adalah <span class="in">`format`</span>, <span class="in">`grup`</span>, dan <span class="in">`tahun`</span>, serta dua ukuran pendapatan: pendapatan yang tidak disesuaikan dengan inflasi (<span class="in">`pendapatan`</span>) dan yang disesuaikan dengan inflasi (<span class="in">`pendapatan_infl`</span>). Pendapatan tersebut semuanya dalam juta dolar AS.</span>
+<span id="cb28-84"><a href="#cb28-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-85"><a href="#cb28-85" aria-hidden="true" tabindex="-1"></a>Untuk mengakrabkan diri dengan data tersebut, mari kita lihat lebih jauh dalam data itu. Apa saja <span class="in">`format`</span> dan <span class="in">`grup`</span> dalam data tersebut? Mari kita selidiki!</span>
+<span id="cb28-86"><a href="#cb28-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-89"><a href="#cb28-89" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb28-90"><a href="#cb28-90" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb28-91"><a href="#cb28-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-92"><a href="#cb28-92" aria-hidden="true" tabindex="-1"></a>pendapatan_as_riaa<span class="sc">$</span>format <span class="sc">|&gt;</span> </span>
+<span id="cb28-93"><a href="#cb28-93" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unique</span>()</span>
+<span id="cb28-94"><a href="#cb28-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-95"><a href="#cb28-95" aria-hidden="true" tabindex="-1"></a>pendapatan_as_riaa<span class="sc">$</span>grup <span class="sc">|&gt;</span> </span>
+<span id="cb28-96"><a href="#cb28-96" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unique</span>()</span>
+<span id="cb28-97"><a href="#cb28-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-98"><a href="#cb28-98" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb28-99"><a href="#cb28-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-100"><a href="#cb28-100" aria-hidden="true" tabindex="-1"></a>Kita selidiki juga pengkategorian <span class="in">`format`</span> ke dalam <span class="in">`grup`</span>. Kita dapat melakukannya dengan kode berikut.</span>
+<span id="cb28-101"><a href="#cb28-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-104"><a href="#cb28-104" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb28-105"><a href="#cb28-105" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb28-106"><a href="#cb28-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-107"><a href="#cb28-107" aria-hidden="true" tabindex="-1"></a>pendapatan_as_riaa <span class="sc">|&gt;</span> </span>
+<span id="cb28-108"><a href="#cb28-108" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(grup, format) <span class="sc">|&gt;</span> </span>
+<span id="cb28-109"><a href="#cb28-109" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(grup, format) <span class="sc">|&gt;</span> </span>
+<span id="cb28-110"><a href="#cb28-110" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unique</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb28-111"><a href="#cb28-111" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb28-112"><a href="#cb28-112" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(grup, format) <span class="sc">|&gt;</span> </span>
+<span id="cb28-113"><a href="#cb28-113" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="dv">24</span>)</span>
+<span id="cb28-114"><a href="#cb28-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-115"><a href="#cb28-115" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb28-116"><a href="#cb28-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-117"><a href="#cb28-117" aria-hidden="true" tabindex="-1"></a>Bagaimana dengan rentangan <span class="in">`tahun`</span>-nya? Dengan menjalankan kode berikut, kita tahu bahwa <span class="in">`tahun`</span>-nya merentang dari 1973 sampai 2023.</span>
+<span id="cb28-118"><a href="#cb28-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-121"><a href="#cb28-121" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb28-122"><a href="#cb28-122" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb28-123"><a href="#cb28-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-124"><a href="#cb28-124" aria-hidden="true" tabindex="-1"></a>pendapatan_as_riaa<span class="sc">$</span>tahun <span class="sc">|&gt;</span> </span>
+<span id="cb28-125"><a href="#cb28-125" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unique</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb28-126"><a href="#cb28-126" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sort</span>()</span>
+<span id="cb28-127"><a href="#cb28-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-128"><a href="#cb28-128" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb28-129"><a href="#cb28-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-130"><a href="#cb28-130" aria-hidden="true" tabindex="-1"></a>Untuk mengkonfirmasi apa yang kukatakan di awal, yaitu pendapatan dari format kaset dan sejenisnya terus menurun setelah tahun 2000, mari kita lihat dari data <span class="in">`pendapatan_as_riaa`</span>.</span>
+<span id="cb28-131"><a href="#cb28-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-134"><a href="#cb28-134" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb28-135"><a href="#cb28-135" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb28-136"><a href="#cb28-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-137"><a href="#cb28-137" aria-hidden="true" tabindex="-1"></a>pendapatan_as_riaa <span class="sc">|&gt;</span> </span>
+<span id="cb28-138"><a href="#cb28-138" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb28-139"><a href="#cb28-139" aria-hidden="true" tabindex="-1"></a>    grup <span class="sc">==</span> <span class="st">"Tape"</span>,</span>
+<span id="cb28-140"><a href="#cb28-140" aria-hidden="true" tabindex="-1"></a>    tahun <span class="sc">&gt;</span> <span class="fu">as.Date</span>(<span class="st">"2000-01-01"</span>)</span>
+<span id="cb28-141"><a href="#cb28-141" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb28-142"><a href="#cb28-142" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(grup, tahun) <span class="sc">|&gt;</span> </span>
+<span id="cb28-143"><a href="#cb28-143" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb28-144"><a href="#cb28-144" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_pendapatan =</span> <span class="fu">sum</span>(pendapatan, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb28-145"><a href="#cb28-145" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_pendapatan_infl =</span> <span class="fu">sum</span>(pendapatan_infl, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb28-146"><a href="#cb28-146" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb28-147"><a href="#cb28-147" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb28-148"><a href="#cb28-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-149"><a href="#cb28-149" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb28-150"><a href="#cb28-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-151"><a href="#cb28-151" aria-hidden="true" tabindex="-1"></a>Terkonfirmasi! Pendapatan dari kaset dan sejenisnya terus merosot setelah tahun 2000. Bahkan, pendapatan dari format tersebut menghilang mulai tahun 2009.</span>
+<span id="cb28-152"><a href="#cb28-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-153"><a href="#cb28-153" aria-hidden="true" tabindex="-1"></a><span class="fu">## Memvisualisasikan Data dengan {ggplot2} {#sec-visualisasi-data-dengan-ggplot2}</span></span>
+<span id="cb28-154"><a href="#cb28-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-155"><a href="#cb28-155" aria-hidden="true" tabindex="-1"></a>Kita telah akrab dengan data <span class="in">`pendapatan_as_riaa`</span>. Sekarang waktunya untuk memvisualisasikannya. Untuk mendapatan diagram seperti pada @fig-riaa-music-revenue, kita gunakan <span class="in">`geom_col()`</span> dengan <span class="in">`position = "stack"`</span> dan <span class="in">`stat = "identity"`</span>.</span>
+<span id="cb28-156"><a href="#cb28-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-159"><a href="#cb28-159" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb28-160"><a href="#cb28-160" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-ggplot2-awal</span></span>
+<span id="cb28-161"><a href="#cb28-161" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Versi awal visualisasi data pendapatan industri musik di AS dengan {ggplot2}"</span></span>
+<span id="cb28-162"><a href="#cb28-162" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-asp: 0.5625</span></span>
+<span id="cb28-163"><a href="#cb28-163" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb28-164"><a href="#cb28-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-165"><a href="#cb28-165" aria-hidden="true" tabindex="-1"></a>pendapatan_as_riaa <span class="sc">|&gt;</span> </span>
+<span id="cb28-166"><a href="#cb28-166" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(</span>
+<span id="cb28-167"><a href="#cb28-167" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> tahun, <span class="at">y =</span> pendapatan_infl, <span class="at">fill =</span> format)</span>
+<span id="cb28-168"><a href="#cb28-168" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb28-169"><a href="#cb28-169" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span>
+<span id="cb28-170"><a href="#cb28-170" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb28-171"><a href="#cb28-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-172"><a href="#cb28-172" aria-hidden="true" tabindex="-1"></a>Untuk awalan, tidak terlalu buruk diagramnya. Tapi kita perlu memodifikasi beberapa hal dari diagram batang pada @fig-ggplot2-awal.</span>
+<span id="cb28-173"><a href="#cb28-173" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-174"><a href="#cb28-174" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Kita definisikan warna-warna diagram batangnya.</span>
+<span id="cb28-175"><a href="#cb28-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-176"><a href="#cb28-176" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Kita atur legendanya agar terletak di bawah dan terdiri dari empat kolom.</span>
+<span id="cb28-177"><a href="#cb28-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-178"><a href="#cb28-178" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Kita atur urutan level pada variabel <span class="in">`format`</span> agar keterbacaannya membaik.</span>
+<span id="cb28-179"><a href="#cb28-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-180"><a href="#cb28-180" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Kita tambahkan judul, anak judul, dan takarir ke dalam diagram, serta kita perbaiki judul sumbu vertikal dan horizontalnya.</span>
+<span id="cb28-181"><a href="#cb28-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-182"><a href="#cb28-182" aria-hidden="true" tabindex="-1"></a>Kita jalankan rencana pertama dan ketiga terlebih dahulu dengan membuat objek <span class="in">`urutan_format`</span> dan <span class="in">`pemetaan_format_warna`</span>.</span>
+<span id="cb28-183"><a href="#cb28-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-186"><a href="#cb28-186" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb28-187"><a href="#cb28-187" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb28-188"><a href="#cb28-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-189"><a href="#cb28-189" aria-hidden="true" tabindex="-1"></a><span class="co"># Urutan level pada variabel `format`</span></span>
+<span id="cb28-190"><a href="#cb28-190" aria-hidden="true" tabindex="-1"></a>urutan_format <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb28-191"><a href="#cb28-191" aria-hidden="true" tabindex="-1"></a>  <span class="st">"LP/EP"</span>, <span class="st">"Vinyl Single"</span>, <span class="st">"8 - Track"</span>,</span>
+<span id="cb28-192"><a href="#cb28-192" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Cassette"</span>, <span class="st">"Cassette Single"</span>, <span class="st">"Other Tapes"</span>,</span>
+<span id="cb28-193"><a href="#cb28-193" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Kiosk"</span>, <span class="st">"CD"</span>, <span class="st">"CD Single"</span>,</span>
+<span id="cb28-194"><a href="#cb28-194" aria-hidden="true" tabindex="-1"></a>  <span class="st">"SACD"</span>, <span class="st">"DVD Audio"</span>, <span class="st">"Music Video (Physical)"</span>,</span>
+<span id="cb28-195"><a href="#cb28-195" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Download Album"</span>, <span class="st">"Download Single"</span>, <span class="st">"Ringtones &amp; Ringbacks"</span>,</span>
+<span id="cb28-196"><a href="#cb28-196" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Download Music Video"</span>, <span class="st">"Other Digital"</span>, <span class="st">"Synchronization"</span>,</span>
+<span id="cb28-197"><a href="#cb28-197" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Paid Subscription"</span>, <span class="st">"On-Demand Streaming (Ad-Supported)"</span>,</span>
+<span id="cb28-198"><a href="#cb28-198" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Other Ad-Supported Streaming"</span>,</span>
+<span id="cb28-199"><a href="#cb28-199" aria-hidden="true" tabindex="-1"></a>  <span class="st">"SoundExchange Distributions"</span>,</span>
+<span id="cb28-200"><a href="#cb28-200" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Limited Tier Paid Subscription"</span></span>
+<span id="cb28-201"><a href="#cb28-201" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb28-202"><a href="#cb28-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-203"><a href="#cb28-203" aria-hidden="true" tabindex="-1"></a><span class="co"># Pemetaan setiap level pada `format` dengan warna</span></span>
+<span id="cb28-204"><a href="#cb28-204" aria-hidden="true" tabindex="-1"></a>pemetaan_format_warna <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb28-205"><a href="#cb28-205" aria-hidden="true" tabindex="-1"></a>  <span class="st">"LP/EP"</span> <span class="ot">=</span> <span class="st">"#2A5784"</span>,</span>
+<span id="cb28-206"><a href="#cb28-206" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Vinyl Single"</span> <span class="ot">=</span> <span class="st">"#43719F"</span>,</span>
+<span id="cb28-207"><a href="#cb28-207" aria-hidden="true" tabindex="-1"></a>  <span class="st">"8 - Track"</span> <span class="ot">=</span> <span class="st">"#5B8DB8"</span>,</span>
+<span id="cb28-208"><a href="#cb28-208" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Cassette"</span> <span class="ot">=</span> <span class="st">"#7AAAD0"</span>,</span>
+<span id="cb28-209"><a href="#cb28-209" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Cassette Single"</span> <span class="ot">=</span> <span class="st">"#9BC7E4"</span>,</span>
+<span id="cb28-210"><a href="#cb28-210" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Other Tapes"</span> <span class="ot">=</span> <span class="st">"#BADDF1"</span>,</span>
+<span id="cb28-211"><a href="#cb28-211" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Kiosk"</span> <span class="ot">=</span> <span class="st">"#E1575A"</span>,</span>
+<span id="cb28-212"><a href="#cb28-212" aria-hidden="true" tabindex="-1"></a>  <span class="st">"CD"</span> <span class="ot">=</span> <span class="st">"#EE7423"</span>,</span>
+<span id="cb28-213"><a href="#cb28-213" aria-hidden="true" tabindex="-1"></a>  <span class="st">"CD Single"</span> <span class="ot">=</span> <span class="st">"#F59D3D"</span>,</span>
+<span id="cb28-214"><a href="#cb28-214" aria-hidden="true" tabindex="-1"></a>  <span class="st">"SACD"</span> <span class="ot">=</span> <span class="st">"#FFC686"</span>,</span>
+<span id="cb28-215"><a href="#cb28-215" aria-hidden="true" tabindex="-1"></a>  <span class="st">"DVD Audio"</span> <span class="ot">=</span> <span class="st">"#9D7760"</span>,</span>
+<span id="cb28-216"><a href="#cb28-216" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Music Video (Physical)"</span> <span class="ot">=</span> <span class="st">"#F1CF63"</span>,</span>
+<span id="cb28-217"><a href="#cb28-217" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Download Album"</span> <span class="ot">=</span> <span class="st">"#7C4D79"</span>,</span>
+<span id="cb28-218"><a href="#cb28-218" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Download Single"</span> <span class="ot">=</span> <span class="st">"#9B6A97"</span>,</span>
+<span id="cb28-219"><a href="#cb28-219" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Ringtones &amp; Ringbacks"</span> <span class="ot">=</span> <span class="st">"#BE89AC"</span>,</span>
+<span id="cb28-220"><a href="#cb28-220" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Download Music Video"</span> <span class="ot">=</span> <span class="st">"#D5A5C4"</span>,</span>
+<span id="cb28-221"><a href="#cb28-221" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Other Digital"</span> <span class="ot">=</span> <span class="st">"#EFC9E6"</span>,</span>
+<span id="cb28-222"><a href="#cb28-222" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Synchronization"</span> <span class="ot">=</span> <span class="st">"#BBB1AC"</span>,</span>
+<span id="cb28-223"><a href="#cb28-223" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Paid Subscription"</span> <span class="ot">=</span> <span class="st">"#24693D"</span>,</span>
+<span id="cb28-224"><a href="#cb28-224" aria-hidden="true" tabindex="-1"></a>  <span class="st">"On-Demand Streaming (Ad-Supported)"</span> <span class="ot">=</span> <span class="st">"#398949"</span>,</span>
+<span id="cb28-225"><a href="#cb28-225" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Other Ad-Supported Streaming"</span> <span class="ot">=</span> <span class="st">"#61AA57"</span>,</span>
+<span id="cb28-226"><a href="#cb28-226" aria-hidden="true" tabindex="-1"></a>  <span class="st">"SoundExchange Distributions"</span> <span class="ot">=</span> <span class="st">"#7DC470"</span>,</span>
+<span id="cb28-227"><a href="#cb28-227" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Limited Tier Paid Subscription"</span> <span class="ot">=</span> <span class="st">"#B4E0A7"</span></span>
+<span id="cb28-228"><a href="#cb28-228" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb28-229"><a href="#cb28-229" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-230"><a href="#cb28-230" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb28-231"><a href="#cb28-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-232"><a href="#cb28-232" aria-hidden="true" tabindex="-1"></a>Kita jalankan rencana selanjutnya. Untuk melakukannya, kita jalankan kode berikut ini. Hasilnya ditunjukkan pada @fig-ggplot2-infl-akhir.</span>
+<span id="cb28-233"><a href="#cb28-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-236"><a href="#cb28-236" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb28-237"><a href="#cb28-237" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-ggplot2-infl-akhir</span></span>
+<span id="cb28-238"><a href="#cb28-238" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Visualisasi data dengan {ggplot2} setelah dilakukan beberapa modifikasi"</span></span>
+<span id="cb28-239"><a href="#cb28-239" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-asp: 0.75</span></span>
+<span id="cb28-240"><a href="#cb28-240" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb28-241"><a href="#cb28-241" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-242"><a href="#cb28-242" aria-hidden="true" tabindex="-1"></a>plot_musik <span class="ot">&lt;-</span> pendapatan_as_riaa <span class="sc">|&gt;</span> </span>
+<span id="cb28-243"><a href="#cb28-243" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb28-244"><a href="#cb28-244" aria-hidden="true" tabindex="-1"></a>    <span class="at">format =</span> <span class="fu">factor</span>(</span>
+<span id="cb28-245"><a href="#cb28-245" aria-hidden="true" tabindex="-1"></a>      format,</span>
+<span id="cb28-246"><a href="#cb28-246" aria-hidden="true" tabindex="-1"></a>      <span class="at">levels =</span> urutan_format</span>
+<span id="cb28-247"><a href="#cb28-247" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb28-248"><a href="#cb28-248" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb28-249"><a href="#cb28-249" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(</span>
+<span id="cb28-250"><a href="#cb28-250" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> tahun, <span class="at">y =</span> pendapatan_infl, <span class="at">fill =</span> format)</span>
+<span id="cb28-251"><a href="#cb28-251" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb28-252"><a href="#cb28-252" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(</span>
+<span id="cb28-253"><a href="#cb28-253" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="st">"stack"</span>,</span>
+<span id="cb28-254"><a href="#cb28-254" aria-hidden="true" tabindex="-1"></a>    <span class="at">stat =</span> <span class="st">"identity"</span></span>
+<span id="cb28-255"><a href="#cb28-255" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb28-256"><a href="#cb28-256" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(</span>
+<span id="cb28-257"><a href="#cb28-257" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"Format"</span>,</span>
+<span id="cb28-258"><a href="#cb28-258" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> pemetaan_format_warna</span>
+<span id="cb28-259"><a href="#cb28-259" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb28-260"><a href="#cb28-260" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(</span>
+<span id="cb28-261"><a href="#cb28-261" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="fu">guide_legend</span>(<span class="at">ncol =</span> <span class="dv">4</span>)</span>
+<span id="cb28-262"><a href="#cb28-262" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb28-263"><a href="#cb28-263" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb28-264"><a href="#cb28-264" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb28-265"><a href="#cb28-265" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb28-266"><a href="#cb28-266" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
+<span id="cb28-267"><a href="#cb28-267" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb28-268"><a href="#cb28-268" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.key.spacing.y =</span> <span class="fu">unit</span>(.<span class="dv">025</span>, <span class="st">"cm"</span>),</span>
+<span id="cb28-269"><a href="#cb28-269" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(</span>
+<span id="cb28-270"><a href="#cb28-270" aria-hidden="true" tabindex="-1"></a>      <span class="at">face =</span> <span class="st">"bold"</span></span>
+<span id="cb28-271"><a href="#cb28-271" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb28-272"><a href="#cb28-272" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb28-273"><a href="#cb28-273" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb28-274"><a href="#cb28-274" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Pendapatan Industri Musik di AS Berdasarkan Format"</span>,</span>
+<span id="cb28-275"><a href="#cb28-275" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Disesuaikan dengan Inflasi, Nilai Dolar Tahun 2023"</span>,</span>
+<span id="cb28-276"><a href="#cb28-276" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Pendapatan</span><span class="sc">\n</span><span class="st">(juta dolar AS)"</span>,</span>
+<span id="cb28-277"><a href="#cb28-277" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Data: Recording Industry Association of America (RIAA)"</span></span>
+<span id="cb28-278"><a href="#cb28-278" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb28-279"><a href="#cb28-279" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-280"><a href="#cb28-280" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(plot_musik)</span>
+<span id="cb28-281"><a href="#cb28-281" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb28-282"><a href="#cb28-282" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-283"><a href="#cb28-283" aria-hidden="true" tabindex="-1"></a>Diagram batang pada @fig-ggplot2-infl-akhir sudah mirip dengan yang ditunjukkan pada @fig-riaa-music-revenue. Diagram tersebut telah efektif menyampaikan informasi tentang pendapatan industri musik berdasarkan formatnya.</span>
+<span id="cb28-284"><a href="#cb28-284" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-285"><a href="#cb28-285" aria-hidden="true" tabindex="-1"></a><span class="fu">## Menambahkan Interaktivitas dengan {plotly} {#sec-menambahkan-interaktivitas-dengan-plotly}</span></span>
+<span id="cb28-286"><a href="#cb28-286" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-287"><a href="#cb28-287" aria-hidden="true" tabindex="-1"></a>Diagram batang pada @fig-ggplot2-infl-akhir memang sudah efektif dalam menyampaikan informasi pendapatan industri musik di AS berdasarkan formatnya. Meskipun demikian, kita kesulitan dalam mencari informasi yang sifatnya detail. Misalnya, dari gambar tersebut apakah kamu dapat mengetahui besarnya pendapatan dari format download album pada tahun 2010? Sulit, bukan?</span>
+<span id="cb28-288"><a href="#cb28-288" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-289"><a href="#cb28-289" aria-hidden="true" tabindex="-1"></a>Untuk mengatasi masalah tersebut, kita dapat menambahkan interaktivitas ke dalam grafik tersebut dengan <span class="co">[</span><span class="ot">{plotly}</span><span class="co">](https://plotly-r.com)</span>{.external target="_blank"}. Untungnya paket ini dapat kita terapkan terhadap objek ggplot sebelumnya dengan fungsi <span class="in">`ggplotly()`</span>.</span>
+<span id="cb28-290"><a href="#cb28-290" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-293"><a href="#cb28-293" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb28-294"><a href="#cb28-294" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-plotly</span></span>
+<span id="cb28-295"><a href="#cb28-295" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Diagram batang menjadi interaktif dengan {plotly}"</span></span>
+<span id="cb28-296"><a href="#cb28-296" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-asp: 0.5625</span></span>
+<span id="cb28-297"><a href="#cb28-297" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb28-298"><a href="#cb28-298" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-299"><a href="#cb28-299" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(</span>
+<span id="cb28-300"><a href="#cb28-300" aria-hidden="true" tabindex="-1"></a>  <span class="at">p =</span> plot_musik</span>
+<span id="cb28-301"><a href="#cb28-301" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb28-302"><a href="#cb28-302" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-303"><a href="#cb28-303" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb28-304"><a href="#cb28-304" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-305"><a href="#cb28-305" aria-hidden="true" tabindex="-1"></a>Kita dapat menyorot batang-batang pada @fig-plotly untuk melihat informasi detailnya. Misalnya, kita dapat mengarahkan kursor ke batang berwarna ungu tua pada tahun 2010. Di situ kita dapat melihat bahwa besarnya pendapatan industri musik dari format download album pada tahun itu adalah 1219,1 juta dolar AS.</span>
+<span id="cb28-306"><a href="#cb28-306" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-307"><a href="#cb28-307" aria-hidden="true" tabindex="-1"></a>Selain itu, kita dapat mengklik satu atau lebih item legenda untuk menghilangkan data yang bersangkutan dari diagram. Kita juga dapat mengklik dua kali item legenda untuk mengisolasinya. Fitur-fitur interaktivitas ini memudahkan kita dalam membaca dan menginterpretasi data.</span>
+<span id="cb28-308"><a href="#cb28-308" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-309"><a href="#cb28-309" aria-hidden="true" tabindex="-1"></a><span class="fu">## Memvisualisasikan Data dengan Observable JS {#sec-memvisualisasikan-data-dengan-observable-js}</span></span>
+<span id="cb28-310"><a href="#cb28-310" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-311"><a href="#cb28-311" aria-hidden="true" tabindex="-1"></a>Pada @sec-visualisasi-data-dengan-ggplot2 dan @sec-menambahkan-interaktivitas-dengan-plotly kita telah memvisualisasikan data pendapatan industri musik dengan menggunakan pemrograman R. Sekarang, kita akan memvisualisasikannya dengan <span class="co">[</span><span class="ot">Observable JS</span><span class="co">](https://observablehq.com/)</span>{.external target="_blank"}, khususnya <span class="co">[</span><span class="ot">Plot</span><span class="co">](https://observablehq.com/plot/ "The JavaScript library for exploratory data visualization")</span>{.external target="_blank"}.</span>
+<span id="cb28-312"><a href="#cb28-312" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-313"><a href="#cb28-313" aria-hidden="true" tabindex="-1"></a>Pertama, kita impor data dengan menggunakan <span class="in">`d3.csv()`</span>. Kita masukkan alamat url data kita ke dalam fungsi tersebut. Kita gunakan fungsi <span class="in">`d3.autoType`</span> untuk mengkonversi variabel-variabel dalam data kita ke dalam Date dan numerik secara otomatis. Kita simpan data tersebut dengan nama <span class="in">`pendapatanMusik`</span>.</span>
+<span id="cb28-314"><a href="#cb28-314" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-317"><a href="#cb28-317" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb28-318"><a href="#cb28-318" aria-hidden="true" tabindex="-1"></a><span class="co">//| code-fold: false</span></span>
+<span id="cb28-319"><a href="#cb28-319" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-320"><a href="#cb28-320" aria-hidden="true" tabindex="-1"></a>csvUrl <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/jelajahstatid/jelajahstatid.github.io/refs/heads/main/pos/2025-01-pendapatan-musik/aset/pendapatan_as_riaa.csv"</span></span>
+<span id="cb28-321"><a href="#cb28-321" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb28-322"><a href="#cb28-322" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-325"><a href="#cb28-325" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb28-326"><a href="#cb28-326" aria-hidden="true" tabindex="-1"></a><span class="co">//| code-fold: false</span></span>
+<span id="cb28-327"><a href="#cb28-327" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-328"><a href="#cb28-328" aria-hidden="true" tabindex="-1"></a>pendapatanMusik <span class="op">=</span> d3<span class="op">.</span><span class="fu">csv</span>(csvUrl<span class="op">,</span> d3<span class="op">.</span><span class="at">autoType</span>)</span>
+<span id="cb28-329"><a href="#cb28-329" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-330"><a href="#cb28-330" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb28-331"><a href="#cb28-331" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-332"><a href="#cb28-332" aria-hidden="true" tabindex="-1"></a>Setelah itu, kita visualisasikan data tersebut dengan menggunakan tiga objek geometris: barY, ruleY, dan axisX. Objek geometris barY kita gunakan untuk membuat diagram batang vertikal dengan <span class="in">`y: "pendapatan_infl"`</span>, <span class="in">`x: "tahun"`</span>, <span class="in">`fill: "format"`</span>. Kita atur agar persegi panjang tersebut interaktif dengan menambahkan <span class="in">`tip: true`</span>. Objek geometris ruleY kita gunakan untuk membuat garis horizontal yang memotong sumbu-$y$ di $y = 0$. Garis itu adalah sumbu-$x$. Terakhir, kita atur agar tik-tik pada sumbu-$x$ dibuat dengan selang lima tahunan. Pengaturan ini kita lakukan pada objek geometris axisX.</span>
+<span id="cb28-333"><a href="#cb28-333" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-334"><a href="#cb28-334" aria-hidden="true" tabindex="-1"></a>Kita dapat mengatur legenda warnanya pada <span class="in">`color`</span>. Kita atur <span class="in">`legend: true`</span> untuk menampilkan legendanya dan <span class="in">`columns: 4`</span> untuk mengatur banyaknya kolom dalam penyajian item-item legenda tersebut. Kita juga dapat melakukan pengaturan lebih lanjut terhadap <span class="in">`x`</span>, <span class="in">`y`</span>, <span class="in">`caption`</span>, dan <span class="in">`subtitle`</span>. Hasilnya disajikan pada @fig-obs-plot-dasar.</span>
+<span id="cb28-335"><a href="#cb28-335" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-336"><a href="#cb28-336" aria-hidden="true" tabindex="-1"></a>::: {#fig-obs-plot-dasar}</span>
+<span id="cb28-339"><a href="#cb28-339" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb28-340"><a href="#cb28-340" aria-hidden="true" tabindex="-1"></a><span class="co">//| code-fold: false</span></span>
+<span id="cb28-341"><a href="#cb28-341" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-342"><a href="#cb28-342" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb28-343"><a href="#cb28-343" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Tahun"</span>}<span class="op">,</span></span>
+<span id="cb28-344"><a href="#cb28-344" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {</span>
+<span id="cb28-345"><a href="#cb28-345" aria-hidden="true" tabindex="-1"></a>    <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb28-346"><a href="#cb28-346" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Pendapatan (juta dolar AS)"</span></span>
+<span id="cb28-347"><a href="#cb28-347" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb28-348"><a href="#cb28-348" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {</span>
+<span id="cb28-349"><a href="#cb28-349" aria-hidden="true" tabindex="-1"></a>    <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb28-350"><a href="#cb28-350" aria-hidden="true" tabindex="-1"></a>    <span class="dt">columns</span><span class="op">:</span> <span class="dv">4</span></span>
+<span id="cb28-351"><a href="#cb28-351" aria-hidden="true" tabindex="-1"></a>}<span class="op">,</span></span>
+<span id="cb28-352"><a href="#cb28-352" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb28-353"><a href="#cb28-353" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">barY</span>(pendapatanMusik<span class="op">,</span>{</span>
+<span id="cb28-354"><a href="#cb28-354" aria-hidden="true" tabindex="-1"></a>      <span class="dt">y</span><span class="op">:</span> <span class="st">"pendapatan_infl"</span><span class="op">,</span></span>
+<span id="cb28-355"><a href="#cb28-355" aria-hidden="true" tabindex="-1"></a>      <span class="dt">x</span><span class="op">:</span> <span class="st">"tahun"</span><span class="op">,</span></span>
+<span id="cb28-356"><a href="#cb28-356" aria-hidden="true" tabindex="-1"></a>      <span class="dt">fill</span><span class="op">:</span> <span class="st">"format"</span><span class="op">,</span></span>
+<span id="cb28-357"><a href="#cb28-357" aria-hidden="true" tabindex="-1"></a>      <span class="dt">order</span><span class="op">:</span> <span class="kw">null</span><span class="op">,</span></span>
+<span id="cb28-358"><a href="#cb28-358" aria-hidden="true" tabindex="-1"></a>      <span class="dt">tip</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb28-359"><a href="#cb28-359" aria-hidden="true" tabindex="-1"></a>    })<span class="op">,</span></span>
+<span id="cb28-360"><a href="#cb28-360" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>])<span class="op">,</span></span>
+<span id="cb28-361"><a href="#cb28-361" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">axisX</span>({<span class="dt">ticks</span><span class="op">:</span> <span class="st">"5 years"</span>})</span>
+<span id="cb28-362"><a href="#cb28-362" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
+<span id="cb28-363"><a href="#cb28-363" aria-hidden="true" tabindex="-1"></a>  <span class="dt">caption</span><span class="op">:</span> <span class="st">"Data: Recording Industry Association of America (RIAA)"</span><span class="op">,</span></span>
+<span id="cb28-364"><a href="#cb28-364" aria-hidden="true" tabindex="-1"></a>  <span class="dt">subtitle</span><span class="op">:</span> <span class="st">"Disesuaikan dengan Inflasi, Nilai Dolar Tahun 2023"</span></span>
+<span id="cb28-365"><a href="#cb28-365" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb28-366"><a href="#cb28-366" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb28-367"><a href="#cb28-367" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-368"><a href="#cb28-368" aria-hidden="true" tabindex="-1"></a>Diagram batang yang dibuat dengan Observable Plot</span>
+<span id="cb28-369"><a href="#cb28-369" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb28-370"><a href="#cb28-370" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-371"><a href="#cb28-371" aria-hidden="true" tabindex="-1"></a>*Alright!* Kita mendapatkan @fig-obs-plot-dasar yang secara fungsi serupa dengan @fig-plotly. Selanjutnya kita akan memodifikasi diagram tersebut dalam hal tampilan dan interaktivitasnya. Untuk tampilan, kita akan mengatur warnanya agar sama dengan diagram pada @fig-ggplot2-infl-akhir dan @fig-plotly. Kita juga akan menambahkan interaktivitas pada diagram tersebut dengan menambahkan beberapa input.</span>
+<span id="cb28-372"><a href="#cb28-372" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-373"><a href="#cb28-373" aria-hidden="true" tabindex="-1"></a><span class="fu">## Menambahkan Interaktivitas dengan Input Observable {#sec-interaktivitas-input-observable}</span></span>
+<span id="cb28-374"><a href="#cb28-374" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-375"><a href="#cb28-375" aria-hidden="true" tabindex="-1"></a>Kita tambahkan interaktivitas terhadap @fig-obs-plot-dasar dengan beberapa <span class="co">[</span><span class="ot">input Observable</span><span class="co">](https://observablehq.com/documentation/inputs/overview)</span>{.external target="_blank"}. Ada empat input yang dapat kita tambahkan. Deskripsi keempat input tersebut adalah sebagai berikut.</span>
+<span id="cb28-376"><a href="#cb28-376" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-377"><a href="#cb28-377" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Input pendapatan. Input ini menyediakan pilihan bagi pengguna untuk memilih jenis pendapatan yang divisualisasikan—apakah yang disesuaikan dengan inflasi atau yang tidak.</span>
+<span id="cb28-378"><a href="#cb28-378" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-379"><a href="#cb28-379" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Input format. Input ini memberikan keleluasaan bagi pengguna untuk memilih format-format apa yang akan divisualisasikan.</span>
+<span id="cb28-380"><a href="#cb28-380" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-381"><a href="#cb28-381" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Input rentang tahun. Input ini dapat digunakan pengguna untuk memilih rentang tahun terhadap data yang divisualisasikan. Untuk melakukannya, kita sediakan dua input. Kedua input ini digunakan sebagai batas tahun pertama dan kedua.</span>
+<span id="cb28-382"><a href="#cb28-382" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-383"><a href="#cb28-383" aria-hidden="true" tabindex="-1"></a>Setelah penambahan input-input tersebut, diagram batang interaktifnya disajikan pada @fig-obs-input.</span>
+<span id="cb28-384"><a href="#cb28-384" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-385"><a href="#cb28-385" aria-hidden="true" tabindex="-1"></a>:::: {#fig-obs-input}</span>
+<span id="cb28-388"><a href="#cb28-388" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb28-389"><a href="#cb28-389" aria-hidden="true" tabindex="-1"></a><span class="co">//| panel: input</span></span>
+<span id="cb28-390"><a href="#cb28-390" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb28-391"><a href="#cb28-391" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-392"><a href="#cb28-392" aria-hidden="true" tabindex="-1"></a>viewof pendapatanTerpilih <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>(</span>
+<span id="cb28-393"><a href="#cb28-393" aria-hidden="true" tabindex="-1"></a>  <span class="kw">new</span> <span class="bu">Map</span>([</span>
+<span id="cb28-394"><a href="#cb28-394" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"Tidak disesuaikan dengan inflasi"</span><span class="op">,</span> <span class="st">"pendapatan"</span>]<span class="op">,</span></span>
+<span id="cb28-395"><a href="#cb28-395" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"Disesuaikan dengan inflasi"</span><span class="op">,</span> <span class="st">"pendapatan_infl"</span>]</span>
+<span id="cb28-396"><a href="#cb28-396" aria-hidden="true" tabindex="-1"></a>  ])<span class="op">,</span></span>
+<span id="cb28-397"><a href="#cb28-397" aria-hidden="true" tabindex="-1"></a>  {<span class="dt">label</span><span class="op">:</span> <span class="st">"Pendapatan"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="st">"pendapatan_infl"</span>}</span>
+<span id="cb28-398"><a href="#cb28-398" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb28-399"><a href="#cb28-399" aria-hidden="true" tabindex="-1"></a>viewof formatTerpilih <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(daftarFormat<span class="op">,</span> {</span>
+<span id="cb28-400"><a href="#cb28-400" aria-hidden="true" tabindex="-1"></a>  <span class="dt">multiple</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> </span>
+<span id="cb28-401"><a href="#cb28-401" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Format"</span><span class="op">,</span> </span>
+<span id="cb28-402"><a href="#cb28-402" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> daftarFormat</span>
+<span id="cb28-403"><a href="#cb28-403" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb28-404"><a href="#cb28-404" aria-hidden="true" tabindex="-1"></a>viewof tahun1 <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">1973</span><span class="op">,</span> <span class="dv">2023</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">1973</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Tahun (batas 1)"</span>})</span>
+<span id="cb28-405"><a href="#cb28-405" aria-hidden="true" tabindex="-1"></a>viewof tahun2 <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">1973</span><span class="op">,</span> <span class="dv">2023</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">2023</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Tahun (batas 2)"</span>})</span>
+<span id="cb28-406"><a href="#cb28-406" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb28-407"><a href="#cb28-407" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-408"><a href="#cb28-408" aria-hidden="true" tabindex="-1"></a>::: panel-tabset</span>
+<span id="cb28-409"><a href="#cb28-409" aria-hidden="true" tabindex="-1"></a><span class="fu">## Plot</span></span>
+<span id="cb28-410"><a href="#cb28-410" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-413"><a href="#cb28-413" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb28-414"><a href="#cb28-414" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb28-415"><a href="#cb28-415" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-416"><a href="#cb28-416" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb28-417"><a href="#cb28-417" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Tahun"</span>}<span class="op">,</span></span>
+<span id="cb28-418"><a href="#cb28-418" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {</span>
+<span id="cb28-419"><a href="#cb28-419" aria-hidden="true" tabindex="-1"></a>    <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb28-420"><a href="#cb28-420" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Pendapatan (juta dolar AS)"</span></span>
+<span id="cb28-421"><a href="#cb28-421" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb28-422"><a href="#cb28-422" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {</span>
+<span id="cb28-423"><a href="#cb28-423" aria-hidden="true" tabindex="-1"></a>    <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb28-424"><a href="#cb28-424" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Format"</span><span class="op">,</span></span>
+<span id="cb28-425"><a href="#cb28-425" aria-hidden="true" tabindex="-1"></a>    <span class="dt">columns</span><span class="op">:</span> <span class="dv">4</span><span class="op">,</span></span>
+<span id="cb28-426"><a href="#cb28-426" aria-hidden="true" tabindex="-1"></a>    <span class="dt">domain</span><span class="op">:</span> formatTerpilih<span class="op">,</span></span>
+<span id="cb28-427"><a href="#cb28-427" aria-hidden="true" tabindex="-1"></a>    <span class="dt">range</span><span class="op">:</span> warnaTerpilih</span>
+<span id="cb28-428"><a href="#cb28-428" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb28-429"><a href="#cb28-429" aria-hidden="true" tabindex="-1"></a>  <span class="dt">style</span><span class="op">:</span> {<span class="dt">width</span><span class="op">:</span> <span class="st">"100%"</span>}<span class="op">,</span></span>
+<span id="cb28-430"><a href="#cb28-430" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb28-431"><a href="#cb28-431" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">barY</span>(dataTerpilih<span class="op">,</span></span>
+<span id="cb28-432"><a href="#cb28-432" aria-hidden="true" tabindex="-1"></a>      {<span class="dt">y</span><span class="op">:</span> pendapatanTerpilih<span class="op">,</span> <span class="dt">x</span><span class="op">:</span> <span class="st">"tahun"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"format"</span><span class="op">,</span> <span class="dt">tip</span><span class="op">:</span> <span class="kw">true</span>} </span>
+<span id="cb28-433"><a href="#cb28-433" aria-hidden="true" tabindex="-1"></a>    )<span class="op">,</span></span>
+<span id="cb28-434"><a href="#cb28-434" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>])<span class="op">,</span></span>
+<span id="cb28-435"><a href="#cb28-435" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">axisX</span>({<span class="dt">ticks</span><span class="op">:</span> <span class="st">"5 years"</span>})</span>
+<span id="cb28-436"><a href="#cb28-436" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
+<span id="cb28-437"><a href="#cb28-437" aria-hidden="true" tabindex="-1"></a>  <span class="dt">caption</span><span class="op">:</span> <span class="st">"Data: Recording Industry Association of America (RIAA)"</span><span class="op">,</span></span>
+<span id="cb28-438"><a href="#cb28-438" aria-hidden="true" tabindex="-1"></a>  <span class="dt">subtitle</span><span class="op">:</span> anakJudul</span>
+<span id="cb28-439"><a href="#cb28-439" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb28-440"><a href="#cb28-440" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb28-441"><a href="#cb28-441" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-442"><a href="#cb28-442" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data</span></span>
+<span id="cb28-443"><a href="#cb28-443" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-446"><a href="#cb28-446" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb28-447"><a href="#cb28-447" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb28-448"><a href="#cb28-448" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-449"><a href="#cb28-449" aria-hidden="true" tabindex="-1"></a>Inputs<span class="op">.</span><span class="fu">table</span>(dataTerpilih<span class="op">,</span> {</span>
+<span id="cb28-450"><a href="#cb28-450" aria-hidden="true" tabindex="-1"></a>  <span class="dt">sort</span><span class="op">:</span> <span class="st">"tahun"</span><span class="op">,</span></span>
+<span id="cb28-451"><a href="#cb28-451" aria-hidden="true" tabindex="-1"></a>  <span class="dt">columns</span><span class="op">:</span> [</span>
+<span id="cb28-452"><a href="#cb28-452" aria-hidden="true" tabindex="-1"></a>    <span class="st">"format"</span><span class="op">,</span></span>
+<span id="cb28-453"><a href="#cb28-453" aria-hidden="true" tabindex="-1"></a>    <span class="st">"tahun"</span><span class="op">,</span></span>
+<span id="cb28-454"><a href="#cb28-454" aria-hidden="true" tabindex="-1"></a>    pendapatanTerpilih</span>
+<span id="cb28-455"><a href="#cb28-455" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
+<span id="cb28-456"><a href="#cb28-456" aria-hidden="true" tabindex="-1"></a>  <span class="dt">maxWidth</span><span class="op">:</span> <span class="st">"100%"</span></span>
+<span id="cb28-457"><a href="#cb28-457" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb28-458"><a href="#cb28-458" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb28-459"><a href="#cb28-459" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb28-460"><a href="#cb28-460" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-461"><a href="#cb28-461" aria-hidden="true" tabindex="-1"></a>Diagram batang dan tabel interaktif yang dibuat dengan menggunakan Observable JS</span>
+<span id="cb28-462"><a href="#cb28-462" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb28-463"><a href="#cb28-463" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-464"><a href="#cb28-464" aria-hidden="true" tabindex="-1"></a>*Voila!* Kita mendapatkan diagram batang interaktif seperti pada situs webnya RIAA. Bagaimana membuat diagram batang seperti yang ditunjukkan pada @fig-obs-input? *Well*, kode lengkapnya dapat kamu lihat dan pelajari <span class="co">[</span><span class="ot">di catatan ini</span><span class="co">](https://observablehq.com/d/39c7c69c68bb1302)</span>{.external target="_blank"}.</span>
+<span id="cb28-465"><a href="#cb28-465" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-468"><a href="#cb28-468" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb28-469"><a href="#cb28-469" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb28-470"><a href="#cb28-470" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-471"><a href="#cb28-471" aria-hidden="true" tabindex="-1"></a>dataTerpilih <span class="op">=</span> pendapatanMusik<span class="op">.</span><span class="fu">filter</span>(<span class="kw">function</span> (pendapatan) {</span>
+<span id="cb28-472"><a href="#cb28-472" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> formatTerpilih<span class="op">.</span><span class="fu">includes</span>(pendapatan<span class="op">.</span><span class="at">format</span>) <span class="op">&amp;&amp;</span></span>
+<span id="cb28-473"><a href="#cb28-473" aria-hidden="true" tabindex="-1"></a>    tahunMin <span class="op">&lt;=</span> pendapatan<span class="op">.</span><span class="at">tahun</span> <span class="op">&amp;&amp;</span></span>
+<span id="cb28-474"><a href="#cb28-474" aria-hidden="true" tabindex="-1"></a>    tahunMaks <span class="op">&gt;=</span> pendapatan<span class="op">.</span><span class="at">tahun</span><span class="op">;</span></span>
+<span id="cb28-475"><a href="#cb28-475" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb28-476"><a href="#cb28-476" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb28-477"><a href="#cb28-477" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-480"><a href="#cb28-480" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb28-481"><a href="#cb28-481" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb28-482"><a href="#cb28-482" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-483"><a href="#cb28-483" aria-hidden="true" tabindex="-1"></a>tahun1Date <span class="op">=</span> <span class="kw">new</span> <span class="bu">Date</span>(<span class="vs">`</span><span class="sc">${</span>tahun1<span class="sc">}</span><span class="vs">`</span>)</span>
+<span id="cb28-484"><a href="#cb28-484" aria-hidden="true" tabindex="-1"></a>tahun2Date <span class="op">=</span> <span class="kw">new</span> <span class="bu">Date</span>(<span class="vs">`</span><span class="sc">${</span>tahun2<span class="sc">}</span><span class="vs">`</span>)</span>
+<span id="cb28-485"><a href="#cb28-485" aria-hidden="true" tabindex="-1"></a>tahunMin <span class="op">=</span> <span class="kw">new</span> <span class="bu">Date</span>(<span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(tahun1Date<span class="op">,</span> tahun2Date))</span>
+<span id="cb28-486"><a href="#cb28-486" aria-hidden="true" tabindex="-1"></a>tahunMaks <span class="op">=</span> <span class="kw">new</span> <span class="bu">Date</span>(<span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(tahun1Date<span class="op">,</span> tahun2Date))</span>
+<span id="cb28-487"><a href="#cb28-487" aria-hidden="true" tabindex="-1"></a>anakJudul <span class="op">=</span> pendapatanTerpilih <span class="op">===</span> <span class="st">"pendapatan"</span> </span>
+<span id="cb28-488"><a href="#cb28-488" aria-hidden="true" tabindex="-1"></a>  <span class="op">?</span> <span class="kw">null</span> </span>
+<span id="cb28-489"><a href="#cb28-489" aria-hidden="true" tabindex="-1"></a>  <span class="op">:</span> pendapatanTerpilih <span class="op">===</span> <span class="st">"pendapatan_infl"</span> </span>
+<span id="cb28-490"><a href="#cb28-490" aria-hidden="true" tabindex="-1"></a>    <span class="op">?</span> <span class="st">"Disesuaikan dengan Inflasi, Nilai Dolar Tahun 2023"</span> </span>
+<span id="cb28-491"><a href="#cb28-491" aria-hidden="true" tabindex="-1"></a>    <span class="op">:</span> <span class="kw">null</span></span>
+<span id="cb28-492"><a href="#cb28-492" aria-hidden="true" tabindex="-1"></a>warnaTerpilih <span class="op">=</span> daftarFormat</span>
+<span id="cb28-493"><a href="#cb28-493" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">map</span>((f<span class="op">,</span> i) <span class="kw">=&gt;</span> (formatTerpilih<span class="op">.</span><span class="fu">includes</span>(f) <span class="op">?</span> warnaFormat[i] <span class="op">:</span> <span class="kw">null</span>))</span>
+<span id="cb28-494"><a href="#cb28-494" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">filter</span>((color) <span class="kw">=&gt;</span> color <span class="op">!==</span> <span class="kw">null</span>)</span>
+<span id="cb28-495"><a href="#cb28-495" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb28-496"><a href="#cb28-496" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-499"><a href="#cb28-499" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb28-500"><a href="#cb28-500" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb28-501"><a href="#cb28-501" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-502"><a href="#cb28-502" aria-hidden="true" tabindex="-1"></a>daftarFormat <span class="op">=</span> [<span class="st">"LP/EP"</span><span class="op">,</span> <span class="st">"Vinyl Single"</span><span class="op">,</span> <span class="st">"8 - Track"</span><span class="op">,</span> <span class="st">"Cassette"</span><span class="op">,</span> <span class="st">"Cassette Single"</span><span class="op">,</span></span>
+<span id="cb28-503"><a href="#cb28-503" aria-hidden="true" tabindex="-1"></a>             <span class="st">"Other Tapes"</span><span class="op">,</span> <span class="st">"Kiosk"</span><span class="op">,</span> <span class="st">"CD"</span><span class="op">,</span> <span class="st">"CD Single"</span><span class="op">,</span> <span class="st">"SACD"</span><span class="op">,</span> <span class="st">"DVD Audio"</span><span class="op">,</span></span>
+<span id="cb28-504"><a href="#cb28-504" aria-hidden="true" tabindex="-1"></a>             <span class="st">"Music Video (Physical)"</span><span class="op">,</span> <span class="st">"Download Album"</span><span class="op">,</span> <span class="st">"Download Single"</span><span class="op">,</span></span>
+<span id="cb28-505"><a href="#cb28-505" aria-hidden="true" tabindex="-1"></a>             <span class="st">"Ringtones &amp; Ringbacks"</span><span class="op">,</span> <span class="st">"Download Music Video"</span><span class="op">,</span> <span class="st">"Other Digital"</span><span class="op">,</span></span>
+<span id="cb28-506"><a href="#cb28-506" aria-hidden="true" tabindex="-1"></a>             <span class="st">"Synchronization"</span><span class="op">,</span> <span class="st">"Paid Subscription"</span><span class="op">,</span> <span class="st">"On-Demand Streaming (Ad-Supported)"</span><span class="op">,</span></span>
+<span id="cb28-507"><a href="#cb28-507" aria-hidden="true" tabindex="-1"></a>             <span class="st">"Other Ad-Supported Streaming"</span><span class="op">,</span> <span class="st">"SoundExchange Distributions"</span><span class="op">,</span></span>
+<span id="cb28-508"><a href="#cb28-508" aria-hidden="true" tabindex="-1"></a>             <span class="st">"Limited Tier Paid Subscription"</span>]</span>
+<span id="cb28-509"><a href="#cb28-509" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb28-510"><a href="#cb28-510" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-513"><a href="#cb28-513" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb28-514"><a href="#cb28-514" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb28-515"><a href="#cb28-515" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-516"><a href="#cb28-516" aria-hidden="true" tabindex="-1"></a>warnaFormat <span class="op">=</span> [<span class="st">"#2A5784"</span><span class="op">,</span> <span class="st">"#43719F"</span><span class="op">,</span> <span class="st">"#5B8DB8"</span><span class="op">,</span> <span class="st">"#7AAAD0"</span><span class="op">,</span> <span class="st">"#9BC7E4"</span><span class="op">,</span> <span class="st">"#BADDF1"</span><span class="op">,</span> </span>
+<span id="cb28-517"><a href="#cb28-517" aria-hidden="true" tabindex="-1"></a>            <span class="st">"#E1575A"</span><span class="op">,</span> <span class="st">"#EE7423"</span><span class="op">,</span> <span class="st">"#F59D3D"</span><span class="op">,</span> <span class="st">"#FFC686"</span><span class="op">,</span> <span class="st">"#9D7760"</span><span class="op">,</span> <span class="st">"#F1CF63"</span><span class="op">,</span> </span>
+<span id="cb28-518"><a href="#cb28-518" aria-hidden="true" tabindex="-1"></a>            <span class="st">"#7C4D79"</span><span class="op">,</span> <span class="st">"#9B6A97"</span><span class="op">,</span> <span class="st">"#BE89AC"</span><span class="op">,</span> <span class="st">"#D5A5C4"</span><span class="op">,</span> <span class="st">"#EFC9E6"</span><span class="op">,</span> <span class="st">"#BBB1AC"</span><span class="op">,</span> </span>
+<span id="cb28-519"><a href="#cb28-519" aria-hidden="true" tabindex="-1"></a>            <span class="st">"#24693D"</span><span class="op">,</span> <span class="st">"#398949"</span><span class="op">,</span> <span class="st">"#61AA57"</span><span class="op">,</span> <span class="st">"#7DC470"</span><span class="op">,</span> <span class="st">"#B4E0A7"</span>]</span>
+<span id="cb28-520"><a href="#cb28-520" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb28-521"><a href="#cb28-521" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-522"><a href="#cb28-522" aria-hidden="true" tabindex="-1"></a><span class="fu">## Catatan Akhir {#sec-catatan-akhir}</span></span>
+<span id="cb28-523"><a href="#cb28-523" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-524"><a href="#cb28-524" aria-hidden="true" tabindex="-1"></a>Kita telah memvisualisasikan data pendapatan industri musik dengan beragam cara. Pada @sec-visualisasi-data-dengan-ggplot2 dan @sec-menambahkan-interaktivitas-dengan-plotly, kita melakukan visualisasi dengan pemrograman R. Bagian-bagian itu mendemonstrasikan bagaimana membuat diagram dengan menggunakan {ggplot2} dan {plotly}. Kedua paket tersebut sangat membantu untuk melakukan visualisasi data, baik statis maupun dinamis.</span>
+<span id="cb28-525"><a href="#cb28-525" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-526"><a href="#cb28-526" aria-hidden="true" tabindex="-1"></a>Pada @sec-memvisualisasikan-data-dengan-observable-js, kita menggunakan Observable Plot untuk membuat diagram yang serupa. Pada @sec-interaktivitas-input-observable, kita lengkapi diagram tersebut dengan beberapa input untuk membuat diagramnya semakin dinamis. Teknik visualisasi data seperti ini sangat berguna jika kita ingin mempresentasikan data dengan media daring.</span>
+<span id="cb28-527"><a href="#cb28-527" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-528"><a href="#cb28-528" aria-hidden="true" tabindex="-1"></a>Apa selanjutnya? Teknik visualisasi yang didemonstrasikan dalam artikel ini tentu dapat dikembangkan lagi. Misalnya, jika kamu ingin berfokus untuk membuat animasi, kamu dapat menggunakan <span class="co">[</span><span class="ot">{gganimate}</span><span class="co">](/pos/2024-08-animasi-diagram-statistik/index.qmd "Membuat Diagram Lebih Hidup dengan Animasi")</span>. Kamu ingin menyelam lebih dalam tentang interaktivitas dengan R? Kamu dapat mencoba <span class="co">[</span><span class="ot">{shiny}</span><span class="co">](/pos/2024-08-statistik-dinamis-dan-interaktif/index.qmd "Membuat Statistik Menjadi Dinamis dan Interaktif")</span>. Terakhir, jika kamu ingin belajar lebih lanjut tentang visualisasi data dengan Observable JS, kamu patut mencoba <span class="co">[</span><span class="ot">D3</span><span class="co">](https://d3js.org/)</span>{.external target="_blank"}.</span>
+</code><button title="Salin ke Papan Klip" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">

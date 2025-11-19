@@ -369,7 +369,7 @@ window.Quarto = {
       </div> <!-- /container-fluid -->
     </nav></header><!-- content --><header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full"><div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Gunung Agung, Bromo, Merapi, dan Semeru</h1>
+      <div class="quarto-title-block"><div><h1 class="title">Gunung Agung, Bromo, Merapi, dan Semeru</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Kode</button></div></div>
             <p class="subtitle lead">Seberapa Tinggi dan Besar Keempat Gunung Itu?</p>
                   <div>
         <div class="description">
@@ -653,7 +653,7 @@ Gambar&nbsp;4: Proyeksi 2D Gunung Agung, Bromo, Merapi, dan Semeru
 <p>Setelah kita mendapatkan tampilan yang cocok, kita jalankan kode berikut untuk merender gambarnya.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">render_snapshot</span><span class="op">(</span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Hasil gambarnya seperti yang ditunjukkan pada <a href="#fig-empat-gunung-3d" class="quarto-xref">Gambar&nbsp;5</a>.</p>
-<div id="fig-empat-gunung-3d" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Model 3D Gunung Agung, Bromo, Merapi, dan Semeru" data-fig-align="center">
+<div id="fig-empat-gunung-3d" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Model 3D Gunung Agung, Bromo, Merapi, dan Semeru">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-empat-gunung-3d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="aset/empat_gunung_3d.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Gambar&nbsp;5: Model 3D Gunung Agung, Bromo, Merapi, dan Semeru"><img src="aset/empat_gunung_3d.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Model 3D Gunung Agung, Bromo, Merapi, dan Semeru"></a>
 </div>
@@ -819,6 +819,8 @@ Gambar&nbsp;7: Volume potongan Gunung Agung, Bromo, Merapi, dan Semeru
 <p>Kita telah membandingkan seberapa tinggi dan besar Gunung Agung, Bromo, Merapi, dan Semeru. Hal itu kita lakukan dengan dua jalan: pengamatan dan perhitungan. Ketika menggunakan cara pengamatan, kita gambarkan representasi keempat gunung tersebut ke dalam bentuk 2D maupun 3D. Hasilnya seperti dapat dilihat pada <a href="#fig-proy-empat-gunung" class="quarto-xref">Gambar&nbsp;4</a> dan <a href="#fig-empat-gunung-3d" class="quarto-xref">Gambar&nbsp;5</a>. Ketika kita menggunakan cara perhitungan, kita gunakan data matriks elevasi keempat gunung tersebut untuk memperkirakan tinggi dan volumenya. Cara ini kita lakukan pada <a href="#sec-memperkirakan-tinggi-dan-volume" class="quarto-xref">Bagian&nbsp;4</a>.</p>
 
 
+<!-- -->
+
 </section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Kembali ke atas</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Penggunaan Kembali</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-copyright"><h2 class="anchored quarto-appendix-heading">Hak Cipta</h2><div class="quarto-appendix-contents"><div>© 2024 Yosep Dwi Kristanto</div></div></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
@@ -901,6 +903,57 @@ Gambar&nbsp;7: Volume potongan Gunung Agung, Bromo, Merapi, dan Semeru
         container: window.document.getElementById('quarto-embedded-source-code-modal')
       });
       clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
@@ -1300,7 +1353,484 @@ Gambar&nbsp;7: Volume potongan Gunung Agung, Bromo, Merapi, dan Semeru
     document.getElementById("quarto-content").appendChild(script);
   }
   loadGiscus();
-</script>
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Kode Sumber</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb25" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Gunung Agung, Bromo, Merapi, dan Semeru"</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "Seberapa Tinggi dan Besar Keempat Gunung Itu?"</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> "Gunung Agung, Bromo, Merapi, dan Semeru termasuk gunung-gunung yang populer di Indonesia. Pemrograman R dapat digunakan untuk memodelkan keempat gunung tersebut ke dalam bentuk 2D maupun 3D. Cara seperti ini dapat digunakan untuk membandingkan seberapa tinggi dan besar gunung-gunung tersebut."</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: Yosep Dwi Kristanto</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="co">    url: https://people.usd.ac.id/~ydkristanto/</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation: Pendidikan Matematika, Universitas Sanata Dharma, Yogyakarta</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation-url: https://www.usd.ac.id/s1pmat</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="co">    orcid: 0000-0003-1446-0422</span></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> 2024-08-25</span></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a><span class="an">date-modified:</span><span class="co"> 2024-08-28</span></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a><span class="co">  - Geostatistika</span></span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a><span class="co">  - matematika membumi</span></span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a><span class="co">  - tutorial</span></span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a><span class="co">  - visualisasi data</span></span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a><span class="an">image:</span><span class="co"> "empat_gunung.png"</span></span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a><span class="an">image-alt:</span><span class="co"> |</span></span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a><span class="co">  Gambar 3D yang menunjukkan Gunung Agung, Bromo, Merapi, dan Semeru secara berdampingan.</span></span>
+<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a><span class="an">keywords:</span><span class="co"> </span></span>
+<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a><span class="co">  - matriks</span></span>
+<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a><span class="co">  - elevasi</span></span>
+<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a><span class="co">  - volume</span></span>
+<span id="cb25-25"><a href="#cb25-25" aria-hidden="true" tabindex="-1"></a><span class="co">  - Gunung Agung</span></span>
+<span id="cb25-26"><a href="#cb25-26" aria-hidden="true" tabindex="-1"></a><span class="co">  - Gunung Bromo</span></span>
+<span id="cb25-27"><a href="#cb25-27" aria-hidden="true" tabindex="-1"></a><span class="co">  - Gunung Merapi</span></span>
+<span id="cb25-28"><a href="#cb25-28" aria-hidden="true" tabindex="-1"></a><span class="co">  - Gunung Semeru</span></span>
+<span id="cb25-29"><a href="#cb25-29" aria-hidden="true" tabindex="-1"></a><span class="an">lightbox:</span><span class="co"> true</span></span>
+<span id="cb25-30"><a href="#cb25-30" aria-hidden="true" tabindex="-1"></a><span class="an">copyright:</span><span class="co"> "© 2024 Yosep Dwi Kristanto"</span></span>
+<span id="cb25-31"><a href="#cb25-31" aria-hidden="true" tabindex="-1"></a><span class="an">license:</span><span class="co"> "CC BY"</span></span>
+<span id="cb25-32"><a href="#cb25-32" aria-hidden="true" tabindex="-1"></a><span class="an">code-annotations:</span><span class="co"> select</span></span>
+<span id="cb25-33"><a href="#cb25-33" aria-hidden="true" tabindex="-1"></a><span class="an">editor_options:</span><span class="co"> </span></span>
+<span id="cb25-34"><a href="#cb25-34" aria-hidden="true" tabindex="-1"></a><span class="co">  chunk_output_type: console</span></span>
+<span id="cb25-35"><a href="#cb25-35" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb25-36"><a href="#cb25-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-37"><a href="#cb25-37" aria-hidden="true" tabindex="-1"></a>Alkisah ada seorang ksatria yang sakti mandraguna bernama Hanoman. Ksatria yang merupakan seekor kera putih itu suatu ketika diutus oleh Rama untuk mencari tanaman obat di Himalaya. Ia pun pergi ke gunung itu tanpa pikir panjang. Sesampainya di sana, ia baru sadar bahwa ternyata ia tidak mengetahui bentuk dan rupa tanaman itu seperti apa. Tak habis akal, ia pun memotong gunung itu dan membawanya ke hadapan Rama. Akhirnya, Rama dan pasukannya menemukan tanaman obat itu, kemudian mereka memakannya sehingga pulih seperti sedia kala.</span>
+<span id="cb25-38"><a href="#cb25-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-39"><a href="#cb25-39" aria-hidden="true" tabindex="-1"></a><span class="al">![Patung Hanoman di Bali, Indonesia. (Kredit: Wikimedia.org/CC0)](aset/Hanoman_Bali.JPG)</span>{#fig-patung-hanoman fig-alt="Patung Hanoman di Bali, Indonesia. (Kredit: Wikimedia.org/CC0)"}</span>
+<span id="cb25-40"><a href="#cb25-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-41"><a href="#cb25-41" aria-hidden="true" tabindex="-1"></a>Cerita heroik tersebut meninggalkan beberapa pesan. Pertama, kita perlu memberikan instruksi sedetail mungkin agar instruksi tersebut dapat terlaksana dengan efektif dan efisien. Kedua, sikap Hanoman dalam cerita itu menyiratkan keinginan yang sangat kuat untuk menyelesaikan sebuah persoalan. Terakhir, kadang-kadang memindahkan gunung adalah solusi terbaik! Pesan terakhir ini relevan dengan persoalan berikut.</span>
+<span id="cb25-42"><a href="#cb25-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-43"><a href="#cb25-43" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; Bagaimana kita dapat membandingkan seberapa tinggi dan besar gunung-gunung di Indonesia?</span></span>
+<span id="cb25-44"><a href="#cb25-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-45"><a href="#cb25-45" aria-hidden="true" tabindex="-1"></a>Karena begitu banyaknya gunung-gunung di Indonesia, kita pilih empat saja berdasarkan kepopulerannya. Berdasarkan <span class="co">[</span><span class="ot">Google Trends</span><span class="co">](https://trends.google.com/trends/explore/RELATED_QUERIES/1724521800?hl=in&amp;tz=-120&amp;date=all&amp;geo=ID&amp;hl=in&amp;hl=id&amp;q=gunung&amp;tz=-120&amp;sni=3 "gunung - Pelajari - Google Trends")</span>{.external target="_blank"}, keempat gunung tersebut adalah Gunung Agung, Bromo, Merapi, dan Semeru. Untuk membandingkan keempat gunung tersebut, kita dapat "memindahkannya" sehingga berdampingan satu sama lain. Dengan demikian, kita dapat mengamatinya secara lebih mudah untuk kemudian kita bandingkan tinggi dan besar keempat gunung tersebut.</span>
+<span id="cb25-46"><a href="#cb25-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-47"><a href="#cb25-47" aria-hidden="true" tabindex="-1"></a>Tak seperti Hanoman yang memindahkan potongan Gunung Himalaya secara harfiah, kita hanya memindahkan representasi Gunung Agung, Bromo, Merapi, dan Semeru saja. Jika Hanoman melakukan dengan kesaktiannya, kita akan memindahkan keempat gunung tersebut dengan <span class="co">[</span><span class="ot">pemrograman R</span><span class="co">](https://www.R-project.org/ "R: A Language and Environment for Statistical Computing")</span>{.external target="_blank"}. Meskipun ada beberapa perbedaan, apa yang kita lakukan nanti intinya kurang lebih sama dengan yang dilakukan Hanoman.</span>
+<span id="cb25-48"><a href="#cb25-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-49"><a href="#cb25-49" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Seperti halnya Hanoman yang mengetahui posisi fisik Gunung Himalaya, kita juga perlu tahu di mana kita dapat menemukan representasi digital Gunung Agung, Bromo, Merapi, dan Semeru. Representasi digital itu adalah data.</span>
+<span id="cb25-50"><a href="#cb25-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-51"><a href="#cb25-51" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Seperti halnya Hanoman yang membawa potongan Gunung Himalaya, kita juga perlu menggunakan potongan keempat gunung tersebut secukupnya saja.</span>
+<span id="cb25-52"><a href="#cb25-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-53"><a href="#cb25-53" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Seperti halnya Hanoman yang memindahkan Gunung Himalaya ke hadapan Rama, kita juga perlu memindahkan keempat gunung itu di suatu tempat agar mudah diamati dan dibandingkan.</span>
+<span id="cb25-54"><a href="#cb25-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-55"><a href="#cb25-55" aria-hidden="true" tabindex="-1"></a>Tak perlu berlama-lama, kita keluarkan kesaktian kita. *Eh*, maksudku, kita siapkan alat-alat yang diperlukan.</span>
+<span id="cb25-56"><a href="#cb25-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-59"><a href="#cb25-59" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb25-60"><a href="#cb25-60" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb25-61"><a href="#cb25-61" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb25-62"><a href="#cb25-62" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb25-63"><a href="#cb25-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-64"><a href="#cb25-64" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb25-65"><a href="#cb25-65" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(raster)</span>
+<span id="cb25-66"><a href="#cb25-66" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(terra)</span>
+<span id="cb25-67"><a href="#cb25-67" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rayshader)</span>
+<span id="cb25-68"><a href="#cb25-68" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb25-69"><a href="#cb25-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-70"><a href="#cb25-70" aria-hidden="true" tabindex="-1"></a><span class="fu">## Memahami Ide Dasarnya {#sec-memahami-ide-dasarnya}</span></span>
+<span id="cb25-71"><a href="#cb25-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-72"><a href="#cb25-72" aria-hidden="true" tabindex="-1"></a>Sebelum kita menggambar model 3D Gunung Agung, Bromo, Merapi, dan Semeru, baik apabila kita bahas ide dasarnya: beberapa objek 3D itu dapat dinyatakan ke dalam sebuah matriks elevasi. Baris dan kolom matriks tersebut menyatakan koordinat $x$ dan $y$, sedangkan elemen-elemennya menyatakan ketinggiannya. Misalnya, kita memiliki matriks elevasi seperti berikut.</span>
+<span id="cb25-73"><a href="#cb25-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-76"><a href="#cb25-76" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb25-77"><a href="#cb25-77" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb25-78"><a href="#cb25-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-79"><a href="#cb25-79" aria-hidden="true" tabindex="-1"></a>elemen_matriks <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb25-80"><a href="#cb25-80" aria-hidden="true" tabindex="-1"></a>  <span class="dv">28</span>, <span class="dv">30</span>, <span class="dv">30</span>, <span class="dv">26</span>, <span class="dv">19</span>,</span>
+<span id="cb25-81"><a href="#cb25-81" aria-hidden="true" tabindex="-1"></a>  <span class="dv">25</span>, <span class="dv">29</span>, <span class="dv">31</span>, <span class="dv">28</span>, <span class="dv">19</span>,</span>
+<span id="cb25-82"><a href="#cb25-82" aria-hidden="true" tabindex="-1"></a>  <span class="dv">24</span>, <span class="dv">31</span>, <span class="dv">37</span>, <span class="dv">32</span>, <span class="dv">19</span>,</span>
+<span id="cb25-83"><a href="#cb25-83" aria-hidden="true" tabindex="-1"></a>  <span class="dv">22</span>, <span class="dv">28</span>, <span class="dv">33</span>, <span class="dv">30</span>, <span class="dv">18</span>,</span>
+<span id="cb25-84"><a href="#cb25-84" aria-hidden="true" tabindex="-1"></a>  <span class="dv">17</span>, <span class="dv">19</span>, <span class="dv">20</span>, <span class="dv">19</span>, <span class="dv">15</span></span>
+<span id="cb25-85"><a href="#cb25-85" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb25-86"><a href="#cb25-86" aria-hidden="true" tabindex="-1"></a>matriks_elevasi <span class="ot">&lt;-</span> <span class="fu">matrix</span>(</span>
+<span id="cb25-87"><a href="#cb25-87" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> elemen_matriks,</span>
+<span id="cb25-88"><a href="#cb25-88" aria-hidden="true" tabindex="-1"></a>  <span class="at">nrow =</span> <span class="dv">5</span>,</span>
+<span id="cb25-89"><a href="#cb25-89" aria-hidden="true" tabindex="-1"></a>  <span class="at">byrow =</span> <span class="cn">TRUE</span></span>
+<span id="cb25-90"><a href="#cb25-90" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb25-91"><a href="#cb25-91" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(matriks_elevasi) <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span></span>
+<span id="cb25-92"><a href="#cb25-92" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(matriks_elevasi) <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span></span>
+<span id="cb25-93"><a href="#cb25-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-94"><a href="#cb25-94" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(matriks_elevasi)</span>
+<span id="cb25-95"><a href="#cb25-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-96"><a href="#cb25-96" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb25-97"><a href="#cb25-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-98"><a href="#cb25-98" aria-hidden="true" tabindex="-1"></a>Dari matriks elevasi tersebut, kita dapat membuat objek 3D dengan berdasarkan ketinggiannya (elemen-elemen matriks) dan posisinya (baris dan kolomnya). Tetapi sebelum itu, terlebih dahulu kita perhatikan proyeksi dua dimensinya seperti yang ditunjukkan pada @fig-proy-3d-sederhana.</span>
+<span id="cb25-99"><a href="#cb25-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-102"><a href="#cb25-102" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb25-103"><a href="#cb25-103" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb25-104"><a href="#cb25-104" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-proy-3d-sederhana</span></span>
+<span id="cb25-105"><a href="#cb25-105" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Proyeksi 2D dari sebuah objek 3D yang dibentuk dari matriks elevasi"</span></span>
+<span id="cb25-106"><a href="#cb25-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-107"><a href="#cb25-107" aria-hidden="true" tabindex="-1"></a>df_elevasi <span class="ot">&lt;-</span> matriks_elevasi <span class="sc">|&gt;</span> </span>
+<span id="cb25-108"><a href="#cb25-108" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb25-109"><a href="#cb25-109" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">y =</span> <span class="fu">rownames</span>(matriks_elevasi)) <span class="sc">|&gt;</span> </span>
+<span id="cb25-110"><a href="#cb25-110" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb25-111"><a href="#cb25-111" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="sc">!</span>y,</span>
+<span id="cb25-112"><a href="#cb25-112" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"x"</span>,</span>
+<span id="cb25-113"><a href="#cb25-113" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"elevasi"</span></span>
+<span id="cb25-114"><a href="#cb25-114" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb25-115"><a href="#cb25-115" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb25-116"><a href="#cb25-116" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">as.numeric</span>(x),</span>
+<span id="cb25-117"><a href="#cb25-117" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">as.numeric</span>(y)</span>
+<span id="cb25-118"><a href="#cb25-118" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb25-119"><a href="#cb25-119" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(x, y, elevasi)</span>
+<span id="cb25-120"><a href="#cb25-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-121"><a href="#cb25-121" aria-hidden="true" tabindex="-1"></a>proyeksi_2d <span class="ot">&lt;-</span> df_elevasi <span class="sc">|&gt;</span> </span>
+<span id="cb25-122"><a href="#cb25-122" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(x, y)) <span class="sc">+</span> </span>
+<span id="cb25-123"><a href="#cb25-123" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_raster</span>(<span class="fu">aes</span>(<span class="at">fill =</span> elevasi)) <span class="sc">+</span> </span>
+<span id="cb25-124"><a href="#cb25-124" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>(</span>
+<span id="cb25-125"><a href="#cb25-125" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"Elevasi (m)"</span></span>
+<span id="cb25-126"><a href="#cb25-126" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb25-127"><a href="#cb25-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-128"><a href="#cb25-128" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(proyeksi_2d)</span>
+<span id="cb25-129"><a href="#cb25-129" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb25-130"><a href="#cb25-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-131"><a href="#cb25-131" aria-hidden="true" tabindex="-1"></a>Apakah kamu dapat membayangkan objek 3D-nya seperti apa jika proyeksi 2D-nya ditunjukkan pada @fig-proy-3d-sederhana? Ingat, warna pada diagram tersebut menggambarkan elevasi/ketinggiannya! Bandingkan imajinasimu dengan @fig-objek-3d-sederhana berikut!</span>
+<span id="cb25-132"><a href="#cb25-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-133"><a href="#cb25-133" aria-hidden="true" tabindex="-1"></a><span class="al">![Objek 3D sederhana](aset/objek_3d_sederhana.png)</span>{#fig-objek-3d-sederhana fig-align="center"}</span>
+<span id="cb25-134"><a href="#cb25-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-135"><a href="#cb25-135" aria-hidden="true" tabindex="-1"></a>Proses seperti itu akan kita lakukan untuk menggambar model 3D Gunung Agung, Bromo, Merapi, dan Semeru. Untuk melakukannya, kita perlu memiliki matriks elevasi keempat gunung tersebut. Matriks tersebut akan kita siapkan pada bagian berikutnya.</span>
+<span id="cb25-136"><a href="#cb25-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-137"><a href="#cb25-137" aria-hidden="true" tabindex="-1"></a><span class="fu">## Mempersiapkan Data {#sec-mempersiapkan-data}</span></span>
+<span id="cb25-138"><a href="#cb25-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-139"><a href="#cb25-139" aria-hidden="true" tabindex="-1"></a>Seperti yang telah dijelaskan pada @sec-memahami-ide-dasarnya, kita perlu memiliki matriks elevasi Gunung Agung, Bromo, Merapi, dan Semeru. Matriks ini dapat ditemukan di banyak tempat. Salah satunya di situs webnya <span class="co">[</span><span class="ot">Derek Watkin</span><span class="co">](https://dwtkns.com/srtm30m/ "30-Meter SRTM Elevation Data Downloader")</span>{.external target="_blank"}. Sebelum mengunduh datanya, kamu perlu *login* terlebih dahulu ke dalam situs web <span class="co">[</span><span class="ot">NASA Earthdata</span><span class="co">](https://urs.earthdata.nasa.gov/users/new "Earthdata Login User Registration")</span>{.external target="_blank"}.</span>
+<span id="cb25-140"><a href="#cb25-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-141"><a href="#cb25-141" aria-hidden="true" tabindex="-1"></a>Setelah berhasil login, kita perlu mencari persegi tempat keempat gunung tersebut. Untuk mencarinya, kita dapat menyeret dan memperbesar laman dalam situs web tersebut. Lokasi keempat gunung tersebut ada pada enam persegi, yaitu S08E110, S08E112, S08E113, S09E112, S09E113, dan S09E115. Untuk mengunduhnya, klik perseginya dan kemudian klik tombol "Download DEM". Setelah itu, ekstrak semua fail zip-nya. Pindahkan fail-fail tersebut ke dalam folder kerjamu.</span>
+<span id="cb25-142"><a href="#cb25-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-143"><a href="#cb25-143" aria-hidden="true" tabindex="-1"></a>Sampai di sini, kita memiliki enam fail dengan nama <span class="in">`S08E110.hgt`</span>, <span class="in">`S08E112.hgt`</span>, <span class="in">`S08E113.hgt`</span>, <span class="in">`S09E112.hgt`</span>, <span class="in">`S09E113.hgt`</span>, dan <span class="in">`S09E115.hgt`</span> dalam folder kerja kita. Kita gunakan semua fail tersebut untuk membuat <span class="in">`matriks_elevasi`</span> dengan kode berikut.</span>
+<span id="cb25-144"><a href="#cb25-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-145"><a href="#cb25-145" aria-hidden="true" tabindex="-1"></a><span class="in">``` r</span></span>
+<span id="cb25-146"><a href="#cb25-146" aria-hidden="true" tabindex="-1"></a>S08E110 <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">rast</span>(<span class="st">"S08E110.hgt"</span>)</span>
+<span id="cb25-147"><a href="#cb25-147" aria-hidden="true" tabindex="-1"></a>S08E112 <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">rast</span>(<span class="st">"S08E112.hgt"</span>)</span>
+<span id="cb25-148"><a href="#cb25-148" aria-hidden="true" tabindex="-1"></a>S08E113 <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">rast</span>(<span class="st">"S08E113.hgt"</span>)</span>
+<span id="cb25-149"><a href="#cb25-149" aria-hidden="true" tabindex="-1"></a>S09E112 <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">rast</span>(<span class="st">"S09E112.hgt"</span>)</span>
+<span id="cb25-150"><a href="#cb25-150" aria-hidden="true" tabindex="-1"></a>S09E113 <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">rast</span>(<span class="st">"S09E113.hgt"</span>)</span>
+<span id="cb25-151"><a href="#cb25-151" aria-hidden="true" tabindex="-1"></a>S09E115 <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">rast</span>(<span class="st">"S09E115.hgt"</span>)</span>
+<span id="cb25-152"><a href="#cb25-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-153"><a href="#cb25-153" aria-hidden="true" tabindex="-1"></a>matriks_elevasi <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">merge</span>(</span>
+<span id="cb25-154"><a href="#cb25-154" aria-hidden="true" tabindex="-1"></a>  S08E110, S08E112, S08E113,</span>
+<span id="cb25-155"><a href="#cb25-155" aria-hidden="true" tabindex="-1"></a>  S09E112, S09E113, S09E115</span>
+<span id="cb25-156"><a href="#cb25-156" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb25-157"><a href="#cb25-157" aria-hidden="true" tabindex="-1"></a><span class="fu">varnames</span>(matriks_elevasi) <span class="ot">&lt;-</span> <span class="st">"elevasi"</span></span>
+<span id="cb25-158"><a href="#cb25-158" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(matriks_elevasi) <span class="ot">&lt;-</span> <span class="st">"elevasi"</span></span>
+<span id="cb25-159"><a href="#cb25-159" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb25-160"><a href="#cb25-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-161"><a href="#cb25-161" aria-hidden="true" tabindex="-1"></a>Seperti yang dilakukan Hanoman terhadap Gunung Himalaya, kita juga perlu memotong <span class="in">`matriks_elevasi`</span> agar hanya memuat koordinat $x$ dan $y$ dari Gunung Agung, Bromo, Merapi, dan Semeru seperlunya saja. Potongan-potongan tersebut kita beri nama <span class="in">`matriks_agung`</span>, <span class="in">`matriks_bromo`</span>, <span class="in">`matriks_merapi`</span>, dan <span class="in">`matriks_semeru`</span>. Untuk memudahkan dalam pengolahan data berikutnya, kita ubah matriks-matriks tersebut menjadi tibble dan menambahkan satu variabel <span class="in">`gunung`</span> untuk menjadi identifikasi nama gunungnya.</span>
+<span id="cb25-162"><a href="#cb25-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-163"><a href="#cb25-163" aria-hidden="true" tabindex="-1"></a><span class="in">``` r</span></span>
+<span id="cb25-164"><a href="#cb25-164" aria-hidden="true" tabindex="-1"></a><span class="co"># Gunung Agung</span></span>
+<span id="cb25-165"><a href="#cb25-165" aria-hidden="true" tabindex="-1"></a>batas_agung <span class="ot">&lt;-</span> <span class="fu">extent</span>(</span>
+<span id="cb25-166"><a href="#cb25-166" aria-hidden="true" tabindex="-1"></a>  <span class="fl">115.4562</span>, <span class="fl">115.5562</span>,</span>
+<span id="cb25-167"><a href="#cb25-167" aria-hidden="true" tabindex="-1"></a>  <span class="sc">-</span><span class="fl">8.393267</span>, <span class="sc">-</span><span class="fl">8.293267</span></span>
+<span id="cb25-168"><a href="#cb25-168" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb25-169"><a href="#cb25-169" aria-hidden="true" tabindex="-1"></a>matriks_agung <span class="ot">&lt;-</span> <span class="fu">crop</span>(matriks_elevasi, batas_agung)</span>
+<span id="cb25-170"><a href="#cb25-170" aria-hidden="true" tabindex="-1"></a>df_agung <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(matriks_agung, <span class="at">xy =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb25-171"><a href="#cb25-171" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb25-172"><a href="#cb25-172" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">gunung =</span> <span class="st">"Agung"</span>)</span>
+<span id="cb25-173"><a href="#cb25-173" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-174"><a href="#cb25-174" aria-hidden="true" tabindex="-1"></a><span class="co"># Gunung Bromo</span></span>
+<span id="cb25-175"><a href="#cb25-175" aria-hidden="true" tabindex="-1"></a>batas_bromo <span class="ot">&lt;-</span> <span class="fu">extent</span>(</span>
+<span id="cb25-176"><a href="#cb25-176" aria-hidden="true" tabindex="-1"></a>  <span class="fl">112.9</span>, <span class="fl">113.0</span>,</span>
+<span id="cb25-177"><a href="#cb25-177" aria-hidden="true" tabindex="-1"></a>  <span class="sc">-</span><span class="fl">8.0</span>, <span class="sc">-</span><span class="fl">7.9</span></span>
+<span id="cb25-178"><a href="#cb25-178" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb25-179"><a href="#cb25-179" aria-hidden="true" tabindex="-1"></a>matriks_bromo <span class="ot">&lt;-</span> <span class="fu">crop</span>(matriks_elevasi, batas_bromo)</span>
+<span id="cb25-180"><a href="#cb25-180" aria-hidden="true" tabindex="-1"></a>df_bromo <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(matriks_bromo, <span class="at">xy =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb25-181"><a href="#cb25-181" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb25-182"><a href="#cb25-182" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">gunung =</span> <span class="st">"Bromo"</span>)</span>
+<span id="cb25-183"><a href="#cb25-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-184"><a href="#cb25-184" aria-hidden="true" tabindex="-1"></a><span class="co"># Gunung Merapi</span></span>
+<span id="cb25-185"><a href="#cb25-185" aria-hidden="true" tabindex="-1"></a>batas_merapi <span class="ot">&lt;-</span> <span class="fu">extent</span>(</span>
+<span id="cb25-186"><a href="#cb25-186" aria-hidden="true" tabindex="-1"></a>  <span class="fl">110.3967</span>, <span class="fl">110.4967</span>,</span>
+<span id="cb25-187"><a href="#cb25-187" aria-hidden="true" tabindex="-1"></a>  <span class="sc">-</span><span class="fl">7.590278</span>, <span class="sc">-</span><span class="fl">7.490278</span></span>
+<span id="cb25-188"><a href="#cb25-188" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb25-189"><a href="#cb25-189" aria-hidden="true" tabindex="-1"></a>matriks_merapi <span class="ot">&lt;-</span> <span class="fu">crop</span>(matriks_elevasi, batas_merapi)</span>
+<span id="cb25-190"><a href="#cb25-190" aria-hidden="true" tabindex="-1"></a>df_merapi <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(matriks_merapi, <span class="at">xy =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb25-191"><a href="#cb25-191" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb25-192"><a href="#cb25-192" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">gunung =</span> <span class="st">"Merapi"</span>)</span>
+<span id="cb25-193"><a href="#cb25-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-194"><a href="#cb25-194" aria-hidden="true" tabindex="-1"></a><span class="co"># Gunung Semeru</span></span>
+<span id="cb25-195"><a href="#cb25-195" aria-hidden="true" tabindex="-1"></a>batas_semeru <span class="ot">&lt;-</span> <span class="fu">extent</span>(</span>
+<span id="cb25-196"><a href="#cb25-196" aria-hidden="true" tabindex="-1"></a>  <span class="fl">112.8722</span>, <span class="fl">112.9722</span>,</span>
+<span id="cb25-197"><a href="#cb25-197" aria-hidden="true" tabindex="-1"></a>  <span class="sc">-</span><span class="fl">8.157778</span>, <span class="sc">-</span><span class="fl">8.057778</span></span>
+<span id="cb25-198"><a href="#cb25-198" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb25-199"><a href="#cb25-199" aria-hidden="true" tabindex="-1"></a>matriks_semeru <span class="ot">&lt;-</span> <span class="fu">crop</span>(matriks_elevasi, batas_semeru)</span>
+<span id="cb25-200"><a href="#cb25-200" aria-hidden="true" tabindex="-1"></a>df_semeru <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(matriks_semeru, <span class="at">xy =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb25-201"><a href="#cb25-201" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb25-202"><a href="#cb25-202" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">gunung =</span> <span class="st">"Semeru"</span>)</span>
+<span id="cb25-203"><a href="#cb25-203" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb25-204"><a href="#cb25-204" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-205"><a href="#cb25-205" aria-hidden="true" tabindex="-1"></a>Kode di atas menghasilkan empat tibble, yaitu <span class="in">`df_agung`</span>, <span class="in">`df_bromo`</span>, <span class="in">`df_merapi`</span>, dan <span class="in">`df_semeru`</span>. Selanjutnya, kita gabung keempat tibble tersebut menjadi <span class="in">`df_gunung`</span>.</span>
+<span id="cb25-206"><a href="#cb25-206" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-207"><a href="#cb25-207" aria-hidden="true" tabindex="-1"></a><span class="in">``` r</span></span>
+<span id="cb25-208"><a href="#cb25-208" aria-hidden="true" tabindex="-1"></a>df_gunung <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
+<span id="cb25-209"><a href="#cb25-209" aria-hidden="true" tabindex="-1"></a>  df_agung, df_bromo, df_merapi, df_semeru</span>
+<span id="cb25-210"><a href="#cb25-210" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb25-211"><a href="#cb25-211" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb25-212"><a href="#cb25-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-213"><a href="#cb25-213" aria-hidden="true" tabindex="-1"></a>*Nah*, sekarang kita "pindahkan" keempat gunung tersebut dari posisi asalnya. Posisi akhir yang kita targetkan adalah posisi dengan koordinat $x$ dan $y$ minimumnya bernilai nol.</span>
+<span id="cb25-214"><a href="#cb25-214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-215"><a href="#cb25-215" aria-hidden="true" tabindex="-1"></a><span class="in">``` r</span></span>
+<span id="cb25-216"><a href="#cb25-216" aria-hidden="true" tabindex="-1"></a>df_gunung <span class="ot">&lt;-</span> df_gunung <span class="sc">|&gt;</span> </span>
+<span id="cb25-217"><a href="#cb25-217" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(gunung) <span class="sc">|&gt;</span> </span>
+<span id="cb25-218"><a href="#cb25-218" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb25-219"><a href="#cb25-219" aria-hidden="true" tabindex="-1"></a>    <span class="at">x_trans =</span> x <span class="sc">-</span> <span class="fu">min</span>(x),</span>
+<span id="cb25-220"><a href="#cb25-220" aria-hidden="true" tabindex="-1"></a>    <span class="at">y_trans =</span> y <span class="sc">-</span> <span class="fu">min</span>(y)</span>
+<span id="cb25-221"><a href="#cb25-221" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb25-222"><a href="#cb25-222" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb25-223"><a href="#cb25-223" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb25-224"><a href="#cb25-224" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-225"><a href="#cb25-225" aria-hidden="true" tabindex="-1"></a>Apakah sampai di sini kamu berhasil menjalankan baris-baris kode di atas sampai mendapatkan <span class="in">`df_gunung`</span>? Jika iya, selamat! Jika tidak, mungkin ada beberapa hal yang perlu dicek kembali. Tetapi jika kamu langsung ingin mendapatkan <span class="in">`df_gunung`</span> tersebut tanpa menjalankan semua baris kode di atas, kamu dapat mendapatkannya dengan menjalankan kode berikut.</span>
+<span id="cb25-226"><a href="#cb25-226" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-229"><a href="#cb25-229" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb25-230"><a href="#cb25-230" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb25-231"><a href="#cb25-231" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb25-232"><a href="#cb25-232" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-233"><a href="#cb25-233" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="fu">url</span>(<span class="st">"https://github.com/jelajahstatid/jelajahstatid.github.io/raw/main/pos/2024-08-gunung-agung-bromo-merapi-dan-semeru/aset/df_gunung.RData"</span>))</span>
+<span id="cb25-234"><a href="#cb25-234" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-235"><a href="#cb25-235" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb25-236"><a href="#cb25-236" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-237"><a href="#cb25-237" aria-hidden="true" tabindex="-1"></a>Kita telah memiliki data untuk menggambarkan Gunung Agung, Bromo, Merapi, dan Semeru secara berdampingan. Kita siap untuk melanjutkan perjalanan kita ke tahapan selanjutnya.</span>
+<span id="cb25-238"><a href="#cb25-238" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-239"><a href="#cb25-239" aria-hidden="true" tabindex="-1"></a><span class="fu">## Memvisualisasikan Data {#sec-memvisualisasikan-data}</span></span>
+<span id="cb25-240"><a href="#cb25-240" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-241"><a href="#cb25-241" aria-hidden="true" tabindex="-1"></a>Kita telah bekerja keras di @sec-mempersiapkan-data. Sekarang, kita masuk ke tahapan yang mengasyikkan. *Yup*, di tahapan ini kita akan memvisualisasikan data. Data yang kita gunakan adalah <span class="in">`df_gunung`</span>. Visualisasi data pertama yang kita lakukan adalah membuat proyeksi 2D dari Gunung Agung, Bromo, Merapi, dan Semeru. Sebelum itu, kita siapkan temanya terlebih dahulu.</span>
+<span id="cb25-242"><a href="#cb25-242" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-245"><a href="#cb25-245" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb25-246"><a href="#cb25-246" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb25-247"><a href="#cb25-247" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb25-248"><a href="#cb25-248" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-249"><a href="#cb25-249" aria-hidden="true" tabindex="-1"></a>tema_gunung <span class="ot">&lt;-</span> <span class="cf">function</span>(){</span>
+<span id="cb25-250"><a href="#cb25-250" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb25-251"><a href="#cb25-251" aria-hidden="true" tabindex="-1"></a>      <span class="at">axis.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb25-252"><a href="#cb25-252" aria-hidden="true" tabindex="-1"></a>      <span class="at">axis.text =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb25-253"><a href="#cb25-253" aria-hidden="true" tabindex="-1"></a>      <span class="at">axis.ticks =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb25-254"><a href="#cb25-254" aria-hidden="true" tabindex="-1"></a>      <span class="at">legend.position =</span> <span class="st">"right"</span>,</span>
+<span id="cb25-255"><a href="#cb25-255" aria-hidden="true" tabindex="-1"></a>      <span class="at">plot.margin =</span> <span class="fu">margin</span>(</span>
+<span id="cb25-256"><a href="#cb25-256" aria-hidden="true" tabindex="-1"></a>        <span class="at">t =</span> <span class="dv">10</span>, <span class="at">r =</span> <span class="dv">10</span>,</span>
+<span id="cb25-257"><a href="#cb25-257" aria-hidden="true" tabindex="-1"></a>        <span class="at">b =</span> <span class="dv">10</span>, <span class="at">l =</span> <span class="dv">10</span>,</span>
+<span id="cb25-258"><a href="#cb25-258" aria-hidden="true" tabindex="-1"></a>        <span class="at">unit =</span> <span class="st">"pt"</span></span>
+<span id="cb25-259"><a href="#cb25-259" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb25-260"><a href="#cb25-260" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb25-261"><a href="#cb25-261" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb25-262"><a href="#cb25-262" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-263"><a href="#cb25-263" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb25-264"><a href="#cb25-264" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-265"><a href="#cb25-265" aria-hidden="true" tabindex="-1"></a>Selanjutnya kita siap untuk memvisualisasikan proyeksi 2D dari Gunung Agung, Bromo, Merapi, dan Semeru. Untuk melakukannya, kita gunakan baris kode di bawah ini. Hasilnya ditunjukkan pada @fig-proy-empat-gunung.</span>
+<span id="cb25-266"><a href="#cb25-266" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-269"><a href="#cb25-269" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb25-270"><a href="#cb25-270" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb25-271"><a href="#cb25-271" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb25-272"><a href="#cb25-272" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb25-273"><a href="#cb25-273" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-proy-empat-gunung</span></span>
+<span id="cb25-274"><a href="#cb25-274" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Proyeksi 2D Gunung Agung, Bromo, Merapi, dan Semeru"</span></span>
+<span id="cb25-275"><a href="#cb25-275" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-276"><a href="#cb25-276" aria-hidden="true" tabindex="-1"></a>plot_2d_gunung <span class="ot">&lt;-</span> df_gunung <span class="sc">|&gt;</span> </span>
+<span id="cb25-277"><a href="#cb25-277" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(</span>
+<span id="cb25-278"><a href="#cb25-278" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(x_trans, y_trans)</span>
+<span id="cb25-279"><a href="#cb25-279" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb25-280"><a href="#cb25-280" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">fill =</span> elevasi)) <span class="sc">+</span> </span>
+<span id="cb25-281"><a href="#cb25-281" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_contour</span>(</span>
+<span id="cb25-282"><a href="#cb25-282" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">z =</span> elevasi), </span>
+<span id="cb25-283"><a href="#cb25-283" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="fu">seq</span>(<span class="dv">500</span>, <span class="dv">3500</span>, <span class="at">by =</span> <span class="dv">250</span>)),</span>
+<span id="cb25-284"><a href="#cb25-284" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"white"</span>,</span>
+<span id="cb25-285"><a href="#cb25-285" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> .<span class="dv">25</span>,</span>
+<span id="cb25-286"><a href="#cb25-286" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> .<span class="dv">3</span></span>
+<span id="cb25-287"><a href="#cb25-287" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb25-288"><a href="#cb25-288" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradient</span>(</span>
+<span id="cb25-289"><a href="#cb25-289" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"Elevasi (m)"</span>,</span>
+<span id="cb25-290"><a href="#cb25-290" aria-hidden="true" tabindex="-1"></a>    <span class="at">low =</span> <span class="st">"#6DAA55"</span>,</span>
+<span id="cb25-291"><a href="#cb25-291" aria-hidden="true" tabindex="-1"></a>    <span class="at">high =</span> <span class="st">"#205544"</span></span>
+<span id="cb25-292"><a href="#cb25-292" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb25-293"><a href="#cb25-293" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(gunung)) <span class="sc">+</span> </span>
+<span id="cb25-294"><a href="#cb25-294" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
+<span id="cb25-295"><a href="#cb25-295" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tema_gunung</span>()</span>
+<span id="cb25-296"><a href="#cb25-296" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-297"><a href="#cb25-297" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(plot_2d_gunung)</span>
+<span id="cb25-298"><a href="#cb25-298" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb25-299"><a href="#cb25-299" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-300"><a href="#cb25-300" aria-hidden="true" tabindex="-1"></a>Berdasarkan @fig-proy-empat-gunung tersebut, apakah kamu sudah dapat membandingkan tinggi dan besar keempat gunung tersebut? Ya, Gunung Semeru tampak paling tinggi dibandingkan ketiga gunung lainnya. Selain itu, kita dapat melihat bahwa Gunung Bromo tampak relatif lebih luas dibandingkan ketiga gunung lainnya.</span>
+<span id="cb25-301"><a href="#cb25-301" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-302"><a href="#cb25-302" aria-hidden="true" tabindex="-1"></a>Untuk melihat bentuk detailnya, kita dapat menggambar keempat gunung tersebut ke dalam bentuk 3D. Untuk melakukannya, kita gunakan metode yang telah dibahas pada <span class="co">[</span><span class="ot">pos sebelumnya</span><span class="co">](/pos/2024-08-curah-hujan-indonesia/index.qmd "Indonesia Negara Dua Musim: Bagaimana Curah Hujannya?")</span>. Bagaimana caranya? Kita jalankan kode berikut ini.</span>
+<span id="cb25-303"><a href="#cb25-303" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-304"><a href="#cb25-304" aria-hidden="true" tabindex="-1"></a><span class="in">``` r</span></span>
+<span id="cb25-305"><a href="#cb25-305" aria-hidden="true" tabindex="-1"></a>plot_gunung <span class="ot">&lt;-</span> plot_2d_gunung <span class="sc">+</span> </span>
+<span id="cb25-306"><a href="#cb25-306" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb25-307"><a href="#cb25-307" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span>    <span class="co"># Menghapus legenda</span></span>
+<span id="cb25-308"><a href="#cb25-308" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb25-309"><a href="#cb25-309" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-310"><a href="#cb25-310" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_gg</span>(</span>
+<span id="cb25-311"><a href="#cb25-311" aria-hidden="true" tabindex="-1"></a>  plot_gunung,</span>
+<span id="cb25-312"><a href="#cb25-312" aria-hidden="true" tabindex="-1"></a>  <span class="at">multicore =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb25-313"><a href="#cb25-313" aria-hidden="true" tabindex="-1"></a>  <span class="at">scale =</span> <span class="dv">150</span></span>
+<span id="cb25-314"><a href="#cb25-314" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb25-315"><a href="#cb25-315" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb25-316"><a href="#cb25-316" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-317"><a href="#cb25-317" aria-hidden="true" tabindex="-1"></a>Beberapa saat setelah kode di atas kita jalankan, kita akan mendapatkan jendela kamera. Melalui jendela tersebut, kita dapat mengatur tampilan objek 3D-nya sesuai yang kita inginkan. Selain itu, kita juga dapat mengatur tampilannya dengan baris kode, misalnya seperti berikut.</span>
+<span id="cb25-318"><a href="#cb25-318" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-319"><a href="#cb25-319" aria-hidden="true" tabindex="-1"></a><span class="in">``` r</span></span>
+<span id="cb25-320"><a href="#cb25-320" aria-hidden="true" tabindex="-1"></a><span class="fu">render_camera</span>(</span>
+<span id="cb25-321"><a href="#cb25-321" aria-hidden="true" tabindex="-1"></a>    <span class="at">theta =</span> <span class="dv">45</span>,</span>
+<span id="cb25-322"><a href="#cb25-322" aria-hidden="true" tabindex="-1"></a>    <span class="at">phi =</span> <span class="dv">55</span>,</span>
+<span id="cb25-323"><a href="#cb25-323" aria-hidden="true" tabindex="-1"></a>    <span class="at">zoom =</span> .<span class="dv">85</span></span>
+<span id="cb25-324"><a href="#cb25-324" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb25-325"><a href="#cb25-325" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb25-326"><a href="#cb25-326" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-327"><a href="#cb25-327" aria-hidden="true" tabindex="-1"></a>Setelah kita mendapatkan tampilan yang cocok, kita jalankan kode berikut untuk merender gambarnya.</span>
+<span id="cb25-328"><a href="#cb25-328" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-329"><a href="#cb25-329" aria-hidden="true" tabindex="-1"></a><span class="in">``` r</span></span>
+<span id="cb25-330"><a href="#cb25-330" aria-hidden="true" tabindex="-1"></a><span class="fu">render_snapshot</span>()</span>
+<span id="cb25-331"><a href="#cb25-331" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb25-332"><a href="#cb25-332" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-333"><a href="#cb25-333" aria-hidden="true" tabindex="-1"></a>Hasil gambarnya seperti yang ditunjukkan pada @fig-empat-gunung-3d.</span>
+<span id="cb25-334"><a href="#cb25-334" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-335"><a href="#cb25-335" aria-hidden="true" tabindex="-1"></a><span class="al">![Model 3D Gunung Agung, Bromo, Merapi, dan Semeru](aset/empat_gunung_3d.png)</span>{#fig-empat-gunung-3d fig-alt="Model 3D Gunung Agung, Bromo, Merapi, dan Semeru" fig-align="center"}</span>
+<span id="cb25-336"><a href="#cb25-336" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-337"><a href="#cb25-337" aria-hidden="true" tabindex="-1"></a>Berdasarkan @fig-empat-gunung-3d, kita dapat membandingkan tinggi dan besar keempat gunung tersebut. Gunung semeru tampak paling tinggi. Gunung Bromo bentuknya lebih melebar dibandingkan dengan ketiga gunung lainnya. Selain itu, berdasarkan gambar tersebut kita dapat membandingkan bentuk detail keempat gunung tersebut.</span>
+<span id="cb25-338"><a href="#cb25-338" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-339"><a href="#cb25-339" aria-hidden="true" tabindex="-1"></a><span class="fu">## Memperkirakan Tinggi dan Volume {#sec-memperkirakan-tinggi-dan-volume}</span></span>
+<span id="cb25-340"><a href="#cb25-340" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-341"><a href="#cb25-341" aria-hidden="true" tabindex="-1"></a>Secara sederhana, sebenarnya kita telah dapat membandingkan tinggi dan volume keempat gunung pada @fig-empat-gunung-3d. Akan tetapi, kita juga dapat memperkirakan berapakah tinggi dan volume keempat gunung tersebut.</span>
+<span id="cb25-342"><a href="#cb25-342" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-343"><a href="#cb25-343" aria-hidden="true" tabindex="-1"></a>Pertama, kita akan menentukan tinggi Gunung Agung, Bromo, Merapi, dan Semeru. Berdasarkan Wikipedia, tinggi keempat gunung tersebut secara berturut-turut adalah 3.142, 2.614, 2.968, dan 3.676. Sekarang, kita perkirakan tinggi keempat gunung tersebut dengan menggunakan data elevasi dalam <span class="in">`df_gunung`</span>.</span>
+<span id="cb25-344"><a href="#cb25-344" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-347"><a href="#cb25-347" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb25-348"><a href="#cb25-348" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb25-349"><a href="#cb25-349" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb25-350"><a href="#cb25-350" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-351"><a href="#cb25-351" aria-hidden="true" tabindex="-1"></a>ketinggian <span class="ot">&lt;-</span> df_gunung <span class="sc">|&gt;</span> </span>
+<span id="cb25-352"><a href="#cb25-352" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(gunung) <span class="sc">|&gt;</span> </span>
+<span id="cb25-353"><a href="#cb25-353" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb25-354"><a href="#cb25-354" aria-hidden="true" tabindex="-1"></a>    <span class="at">elevasi_maksimum =</span> <span class="fu">max</span>(elevasi, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb25-355"><a href="#cb25-355" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb25-356"><a href="#cb25-356" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb25-357"><a href="#cb25-357" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-358"><a href="#cb25-358" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(ketinggian)</span>
+<span id="cb25-359"><a href="#cb25-359" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb25-360"><a href="#cb25-360" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-361"><a href="#cb25-361" aria-hidden="true" tabindex="-1"></a>Meskipun hasilnya berbeda dengan informasi dalam Wikipedia, kita mendapatkan ketinggian-ketinggian yang tak jauh berbeda. Agar lebih mudah dalam membandingkan tinggi keempat gunung tersebut, kita buat diagram batangnya. Diagram batang tersebut disajikan pada @fig-diagram-batang-tinggi-gunung.</span>
+<span id="cb25-362"><a href="#cb25-362" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-365"><a href="#cb25-365" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb25-366"><a href="#cb25-366" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb25-367"><a href="#cb25-367" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb25-368"><a href="#cb25-368" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-diagram-batang-tinggi-gunung</span></span>
+<span id="cb25-369"><a href="#cb25-369" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Ketinggian Gunung Agung, Bromo, Merapi, dan Semeru"</span></span>
+<span id="cb25-370"><a href="#cb25-370" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-asp: 0.5625</span></span>
+<span id="cb25-371"><a href="#cb25-371" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-372"><a href="#cb25-372" aria-hidden="true" tabindex="-1"></a>ketinggian <span class="sc">|&gt;</span> </span>
+<span id="cb25-373"><a href="#cb25-373" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">gunung =</span> <span class="fu">fct_reorder</span>(gunung, <span class="sc">-</span>elevasi_maksimum)) <span class="sc">|&gt;</span> </span>
+<span id="cb25-374"><a href="#cb25-374" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> gunung, <span class="at">y =</span> elevasi_maksimum)) <span class="sc">+</span> </span>
+<span id="cb25-375"><a href="#cb25-375" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(</span>
+<span id="cb25-376"><a href="#cb25-376" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">fill =</span> elevasi_maksimum),</span>
+<span id="cb25-377"><a href="#cb25-377" aria-hidden="true" tabindex="-1"></a>    <span class="at">show.legend =</span> <span class="cn">FALSE</span></span>
+<span id="cb25-378"><a href="#cb25-378" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb25-379"><a href="#cb25-379" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>() <span class="sc">+</span> </span>
+<span id="cb25-380"><a href="#cb25-380" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb25-381"><a href="#cb25-381" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb25-382"><a href="#cb25-382" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Gunung"</span>,</span>
+<span id="cb25-383"><a href="#cb25-383" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Ketinggian (mdpl)"</span></span>
+<span id="cb25-384"><a href="#cb25-384" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb25-385"><a href="#cb25-385" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-386"><a href="#cb25-386" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb25-387"><a href="#cb25-387" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-388"><a href="#cb25-388" aria-hidden="true" tabindex="-1"></a>Berikutnya, kita akan memperkirakan volume keempat gunung tersebut. Volume yang dimaksud di sini adalah volume potongan tiap gunung pada @fig-empat-gunung-3d. Untuk itu, kita hitung ada berapa petak data dalam setiap data gunungnya.</span>
+<span id="cb25-389"><a href="#cb25-389" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-392"><a href="#cb25-392" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb25-393"><a href="#cb25-393" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb25-394"><a href="#cb25-394" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb25-395"><a href="#cb25-395" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-396"><a href="#cb25-396" aria-hidden="true" tabindex="-1"></a>df_gunung <span class="sc">|&gt;</span> </span>
+<span id="cb25-397"><a href="#cb25-397" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(gunung) <span class="sc">|&gt;</span> </span>
+<span id="cb25-398"><a href="#cb25-398" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb25-399"><a href="#cb25-399" aria-hidden="true" tabindex="-1"></a>    <span class="at">banyak_petak =</span> <span class="fu">n</span>(),</span>
+<span id="cb25-400"><a href="#cb25-400" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb25-401"><a href="#cb25-401" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb25-402"><a href="#cb25-402" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-403"><a href="#cb25-403" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb25-404"><a href="#cb25-404" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-405"><a href="#cb25-405" aria-hidden="true" tabindex="-1"></a>Sebagian besar, banyak petaknya adalah 129.600 kecuali data untuk Gunung Bromo. Untuk itu, banyak petak pada Gunung Bromo kita samakan saja dengan ketiga gunung lainnya.</span>
+<span id="cb25-406"><a href="#cb25-406" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-407"><a href="#cb25-407" aria-hidden="true" tabindex="-1"></a>Alas potongan gunung-gunung tersebut memiliki ukuran 0,1 derajat × 0,1 derajat. Karena 0,1 derajat kurang lebih sama dengan 110 km, ukuran alasnya berarti 11 km × 11 km dan luasnya adalah 121 km^2^ atau 121.000.000 m^2^. Padahal alas tersebut berisi 129.600 petak. Dengan demikian, luas petak tersebut dapat dihitung seperti berikut.</span>
+<span id="cb25-408"><a href="#cb25-408" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-411"><a href="#cb25-411" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb25-412"><a href="#cb25-412" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb25-413"><a href="#cb25-413" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb25-414"><a href="#cb25-414" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-415"><a href="#cb25-415" aria-hidden="true" tabindex="-1"></a>luas_petak_est <span class="ot">&lt;-</span> <span class="dv">121000000</span> <span class="sc">/</span> <span class="dv">129600</span></span>
+<span id="cb25-416"><a href="#cb25-416" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(luas_petak_est)</span>
+<span id="cb25-417"><a href="#cb25-417" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-418"><a href="#cb25-418" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb25-419"><a href="#cb25-419" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-420"><a href="#cb25-420" aria-hidden="true" tabindex="-1"></a>Dengan demikian, kita memeroleh luas per petaknya sekitar 933,642 m^2^. Sekarang coba kita kembali ke belakang. Ketika kita mengunduh data matriks elevasi dari situs webnya Derek Watkin, di situ terdapat keterangan seperti berikut.</span>
+<span id="cb25-421"><a href="#cb25-421" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-422"><a href="#cb25-422" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; This interface attempts to ease the pain of downloading *30-meter resolution* elevation data from the Shuttle Radar Topography Mission.</span></span>
+<span id="cb25-423"><a href="#cb25-423" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-424"><a href="#cb25-424" aria-hidden="true" tabindex="-1"></a>Yup, petak-petak tersebut ukurannya adalah 30 m × 30 m. Dengan demikian, luas petaknya adalah 900 m^2^. Perkiraan kita tadi cukup dekat dengan nilai ini.</span>
+<span id="cb25-425"><a href="#cb25-425" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-426"><a href="#cb25-426" aria-hidden="true" tabindex="-1"></a>Volume potongan keempat gunung tersebut merupakan jumlah dari hasil kali luas setiap petak dan tinggi petak tersebut.</span>
+<span id="cb25-427"><a href="#cb25-427" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-428"><a href="#cb25-428" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb25-429"><a href="#cb25-429" aria-hidden="true" tabindex="-1"></a>\text{Volume} = \sum_{i=1}^{n} L_{i} \cdot h_{i}</span>
+<span id="cb25-430"><a href="#cb25-430" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb25-431"><a href="#cb25-431" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-432"><a href="#cb25-432" aria-hidden="true" tabindex="-1"></a>dengan $L_{i}$ dan $h_{i}$ secara berturut-turut adalah luas dan tinggi tiap-tiap petak. *Nah*, sekarang kita hitung volume keempat gunung tersebut.</span>
+<span id="cb25-433"><a href="#cb25-433" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-436"><a href="#cb25-436" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb25-437"><a href="#cb25-437" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb25-438"><a href="#cb25-438" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb25-439"><a href="#cb25-439" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-440"><a href="#cb25-440" aria-hidden="true" tabindex="-1"></a>volume <span class="ot">&lt;-</span> df_gunung <span class="sc">|&gt;</span> </span>
+<span id="cb25-441"><a href="#cb25-441" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb25-442"><a href="#cb25-442" aria-hidden="true" tabindex="-1"></a>    <span class="at">volume_petak =</span> <span class="dv">900</span> <span class="sc">*</span> elevasi</span>
+<span id="cb25-443"><a href="#cb25-443" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb25-444"><a href="#cb25-444" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(gunung) <span class="sc">|&gt;</span> </span>
+<span id="cb25-445"><a href="#cb25-445" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb25-446"><a href="#cb25-446" aria-hidden="true" tabindex="-1"></a>    <span class="at">volume_m3 =</span> <span class="fu">sum</span>(volume_petak),</span>
+<span id="cb25-447"><a href="#cb25-447" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb25-448"><a href="#cb25-448" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb25-449"><a href="#cb25-449" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-450"><a href="#cb25-450" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(volume)</span>
+<span id="cb25-451"><a href="#cb25-451" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb25-452"><a href="#cb25-452" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-453"><a href="#cb25-453" aria-hidden="true" tabindex="-1"></a>Karena kita biasanya lebih mudah membayangkan volume dengan satuan liter, kita dapat mengkonversi satuan volumenya menjadi liter.</span>
+<span id="cb25-454"><a href="#cb25-454" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-457"><a href="#cb25-457" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb25-458"><a href="#cb25-458" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb25-459"><a href="#cb25-459" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb25-460"><a href="#cb25-460" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-461"><a href="#cb25-461" aria-hidden="true" tabindex="-1"></a>volume <span class="ot">&lt;-</span> volume <span class="sc">|&gt;</span> </span>
+<span id="cb25-462"><a href="#cb25-462" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb25-463"><a href="#cb25-463" aria-hidden="true" tabindex="-1"></a>    <span class="at">volume_liter =</span> volume_m3 <span class="sc">*</span> <span class="dv">1000</span></span>
+<span id="cb25-464"><a href="#cb25-464" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb25-465"><a href="#cb25-465" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-466"><a href="#cb25-466" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(volume)</span>
+<span id="cb25-467"><a href="#cb25-467" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-468"><a href="#cb25-468" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb25-469"><a href="#cb25-469" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-470"><a href="#cb25-470" aria-hidden="true" tabindex="-1"></a>Potongan gunung manakah yang paling besar? Potongan gunung Bromo-lah yang paling besar, yaitu sekitar 2,58 × 10^14^ liter. Selanjutnya kita buat diagram batang yang merepresentasikan volume potongan keempat gunung tersebut. Hasilnya disajikan pada @fig-diagram-batang-volume-gunung.</span>
+<span id="cb25-471"><a href="#cb25-471" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-474"><a href="#cb25-474" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb25-475"><a href="#cb25-475" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb25-476"><a href="#cb25-476" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb25-477"><a href="#cb25-477" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-diagram-batang-volume-gunung</span></span>
+<span id="cb25-478"><a href="#cb25-478" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Volume potongan Gunung Agung, Bromo, Merapi, dan Semeru"</span></span>
+<span id="cb25-479"><a href="#cb25-479" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-asp: 0.5625</span></span>
+<span id="cb25-480"><a href="#cb25-480" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-481"><a href="#cb25-481" aria-hidden="true" tabindex="-1"></a>volume <span class="sc">|&gt;</span> </span>
+<span id="cb25-482"><a href="#cb25-482" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb25-483"><a href="#cb25-483" aria-hidden="true" tabindex="-1"></a>    <span class="at">gunung =</span> <span class="fu">fct_reorder</span>(gunung, <span class="sc">-</span>volume_liter)</span>
+<span id="cb25-484"><a href="#cb25-484" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb25-485"><a href="#cb25-485" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> gunung, <span class="at">y =</span> volume_liter)) <span class="sc">+</span> </span>
+<span id="cb25-486"><a href="#cb25-486" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(</span>
+<span id="cb25-487"><a href="#cb25-487" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">fill =</span> volume_liter),</span>
+<span id="cb25-488"><a href="#cb25-488" aria-hidden="true" tabindex="-1"></a>    <span class="at">show.legend =</span> <span class="cn">FALSE</span></span>
+<span id="cb25-489"><a href="#cb25-489" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb25-490"><a href="#cb25-490" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>() <span class="sc">+</span> </span>
+<span id="cb25-491"><a href="#cb25-491" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb25-492"><a href="#cb25-492" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb25-493"><a href="#cb25-493" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Gunung"</span>,</span>
+<span id="cb25-494"><a href="#cb25-494" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Volume (liter)"</span></span>
+<span id="cb25-495"><a href="#cb25-495" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb25-496"><a href="#cb25-496" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-497"><a href="#cb25-497" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb25-498"><a href="#cb25-498" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-499"><a href="#cb25-499" aria-hidden="true" tabindex="-1"></a><span class="fu">## Catatan Akhir {#sec-catatan-akhir}</span></span>
+<span id="cb25-500"><a href="#cb25-500" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-501"><a href="#cb25-501" aria-hidden="true" tabindex="-1"></a>Kita telah membandingkan seberapa tinggi dan besar Gunung Agung, Bromo, Merapi, dan Semeru. Hal itu kita lakukan dengan dua jalan: pengamatan dan perhitungan. Ketika menggunakan cara pengamatan, kita gambarkan representasi keempat gunung tersebut ke dalam bentuk 2D maupun 3D. Hasilnya seperti dapat dilihat pada @fig-proy-empat-gunung dan @fig-empat-gunung-3d. Ketika kita menggunakan cara perhitungan, kita gunakan data matriks elevasi keempat gunung tersebut untuk memperkirakan tinggi dan volumenya. Cara ini kita lakukan pada @sec-memperkirakan-tinggi-dan-volume.</span>
+</code><button title="Salin ke Papan Klip" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">

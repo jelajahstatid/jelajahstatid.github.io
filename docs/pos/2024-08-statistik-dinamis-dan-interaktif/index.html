@@ -344,7 +344,7 @@ gtag('config', 'G-WTEJLB3562', { 'anonymize_ip': true});
       </div> <!-- /container-fluid -->
     </nav></header><!-- content --><header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full"><div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Membuat Statistik Menjadi Dinamis dan Interaktif</h1>
+      <div class="quarto-title-block"><div><h1 class="title">Membuat Statistik Menjadi Dinamis dan Interaktif</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Kode</button></div></div>
                   <div>
         <div class="description">
           <p>Statistik bukan hanya untuk statistikawan tetapi juga untuk orang awam. Untuk itu, statistik perlu dikemas secara lebih menarik dan menawan. Shiny memungkinkan agar statistik disajikan secara dinamis dan interaktif agar menarik dan mudah dipelajari oleh orang awam.</p>
@@ -516,15 +516,15 @@ Gambar&nbsp;3: Hubungan antara PDB per kapita dan angka harapan hidup berbagai n
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.posit.co/">shiny</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Define UI for application that draws a histogram</span></span>
-<span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu">fluidPage</span><span class="op">(</span></span>
+<span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span><span class="op">(</span></span>
 <span></span>
 <span>    <span class="co"># Application title</span></span>
-<span>    <span class="fu">titlePanel</span><span class="op">(</span><span class="st">"Old Faithful Geyser Data"</span><span class="op">)</span>,</span>
+<span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/titlePanel.html">titlePanel</a></span><span class="op">(</span><span class="st">"Old Faithful Geyser Data"</span><span class="op">)</span>,</span>
 <span></span>
 <span>    <span class="co"># Sidebar with a slider input for number of bins </span></span>
-<span>    <span class="fu">sidebarLayout</span><span class="op">(</span></span>
-<span>        <span class="fu">sidebarPanel</span><span class="op">(</span></span>
-<span>            <span class="fu">sliderInput</span><span class="op">(</span><span class="st">"bins"</span>,</span>
+<span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/sidebarLayout.html">sidebarLayout</a></span><span class="op">(</span></span>
+<span>        <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/sidebarLayout.html">sidebarPanel</a></span><span class="op">(</span></span>
+<span>            <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/sliderInput.html">sliderInput</a></span><span class="op">(</span><span class="st">"bins"</span>,</span>
 <span>                        <span class="st">"Number of bins:"</span>,</span>
 <span>                        min <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>                        max <span class="op">=</span> <span class="fl">50</span>,</span>
@@ -532,8 +532,8 @@ Gambar&nbsp;3: Hubungan antara PDB per kapita dan angka harapan hidup berbagai n
 <span>        <span class="op">)</span>,</span>
 <span></span>
 <span>        <span class="co"># Show a plot of the generated distribution</span></span>
-<span>        <span class="fu">mainPanel</span><span class="op">(</span></span>
-<span>           <span class="fu">plotOutput</span><span class="op">(</span><span class="st">"distPlot"</span><span class="op">)</span></span>
+<span>        <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/sidebarLayout.html">mainPanel</a></span><span class="op">(</span></span>
+<span>           <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/plotOutput.html">plotOutput</a></span><span class="op">(</span><span class="st">"distPlot"</span><span class="op">)</span></span>
 <span>        <span class="op">)</span></span>
 <span>    <span class="op">)</span></span>
 <span><span class="op">)</span></span>
@@ -541,7 +541,7 @@ Gambar&nbsp;3: Hubungan antara PDB per kapita dan angka harapan hidup berbagai n
 <span><span class="co"># Define server logic required to draw a histogram</span></span>
 <span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span></span>
 <span></span>
-<span>    <span class="va">output</span><span class="op">$</span><span class="va">distPlot</span> <span class="op">&lt;-</span> <span class="fu">renderPlot</span><span class="op">(</span><span class="op">{</span></span>
+<span>    <span class="va">output</span><span class="op">$</span><span class="va">distPlot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html">renderPlot</a></span><span class="op">(</span><span class="op">{</span></span>
 <span>        <span class="co"># generate bins based on input$bins from ui.R</span></span>
 <span>        <span class="va">x</span>    <span class="op">&lt;-</span> <span class="va">faithful</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span></span>
 <span>        <span class="va">bins</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, length.out <span class="op">=</span> <span class="va">input</span><span class="op">$</span><span class="va">bins</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span></span>
@@ -554,7 +554,7 @@ Gambar&nbsp;3: Hubungan antara PDB per kapita dan angka harapan hidup berbagai n
 <span><span class="op">}</span></span>
 <span></span>
 <span><span class="co"># Run the application </span></span>
-<span><span class="fu">shinyApp</span><span class="op">(</span>ui <span class="op">=</span> <span class="va">ui</span>, server <span class="op">=</span> <span class="va">server</span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span><span class="op">(</span>ui <span class="op">=</span> <span class="va">ui</span>, server <span class="op">=</span> <span class="va">server</span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Baris kode di atas adalah baris kode yang sudah lengkap untuk sebuah aplikasi. Tetapi, aplikasi tersebut tidak sesuai dengan tujuanmu, yaitu memvisualisasikan hubungan antara PDB per kapita dan angka harapan hidup. Untuk itu, hapus semua baris kode di atas dan ganti dengan baris kode seperti pada <a href="#lst-kode-app-shiny" class="quarto-xref">Daftar&nbsp;1</a> berikut.</p>
 <div id="lst-kode-app-shiny" class="r listing quarto-float quarto-figure quarto-figure-left anchored" data-filename="app.R">
@@ -569,8 +569,8 @@ Daftar&nbsp;1: Baris kode di dalam app.R
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/load.html">load</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/connections.html">url</a></span><span class="op">(</span><span class="st">"https://github.com/jennybc/gapminder/raw/main/data/gapminder.rdata"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu">fluidPage</span><span class="op">(</span></span>
-<span>  <span class="fu">sliderInput</span><span class="op">(</span></span>
+<span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/sliderInput.html">sliderInput</a></span><span class="op">(</span></span>
 <span>    inputId <span class="op">=</span> <span class="st">"tahun"</span>,</span>
 <span>    label <span class="op">=</span> <span class="st">"Tahun"</span>,</span>
 <span>    min <span class="op">=</span> <span class="fl">1952</span>,</span>
@@ -578,11 +578,11 @@ Daftar&nbsp;1: Baris kode di dalam app.R
 <span>    value <span class="op">=</span> <span class="fl">2007</span>,</span>
 <span>    step <span class="op">=</span> <span class="fl">5</span></span>
 <span>  <span class="op">)</span>,</span>
-<span>  <span class="fu">plotOutput</span><span class="op">(</span><span class="st">"diagram_pencar"</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/plotOutput.html">plotOutput</a></span><span class="op">(</span><span class="st">"diagram_pencar"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">output</span><span class="op">$</span><span class="va">diagram_pencar</span> <span class="op">&lt;-</span> <span class="fu">renderPlot</span><span class="op">(</span><span class="op">{</span></span>
+<span>  <span class="va">output</span><span class="op">$</span><span class="va">diagram_pencar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html">renderPlot</a></span><span class="op">(</span><span class="op">{</span></span>
 <span>    <span class="va">tahun_int</span> <span class="op">&lt;-</span> <span class="va">input</span><span class="op">$</span><span class="va">tahun</span></span>
 <span>    </span>
 <span>    <span class="va">gapminder</span> <span class="op">|&gt;</span> </span>
@@ -593,7 +593,7 @@ Daftar&nbsp;1: Baris kode di dalam app.R
 <span>  <span class="op">}</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span></span>
-<span><span class="fu">shinyApp</span><span class="op">(</span>ui <span class="op">=</span> <span class="va">ui</span>, server <span class="op">=</span> <span class="va">server</span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span><span class="op">(</span>ui <span class="op">=</span> <span class="va">ui</span>, server <span class="op">=</span> <span class="va">server</span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </figure>
@@ -601,7 +601,7 @@ Daftar&nbsp;1: Baris kode di dalam app.R
 <p>Aplikasi <code>app.R</code> tersebut memuat baris kode yang melakukan empat hal sebagai berikut.</p>
 <ol type="1">
 <li><p>Baris kode tersebut memanggil paket {shiny} dan {tidyverse} melalui perintah <code><a href="https://shiny.posit.co/">library(shiny)</a></code> dan <code><a href="https://tidyverse.tidyverse.org">library(tidyverse)</a></code>. Selain itu, baris kode tersebut juga mengimpor data <code>gapminder</code> dengan perintah <code>load(url("https://github.com/jennybc/gapminder/raw/main/data/gapminder.rdata"))</code>.</p></li>
-<li><p>Baris kode tersebut membuat antarmuka (<code>ui</code>): laman yang menjadi tempat berinteraksinya pengguna. Ada tiga fungsi yang digunakan untuk membuat antarmuka tersebut, yaitu <code>fluidPage()</code>, <code>sliderInput()</code>, dan <code>plotOutput()</code>. Lebih lengkapnya akan dijelaskan pada <a href="#sec-antarmuka" class="quarto-xref">Bagian&nbsp;2.1</a>.</p></li>
+<li><p>Baris kode tersebut membuat antarmuka (<code>ui</code>): laman yang menjadi tempat berinteraksinya pengguna. Ada tiga fungsi yang digunakan untuk membuat antarmuka tersebut, yaitu <code><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage()</a></code>, <code><a href="https://rdrr.io/pkg/shiny/man/sliderInput.html">sliderInput()</a></code>, dan <code><a href="https://rdrr.io/pkg/shiny/man/plotOutput.html">plotOutput()</a></code>. Lebih lengkapnya akan dijelaskan pada <a href="#sec-antarmuka" class="quarto-xref">Bagian&nbsp;2.1</a>.</p></li>
 <li><p>Baris kode tersebut menentukan perilaku dari aplikasi tersebut dengan fungsi <code>server</code>. Pembahasan lebih lanjut dapat dilihat pada <a href="#sec-server" class="quarto-xref">Bagian&nbsp;2.2</a>.</p></li>
 <li><p>Baris kode yang terakhir, yaitu <code>shinyApp(ui = ui, server = server)</code>, berfungsi untuk membuat aplikasi Shiny berdasarkan antarmuka <code>ui</code> dan fungsi <code>server</code> dan kemudian menjalankannya.</p></li>
 </ol>
@@ -625,17 +625,17 @@ Gambar&nbsp;5: Tampilan aplikasi Shiny
 </div>
 <p>Kamu dapat berinteraksi dengan aplikasi tersebut. Silakan geser-geser slidernya (bagian kiri-atas aplikasi dengan label “Tahun”) untuk mengubah tahunnya. Ketika tahun tersebut kamu ganti, kamu dapat melihat tampilan diagram pencarnya juga menyesuaikan. Untuk menutup aplikasi tersebut, klik tombol <strong>Close</strong> yang terletak di sebelah kanan-atas.</p>
 <section id="sec-antarmuka" class="level3"><h3 class="anchored" data-anchor-id="sec-antarmuka">Antarmuka Aplikasi Shiny</h3>
-<p>Salah satu bagian baris kode aplikasi Shiny adalah kode antarmukanya. Pada baris kode <a href="#lst-kode-app-shiny" class="quarto-xref">Daftar&nbsp;1</a>, pendefinisian antarmukanya ada di <code>ui</code>. Terdapat tiga fungsi yang digunakan, yaitu <code>fluidPage()</code>, <code>sliderInput()</code>, dan <code>plotOutput()</code>.</p>
+<p>Salah satu bagian baris kode aplikasi Shiny adalah kode antarmukanya. Pada baris kode <a href="#lst-kode-app-shiny" class="quarto-xref">Daftar&nbsp;1</a>, pendefinisian antarmukanya ada di <code>ui</code>. Terdapat tiga fungsi yang digunakan, yaitu <code><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage()</a></code>, <code><a href="https://rdrr.io/pkg/shiny/man/sliderInput.html">sliderInput()</a></code>, dan <code><a href="https://rdrr.io/pkg/shiny/man/plotOutput.html">plotOutput()</a></code>.</p>
 <ul>
-<li><p><code>fluidPage()</code> merupakan fungsi tata letak. Fungsi ini mengatur tata letak dari tampilan aplikasi Shiny kita.</p></li>
-<li><p><code>sliderInput()</code> merupakan salah satu kontrol input. Fungsi ini memungkinkan pengguna untuk berinteraksi dengan aplikasi kita. Dengan menggeser-geser slidernya, pengguna menyediakan input bagi aplikasi kita. Terdapat enam argumen yang kita isikan dalam fungsi tersebut. Argumen <code>inputId = "tahun"</code> memberikan identitas terhadap slider tersebut. Identitas ini selanjutnya digunakan lagi dalam fungsi <code>server</code> nantinya. Argumen <code>label="Tahun"</code> berfungsi untuk memberikan label terhadap slider tersebut. Label ini ditampilkan dalam antarmuka aplikasi kita. Argumen <code>min = 1952</code> , <code>max = 2007</code>, dan <code>step = 5</code> memberikan nilai-nilai yang mungkin untuk inputnya, yaitu bilangan mulai dari 1952 sampai 2007 dengan interval 5. Terakhir, <code>value = 2007</code> memberikan nilai awal untuk slider tersebut.</p></li>
-<li><p><code>plotOutput()</code> merupakan salah satu kontrol luaran aplikasi Shiny. Fungsi ini memberitahu Shiny tempat meletakkan luaran plot yang memiliki identitas <code>diagram_pencar</code>.</p></li>
+<li><p><code><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage()</a></code> merupakan fungsi tata letak. Fungsi ini mengatur tata letak dari tampilan aplikasi Shiny kita.</p></li>
+<li><p><code><a href="https://rdrr.io/pkg/shiny/man/sliderInput.html">sliderInput()</a></code> merupakan salah satu kontrol input. Fungsi ini memungkinkan pengguna untuk berinteraksi dengan aplikasi kita. Dengan menggeser-geser slidernya, pengguna menyediakan input bagi aplikasi kita. Terdapat enam argumen yang kita isikan dalam fungsi tersebut. Argumen <code>inputId = "tahun"</code> memberikan identitas terhadap slider tersebut. Identitas ini selanjutnya digunakan lagi dalam fungsi <code>server</code> nantinya. Argumen <code>label="Tahun"</code> berfungsi untuk memberikan label terhadap slider tersebut. Label ini ditampilkan dalam antarmuka aplikasi kita. Argumen <code>min = 1952</code> , <code>max = 2007</code>, dan <code>step = 5</code> memberikan nilai-nilai yang mungkin untuk inputnya, yaitu bilangan mulai dari 1952 sampai 2007 dengan interval 5. Terakhir, <code>value = 2007</code> memberikan nilai awal untuk slider tersebut.</p></li>
+<li><p><code><a href="https://rdrr.io/pkg/shiny/man/plotOutput.html">plotOutput()</a></code> merupakan salah satu kontrol luaran aplikasi Shiny. Fungsi ini memberitahu Shiny tempat meletakkan luaran plot yang memiliki identitas <code>diagram_pencar</code>.</p></li>
 </ul></section><section id="sec-server" class="level3"><h3 class="anchored" data-anchor-id="sec-server">Dapur Aplikasi Shiny</h3>
 <p><a href="#sec-antarmuka" class="quarto-xref">Bagian&nbsp;2.1</a> telah menunjukkan adanya input dan luaran dalam aplikasi Shiny kita. Dari input menjadi luaran, terdapat proses komputasi yang dilakukan di dapur Shiny. Proses ini kita tentukan di dalam fungsi <code>server</code>.</p>
 <p>Di dalam fungsi <code>server</code>, kita memberikan resep kepada Shiny untuk melakukan komputasi. Ruas kiri dari operator <code>&lt;-</code>, yaitu <code>output$diagram_pencar</code>, mengindikasikan bahwa kita memberikan resep untuk luaran dengan identitas <code>diagram_pencar</code>.</p>
-<p>Ruas kanan operator <code>&lt;-</code> merupakan fungsi render. Fungsi render ini bermacam-macam jenisnya, tergantung dari luarannya. Karena di antarmuka kita akan membuat plot dengan <code>plotOutput</code>, kita perlu menggunakan fungsi <code>renderPlot()</code> di sini.</p>
-<p>Logika di dalam fungsi <code>renderPlot()</code> sama dengan logika yang kita gunakan pada <a href="#sec-mengapa-shiny" class="quarto-xref">Bagian&nbsp;1</a>, tetapi dengan sedikit penambahan. Penambahannya adalah pada <code>tahun_int &lt;- input$tahun</code>. Kode ini berfungsi untuk memberikan nilai sebesar <code>input$tahun</code> kepada variabel <code>tahun_int</code>. Nilai <code>input$tahun</code> tersebut tergantung dari nilai yang diberikan oleh pengguna terhadap slider dengan identitas <code>tahun</code> pada antarmuka.</p>
-<p>Alur kerja aplikasi Shiny kita ringkasnya seperti ini. Pertama, pengguna melihat antarmuka aplikasi kita. Di situ dia dapat menggeser slider dengan identitas <code>tahun</code> untuk mengganti-ganti nilanya. Nilai ini kemudian dikirim ke dapur Shiny dalam rupa <code>input$tahun</code> untuk diolah di dalam fungsi render, yaitu <code>renderPlot()</code>. Olahan tersebut menghasilkan luaran yang disebut dengan <code>output$diagram_pencar</code>. Luaran ini kemudian dikirimkan lagi ke antarmuka agar dapat dilihat oleh pengguna. Di mana posisinya? Posisinya terletak di mana <code>plotOutput("diagram_pencar")</code> berada.</p>
+<p>Ruas kanan operator <code>&lt;-</code> merupakan fungsi render. Fungsi render ini bermacam-macam jenisnya, tergantung dari luarannya. Karena di antarmuka kita akan membuat plot dengan <code>plotOutput</code>, kita perlu menggunakan fungsi <code><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html">renderPlot()</a></code> di sini.</p>
+<p>Logika di dalam fungsi <code><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html">renderPlot()</a></code> sama dengan logika yang kita gunakan pada <a href="#sec-mengapa-shiny" class="quarto-xref">Bagian&nbsp;1</a>, tetapi dengan sedikit penambahan. Penambahannya adalah pada <code>tahun_int &lt;- input$tahun</code>. Kode ini berfungsi untuk memberikan nilai sebesar <code>input$tahun</code> kepada variabel <code>tahun_int</code>. Nilai <code>input$tahun</code> tersebut tergantung dari nilai yang diberikan oleh pengguna terhadap slider dengan identitas <code>tahun</code> pada antarmuka.</p>
+<p>Alur kerja aplikasi Shiny kita ringkasnya seperti ini. Pertama, pengguna melihat antarmuka aplikasi kita. Di situ dia dapat menggeser slider dengan identitas <code>tahun</code> untuk mengganti-ganti nilanya. Nilai ini kemudian dikirim ke dapur Shiny dalam rupa <code>input$tahun</code> untuk diolah di dalam fungsi render, yaitu <code><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html">renderPlot()</a></code>. Olahan tersebut menghasilkan luaran yang disebut dengan <code>output$diagram_pencar</code>. Luaran ini kemudian dikirimkan lagi ke antarmuka agar dapat dilihat oleh pengguna. Di mana posisinya? Posisinya terletak di mana <code>plotOutput("diagram_pencar")</code> berada.</p>
 </section></section><section id="sec-sentuhan-akhir" class="level2"><h2 class="anchored" data-anchor-id="sec-sentuhan-akhir">Sentuhan Akhir</h2>
 <p>Aplikasi Shiny kita masih sederhana dan seperlunya. Kita dapat memperindah aplikasi tersebut. Beberapa hal yang dapat kita lakukan antara lain</p>
 <ul>
@@ -656,9 +656,9 @@ Daftar&nbsp;2: Baris kode di dalam app.R
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/load.html">load</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/connections.html">url</a></span><span class="op">(</span><span class="st">"https://github.com/jennybc/gapminder/raw/main/data/gapminder.rdata"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu">fluidPage</span><span class="op">(</span></span>
-<span>  <span class="fu">titlePanel</span><span class="op">(</span><span class="st">"PDB per Kapita vs. Angka Harapan Hidup"</span><span class="op">)</span>,</span>
-<span>  <span class="fu">sliderInput</span><span class="op">(</span></span>
+<span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/titlePanel.html">titlePanel</a></span><span class="op">(</span><span class="st">"PDB per Kapita vs. Angka Harapan Hidup"</span><span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/sliderInput.html">sliderInput</a></span><span class="op">(</span></span>
 <span>    inputId <span class="op">=</span> <span class="st">"tahun"</span>,</span>
 <span>    label <span class="op">=</span> <span class="st">"Tahun"</span>,</span>
 <span>    min <span class="op">=</span> <span class="fl">1952</span>,</span>
@@ -667,11 +667,11 @@ Daftar&nbsp;2: Baris kode di dalam app.R
 <span>    step <span class="op">=</span> <span class="fl">5</span>,</span>
 <span>    sep <span class="op">=</span> <span class="st">""</span></span>
 <span>  <span class="op">)</span>,</span>
-<span>  <span class="fu">plotOutput</span><span class="op">(</span><span class="st">"diagram_pencar"</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/plotOutput.html">plotOutput</a></span><span class="op">(</span><span class="st">"diagram_pencar"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">output</span><span class="op">$</span><span class="va">diagram_pencar</span> <span class="op">&lt;-</span> <span class="fu">renderPlot</span><span class="op">(</span><span class="op">{</span></span>
+<span>  <span class="va">output</span><span class="op">$</span><span class="va">diagram_pencar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html">renderPlot</a></span><span class="op">(</span><span class="op">{</span></span>
 <span>    <span class="va">tahun_int</span> <span class="op">&lt;-</span> <span class="va">input</span><span class="op">$</span><span class="va">tahun</span></span>
 <span>    </span>
 <span>    <span class="va">gapminder</span> <span class="op">|&gt;</span> </span>
@@ -704,7 +704,7 @@ Daftar&nbsp;2: Baris kode di dalam app.R
 <span>  <span class="op">}</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span></span>
-<span><span class="fu">shinyApp</span><span class="op">(</span>ui <span class="op">=</span> <span class="va">ui</span>, server <span class="op">=</span> <span class="va">server</span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span><span class="op">(</span>ui <span class="op">=</span> <span class="va">ui</span>, server <span class="op">=</span> <span class="va">server</span><span class="op">)</span></span></code><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </figure>
@@ -722,6 +722,8 @@ Gambar&nbsp;6: Tampilan aplikasi Shiny setelah dilakukan sentuhan akhir
 <p>Kita telah mengenal Shiny. Kita secara bersama-sama juga telah membuat aplikasi Shiny sederhana pada <a href="#sec-membuat-app-shiny" class="quarto-xref">Bagian&nbsp;2</a> dan memberikan sentuhan akhir pada <a href="#sec-sentuhan-akhir" class="quarto-xref">Bagian&nbsp;3</a>. Aplikasi tersebut dapat menampilkan visualisasi data secara interaktif. Dengan cara demikian, harapannya statistik tidak hanya menjadi konsumsi statistikawan tetapi juga orang awam.</p>
 <p>Apa selanjutnya? Jika kamu tertarik untuk mengembangkan aplikasi Shiny, kamu dapat belajar dari contoh-contohnya. Contoh tersebut dapat kamu lihat di <a href="https://shiny.posit.co/r/gallery/" class="external" target="_blank" title="Shiny for R Gallery">laman galeri Shiny untuk R</a>. Selain itu, kamu juga dapat menjelajah <a href="https://people.usd.ac.id/~ydkristanto/index.php/media-pengajaran/shiny-stat-dan-id/" class="external" target="_blank" title="Aplikasi Shiny untuk Statistika dan Ilmu Data">beberapa aplikasi Shiny yang telah aku kembangkan</a>. <em>Have a shiny day!</em></p>
 
+
+<!-- -->
 
 </section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Kembali ke atas</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Penggunaan Kembali</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-copyright"><h2 class="anchored quarto-appendix-heading">Hak Cipta</h2><div class="quarto-appendix-contents"><div>© 2024 Yosep Dwi Kristanto</div></div></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -805,6 +807,57 @@ Gambar&nbsp;6: Tampilan aplikasi Shiny setelah dilakukan sentuhan akhir
         container: window.document.getElementById('quarto-embedded-source-code-modal')
       });
       clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
@@ -1204,7 +1257,356 @@ Gambar&nbsp;6: Tampilan aplikasi Shiny setelah dilakukan sentuhan akhir
     document.getElementById("quarto-content").appendChild(script);
   }
   loadGiscus();
-</script>
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Kode Sumber</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb12" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Membuat Statistik Menjadi Dinamis dan Interaktif"</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> |</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">  Statistik bukan hanya untuk statistikawan tetapi juga untuk orang awam. Untuk itu, statistik perlu dikemas secara lebih menarik dan menawan. Shiny memungkinkan agar statistik disajikan secara dinamis dan interaktif agar menarik dan mudah dipelajari oleh orang awam.</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: Yosep Dwi Kristanto</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co">    url: https://people.usd.ac.id/~ydkristanto/</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation: Pendidikan Matematika, Universitas Sanata Dharma, Yogyakarta</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliation-url: https://www.usd.ac.id/s1pmat</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co">    orcid: 0000-0003-1446-0422</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> 2024-08-10</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co">  - statistik dunia</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="co">  - tutorial</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="co">  - visualisasi data</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="an">image:</span><span class="co"> "statistik-interaktif.png"</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="an">image-alt:</span><span class="co"> |</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="co">  Logo Shiny dengan latar belakang diagram pencar yang dibuat secara acak. Logo Shiny diperoleh dari Wikimedia.</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="an">keywords:</span><span class="co"> </span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="co">  - Shiny</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="co">  - Gapminder</span></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="co">  - harapan hidup</span></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="co">  - produk domestik bruto</span></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a><span class="co">  - PDB</span></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="co">  - diagram pencar</span></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a><span class="an">lightbox:</span><span class="co"> true</span></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a><span class="an">copyright:</span><span class="co"> "© 2024 Yosep Dwi Kristanto"</span></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a><span class="an">license:</span><span class="co"> "CC BY"</span></span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a><span class="an">editor_options:</span><span class="co"> </span></span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a><span class="co">  chunk_output_type: console</span></span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a><span class="an">code-annotations:</span><span class="co"> select</span></span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>Jelajah data itu seringkali kompleks dan menantang. Apalagi yang kita jelajahi adalah data raya. Apakah penjelajahan data tersebut dapat kita buat menjadi lebih mudah dan menarik? Artikel blog ini akan mendemonstrasikan bagaimana mengembangkan aplikasi Shiny untuk menjelajah data dari <span class="co">[</span><span class="ot">pos sebelumnya</span><span class="co">](/pos/2024-08-statistik-jendela-dunia/index.qmd "Statistik Adalah Jendela Dunia")</span>.</span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>Kita berkenalan dengan Shiny terlebih dahulu. Shiny adalah sebuah cara yang memungkinkan kita untuk membuat aplikasi berbasis web dengan bahasa pemrograman R (atau Python). Shiny ini cocok bagi kamu yang baru awal-awal memelajari R maupun yang sudah lama dan lihai menggunakan bahasa pemrograman itu.</span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a><span class="fu">## Mengapa Perlu Aplikasi Shiny? {#sec-mengapa-shiny}</span></span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>Bayangkan kamu adalah seorang analis data. Kamu sedang menganalisis <span class="co">[</span><span class="ot">data Gapminder</span><span class="co">](https://github.com/jennybc/gapminder)</span>{.external target="_blank"} dengan R. Tujuannya adalah untuk melihat hubungan antara PDB (Pendapatan Domestik Bruto) per kapita dan angka harapan hidup berbagai negara. Pertama, kamu panggil dulu paket yang diperlukan. Paket tersebut adalah <span class="co">[</span><span class="ot">{tidyverse}</span><span class="co">](https://www.tidyverse.org/)</span>{.external target="_blank"}.</span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a>Setelah itu, kamu impor data yang tersedia secara daring dengan menggunakan fungsi <span class="in">`load()`</span> dan <span class="in">`url()`</span>. Hasilnya, kamu mendapatkan data dengan nama <span class="in">`gapminder`</span>.</span>
+<span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-58"><a href="#cb12-58" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb12-59"><a href="#cb12-59" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb12-60"><a href="#cb12-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-61"><a href="#cb12-61" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="fu">url</span>(<span class="st">"https://github.com/jennybc/gapminder/raw/main/data/gapminder.rdata"</span>))</span>
+<span id="cb12-62"><a href="#cb12-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-63"><a href="#cb12-63" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-64"><a href="#cb12-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-65"><a href="#cb12-65" aria-hidden="true" tabindex="-1"></a>Data tersebut memiliki enam variabel, yaitu negara (<span class="in">`country`</span>), benua (<span class="in">`continent`</span>), tahun (<span class="in">`year`</span>), angka harapan hidup (<span class="in">`lifeExp`</span>), dan PDB per kapita (<span class="in">`gdpPercap`</span>, dalam dolar internasional). Tak ingin berlama-lama, kamu langsung memvisualisasikan hubungan antara PDB per kapita dan angka harapan hidup dengan diagram pencar. Hasilnya ditunjukkan pada @fig-hub-pdb-ahh.</span>
+<span id="cb12-66"><a href="#cb12-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-69"><a href="#cb12-69" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-70"><a href="#cb12-70" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb12-71"><a href="#cb12-71" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb12-72"><a href="#cb12-72" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-hub-pdb-ahh</span></span>
+<span id="cb12-73"><a href="#cb12-73" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: Hubungan antara PDB per kapita dan angka harapan hidup berbagai negara</span></span>
+<span id="cb12-74"><a href="#cb12-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-75"><a href="#cb12-75" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">|&gt;</span> </span>
+<span id="cb12-76"><a href="#cb12-76" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> gdpPercap, <span class="at">y =</span> lifeExp)) <span class="sc">+</span> </span>
+<span id="cb12-77"><a href="#cb12-77" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
+<span id="cb12-78"><a href="#cb12-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-79"><a href="#cb12-79" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-80"><a href="#cb12-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-81"><a href="#cb12-81" aria-hidden="true" tabindex="-1"></a>Sayangnya, @fig-hub-pdb-ahh menggambarkan semua titik datanya. Padahal, kamu ingin menggambarkan titik-titik pada tahun tertentu saja. Untuk itu, kamu perlu mengetahui tahun berapa saja yang tersedia dalam data.</span>
+<span id="cb12-82"><a href="#cb12-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-85"><a href="#cb12-85" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-86"><a href="#cb12-86" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb12-87"><a href="#cb12-87" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb12-88"><a href="#cb12-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-89"><a href="#cb12-89" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(gapminder<span class="sc">$</span>year)</span>
+<span id="cb12-90"><a href="#cb12-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-91"><a href="#cb12-91" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-92"><a href="#cb12-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-93"><a href="#cb12-93" aria-hidden="true" tabindex="-1"></a>Tahunnya ternyata mulai dari 1952 sampai 2007 dengan interval lima tahun. Selanjutnya, kamu ingin menggambar seperti pada @fig-hub-pdb-ahh tetapi hanya untuk tahun 2007. Keinginanmu ini terwujud dengan menjalankan baris kode di bawah. Hasilnya tersaji pada @fig-hub-pdb-ahh-2007.</span>
+<span id="cb12-94"><a href="#cb12-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-97"><a href="#cb12-97" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-98"><a href="#cb12-98" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb12-99"><a href="#cb12-99" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb12-100"><a href="#cb12-100" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-hub-pdb-ahh-2007</span></span>
+<span id="cb12-101"><a href="#cb12-101" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: Hubungan antara PDB per kapita dan angka harapan hidup berbagai negara pada tahun 2007</span></span>
+<span id="cb12-102"><a href="#cb12-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-103"><a href="#cb12-103" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">|&gt;</span> </span>
+<span id="cb12-104"><a href="#cb12-104" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2007</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb12-105"><a href="#cb12-105" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> gdpPercap, <span class="at">y =</span> lifeExp)) <span class="sc">+</span> </span>
+<span id="cb12-106"><a href="#cb12-106" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
+<span id="cb12-107"><a href="#cb12-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-108"><a href="#cb12-108" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-109"><a href="#cb12-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-110"><a href="#cb12-110" aria-hidden="true" tabindex="-1"></a>Dalam baris kode di atas, terdapat perintah <span class="in">`filter(year == 2007)`</span>. Kode tersebut berguna untuk memfilter datanya agar nilai variabel <span class="in">`year`</span>-nya sama dengan 2007.</span>
+<span id="cb12-111"><a href="#cb12-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-112"><a href="#cb12-112" aria-hidden="true" tabindex="-1"></a>Sekarang kamu ingin memvisualisasikan lagi data tersebut tetapi untuk tahun 2002. Caranya mudah. Kamu tinggal mengganti 2007 dengan 2002 dalam fungsi <span class="in">`filter()`</span> di atas. Alternatifnya, kamu dapat membuat sebuah variabel baru, misalnya <span class="in">`tahun_int`</span>, dan membuat nilainya menjadi 2002. Setelah itu, kamu ganti 2007 dalam fungsi <span class="in">`filter()`</span> di atas dengan variabel tersebut. Alhasil, kamu mendapatkan diagram pencar seperti yang ditunjukkan @fig-hub-pdb-ahh-2002.</span>
+<span id="cb12-113"><a href="#cb12-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-116"><a href="#cb12-116" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-117"><a href="#cb12-117" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb12-118"><a href="#cb12-118" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb12-119"><a href="#cb12-119" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-hub-pdb-ahh-2002</span></span>
+<span id="cb12-120"><a href="#cb12-120" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: Hubungan antara PDB per kapita dan angka harapan hidup berbagai negara pada tahun 2002</span></span>
+<span id="cb12-121"><a href="#cb12-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-122"><a href="#cb12-122" aria-hidden="true" tabindex="-1"></a><span class="co"># Variabel `tahun_int` dan nilainya sama dengan 2002</span></span>
+<span id="cb12-123"><a href="#cb12-123" aria-hidden="true" tabindex="-1"></a>tahun_int <span class="ot">&lt;-</span> <span class="dv">2002</span></span>
+<span id="cb12-124"><a href="#cb12-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-125"><a href="#cb12-125" aria-hidden="true" tabindex="-1"></a><span class="co"># Memvisualisasikan data untuk tahun 2002</span></span>
+<span id="cb12-126"><a href="#cb12-126" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">|&gt;</span> </span>
+<span id="cb12-127"><a href="#cb12-127" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> tahun_int) <span class="sc">|&gt;</span> </span>
+<span id="cb12-128"><a href="#cb12-128" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> gdpPercap, <span class="at">y =</span> lifeExp)) <span class="sc">+</span> </span>
+<span id="cb12-129"><a href="#cb12-129" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
+<span id="cb12-130"><a href="#cb12-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-131"><a href="#cb12-131" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-132"><a href="#cb12-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-133"><a href="#cb12-133" aria-hidden="true" tabindex="-1"></a>Bagaimana jika kamu ingin membuat visualisasi data untuk tahun 1997? Kamu ganti nilai variabel <span class="in">`tahun_int`</span> dengan 1997 dan jalankan baris kodenya. Bagaimana untuk tahun-tahun lainnya? Caranya sama:</span>
+<span id="cb12-134"><a href="#cb12-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-135"><a href="#cb12-135" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>kamu ganti nilai varibel <span class="in">`tahun_int`</span> dengan tahun yang kamu mau, dan kemudian</span>
+<span id="cb12-136"><a href="#cb12-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-137"><a href="#cb12-137" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>jalankan lagi baris kodenya.</span>
+<span id="cb12-138"><a href="#cb12-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-139"><a href="#cb12-139" aria-hidden="true" tabindex="-1"></a>Dua langkah tersebut perlu dilakukan agar kamu dapat memvisualisasikan data untuk tahun-tahun tertentu. Adakah cara yang lebih efisien? Adakah cara agar langkah kedua di atas otomatis dijalankan ketika kamu mengganti nilai variabel <span class="in">`tahun_int`</span>? Tentu saja ada! Caranya adalah dengan menggunakan Shiny.</span>
+<span id="cb12-140"><a href="#cb12-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-141"><a href="#cb12-141" aria-hidden="true" tabindex="-1"></a>Shiny menggunakan pemrograman yang reaktif. Artinya, Shiny akan secara otomatis menjalankan baris perintah untuk menghasilkan luaran ketika nilai inputnya diganti. Dalam kasusmu ini, inputnya adalah nilai variabel <span class="in">`tahun_int`</span> dan luarannya adalah diagram pencar seperti pada @fig-hub-pdb-ahh-2007 atau @fig-hub-pdb-ahh-2002. Dengan demikian, Shiny akan langsung membuat diagram pencar seperti itu ketika nilai variabel <span class="in">`tahun_int`</span> kamu ganti.</span>
+<span id="cb12-142"><a href="#cb12-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-143"><a href="#cb12-143" aria-hidden="true" tabindex="-1"></a><span class="fu">## Membuat Aplikasi Shiny {#sec-membuat-app-shiny}</span></span>
+<span id="cb12-144"><a href="#cb12-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-145"><a href="#cb12-145" aria-hidden="true" tabindex="-1"></a>Kamu telah mengenal Shiny. Sekarang kita akan membuat aplikasi Shiny berdasarkan proses analisis data yang dipaparkan pada @sec-mengapa-shiny. Karena kita akan menggunakan paket <span class="co">[</span><span class="ot">{shiny}</span><span class="co">](https://CRAN.R-project.org/package=shiny)</span>{.external target="_blank"}, paket tersebut perlu terpasang di komputermu. Jika belum, kamu perlu memasangnya dengan perintah berikut.</span>
+<span id="cb12-146"><a href="#cb12-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-147"><a href="#cb12-147" aria-hidden="true" tabindex="-1"></a><span class="in">``` r</span></span>
+<span id="cb12-148"><a href="#cb12-148" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"shiny"</span>)</span>
+<span id="cb12-149"><a href="#cb12-149" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-150"><a href="#cb12-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-151"><a href="#cb12-151" aria-hidden="true" tabindex="-1"></a>Aku menyarankanmu untuk membuat aplikasi Shiny dengan <span class="co">[</span><span class="ot">RStudio</span><span class="co">](https://posit.co/download/rstudio-desktop/)</span>{.external target="_blank"} agar lebih mudah. Di RStudio, kamu dapat membuat aplikasi Shiny dengan mengklik **File \| New File \| Shiny Web App...** Pada jendela *New Shiny Web Application*, tuliskan nama aplikasinya dan klik **Create**. Setelah itu, kamu akan mendapatkan fail <span class="in">`app.R`</span> yang isinya seperti ini.</span>
+<span id="cb12-152"><a href="#cb12-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-153"><a href="#cb12-153" aria-hidden="true" tabindex="-1"></a><span class="in">``` {.r filename="app.R"}</span></span>
+<span id="cb12-154"><a href="#cb12-154" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb12-155"><a href="#cb12-155" aria-hidden="true" tabindex="-1"></a><span class="co"># This is a Shiny web application. You can run the application by clicking</span></span>
+<span id="cb12-156"><a href="#cb12-156" aria-hidden="true" tabindex="-1"></a><span class="co"># the 'Run App' button above.</span></span>
+<span id="cb12-157"><a href="#cb12-157" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb12-158"><a href="#cb12-158" aria-hidden="true" tabindex="-1"></a><span class="co"># Find out more about building applications with Shiny here:</span></span>
+<span id="cb12-159"><a href="#cb12-159" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb12-160"><a href="#cb12-160" aria-hidden="true" tabindex="-1"></a><span class="co">#    https://shiny.posit.co/</span></span>
+<span id="cb12-161"><a href="#cb12-161" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb12-162"><a href="#cb12-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-163"><a href="#cb12-163" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shiny)</span>
+<span id="cb12-164"><a href="#cb12-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-165"><a href="#cb12-165" aria-hidden="true" tabindex="-1"></a><span class="co"># Define UI for application that draws a histogram</span></span>
+<span id="cb12-166"><a href="#cb12-166" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb12-167"><a href="#cb12-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-168"><a href="#cb12-168" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Application title</span></span>
+<span id="cb12-169"><a href="#cb12-169" aria-hidden="true" tabindex="-1"></a>    <span class="fu">titlePanel</span>(<span class="st">"Old Faithful Geyser Data"</span>),</span>
+<span id="cb12-170"><a href="#cb12-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-171"><a href="#cb12-171" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Sidebar with a slider input for number of bins </span></span>
+<span id="cb12-172"><a href="#cb12-172" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sidebarLayout</span>(</span>
+<span id="cb12-173"><a href="#cb12-173" aria-hidden="true" tabindex="-1"></a>        <span class="fu">sidebarPanel</span>(</span>
+<span id="cb12-174"><a href="#cb12-174" aria-hidden="true" tabindex="-1"></a>            <span class="fu">sliderInput</span>(<span class="st">"bins"</span>,</span>
+<span id="cb12-175"><a href="#cb12-175" aria-hidden="true" tabindex="-1"></a>                        <span class="st">"Number of bins:"</span>,</span>
+<span id="cb12-176"><a href="#cb12-176" aria-hidden="true" tabindex="-1"></a>                        <span class="at">min =</span> <span class="dv">1</span>,</span>
+<span id="cb12-177"><a href="#cb12-177" aria-hidden="true" tabindex="-1"></a>                        <span class="at">max =</span> <span class="dv">50</span>,</span>
+<span id="cb12-178"><a href="#cb12-178" aria-hidden="true" tabindex="-1"></a>                        <span class="at">value =</span> <span class="dv">30</span>)</span>
+<span id="cb12-179"><a href="#cb12-179" aria-hidden="true" tabindex="-1"></a>        ),</span>
+<span id="cb12-180"><a href="#cb12-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-181"><a href="#cb12-181" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Show a plot of the generated distribution</span></span>
+<span id="cb12-182"><a href="#cb12-182" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mainPanel</span>(</span>
+<span id="cb12-183"><a href="#cb12-183" aria-hidden="true" tabindex="-1"></a>           <span class="fu">plotOutput</span>(<span class="st">"distPlot"</span>)</span>
+<span id="cb12-184"><a href="#cb12-184" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb12-185"><a href="#cb12-185" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb12-186"><a href="#cb12-186" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-187"><a href="#cb12-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-188"><a href="#cb12-188" aria-hidden="true" tabindex="-1"></a><span class="co"># Define server logic required to draw a histogram</span></span>
+<span id="cb12-189"><a href="#cb12-189" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
+<span id="cb12-190"><a href="#cb12-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-191"><a href="#cb12-191" aria-hidden="true" tabindex="-1"></a>    output<span class="sc">$</span>distPlot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
+<span id="cb12-192"><a href="#cb12-192" aria-hidden="true" tabindex="-1"></a>        <span class="co"># generate bins based on input$bins from ui.R</span></span>
+<span id="cb12-193"><a href="#cb12-193" aria-hidden="true" tabindex="-1"></a>        x    <span class="ot">&lt;-</span> faithful[, <span class="dv">2</span>]</span>
+<span id="cb12-194"><a href="#cb12-194" aria-hidden="true" tabindex="-1"></a>        bins <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fu">min</span>(x), <span class="fu">max</span>(x), <span class="at">length.out =</span> input<span class="sc">$</span>bins <span class="sc">+</span> <span class="dv">1</span>)</span>
+<span id="cb12-195"><a href="#cb12-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-196"><a href="#cb12-196" aria-hidden="true" tabindex="-1"></a>        <span class="co"># draw the histogram with the specified number of bins</span></span>
+<span id="cb12-197"><a href="#cb12-197" aria-hidden="true" tabindex="-1"></a>        <span class="fu">hist</span>(x, <span class="at">breaks =</span> bins, <span class="at">col =</span> <span class="st">'darkgray'</span>, <span class="at">border =</span> <span class="st">'white'</span>,</span>
+<span id="cb12-198"><a href="#cb12-198" aria-hidden="true" tabindex="-1"></a>             <span class="at">xlab =</span> <span class="st">'Waiting time to next eruption (in mins)'</span>,</span>
+<span id="cb12-199"><a href="#cb12-199" aria-hidden="true" tabindex="-1"></a>             <span class="at">main =</span> <span class="st">'Histogram of waiting times'</span>)</span>
+<span id="cb12-200"><a href="#cb12-200" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb12-201"><a href="#cb12-201" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb12-202"><a href="#cb12-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-203"><a href="#cb12-203" aria-hidden="true" tabindex="-1"></a><span class="co"># Run the application </span></span>
+<span id="cb12-204"><a href="#cb12-204" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span>
+<span id="cb12-205"><a href="#cb12-205" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-206"><a href="#cb12-206" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-207"><a href="#cb12-207" aria-hidden="true" tabindex="-1"></a>Baris kode di atas adalah baris kode yang sudah lengkap untuk sebuah aplikasi. Tetapi, aplikasi tersebut tidak sesuai dengan tujuanmu, yaitu memvisualisasikan hubungan antara PDB per kapita dan angka harapan hidup. Untuk itu, hapus semua baris kode di atas dan ganti dengan baris kode seperti pada @lst-kode-app-shiny berikut.</span>
+<span id="cb12-208"><a href="#cb12-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-209"><a href="#cb12-209" aria-hidden="true" tabindex="-1"></a><span class="in">``` {#lst-kode-app-shiny .r filename="app.R" lst-cap="Baris kode di dalam app.R"}</span></span>
+<span id="cb12-210"><a href="#cb12-210" aria-hidden="true" tabindex="-1"></a><span class="in">library(shiny)</span></span>
+<span id="cb12-211"><a href="#cb12-211" aria-hidden="true" tabindex="-1"></a><span class="in">library(tidyverse)</span></span>
+<span id="cb12-212"><a href="#cb12-212" aria-hidden="true" tabindex="-1"></a><span class="in">load(url("https://github.com/jennybc/gapminder/raw/main/data/gapminder.rdata"))</span></span>
+<span id="cb12-213"><a href="#cb12-213" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-214"><a href="#cb12-214" aria-hidden="true" tabindex="-1"></a><span class="in">ui &lt;- fluidPage(</span></span>
+<span id="cb12-215"><a href="#cb12-215" aria-hidden="true" tabindex="-1"></a><span class="in">  sliderInput(</span></span>
+<span id="cb12-216"><a href="#cb12-216" aria-hidden="true" tabindex="-1"></a><span class="in">    inputId = "tahun",</span></span>
+<span id="cb12-217"><a href="#cb12-217" aria-hidden="true" tabindex="-1"></a><span class="in">    label = "Tahun",</span></span>
+<span id="cb12-218"><a href="#cb12-218" aria-hidden="true" tabindex="-1"></a><span class="in">    min = 1952,</span></span>
+<span id="cb12-219"><a href="#cb12-219" aria-hidden="true" tabindex="-1"></a><span class="in">    max = 2007,</span></span>
+<span id="cb12-220"><a href="#cb12-220" aria-hidden="true" tabindex="-1"></a><span class="in">    value = 2007,</span></span>
+<span id="cb12-221"><a href="#cb12-221" aria-hidden="true" tabindex="-1"></a><span class="in">    step = 5</span></span>
+<span id="cb12-222"><a href="#cb12-222" aria-hidden="true" tabindex="-1"></a><span class="in">  ),</span></span>
+<span id="cb12-223"><a href="#cb12-223" aria-hidden="true" tabindex="-1"></a><span class="in">  plotOutput("diagram_pencar")</span></span>
+<span id="cb12-224"><a href="#cb12-224" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
+<span id="cb12-225"><a href="#cb12-225" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-226"><a href="#cb12-226" aria-hidden="true" tabindex="-1"></a><span class="in">server &lt;- function(input, output, session) {</span></span>
+<span id="cb12-227"><a href="#cb12-227" aria-hidden="true" tabindex="-1"></a><span class="in">  output$diagram_pencar &lt;- renderPlot({</span></span>
+<span id="cb12-228"><a href="#cb12-228" aria-hidden="true" tabindex="-1"></a><span class="in">    tahun_int &lt;- input$tahun</span></span>
+<span id="cb12-229"><a href="#cb12-229" aria-hidden="true" tabindex="-1"></a><span class="in">    </span></span>
+<span id="cb12-230"><a href="#cb12-230" aria-hidden="true" tabindex="-1"></a><span class="in">    gapminder |&gt; </span></span>
+<span id="cb12-231"><a href="#cb12-231" aria-hidden="true" tabindex="-1"></a><span class="in">      filter(year == tahun_int) |&gt; </span></span>
+<span id="cb12-232"><a href="#cb12-232" aria-hidden="true" tabindex="-1"></a><span class="in">      ggplot(aes(x = gdpPercap, y = lifeExp)) + </span></span>
+<span id="cb12-233"><a href="#cb12-233" aria-hidden="true" tabindex="-1"></a><span class="in">      geom_point()</span></span>
+<span id="cb12-234"><a href="#cb12-234" aria-hidden="true" tabindex="-1"></a><span class="in">    </span></span>
+<span id="cb12-235"><a href="#cb12-235" aria-hidden="true" tabindex="-1"></a><span class="in">  })</span></span>
+<span id="cb12-236"><a href="#cb12-236" aria-hidden="true" tabindex="-1"></a><span class="in">}</span></span>
+<span id="cb12-237"><a href="#cb12-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-238"><a href="#cb12-238" aria-hidden="true" tabindex="-1"></a><span class="in">shinyApp(ui = ui, server = server)</span></span>
+<span id="cb12-239"><a href="#cb12-239" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-240"><a href="#cb12-240" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-241"><a href="#cb12-241" aria-hidden="true" tabindex="-1"></a>Aplikasi <span class="in">`app.R`</span> tersebut memuat baris kode yang melakukan empat hal sebagai berikut.</span>
+<span id="cb12-242"><a href="#cb12-242" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-243"><a href="#cb12-243" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Baris kode tersebut memanggil paket {shiny} dan {tidyverse} melalui perintah <span class="in">`library(shiny)`</span> dan <span class="in">`library(tidyverse)`</span>. Selain itu, baris kode tersebut juga mengimpor data <span class="in">`gapminder`</span> dengan perintah <span class="in">`load(url("https://github.com/jennybc/gapminder/raw/main/data/gapminder.rdata"))`</span>.</span>
+<span id="cb12-244"><a href="#cb12-244" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-245"><a href="#cb12-245" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Baris kode tersebut membuat antarmuka (<span class="in">`ui`</span>): laman yang menjadi tempat berinteraksinya pengguna. Ada tiga fungsi yang digunakan untuk membuat antarmuka tersebut, yaitu <span class="in">`fluidPage()`</span>, <span class="in">`sliderInput()`</span>, dan <span class="in">`plotOutput()`</span>. Lebih lengkapnya akan dijelaskan pada @sec-antarmuka.</span>
+<span id="cb12-246"><a href="#cb12-246" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-247"><a href="#cb12-247" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Baris kode tersebut menentukan perilaku dari aplikasi tersebut dengan fungsi <span class="in">`server`</span>. Pembahasan lebih lanjut dapat dilihat pada @sec-server.</span>
+<span id="cb12-248"><a href="#cb12-248" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-249"><a href="#cb12-249" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>Baris kode yang terakhir, yaitu <span class="in">`shinyApp(ui = ui, server = server)`</span>, berfungsi untuk membuat aplikasi Shiny berdasarkan antarmuka <span class="in">`ui`</span> dan fungsi <span class="in">`server`</span> dan kemudian menjalankannya.</span>
+<span id="cb12-250"><a href="#cb12-250" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-251"><a href="#cb12-251" aria-hidden="true" tabindex="-1"></a>Apabila kamu sudah penasaran dengan aplikasi Shiny tersebut, kamu dapat menjalankannya. Untuk melakukannya di RStudio, klik tombol **Run App** yang terletak di bagian kanan-atas dokumen. Perhatikan @fig-run-app!</span>
+<span id="cb12-252"><a href="#cb12-252" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-253"><a href="#cb12-253" aria-hidden="true" tabindex="-1"></a><span class="al">![Tombol Run App yang dapat ditemukan di bagian kanan-atas dokumen](aset/Run-App-RStudio.png)</span>{#fig-run-app fig-alt="Tombol Run App dalam RStudio" fig-align="center"}</span>
+<span id="cb12-254"><a href="#cb12-254" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-255"><a href="#cb12-255" aria-hidden="true" tabindex="-1"></a>Setelah kamu mengklik tombol tersebut, beberapa saat kamu dapat melihat aplikasi tersebut. Tampilannya ditunjukkan pada @fig-tampilan-app.</span>
+<span id="cb12-256"><a href="#cb12-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-257"><a href="#cb12-257" aria-hidden="true" tabindex="-1"></a><span class="al">![Tampilan aplikasi Shiny](aset/tampilan-aplikasi-shiny.png)</span>{#fig-tampilan-app fig-align="center"}</span>
+<span id="cb12-258"><a href="#cb12-258" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-259"><a href="#cb12-259" aria-hidden="true" tabindex="-1"></a>Kamu dapat berinteraksi dengan aplikasi tersebut. Silakan geser-geser slidernya (bagian kiri-atas aplikasi dengan label "Tahun") untuk mengubah tahunnya. Ketika tahun tersebut kamu ganti, kamu dapat melihat tampilan diagram pencarnya juga menyesuaikan. Untuk menutup aplikasi tersebut, klik tombol **Close** yang terletak di sebelah kanan-atas.</span>
+<span id="cb12-260"><a href="#cb12-260" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-261"><a href="#cb12-261" aria-hidden="true" tabindex="-1"></a><span class="fu">### Antarmuka Aplikasi Shiny {#sec-antarmuka}</span></span>
+<span id="cb12-262"><a href="#cb12-262" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-263"><a href="#cb12-263" aria-hidden="true" tabindex="-1"></a>Salah satu bagian baris kode aplikasi Shiny adalah kode antarmukanya. Pada baris kode @lst-kode-app-shiny, pendefinisian antarmukanya ada di <span class="in">`ui`</span>. Terdapat tiga fungsi yang digunakan, yaitu <span class="in">`fluidPage()`</span>, <span class="in">`sliderInput()`</span>, dan <span class="in">`plotOutput()`</span>.</span>
+<span id="cb12-264"><a href="#cb12-264" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-265"><a href="#cb12-265" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`fluidPage()`</span> merupakan fungsi tata letak. Fungsi ini mengatur tata letak dari tampilan aplikasi Shiny kita.</span>
+<span id="cb12-266"><a href="#cb12-266" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-267"><a href="#cb12-267" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`sliderInput()`</span> merupakan salah satu kontrol input. Fungsi ini memungkinkan pengguna untuk berinteraksi dengan aplikasi kita. Dengan menggeser-geser slidernya, pengguna menyediakan input bagi aplikasi kita. Terdapat enam argumen yang kita isikan dalam fungsi tersebut. Argumen <span class="in">`inputId = "tahun"`</span> memberikan identitas terhadap slider tersebut. Identitas ini selanjutnya digunakan lagi dalam fungsi <span class="in">`server`</span> nantinya. Argumen <span class="in">`label="Tahun"`</span> berfungsi untuk memberikan label terhadap slider tersebut. Label ini ditampilkan dalam antarmuka aplikasi kita. Argumen <span class="in">`min = 1952`</span> , <span class="in">`max = 2007`</span>, dan <span class="in">`step = 5`</span> memberikan nilai-nilai yang mungkin untuk inputnya, yaitu bilangan mulai dari 1952 sampai 2007 dengan interval 5. Terakhir, <span class="in">`value = 2007`</span> memberikan nilai awal untuk slider tersebut.</span>
+<span id="cb12-268"><a href="#cb12-268" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-269"><a href="#cb12-269" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`plotOutput()`</span> merupakan salah satu kontrol luaran aplikasi Shiny. Fungsi ini memberitahu Shiny tempat meletakkan luaran plot yang memiliki identitas <span class="in">`diagram_pencar`</span>.</span>
+<span id="cb12-270"><a href="#cb12-270" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-271"><a href="#cb12-271" aria-hidden="true" tabindex="-1"></a><span class="fu">### Dapur Aplikasi Shiny {#sec-server}</span></span>
+<span id="cb12-272"><a href="#cb12-272" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-273"><a href="#cb12-273" aria-hidden="true" tabindex="-1"></a>@sec-antarmuka telah menunjukkan adanya input dan luaran dalam aplikasi Shiny kita. Dari input menjadi luaran, terdapat proses komputasi yang dilakukan di dapur Shiny. Proses ini kita tentukan di dalam fungsi <span class="in">`server`</span>.</span>
+<span id="cb12-274"><a href="#cb12-274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-275"><a href="#cb12-275" aria-hidden="true" tabindex="-1"></a>Di dalam fungsi <span class="in">`server`</span>, kita memberikan resep kepada Shiny untuk melakukan komputasi. Ruas kiri dari operator <span class="in">`&lt;-`</span>, yaitu <span class="in">`output$diagram_pencar`</span>, mengindikasikan bahwa kita memberikan resep untuk luaran dengan identitas <span class="in">`diagram_pencar`</span>.</span>
+<span id="cb12-276"><a href="#cb12-276" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-277"><a href="#cb12-277" aria-hidden="true" tabindex="-1"></a>Ruas kanan operator <span class="in">`&lt;-`</span> merupakan fungsi render. Fungsi render ini bermacam-macam jenisnya, tergantung dari luarannya. Karena di antarmuka kita akan membuat plot dengan <span class="in">`plotOutput`</span>, kita perlu menggunakan fungsi <span class="in">`renderPlot()`</span> di sini.</span>
+<span id="cb12-278"><a href="#cb12-278" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-279"><a href="#cb12-279" aria-hidden="true" tabindex="-1"></a>Logika di dalam fungsi <span class="in">`renderPlot()`</span> sama dengan logika yang kita gunakan pada @sec-mengapa-shiny, tetapi dengan sedikit penambahan. Penambahannya adalah pada <span class="in">`tahun_int &lt;- input$tahun`</span>. Kode ini berfungsi untuk memberikan nilai sebesar <span class="in">`input$tahun`</span> kepada variabel <span class="in">`tahun_int`</span>. Nilai <span class="in">`input$tahun`</span> tersebut tergantung dari nilai yang diberikan oleh pengguna terhadap slider dengan identitas <span class="in">`tahun`</span> pada antarmuka.</span>
+<span id="cb12-280"><a href="#cb12-280" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-281"><a href="#cb12-281" aria-hidden="true" tabindex="-1"></a>Alur kerja aplikasi Shiny kita ringkasnya seperti ini. Pertama, pengguna melihat antarmuka aplikasi kita. Di situ dia dapat menggeser slider dengan identitas <span class="in">`tahun`</span> untuk mengganti-ganti nilanya. Nilai ini kemudian dikirim ke dapur Shiny dalam rupa <span class="in">`input$tahun`</span> untuk diolah di dalam fungsi render, yaitu <span class="in">`renderPlot()`</span>. Olahan tersebut menghasilkan luaran yang disebut dengan <span class="in">`output$diagram_pencar`</span>. Luaran ini kemudian dikirimkan lagi ke antarmuka agar dapat dilihat oleh pengguna. Di mana posisinya? Posisinya terletak di mana <span class="in">`plotOutput("diagram_pencar")`</span> berada.</span>
+<span id="cb12-282"><a href="#cb12-282" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-283"><a href="#cb12-283" aria-hidden="true" tabindex="-1"></a><span class="fu">## Sentuhan Akhir {#sec-sentuhan-akhir}</span></span>
+<span id="cb12-284"><a href="#cb12-284" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-285"><a href="#cb12-285" aria-hidden="true" tabindex="-1"></a>Aplikasi Shiny kita masih sederhana dan seperlunya. Kita dapat memperindah aplikasi tersebut. Beberapa hal yang dapat kita lakukan antara lain</span>
+<span id="cb12-286"><a href="#cb12-286" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-287"><a href="#cb12-287" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>menambahkan judul ke dalam antarmukanya,</span>
+<span id="cb12-288"><a href="#cb12-288" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-289"><a href="#cb12-289" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>mengatur slidernya agar menampilkan bilangan yang tidak memuat pemisah ribuan, dan</span>
+<span id="cb12-290"><a href="#cb12-290" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-291"><a href="#cb12-291" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>memperbaiki diagram pencar yang disajikan agar tampilannya sama dengan diagram pencar pada <span class="co">[</span><span class="ot">pos sebelumnya</span><span class="co">](/pos/2024-08-animasi-diagram-statistik/index.qmd "Membuat Diagram Lebih Hidup dengan Animasi")</span>, serta mengatur agar batasan jendelanya konsisten dari tahun ke tahun.</span>
+<span id="cb12-292"><a href="#cb12-292" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-293"><a href="#cb12-293" aria-hidden="true" tabindex="-1"></a>Ketiga hal tersebut dapat kita penuhi dengan baris kode seperti pada @lst-app-shiny-baru berikut.</span>
+<span id="cb12-294"><a href="#cb12-294" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-295"><a href="#cb12-295" aria-hidden="true" tabindex="-1"></a><span class="in">``` {#lst-app-shiny-baru .r filename="app.R" lst-cap="Baris kode di dalam app.R"}</span></span>
+<span id="cb12-296"><a href="#cb12-296" aria-hidden="true" tabindex="-1"></a><span class="in">library(shiny)</span></span>
+<span id="cb12-297"><a href="#cb12-297" aria-hidden="true" tabindex="-1"></a><span class="in">library(tidyverse)</span></span>
+<span id="cb12-298"><a href="#cb12-298" aria-hidden="true" tabindex="-1"></a><span class="in">load(url("https://github.com/jennybc/gapminder/raw/main/data/gapminder.rdata"))</span></span>
+<span id="cb12-299"><a href="#cb12-299" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-300"><a href="#cb12-300" aria-hidden="true" tabindex="-1"></a><span class="in">ui &lt;- fluidPage(</span></span>
+<span id="cb12-301"><a href="#cb12-301" aria-hidden="true" tabindex="-1"></a><span class="in">  titlePanel("PDB per Kapita vs. Angka Harapan Hidup"),</span></span>
+<span id="cb12-302"><a href="#cb12-302" aria-hidden="true" tabindex="-1"></a><span class="in">  sliderInput(</span></span>
+<span id="cb12-303"><a href="#cb12-303" aria-hidden="true" tabindex="-1"></a><span class="in">    inputId = "tahun",</span></span>
+<span id="cb12-304"><a href="#cb12-304" aria-hidden="true" tabindex="-1"></a><span class="in">    label = "Tahun",</span></span>
+<span id="cb12-305"><a href="#cb12-305" aria-hidden="true" tabindex="-1"></a><span class="in">    min = 1952,</span></span>
+<span id="cb12-306"><a href="#cb12-306" aria-hidden="true" tabindex="-1"></a><span class="in">    max = 2007,</span></span>
+<span id="cb12-307"><a href="#cb12-307" aria-hidden="true" tabindex="-1"></a><span class="in">    value = 2007,</span></span>
+<span id="cb12-308"><a href="#cb12-308" aria-hidden="true" tabindex="-1"></a><span class="in">    step = 5,</span></span>
+<span id="cb12-309"><a href="#cb12-309" aria-hidden="true" tabindex="-1"></a><span class="in">    sep = ""</span></span>
+<span id="cb12-310"><a href="#cb12-310" aria-hidden="true" tabindex="-1"></a><span class="in">  ),</span></span>
+<span id="cb12-311"><a href="#cb12-311" aria-hidden="true" tabindex="-1"></a><span class="in">  plotOutput("diagram_pencar")</span></span>
+<span id="cb12-312"><a href="#cb12-312" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
+<span id="cb12-313"><a href="#cb12-313" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-314"><a href="#cb12-314" aria-hidden="true" tabindex="-1"></a><span class="in">server &lt;- function(input, output, session) {</span></span>
+<span id="cb12-315"><a href="#cb12-315" aria-hidden="true" tabindex="-1"></a><span class="in">  output$diagram_pencar &lt;- renderPlot({</span></span>
+<span id="cb12-316"><a href="#cb12-316" aria-hidden="true" tabindex="-1"></a><span class="in">    tahun_int &lt;- input$tahun</span></span>
+<span id="cb12-317"><a href="#cb12-317" aria-hidden="true" tabindex="-1"></a><span class="in">    </span></span>
+<span id="cb12-318"><a href="#cb12-318" aria-hidden="true" tabindex="-1"></a><span class="in">    gapminder |&gt; </span></span>
+<span id="cb12-319"><a href="#cb12-319" aria-hidden="true" tabindex="-1"></a><span class="in">      filter(year == tahun_int) |&gt; </span></span>
+<span id="cb12-320"><a href="#cb12-320" aria-hidden="true" tabindex="-1"></a><span class="in">      ggplot(</span></span>
+<span id="cb12-321"><a href="#cb12-321" aria-hidden="true" tabindex="-1"></a><span class="in">        aes(x = gdpPercap, y = lifeExp)</span></span>
+<span id="cb12-322"><a href="#cb12-322" aria-hidden="true" tabindex="-1"></a><span class="in">      ) + </span></span>
+<span id="cb12-323"><a href="#cb12-323" aria-hidden="true" tabindex="-1"></a><span class="in">      geom_point(</span></span>
+<span id="cb12-324"><a href="#cb12-324" aria-hidden="true" tabindex="-1"></a><span class="in">        aes(color = continent, size = pop),</span></span>
+<span id="cb12-325"><a href="#cb12-325" aria-hidden="true" tabindex="-1"></a><span class="in">        alpha = .6</span></span>
+<span id="cb12-326"><a href="#cb12-326" aria-hidden="true" tabindex="-1"></a><span class="in">      ) + </span></span>
+<span id="cb12-327"><a href="#cb12-327" aria-hidden="true" tabindex="-1"></a><span class="in">      scale_size(</span></span>
+<span id="cb12-328"><a href="#cb12-328" aria-hidden="true" tabindex="-1"></a><span class="in">        range = c(5, 30),</span></span>
+<span id="cb12-329"><a href="#cb12-329" aria-hidden="true" tabindex="-1"></a><span class="in">        guide = "none"</span></span>
+<span id="cb12-330"><a href="#cb12-330" aria-hidden="true" tabindex="-1"></a><span class="in">      ) + </span></span>
+<span id="cb12-331"><a href="#cb12-331" aria-hidden="true" tabindex="-1"></a><span class="in">      scale_color_viridis_d(name = "Benua") + </span></span>
+<span id="cb12-332"><a href="#cb12-332" aria-hidden="true" tabindex="-1"></a><span class="in">      theme_minimal(base_size = 18) + </span></span>
+<span id="cb12-333"><a href="#cb12-333" aria-hidden="true" tabindex="-1"></a><span class="in">      theme(</span></span>
+<span id="cb12-334"><a href="#cb12-334" aria-hidden="true" tabindex="-1"></a><span class="in">        legend.position = "bottom",</span></span>
+<span id="cb12-335"><a href="#cb12-335" aria-hidden="true" tabindex="-1"></a><span class="in">        plot.title = element_text(face = "bold")</span></span>
+<span id="cb12-336"><a href="#cb12-336" aria-hidden="true" tabindex="-1"></a><span class="in">      ) + </span></span>
+<span id="cb12-337"><a href="#cb12-337" aria-hidden="true" tabindex="-1"></a><span class="in">      xlim(c(200, 60000)) + </span></span>
+<span id="cb12-338"><a href="#cb12-338" aria-hidden="true" tabindex="-1"></a><span class="in">      ylim(c(20, 90)) + </span></span>
+<span id="cb12-339"><a href="#cb12-339" aria-hidden="true" tabindex="-1"></a><span class="in">      labs(</span></span>
+<span id="cb12-340"><a href="#cb12-340" aria-hidden="true" tabindex="-1"></a><span class="in">        x = "PDB per kapita",</span></span>
+<span id="cb12-341"><a href="#cb12-341" aria-hidden="true" tabindex="-1"></a><span class="in">        y = "Angka harapan hidup",</span></span>
+<span id="cb12-342"><a href="#cb12-342" aria-hidden="true" tabindex="-1"></a><span class="in">        caption = "Data: Jenny Bryan dkk. / Github"</span></span>
+<span id="cb12-343"><a href="#cb12-343" aria-hidden="true" tabindex="-1"></a><span class="in">      )</span></span>
+<span id="cb12-344"><a href="#cb12-344" aria-hidden="true" tabindex="-1"></a><span class="in">    </span></span>
+<span id="cb12-345"><a href="#cb12-345" aria-hidden="true" tabindex="-1"></a><span class="in">  })</span></span>
+<span id="cb12-346"><a href="#cb12-346" aria-hidden="true" tabindex="-1"></a><span class="in">}</span></span>
+<span id="cb12-347"><a href="#cb12-347" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-348"><a href="#cb12-348" aria-hidden="true" tabindex="-1"></a><span class="in">shinyApp(ui = ui, server = server)</span></span>
+<span id="cb12-349"><a href="#cb12-349" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-350"><a href="#cb12-350" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-351"><a href="#cb12-351" aria-hidden="true" tabindex="-1"></a>Bagaimana tampilan aplikasi Shiny kita sekarang? Tampilannya ditunjukkan pada @fig-tampilan-app-baru.</span>
+<span id="cb12-352"><a href="#cb12-352" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-353"><a href="#cb12-353" aria-hidden="true" tabindex="-1"></a><span class="al">![Tampilan aplikasi Shiny setelah dilakukan sentuhan akhir](aset/tampilan-aplikasi-shiny-baru.gif)</span>{#fig-tampilan-app-baru fig-align="center"}</span>
+<span id="cb12-354"><a href="#cb12-354" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-355"><a href="#cb12-355" aria-hidden="true" tabindex="-1"></a><span class="fu">## Catatan Akhir {#sec-catatan-akhir}</span></span>
+<span id="cb12-356"><a href="#cb12-356" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-357"><a href="#cb12-357" aria-hidden="true" tabindex="-1"></a>Kita telah mengenal Shiny. Kita secara bersama-sama juga telah membuat aplikasi Shiny sederhana pada @sec-membuat-app-shiny dan memberikan sentuhan akhir pada @sec-sentuhan-akhir. Aplikasi tersebut dapat menampilkan visualisasi data secara interaktif. Dengan cara demikian, harapannya statistik tidak hanya menjadi konsumsi statistikawan tetapi juga orang awam.</span>
+<span id="cb12-358"><a href="#cb12-358" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-359"><a href="#cb12-359" aria-hidden="true" tabindex="-1"></a>Apa selanjutnya? Jika kamu tertarik untuk mengembangkan aplikasi Shiny, kamu dapat belajar dari contoh-contohnya. Contoh tersebut dapat kamu lihat di <span class="co">[</span><span class="ot">laman galeri Shiny untuk R</span><span class="co">](https://shiny.posit.co/r/gallery/ "Shiny for R Gallery")</span>{.external target="_blank"}. Selain itu, kamu juga dapat menjelajah <span class="co">[</span><span class="ot">beberapa aplikasi Shiny yang telah aku kembangkan</span><span class="co">](https://people.usd.ac.id/~ydkristanto/index.php/media-pengajaran/shiny-stat-dan-id/ "Aplikasi Shiny untuk Statistika dan Ilmu Data")</span>{.external target="_blank"}. *Have a shiny day!*</span>
+</code><button title="Salin ke Papan Klip" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">
